@@ -1,0 +1,621 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		710168832955621200E0B028 /* MagnitudeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710168822955621200E0B028 /* MagnitudeFilter.swift */; };
+		710168852955621D00E0B028 /* SizeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710168842955621D00E0B028 /* SizeFilter.swift */; };
+		710168872955641400E0B028 /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 710168862955641400E0B028 /* Notes.rtf */; };
+		7104F4982929F0E90000A66A /* TargetCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104F4972929F0E90000A66A /* TargetCalculationError.swift */; };
+		7109A3F5292EBA7A00980527 /* RawMoonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* RawMoonData.swift */; };
+		710BF588294BF18900A72073 /* ConfigSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710BF587294BF18900A72073 /* ConfigSection.swift */; };
+		710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D497629316B4F003F41F1 /* DailyReportView.swift */; };
+		7133FC67294C14560080AE0C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133FC66294C14560080AE0C /* View.swift */; };
+		713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49B72954122D008EFC81 /* LocationSettings.swift */; };
+		713B49BC29541242008EFC81 /* DailyReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49BB29541242008EFC81 /* DailyReportSettings.swift */; };
+		714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E54CD293D52B00039ECE0 /* LocationManager.swift */; };
+		7156743029273ECA00626B1B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7156742F29273ECA00626B1B /* AboutView.swift */; };
+		715CCB5429270AF700497CA2 /* SortMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715CCB5329270AF700497CA2 /* SortMethod.swift */; };
+		716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
+		7176882D292B285700BB86D7 /* FilterMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176882C292B285700BB86D7 /* FilterMethod.swift */; };
+		718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
+		71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
+		719B26D7295167A100E1165A /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B26D6295167A100E1165A /* NumberPicker.swift */; };
+		71B14F692958D905003C11BD /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B14F682958D905003C11BD /* DateSelector.swift */; };
+		71B14F6B295A77AE003C11BD /* KeyboardDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */; };
+		71B5AF96292C778D00323693 /* DSOCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* DSOCatalog.swift */; };
+		71B5FD1C294EBECF00833379 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
+		71B6D2FD2954D983006ADC6F /* GearSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D2FC2954D983006ADC6F /* GearSettings.swift */; };
+		71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */; };
+		71BCF9512921EE72008C7614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
+		71BCF9542921EE72008C7614 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9532921EE72008C7614 /* Preview Assets.xcassets */; };
+		71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
+		71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
+		71BCF96B2921EF20008C7614 /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9672921EF20008C7614 /* CatalogView.swift */; };
+		71BCF96C2921EF20008C7614 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9682921EF20008C7614 /* SettingsView.swift */; };
+		71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9692921EF20008C7614 /* DetailView.swift */; };
+		71BCF96E2921EF20008C7614 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF96A2921EF20008C7614 /* HomeView.swift */; };
+		71BCF9752921EF6D008C7614 /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
+		71BCF9762921EF6D008C7614 /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
+		71BCF9782921EF6D008C7614 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
+		71BCF9822921EF8B008C7614 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date.swift */; };
+		71BCF9832921EF8B008C7614 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
+		71BCF9852921EF8B008C7614 /* DSOType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* DSOType.swift */; };
+		71BCF9882921EF8B008C7614 /* RawSunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9802921EF8B008C7614 /* RawSunData.swift */; };
+		71D77FA82921F99200709252 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
+		71E96D68292831AA00E019F9 /* CatalogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E96D67292831AA00E019F9 /* CatalogViewModel.swift */; };
+		71F71573293FB4010011EF7F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
+		71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		710168822955621200E0B028 /* MagnitudeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnitudeFilter.swift; sourceTree = "<group>"; };
+		710168842955621D00E0B028 /* SizeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeFilter.swift; sourceTree = "<group>"; };
+		710168862955641400E0B028 /* Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
+		7104F4972929F0E90000A66A /* TargetCalculationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCalculationError.swift; sourceTree = "<group>"; };
+		7109A3F4292EBA7A00980527 /* RawMoonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMoonData.swift; sourceTree = "<group>"; };
+		710BF587294BF18900A72073 /* ConfigSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSection.swift; sourceTree = "<group>"; };
+		710D497629316B4F003F41F1 /* DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportView.swift; sourceTree = "<group>"; };
+		7133FC66294C14560080AE0C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		713B49B72954122D008EFC81 /* LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettings.swift; sourceTree = "<group>"; };
+		713B49BB29541242008EFC81 /* DailyReportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportSettings.swift; sourceTree = "<group>"; };
+		714E54CD293D52B00039ECE0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7156742F29273ECA00626B1B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		715CCB5329270AF700497CA2 /* SortMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMethod.swift; sourceTree = "<group>"; };
+		716531E929340CFE00D05B79 /* DailyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReport.swift; sourceTree = "<group>"; };
+		7176882C292B285700BB86D7 /* FilterMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMethod.swift; sourceTree = "<group>"; };
+		718CA9A729244FD600F3F5A7 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
+		71901C7629299D5C00D95AA5 /* Constellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
+		719B26D6295167A100E1165A /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
+		71B14F682958D905003C11BD /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
+		71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissButton.swift; sourceTree = "<group>"; };
+		71B5AF95292C778D00323693 /* DSOCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSOCatalog.swift; sourceTree = "<group>"; };
+		71B5FD1B294EBECF00833379 /* PlaceValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceValue.swift; sourceTree = "<group>"; };
+		71B6D2FC2954D983006ADC6F /* GearSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearSettings.swift; sourceTree = "<group>"; };
+		71BCF9492921EE71008C7614 /* DeepSkyCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeepSkyCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogApp.swift; sourceTree = "<group>"; };
+		71BCF9502921EE72008C7614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		71BCF9532921EE72008C7614 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		71BCF9552921EE72008C7614 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		71BCF9582921EE72008C7614 /* DeepSkyCatalog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeepSkyCatalog.xcdatamodel; sourceTree = "<group>"; };
+		71BCF9672921EF20008C7614 /* CatalogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
+		71BCF9682921EF20008C7614 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		71BCF9692921EF20008C7614 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		71BCF96A2921EF20008C7614 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepSkyTargetList.swift; sourceTree = "<group>"; };
+		71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepSkyTarget.swift; sourceTree = "<group>"; };
+		71BCF9742921EF6D008C7614 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		71BCF97A2921EF8B008C7614 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		71BCF97B2921EF8B008C7614 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		71BCF97D2921EF8B008C7614 /* DSOType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSOType.swift; sourceTree = "<group>"; };
+		71BCF9802921EF8B008C7614 /* RawSunData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawSunData.swift; sourceTree = "<group>"; };
+		71D77FA72921F99200709252 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		71E96D67292831AA00E019F9 /* CatalogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewModel.swift; sourceTree = "<group>"; };
+		71F71572293FB4010011EF7F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		71F844C8294A95E700DD2742 /* SelectableList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableList.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		71BCF9462921EE71008C7614 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		71016881295561F600E0B028 /* CatalogView */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF9672921EF20008C7614 /* CatalogView.swift */,
+				710168822955621200E0B028 /* MagnitudeFilter.swift */,
+				710168842955621D00E0B028 /* SizeFilter.swift */,
+			);
+			path = CatalogView;
+			sourceTree = "<group>";
+		};
+		71359532292DB49700CA4295 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				718CA9A729244FD600F3F5A7 /* FetchError.swift */,
+				7104F4972929F0E90000A66A /* TargetCalculationError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		713B49B629541216008EFC81 /* SettingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF9682921EF20008C7614 /* SettingsView.swift */,
+				713B49B72954122D008EFC81 /* LocationSettings.swift */,
+				713B49BB29541242008EFC81 /* DailyReportSettings.swift */,
+				71B6D2FC2954D983006ADC6F /* GearSettings.swift */,
+			);
+			path = SettingsViews;
+			sourceTree = "<group>";
+		};
+		718B56AF294C349900914BDB /* Reusable Views */ = {
+			isa = PBXGroup;
+			children = (
+				71B14F682958D905003C11BD /* DateSelector.swift */,
+				71F844C8294A95E700DD2742 /* SelectableList.swift */,
+				719B26D6295167A100E1165A /* NumberPicker.swift */,
+				710BF587294BF18900A72073 /* ConfigSection.swift */,
+				71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */,
+			);
+			path = "Reusable Views";
+			sourceTree = "<group>";
+		};
+		719B26D8295173CD00E1165A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF9742921EF6D008C7614 /* NetworkManager.swift */,
+				71BCF9802921EF8B008C7614 /* RawSunData.swift */,
+				7109A3F4292EBA7A00980527 /* RawMoonData.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		71BCF9402921EE71008C7614 = {
+			isa = PBXGroup;
+			children = (
+				71BCF94B2921EE71008C7614 /* DeepSkyCatalog */,
+				71BCF94A2921EE71008C7614 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		71BCF94A2921EE71008C7614 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF9492921EE71008C7614 /* DeepSkyCatalog.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		71BCF94B2921EE71008C7614 /* DeepSkyCatalog */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF9502921EE72008C7614 /* Assets.xcassets */,
+				71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */,
+				71BCF96F2921EF2E008C7614 /* Views */,
+				71BCF9702921EF61008C7614 /* Logic */,
+				71BCF9792921EF76008C7614 /* Utils */,
+				71BCF9522921EE72008C7614 /* Preview Content */,
+			);
+			path = DeepSkyCatalog;
+			sourceTree = "<group>";
+		};
+		71BCF9522921EE72008C7614 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF9532921EE72008C7614 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		71BCF96F2921EF2E008C7614 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF96A2921EF20008C7614 /* HomeView.swift */,
+				710D497629316B4F003F41F1 /* DailyReportView.swift */,
+				71016881295561F600E0B028 /* CatalogView */,
+				713B49B629541216008EFC81 /* SettingsViews */,
+				71BCF9692921EF20008C7614 /* DetailView.swift */,
+				7156742F29273ECA00626B1B /* AboutView.swift */,
+				718B56AF294C349900914BDB /* Reusable Views */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		71BCF9702921EF61008C7614 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				71E96D67292831AA00E019F9 /* CatalogViewModel.swift */,
+				716531E929340CFE00D05B79 /* DailyReport.swift */,
+				71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */,
+				71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */,
+				71FE96842956C0E700F6A4F2 /* Location */,
+				71BCF98A2921F2AC008C7614 /* CoreData */,
+				719B26D8295173CD00E1165A /* Network */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		71BCF9792921EF76008C7614 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				710168862955641400E0B028 /* Notes.rtf */,
+				71D77FA92921FD7B00709252 /* Enums */,
+				71D77FA62921F97E00709252 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		71BCF98A2921F2AC008C7614 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */,
+				71BCF9552921EE72008C7614 /* PersistenceManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		71D77FA62921F97E00709252 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF97A2921EF8B008C7614 /* Date.swift */,
+				71BCF97B2921EF8B008C7614 /* String.swift */,
+				71D77FA72921F99200709252 /* Double.swift */,
+				7133FC66294C14560080AE0C /* View.swift */,
+				71F71572293FB4010011EF7F /* Environment.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		71D77FA92921FD7B00709252 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				71B5AF95292C778D00323693 /* DSOCatalog.swift */,
+				71901C7629299D5C00D95AA5 /* Constellation.swift */,
+				71BCF97D2921EF8B008C7614 /* DSOType.swift */,
+				715CCB5329270AF700497CA2 /* SortMethod.swift */,
+				7176882C292B285700BB86D7 /* FilterMethod.swift */,
+				71B5FD1B294EBECF00833379 /* PlaceValue.swift */,
+				71359532292DB49700CA4295 /* Errors */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		71FE96842956C0E700F6A4F2 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				714E54CD293D52B00039ECE0 /* LocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		71BCF9482921EE71008C7614 /* DeepSkyCatalog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71BCF95C2921EE72008C7614 /* Build configuration list for PBXNativeTarget "DeepSkyCatalog" */;
+			buildPhases = (
+				71BCF9452921EE71008C7614 /* Sources */,
+				71BCF9462921EE71008C7614 /* Frameworks */,
+				71BCF9472921EE71008C7614 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeepSkyCatalog;
+			productName = DeepSkyCatalog;
+			productReference = 71BCF9492921EE71008C7614 /* DeepSkyCatalog.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		71BCF9412921EE71008C7614 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					71BCF9482921EE71008C7614 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = 71BCF9442921EE71008C7614 /* Build configuration list for PBXProject "DeepSkyCatalog " */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 71BCF9402921EE71008C7614;
+			productRefGroup = 71BCF94A2921EE71008C7614 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				71BCF9482921EE71008C7614 /* DeepSkyCatalog */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		71BCF9472921EE71008C7614 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71BCF9542921EE72008C7614 /* Preview Assets.xcassets in Resources */,
+				710168872955641400E0B028 /* Notes.rtf in Resources */,
+				71BCF9512921EE72008C7614 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		71BCF9452921EE71008C7614 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71B6D2FD2954D983006ADC6F /* GearSettings.swift in Sources */,
+				7104F4982929F0E90000A66A /* TargetCalculationError.swift in Sources */,
+				71BCF9852921EF8B008C7614 /* DSOType.swift in Sources */,
+				716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */,
+				71BCF96E2921EF20008C7614 /* HomeView.swift in Sources */,
+				7156743029273ECA00626B1B /* AboutView.swift in Sources */,
+				71BCF96C2921EF20008C7614 /* SettingsView.swift in Sources */,
+				71BCF9882921EF8B008C7614 /* RawSunData.swift in Sources */,
+				714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */,
+				71BCF9752921EF6D008C7614 /* DeepSkyTargetList.swift in Sources */,
+				71BCF9782921EF6D008C7614 /* NetworkManager.swift in Sources */,
+				71B5FD1C294EBECF00833379 /* PlaceValue.swift in Sources */,
+				71BCF96B2921EF20008C7614 /* CatalogView.swift in Sources */,
+				71BCF9762921EF6D008C7614 /* DeepSkyTarget.swift in Sources */,
+				710168852955621D00E0B028 /* SizeFilter.swift in Sources */,
+				71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */,
+				71BCF9822921EF8B008C7614 /* Date.swift in Sources */,
+				7109A3F5292EBA7A00980527 /* RawMoonData.swift in Sources */,
+				71D77FA82921F99200709252 /* Double.swift in Sources */,
+				71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */,
+				710BF588294BF18900A72073 /* ConfigSection.swift in Sources */,
+				71F71573293FB4010011EF7F /* Environment.swift in Sources */,
+				718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */,
+				7176882D292B285700BB86D7 /* FilterMethod.swift in Sources */,
+				71BCF9832921EF8B008C7614 /* String.swift in Sources */,
+				71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */,
+				715CCB5429270AF700497CA2 /* SortMethod.swift in Sources */,
+				710168832955621200E0B028 /* MagnitudeFilter.swift in Sources */,
+				71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */,
+				713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */,
+				710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */,
+				71B14F6B295A77AE003C11BD /* KeyboardDismissButton.swift in Sources */,
+				713B49BC29541242008EFC81 /* DailyReportSettings.swift in Sources */,
+				71E96D68292831AA00E019F9 /* CatalogViewModel.swift in Sources */,
+				71B14F692958D905003C11BD /* DateSelector.swift in Sources */,
+				71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */,
+				719B26D7295167A100E1165A /* NumberPicker.swift in Sources */,
+				7133FC67294C14560080AE0C /* View.swift in Sources */,
+				71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */,
+				71B5AF96292C778D00323693 /* DSOCatalog.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		71BCF95A2921EE72008C7614 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		71BCF95B2921EE72008C7614 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		71BCF95D2921EE72008C7614 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DeepSkyCatalog/Preview Content\"";
+				DEVELOPMENT_TEAM = Y68DX6VH2U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Astro Planner";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		71BCF95E2921EE72008C7614 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DeepSkyCatalog/Preview Content\"";
+				DEVELOPMENT_TEAM = Y68DX6VH2U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Astro Planner";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		71BCF9442921EE71008C7614 /* Build configuration list for PBXProject "DeepSkyCatalog " */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71BCF95A2921EE72008C7614 /* Debug */,
+				71BCF95B2921EE72008C7614 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71BCF95C2921EE72008C7614 /* Build configuration list for PBXNativeTarget "DeepSkyCatalog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71BCF95D2921EE72008C7614 /* Debug */,
+				71BCF95E2921EE72008C7614 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				71BCF9582921EE72008C7614 /* DeepSkyCatalog.xcdatamodel */,
+			);
+			currentVersion = 71BCF9582921EE72008C7614 /* DeepSkyCatalog.xcdatamodel */;
+			path = DeepSkyCatalog.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 71BCF9412921EE71008C7614 /* Project object */;
+}
