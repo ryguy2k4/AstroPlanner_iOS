@@ -67,9 +67,6 @@ struct DailyReportView: View {
             }
             .environmentObject(locationList.first!)
             .scrollIndicators(.hidden)
-            .task {
-                await NetworkManager.shared.refreshAllData(at: locationList.first!, on: date)
-            }
             .onChange(of: networkManager.isSafe) { isSafe in
                 if isSafe {
                     Task {

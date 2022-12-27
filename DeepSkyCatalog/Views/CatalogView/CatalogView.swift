@@ -10,11 +10,11 @@ import SwiftUI
 struct CatalogView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
-    @ObservedObject var viewModel: CatalogViewModel
+    @StateObject var viewModel: CatalogViewModel
     @Binding var date: Date
     
     init(date: Binding<Date>, location: SavedLocation) {
-        self.viewModel = CatalogViewModel(location: location, date: date.wrappedValue)
+        self._viewModel = StateObject(wrappedValue: CatalogViewModel(location: location, date: date.wrappedValue))
         self._date = date
     }
         
@@ -22,6 +22,7 @@ struct CatalogView: View {
         NavigationStack() {
             SearchBar(viewModel: viewModel, updateAction: {viewModel.refreshList()})
             FilterButtonMenu(viewModel: viewModel)
+            
             // Only display targets if network data is available
             if networkManager.isSafe {
                 List(viewModel.targets, id: \.id) { target in
@@ -36,6 +37,7 @@ struct CatalogView: View {
                     CatalogToolbar(viewModel: viewModel, date: $date)
                 }
             }
+            
             // Otherwise show a loading icon
             else {
                 VStack {
@@ -113,106 +115,6 @@ private struct TargetCell: View {
                 Label(target.getMeridianScore(at: location, on: date).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
                     .foregroundColor(.secondary)
             }
-        }
-    }
-}
-
-/**
- This View contains the ToolbarContent to be displayed in the Master Catalog
- */
-private struct CatalogToolbar: ToolbarContent {
-    @ObservedObject var viewModel: CatalogViewModel
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
-    @Binding var date: Date
-    
-    var body: some ToolbarContent {
-        
-        // Custom binding to select and get the selected location
-        let locationBinding = Binding(
-            get: { return locationList.first! },
-            set: {
-                for location in locationList { location.isSelected = false }
-                $0.isSelected = true
-            }
-        )
-        
-        // The Location and Date selector on the left hand side
-        ToolbarItemGroup(placement: .navigationBarLeading) {
-            HStack() {
-                Picker("Location", selection: locationBinding) {
-                    ForEach(locationList) { location in
-                        Text(location.name!).tag(location)
-                    }
-                }
-                DateSelector(date: $date)
-            }
-        }
-        
-        // The Sort button on the right hand side
-        ToolbarItem(placement: .navigationBarTrailing) {
-            HStack(spacing: 0) {
-                Button() {
-                    viewModel.sortDecending.toggle()
-                    viewModel.targets.sort(by: viewModel.currentSort, sortDescending: viewModel.sortDecending, location: locationList.first!, date: date)
-                } label: {
-                    Image(systemName: viewModel.sortDecending ? "chevron.up" : "chevron.down")
-                }
-                Menu(viewModel.currentSort.info.name) {
-                    ForEach(SortMethod.allCases) { method in
-                        SortButton(viewModel: viewModel, method: method)
-                    }
-                }
-            }
-        }
-        
-    }
-}
-
-/**
- This View is a Button that lies within the sort menu in the Master Catalog toolbar.
- */
-private struct SortButton: View {
-    @ObservedObject var viewModel: CatalogViewModel
-    @EnvironmentObject var location: SavedLocation
-    @Environment(\.date) var date: Date
-    var method: SortMethod
-    
-    var body: some View {
-        Button() {
-            viewModel.targets.sort(by: method, sortDescending: viewModel.sortDecending, location: location, date: date)
-            viewModel.currentSort = method
-        } label: {
-            Label("By \(method.info.name)", systemImage: method.info.icon)
-        }
-    }
-}
-
-/**
- A Search Bar that binds its text to a given variable and executes a given action when text is submitted
- */
-private struct SearchBar: View {
-    @ObservedObject var viewModel: CatalogViewModel
-    @FocusState var isInputActive: Bool
-    var updateAction: () -> Void
-    
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(Color("LightGray"))
-            HStack {
-                Image(systemName: "magnifyingglass")
-                TextField("Search", text: $viewModel.searchText)
-                    .onSubmit(updateAction)
-                    .focused($isInputActive)
-            }
-            .foregroundColor(.black)
-            .padding(.leading, 13)
-        }
-        .frame(height: 40)
-        .cornerRadius(13)
-        .padding()
-        .toolbar {
-            KeyboardDismissButton(isInputActive: _isInputActive)
         }
     }
 }
@@ -323,6 +225,106 @@ private struct FilterButton: View {
                     .disabled(!active)
                 }
             }
+        }
+    }
+}
+
+/**
+ This View contains the ToolbarContent to be displayed in the Master Catalog
+ */
+private struct CatalogToolbar: ToolbarContent {
+    @ObservedObject var viewModel: CatalogViewModel
+    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    @Binding var date: Date
+    
+    var body: some ToolbarContent {
+        
+        // Custom binding to select and get the selected location
+        let locationBinding = Binding(
+            get: { return locationList.first! },
+            set: {
+                for location in locationList { location.isSelected = false }
+                $0.isSelected = true
+            }
+        )
+        
+        // The Location and Date selector on the left hand side
+        ToolbarItemGroup(placement: .navigationBarLeading) {
+            HStack() {
+                Picker("Location", selection: locationBinding) {
+                    ForEach(locationList) { location in
+                        Text(location.name!).tag(location)
+                    }
+                }
+                DateSelector(date: $date)
+            }
+        }
+        
+        // The Sort button on the right hand side
+        ToolbarItem(placement: .navigationBarTrailing) {
+            HStack(spacing: 0) {
+                Button() {
+                    viewModel.sortDecending.toggle()
+                    viewModel.targets.sort(by: viewModel.currentSort, sortDescending: viewModel.sortDecending, location: locationList.first!, date: date)
+                } label: {
+                    Image(systemName: viewModel.sortDecending ? "chevron.up" : "chevron.down")
+                }
+                Menu(viewModel.currentSort.info.name) {
+                    ForEach(SortMethod.allCases) { method in
+                        SortButton(viewModel: viewModel, method: method)
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+/**
+ This View is a Button that lies within the sort menu in the Master Catalog toolbar.
+ */
+private struct SortButton: View {
+    @ObservedObject var viewModel: CatalogViewModel
+    @EnvironmentObject var location: SavedLocation
+    @Environment(\.date) var date: Date
+    var method: SortMethod
+    
+    var body: some View {
+        Button() {
+            viewModel.targets.sort(by: method, sortDescending: viewModel.sortDecending, location: location, date: date)
+            viewModel.currentSort = method
+        } label: {
+            Label("By \(method.info.name)", systemImage: method.info.icon)
+        }
+    }
+}
+
+/**
+ A Search Bar that binds its text to a given variable and executes a given action when text is submitted
+ */
+private struct SearchBar: View {
+    @ObservedObject var viewModel: CatalogViewModel
+    @FocusState var isInputActive: Bool
+    var updateAction: () -> Void
+    
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .foregroundColor(Color("LightGray"))
+            HStack {
+                Image(systemName: "magnifyingglass")
+                TextField("Search", text: $viewModel.searchText)
+                    .onSubmit(updateAction)
+                    .focused($isInputActive)
+            }
+            .foregroundColor(.black)
+            .padding(.leading, 13)
+        }
+        .frame(height: 40)
+        .cornerRadius(13)
+        .padding()
+        .toolbar {
+            KeyboardDismissButton(isInputActive: _isInputActive)
         }
     }
 }

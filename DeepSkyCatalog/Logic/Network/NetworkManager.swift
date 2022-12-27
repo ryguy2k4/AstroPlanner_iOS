@@ -22,16 +22,17 @@ final class NetworkManager: ObservableObject {
     
     @MainActor
     func refreshAllData(at location: SavedLocation, on date: Date) async {
+        isSafe = false
         // Check if the sun and moon data being requested is already in storage
         if self.allSun[date] != nil && self.allMoon[date] != nil {
             print("Data already stored locally")
             sun = allSun[date]
             moon = allMoon[date]
+            isSafe = true
             return
         }
         // Otherwise, request it with a network call
         do {
-            isSafe = false
             async let sunToday = try NetworkManager.fetchSunData(at: location, on: date)
             async let moonToday = try NetworkManager.fetchMoonData(at: location, on: date)
             try self.sun = await sunToday

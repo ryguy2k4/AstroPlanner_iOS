@@ -16,8 +16,6 @@ enum FilterMethod {
     case size
     case visibility
     case meridian
-//    case ra
-//    case dec
 
     
     
