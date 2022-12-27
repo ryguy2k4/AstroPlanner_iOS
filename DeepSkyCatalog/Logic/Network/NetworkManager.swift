@@ -13,6 +13,8 @@ final class NetworkManager: ObservableObject {
     
     var sun: SunData?
     var moon: MoonData?
+    var allSun: [Date : SunData] = [:]
+    var allMoon: [Date : MoonData] = [:]
     var currentDate: Date?
     @Published var isSafe = false
     
@@ -20,13 +22,23 @@ final class NetworkManager: ObservableObject {
     
     @MainActor
     func refreshAllData(at location: SavedLocation, on date: Date) async {
+        // Check if the sun and moon data being requested is already in storage
+        if self.allSun[date] != nil && self.allMoon[date] != nil {
+            print("Data already stored locally")
+            sun = allSun[date]
+            moon = allMoon[date]
+            return
+        }
+        // Otherwise, request it with a network call
         do {
             isSafe = false
             async let sunToday = try NetworkManager.fetchSunData(at: location, on: date)
             async let moonToday = try NetworkManager.fetchMoonData(at: location, on: date)
-            
             try self.sun = await sunToday
+            try self.allSun[date] = await sunToday
             try self.moon = await moonToday
+            try self.allMoon[date] = await moonToday
+            
             currentDate = date
             isSafe = true
             print("API Data Refreshed.")
@@ -46,7 +58,6 @@ final class NetworkManager: ObservableObject {
             from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.formatted(format: "YYYY-MM-dd"))&formatted=0")
         let decodedDataTomorrow: RawSunData = try await fetchTask(
             from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&formatted=0")
-        
         return SunData(from: decodedDataToday, and: decodedDataTomorrow)
     }
     
