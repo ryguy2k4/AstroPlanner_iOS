@@ -22,12 +22,12 @@ struct CatalogView: View {
         NavigationStack() {
             SearchBar(viewModel: viewModel, updateAction: {viewModel.refreshList()})
             FilterButtonMenu(viewModel: viewModel)
-            // only display targets if network data is available
+            // Only display targets if network data is available
             if networkManager.isSafe {
                 List(viewModel.targets, id: \.id) { target in
                     NavigationLink(destination: DetailView(target: target)) {
                         VStack {
-                            TargetCell(date: $date, target: target)
+                            TargetCell(target: target)
                         }
                     }
                 }
@@ -36,7 +36,7 @@ struct CatalogView: View {
                     CatalogToolbar(viewModel: viewModel, date: $date)
                 }
             }
-            // otherwise show a loading icon
+            // Otherwise show a loading icon
             else {
                 VStack {
                     ProgressView()
@@ -47,8 +47,12 @@ struct CatalogView: View {
                 }
             }
         }
+        
+        // Passing the date and location to use into all child views
         .environment(\.date, date)
         .environmentObject(locationList.first!)
+        
+        // Modals for editing each filter
         .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
             SelectableList(selection: $viewModel.typeSelection)
         }
@@ -74,6 +78,7 @@ struct CatalogView: View {
                 NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
             }
         }
+        
         // When the date changes, make sure everything that depends on the date gets updated
         .onChange(of: date) { newDate in
             Task {
@@ -84,11 +89,14 @@ struct CatalogView: View {
     }
 }
 
-struct TargetCell: View {
+/**
+ This View displays information about the target at a glance. It is used within the Master Catalog list.
+ */
+private struct TargetCell: View {
     @EnvironmentObject var location: SavedLocation
-    @Binding var date: Date
-
+    @Environment(\.date) var date
     var target: DeepSkyTarget
+    
     var body: some View {
         HStack {
             Image(target.image[0])
@@ -109,12 +117,17 @@ struct TargetCell: View {
     }
 }
 
-struct CatalogToolbar: ToolbarContent {
+/**
+ This View contains the ToolbarContent to be displayed in the Master Catalog
+ */
+private struct CatalogToolbar: ToolbarContent {
     @ObservedObject var viewModel: CatalogViewModel
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
     
     var body: some ToolbarContent {
+        
+        // Custom binding to select and get the selected location
         let locationBinding = Binding(
             get: { return locationList.first! },
             set: {
@@ -122,6 +135,8 @@ struct CatalogToolbar: ToolbarContent {
                 $0.isSelected = true
             }
         )
+        
+        // The Location and Date selector on the left hand side
         ToolbarItemGroup(placement: .navigationBarLeading) {
             HStack() {
                 Picker("Location", selection: locationBinding) {
@@ -132,6 +147,8 @@ struct CatalogToolbar: ToolbarContent {
                 DateSelector(date: $date)
             }
         }
+        
+        // The Sort button on the right hand side
         ToolbarItem(placement: .navigationBarTrailing) {
             HStack(spacing: 0) {
                 Button() {
@@ -147,29 +164,37 @@ struct CatalogToolbar: ToolbarContent {
                 }
             }
         }
+        
     }
 }
 
-struct SortButton: View {
+/**
+ This View is a Button that lies within the sort menu in the Master Catalog toolbar.
+ */
+private struct SortButton: View {
     @ObservedObject var viewModel: CatalogViewModel
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date: Date
     var method: SortMethod
+    
     var body: some View {
         Button() {
             viewModel.targets.sort(by: method, sortDescending: viewModel.sortDecending, location: location, date: date)
             viewModel.currentSort = method
-            
         } label: {
             Label("By \(method.info.name)", systemImage: method.info.icon)
         }
     }
 }
 
-struct SearchBar: View {
+/**
+ A Search Bar that binds its text to a given variable and executes a given action when text is submitted
+ */
+private struct SearchBar: View {
     @ObservedObject var viewModel: CatalogViewModel
     @FocusState var isInputActive: Bool
     var updateAction: () -> Void
+    
     var body: some View {
         ZStack {
             Rectangle()
@@ -192,7 +217,12 @@ struct SearchBar: View {
     }
 }
 
-struct FilterButtonMenu: View {
+/**
+ This View displays a horizontal scrolling section of different filter buttons.
+ The filter buttons are explicity defined in an array.
+ The array allows them to be sorted based on which ones are active.
+ */
+private struct FilterButtonMenu: View {
     @ObservedObject var viewModel: CatalogViewModel
     var buttons: [FilterButton]
     init(viewModel: CatalogViewModel) {
@@ -221,13 +251,15 @@ struct FilterButtonMenu: View {
     }
 }
 
-struct FilterButton: View {
+/**
+ This View defines a singular filter button for a given filter method.
+ */
+private struct FilterButton: View {
     @ObservedObject var viewModel: CatalogViewModel
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date
     let active: Bool
     let method: FilterMethod
-    
        
     init(method: FilterMethod, viewModel: CatalogViewModel) {
         self.viewModel = viewModel

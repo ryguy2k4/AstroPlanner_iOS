@@ -47,7 +47,7 @@ struct DailyReportView: View {
                             .font(.subheadline)
                             .fontWeight(.thin)
                     }
-                    .padding(.top)
+                        .padding(.top)
                     DateSelector(date: $date)
                     HStack {
                         Picker("Imaging Preset", selection: presetBinding) {
@@ -97,9 +97,13 @@ struct DailyReportView: View {
     }
 }
 
-struct TopThreeView: View {
+/**
+ This View is a subview of DailyReportView that displays the topThree as defined withing the report.
+ */
+private struct TopThreeView: View {
     @EnvironmentObject var location: SavedLocation
     let report: DailyReport?
+    
     var body: some View {
         VStack {
             Text("Top Three Overall")
@@ -139,7 +143,11 @@ struct TopThreeView: View {
     }
 }
 
-struct TopFiveTabView: View {
+/**
+ This View is a TabView that uses a Segmented Picker to switch between tabs.
+ Each Tab displays the 3 topFive arrays defined in the report.
+ */
+private struct TopFiveTabView: View {
     @EnvironmentObject var location: SavedLocation
     let report: DailyReport?
     @State private var tabSelection: Int = 0
@@ -184,7 +192,7 @@ struct TopFiveTabView: View {
 
 //struct DailyReportView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        DailyReportView(report: DailyReport(location: <#T##SavedLocation#>, date: Date.today)
+//        DailyReportView()
 //    }
 //}
 

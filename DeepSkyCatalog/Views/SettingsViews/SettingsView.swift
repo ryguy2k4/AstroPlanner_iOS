@@ -34,15 +34,16 @@ struct SettingsView: View {
 }
 
 struct SettingsField: View {
+    @Binding var text: String
     var label: String
     var prompt: String?
-    var variable: Binding<String>
+    var keyboardType: UIKeyboardType = .numbersAndPunctuation
     var body: some View {
         HStack {
             Text(label)
                 .font(.callout)
-            TextField(prompt ?? "", text: variable)
-                .keyboardType(.numbersAndPunctuation)
+            TextField(prompt ?? "", text: $text)
+                .keyboardType(keyboardType)
         }
     }
 }

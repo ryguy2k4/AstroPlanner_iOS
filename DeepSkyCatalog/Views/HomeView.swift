@@ -35,34 +35,6 @@ struct HomeView: View {
     }
 }
 
-//struct BigButton: View {
-//    var text: String
-//    var body: some View {
-//        Text(text)
-//            .frame(width:280, height: 50)
-//            .font(.title2)
-//            .fontWeight(.semibold)
-//            .foregroundColor(.primary)
-//            .background(.blue)
-//            .cornerRadius(10)
-//    }
-//}
-
-//struct MainImage: View {
-//    var url: URL
-//    var body: some View {
-//        AsyncImage(url: url, content: { image in
-//            image
-//                .resizable()
-//                .aspectRatio(contentMode: .fit)
-//                .frame(width: 300)
-//
-//        }, placeholder: {
-//            ProgressView()
-//        })
-//    }
-//}
-
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
