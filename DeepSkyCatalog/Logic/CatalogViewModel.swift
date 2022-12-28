@@ -95,5 +95,6 @@ final class CatalogViewModel: ObservableObject {
         if !minMerScore.isZero {
             targets.filter(byMinMerScore: minMerScore, at: location, on: date)
         }
+        targets.sort(by: currentSort, sortDescending: sortDecending, location: location, date: date)
     }
 }

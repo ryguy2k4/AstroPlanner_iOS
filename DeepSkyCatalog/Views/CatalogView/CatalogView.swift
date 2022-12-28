@@ -84,8 +84,16 @@ struct CatalogView: View {
         // When the date changes, make sure everything that depends on the date gets updated
         .onChange(of: date) { newDate in
             Task {
+                viewModel.date = newDate    
                 await networkManager.refreshAllData(at: viewModel.location, on: newDate)
-                viewModel.date = newDate
+            }
+        }
+        
+        // When the location changes, make sure everything that depends on the date gets updated
+        .onChange(of: locationList.first) { newLocation in
+            Task {
+                viewModel.location = newLocation!
+                await networkManager.refreshAllData(at: newLocation!, on: viewModel.date)
             }
         }
     }
