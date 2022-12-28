@@ -39,7 +39,6 @@ struct FilterModal<C: View>: ViewModifier {
                 sheetContent
                     .onDisappear() {
                         viewModel.refreshList()
-                        viewModel.targets.sort(by: viewModel.currentSort, sortDescending: viewModel.sortDecending, location: locationList.first!, date: date)
                     }
                     .presentationDetents([.fraction(0.8)])
             }

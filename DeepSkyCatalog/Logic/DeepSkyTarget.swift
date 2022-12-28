@@ -91,13 +91,9 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Parameter lst: The local sidereal time that should be converted to local time.
      - Returns: Two dates representing the local time that the target is at lst today and tomorrow.
      */
-    private func getLocalTime(at location: SavedLocation, on date: Date, at lst: Double) throws -> [Date] {
-        if !NetworkManager.shared.isSafe {
-            throw TargetCalculationError.noSunData
-        }
-        
-        let dToday = Date.daysSinceJ2000(until: NetworkManager.shared.sun!.astronomicalTwilightBegin)
-        let dTomorrow = Date.daysSinceJ2000(until: NetworkManager.shared.sun!.ATInterval.end)
+    private func getLocalTime(location: SavedLocation, date: Date, sunData: SunData, lst: Double) -> [Date] {
+        let dToday = Date.daysSinceJ2000(until: sunData.astronomicalTwilightBegin)
+        let dTomorrow = Date.daysSinceJ2000(until: sunData.ATInterval.end)
 
         
         // calculate time in decimal hours and then convert to a date object on the current date
@@ -115,15 +111,13 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Parameter date: The date on which to calculate the rise and set times.
      - Returns: A DateInterval object from the targets next rise to the targets next set.
      */
-    func getNextInterval(at location: SavedLocation, on date: Date) throws -> DateInterval {
+    func getNextInterval(at location: SavedLocation, on date: Date, sunData: SunData) throws -> DateInterval {
         do {
-            let riseToday = try getLocalTime(at: location, on: date, at: getLST(at: location, from: 0)[0])[0]
-            let setToday = try getLocalTime(at: location, on: date, at: getLST(at: location, from: 0)[1])[0]
-            let riseTomorrow = try getLocalTime(at: location, on: date, at: getLST(at: location, from: 0)[0])[1]
-            let setTomorrow = try getLocalTime(at: location, on: date, at: getLST(at: location, from: 0)[1])[1]
-            guard let dayStart = NetworkManager.shared.sun?.astronomicalTwilightBegin else {
-                throw TargetCalculationError.noSunData
-            }
+            let riseToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(at: location, from: 0)[0])[0]
+            let setToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(at: location, from: 0)[1])[0]
+            let riseTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(at: location, from: 0)[0])[1]
+            let setTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(at: location, from: 0)[1])[1]
+            let dayStart = sunData.astronomicalTwilightBegin
 
             // if rise < set && rise > sunrise
             if riseToday < setToday && riseToday > dayStart {
@@ -154,8 +148,8 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Parameter date: The date on which to calculate the meridian crossing.
      - Returns: The date and time that the object next passes the meridian.
      */
-    func getNextMeridian(at location: SavedLocation, on date: Date) throws -> Date {
-        return try getLocalTime(at: location, on: date, at: ra)[1]
+    func getNextMeridian(at location: SavedLocation, on date: Date, sunData: SunData) -> Date {
+        return getLocalTime(location: location, date: date, sunData: sunData, lst: ra)[1]
     }
     
     /**
@@ -166,20 +160,13 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Returns: A decimal representing the percentage of the night that the target is visible.
      
      */
-    func getVisibilityScore(at location: SavedLocation, on date: Date) -> Double {
+    func getVisibilityScore(at location: SavedLocation, on date: Date, sunData: SunData) -> Double {
         // retrieve necessary data
-        guard let targetRise = try? getNextInterval(at: location, on: date).start else {
+        guard let targetInterval = try? getNextInterval(at: location, on: date, sunData: sunData) else {
             return 0
         }
-        guard let targetSet = try? getNextInterval(at: location, on: date).end else {
-            return 0
-        }
-        
-        let targetInterval = DateInterval(start: targetRise, end: targetSet)
-        
-        guard let nightInterval = NetworkManager.shared.sun?.ATInterval else {
-            return .nan
-        }
+                
+        let nightInterval = sunData.ATInterval
 
         // calculate time that the target is in the sky during the night
         guard let overlap = nightInterval.intersection(with: targetInterval) else {
@@ -198,16 +185,10 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Parameter date: The date on which to calculate the meridian score.
      - Returns: A decimal representing an abstract percentage.
      */
-    func getMeridianScore(at location: SavedLocation, on date: Date) -> Double {
-        guard let targetMeridian = try? getNextMeridian(at: location, on: date) else {
-            return .nan
-        }
-        guard let nightLength = NetworkManager.shared.sun?.ATInterval.duration else {
-            return .nan
-        }
-        guard let nightBegin = NetworkManager.shared.sun?.ATInterval.start else {
-            return .nan
-        }
+    func getMeridianScore(at location: SavedLocation, on date: Date, sunData: SunData) -> Double {
+        let targetMeridian = getNextMeridian(at: location, on: date, sunData: sunData)
+        let nightLength = sunData.ATInterval.duration
+        let nightBegin = sunData.ATInterval.start
         
         let midnight = nightBegin.addingTimeInterval(Double(nightLength/2))
         if (targetMeridian < midnight){

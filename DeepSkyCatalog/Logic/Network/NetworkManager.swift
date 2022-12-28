@@ -11,24 +11,40 @@ final class NetworkManager: ObservableObject {
     
     static var shared = NetworkManager()
     
-    var sun: SunData?
-    var moon: MoonData?
-    var currentDate: Date?
+    struct DataKey: Hashable {
+        let date: Date
+        let location: SavedLocation
+    }
+    
+    @Published var data: [DataKey : (sun: SunData, moon: MoonData)] = [:]
     @Published var isSafe = false
+    
+    /*
+     all target functions will take in data as a parameter
+     upon changes to date or location settings, data will be drawn from the dictionary
+     if it does not exist, it will request it and add it to the dictionary
+     upon being added to the dictionary, the publisher will emit causing the view to update
+     */
     
     private init() { }
     
     @MainActor
     func refreshAllData(at location: SavedLocation, on date: Date) async {
+        isSafe = false
+        // Check if the sun and moon data being requested is already in storage
+//        if self.allSun[date] != nil && self.allMoon[date] != nil {
+//            print("Data already stored locally")
+//            sun = allSun[date]
+//            moon = allMoon[date]
+//            isSafe = true
+//            return
+//        }
+        // Otherwise, request it with a network call
         do {
-            isSafe = false
-
             async let sunToday = try NetworkManager.fetchSunData(at: location, on: date)
             async let moonToday = try NetworkManager.fetchMoonData(at: location, on: date)
-            try self.sun = await sunToday
-            try self.moon = await moonToday
+            try self.data[.init(date: date, location: location)] = (await sunToday, await moonToday)
             
-            currentDate = date
             isSafe = true
             print("API Data Refreshed.")
         } catch FetchError.unableToFetch {

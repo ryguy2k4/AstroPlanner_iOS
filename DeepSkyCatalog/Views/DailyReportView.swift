@@ -43,7 +43,7 @@ struct DailyReportView: View {
                         Text("\(date.formatted(format: "MMMM d, y"))")
                             .font(.subheadline)
                             .fontWeight(.thin)
-                        Text("Moon: \(networkManager.moon?.illuminated.percent() ?? "%") illuminated")
+                        Text("Moon: \(networkManager.data[.init(date: date, location: locationList.first!)]?.moon.illuminated.percent() ?? "%") illuminated")
                             .font(.subheadline)
                             .fontWeight(.thin)
                     }

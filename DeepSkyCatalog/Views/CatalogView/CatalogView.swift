@@ -24,7 +24,7 @@ struct CatalogView: View {
             FilterButtonMenu(viewModel: viewModel)
             
             // Only display targets if network data is available
-            if networkManager.isSafe {
+            if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
                 List(viewModel.targets, id: \.id) { target in
                     NavigationLink(destination: DetailView(target: target)) {
                         VStack {
@@ -37,15 +37,11 @@ struct CatalogView: View {
                     CatalogToolbar(viewModel: viewModel, date: $date)
                 }
             }
-            
             // Otherwise show a loading icon
             else {
                 VStack {
                     ProgressView()
                     Spacer()
-                }
-                .toolbar() {
-                    CatalogToolbar(viewModel: viewModel, date: $date)
                 }
             }
         }
@@ -53,6 +49,7 @@ struct CatalogView: View {
         // Passing the date and location to use into all child views
         .environment(\.date, date)
         .environmentObject(locationList.first!)
+        
         
         // Modals for editing each filter
         .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
@@ -118,9 +115,9 @@ private struct TargetCell: View {
                 Text(target.name[0])
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Label(target.getVisibilityScore(at: location, on: date).percent(), systemImage: "eye")
+                Label(target.getVisibilityScore(at: location, on: date, sunData: data.sun).percent(), systemImage: "eye")
                     .foregroundColor(.secondary)
-                Label(target.getMeridianScore(at: location, on: date).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
+                Label(target.getMeridianScore(at: location, on: date, sunData: data.sun).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
                     .foregroundColor(.secondary)
             }
         }
