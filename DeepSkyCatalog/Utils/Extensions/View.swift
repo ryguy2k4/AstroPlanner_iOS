@@ -24,6 +24,7 @@ struct FilterModal<C: View>: ViewModifier {
     @ObservedObject var viewModel: CatalogViewModel
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Environment(\.date) var date
+    @Environment(\.data) var data
     let sheetContent: C
     @Binding var isPresented: Bool
     
@@ -38,7 +39,7 @@ struct FilterModal<C: View>: ViewModifier {
             .sheet(isPresented: $isPresented) {
                 sheetContent
                     .onDisappear() {
-                        viewModel.refreshList()
+                        viewModel.refreshList(sunData: data.sun)
                     }
                     .presentationDetents([.fraction(0.8)])
             }

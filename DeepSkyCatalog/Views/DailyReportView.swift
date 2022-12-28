@@ -32,63 +32,58 @@ struct DailyReportView: View {
                 $0.isSelected = true
             }
         )
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 25) {
-                    VStack {
-                        Text("Daily Report")
-                            .multilineTextAlignment(.center)
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
-                        Text("\(date.formatted(format: "MMMM d, y"))")
-                            .font(.subheadline)
-                            .fontWeight(.thin)
-                        Text("Moon: \(networkManager.data[.init(date: date, location: locationList.first!)]?.moon.illuminated.percent() ?? "%") illuminated")
-                            .font(.subheadline)
-                            .fontWeight(.thin)
-                    }
-                        .padding(.top)
-                    DateSelector(date: $date)
-                    HStack {
-                        Picker("Imaging Preset", selection: presetBinding) {
-                            ForEach(presetList) { preset in
-                                Text(preset.name!).tag(preset)
+        
+        // Only display report if network data is available
+        if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
+            // every time the view refreshes, generate a report
+            let report = DailyReport(location: locationList.first!, date: date, settings: reportSettings.first!, preset: presetList.first!, data: data)
+            NavigationView {
+                ScrollView {
+                    VStack(spacing: 25) {
+                        VStack {
+                            Text("Daily Report")
+                                .multilineTextAlignment(.center)
+                                .font(.largeTitle)
+                                .fontWeight(.semibold)
+                            Text("\(date.formatted(format: "MMMM d, y"))")
+                                .font(.subheadline)
+                                .fontWeight(.thin)
+                            Text("Moon: \(networkManager.data[.init(date: date, location: locationList.first!)]?.moon.illuminated.percent() ?? "%") illuminated")
+                                .font(.subheadline)
+                                .fontWeight(.thin)
+                        }
+                            .padding(.top)
+                        DateSelector(date: $date)
+                        HStack {
+                            Picker("Imaging Preset", selection: presetBinding) {
+                                ForEach(presetList) { preset in
+                                    Text(preset.name!).tag(preset)
+                                }
+                            }
+                            Picker("Location", selection: locationBinding) {
+                                ForEach(locationList) { location in
+                                    Text(location.name!).tag(location)
+                                }
                             }
                         }
-                        Picker("Location", selection: locationBinding) {
-                            ForEach(locationList) { location in
-                                Text(location.name!).tag(location)
-                            }
-                        }
-                    }
-                    TopThreeView(report: report)
-                    TopFiveTabView(report: report).frame(height: 500)
-                }
-            }
-            .environmentObject(locationList.first!)
-            .scrollIndicators(.hidden)
-            .onChange(of: networkManager.isSafe) { isSafe in
-                if isSafe {
-                    Task {
-                        report = DailyReport(location: locationList.first!, date: date, settings: reportSettings.first!, preset: presetList.first!)
+                        TopThreeView(report: report)
+                        TopFiveTabView(report: report)
+                            .frame(height: 500)
                     }
                 }
+                .environmentObject(locationList.first!)
+                .scrollIndicators(.hidden)
             }
-            .onChange(of: presetList.first) { _ in
-                Task {
-                    report = DailyReport(location: locationList.first!, date: date, settings: reportSettings.first!, preset: presetList.first!)
-                }
+        }
+        
+        // Otherwise show a loading screen and request the necessary data
+        else {
+            VStack {
+                ProgressView()
+                Text("Fetching Data...")
             }
-            .onChange(of: locationList.first) { _ in
-                Task {
-                    report = DailyReport(location: locationList.first!, date: date, settings: reportSettings.first!, preset: presetList.first!)
-                }
-            }
-            .onChange(of: date) { newDate in
-                report = nil
-                Task {
-                    report = DailyReport(location: locationList.first!, date: newDate, settings: reportSettings.first!, preset: presetList.first!)
-                }
+            .task {
+                await networkManager.getData(at: locationList.first!, on: date)
             }
         }
     }

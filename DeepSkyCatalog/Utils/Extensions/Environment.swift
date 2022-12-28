@@ -25,7 +25,7 @@ extension EnvironmentValues {
         }
     }
     
-    var data: (SunData, MoonData) {
+    var data: (sun: SunData, moon: MoonData) {
         get {
             self[DataKey.self]
         }

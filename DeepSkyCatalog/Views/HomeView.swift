@@ -32,9 +32,6 @@ struct HomeView: View {
                     Label("About", systemImage: "info.circle")
                 }
         }
-        .task {
-            await NetworkManager.shared.refreshAllData(at: locationList.first!, on: date)
-        }
     }
 }
 

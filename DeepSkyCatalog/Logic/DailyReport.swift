@@ -11,6 +11,7 @@ final class DailyReport: ObservableObject {
     let location: SavedLocation
     let date: Date
     let settings: ReportSettings
+    let data: (sun: SunData, moon: MoonData)
     let preset: ImagingPreset
     
     let topThree: [DeepSkyTarget]
@@ -18,12 +19,13 @@ final class DailyReport: ObservableObject {
     let topFiveGalaxies: [DeepSkyTarget]
     let topFiveStarClusters: [DeepSkyTarget]
     
-    init(location: SavedLocation, date: Date, settings: ReportSettings, preset: ImagingPreset) {
+    init(location: SavedLocation, date: Date, settings: ReportSettings, preset: ImagingPreset, data: (sun: SunData, moon: MoonData)) {
         self.location = location
         self.date = date
         self.settings = settings
+        self.data = data
         self.preset = preset
-        
+                
         self.topThree = createReportList(top: 3)
         self.topFiveNebulae = createReportList(for: DSOType.nebulae, top: 5)
         self.topFiveGalaxies = createReportList(for: DSOType.galaxies, top: 5)
@@ -44,7 +46,7 @@ final class DailyReport: ObservableObject {
             // filter by desired magnitude
             //targets.filter(byBrightestMag: settings.brightestMag, byDimmestMag: settings.dimmestMag)
             
-            targets.sort(by: .visibility, sortDescending: true, location: location, date: date)
+            targets.sort(by: .visibility, sortDescending: true, location: location, date: date, sunData: data.sun)
             targets.removeLast(targets.count > num ? targets.count-num : 0)
             return targets
         }
@@ -54,10 +56,10 @@ final class DailyReport: ObservableObject {
          */
         func getAvailableTargets() -> [DeepSkyTarget] {
             var targets = DeepSkyTargetList.allTargets
-            targets.filter(byMinMerScore: 0.8, at: location, on: date)
+            targets.filter(byMinMerScore: 0.8, at: location, on: date, sunData: data.sun)
             
             // if moon is a problem, filter for narrowband
-            if NetworkManager.shared.moon!.illuminated > settings.maxAllowedMoon {
+            if data.moon.illuminated > settings.maxAllowedMoon {
                 targets.filter(byTypeSelection: DSOType.narrowband)
             }
             // if moon is not a problem, but broadband preferred, filter for broadband only

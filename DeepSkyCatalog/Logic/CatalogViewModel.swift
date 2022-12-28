@@ -63,10 +63,9 @@ final class CatalogViewModel: ObservableObject {
         case .visibility:
             minVisScore = 0
         }
-        refreshList()
     }
         
-    func refreshList() {
+    func refreshList(sunData: SunData) {
         // reset list
         targets = DeepSkyTargetList.allTargets.sorted(by: {$0.ra > $1.ra})
         
@@ -90,11 +89,11 @@ final class CatalogViewModel: ObservableObject {
             targets.filter(byMinSize: minSize, byMaxSize: maxSize)
         }
         if !minVisScore.isZero {
-            targets.filter(byMinVisScore: minVisScore, at: location, on: date)
+            targets.filter(byMinVisScore: minVisScore, at: location, on: date, sunData: sunData)
         }
         if !minMerScore.isZero {
-            targets.filter(byMinMerScore: minMerScore, at: location, on: date)
+            targets.filter(byMinMerScore: minMerScore, at: location, on: date, sunData: sunData)
         }
-        targets.sort(by: currentSort, sortDescending: sortDecending, location: location, date: date)
+        targets.sort(by: currentSort, sortDescending: sortDecending, location: location, date: date, sunData: sunData)
     }
 }

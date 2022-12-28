@@ -19,12 +19,12 @@ struct CatalogView: View {
     }
         
     var body: some View {
-        NavigationStack() {
-            SearchBar(viewModel: viewModel, updateAction: {viewModel.refreshList()})
-            FilterButtonMenu(viewModel: viewModel)
-            
-            // Only display targets if network data is available
-            if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
+        // Only display targets if network data is available
+        if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
+            NavigationStack() {
+                SearchBar(viewModel: viewModel, updateAction: { viewModel.refreshList(sunData: data.sun) })
+                FilterButtonMenu(viewModel: viewModel)
+                
                 List(viewModel.targets, id: \.id) { target in
                     NavigationLink(destination: DetailView(target: target)) {
                         VStack {
@@ -36,61 +36,58 @@ struct CatalogView: View {
                 .toolbar() {
                     CatalogToolbar(viewModel: viewModel, date: $date)
                 }
-                // Passing the date and location to use into all child views
-                .environment(\.date, date)
-                .environmentObject(locationList.first!)
-                .environment(\.data, data)
             }
-
-            // Otherwise show a loading icon
-            else {
-                VStack {
-                    ProgressView()
-                    Spacer()
+            // Passing the date and location to use into all child views
+            .environment(\.date, date)
+            .environmentObject(locationList.first!)
+            .environment(\.data, data)
+            
+            // Modals for editing each filter
+            .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
+                SelectableList(selection: $viewModel.typeSelection)
+            }
+            .filterModal(isPresented: $viewModel.isCatalogModal, viewModel: viewModel) {
+                SelectableList(selection: $viewModel.catalogSelection)
+            }
+            .filterModal(isPresented: $viewModel.isConstellationModal, viewModel: viewModel) {
+                SelectableList(selection: $viewModel.constellationSelection)
+            }
+            .filterModal(isPresented: $viewModel.isMagModal, viewModel: viewModel) {
+                MagnitudeFilter(min: $viewModel.brightestMag, max: $viewModel.dimmestMag)
+            }
+            .filterModal(isPresented: $viewModel.isSizeModal, viewModel: viewModel) {
+                SizeFilter(min: $viewModel.minSize, max: $viewModel.maxSize)
+            }
+            .filterModal(isPresented: $viewModel.isVisScoreModal, viewModel: viewModel) {
+                Form {
+                    NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
                 }
             }
-        }
-        
-        // Modals for editing each filter
-        .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
-            SelectableList(selection: $viewModel.typeSelection)
-        }
-        .filterModal(isPresented: $viewModel.isCatalogModal, viewModel: viewModel) {
-            SelectableList(selection: $viewModel.catalogSelection)
-        }
-        .filterModal(isPresented: $viewModel.isConstellationModal, viewModel: viewModel) {
-            SelectableList(selection: $viewModel.constellationSelection)
-        }
-        .filterModal(isPresented: $viewModel.isMagModal, viewModel: viewModel) {
-            MagnitudeFilter(min: $viewModel.brightestMag, max: $viewModel.dimmestMag)
-        }
-        .filterModal(isPresented: $viewModel.isSizeModal, viewModel: viewModel) {
-            SizeFilter(min: $viewModel.minSize, max: $viewModel.maxSize)
-        }
-        .filterModal(isPresented: $viewModel.isVisScoreModal, viewModel: viewModel) {
-            Form {
-                NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+            .filterModal(isPresented: $viewModel.isMerScoreModal, viewModel: viewModel) {
+                Form {
+                    NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+                }
             }
-        }
-        .filterModal(isPresented: $viewModel.isMerScoreModal, viewModel: viewModel) {
-            Form {
-                NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+            
+            // When the date changes, make sure everything that depends on the date gets updated
+            .onChange(of: date) { newDate in
+                viewModel.date = newDate
             }
-        }
-        
-        // When the date changes, make sure everything that depends on the date gets updated
-        .onChange(of: date) { newDate in
-            Task {
-                viewModel.date = newDate    
-                await networkManager.refreshAllData(at: viewModel.location, on: newDate)
-            }
-        }
-        
-        // When the location changes, make sure everything that depends on the date gets updated
-        .onChange(of: locationList.first) { newLocation in
-            Task {
+            
+            // When the location changes, make sure everything that depends on the date gets updated
+            .onChange(of: locationList.first) { newLocation in
                 viewModel.location = newLocation!
-                await networkManager.refreshAllData(at: newLocation!, on: viewModel.date)
+            }
+        }
+
+        // Otherwise show a loading icon
+        else {
+            VStack {
+                ProgressView()
+                Text("Fetching Data...")
+            }
+            .task {
+                await networkManager.getData(at: locationList.first!, on: date)
             }
         }
     }
@@ -224,7 +221,7 @@ private struct FilterButton: View {
                         .foregroundColor(.primary)
                     Button {
                         viewModel.clearFilter(for: method)
-                        viewModel.targets.sort(by: viewModel.currentSort, sortDescending: viewModel.sortDecending, location: location, date: date, sunData: data.sun)
+                        viewModel.refreshList(sunData: data.sun)
                     } label: {
                         Image(systemName: active ? "x.circle" : "chevron.down")
                             .foregroundColor(.accentColor)
@@ -243,7 +240,7 @@ private struct CatalogToolbar: ToolbarContent {
     @ObservedObject var viewModel: CatalogViewModel
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
-    @Environment(\.data) var datada
+    @Environment(\.data) var data
     
     var body: some ToolbarContent {
         

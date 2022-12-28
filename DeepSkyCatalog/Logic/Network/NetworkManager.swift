@@ -17,64 +17,34 @@ final class NetworkManager: ObservableObject {
     }
     
     @Published var data: [DataKey : (sun: SunData, moon: MoonData)] = [:]
-    @Published var isSafe = false
-    
-    /*
-     all target functions will take in data as a parameter
-     upon changes to date or location settings, data will be drawn from the dictionary
-     if it does not exist, it will request it and add it to the dictionary
-     upon being added to the dictionary, the publisher will emit causing the view to update
-     */
     
     private init() { }
     
     @MainActor
-    func refreshAllData(at location: SavedLocation, on date: Date) async {
-        isSafe = false
-        // Check if the sun and moon data being requested is already in storage
-//        if self.allSun[date] != nil && self.allMoon[date] != nil {
-//            print("Data already stored locally")
-//            sun = allSun[date]
-//            moon = allMoon[date]
-//            isSafe = true
-//            return
-//        }
-        // Otherwise, request it with a network call
+    func getData(at location: SavedLocation, on date: Date) async {
         do {
-            async let sunToday = try NetworkManager.fetchSunData(at: location, on: date)
-            async let moonToday = try NetworkManager.fetchMoonData(at: location, on: date)
-            try self.data[.init(date: date, location: location)] = (await sunToday, await moonToday)
+            async let decodedMoonDataToday: RawMoonData = try fetchTask(
+                from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(location.timezone)")
+            async let decodedMoonDataTomorrow: RawMoonData = try fetchTask(
+                from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(location.timezone)")
+            async let decodedSunDataToday: RawSunData = try fetchTask(
+                from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.formatted(format: "YYYY-MM-dd"))&formatted=0")
+            async let decodedSunDataTomorrow: RawSunData = try fetchTask(
+                from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&formatted=0")
             
-            isSafe = true
-            print("API Data Refreshed.")
+            let sunToday = SunData(from: try await decodedSunDataToday, and: try await decodedSunDataTomorrow)
+            let moonToday = MoonData(from: try await decodedMoonDataToday, and: try await decodedMoonDataTomorrow, on: date, sun: sunToday)
+            self.data[.init(date: date, location: location)] = (sunToday, moonToday)
+            print("API Data Fetched")
         } catch FetchError.unableToFetch {
-            print("No Internet Connection.")
+            print("Error: No Internet Connection")
         } catch FetchError.unableToDecode {
-            print("Something went wrong, unable to decode data.")
+            print("Error: unable to decode data")
         } catch FetchError.unableToMakeURL {
             print("Error: Bad URL")
         } catch {
             print("Unknown Error: \(error.localizedDescription)")
         }
-    }
-    
-    private static func fetchSunData(at location: SavedLocation, on date: Date) async throws -> SunData {
-        let decodedDataToday: RawSunData = try await fetchTask(
-            from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.formatted(format: "YYYY-MM-dd"))&formatted=0")
-        let decodedDataTomorrow: RawSunData = try await fetchTask(
-            from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&formatted=0")
-        return SunData(from: decodedDataToday, and: decodedDataTomorrow)
-    }
-    
-    private static func fetchMoonData(at location: SavedLocation, on date: Date) async throws -> MoonData {
-        // add in timezone stuff
-        let decodedDataToday: RawMoonData = try await fetchTask(
-            from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(location.timezone)")
-        let decodedDataTomorrow: RawMoonData = try await fetchTask(
-            from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(location.timezone)")
-        let sunData = try await fetchSunData(at: location, on: date)
-                
-        return MoonData(from: decodedDataToday, and: decodedDataTomorrow, on: date, sun: sunData)
     }
     
     /**
@@ -83,7 +53,7 @@ final class NetworkManager: ObservableObject {
      - Returns: The retrieved and decoded data
      - Throws: A FetchError
      */
-    private static func fetchTask<T: Decodable>(from urlString: String) async throws -> T {
+    private func fetchTask<T: Decodable>(from urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw FetchError.unableToMakeURL
         }
