@@ -36,7 +36,12 @@ struct CatalogView: View {
                 .toolbar() {
                     CatalogToolbar(viewModel: viewModel, date: $date)
                 }
+                // Passing the date and location to use into all child views
+                .environment(\.date, date)
+                .environmentObject(locationList.first!)
+                .environment(\.data, data)
             }
+
             // Otherwise show a loading icon
             else {
                 VStack {
@@ -45,11 +50,6 @@ struct CatalogView: View {
                 }
             }
         }
-        
-        // Passing the date and location to use into all child views
-        .environment(\.date, date)
-        .environmentObject(locationList.first!)
-        
         
         // Modals for editing each filter
         .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
@@ -102,6 +102,7 @@ struct CatalogView: View {
 private struct TargetCell: View {
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date
+    @Environment(\.data) var data
     var target: DeepSkyTarget
     
     var body: some View {
@@ -165,6 +166,7 @@ private struct FilterButton: View {
     @ObservedObject var viewModel: CatalogViewModel
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date
+    @Environment(\.data) var data
     let active: Bool
     let method: FilterMethod
        
@@ -222,7 +224,7 @@ private struct FilterButton: View {
                         .foregroundColor(.primary)
                     Button {
                         viewModel.clearFilter(for: method)
-                        viewModel.targets.sort(by: viewModel.currentSort, sortDescending: viewModel.sortDecending, location: location, date: date)
+                        viewModel.targets.sort(by: viewModel.currentSort, sortDescending: viewModel.sortDecending, location: location, date: date, sunData: data.sun)
                     } label: {
                         Image(systemName: active ? "x.circle" : "chevron.down")
                             .foregroundColor(.accentColor)
@@ -241,6 +243,7 @@ private struct CatalogToolbar: ToolbarContent {
     @ObservedObject var viewModel: CatalogViewModel
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
+    @Environment(\.data) var datada
     
     var body: some ToolbarContent {
         
@@ -270,7 +273,7 @@ private struct CatalogToolbar: ToolbarContent {
             HStack(spacing: 0) {
                 Button() {
                     viewModel.sortDecending.toggle()
-                    viewModel.targets.sort(by: viewModel.currentSort, sortDescending: viewModel.sortDecending, location: locationList.first!, date: date)
+                    viewModel.targets.sort(by: viewModel.currentSort, sortDescending: viewModel.sortDecending, location: locationList.first!, date: date, sunData: data.sun)
                 } label: {
                     Image(systemName: viewModel.sortDecending ? "chevron.up" : "chevron.down")
                 }
@@ -291,12 +294,13 @@ private struct CatalogToolbar: ToolbarContent {
 private struct SortButton: View {
     @ObservedObject var viewModel: CatalogViewModel
     @EnvironmentObject var location: SavedLocation
-    @Environment(\.date) var date: Date
+    @Environment(\.date) var date
+    @Environment(\.data) var data
     var method: SortMethod
     
     var body: some View {
         Button() {
-            viewModel.targets.sort(by: method, sortDescending: viewModel.sortDecending, location: location, date: date)
+            viewModel.targets.sort(by: method, sortDescending: viewModel.sortDecending, location: location, date: date, sunData: data.sun)
             viewModel.currentSort = method
         } label: {
             Label("By \(method.info.name)", systemImage: method.info.icon)

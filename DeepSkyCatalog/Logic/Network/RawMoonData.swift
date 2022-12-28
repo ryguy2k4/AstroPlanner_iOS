@@ -28,6 +28,9 @@ struct RawMoonData: Decodable {
 }
 
 struct MoonData {
+    
+    static let dummy: MoonData = MoonData()
+    
     let phase: String
     let illuminated: Double
     let moonInterval: DateInterval
@@ -71,8 +74,11 @@ struct MoonData {
             // interval from rise to set
             moonInterval = DateInterval(start: riseToday!, end: setToday!)
         }
-
-        
-        
+    }
+    
+    private init() {
+        self.illuminated = 0
+        self.moonInterval = DateInterval(start: Date.today, end: Date.tomorrow)
+        self.phase = "Phase"
     }
 }

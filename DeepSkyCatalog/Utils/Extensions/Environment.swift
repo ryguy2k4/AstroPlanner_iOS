@@ -11,6 +11,9 @@ import SwiftUI
 private struct DateKey: EnvironmentKey {
     static let defaultValue: Date = Date.today
 }
+private struct DataKey: EnvironmentKey {
+    static let defaultValue: (sun: SunData, moon: MoonData) = (SunData.dummy, MoonData.dummy)
+}
 
 extension EnvironmentValues {
     var date: Date {
@@ -19,6 +22,15 @@ extension EnvironmentValues {
         }
         set {
             self[DateKey.self] = newValue
+        }
+    }
+    
+    var data: (SunData, MoonData) {
+        get {
+            self[DataKey.self]
+        }
+        set {
+            self[DataKey.self] = newValue
         }
     }
 }
