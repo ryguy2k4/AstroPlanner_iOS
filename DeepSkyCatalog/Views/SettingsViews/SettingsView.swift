@@ -19,13 +19,18 @@ struct SettingsView: View {
             Form  {
                 ConfigSection(header: "Settings") {
                     NavigationLink(destination: LocationSettings()) {
-                        Text("Location")
+                        Label("Location", systemImage: "location")
                     }
                     NavigationLink(destination: GearSettings()) {
-                        Text("Imaging Presets")
+                        Label("Imaging Presets", systemImage: "camera.aperture")
                     }
                     NavigationLink(destination: DailyReportSettings()) {
-                        Text("Report Settings")
+                        Label("Report Settings", systemImage: "doc.text")
+                    }
+                }
+                ConfigSection {
+                    NavigationLink(destination: AboutView()) {
+                        Label("About", systemImage: "info.circle")
                     }
                 }
             }

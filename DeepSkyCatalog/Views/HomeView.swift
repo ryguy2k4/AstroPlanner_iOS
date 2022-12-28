@@ -27,9 +27,9 @@ struct HomeView: View {
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                 }
-            AboutView()
+            JournalView()
                 .tabItem {
-                    Label("About", systemImage: "info.circle")
+                    Label("Journal", systemImage: "magazine.fill")
                 }
         }
     }
