@@ -34,6 +34,7 @@ final class CatalogViewModel: ObservableObject {
     @Published var minMerScore: Double = 0
     
     // Modal Control Variables
+    @Published var isAllFilterModal: Bool = false
     @Published var isTypeModal: Bool = false
     @Published var isConstellationModal: Bool = false
     @Published var isCatalogModal: Bool = false

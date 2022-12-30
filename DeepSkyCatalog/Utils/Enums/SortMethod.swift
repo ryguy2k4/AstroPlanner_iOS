@@ -14,6 +14,7 @@ enum SortMethod: CaseIterable, Identifiable {
     case dec
     case ra
     case magnitude
+    case size
     
     var info: (name: String, icon: String) {
         switch self {
@@ -27,6 +28,8 @@ enum SortMethod: CaseIterable, Identifiable {
             return ("RA", "arrow.right.arrow.left")
         case .magnitude:
             return ("Magnitude", "sun.min.fill")
+        case .size:
+            return ("Size", "arrow.up.left.and.arrow.down.right")
         }
     }
 }

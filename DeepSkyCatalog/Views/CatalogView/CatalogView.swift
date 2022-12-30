@@ -43,6 +43,9 @@ struct CatalogView: View {
             .environment(\.data, data)
             
             // Modals for editing each filter
+            .filterModal(isPresented: $viewModel.isAllFilterModal, viewModel: viewModel) {
+                EditAllFiltersView()
+            }
             .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
                 SelectableList(selection: $viewModel.typeSelection)
             }
@@ -129,23 +132,37 @@ private struct TargetCell: View {
  */
 private struct FilterButtonMenu: View {
     @ObservedObject var viewModel: CatalogViewModel
-    var buttons: [FilterButton]
     init(viewModel: CatalogViewModel) {
         self.viewModel = viewModel
-        // sort the buttons so that active ones show first
-        buttons = [
-            FilterButton(method: .catalog, viewModel: viewModel),
-            FilterButton(method: .constellation, viewModel: viewModel),
-            FilterButton(method: .type, viewModel: viewModel),
-            FilterButton(method: .magnitude, viewModel: viewModel),
-            FilterButton(method: .size, viewModel: viewModel),
-            FilterButton(method: .visibility, viewModel: viewModel),
-            FilterButton(method: .meridian, viewModel: viewModel)
-        ].sorted(by: {$0.active && !$1.active})
     }
     var body: some View {
+        let buttons = [
+            FilterButton(method: .catalog, viewModel: viewModel, active: !viewModel.catalogSelection.isEmpty, modal: $viewModel.isCatalogModal),
+            FilterButton(method: .constellation, viewModel: viewModel, active: !viewModel.constellationSelection.isEmpty, modal: $viewModel.isConstellationModal),
+            FilterButton(method: .type, viewModel: viewModel, active: !viewModel.typeSelection.isEmpty, modal: $viewModel.isTypeModal),
+            FilterButton(method: .magnitude, viewModel: viewModel, active: !viewModel.dimmestMag.isNaN || !viewModel.brightestMag.isZero, modal: $viewModel.isMagModal),
+            FilterButton(method: .size, viewModel: viewModel, active: !viewModel.minSize.isZero || !viewModel.maxSize.isNaN, modal: $viewModel.isSizeModal),
+            FilterButton(method: .visibility, viewModel: viewModel, active: !viewModel.minVisScore.isZero, modal: $viewModel.isVisScoreModal),
+            FilterButton(method: .meridian, viewModel: viewModel, active: !viewModel.minMerScore.isZero, modal: $viewModel.isMerScoreModal)
+        ].sorted(by: {$0.active && !$1.active})
+        
         ScrollView(.horizontal) {
             HStack {
+                // All filters button
+                ZStack {
+                    Rectangle()
+                        .frame(width: 40, height: 30)
+                        .cornerRadius(13)
+                        .foregroundColor(Color(!buttons.allSatisfy({$0.active == false}) ? "LightBlue" : "LightGray"))
+                    Button {
+                        viewModel.isAllFilterModal = true
+                    } label: {
+                        Image(systemName: "camera.filters")
+                            .foregroundColor(.primary)
+                    }
+                }
+                
+                // Display each individual filter button
                 ForEach(buttons, id: \.method) { button in
                     button
                 }
@@ -165,29 +182,14 @@ private struct FilterButton: View {
     @Environment(\.date) var date
     @Environment(\.data) var data
     let active: Bool
+    @Binding var modalControl: Bool
     let method: FilterMethod
        
-    init(method: FilterMethod, viewModel: CatalogViewModel) {
+    init(method: FilterMethod, viewModel: CatalogViewModel, active: Bool, modal: Binding<Bool>) {
         self.viewModel = viewModel
+        self.active = active
+        self._modalControl = modal
         self.method = method
-        switch method {
-        case .constellation:
-            self.active = !viewModel.constellationSelection.isEmpty
-        case .catalog:
-            self.active = !viewModel.catalogSelection.isEmpty
-        case .search:
-            self.active = !viewModel.searchText.isEmpty
-        case .type:
-            self.active = !viewModel.typeSelection.isEmpty
-        case .magnitude:
-            self.active = !viewModel.brightestMag.isZero || !viewModel.dimmestMag.isNaN
-        case .size:
-            self.active = !viewModel.minSize.isZero || !viewModel.maxSize.isNaN
-        case .visibility:
-            self.active = !viewModel.minVisScore.isZero
-        case .meridian:
-            self.active = !viewModel.minMerScore.isZero
-        }
    }
     
     var body: some View {
@@ -197,24 +199,7 @@ private struct FilterButton: View {
                 .cornerRadius(13)
                 .foregroundColor(Color(active ? "LightBlue" : "LightGray"))
             Button {
-                switch method {
-                case .catalog:
-                    viewModel.isCatalogModal = true
-                case .constellation:
-                    viewModel.isConstellationModal = true
-                case .type:
-                    viewModel.isTypeModal = true
-                case .magnitude:
-                    viewModel.isMagModal = true
-                case .size:
-                    viewModel.isSizeModal = true
-                case .visibility:
-                    viewModel.isVisScoreModal = true
-                case .meridian:
-                    viewModel.isMerScoreModal = true
-                default:
-                    print()
-                }
+                modalControl = true
             } label: {
                 HStack {
                     Label(method.info.name, systemImage: method.info.icon)

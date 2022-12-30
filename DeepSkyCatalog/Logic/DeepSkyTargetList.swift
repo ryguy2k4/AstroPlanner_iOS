@@ -22,6 +22,8 @@ extension Array where Element == DeepSkyTarget {
                 return self.sorted(by: {$0.ra > $1.ra})
             case .magnitude:
                 return self.sorted(by: {$0.apparentMag > $1.apparentMag})
+            case .size:
+                return self.sorted(by: {$0.arcLength > $1.arcLength})
             }
         } else {
             switch method {
@@ -35,6 +37,8 @@ extension Array where Element == DeepSkyTarget {
                 return self.sorted(by: {$0.ra < $1.ra})
             case .magnitude:
                 return self.sorted(by: {$0.apparentMag < $1.apparentMag})
+            case .size:
+                return self.sorted(by: {$0.arcLength < $1.arcLength})
             }
         }
     }

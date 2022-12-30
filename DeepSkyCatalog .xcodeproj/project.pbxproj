@@ -46,6 +46,7 @@
 		71BCF9832921EF8B008C7614 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
 		71BCF9852921EF8B008C7614 /* DSOType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* DSOType.swift */; };
 		71BCF9882921EF8B008C7614 /* RawSunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9802921EF8B008C7614 /* RawSunData.swift */; };
+		71D5FD28295FA1D10028FF8C /* EditAllFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */; };
 		71D77FA82921F99200709252 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
 		71E96D68292831AA00E019F9 /* CatalogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E96D67292831AA00E019F9 /* CatalogViewModel.swift */; };
 		71F71573293FB4010011EF7F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
@@ -93,6 +94,7 @@
 		71BCF97B2921EF8B008C7614 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		71BCF97D2921EF8B008C7614 /* DSOType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSOType.swift; sourceTree = "<group>"; };
 		71BCF9802921EF8B008C7614 /* RawSunData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawSunData.swift; sourceTree = "<group>"; };
+		71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAllFiltersView.swift; sourceTree = "<group>"; };
 		71D77FA72921F99200709252 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		71E96D67292831AA00E019F9 /* CatalogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewModel.swift; sourceTree = "<group>"; };
 		71F71572293FB4010011EF7F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -114,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9672921EF20008C7614 /* CatalogView.swift */,
-				710168842955621D00E0B028 /* MinMaxPicker.swift */,
+				71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */,
 			);
 			path = CatalogView;
 			sourceTree = "<group>";
@@ -143,6 +145,7 @@
 		718B56AF294C349900914BDB /* Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
+				710168842955621D00E0B028 /* MinMaxPicker.swift */,
 				71B14F682958D905003C11BD /* DateSelector.swift */,
 				71F844C8294A95E700DD2742 /* SelectableList.swift */,
 				719B26D6295167A100E1165A /* NumberPicker.swift */,
@@ -360,6 +363,7 @@
 				71BCF96C2921EF20008C7614 /* SettingsView.swift in Sources */,
 				71BCF9882921EF8B008C7614 /* RawSunData.swift in Sources */,
 				714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */,
+				71D5FD28295FA1D10028FF8C /* EditAllFiltersView.swift in Sources */,
 				71BCF9752921EF6D008C7614 /* DeepSkyTargetList.swift in Sources */,
 				71BCF9782921EF6D008C7614 /* NetworkManager.swift in Sources */,
 				71B5FD1C294EBECF00833379 /* PlaceValue.swift in Sources */,
