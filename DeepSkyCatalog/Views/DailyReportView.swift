@@ -94,39 +94,34 @@ struct DailyReportView: View {
  */
 private struct TopThreeView: View {
     @EnvironmentObject var location: SavedLocation
-    let report: DailyReport?
+    let report: DailyReport
     
     var body: some View {
         VStack {
             Text("Top Three Overall")
                 .fontWeight(.bold)
             TabView {
-                if let report = report {
-                    ForEach(report.topThree, id: \.id) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
-                            let nameWidth = target.name[0].widthOfString(usingFont: .systemFont(ofSize: 20))
-                            let nameHeight = target.name[0].heightOfString(usingFont: .systemFont(ofSize: 20))
-                            ZStack {
-                                Image(target.image[0])
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 368, height: 207)
-                                Rectangle()
-                                    .size(width: nameWidth + 5, height: 32)
-                                    .foregroundColor(.gray)
-                                    .opacity(0.5)
-                                Text(target.name[0])
-                                    .fontWeight(.semibold)
-                                    .position(x: nameWidth/2, y: nameHeight/2 + 3)
-                                    .foregroundColor(.primary)
-                                    .padding(2)
-                            }
+                ForEach(report.topThree, id: \.id) { target in
+                    NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                        let nameWidth = target.name[0].widthOfString(usingFont: .systemFont(ofSize: 20))
+                        let nameHeight = target.name[0].heightOfString(usingFont: .systemFont(ofSize: 20))
+                        ZStack {
+                            Image(target.image[0])
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 368, height: 207)
+                            Rectangle()
+                                .size(width: nameWidth + 5, height: 32)
+                                .foregroundColor(.gray)
+                                .opacity(0.5)
+                            Text(target.name[0])
+                                .fontWeight(.semibold)
+                                .position(x: nameWidth/2, y: nameHeight/2 + 3)
+                                .foregroundColor(.primary)
+                                .padding(2)
                         }
                     }
                 }
-                else {
-                    ProgressView()
-               }
             }
             .frame(width: 368, height: 207)
             .border(.primary)
@@ -141,7 +136,7 @@ private struct TopThreeView: View {
  */
 private struct TopFiveTabView: View {
     @EnvironmentObject var location: SavedLocation
-    let report: DailyReport?
+    let report: DailyReport
     @State private var tabSelection: Int = 0
     
     var body: some View {
@@ -155,29 +150,25 @@ private struct TopFiveTabView: View {
             }
             .pickerStyle(.segmented)
             .padding(.horizontal, 16)
-            if let report = report {
-                TabView(selection: $tabSelection) {
-                    List(report.topFiveNebulae) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
-                            Text(target.name.first!)
-                        }
-                    }.tag(0).listStyle(.inset)
-                    List(report.topFiveGalaxies) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
-                            Text(target.name.first!)
-                        }
-                    }.tag(1).listStyle(.inset)
-                    List(report.topFiveStarClusters) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
-                            Text(target.name.first!)
-                        }
-                    }.tag(2).listStyle(.inset)
-                }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                .scrollDisabled(true)
-            } else {
-                ProgressView()
+            TabView(selection: $tabSelection) {
+                List(report.topFiveNebulae) { target in
+                    NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                        Text(target.name.first!)
+                    }
+                }.tag(0).listStyle(.inset)
+                List(report.topFiveGalaxies) { target in
+                    NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                        Text(target.name.first!)
+                    }
+                }.tag(1).listStyle(.inset)
+                List(report.topFiveStarClusters) { target in
+                    NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                        Text(target.name.first!)
+                    }
+                }.tag(2).listStyle(.inset)
             }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .scrollDisabled(true)
         }
     }
 }

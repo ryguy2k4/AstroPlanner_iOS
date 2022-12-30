@@ -53,10 +53,10 @@ struct CatalogView: View {
                 SelectableList(selection: $viewModel.constellationSelection)
             }
             .filterModal(isPresented: $viewModel.isMagModal, viewModel: viewModel) {
-                MagnitudeFilter(min: $viewModel.brightestMag, max: $viewModel.dimmestMag)
+                MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
             }
             .filterModal(isPresented: $viewModel.isSizeModal, viewModel: viewModel) {
-                SizeFilter(min: $viewModel.minSize, max: $viewModel.maxSize)
+                MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
             }
             .filterModal(isPresented: $viewModel.isVisScoreModal, viewModel: viewModel) {
                 Form {

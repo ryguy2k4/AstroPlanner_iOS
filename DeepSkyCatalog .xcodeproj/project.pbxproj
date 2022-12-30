@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		710168832955621200E0B028 /* MagnitudeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710168822955621200E0B028 /* MagnitudeFilter.swift */; };
-		710168852955621D00E0B028 /* SizeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710168842955621D00E0B028 /* SizeFilter.swift */; };
+		710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710168842955621D00E0B028 /* MinMaxPicker.swift */; };
 		710168872955641400E0B028 /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 710168862955641400E0B028 /* Notes.rtf */; };
 		7104F4982929F0E90000A66A /* TargetCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104F4972929F0E90000A66A /* TargetCalculationError.swift */; };
 		7109A3F5292EBA7A00980527 /* RawMoonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* RawMoonData.swift */; };
@@ -54,8 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		710168822955621200E0B028 /* MagnitudeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnitudeFilter.swift; sourceTree = "<group>"; };
-		710168842955621D00E0B028 /* SizeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeFilter.swift; sourceTree = "<group>"; };
+		710168842955621D00E0B028 /* MinMaxPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxPicker.swift; sourceTree = "<group>"; };
 		710168862955641400E0B028 /* Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
 		7104F4972929F0E90000A66A /* TargetCalculationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCalculationError.swift; sourceTree = "<group>"; };
 		7109A3F4292EBA7A00980527 /* RawMoonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMoonData.swift; sourceTree = "<group>"; };
@@ -116,8 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9672921EF20008C7614 /* CatalogView.swift */,
-				710168822955621200E0B028 /* MagnitudeFilter.swift */,
-				710168842955621D00E0B028 /* SizeFilter.swift */,
+				710168842955621D00E0B028 /* MinMaxPicker.swift */,
 			);
 			path = CatalogView;
 			sourceTree = "<group>";
@@ -368,7 +365,7 @@
 				71B5FD1C294EBECF00833379 /* PlaceValue.swift in Sources */,
 				71BCF96B2921EF20008C7614 /* CatalogView.swift in Sources */,
 				71BCF9762921EF6D008C7614 /* DeepSkyTarget.swift in Sources */,
-				710168852955621D00E0B028 /* SizeFilter.swift in Sources */,
+				710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */,
 				71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */,
 				71BCF9822921EF8B008C7614 /* Date.swift in Sources */,
 				7109A3F5292EBA7A00980527 /* RawMoonData.swift in Sources */,
@@ -382,7 +379,6 @@
 				71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */,
 				715CCB5429270AF700497CA2 /* SortMethod.swift in Sources */,
 				7186D8F2295CEEC500601467 /* JournalView.swift in Sources */,
-				710168832955621200E0B028 /* MagnitudeFilter.swift in Sources */,
 				71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */,
 				713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */,
 				710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */,

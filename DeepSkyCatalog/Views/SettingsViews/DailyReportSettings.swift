@@ -27,7 +27,7 @@ struct DailyReportSettings: View {
             }
         }
         .sheet(isPresented: $isMagModal) {
-            MagnitudeFilter(min: $settings.brightestMag, max: $settings.dimmestMag)
+            MinMaxPicker(min: $settings.brightestMag, max: $settings.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
                 .presentationDetents([.fraction(0.8)])
         }
         .sheet(isPresented: $isMoonPercentModal) {
