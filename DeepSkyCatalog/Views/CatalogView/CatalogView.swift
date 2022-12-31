@@ -44,7 +44,7 @@ struct CatalogView: View {
             
             // Modals for editing each filter
             .filterModal(isPresented: $viewModel.isAllFilterModal, viewModel: viewModel) {
-                EditAllFiltersView()
+                EditAllFiltersView(viewModel: viewModel)
             }
             .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
                 SelectableList(selection: $viewModel.typeSelection)
