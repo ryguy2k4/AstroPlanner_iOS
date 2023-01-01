@@ -41,7 +41,7 @@ struct FilterModal<C: View>: ViewModifier {
                     .onDisappear() {
                         viewModel.refreshList(sunData: data.sun)
                     }
-                    .presentationDetents([.fraction(0.8)])
+                    .presentationDetents([.fraction(0.5), .fraction(0.8)])
             }
     }
 }

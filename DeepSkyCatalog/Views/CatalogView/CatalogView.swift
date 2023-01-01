@@ -37,10 +37,6 @@ struct CatalogView: View {
                     CatalogToolbar(viewModel: viewModel, date: $date)
                 }
             }
-            // Passing the date and location to use into all child views
-            .environment(\.date, date)
-            .environmentObject(locationList.first!)
-            .environment(\.data, data)
             
             // Modals for editing each filter
             .filterModal(isPresented: $viewModel.isAllFilterModal, viewModel: viewModel) {
@@ -81,6 +77,11 @@ struct CatalogView: View {
             .onChange(of: locationList.first) { newLocation in
                 viewModel.location = newLocation!
             }
+            
+            // Passing the date and location to use into all child views
+            .environment(\.date, date)
+            .environmentObject(locationList.first!)
+            .environment(\.data, data)
         }
 
         // Otherwise show a loading icon
@@ -227,7 +228,6 @@ private struct CatalogToolbar: ToolbarContent {
     @ObservedObject var viewModel: CatalogViewModel
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
-    @Environment(\.data) var data
     
     var body: some ToolbarContent {
         
@@ -240,36 +240,20 @@ private struct CatalogToolbar: ToolbarContent {
             }
         )
         
-        // The Location and Date selector on the left hand side
+        // The Location selector on the left hand side
         ToolbarItemGroup(placement: .navigationBarLeading) {
-            HStack() {
-                Picker("Location", selection: locationBinding) {
-                    ForEach(locationList) { location in
-                        Text(location.name!).tag(location)
-                    }
+            Picker("Location", selection: locationBinding) {
+                ForEach(locationList) { location in
+                    Text(location.name!).tag(location)
                 }
-                DateSelector(date: $date)
             }
+            .padding(.horizontal)
         }
         
-        // The Sort button on the right hand side
+        // The DateSelector on the right hand side
         ToolbarItem(placement: .navigationBarTrailing) {
-            HStack(spacing: 0) {
-                Button() {
-                    viewModel.sortDecending.toggle()
-                    viewModel.targets.sort(by: viewModel.currentSort, sortDescending: viewModel.sortDecending, location: locationList.first!, date: date, sunData: data.sun)
-                } label: {
-                    Image(systemName: viewModel.sortDecending ? "chevron.up" : "chevron.down")
-                }
-                Picker("", selection: $viewModel.currentSort) {
-                    ForEach(SortMethod.allCases) { method in
-                        Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
-                    }
-                }
-                .onChange(of: viewModel.currentSort) { newMethod in
-                    viewModel.targets.sort(by: newMethod, sortDescending: viewModel.sortDecending, location: locationList.first!, date: date, sunData: data.sun)
-                }
-            }
+            DateSelector(date: $date)
+                .padding(.horizontal)
         }
     }
 }

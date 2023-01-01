@@ -9,13 +9,29 @@ import SwiftUI
 
 struct EditAllFiltersView: View {
     @ObservedObject var viewModel: CatalogViewModel
-//    @State private var isCatalogExpanded = false
-//    @State private var isTypeExpanded = false
+    @EnvironmentObject var location: SavedLocation
+    @Environment(\.data) var data
+    @Environment(\.date) var date
     var body: some View {
         NavigationStack {
             Form {
                 ConfigSection(header: "Sort") {
-                    Text("Sort Methods")
+                    Picker("Method:", selection: $viewModel.currentSort) {
+                        ForEach(SortMethod.allCases) { method in
+                            Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
+                        }
+                    }
+                    .onChange(of: viewModel.currentSort) { newMethod in
+                        viewModel.targets.sort(by: newMethod, sortDescending: viewModel.sortDecending, location: location, date: date, sunData: data.sun)
+                    }
+                    Picker("Order:", selection: $viewModel.sortDecending) {
+                        Label("Ascending", systemImage: "chevron.up").tag(false)
+                        Label("Descending", systemImage: "chevron.down").tag(true)
+                                
+                    }
+                    .onChange(of: viewModel.sortDecending) { newOrder in
+                        viewModel.targets.sort(by: viewModel.currentSort, sortDescending: newOrder, location: location, date: date, sunData: data.sun)
+                    }
                 }
                 ConfigSection(header: "Filters") {
                     NavigationLink("Catalog Filter") {
@@ -46,25 +62,6 @@ struct EditAllFiltersView: View {
                 }
             }
         }
-    }
-}
-
-private struct FilterDisclosureGroup<Content: View>: View {
-    let content: Content
-    let label: String
-    init(_ label: String, @ViewBuilder content: () -> Content) {
-        self.content = content()
-        self.label = label
-    }
-    var body: some View {
-        DisclosureGroup {
-            content
-                .scaledToFit()
-        } label: {
-            Text(label)
-                .foregroundColor(.primary)
-        }
-
     }
 }
 
