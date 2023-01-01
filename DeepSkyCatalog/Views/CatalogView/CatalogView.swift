@@ -146,29 +146,31 @@ private struct FilterButtonMenu: View {
             FilterButton(method: .meridian, viewModel: viewModel, active: !viewModel.minMerScore.isZero, modal: $viewModel.isMerScoreModal)
         ].sorted(by: {$0.active && !$1.active})
         
-        ScrollView(.horizontal) {
-            HStack {
-                // All filters button
-                ZStack {
-                    Rectangle()
-                        .frame(width: 40, height: 30)
-                        .cornerRadius(13)
-                        .foregroundColor(Color(!buttons.allSatisfy({$0.active == false}) ? "LightBlue" : "LightGray"))
-                    Button {
-                        viewModel.isAllFilterModal = true
-                    } label: {
-                        Image(systemName: "camera.filters")
-                            .foregroundColor(.primary)
-                    }
-                }
-                
-                // Display each individual filter button
-                ForEach(buttons, id: \.method) { button in
-                    button
+        HStack {
+            // All filters button
+            ZStack {
+                Rectangle()
+                    .frame(width: 40, height: 30)
+                    .cornerRadius(13)
+                    .foregroundColor(Color(!buttons.allSatisfy({$0.active == false}) ? "LightBlue" : "LightGray"))
+                Button {
+                    viewModel.isAllFilterModal = true
+                } label: {
+                    Image(systemName: "camera.filters")
+                        .foregroundColor(.primary)
                 }
             }
-            .padding(.horizontal)
+            
+            // Display each individual filter button
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(buttons, id: \.method) { button in
+                        button
+                    }
+                }
+            }
         }
+        .padding(.horizontal)
         .scrollIndicators(.hidden)
     }
 }
