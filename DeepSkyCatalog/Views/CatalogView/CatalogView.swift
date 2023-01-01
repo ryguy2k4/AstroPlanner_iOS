@@ -261,33 +261,15 @@ private struct CatalogToolbar: ToolbarContent {
                 } label: {
                     Image(systemName: viewModel.sortDecending ? "chevron.up" : "chevron.down")
                 }
-                Menu(viewModel.currentSort.info.name) {
+                Picker("", selection: $viewModel.currentSort) {
                     ForEach(SortMethod.allCases) { method in
-                        SortButton(viewModel: viewModel, method: method)
+                        Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
                     }
                 }
+                .onChange(of: viewModel.currentSort) { newMethod in
+                    viewModel.targets.sort(by: newMethod, sortDescending: viewModel.sortDecending, location: locationList.first!, date: date, sunData: data.sun)
+                }
             }
-        }
-        
-    }
-}
-
-/**
- This View is a Button that lies within the sort menu in the Master Catalog toolbar.
- */
-private struct SortButton: View {
-    @ObservedObject var viewModel: CatalogViewModel
-    @EnvironmentObject var location: SavedLocation
-    @Environment(\.date) var date
-    @Environment(\.data) var data
-    var method: SortMethod
-    
-    var body: some View {
-        Button() {
-            viewModel.targets.sort(by: method, sortDescending: viewModel.sortDecending, location: location, date: date, sunData: data.sun)
-            viewModel.currentSort = method
-        } label: {
-            Label("By \(method.info.name)", systemImage: method.info.icon)
         }
     }
 }

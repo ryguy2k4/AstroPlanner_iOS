@@ -14,6 +14,9 @@ struct EditAllFiltersView: View {
     var body: some View {
         NavigationStack {
             Form {
+                ConfigSection(header: "Sort") {
+                    Text("Sort Methods")
+                }
                 ConfigSection(header: "Filters") {
                     NavigationLink("Catalog Filter") {
                         SelectableList(selection: $viewModel.catalogSelection)
