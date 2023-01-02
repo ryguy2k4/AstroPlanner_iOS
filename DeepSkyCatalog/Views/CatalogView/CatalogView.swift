@@ -22,8 +22,8 @@ struct CatalogView: View {
         // Only display targets if network data is available
         if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
             NavigationStack() {
-                SearchBar(viewModel: viewModel, updateAction: { viewModel.refreshList(sunData: data.sun) })
-                FilterButtonMenu(viewModel: viewModel)
+                SearchBar(updateAction: { viewModel.refreshList(sunData: data.sun) })
+                FilterButtonMenu()
                 
                 List(viewModel.targets, id: \.id) { target in
                     NavigationLink(destination: DetailView(target: target)) {
@@ -34,7 +34,7 @@ struct CatalogView: View {
                 }
                 .listStyle(.grouped)
                 .toolbar() {
-                    CatalogToolbar(viewModel: viewModel, date: $date)
+                    CatalogToolbar(date: $date)
                 }
             }
             
@@ -81,6 +81,7 @@ struct CatalogView: View {
             // Passing the date and location to use into all child views
             .environment(\.date, date)
             .environmentObject(locationList.first!)
+            .environmentObject(viewModel)
             .environment(\.data, data)
         }
 
@@ -132,19 +133,17 @@ private struct TargetCell: View {
  The array allows them to be sorted based on which ones are active.
  */
 private struct FilterButtonMenu: View {
-    @ObservedObject var viewModel: CatalogViewModel
-    init(viewModel: CatalogViewModel) {
-        self.viewModel = viewModel
-    }
+    @EnvironmentObject var viewModel: CatalogViewModel
+    
     var body: some View {
         let buttons = [
-            FilterButton(method: .catalog, viewModel: viewModel, active: !viewModel.catalogSelection.isEmpty, modal: $viewModel.isCatalogModal),
-            FilterButton(method: .constellation, viewModel: viewModel, active: !viewModel.constellationSelection.isEmpty, modal: $viewModel.isConstellationModal),
-            FilterButton(method: .type, viewModel: viewModel, active: !viewModel.typeSelection.isEmpty, modal: $viewModel.isTypeModal),
-            FilterButton(method: .magnitude, viewModel: viewModel, active: !viewModel.dimmestMag.isNaN || !viewModel.brightestMag.isZero, modal: $viewModel.isMagModal),
-            FilterButton(method: .size, viewModel: viewModel, active: !viewModel.minSize.isZero || !viewModel.maxSize.isNaN, modal: $viewModel.isSizeModal),
-            FilterButton(method: .visibility, viewModel: viewModel, active: !viewModel.minVisScore.isZero, modal: $viewModel.isVisScoreModal),
-            FilterButton(method: .meridian, viewModel: viewModel, active: !viewModel.minMerScore.isZero, modal: $viewModel.isMerScoreModal)
+            FilterButton(method: .catalog, active: !viewModel.catalogSelection.isEmpty, modalControl: $viewModel.isCatalogModal),
+            FilterButton(method: .constellation, active: !viewModel.constellationSelection.isEmpty, modalControl: $viewModel.isConstellationModal),
+            FilterButton(method: .type, active: !viewModel.typeSelection.isEmpty, modalControl: $viewModel.isTypeModal),
+            FilterButton(method: .magnitude, active: !viewModel.dimmestMag.isNaN || !viewModel.brightestMag.isZero, modalControl: $viewModel.isMagModal),
+            FilterButton(method: .size, active: !viewModel.minSize.isZero || !viewModel.maxSize.isNaN, modalControl: $viewModel.isSizeModal),
+            FilterButton(method: .visibility, active: !viewModel.minVisScore.isZero, modalControl: $viewModel.isVisScoreModal),
+            FilterButton(method: .meridian, active: !viewModel.minMerScore.isZero, modalControl: $viewModel.isMerScoreModal)
         ].sorted(by: {$0.active && !$1.active})
         
         HStack {
@@ -180,20 +179,13 @@ private struct FilterButtonMenu: View {
  This View defines a singular filter button for a given filter method.
  */
 private struct FilterButton: View {
-    @ObservedObject var viewModel: CatalogViewModel
+    @EnvironmentObject var viewModel: CatalogViewModel
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date
     @Environment(\.data) var data
+    let method: FilterMethod
     let active: Bool
     @Binding var modalControl: Bool
-    let method: FilterMethod
-       
-    init(method: FilterMethod, viewModel: CatalogViewModel, active: Bool, modal: Binding<Bool>) {
-        self.viewModel = viewModel
-        self.active = active
-        self._modalControl = modal
-        self.method = method
-   }
     
     var body: some View {
         ZStack {
@@ -225,7 +217,6 @@ private struct FilterButton: View {
  This View contains the ToolbarContent to be displayed in the Master Catalog
  */
 private struct CatalogToolbar: ToolbarContent {
-    @ObservedObject var viewModel: CatalogViewModel
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
     
@@ -262,7 +253,7 @@ private struct CatalogToolbar: ToolbarContent {
  A Search Bar that binds its text to a given variable and executes a given action when text is submitted
  */
 private struct SearchBar: View {
-    @ObservedObject var viewModel: CatalogViewModel
+    @EnvironmentObject var viewModel: CatalogViewModel
     @FocusState var isInputActive: Bool
     var updateAction: () -> Void
     
