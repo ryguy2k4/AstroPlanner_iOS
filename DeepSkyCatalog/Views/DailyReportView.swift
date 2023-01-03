@@ -106,7 +106,7 @@ private struct TopThreeView: View {
                         let nameWidth = target.name[0].widthOfString(usingFont: .systemFont(ofSize: 20))
                         let nameHeight = target.name[0].heightOfString(usingFont: .systemFont(ofSize: 20))
                         ZStack {
-                            Image(target.image[0])
+                            Image(target.image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 368, height: 207)

@@ -17,11 +17,19 @@ struct DetailView: View {
         if let data = networkManager.data[.init(date: date, location: location)] {
             ScrollView {
                 VStack(spacing: 10) {
-                    Image(target.image[0])
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 200)
-                        .cornerRadius(12)
+                    VStack {
+                        Image(target.image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
+                            .cornerRadius(12)
+                        if let credit = target.imageCopyright {
+                            Text("Image Copyright: " + credit)
+                                .fontWeight(.light)
+                                .lineLimit(1)
+                                .font(.caption)
+                        }
+                    }
                     VStack {
                         Text(target.name[0])
                             .font(.title2)

@@ -29,7 +29,8 @@ struct DeepSkyTarget: Identifiable, Hashable {
     let designation: [Designation]
     
     // image
-    let image: [String]
+    let image: String
+    let imageCopyright: String?
     
     // description
     let description: String
