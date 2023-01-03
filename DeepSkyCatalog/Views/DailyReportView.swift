@@ -39,7 +39,7 @@ struct DailyReportView: View {
             let report = DailyReport(location: locationList.first!, date: date, settings: reportSettings.first!, preset: presetList.first!, data: data)
             NavigationView {
                 ScrollView {
-                    VStack(spacing: 25) {
+                    VStack() {
                         VStack {
                             Text("Daily Report")
                                 .multilineTextAlignment(.center)
@@ -52,7 +52,7 @@ struct DailyReportView: View {
                                 .font(.subheadline)
                                 .fontWeight(.thin)
                         }
-                            .padding(.top)
+                            .padding(.vertical)
                         DateSelector(date: $date)
                         HStack {
                             Picker("Imaging Preset", selection: presetBinding) {
@@ -103,29 +103,27 @@ private struct TopThreeView: View {
             TabView {
                 ForEach(report.topThree, id: \.id) { target in
                     NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
-                        let nameWidth = target.name[0].widthOfString(usingFont: .systemFont(ofSize: 20))
-                        let nameHeight = target.name[0].heightOfString(usingFont: .systemFont(ofSize: 20))
                         ZStack {
                             Image(target.image)
                                 .resizable()
+                                .cornerRadius(12)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 368, height: 207)
-                            Rectangle()
-                                .size(width: nameWidth + 5, height: 32)
-                                .foregroundColor(.gray)
-                                .opacity(0.5)
-                            Text(target.name[0])
-                                .fontWeight(.semibold)
-                                .position(x: nameWidth/2, y: nameHeight/2 + 3)
-                                .foregroundColor(.primary)
-                                .padding(2)
+                            VStack {
+                                Text(target.name[0])
+                                    .padding(2)
+                                    .background(.gray.opacity(0.8), in: Rectangle())
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                            }
+                            .padding(4)
                         }
                     }
                 }
             }
             .frame(width: 368, height: 207)
-            .border(.primary)
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+            .tabViewStyle(.page)
         }
     }
 }
@@ -151,21 +149,42 @@ private struct TopFiveTabView: View {
             .pickerStyle(.segmented)
             .padding(.horizontal, 16)
             TabView(selection: $tabSelection) {
-                List(report.topFiveNebulae) { target in
-                    NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
-                        Text(target.name.first!)
-                    }
-                }.tag(0).listStyle(.inset)
-                List(report.topFiveGalaxies) { target in
-                    NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
-                        Text(target.name.first!)
-                    }
-                }.tag(1).listStyle(.inset)
-                List(report.topFiveStarClusters) { target in
-                    NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
-                        Text(target.name.first!)
-                    }
-                }.tag(2).listStyle(.inset)
+                if !report.topFiveNebulae.isEmpty {
+                    List(report.topFiveNebulae) { target in
+                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                            Text(target.name.first!)
+                        }
+                    }.tag(0).listStyle(.inset)
+                } else {
+                    VStack {
+                        Text("No Nebulae")
+                        Spacer()
+                    }.tag(0)
+                }
+                if !report.topFiveGalaxies.isEmpty {
+                    List(report.topFiveGalaxies) { target in
+                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                            Text(target.name.first!)
+                        }
+                    }.tag(1).listStyle(.inset)
+                } else {
+                    VStack {
+                        Text("No Galaxies")
+                        Spacer()
+                    }.tag(1)
+                    
+                }
+                if !report.topFiveStarClusters.isEmpty {
+                    List(report.topFiveStarClusters) { target in
+                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                            Text(target.name.first!)
+                        }
+                    }.tag(2).listStyle(.inset)
+                } else {
+                    VStack {
+                        Text("No Star Clusters")
+                        Spacer()
+                    }.tag(2)                }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .scrollDisabled(true)

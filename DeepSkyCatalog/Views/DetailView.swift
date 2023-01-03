@@ -40,23 +40,6 @@ struct DetailView: View {
                             .fontWeight(.light)
                             .lineLimit(1)
                     }
-                    VStack() {
-                        TargetAltitudeChart(target: target)
-                            .padding()
-                        HStack {
-                            if let eventOrder = getNextOrder(for: target, sunData: data.sun) {
-                                if eventOrder.count == 3 {
-                                    EventLabel(text: eventOrder[0].date.formatted(format: "h:mm a \n MM/dd"), image: eventOrder[0].event.rawValue)
-                                    EventLabel(text: eventOrder[1].date.formatted(format: "h:mm a \n MM/dd"), image: eventOrder[1].event.rawValue)
-                                    EventLabel(text: eventOrder[2].date.formatted(format: "h:mm a \n MM/dd"), image: eventOrder[2].event.rawValue)
-                                } else {
-                                    Text("\(eventOrder[0].error!.rawValue)")
-                                }
-                            } else {
-                                Text("Error Getting Events")
-                            }
-                        }
-                    }
                     HStack {
                         VStack(alignment: .leading) {
                             FactLabel(text: target.constellation.rawValue, image: "star")
@@ -70,6 +53,22 @@ struct DetailView: View {
                                 .foregroundColor(.secondary)
                             Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: data.sun)).percent())")
                                 .foregroundColor(.secondary)
+                        }
+                    }
+                    VStack() {
+                        TargetAltitudeChart(target: target)
+                            .padding()
+                        if let interval = try? target.getNextInterval(at: location, on: date, sunData: data.sun) {
+                            HStack {
+                                EventLabel(text: interval.start.formatted(format: "h:mm a \n MM/dd"), image: "sunrise")
+                                EventLabel(text: target.getNextMeridian(at: location, on: date, sunData: data.sun).formatted(format: "h:mm a \n MM/dd"), image: "arrow.right.and.line.vertical.and.arrow.left")
+                                EventLabel(text: interval.end.formatted(format: "h:mm a \n MM/dd"), image: "sunset")
+                            }
+                        } else {
+                            VStack {
+                                Text("Target Never Rises or Target Never Sets")
+                                EventLabel(text: target.getNextMeridian(at: location, on: date, sunData: data.sun).formatted(format: "h:mm a \n MM/dd"), image: "arrow.right.and.line.vertical.and.arrow.left")
+                            }
                         }
                     }
                     VStack(alignment: .leading, spacing: 10) {
@@ -87,27 +86,7 @@ struct DetailView: View {
             ProgressView()
         }
     }
-    
-    func getNextOrder(for target: DeepSkyTarget, sunData: SunData) -> [EventInfo]? {
-        do {
-            let array = [EventInfo(event: .rise, date: try target.getNextInterval(at: location, on: date, sunData: sunData).start), EventInfo(event: .meridian, date: target.getNextMeridian(at: location, on: date, sunData: sunData)), EventInfo(event: .set, date: try target.getNextInterval(at: location, on: date, sunData: sunData).end)]
-            return array.sorted(by: {$0.date < $1.date})
-        } catch TargetCalculationError.neverRises {
-            return [EventInfo(event: .rise, date: Date(), error: TargetCalculationError.neverRises)]
-        } catch TargetCalculationError.neverSets {
-            return [EventInfo(event: .set, date: Date(), error: TargetCalculationError.neverSets)]
-        } catch {
-            print("Unexpected Error: \(error)")
-            return nil
-        }
-    }
 }
-
-//struct TargetDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailView(target: DeepSkyTargetList.allTargets[0])
-//    }
-//}
 
 /**
  A chart that plots altitude vs time for a target
@@ -156,18 +135,8 @@ struct EventLabel: View {
     }
 }
 
-struct EventInfo {
-    enum Event: String {
-        case rise = "sunrise"
-        case meridian = "arrow.right.and.line.vertical.and.arrow.left"
-        case set = "sunset"
-    }
-    let event: Event
-    let date: Date
-    let error: TargetCalculationError?
-    init(event: Event, date: Date, error: TargetCalculationError? = nil) {
-        self.event = event
-        self.date = date
-        self.error = error
-    }
-}
+//struct TargetDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailView(target: DeepSkyTargetList.allTargets[0])
+//    }
+//}

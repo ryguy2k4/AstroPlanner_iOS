@@ -14,8 +14,8 @@ enum DSOType: String, Filter {
     static let nebulae: [DSOType] = [.planetaryNebula, .supernovaRemnant, .reflectionNebula, .darkNebula, .emissionNebula]
     static let starClusters: [DSOType] = [.openStarCluster, .globularStarCluster]
     static let galaxies: [DSOType] = [.galaxy, .galaxyGroup]
-    static let broadband: [DSOType] = [.galaxy, .darkNebula, .globularStarCluster, .openStarCluster, .galaxyGroup, .reflectionNebula, .planetaryNebula]
-    static let narrowband: [DSOType] = [.emissionNebula, .supernovaRemnant]
+    static let broadband: [DSOType] = [.galaxy, .darkNebula, .galaxyGroup, .reflectionNebula, .planetaryNebula]
+    static let narrowband: [DSOType] = [.emissionNebula, .supernovaRemnant, .openStarCluster, .globularStarCluster]
 
     case emissionNebula = "Emission Nebula"
     case reflectionNebula = "Reflection Nebula"
