@@ -13,18 +13,44 @@
 		7109A3F5292EBA7A00980527 /* RawMoonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* RawMoonData.swift */; };
 		710BF588294BF18900A72073 /* ConfigSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710BF587294BF18900A72073 /* ConfigSection.swift */; };
 		710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D497629316B4F003F41F1 /* DailyReportView.swift */; };
+		710ECDAD2965E68F00534D15 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
+		710ECDAE2965E68F00534D15 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
 		7133FC67294C14560080AE0C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133FC66294C14560080AE0C /* View.swift */; };
 		713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49B72954122D008EFC81 /* LocationSettings.swift */; };
 		713B49BC29541242008EFC81 /* DailyReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49BB29541242008EFC81 /* DailyReportSettings.swift */; };
 		714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E54CD293D52B00039ECE0 /* LocationManager.swift */; };
 		7156743029273ECA00626B1B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7156742F29273ECA00626B1B /* AboutView.swift */; };
 		715CCB5429270AF700497CA2 /* SortMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715CCB5329270AF700497CA2 /* SortMethod.swift */; };
+		7162D33E2964DBF1007C8710 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162D33D2964DBF0007C8710 /* WidgetKit.framework */; };
+		7162D3402964DBF1007C8710 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162D33F2964DBF1007C8710 /* SwiftUI.framework */; };
+		7162D3432964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */; };
+		7162D3452964DBF1007C8710 /* DeepSkyCatalogWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162D3442964DBF1007C8710 /* DeepSkyCatalogWidget.swift */; };
+		7162D3472964DBF1007C8710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7162D3462964DBF1007C8710 /* Assets.xcassets */; };
+		7162D34B2964DBF1007C8710 /* DeepSkyCatalogWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
+		7162D3512964E909007C8710 /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
 		716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		7176882D292B285700BB86D7 /* FilterMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176882C292B285700BB86D7 /* FilterMethod.swift */; };
 		7186D8F2295CEEC500601467 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7186D8F1295CEEC500601467 /* JournalView.swift */; };
 		718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
 		719B26D7295167A100E1165A /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B26D6295167A100E1165A /* NumberPicker.swift */; };
+		71ACF32D2964EA9A00CC83D5 /* DSOType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* DSOType.swift */; };
+		71ACF32E2964EAA000CC83D5 /* DSOCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* DSOCatalog.swift */; };
+		71ACF32F2964EAA200CC83D5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
+		71ACF3302964EAC600CC83D5 /* FilterMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176882C292B285700BB86D7 /* FilterMethod.swift */; };
+		71ACF3312964ED0F00CC83D5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date.swift */; };
+		71ACF3322964ED1100CC83D5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
+		71ACF3332964ED1400CC83D5 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
+		71ACF3342964ED1D00CC83D5 /* TargetCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104F4972929F0E90000A66A /* TargetCalculationError.swift */; };
+		71ACF3352964ED2E00CC83D5 /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
+		71ACF3362964ED3C00CC83D5 /* RawSunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9802921EF8B008C7614 /* RawSunData.swift */; };
+		71ACF3382964ED6E00CC83D5 /* DeepSkyTargetArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF3372964ED6E00CC83D5 /* DeepSkyTargetArray.swift */; };
+		71ACF3392964ED9100CC83D5 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
+		71ACF33A2964EED200CC83D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
+		71ACF33D2964F0B400CC83D5 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF33B2964F04D00CC83D5 /* Provider.swift */; };
+		71ACF33F2964F0D800CC83D5 /* TopThreeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF33E2964F0D800CC83D5 /* TopThreeEntry.swift */; };
+		71ACF3412964F0F800CC83D5 /* TopThreeWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF3402964F0F800CC83D5 /* TopThreeWidgetView.swift */; };
 		71B14F692958D905003C11BD /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B14F682958D905003C11BD /* DateSelector.swift */; };
 		71B14F6B295A77AE003C11BD /* KeyboardDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */; };
 		71B5AF96292C778D00323693 /* DSOCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* DSOCatalog.swift */; };
@@ -53,6 +79,30 @@
 		71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7162D3492964DBF1007C8710 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71BCF9412921EE71008C7614 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7162D33A2964DBF0007C8710;
+			remoteInfo = DeepSkyCatalogWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7162D34C2964DBF1007C8710 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7162D34B2964DBF1007C8710 /* DeepSkyCatalogWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		710168842955621D00E0B028 /* MinMaxPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxPicker.swift; sourceTree = "<group>"; };
 		710168862955641400E0B028 /* Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
@@ -60,18 +110,30 @@
 		7109A3F4292EBA7A00980527 /* RawMoonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMoonData.swift; sourceTree = "<group>"; };
 		710BF587294BF18900A72073 /* ConfigSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSection.swift; sourceTree = "<group>"; };
 		710D497629316B4F003F41F1 /* DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportView.swift; sourceTree = "<group>"; };
+		710ECDAC2965E68F00534D15 /* Catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Catalog.json; sourceTree = "<group>"; };
 		7133FC66294C14560080AE0C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		713B49B72954122D008EFC81 /* LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettings.swift; sourceTree = "<group>"; };
 		713B49BB29541242008EFC81 /* DailyReportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportSettings.swift; sourceTree = "<group>"; };
 		714E54CD293D52B00039ECE0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7156742F29273ECA00626B1B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		715CCB5329270AF700497CA2 /* SortMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMethod.swift; sourceTree = "<group>"; };
+		7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeepSkyCatalogWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7162D33D2964DBF0007C8710 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		7162D33F2964DBF1007C8710 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogWidgetBundle.swift; sourceTree = "<group>"; };
+		7162D3442964DBF1007C8710 /* DeepSkyCatalogWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogWidget.swift; sourceTree = "<group>"; };
+		7162D3462964DBF1007C8710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7162D3482964DBF1007C8710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		716531E929340CFE00D05B79 /* DailyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReport.swift; sourceTree = "<group>"; };
 		7176882C292B285700BB86D7 /* FilterMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMethod.swift; sourceTree = "<group>"; };
 		7186D8F1295CEEC500601467 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		718CA9A729244FD600F3F5A7 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
 		71901C7629299D5C00D95AA5 /* Constellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
 		719B26D6295167A100E1165A /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
+		71ACF3372964ED6E00CC83D5 /* DeepSkyTargetArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyTargetArray.swift; sourceTree = "<group>"; };
+		71ACF33B2964F04D00CC83D5 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		71ACF33E2964F0D800CC83D5 /* TopThreeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopThreeEntry.swift; sourceTree = "<group>"; };
+		71ACF3402964F0F800CC83D5 /* TopThreeWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopThreeWidgetView.swift; sourceTree = "<group>"; };
 		71B14F682958D905003C11BD /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissButton.swift; sourceTree = "<group>"; };
 		71B5AF95292C778D00323693 /* DSOCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSOCatalog.swift; sourceTree = "<group>"; };
@@ -102,6 +164,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7162D3382964DBF0007C8710 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7162D3402964DBF1007C8710 /* SwiftUI.framework in Frameworks */,
+				7162D33E2964DBF1007C8710 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71BCF9462921EE71008C7614 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -142,6 +213,29 @@
 			path = SettingsViews;
 			sourceTree = "<group>";
 		};
+		7162D33C2964DBF0007C8710 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7162D33D2964DBF0007C8710 /* WidgetKit.framework */,
+				7162D33F2964DBF1007C8710 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7162D3412964DBF1007C8710 /* DeepSkyCatalogWidget */ = {
+			isa = PBXGroup;
+			children = (
+				7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */,
+				71ACF33B2964F04D00CC83D5 /* Provider.swift */,
+				7162D3442964DBF1007C8710 /* DeepSkyCatalogWidget.swift */,
+				71ACF3402964F0F800CC83D5 /* TopThreeWidgetView.swift */,
+				71ACF33E2964F0D800CC83D5 /* TopThreeEntry.swift */,
+				7162D3462964DBF1007C8710 /* Assets.xcassets */,
+				7162D3482964DBF1007C8710 /* Info.plist */,
+			);
+			path = DeepSkyCatalogWidget;
+			sourceTree = "<group>";
+		};
 		718B56AF294C349900914BDB /* Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +263,8 @@
 			isa = PBXGroup;
 			children = (
 				71BCF94B2921EE71008C7614 /* DeepSkyCatalog */,
+				7162D3412964DBF1007C8710 /* DeepSkyCatalogWidget */,
+				7162D33C2964DBF0007C8710 /* Frameworks */,
 				71BCF94A2921EE71008C7614 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -177,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9492921EE71008C7614 /* DeepSkyCatalog.app */,
+				7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,10 +319,12 @@
 				71E96D67292831AA00E019F9 /* CatalogViewModel.swift */,
 				716531E929340CFE00D05B79 /* DailyReport.swift */,
 				71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */,
+				71ACF3372964ED6E00CC83D5 /* DeepSkyTargetArray.swift */,
 				71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */,
 				71FE96842956C0E700F6A4F2 /* Location */,
 				71BCF98A2921F2AC008C7614 /* CoreData */,
 				719B26D8295173CD00E1165A /* Network */,
+				710ECDAC2965E68F00534D15 /* Catalog.json */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -286,6 +385,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7162D33A2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7162D34F2964DBF1007C8710 /* Build configuration list for PBXNativeTarget "DeepSkyCatalogWidgetExtension" */;
+			buildPhases = (
+				7162D3372964DBF0007C8710 /* Sources */,
+				7162D3382964DBF0007C8710 /* Frameworks */,
+				7162D3392964DBF0007C8710 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeepSkyCatalogWidgetExtension;
+			productName = DeepSkyCatalogWidgetExtension;
+			productReference = 7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		71BCF9482921EE71008C7614 /* DeepSkyCatalog */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71BCF95C2921EE72008C7614 /* Build configuration list for PBXNativeTarget "DeepSkyCatalog" */;
@@ -293,10 +409,12 @@
 				71BCF9452921EE71008C7614 /* Sources */,
 				71BCF9462921EE71008C7614 /* Frameworks */,
 				71BCF9472921EE71008C7614 /* Resources */,
+				7162D34C2964DBF1007C8710 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7162D34A2964DBF1007C8710 /* PBXTargetDependency */,
 			);
 			name = DeepSkyCatalog;
 			productName = DeepSkyCatalog;
@@ -310,9 +428,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					7162D33A2964DBF0007C8710 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					71BCF9482921EE71008C7614 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -332,11 +453,22 @@
 			projectRoot = "";
 			targets = (
 				71BCF9482921EE71008C7614 /* DeepSkyCatalog */,
+				7162D33A2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7162D3392964DBF0007C8710 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				710ECDAE2965E68F00534D15 /* Catalog.json in Resources */,
+				71ACF33A2964EED200CC83D5 /* Assets.xcassets in Resources */,
+				7162D3472964DBF1007C8710 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71BCF9472921EE71008C7614 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -344,12 +476,38 @@
 				71BCF9542921EE72008C7614 /* Preview Assets.xcassets in Resources */,
 				710168872955641400E0B028 /* Notes.rtf in Resources */,
 				71BCF9512921EE72008C7614 /* Assets.xcassets in Resources */,
+				710ECDAD2965E68F00534D15 /* Catalog.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7162D3372964DBF0007C8710 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7162D3432964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift in Sources */,
+				71ACF3352964ED2E00CC83D5 /* DeepSkyCatalog.xcdatamodeld in Sources */,
+				7162D3452964DBF1007C8710 /* DeepSkyCatalogWidget.swift in Sources */,
+				71ACF3322964ED1100CC83D5 /* String.swift in Sources */,
+				71ACF33D2964F0B400CC83D5 /* Provider.swift in Sources */,
+				71ACF3342964ED1D00CC83D5 /* TargetCalculationError.swift in Sources */,
+				71ACF3362964ED3C00CC83D5 /* RawSunData.swift in Sources */,
+				71ACF32E2964EAA000CC83D5 /* DSOCatalog.swift in Sources */,
+				71ACF32F2964EAA200CC83D5 /* Constellation.swift in Sources */,
+				71ACF3412964F0F800CC83D5 /* TopThreeWidgetView.swift in Sources */,
+				71ACF3302964EAC600CC83D5 /* FilterMethod.swift in Sources */,
+				7162D3512964E909007C8710 /* DeepSkyTargetList.swift in Sources */,
+				71ACF32D2964EA9A00CC83D5 /* DSOType.swift in Sources */,
+				71ACF3392964ED9100CC83D5 /* PlaceValue.swift in Sources */,
+				71ACF3312964ED0F00CC83D5 /* Date.swift in Sources */,
+				71ACF3332964ED1400CC83D5 /* Double.swift in Sources */,
+				7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */,
+				71ACF33F2964F0D800CC83D5 /* TopThreeEntry.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71BCF9452921EE71008C7614 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -380,6 +538,7 @@
 				718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */,
 				7176882D292B285700BB86D7 /* FilterMethod.swift in Sources */,
 				71BCF9832921EF8B008C7614 /* String.swift in Sources */,
+				71ACF3382964ED6E00CC83D5 /* DeepSkyTargetArray.swift in Sources */,
 				71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */,
 				715CCB5429270AF700497CA2 /* SortMethod.swift in Sources */,
 				7186D8F2295CEEC500601467 /* JournalView.swift in Sources */,
@@ -400,7 +559,71 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7162D34A2964DBF1007C8710 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7162D33A2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension */;
+			targetProxy = 7162D3492964DBF1007C8710 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		7162D34D2964DBF1007C8710 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y68DX6VH2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeepSkyCatalogWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeepSkyCatalogWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog.DeepSkyCatalogWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7162D34E2964DBF1007C8710 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y68DX6VH2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeepSkyCatalogWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeepSkyCatalogWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog.DeepSkyCatalogWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		71BCF95A2921EE72008C7614 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -518,6 +741,7 @@
 		71BCF95D2921EE72008C7614 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -553,6 +777,7 @@
 		71BCF95E2921EE72008C7614 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -588,6 +813,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7162D34F2964DBF1007C8710 /* Build configuration list for PBXNativeTarget "DeepSkyCatalogWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7162D34D2964DBF1007C8710 /* Debug */,
+				7162D34E2964DBF1007C8710 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		71BCF9442921EE71008C7614 /* Build configuration list for PBXProject "DeepSkyCatalog " */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

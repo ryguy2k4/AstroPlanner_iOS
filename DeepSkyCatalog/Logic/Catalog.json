@@ -1,0 +1,69 @@
+[
+    {
+        "names": ["Andromeda Galaxy",""],
+        "designations": [
+            {"catalog": "","number": 0},
+            {"catalog": "","number": 0}
+        ],
+        "images": [""],
+        "description": "",
+        "descriptionURL": "",
+        "type": [""],
+        "constellation": "",
+        "ra": 0,
+        "dec": 0,
+        "arcLength": 0,
+        "arcWidth": 0,
+        "apparentMag": 0
+    }
+]
+ 
+ [
+   {
+     "name": ["Andromeda Galaxy"],
+     "designation": [
+       {
+         "catalog": "messier",
+         "number": 31
+       },
+       {
+         "catalog": "ngc",
+         "number": 224
+       }
+     ],
+     "image": "apod_220119",
+     "imageCopyright": "R. Gendler, R. Croman",
+     "description": "The Andromeda Galaxy (IPA: /ænˈdrɒmɪdə/), also known as Messier 31, M31, or NGC 224 and originally the Andromeda Nebula, is a barred spiral galaxy with diameter of about 46.56 kiloparsecs (152,000 light-years)[8] approximately 2.5 million light-years (765 kiloparsecs) from Earth and the nearest large galaxy to the Milky Way. The galaxy's name stems from the area of Earth's sky in which it appears, the constellation of Andromeda, which itself is named after the princess who was the wife of Perseus in Greek mythology.",
+     "descriptionURL": "https://en.wikipedia.org/wiki/Andromeda_Galaxy",
+     "type": ["galaxy"],
+     "constellation": "andromeda",
+     "ra": {
+       "hour": 0,
+       "minute": 42,
+       "second": 44.3
+     },
+     "dec": {
+       "degree": 41,
+       "minute": 16,
+       "second": 9
+     },
+     "arcLength": 178,
+     "arcWidth": 63,
+     "apparentMag": 3.44
+   },
+
+ DeepSkyTarget(
+     name: ["Andromeda Galaxy"],
+     designation: [Designation(catalog: .messier, number: 31), Designation(catalog: .ngc, number: 224)],
+     image: "apod_220119",
+     imageCopyright: "R. Gendler, R. Croman",
+     description: "The Andromeda Galaxy (IPA: /ænˈdrɒmɪdə/), also known as Messier 31, M31, or NGC 224 and originally the Andromeda Nebula, is a barred spiral galaxy with diameter of about 46.56 kiloparsecs (152,000 light-years)[8] approximately 2.5 million light-years (765 kiloparsecs) from Earth and the nearest large galaxy to the Milky Way. The galaxy's name stems from the area of Earth's sky in which it appears, the constellation of Andromeda, which itself is named after the princess who was the wife of Perseus in Greek mythology.",
+     descriptionURL: URL(string: "https://en.wikipedia.org/wiki/Andromeda_Galaxy")!,
+     type: [.galaxy],
+     constellation: .andromeda,
+     ra: Double(hour: 0, minute: 42, second: 44.3),
+     dec: Double(degree: 41, minute: 16, second: 9),
+     arcLength: 178,
+     arcWidth: 63,
+     apparentMag: 3.44
+ ),

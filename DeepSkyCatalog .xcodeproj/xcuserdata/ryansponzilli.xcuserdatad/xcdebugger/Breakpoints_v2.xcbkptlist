@@ -62,8 +62,8 @@
             filePath = "DeepSkyCatalog/Logic/DeepSkyTargetList.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "allTargets"
             landmarkType = "24">
          </BreakpointContent>
