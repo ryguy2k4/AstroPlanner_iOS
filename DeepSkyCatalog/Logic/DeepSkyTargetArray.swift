@@ -17,9 +17,9 @@ extension Array where Element == DeepSkyTarget {
             case .meridian:
                 return self.sorted(by: {$0.getMeridianScore(at: location, on: date, sunData: sunData) > $1.getMeridianScore(at: location, on: date, sunData: sunData)})
             case .dec:
-                return self.sorted(by: {$0.dec > $1.dec})
+                return self.sorted(by: {$0.dec.decimal > $1.dec.decimal})
             case .ra:
-                return self.sorted(by: {$0.ra > $1.ra})
+                return self.sorted(by: {$0.ra.decimal > $1.ra.decimal})
             case .magnitude:
                 return self.sorted(by: {$0.apparentMag > $1.apparentMag})
             case .size:
@@ -32,9 +32,9 @@ extension Array where Element == DeepSkyTarget {
             case .meridian:
                 return self.sorted(by: {$0.getMeridianScore(at: location, on: date, sunData: sunData) < $1.getMeridianScore(at: location, on: date, sunData: sunData)})
             case .dec:
-                return self.sorted(by: {$0.dec < $1.dec})
+                return self.sorted(by: {$0.dec.decimal < $1.dec.decimal})
             case .ra:
-                return self.sorted(by: {$0.ra < $1.ra})
+                return self.sorted(by: {$0.ra.decimal < $1.ra.decimal})
             case .magnitude:
                 return self.sorted(by: {$0.apparentMag < $1.apparentMag})
             case .size:

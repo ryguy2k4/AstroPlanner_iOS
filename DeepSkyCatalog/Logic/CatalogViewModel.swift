@@ -19,7 +19,7 @@ final class CatalogViewModel: ObservableObject {
     // Sort Control Variables
     @Published var currentSort: SortMethod = .ra
     @Published var sortDecending: Bool = true
-    @Published var targets: [DeepSkyTarget] = DeepSkyTargetList.allTargets.sorted(by: {$0.ra > $1.ra})
+    @Published var targets: [DeepSkyTarget] = DeepSkyTargetList.allTargets.sorted(by: {$0.ra.decimal > $1.ra.decimal})
     
     // Filter Control Variables
     @Published var searchText = ""
@@ -68,7 +68,7 @@ final class CatalogViewModel: ObservableObject {
         
     func refreshList(sunData: SunData) {
         // reset list
-        targets = DeepSkyTargetList.allTargets.sorted(by: {$0.ra > $1.ra})
+        targets = DeepSkyTargetList.allTargets.sorted(by: {$0.ra.decimal > $1.ra.decimal})
         
         //filter by current active filters
         if !searchText.isEmpty {

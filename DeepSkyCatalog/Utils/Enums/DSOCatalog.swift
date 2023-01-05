@@ -10,12 +10,12 @@ import Foundation
 enum DSOCatalog: String, Filter {
     static let name = "Catalog"
     var id: Self { self }
-    case messier = "Messier"
-    case caldwell = "Caldwell"
-    case ngc = "NGC"
-    case ic = "IC"
-    case sh2 = "Sharpless2"
-    case barnard = "Barnard"
+    case messier = "messier"
+    case caldwell = "caldwell"
+    case ngc = "ngc"
+    case ic = "ic"
+    case sh2 = "Sh2"
+    case barnard = "barnard"
 }
 
 struct Designation: Hashable {

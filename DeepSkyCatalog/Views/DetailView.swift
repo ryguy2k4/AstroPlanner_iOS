@@ -43,8 +43,8 @@ struct DetailView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             FactLabel(text: target.constellation.rawValue, image: "star")
-                            FactLabel(text: " RA: \(target.ra.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
-                            FactLabel(text: "DEC: \(target.dec.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
+                            FactLabel(text: " RA: \(target.ra.decimal.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
+                            FactLabel(text: "DEC: \(target.dec.decimal.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
                             FactLabel(text: " Mag \(target.apparentMag)", image: "sun.min.fill")
                             FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
                         }

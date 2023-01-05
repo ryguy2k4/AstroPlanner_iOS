@@ -17,12 +17,12 @@ enum DSOType: String, Filter {
     static let broadband: [DSOType] = [.galaxy, .darkNebula, .galaxyGroup, .reflectionNebula, .planetaryNebula]
     static let narrowband: [DSOType] = [.emissionNebula, .supernovaRemnant, .openStarCluster, .globularStarCluster]
 
-    case emissionNebula = "Emission Nebula"
-    case reflectionNebula = "Reflection Nebula"
-    case darkNebula = "Dark Nebula"
-    case planetaryNebula = "Planetary Nebula"
-    case supernovaRemnant = "Supernova Remnant"
-    case galaxy = "Galaxy"
+    case emissionNebula = "emissionNebula"
+    case reflectionNebula = "reflectionNebula"
+    case darkNebula = "darkNebula"
+    case planetaryNebula = "planetaryNebula"
+    case supernovaRemnant = "supernovaRemnant"
+    case galaxy = "galaxy"
     // ellpiticalGalaxy
     // spiralGalaxy
         // barredSpiralGalaxy
@@ -31,7 +31,7 @@ enum DSOType: String, Filter {
     // irregularGalaxy
         // lenticularGalaxy
         // ringGalaxy
-    case galaxyGroup = "Galaxy Group"
-    case openStarCluster = "Open Star Cluster"
-    case globularStarCluster = "Globular Star Cluster"
+    case galaxyGroup = "galaxyGroup"
+    case openStarCluster = "openStarCluster"
+    case globularStarCluster = "globularStarCluster"
 }

@@ -15,6 +15,7 @@
 		710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D497629316B4F003F41F1 /* DailyReportView.swift */; };
 		710ECDAD2965E68F00534D15 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
 		710ECDAE2965E68F00534D15 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
+		710ECDB02966139A00534D15 /* DeepSkyTargetListEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ECDAF2966139A00534D15 /* DeepSkyTargetListEncodable.swift */; };
 		7133FC67294C14560080AE0C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133FC66294C14560080AE0C /* View.swift */; };
 		713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49B72954122D008EFC81 /* LocationSettings.swift */; };
 		713B49BC29541242008EFC81 /* DailyReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49BB29541242008EFC81 /* DailyReportSettings.swift */; };
@@ -111,6 +112,7 @@
 		710BF587294BF18900A72073 /* ConfigSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSection.swift; sourceTree = "<group>"; };
 		710D497629316B4F003F41F1 /* DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportView.swift; sourceTree = "<group>"; };
 		710ECDAC2965E68F00534D15 /* Catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Catalog.json; sourceTree = "<group>"; };
+		710ECDAF2966139A00534D15 /* DeepSkyTargetListEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyTargetListEncodable.swift; sourceTree = "<group>"; };
 		7133FC66294C14560080AE0C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		713B49B72954122D008EFC81 /* LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettings.swift; sourceTree = "<group>"; };
 		713B49BB29541242008EFC81 /* DailyReportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportSettings.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				71E96D67292831AA00E019F9 /* CatalogViewModel.swift */,
 				716531E929340CFE00D05B79 /* DailyReport.swift */,
 				71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */,
+				710ECDAF2966139A00534D15 /* DeepSkyTargetListEncodable.swift */,
 				71ACF3372964ED6E00CC83D5 /* DeepSkyTargetArray.swift */,
 				71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */,
 				71FE96842956C0E700F6A4F2 /* Location */,
@@ -537,6 +540,7 @@
 				71F71573293FB4010011EF7F /* Environment.swift in Sources */,
 				718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */,
 				7176882D292B285700BB86D7 /* FilterMethod.swift in Sources */,
+				710ECDB02966139A00534D15 /* DeepSkyTargetListEncodable.swift in Sources */,
 				71BCF9832921EF8B008C7614 /* String.swift in Sources */,
 				71ACF3382964ED6E00CC83D5 /* DeepSkyTargetArray.swift in Sources */,
 				71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */,
