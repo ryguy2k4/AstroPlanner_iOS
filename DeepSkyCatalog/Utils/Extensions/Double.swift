@@ -10,25 +10,6 @@ import Foundation
 extension Double {
     
     /**
-     Instantiates a new Double from hours, minutes and seconds.
-     */
-    init(hour: Int, minute: Int, second: Double) {
-        self.init((Double(hour) + (Double(minute) / 60) + (second / 3600))*15)
-    }
-    
-    /**
-     Instantiates a new Double from degrees, minutes, and seconds.
-     */
-    init(degree: Int, minute: Int, second: Double) {
-        if (degree > 0) {
-            self.init(Double(degree) + (Double(minute) / 60) + (second / 3600))
-        } else {
-            self.init(Double(degree) - (Double(minute) / 60) - (second / 3600))
-        }
-        
-    }
-    
-    /**
      Create a date object from a double representing decimal hours on a given date.
      - Parameter date: The date to attatch the hours to.
      - Precondition: self represents a number of hours.

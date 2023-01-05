@@ -13,7 +13,7 @@ struct DeepSkyTargetList {
         let decoder = JSONDecoder()
         let data = try! Data(contentsOf: Bundle.main.url(forResource: "Catalog", withExtension: "json")!)
         let encodableData = try! decoder.decode([DeepSkyTargetEncodable].self, from: data)
-        return encodableData.map({DeepSkyTargetEncodable.convertToDeepSkyTarget(from: $0)})
+        return encodableData.map({$0.convertToDeepSkyTarget()})
     }()
 }
 
@@ -39,21 +39,60 @@ struct DeepSkyTargetEncodable: Codable {
     let arcWidth: Double
     let apparentMag: Double
     
-    struct DesignationEncodable: Hashable, Codable {
+    struct DesignationEncodable: Codable {
         let catalog: String
         let number: Int
     }
     
-    static func convertToDeepSkyTarget(from item: Self) -> DeepSkyTarget {
-            var designation: [Designation] = []
-            for des in item.designation {
-                designation.append(Designation(catalog: DSOCatalog(rawValue: des.catalog)!, number: des.number))
+    struct raNum: Codable {
+        let hour: Int
+        let minute: Int
+        let second: Double
+        var decimal: Double {
+            get {
+                return (Double(hour) + (Double(minute) / 60) + (second / 3600))*15
             }
-            let constellation = Constellation(rawValue: item.constellation)!
-            var type: [DSOType] = []
-            for ty in item.type {
-                type.append(DSOType(rawValue: ty)!)
+        }
+    }
+
+    struct decNum: Codable {
+        let degree: Int
+        let minute: Int
+        let second: Double
+        var decimal: Double {
+            get {
+                if (degree > 0) {
+                    return Double(degree) + (Double(minute) / 60) + (second / 3600)
+                } else {
+                    return Double(degree) - (Double(minute) / 60) - (second / 3600)
+                }
             }
-            return DeepSkyTarget(name: item.name, designation: designation, image: item.image, imageCopyright: item.imageCopyright, description: item.description, descriptionURL: item.descriptionURL, type: type, constellation: constellation, ra: item.ra, dec: item.dec, arcLength: item.arcLength, arcWidth: item.arcWidth, apparentMag: item.apparentMag)
+        }
+    }
+    
+    func convertToDeepSkyTarget() -> DeepSkyTarget {
+        var designation: [Designation] = []
+        for des in self.designation {
+            designation.append(Designation(catalog: DSOCatalog(rawValue: des.catalog)!, number: des.number))
+        }
+        let constellation = Constellation(rawValue: self.constellation)!
+        var type: [DSOType] = []
+        for ty in self.type {
+            type.append(DSOType(rawValue: ty)!)
+        }
+        
+        // make ra from components
+        let ra = Double((Double(self.ra.hour) + (Double(self.ra.minute) / 60) + (self.ra.second / 3600))*15)
+        
+        // make dec from components
+        let dec = {
+            if (self.dec.degree > 0) {
+                return Double(Double(self.dec.degree) + (Double(self.dec.minute) / 60) + (self.dec.second / 3600))
+            } else {
+                return Double(Double(self.dec.degree) - (Double(self.dec.minute) / 60) - (self.dec.second / 3600))
+            }
+        }()
+        
+        return DeepSkyTarget(name: self.name, designation: designation, image: self.image, imageCopyright: self.imageCopyright, description: self.description, descriptionURL: self.descriptionURL, type: type, constellation: constellation, ra: ra, dec: dec, arcLength: self.arcLength, arcWidth: self.arcWidth, apparentMag: self.apparentMag)
     }
 }

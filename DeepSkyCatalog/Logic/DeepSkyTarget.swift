@@ -23,32 +23,6 @@ import Foundation
  - Parameter apparentMag: The apparent magnitude of the target.
  */
 
-struct raNum: Hashable, Codable {
-    let hour: Int
-    let minute: Int
-    let second: Double
-    var decimal: Double {
-        get {
-            return (Double(hour) + (Double(minute) / 60) + (second / 3600))*15
-        }
-    }
-}
-
-struct decNum: Hashable, Codable {
-    let degree: Int
-    let minute: Int
-    let second: Double
-    var decimal: Double {
-        get {
-            if (degree > 0) {
-                return Double(degree) + (Double(minute) / 60) + (second / 3600)
-            } else {
-                return Double(degree) - (Double(minute) / 60) - (second / 3600)
-            }
-        }
-    }
-}
-
 struct DeepSkyTarget: Identifiable, Hashable {
     // identifiers
     let id = UUID()
@@ -66,8 +40,8 @@ struct DeepSkyTarget: Identifiable, Hashable {
     
     // characteristics
     let constellation: Constellation
-    let ra: raNum
-    let dec: decNum
+    let ra: Double
+    let dec: Double
     let arcLength: Double
     let arcWidth: Double
     let apparentMag: Double
@@ -85,8 +59,8 @@ struct DeepSkyTarget: Identifiable, Hashable {
     func getAltitude(at location: SavedLocation, at time: Date) -> Double {
         let d = Date.daysSinceJ2000(until: time)
         let lst = 100.46 + (0.985647 * d) + location.longitude + (15 * time.dateToUTCHours(location: location)).mod(by: 360)
-        let ha = (lst - ra.decimal).mod(by: 360)
-        let sinAlt = sin(dec.decimal.toRadian()) * sin(location.latitude.toRadian()) + cos(dec.decimal.toRadian()) * cos(location.latitude.toRadian()) * cos(ha.toRadian())
+        let ha = (lst - ra).mod(by: 360)
+        let sinAlt = sin(dec.toRadian()) * sin(location.latitude.toRadian()) + cos(dec.toRadian()) * cos(location.latitude.toRadian()) * cos(ha.toRadian())
         return asin(sinAlt).toDegree()
     }
         
@@ -100,14 +74,14 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Returns: The local sidereal times at which the object reaches the given altitude.
      */
     private func getLST(at location: SavedLocation, from alt: Double) throws -> [Double] {
-        let cosHourAngle = sin(alt.toRadian()) * (1/cos(dec.decimal.toRadian())) * (1/cos(location.latitude.toRadian())) - tan(dec.decimal.toRadian()) * tan(location.latitude.toRadian())
+        let cosHourAngle = sin(alt.toRadian()) * (1/cos(dec.toRadian())) * (1/cos(location.latitude.toRadian())) - tan(dec.toRadian()) * tan(location.latitude.toRadian())
         if cosHourAngle > 1 {
             throw TargetCalculationError.neverRises
         } else if cosHourAngle < -1 {
             throw TargetCalculationError.neverSets
         }
         let hourAngle = acos(cosHourAngle).toDegree()
-        return [360 - hourAngle + ra.decimal, hourAngle + ra.decimal]
+        return [360 - hourAngle + ra, hourAngle + ra]
     }
     
     /**
@@ -177,7 +151,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Returns: The date and time that the object next passes the meridian.
      */
     func getNextMeridian(at location: SavedLocation, on date: Date, sunData: SunData) -> Date {
-        return getLocalTime(location: location, date: date, sunData: sunData, lst: ra.decimal)[1]
+        return getLocalTime(location: location, date: date, sunData: sunData, lst: ra)[1]
     }
     
     /**
