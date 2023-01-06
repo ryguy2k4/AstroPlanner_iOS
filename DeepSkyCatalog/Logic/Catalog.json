@@ -406,7 +406,7 @@
         "descriptionURL": "https://en.wikipedia.org/wiki/Heart_Nebula",
         "designation": [
             {
-                "catalog": "Sh2",
+                "catalog": "sh2",
                 "number": 190
             },
             {
@@ -551,7 +551,7 @@
         "descriptionURL": "https://en.wikipedia.org/wiki/California_Nebula",
         "designation": [
             {
-                "catalog": "Sh2",
+                "catalog": "sh2",
                 "number": 220
             },
             {
@@ -755,7 +755,7 @@
         "descriptionURL": "https://en.wikipedia.org/wiki/Sh2-279",
         "designation": [
             {
-                "catalog": "Sh2",
+                "catalog": "sh2",
                 "number": 279
             }
         ],
@@ -859,7 +859,7 @@
         "descriptionURL": "https://en.wikipedia.org/wiki/Flame_Nebula",
         "designation": [
             {
-                "catalog": "Sh2",
+                "catalog": "sh2",
                 "number": 227
             },
             {
@@ -1070,7 +1070,7 @@
                 "number": 49
             },
             {
-                "catalog": "Sh2",
+                "catalog": "sh2",
                 "number": 275
             }
         ],
@@ -1137,7 +1137,7 @@
         "descriptionURL": "https://en.wikipedia.org/wiki/Medusa_Nebula",
         "designation": [
             {
-                "catalog": "Sh2",
+                "catalog": "sh2",
                 "number": 274
             }
         ],
@@ -3073,7 +3073,7 @@
                 "number": 5146
             },
             {
-                "catalog": "Sh2",
+                "catalog": "sh2",
                 "number": 125
             }
         ],
@@ -3270,7 +3270,7 @@
                 "number": 9
             },
             {
-                "catalog": "Sh2",
+                "catalog": "sh2",
                 "number": 155
             }
         ],
@@ -3308,7 +3308,7 @@
                 "number": 11
             },
             {
-                "catalog": "Sh2",
+                "catalog": "sh2",
                 "number": 162
             },
             {

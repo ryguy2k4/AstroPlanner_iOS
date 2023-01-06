@@ -20,7 +20,7 @@ struct DeepSkyTargetList {
 struct DeepSkyTargetEncodable: Codable {
     // identifiers
     let name: [String]
-    let designation: [DesignationEncodable]
+    let designation: [Designation]
     
     // image
     let image: String
@@ -29,20 +29,15 @@ struct DeepSkyTargetEncodable: Codable {
     // description
     let description: String
     let descriptionURL: URL
-    let type: [String]
+    let type: [DSOType]
     
     // characteristics
-    let constellation: String
+    let constellation: Constellation
     let ra: raNum
     let dec: decNum
     let arcLength: Double
     let arcWidth: Double
     let apparentMag: Double
-    
-    struct DesignationEncodable: Codable {
-        let catalog: String
-        let number: Int
-    }
     
     struct raNum: Codable {
         let hour: Int
@@ -71,16 +66,6 @@ struct DeepSkyTargetEncodable: Codable {
     }
     
     func convertToDeepSkyTarget() -> DeepSkyTarget {
-        var designation: [Designation] = []
-        for des in self.designation {
-            designation.append(Designation(catalog: DSOCatalog(rawValue: des.catalog)!, number: des.number))
-        }
-        let constellation = Constellation(rawValue: self.constellation)!
-        var type: [DSOType] = []
-        for ty in self.type {
-            type.append(DSOType(rawValue: ty)!)
-        }
-        
         // make ra from components
         let ra = Double((Double(self.ra.hour) + (Double(self.ra.minute) / 60) + (self.ra.second / 3600))*15)
         
@@ -93,6 +78,6 @@ struct DeepSkyTargetEncodable: Codable {
             }
         }()
         
-        return DeepSkyTarget(name: self.name, designation: designation, image: self.image, imageCopyright: self.imageCopyright, description: self.description, descriptionURL: self.descriptionURL, type: type, constellation: constellation, ra: ra, dec: dec, arcLength: self.arcLength, arcWidth: self.arcWidth, apparentMag: self.apparentMag)
+        return DeepSkyTarget(name: self.name, designation: self.designation, image: self.image, imageCopyright: self.imageCopyright, description: self.description, descriptionURL: self.descriptionURL, type: self.type, constellation: self.constellation, ra: ra, dec: dec, arcLength: self.arcLength, arcWidth: self.arcWidth, apparentMag: self.apparentMag)
     }
 }

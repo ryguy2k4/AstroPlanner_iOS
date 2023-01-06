@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DSOType: String, Filter {
+enum DSOType: String, Filter, Codable {
     static let name = "Type"
     var id: Self { self }
     
@@ -17,12 +17,12 @@ enum DSOType: String, Filter {
     static let broadband: [DSOType] = [.galaxy, .darkNebula, .galaxyGroup, .reflectionNebula, .planetaryNebula]
     static let narrowband: [DSOType] = [.emissionNebula, .supernovaRemnant, .openStarCluster, .globularStarCluster]
 
-    case emissionNebula = "emissionNebula"
-    case reflectionNebula = "reflectionNebula"
-    case darkNebula = "darkNebula"
-    case planetaryNebula = "planetaryNebula"
-    case supernovaRemnant = "supernovaRemnant"
-    case galaxy = "galaxy"
+    case emissionNebula = "Emission Nebula"
+    case reflectionNebula = "Reflection Nebula"
+    case darkNebula = "Dark Nebula"
+    case planetaryNebula = "PlanetaryNebula"
+    case supernovaRemnant = "SupernovaRemnant"
+    case galaxy = "Galaxy"
     // ellpiticalGalaxy
     // spiralGalaxy
         // barredSpiralGalaxy
@@ -31,7 +31,24 @@ enum DSOType: String, Filter {
     // irregularGalaxy
         // lenticularGalaxy
         // ringGalaxy
-    case galaxyGroup = "galaxyGroup"
-    case openStarCluster = "openStarCluster"
-    case globularStarCluster = "globularStarCluster"
+    case galaxyGroup = "Galaxy Group"
+    case openStarCluster = "Open Star Cluster"
+    case globularStarCluster = "Globular Star Cluster"
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let type = try? container.decode(String.self)
+        switch type {
+        case "emissionNebula": self = .emissionNebula
+            case "reflectionNebula": self = .reflectionNebula
+            case "darkNebula": self = .darkNebula
+            case "planetaryNebula": self = .planetaryNebula
+            case "supernovaRemnant": self = .supernovaRemnant
+            case "galaxy": self = .galaxy
+            case "galaxyGroup": self = .galaxyGroup
+            case "openStarCluster": self = .openStarCluster
+            case "globularStarCluster": self = .globularStarCluster
+            default: self = .emissionNebula
+        }
+    }
 }
