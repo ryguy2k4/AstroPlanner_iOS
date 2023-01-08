@@ -164,19 +164,25 @@ struct DeepSkyTarget: Identifiable, Hashable {
      */
     func getVisibilityScore(at location: SavedLocation, on date: Date, sunData: SunData) -> Double {
         // retrieve necessary data
-        guard let targetInterval = try? getNextInterval(at: location, on: date, sunData: sunData) else {
+        do {
+            let targetInterval = try getNextInterval(at: location, on: date, sunData: sunData)
+            
+            let nightInterval = sunData.ATInterval
+            
+            // calculate time that the target is in the sky during the night
+            guard let overlap = nightInterval.intersection(with: targetInterval) else {
+                return 0
+            }
+            
+            // calculate score
+            return overlap.duration / nightInterval.duration
+        } catch TargetCalculationError.neverRises {
+            return 0
+        } catch TargetCalculationError.neverSets {
+            return 1
+        } catch {
             return 0
         }
-                
-        let nightInterval = sunData.ATInterval
-
-        // calculate time that the target is in the sky during the night
-        guard let overlap = nightInterval.intersection(with: targetInterval) else {
-            return 0
-        }
-        
-        // calculate score
-        return overlap.duration / nightInterval.duration
 
     }
     

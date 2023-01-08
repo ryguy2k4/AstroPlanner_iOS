@@ -11,5 +11,4 @@ import SwiftUI
 enum TargetCalculationError: String, Error {
     case neverSets = "Target Never Sets"
     case neverRises = "Target Never Rises"
-    case noSunData = "No Sun Data"
 }
