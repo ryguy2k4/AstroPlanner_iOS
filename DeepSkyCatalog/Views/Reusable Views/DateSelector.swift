@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DateSelector: View {
+    @EnvironmentObject var location: SavedLocation
     @Binding var date: Date
     @State var isDatePickerModal: Bool = false
     var body: some View {
@@ -20,7 +21,7 @@ struct DateSelector: View {
             Button {
                 isDatePickerModal = true
             } label: {
-                Text("\(date.formatted(format: "MM/dd/yyyy"))")
+                Text("\(date.formatted(format: "MM/dd/yyyy", timezone: location.timezone))")
             }
             Button {
                 date = date.tomorrow()

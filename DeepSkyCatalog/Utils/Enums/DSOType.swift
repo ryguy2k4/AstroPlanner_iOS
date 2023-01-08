@@ -20,8 +20,8 @@ enum DSOType: String, Filter, Codable {
     case emissionNebula = "Emission Nebula"
     case reflectionNebula = "Reflection Nebula"
     case darkNebula = "Dark Nebula"
-    case planetaryNebula = "PlanetaryNebula"
-    case supernovaRemnant = "SupernovaRemnant"
+    case planetaryNebula = "Planetary Nebula"
+    case supernovaRemnant = "Supernova Remnant"
     case galaxy = "Galaxy"
     // ellpiticalGalaxy
     // spiralGalaxy

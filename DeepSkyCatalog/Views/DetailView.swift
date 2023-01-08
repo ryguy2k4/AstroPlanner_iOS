@@ -60,14 +60,14 @@ struct DetailView: View {
                             .padding()
                         if let interval = try? target.getNextInterval(at: location, on: date, sunData: data.sun) {
                             HStack {
-                                EventLabel(text: interval.start.formatted(format: "h:mm a \n MM/dd"), image: "sunrise")
-                                EventLabel(text: target.getNextMeridian(at: location, on: date, sunData: data.sun).formatted(format: "h:mm a \n MM/dd"), image: "arrow.right.and.line.vertical.and.arrow.left")
-                                EventLabel(text: interval.end.formatted(format: "h:mm a \n MM/dd"), image: "sunset")
+                                EventLabel(text: interval.start.formatted(format: "h:mm a \n MM/dd", timezone: location.timezone), image: "sunrise")
+                                EventLabel(text: target.getNextMeridian(at: location, on: date, sunData: data.sun).formatted(format: "h:mm a \n MM/dd", timezone: location.timezone), image: "arrow.right.and.line.vertical.and.arrow.left")
+                                EventLabel(text: interval.end.formatted(format: "h:mm a \n MM/dd", timezone: location.timezone), image: "sunset")
                             }
                         } else {
                             VStack {
                                 Text("Target Never Rises or Target Never Sets")
-                                EventLabel(text: target.getNextMeridian(at: location, on: date, sunData: data.sun).formatted(format: "h:mm a \n MM/dd"), image: "arrow.right.and.line.vertical.and.arrow.left")
+                                EventLabel(text: target.getNextMeridian(at: location, on: date, sunData: data.sun).formatted(format: "h:mm a \n MM/dd", timezone: location.timezone), image: "arrow.right.and.line.vertical.and.arrow.left")
                             }
                         }
                     }

@@ -17,7 +17,7 @@ extension Date {
     
     /// 12:00 AM on tomorrow's date
     public static let tomorrow = Calendar.current.startOfDay(for: Date().tomorrow())
-    
+        
     /**
      - Returns: self + 1 day
      */
@@ -63,9 +63,9 @@ extension Date {
      - Parameter format: The format to follow.
      - Returns: A String representation of the Date.
      */
-    public func formatted(format: String) -> String {
+    public func formatted(format: String, timezone: Int16 = 0) -> String {
         let formatter = DateFormatter()
-        formatter.timeZone = .current
+        formatter.timeZone = TimeZone(secondsFromGMT: Int(timezone)*60*60)
         formatter.locale = .current
         formatter.dateFormat = format
         return formatter.string(from: self)
