@@ -166,7 +166,7 @@ private struct TopFiveTabView: View {
                 }
                 if !report.topFiveGalaxies.isEmpty {
                     List(report.topFiveGalaxies) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
                             Text(target.name.first!)
                         }
                     }.tag(1).listStyle(.inset)
@@ -179,7 +179,7 @@ private struct TopFiveTabView: View {
                 }
                 if !report.topFiveStarClusters.isEmpty {
                     List(report.topFiveStarClusters) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
                             Text(target.name.first!)
                         }
                     }.tag(2).listStyle(.inset)
