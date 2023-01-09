@@ -9,11 +9,11 @@ import Foundation
 
 extension Array where Element == DeepSkyTarget {
     
-    func sorted(by method: SortMethod, sortDescending: Bool, location: SavedLocation, date: Date, sunData: SunData) -> Self {
+    func sorted(by method: SortMethod, sortDescending: Bool, location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) -> Self {
         if sortDescending {
             switch method {
             case .visibility:
-                return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData) > $1.getVisibilityScore(at: location, on: date, sunData: sunData)})
+                return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) > $1.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)})
             case .meridian:
                 return self.sorted(by: {$0.getMeridianScore(at: location, on: date, sunData: sunData) > $1.getMeridianScore(at: location, on: date, sunData: sunData)})
             case .dec:
@@ -28,7 +28,7 @@ extension Array where Element == DeepSkyTarget {
         } else {
             switch method {
             case .visibility:
-                return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData) < $1.getVisibilityScore(at: location, on: date, sunData: sunData)})
+                return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) < $1.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)})
             case .meridian:
                 return self.sorted(by: {$0.getMeridianScore(at: location, on: date, sunData: sunData) < $1.getMeridianScore(at: location, on: date, sunData: sunData)})
             case .dec:
@@ -44,8 +44,8 @@ extension Array where Element == DeepSkyTarget {
     }
     
     
-    mutating func sort(by method: SortMethod, sortDescending: Bool, location: SavedLocation, date: Date, sunData: SunData) {
-        self = self.sorted(by: method, sortDescending: sortDescending, location: location, date: date, sunData: sunData)
+    mutating func sort(by method: SortMethod, sortDescending: Bool, location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) {
+        self = self.sorted(by: method, sortDescending: sortDescending, location: location, date: date, sunData: sunData, limitingAlt: limitingAlt)
     }
         
     mutating func filter(bySearchText searchText: String) {
@@ -117,9 +117,9 @@ extension Array where Element == DeepSkyTarget {
      }
      */
     
-    mutating func filter(byMinVisScore min: Double, at location: SavedLocation, on date: Date, sunData: SunData) {
+    mutating func filter(byMinVisScore min: Double, at location: SavedLocation, on date: Date, sunData: SunData, limitingAlt: Double) {
         self = self.filter() {
-            return $0.getVisibilityScore(at: location, on: date, sunData: sunData) >= min
+            return $0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) >= min
         }
     }
     

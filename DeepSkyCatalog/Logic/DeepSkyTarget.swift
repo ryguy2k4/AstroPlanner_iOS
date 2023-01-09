@@ -56,7 +56,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
      HA = LST - RA
      sin(ALT) = sin(DEC)*sin(LAT)+cos(DEC)*cos(LAT)*cos(HA)
      */
-    func getAltitude(at location: SavedLocation, at time: Date) -> Double {
+    func getAltitude(location: SavedLocation, time: Date) -> Double {
         let d = Date.daysSinceJ2000(until: time)
         let lst = 100.46 + (0.985647 * d) + location.longitude + (15 * time.dateToUTCHours(location: location)).mod(by: 360)
         let ha = (lst - ra).mod(by: 360)
@@ -73,7 +73,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Parameter alt: The altitude that should be converted to local sidereal time.
      - Returns: The local sidereal times at which the object reaches the given altitude.
      */
-    private func getLST(at location: SavedLocation, from alt: Double) throws -> [Double] {
+    private func getLST(location: SavedLocation, from alt: Double) throws -> [Double] {
         let cosHourAngle = sin(alt.toRadian()) * (1/cos(dec.toRadian())) * (1/cos(location.latitude.toRadian())) - tan(dec.toRadian()) * tan(location.latitude.toRadian())
         if cosHourAngle > 1 {
             throw TargetCalculationError.neverRises
@@ -113,12 +113,12 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Parameter date: The date on which to calculate the rise and set times.
      - Returns: A DateInterval object from the targets next rise to the targets next set.
      */
-    func getNextInterval(at location: SavedLocation, on date: Date, sunData: SunData) throws -> DateInterval {
+    func getNextInterval(at location: SavedLocation, on date: Date, sunData: SunData, limitingAlt: Double = 0) throws -> DateInterval {
         do {
-            let riseToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(at: location, from: 0)[0])[0]
-            let setToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(at: location, from: 0)[1])[0]
-            let riseTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(at: location, from: 0)[0])[1]
-            let setTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(at: location, from: 0)[1])[1]
+            let riseToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt)[0])[0]
+            let setToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt)[1])[0]
+            let riseTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt)[0])[1]
+            let setTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt)[1])[1]
             let dayStart = sunData.astronomicalTwilightBegin
 
             // if rise < set && rise > sunrise
@@ -162,10 +162,10 @@ struct DeepSkyTarget: Identifiable, Hashable {
      - Returns: A decimal representing the percentage of the night that the target is visible.
      
      */
-    func getVisibilityScore(at location: SavedLocation, on date: Date, sunData: SunData) -> Double {
+    func getVisibilityScore(at location: SavedLocation, on date: Date, sunData: SunData, limitingAlt: Double) -> Double {
         // retrieve necessary data
         do {
-            let targetInterval = try getNextInterval(at: location, on: date, sunData: sunData)
+            let targetInterval = try getNextInterval(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)
             
             let nightInterval = sunData.ATInterval
             

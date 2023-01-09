@@ -72,6 +72,7 @@ struct DailyReportView: View {
                     }
                 }
                 .environmentObject(locationList.first!)
+                .environmentObject(reportSettings.first!)
                 .scrollIndicators(.hidden)
             }
         }
@@ -94,6 +95,7 @@ struct DailyReportView: View {
  */
 private struct TopThreeView: View {
     @EnvironmentObject var location: SavedLocation
+    @EnvironmentObject var reportSettings: ReportSettings
     let report: DailyReport
     
     var body: some View {
@@ -102,7 +104,7 @@ private struct TopThreeView: View {
                 .fontWeight(.bold)
             TabView {
                 ForEach(report.topThree, id: \.id) { target in
-                    NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                    NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
                         ZStack {
                             Image(target.image)
                                 .resizable()
@@ -134,6 +136,7 @@ private struct TopThreeView: View {
  */
 private struct TopFiveTabView: View {
     @EnvironmentObject var location: SavedLocation
+    @EnvironmentObject var reportSettings: ReportSettings
     let report: DailyReport
     @State private var tabSelection: Int = 0
     
@@ -151,7 +154,7 @@ private struct TopFiveTabView: View {
             TabView(selection: $tabSelection) {
                 if !report.topFiveNebulae.isEmpty {
                     List(report.topFiveNebulae) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location)) {
+                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
                             Text(target.name.first!)
                         }
                     }.tag(0).listStyle(.inset)

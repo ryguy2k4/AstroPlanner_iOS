@@ -10,11 +10,12 @@ import SwiftUI
 struct CatalogView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @StateObject var viewModel: CatalogViewModel
     @Binding var date: Date
     
-    init(date: Binding<Date>, location: SavedLocation) {
-        self._viewModel = StateObject(wrappedValue: CatalogViewModel(location: location, date: date.wrappedValue))
+    init(date: Binding<Date>, location: SavedLocation, reportSettings: ReportSettings) {
+        self._viewModel = StateObject(wrappedValue: CatalogViewModel(location: location, date: date.wrappedValue, reportSettings: reportSettings))
         self._date = date
     }
         
@@ -78,9 +79,15 @@ struct CatalogView: View {
                 viewModel.location = newLocation!
             }
             
+            // When reportSettings changes, make sure everything that depends on the date gets updated
+            .onChange(of: reportSettings.first!) { newSettings in
+                viewModel.reportSettings = newSettings
+            }
+            
             // Passing the date and location to use into all child views
             .environment(\.date, date)
             .environmentObject(locationList.first!)
+            .environmentObject(reportSettings.first!)
             .environmentObject(viewModel)
             .environment(\.data, data)
         }
@@ -103,6 +110,7 @@ struct CatalogView: View {
  */
 private struct TargetCell: View {
     @EnvironmentObject var location: SavedLocation
+    @EnvironmentObject var reportSettings: ReportSettings
     @Environment(\.date) var date
     @Environment(\.data) var data
     var target: DeepSkyTarget
@@ -118,7 +126,7 @@ private struct TargetCell: View {
                 Text(target.name[0])
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Label(target.getVisibilityScore(at: location, on: date, sunData: data.sun).percent(), systemImage: "eye")
+                Label(target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude).percent(), systemImage: "eye")
                     .foregroundColor(.secondary)
                 Label(target.getMeridianScore(at: location, on: date, sunData: data.sun).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
                     .foregroundColor(.secondary)

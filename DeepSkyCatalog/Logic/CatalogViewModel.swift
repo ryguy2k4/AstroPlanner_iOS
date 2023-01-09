@@ -10,10 +10,12 @@ import SwiftUI
 final class CatalogViewModel: ObservableObject {
     @Published var location: SavedLocation
     @Published var date: Date
+    @Published var reportSettings: ReportSettings
     
-    init(location: SavedLocation, date: Date) {
+    init(location: SavedLocation, date: Date, reportSettings: ReportSettings) {
         self.location = location
         self.date = date
+        self.reportSettings = reportSettings
     }
     
     // Sort Control Variables
@@ -90,11 +92,11 @@ final class CatalogViewModel: ObservableObject {
             targets.filter(byMinSize: minSize, byMaxSize: maxSize)
         }
         if !minVisScore.isZero {
-            targets.filter(byMinVisScore: minVisScore, at: location, on: date, sunData: sunData)
+            targets.filter(byMinVisScore: minVisScore, at: location, on: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
         }
         if !minMerScore.isZero {
             targets.filter(byMinMerScore: minMerScore, at: location, on: date, sunData: sunData)
         }
-        targets.sort(by: currentSort, sortDescending: sortDecending, location: location, date: date, sunData: sunData)
+        targets.sort(by: currentSort, sortDescending: sortDecending, location: location, date: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
     }
 }

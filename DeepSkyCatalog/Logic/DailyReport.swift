@@ -46,7 +46,7 @@ final class DailyReport: ObservableObject {
             // filter by desired magnitude
             //targets.filter(byBrightestMag: settings.brightestMag, byDimmestMag: settings.dimmestMag)
             
-            targets.sort(by: .visibility, sortDescending: true, location: location, date: date, sunData: data.sun)
+            targets.sort(by: .visibility, sortDescending: true, location: location, date: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
             targets.removeLast(targets.count > num ? targets.count-num : 0)
             return targets
         }
@@ -56,7 +56,7 @@ final class DailyReport: ObservableObject {
          */
         func getAvailableTargets() -> [DeepSkyTarget] {
             var targets = DeepSkyTargetList.allTargets
-            targets.filter(byMinVisScore: 0.8, at: location, on: date, sunData: data.sun)
+            targets.filter(byMinVisScore: 0.8, at: location, on: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
             
             // if moon is a problem, filter for narrowband
             if data.moon.illuminated > settings.maxAllowedMoon {

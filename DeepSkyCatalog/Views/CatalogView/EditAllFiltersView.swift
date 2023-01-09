@@ -10,6 +10,7 @@ import SwiftUI
 struct EditAllFiltersView: View {
     @ObservedObject var viewModel: CatalogViewModel
     @EnvironmentObject var location: SavedLocation
+    @EnvironmentObject var reportSettings: ReportSettings
     @Environment(\.data) var data
     @Environment(\.date) var date
     var body: some View {
@@ -22,7 +23,7 @@ struct EditAllFiltersView: View {
                         }
                     }
                     .onChange(of: viewModel.currentSort) { newMethod in
-                        viewModel.targets.sort(by: newMethod, sortDescending: viewModel.sortDecending, location: location, date: date, sunData: data.sun)
+                        viewModel.targets.sort(by: newMethod, sortDescending: viewModel.sortDecending, location: location, date: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude)
                     }
                     Picker("Order:", selection: $viewModel.sortDecending) {
                         Label("Ascending", systemImage: "chevron.up").tag(false)
@@ -30,7 +31,7 @@ struct EditAllFiltersView: View {
                                 
                     }
                     .onChange(of: viewModel.sortDecending) { newOrder in
-                        viewModel.targets.sort(by: viewModel.currentSort, sortDescending: newOrder, location: location, date: date, sunData: data.sun)
+                        viewModel.targets.sort(by: viewModel.currentSort, sortDescending: newOrder, location: location, date: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude)
                     }
                 }
                 ConfigSection(header: "Filters") {

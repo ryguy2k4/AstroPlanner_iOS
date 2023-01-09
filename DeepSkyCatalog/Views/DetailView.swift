@@ -11,6 +11,7 @@ import Charts
 struct DetailView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var location: SavedLocation
+    @EnvironmentObject var reportSettings: ReportSettings
     @Environment(\.date) var date
     var target: DeepSkyTarget
     var body: some View {
@@ -49,7 +50,7 @@ struct DetailView: View {
                             FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
                         }
                         VStack {
-                            Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: data.sun)).percent())")
+                            Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude)).percent())")
                                 .foregroundColor(.secondary)
                             Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: data.sun)).percent())")
                                 .foregroundColor(.secondary)
@@ -98,7 +99,7 @@ struct TargetAltitudeChart: View {
     var body: some View {
         Chart {
             ForEach(date.getEveryHour(), id: \.self) { hour in
-                LineMark(x: .value("Hour", hour, unit: .hour), y: .value("Altitude", target.getAltitude(at: location, at: hour)))
+                LineMark(x: .value("Hour", hour, unit: .hour), y: .value("Altitude", target.getAltitude(location: location, time: hour)))
                     .interpolationMethod(.catmullRom)
             }
             RuleMark(y: .value("Axis", 0))

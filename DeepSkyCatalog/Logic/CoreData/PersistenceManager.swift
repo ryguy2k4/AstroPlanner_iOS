@@ -40,6 +40,7 @@ final class PersistenceManager: ObservableObject {
                     settings.brightestMag = 0
                     settings.dimmestMag = .nan
                     settings.maxAllowedMoon = 0.2
+                    settings.limitingAltitude = 0
                 }
             }
         }

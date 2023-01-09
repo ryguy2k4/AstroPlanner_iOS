@@ -9,15 +9,23 @@ import SwiftUI
 
 struct AboutView: View {
     var body: some View {
-        VStack(spacing: 15) {
+        VStack() {
             Spacer()
-            Text("Made by Ryan Sponzilli")
-            Link("YouTube", destination: URL(string: "https://www.youtube.com/@ryansponzilli")!)
-            Link("Instagram", destination: URL(string: "https://www.instagram.com/ryansponzilli_astro/")!)
+            VStack(spacing: 15) {
+                Text("Made by Ryan Sponzilli")
+                Link("YouTube", destination: URL(string: "https://www.youtube.com/@ryansponzilli")!)
+                Link("Instagram", destination: URL(string: "https://www.instagram.com/ryansponzilli_astro/")!)
+            }
             Spacer()
-            Text("API Attributions:")
-            Text("sunrise-sunset.org")
-            Text("aa.usno.navy.mil")
+            Text("Please report any bugs")
+            Text("All suggestions are welcome")
+            Text("Thanks for the help")
+            Spacer()
+            VStack(spacing: 10) {
+                Text("API Attributions:")
+                Text("sunrise-sunset.org")
+                Text("aa.usno.navy.mil")
+            }
             Spacer()
             
         }
