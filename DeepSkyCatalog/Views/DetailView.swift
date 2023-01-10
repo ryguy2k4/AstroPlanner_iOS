@@ -19,11 +19,13 @@ struct DetailView: View {
             ScrollView {
                 VStack(spacing: 10) {
                     VStack {
-                        Image(target.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 200)
-                            .cornerRadius(12)
+                        NavigationLink(destination: ImageViewer(image: target.image)) {
+                            Image(target.image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 200)
+                                .cornerRadius(12)
+                        }
                         if let credit = target.imageCopyright {
                             Text("Image Copyright: " + credit)
                                 .fontWeight(.light)
@@ -61,14 +63,14 @@ struct DetailView: View {
                             .padding()
                         if let interval = try? target.getNextInterval(at: location, on: date, sunData: data.sun) {
                             HStack {
-                                EventLabel(text: interval.start.formatted(format: "h:mm a \n MM/dd", timezone: location.timezone), image: "sunrise")
-                                EventLabel(text: target.getNextMeridian(at: location, on: date, sunData: data.sun).formatted(format: "h:mm a \n MM/dd", timezone: location.timezone), image: "arrow.right.and.line.vertical.and.arrow.left")
-                                EventLabel(text: interval.end.formatted(format: "h:mm a \n MM/dd", timezone: location.timezone), image: "sunset")
+                                EventLabel(date: interval.start, image: "sunrise")
+                                EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: data.sun), image: "arrow.right.and.line.vertical.and.arrow.left")
+                                EventLabel(date: interval.end, image: "sunset")
                             }
                         } else {
                             VStack {
                                 Text("Target Never Rises or Target Never Sets")
-                                EventLabel(text: target.getNextMeridian(at: location, on: date, sunData: data.sun).formatted(format: "h:mm a \n MM/dd", timezone: location.timezone), image: "arrow.right.and.line.vertical.and.arrow.left")
+                                EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: data.sun), image: "arrow.right.and.line.vertical.and.arrow.left")
                             }
                         }
                     }
@@ -126,13 +128,29 @@ struct FactLabel: View {
 }
 
 struct EventLabel: View {
-    var text: String
+    var date: Date
     var image: String
     var body: some View {
-        Label(text, systemImage: image)
-            .font(.body)
-            .frame(width: 110, height: 60)
+        VStack(spacing: 3) {
+            Label(date.formatted(date: .omitted, time: .shortened) , systemImage: image)
+            Text(date.formatted(date: .numeric, time: .omitted))
+                .minimumScaleFactor(0.8)
+        }
+        .frame(width: 110, height: 60)
             
+    }
+}
+
+struct ImageViewer: View {
+    let image: String
+
+    var body: some View {
+        ZoomableScrollView {
+            Image(image)
+                .resizable()
+                .scaledToFit()
+                .padding()
+        }
     }
 }
 

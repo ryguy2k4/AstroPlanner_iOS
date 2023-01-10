@@ -56,7 +56,7 @@ final class DailyReport: ObservableObject {
          */
         func getAvailableTargets() -> [DeepSkyTarget] {
             var targets = DeepSkyTargetList.allTargets
-            targets.filter(byMinVisScore: 0.8, at: location, on: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
+            targets.filter(byMinVisScore: 0.5, at: location, on: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
             
             // if moon is a problem, filter for narrowband
             if data.moon.illuminated > settings.maxAllowedMoon {

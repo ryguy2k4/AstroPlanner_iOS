@@ -45,7 +45,7 @@ struct DailyReportView: View {
                                 .multilineTextAlignment(.center)
                                 .font(.largeTitle)
                                 .fontWeight(.semibold)
-                            Text("\(date.formatted(format: "MMMM d, y"))")
+                            Text("\(date.formatted(date: .long, time: .omitted))")
                                 .font(.subheadline)
                                 .fontWeight(.thin)
                             Text("Moon: \(networkManager.data[.init(date: date, location: locationList.first!)]?.moon.illuminated.percent() ?? "%") illuminated")

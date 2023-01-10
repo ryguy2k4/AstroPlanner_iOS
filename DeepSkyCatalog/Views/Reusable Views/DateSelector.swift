@@ -21,7 +21,7 @@ struct DateSelector: View {
             Button {
                 isDatePickerModal = true
             } label: {
-                Text("\(date.formatted(format: "MM/dd/yyyy", timezone: location.timezone))")
+                Text("\(date.formatted(date: .numeric, time: .omitted))")
             }
             Button {
                 date = date.tomorrow()
