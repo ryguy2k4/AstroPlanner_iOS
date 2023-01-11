@@ -14,10 +14,10 @@ final class DailyReport: ObservableObject {
     let data: (sun: SunData, moon: MoonData)
     let preset: ImagingPreset
     
-    let topThree: [DeepSkyTarget]
-    let topFiveNebulae: [DeepSkyTarget]
-    let topFiveGalaxies: [DeepSkyTarget]
-    let topFiveStarClusters: [DeepSkyTarget]
+    let topFive: [DeepSkyTarget]
+    let topTenNebulae: [DeepSkyTarget]
+    let topTenGalaxies: [DeepSkyTarget]
+    let topTenStarClusters: [DeepSkyTarget]
     
     init(location: SavedLocation, date: Date, settings: ReportSettings, preset: ImagingPreset, data: (sun: SunData, moon: MoonData)) {
         self.location = location
@@ -26,10 +26,10 @@ final class DailyReport: ObservableObject {
         self.data = data
         self.preset = preset
                 
-        self.topThree = createReportList(top: 3)
-        self.topFiveNebulae = createReportList(for: DSOType.nebulae, top: 5)
-        self.topFiveGalaxies = createReportList(for: DSOType.galaxies, top: 5)
-        self.topFiveStarClusters = createReportList(for: DSOType.starClusters, top: 5)
+        self.topFive = createReportList(top: 5)
+        self.topTenNebulae = createReportList(for: DSOType.nebulae, top: 10)
+        self.topTenGalaxies = createReportList(for: DSOType.galaxies, top: 10)
+        self.topTenStarClusters = createReportList(for: DSOType.starClusters, top: 10)
         
         func createReportList(for type: [DSOType] = [], top num: Int) -> [DeepSkyTarget] {
             // start with all targets

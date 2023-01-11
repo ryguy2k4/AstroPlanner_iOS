@@ -66,8 +66,8 @@ struct DailyReportView: View {
                                 }
                             }
                         }
-                        TopThreeView(report: report)
-                        TopFiveTabView(report: report)
+                        TopFiveView(report: report)
+                        TopTenTabView(report: report)
                             .frame(height: 500)
                     }
                 }
@@ -93,17 +93,17 @@ struct DailyReportView: View {
 /**
  This View is a subview of DailyReportView that displays the topThree as defined withing the report.
  */
-private struct TopThreeView: View {
+private struct TopFiveView: View {
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var reportSettings: ReportSettings
     let report: DailyReport
     
     var body: some View {
         VStack {
-            Text("Top Three Overall")
+            Text("Top Five Overall")
                 .fontWeight(.bold)
             TabView {
-                ForEach(report.topThree, id: \.id) { target in
+                ForEach(report.topFive, id: \.id) { target in
                     NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
                         ZStack {
                             Image(target.image)
@@ -134,7 +134,7 @@ private struct TopThreeView: View {
  This View is a TabView that uses a Segmented Picker to switch between tabs.
  Each Tab displays the 3 topFive arrays defined in the report.
  */
-private struct TopFiveTabView: View {
+private struct TopTenTabView: View {
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var reportSettings: ReportSettings
     let report: DailyReport
@@ -142,7 +142,7 @@ private struct TopFiveTabView: View {
     
     var body: some View {
         VStack {
-            Text("Top Five")
+            Text("Top Ten")
                 .fontWeight(.bold)
             Picker("Tab", selection: $tabSelection) {
                 Text("Nebulae").tag(0)
@@ -152,8 +152,8 @@ private struct TopFiveTabView: View {
             .pickerStyle(.segmented)
             .padding(.horizontal, 16)
             TabView(selection: $tabSelection) {
-                if !report.topFiveNebulae.isEmpty {
-                    List(report.topFiveNebulae) { target in
+                if !report.topTenNebulae.isEmpty {
+                    List(report.topTenNebulae) { target in
                         NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
                             Text(target.name.first!)
                         }
@@ -164,8 +164,8 @@ private struct TopFiveTabView: View {
                         Spacer()
                     }.tag(0)
                 }
-                if !report.topFiveGalaxies.isEmpty {
-                    List(report.topFiveGalaxies) { target in
+                if !report.topTenGalaxies.isEmpty {
+                    List(report.topTenGalaxies) { target in
                         NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
                             Text(target.name.first!)
                         }
@@ -177,8 +177,8 @@ private struct TopFiveTabView: View {
                     }.tag(1)
                     
                 }
-                if !report.topFiveStarClusters.isEmpty {
-                    List(report.topFiveStarClusters) { target in
+                if !report.topTenStarClusters.isEmpty {
+                    List(report.topTenStarClusters) { target in
                         NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
                             Text(target.name.first!)
                         }
@@ -192,6 +192,8 @@ private struct TopFiveTabView: View {
             .tabViewStyle(.page(indexDisplayMode: .never))
             .scrollDisabled(true)
         }
+        .padding(.vertical)
+
     }
 }
 
