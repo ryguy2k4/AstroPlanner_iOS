@@ -62,6 +62,23 @@ final class PersistenceManager: ObservableObject {
         location.longitude = longitude
         location.timezone = timezone
         location.isSelected = isSelected
+        saveData(context: context)
+    }
+    
+    func editLocation(location: SavedLocation, name: String? = nil, latitude: Double? = nil, longitude: Double? = nil, timezone: Int16? = nil, context: NSManagedObjectContext) {
+        if let name = name {
+            location.name = name
+        }
+        if let latitude = latitude {
+            location.latitude = latitude
+        }
+        if let longitude = longitude {
+            location.longitude = longitude
+        }
+        if let timezone = timezone {
+            location.timezone = timezone
+        }
+        saveData(context: context)
     }
     
     func addImagingPreset(name: String, focalLength: Double, pixelSize: Double, resLength: Int16, resWidth: Int16, isSelected: Bool = false, context: NSManagedObjectContext) {
@@ -75,5 +92,29 @@ final class PersistenceManager: ObservableObject {
         preset.pixelScale =  pixelSize / focalLength * 206.2648
         preset.fovLength = preset.pixelScale * Double(preset.resolutionLength) / 60
         preset.fovWidth = preset.pixelScale * Double(preset.resolutionWidth) / 60
+        saveData(context: context)
+    }
+    
+    func editImagingPreset(preset: ImagingPreset, name: String? = nil, focalLength: Double? = nil, pixelSize: Double? = nil, resLength: Int16? = nil, resWidth: Int16? = nil, context: NSManagedObjectContext) {
+        if let name = name {
+            preset.name = name
+        }
+        if let focalLength = focalLength {
+            preset.focalLength = focalLength
+        }
+        if let pixelSize = pixelSize {
+            preset.pixelSize = pixelSize
+        }
+        if let resLength = resLength {
+            preset.resolutionLength = resLength
+        }
+        if let resWidth = resWidth {
+            preset.resolutionWidth = resWidth
+        }
+        preset.pixelScale = preset.pixelSize / preset.focalLength * 206.2648
+        preset.fovLength = preset.pixelScale * Double(preset.resolutionLength) / 60
+        preset.fovWidth = preset.pixelScale * Double(preset.resolutionWidth) / 60
+        saveData(context: context)
+        
     }
 }

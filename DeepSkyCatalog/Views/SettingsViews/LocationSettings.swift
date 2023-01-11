@@ -13,7 +13,8 @@ import Combine
 struct LocationSettings: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: FetchedResults<SavedLocation>
     @Environment(\.managedObjectContext) var context
-    @State private var locationEditorModal: Bool = false
+    @State private var locationCreatorModal: Bool = false
+    @State private var locationEditorModal: SavedLocation? = nil
     
     var body: some View {
         Form {
@@ -31,11 +32,17 @@ struct LocationSettings: View {
                                     Label("Delete", systemImage: "trash")
                                 }
                             }
+                            Button {
+                                locationEditorModal = location
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            .tint(.yellow)
                         }
                         .foregroundColor(.primary)
                 }
                 // Button for adding a new location
-                Button(action: { locationEditorModal = true }) {
+                Button(action: { locationCreatorModal = true }) {
                     HStack {
                         Image(systemName: "plus.circle")
                         Text("Add Location")
@@ -44,8 +51,12 @@ struct LocationSettings: View {
                 }
             }
         }
-        .sheet(isPresented: $locationEditorModal) {
-            LocationEditor()
+        .sheet(isPresented: $locationCreatorModal) {
+            LocationEditor(location: nil)
+                .presentationDetents([.fraction(0.8)])
+        }
+        .sheet(item: $locationEditorModal) { location in
+            LocationEditor(location: location)
                 .presentationDetents([.fraction(0.8)])
         }
     }
@@ -63,6 +74,7 @@ struct LocationEditor: View {
     @State private var longitudeText: String = ""
     @State private var latitudeText: String = ""
     @State private var timezone: Int16 = -6
+    let location: SavedLocation?
     
     var body: some View {
         NavigationView {
@@ -104,16 +116,25 @@ struct LocationEditor: View {
             .toolbar {
                 KeyboardDismissButton(isInputActive: _isInputActive)
                 ToolbarItemGroup(placement: .confirmationAction) {
-                    Button("Add") {
-                        PersistenceManager.shared.addLocation(name: name, latitude: Double(latitudeText) ?? .nan, longitude: Double(longitudeText) ?? .nan, timezone: timezone, context: context)
+                    Button(location != nil ? "Save" : "Add") {
+                        if let location = location {
+                            PersistenceManager.shared.editLocation(location: location, name: name, latitude: Double(latitudeText), longitude: Double(longitudeText), timezone: timezone, context: context)
+                        } else {
+                            PersistenceManager.shared.addLocation(name: name, latitude: Double(latitudeText) ?? .nan, longitude: Double(longitudeText) ?? .nan, timezone: timezone, context: context)
+                        }
                         dismiss()
                     }
                 }
             }
             .padding(0)
         }
-        .onDisappear {
-            PersistenceManager.shared.saveData(context: context)
+        .onAppear() {
+            if let location = location {
+                self.name = location.name!
+                self.latitudeText = String(location.latitude)
+                self.longitudeText = String(location.longitude)
+                self.timezone = location.timezone
+            }
         }
     }
 }
