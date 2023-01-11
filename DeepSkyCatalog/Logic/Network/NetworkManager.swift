@@ -47,6 +47,19 @@ final class NetworkManager: ObservableObject {
         }
     }
     
+    func getImageData(for dateString: String) async throws -> APODImageData {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyMMdd"
+        guard let date = dateFormatter.date(from: dateString) else {
+            throw FetchError.unableToMakeURL
+        }
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let formattedDate = dateFormatter.string(from: date)
+        let apiKey = "merZmUVAd6yZ8cKS2YRcohhygVOEeIAn1WhRBVSy"
+        let url = "https://api.nasa.gov/planetary/apod?api_key=\(apiKey)&date=\(formattedDate)"
+        return try await fetchTask(from: url)
+    }
+    
     /**
      A generic function that fetches API data from a given URL for a Decodable Type
      - Parameter from: The URL to fetch from
@@ -65,4 +78,12 @@ final class NetworkManager: ObservableObject {
         }
         return decodedData
     }
+}
+
+struct APODImageData: Codable {
+    let copyright: String?
+    let explanation: String
+    let hdurl: String
+    let title: String
+    let date: String
 }
