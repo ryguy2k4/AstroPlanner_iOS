@@ -37,10 +37,10 @@ final class PersistenceManager: ObservableObject {
             if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "ReportSettings")) {
                 if count == 0 {
                     let settings = ReportSettings(context: self.container.viewContext)
-                    settings.brightestMag = 0
-                    settings.dimmestMag = .nan
                     settings.maxAllowedMoon = 0.2
                     settings.limitingAltitude = 0
+                    settings.minFOVCoverage = 0.5
+                    settings.minVisibility = 0.5
                 }
             }
         }

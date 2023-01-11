@@ -12,10 +12,10 @@
         <attribute name="resolutionWidth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="ReportSettings" representedClassName="ReportSettings" syncable="YES" codeGenerationType="class">
-        <attribute name="brightestMag" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="dimmestMag" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="limitingAltitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="maxAllowedMoon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="minFOVCoverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="minVisibility" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="preferBroadband" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="SavedLocation" representedClassName="SavedLocation" syncable="YES" codeGenerationType="class">

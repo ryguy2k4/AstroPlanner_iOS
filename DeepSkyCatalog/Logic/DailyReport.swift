@@ -41,7 +41,11 @@ final class DailyReport: ObservableObject {
             }
             
             // filter by selected imaging preset
-            targets.filter(byMinSize: preset.fovLength / 4, byMaxSize: preset.fovLength / 2)
+            targets = targets.filter { target in
+                let ratio = target.arcLength / preset.fovLength
+                return ratio > settings.minFOVCoverage && ratio <= 0.9
+            }
+            //targets.filter(byMinSize: preset.fovLength / 4, byMaxSize: preset.fovLength / 2)
             
             // filter by desired magnitude
             //targets.filter(byBrightestMag: settings.brightestMag, byDimmestMag: settings.dimmestMag)
@@ -56,7 +60,7 @@ final class DailyReport: ObservableObject {
          */
         func getAvailableTargets() -> [DeepSkyTarget] {
             var targets = DeepSkyTargetList.allTargets
-            targets.filter(byMinVisScore: 0.5, at: location, on: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
+            targets.filter(byMinVisScore: settings.minVisibility, at: location, on: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
             
             // if moon is a problem, filter for narrowband
             if data.moon.illuminated > settings.maxAllowedMoon {
