@@ -88,7 +88,7 @@ struct LocationEditor: View {
                     SettingsField(text: $longitudeText, label: "Longitude: ", prompt: "Decimal Degrees")
                         .focused($isInputActive)
                     Text("Timezone (GMT offset): ")
-                    Picker("Timezone", selection: $timezone) {
+                    Picker("Timezone: \(timezone)", selection: $timezone) {
                         ForEach(-12..<13) {
                             Text("\($0)").tag(Int16($0))
                         }
