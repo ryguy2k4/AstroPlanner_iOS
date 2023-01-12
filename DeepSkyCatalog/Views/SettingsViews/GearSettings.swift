@@ -81,15 +81,15 @@ struct ImagingPresetCreator: View {
                 Form {
                     ConfigSection {
                         // Fields to manually enter gear info
-                        SettingsField(text: $name, label: "Name: ", keyboardType: .default)
+                        LabeledTextField(text: $name, label: "Name: ", keyboardType: .default)
                             .focused($isInputActive)
-                        SettingsField(text: $focalLengthText, label: "Focal Length (mm): ")
+                        LabeledTextField(text: $focalLengthText, label: "Focal Length (mm): ")
                             .focused($isInputActive)
-                        SettingsField(text: $pixelSizeText, label: "Pixel Size (µm): ")
+                        LabeledTextField(text: $pixelSizeText, label: "Pixel Size (µm): ")
                             .focused($isInputActive)
-                        SettingsField(text: $resolutionLength, label: "Resolution Length (px): ")
+                        LabeledTextField(text: $resolutionLength, label: "Resolution Length (px): ")
                             .focused($isInputActive)
-                        SettingsField(text: $resolutionWidth, label: "Resolution Width (px): ")
+                        LabeledTextField(text: $resolutionWidth, label: "Resolution Width (px): ")
                             .focused($isInputActive)
                     }
                 }

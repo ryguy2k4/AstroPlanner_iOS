@@ -128,5 +128,4 @@ extension Array where Element == DeepSkyTarget {
             return $0.getMeridianScore(at: location, on: date, sunData: sunData) >= min
         }
     }
-    
 }

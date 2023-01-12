@@ -18,6 +18,8 @@ struct DetailView: View {
         if let data = networkManager.data[.init(date: date, location: location)] {
             ScrollView {
                 VStack(spacing: 10) {
+                    
+                    // Target Image
                     VStack {
                         NavigationLink(destination: ImageViewer(image: target.image)) {
                             Image(target.image)
@@ -33,31 +35,37 @@ struct DetailView: View {
                                 .font(.caption)
                         }
                     }
+                    
+                    // Target Facts
                     VStack {
-                        Text(target.name[0])
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                            .lineLimit(1)
-                        Text(target.type[0].rawValue)
-                            .font(.subheadline)
-                            .fontWeight(.light)
-                            .lineLimit(1)
-                    }
-                    HStack {
-                        VStack(alignment: .leading) {
-                            FactLabel(text: target.constellation.rawValue, image: "star")
-                            FactLabel(text: " RA: \(target.ra.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
-                            FactLabel(text: "DEC: \(target.dec.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
-                            FactLabel(text: " Mag \(target.apparentMag)", image: "sun.min.fill")
-                            FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
-                        }
                         VStack {
-                            Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude)).percent())")
-                                .foregroundColor(.secondary)
-                            Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: data.sun)).percent())")
-                                .foregroundColor(.secondary)
+                            Text(target.name[0])
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .lineLimit(1)
+                            Text(target.type[0].rawValue)
+                                .font(.subheadline)
+                                .fontWeight(.light)
+                                .lineLimit(1)
+                        }
+                        HStack {
+                            VStack(alignment: .leading) {
+                                FactLabel(text: target.constellation.rawValue, image: "star")
+                                FactLabel(text: " RA: \(target.ra.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
+                                FactLabel(text: "DEC: \(target.dec.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
+                                FactLabel(text: " Mag \(target.apparentMag)", image: "sun.min.fill")
+                                FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
+                            }
+                            VStack {
+                                Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude)).percent())")
+                                    .foregroundColor(.secondary)
+                                Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: data.sun)).percent())")
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
+                    
+                    // Target Graph
                     VStack() {
                         TargetAltitudeChart(target: target)
                             .padding()
@@ -74,15 +82,14 @@ struct DetailView: View {
                             }
                         }
                     }
+                    
+                    // Target Description
                     VStack(alignment: .leading, spacing: 10) {
                         Text(target.description)
                         Link(destination: target.descriptionURL) {
                             Label("Wikipedia", systemImage: "arrow.up.forward.square")
                         }
-                        
-                    }
-                    .font(.body)
-                    .padding()
+                    }.padding()
                 }
             }
         } else {
@@ -117,7 +124,10 @@ struct TargetAltitudeChart: View {
     }
 }
 
-struct FactLabel: View {
+/**
+ A label that displays a target fact
+ */
+private struct FactLabel: View {
     var text: String
     var image: String
     var body: some View {
@@ -127,7 +137,10 @@ struct FactLabel: View {
     }
 }
 
-struct EventLabel: View {
+/**
+ A label that displays a target event
+ */
+private struct EventLabel: View {
     var date: Date
     var image: String
     var body: some View {
@@ -138,59 +151,6 @@ struct EventLabel: View {
         }
         .frame(width: 110, height: 60)
             
-    }
-}
-
-struct ImageViewer: View {
-    @EnvironmentObject var networkManager: NetworkManager
-    let image: String
-    @State var imageData: APODImageData? = nil
-
-    var body: some View {
-        VStack {
-            if let imageData = imageData {
-                ZoomableScrollView {
-                    AsyncImage(url: URL(string: imageData.hdurl)) { HDImage in
-                        HDImage
-                            .resizable()
-                            .scaledToFit()
-                            .padding(.horizontal)
-                        HStack {
-                            Spacer()
-                            Text("HD Loaded")
-                                .padding()
-                                .fontWeight(.bold)
-                        }
-                    } placeholder: {
-                        Image(image)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(.horizontal)
-                        HStack {
-                            Spacer()
-                            ProgressView()
-                            Text("HD Loading")
-                                .padding()
-                                .fontWeight(.bold)
-                        }
-                    }
-                }
-            } else {
-                ZoomableScrollView {
-                    Image(image)
-                        .resizable()
-                        .scaledToFit()
-                        .padding()
-                }
-            }
-        }
-        .task {
-            do {
-                imageData = try await networkManager.getImageData(for: image.replacingOccurrences(of: "apod_", with: ""))
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
     }
 }
 

@@ -38,7 +38,7 @@ struct SettingsView: View {
     }
 }
 
-struct SettingsField: View {
+struct LabeledTextField: View {
     @Binding var text: String
     var label: String
     var prompt: String?

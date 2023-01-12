@@ -81,11 +81,11 @@ struct LocationEditor: View {
             Form {
                 ConfigSection(footer: "Enter the numbers in decimal form, not degrees, minutes, and seconds") {
                     // Fields to manually enter location info
-                    SettingsField(text: $name, label: "Name: ", keyboardType: .default)
+                    LabeledTextField(text: $name, label: "Name: ", keyboardType: .default)
                         .focused($isInputActive)
-                    SettingsField(text: $latitudeText, label: "Latitude: ", prompt: "Decimal Degrees")
+                    LabeledTextField(text: $latitudeText, label: "Latitude: ", prompt: "Decimal Degrees")
                         .focused($isInputActive)
-                    SettingsField(text: $longitudeText, label: "Longitude: ", prompt: "Decimal Degrees")
+                    LabeledTextField(text: $longitudeText, label: "Longitude: ", prompt: "Decimal Degrees")
                         .focused($isInputActive)
                     Text("Timezone (GMT offset): ")
                     Picker("Timezone: \(timezone)", selection: $timezone) {

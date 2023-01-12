@@ -40,6 +40,8 @@ struct DailyReportView: View {
             NavigationView {
                 ScrollView {
                     VStack() {
+                        
+                        // Header Section
                         VStack {
                             Text("Daily Report")
                                 .multilineTextAlignment(.center)
@@ -51,8 +53,9 @@ struct DailyReportView: View {
                             Text("Moon: \(networkManager.data[.init(date: date, location: locationList.first!)]?.moon.illuminated.percent() ?? "%") illuminated")
                                 .font(.subheadline)
                                 .fontWeight(.thin)
-                        }
-                            .padding(.vertical)
+                        }.padding(.vertical)
+                        
+                        // Settings Section
                         DateSelector(date: $date)
                         HStack {
                             Picker("Imaging Preset", selection: presetBinding) {
@@ -66,7 +69,9 @@ struct DailyReportView: View {
                                 }
                             }
                         }
-                        Text("Reccomended Scope: ")
+                        
+                        // Report Section
+                        //Text("Reccomended Scope: ")
                         TopFiveView(report: report)
                         TopTenTabView(report: report)
                             .frame(height: 500)
@@ -78,7 +83,7 @@ struct DailyReportView: View {
             }
         }
         
-        // Otherwise show a loading screen and request the necessary data
+        // If Network data is not fetched, show a loading screen and then request the necessary data
         else {
             VStack {
                 ProgressView()

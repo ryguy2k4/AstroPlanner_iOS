@@ -92,7 +92,7 @@ struct CatalogView: View {
             .environment(\.data, data)
         }
 
-        // Otherwise show a loading icon
+        // If network data is not available then show a loading icon
         else {
             VStack {
                 ProgressView()
