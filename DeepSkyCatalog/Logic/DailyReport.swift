@@ -6,25 +6,26 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class DailyReport: ObservableObject {
     let location: SavedLocation
     let date: Date
     let settings: ReportSettings
     let data: (sun: SunData, moon: MoonData)
-    let preset: ImagingPreset
+    let presetList: FetchedResults<ImagingPreset>
     
     let topFive: [DeepSkyTarget]
     let topTenNebulae: [DeepSkyTarget]
     let topTenGalaxies: [DeepSkyTarget]
     let topTenStarClusters: [DeepSkyTarget]
     
-    init(location: SavedLocation, date: Date, settings: ReportSettings, preset: ImagingPreset, data: (sun: SunData, moon: MoonData)) {
+    init(location: SavedLocation, date: Date, settings: ReportSettings, presetList: FetchedResults<ImagingPreset>, data: (sun: SunData, moon: MoonData)) {
         self.location = location
         self.date = date
         self.settings = settings
         self.data = data
-        self.preset = preset
+        self.presetList = presetList
                 
         self.topFive = createReportList(top: 5)
         self.topTenNebulae = createReportList(for: DSOType.nebulae, top: 10)
@@ -42,7 +43,7 @@ final class DailyReport: ObservableObject {
             
             // filter by selected imaging preset
             targets = targets.filter { target in
-                let ratio = target.arcLength / preset.fovLength
+                let ratio = target.arcLength / presetList.first!.fovLength
                 return ratio > settings.minFOVCoverage && ratio <= 0.9
             }
             //targets.filter(byMinSize: preset.fovLength / 4, byMaxSize: preset.fovLength / 2)

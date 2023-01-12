@@ -36,7 +36,7 @@ struct DailyReportView: View {
         // Only display report if network data is available
         if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
             // every time the view refreshes, generate a report
-            let report = DailyReport(location: locationList.first!, date: date, settings: reportSettings.first!, preset: presetList.first!, data: data)
+            let report = DailyReport(location: locationList.first!, date: date, settings: reportSettings.first!, presetList: presetList, data: data)
             NavigationView {
                 ScrollView {
                     VStack() {
@@ -66,6 +66,7 @@ struct DailyReportView: View {
                                 }
                             }
                         }
+                        Text("Reccomended Scope: ")
                         TopFiveView(report: report)
                         TopTenTabView(report: report)
                             .frame(height: 500)
