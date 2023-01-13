@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct MessierInfo: View {
-    // change this when I add a non-mutating filter method
-    @State var messier = DeepSkyTargetList.allTargets
     var body: some View {
         VStack(spacing: 30) {
             VStack {
@@ -22,13 +20,14 @@ struct MessierInfo: View {
             Text("The Messier catalog was created by Charles Messier. Messier was only interested in finding comets, so he compiled this list of 108 non-comet objects that frustrated him.")
                 .padding()
             List {
-                ForEach(messier) { target in
-                    Text(target.name.first!)
+                ForEach(DeepSkyTargetList.allTargets.filteredByCatalog([.messier]).sortedByCatalog(descending: false, catalog: .messier)) { target in
+                    HStack {
+                        Text("M#")
+                        Divider()
+                        Text(target.name.first!)
+                    }
                 }
             }
-        }
-        .onAppear() {
-            messier.filter(byCatalogSelection: [.messier])
         }
     }
 }

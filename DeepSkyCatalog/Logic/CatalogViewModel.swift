@@ -74,28 +74,28 @@ final class CatalogViewModel: ObservableObject {
         
         //filter by current active filters
         if !searchText.isEmpty {
-            targets.filter(bySearchText: searchText)
+            targets.filterBySearch(searchText)
         }
         if !catalogSelection.isEmpty {
-            targets.filter(byCatalogSelection: catalogSelection)
+            targets.filterByCatalog(catalogSelection)
         }
         if !constellationSelection.isEmpty {
-            targets.filter(byConstellationSelection: constellationSelection)
+            targets.filterByConstellation(constellationSelection)
         }
         if !typeSelection.isEmpty {
-            targets.filter(byTypeSelection: typeSelection)
+            targets.filterByType(typeSelection)
         }
         if !brightestMag.isZero || !dimmestMag.isNaN {
-            targets.filter(byBrightestMag: brightestMag, byDimmestMag: dimmestMag)
+            targets.filterByMag(brightest: brightestMag, dimmest: dimmestMag)
         }
         if !minSize.isZero || !maxSize.isNaN {
-            targets.filter(byMinSize: minSize, byMaxSize: maxSize)
+            targets.filterBySize(min: minSize, max: maxSize)
         }
         if !minVisScore.isZero {
-            targets.filter(byMinVisScore: minVisScore, at: location, on: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
+            targets.filterByVisibility(minVisScore, location: location, date: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
         }
         if !minMerScore.isZero {
-            targets.filter(byMinMerScore: minMerScore, at: location, on: date, sunData: sunData)
+            targets.filterByMeridian(minMerScore, location: location, date: date, sunData: sunData)
         }
         
         // if currentSort is catalog AND catalog selection IS NOT EQUAL to 1

@@ -38,7 +38,7 @@ final class DailyReport: ObservableObject {
             
             // filter by desired types
             if !type.isEmpty {
-                targets.filter(byTypeSelection: type)
+                targets.filterByType(type)
             }
             
             // filter by selected imaging preset
@@ -57,15 +57,15 @@ final class DailyReport: ObservableObject {
          */
         func getAvailableTargets() -> [DeepSkyTarget] {
             var targets = DeepSkyTargetList.allTargets
-            targets.filter(byMinVisScore: settings.minVisibility, at: location, on: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
+            targets.filterByVisibility(settings.minVisibility, location: location, date: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
             
             // if moon is a problem, filter for narrowband
             if data.moon.illuminated > settings.maxAllowedMoon {
-                targets.filter(byTypeSelection: DSOType.narrowband)
+                targets.filterByType(DSOType.narrowband)
             }
             // if moon is not a problem, but broadband preferred, filter for broadband only
             else if settings.preferBroadband {
-                targets.filter(byTypeSelection: DSOType.broadband)
+                targets.filterByType(DSOType.broadband)
             }
             return targets
         }
