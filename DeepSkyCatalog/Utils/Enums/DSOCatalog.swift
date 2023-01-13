@@ -12,10 +12,10 @@ enum DSOCatalog: String, Filter, Codable {
     var id: Self { self }
     case messier = "Messier"
     case caldwell = "Caldwell"
-    case ngc = "NGC"
-    case ic = "IC"
     case sh2 = "Sharpless 2"
     case barnard = "Barnard"
+    case ngc = "NGC"
+    case ic = "IC"
     
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

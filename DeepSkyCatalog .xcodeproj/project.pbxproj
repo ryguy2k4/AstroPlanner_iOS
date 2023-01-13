@@ -71,6 +71,7 @@
 		71BCF9832921EF8B008C7614 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
 		71BCF9852921EF8B008C7614 /* DSOType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* DSOType.swift */; };
 		71BCF9882921EF8B008C7614 /* RawSunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9802921EF8B008C7614 /* RawSunData.swift */; };
+		71BD753D2970FF0D00D7751F /* MessierInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD753C2970FF0D00D7751F /* MessierInfo.swift */; };
 		71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */; };
 		71D5FD28295FA1D10028FF8C /* EditAllFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */; };
 		71D77FA82921F99200709252 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
@@ -155,6 +156,7 @@
 		71BCF97B2921EF8B008C7614 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		71BCF97D2921EF8B008C7614 /* DSOType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSOType.swift; sourceTree = "<group>"; };
 		71BCF9802921EF8B008C7614 /* RawSunData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawSunData.swift; sourceTree = "<group>"; };
+		71BD753C2970FF0D00D7751F /* MessierInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessierInfo.swift; sourceTree = "<group>"; };
 		71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAllFiltersView.swift; sourceTree = "<group>"; };
 		71D77FA72921F99200709252 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				713B49B629541216008EFC81 /* SettingsViews */,
 				7186D8F1295CEEC500601467 /* JournalView.swift */,
 				718B56AF294C349900914BDB /* Reusable Views */,
+				71BD753C2970FF0D00D7751F /* MessierInfo.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				7176882D292B285700BB86D7 /* FilterMethod.swift in Sources */,
 				71BCF9832921EF8B008C7614 /* String.swift in Sources */,
 				71ACF3382964ED6E00CC83D5 /* DeepSkyTargetArray.swift in Sources */,
+				71BD753D2970FF0D00D7751F /* MessierInfo.swift in Sources */,
 				71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */,
 				715CCB5429270AF700497CA2 /* SortMethod.swift in Sources */,
 				7186D8F2295CEEC500601467 /* JournalView.swift in Sources */,
