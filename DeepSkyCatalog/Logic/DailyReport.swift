@@ -46,12 +46,8 @@ final class DailyReport: ObservableObject {
                 let ratio = target.arcLength / presetList.first!.fovLength
                 return ratio > settings.minFOVCoverage && ratio <= 0.9
             }
-            //targets.filter(byMinSize: preset.fovLength / 4, byMaxSize: preset.fovLength / 2)
             
-            // filter by desired magnitude
-            //targets.filter(byBrightestMag: settings.brightestMag, byDimmestMag: settings.dimmestMag)
-            
-            targets.sort(by: .visibility, sortDescending: true, location: location, date: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
+            targets.sortByVisibility(descending: true, location: location, date: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
             targets.removeLast(targets.count > num ? targets.count-num : 0)
             return targets
         }

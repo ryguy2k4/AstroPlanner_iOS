@@ -97,6 +97,33 @@ final class CatalogViewModel: ObservableObject {
         if !minMerScore.isZero {
             targets.filter(byMinMerScore: minMerScore, at: location, on: date, sunData: sunData)
         }
-        targets.sort(by: currentSort, sortDescending: sortDecending, location: location, date: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
+        
+        // if currentSort is catalog AND catalog selection IS NOT EQUAL to 1
+        // safeguard against sorting by catalog with more than 1 catalog selected
+        if self.catalogSelection.count != 1 {
+            if case .catalog = currentSort {
+                currentSort = .ra
+                refreshList(sunData: sunData)
+            }
+        }
+        
+        
+        // sort the list
+        switch currentSort {
+        case .visibility:
+            targets.sortByVisibility(descending: sortDecending, location: location, date: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
+        case .meridian:
+            targets.sortByMeridian(descending: sortDecending, location: location, date: date, sunData: sunData)
+        case .dec:
+            targets.sortByDec(descending: sortDecending)
+        case .ra:
+            targets.sortByRA(descending: sortDecending)
+        case .magnitude:
+            targets.sortByMagnitude(descending: sortDecending)
+        case .size:
+            targets.sortBySize(descending: sortDecending)
+        case .catalog(let dSOCatalog):
+            targets.sortByCatalog(descending: sortDecending, catalog: dSOCatalog)
+        }
     }
 }

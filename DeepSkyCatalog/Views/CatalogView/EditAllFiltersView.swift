@@ -21,17 +21,20 @@ struct EditAllFiltersView: View {
                         ForEach(SortMethod.allCases) { method in
                             Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
                         }
+                        if viewModel.catalogSelection.count == 1 {
+                            Label("Sort by Catalog", systemImage: "list.star").tag(SortMethod.catalog(viewModel.catalogSelection.first!))
+                        }
                     }
-                    .onChange(of: viewModel.currentSort) { newMethod in
-                        viewModel.targets.sort(by: newMethod, sortDescending: viewModel.sortDecending, location: location, date: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude)
+                    .onChange(of: viewModel.currentSort) { _ in
+                        viewModel.refreshList(sunData: data.sun)
                     }
                     Picker("Order:", selection: $viewModel.sortDecending) {
                         Label("Ascending", systemImage: "chevron.up").tag(false)
                         Label("Descending", systemImage: "chevron.down").tag(true)
                                 
                     }
-                    .onChange(of: viewModel.sortDecending) { newOrder in
-                        viewModel.targets.sort(by: viewModel.currentSort, sortDescending: newOrder, location: location, date: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude)
+                    .onChange(of: viewModel.sortDecending) { _ in
+                        viewModel.refreshList(sunData: data.sun)
                     }
                 }
                 ConfigSection(header: "Filters") {
