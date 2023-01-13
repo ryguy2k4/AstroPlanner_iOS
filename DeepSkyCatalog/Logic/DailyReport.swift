@@ -47,7 +47,7 @@ final class DailyReport: ObservableObject {
                 return ratio > settings.minFOVCoverage && ratio <= 0.9
             }
             
-            targets.sortByVisibility(descending: true, location: location, date: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
+            targets.sortByVisibility(location: location, date: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
             targets.removeLast(targets.count > num ? targets.count-num : 0)
             return targets
         }

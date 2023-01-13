@@ -111,19 +111,23 @@ final class CatalogViewModel: ObservableObject {
         // sort the list
         switch currentSort {
         case .visibility:
-            targets.sortByVisibility(descending: sortDecending, location: location, date: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
+            targets.sortByVisibility(location: location, date: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
         case .meridian:
-            targets.sortByMeridian(descending: sortDecending, location: location, date: date, sunData: sunData)
+            targets.sortByMeridian(location: location, date: date, sunData: sunData)
         case .dec:
-            targets.sortByDec(descending: sortDecending)
+            targets.sortByDec()
         case .ra:
-            targets.sortByRA(descending: sortDecending)
+            targets.sortByRA()
         case .magnitude:
-            targets.sortByMagnitude(descending: sortDecending)
+            targets.sortByMagnitude()
         case .size:
-            targets.sortBySize(descending: sortDecending)
+            targets.sortBySize()
         case .catalog(let dSOCatalog):
-            targets.sortByCatalog(descending: sortDecending, catalog: dSOCatalog)
+            targets.sortByCatalog(catalog: dSOCatalog)
+        }
+        
+        if !sortDecending {
+            targets.reverse()
         }
     }
 }

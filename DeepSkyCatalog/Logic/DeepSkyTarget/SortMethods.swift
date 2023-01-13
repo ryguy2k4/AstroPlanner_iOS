@@ -43,99 +43,65 @@ extension Array where Element == DeepSkyTarget {
     
     // utilize reverse() method instead of all the if-else for sortDescending
     
-    func sortedByVisibility(descending: Bool, location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) -> Self {
-        if descending {
-            return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) > $1.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)})
-        } else {
-            return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) < $1.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)})
+    func sortedByVisibility(location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) -> Self {
+        return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) > $1.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)})
+    }
+    
+    mutating func sortByVisibility(location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) {
+        self = self.sortedByVisibility(location: location, date: date, sunData: sunData, limitingAlt: limitingAlt)
+    }
+    
+    func sortedByMeridian(location: SavedLocation, date: Date, sunData: SunData) -> Self {
+        return self.sorted(by: {$0.getMeridianScore(at: location, on: date, sunData: sunData) > $1.getMeridianScore(at: location, on: date, sunData: sunData)})
+    }
+    
+    mutating func sortByMeridian(location: SavedLocation, date: Date, sunData: SunData) {
+        self = self.sortedByMeridian(location: location, date: date, sunData: sunData)
+    }
+    
+    func sortedByDec() -> Self {
+        return self.sorted(by: {$0.dec > $1.dec})
+    }
+    
+    mutating func sortByDec() {
+        self = self.sortedByDec()
+    }
+    
+    func sortedByRA() -> Self {
+        return self.sorted(by: {$0.ra > $1.ra})
+    }
+    
+    mutating func sortByRA() {
+        self = self.sortedByRA()
+    }
+    
+    func sortedByMagnitude() -> Self {
+        return self.sorted(by: {$0.apparentMag > $1.apparentMag})
+    }
+    
+    mutating func sortByMagnitude() {
+        self = self.sortedByMagnitude()
+    }
+    
+    func sortedBySize() -> Self {
+        return self.sorted(by: {$0.arcLength > $1.arcLength})
+    }
+    
+    mutating func sortBySize() {
+        self = self.sortedBySize()
+    }
+    
+    func sortedByCatalog(catalog: DSOCatalog) -> Self {
+        return self.sorted { t1, t2 in
+            return t1.designation.first { des in
+                return des.catalog == catalog
+            }!.number > t2.designation.first { des in
+                return des.catalog == catalog
+            }!.number
         }
     }
     
-    mutating func sortByVisibility(descending: Bool, location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) {
-        self = self.sortedByVisibility(descending: descending, location: location, date: date, sunData: sunData, limitingAlt: limitingAlt)
-    }
-    
-    func sortedByMeridian(descending: Bool, location: SavedLocation, date: Date, sunData: SunData) -> Self {
-        if descending {
-            return self.sorted(by: {$0.getMeridianScore(at: location, on: date, sunData: sunData) > $1.getMeridianScore(at: location, on: date, sunData: sunData)})
-        } else {
-            return self.sorted(by: {$0.getMeridianScore(at: location, on: date, sunData: sunData) < $1.getMeridianScore(at: location, on: date, sunData: sunData)})
-        }
-    }
-    
-    mutating func sortByMeridian(descending: Bool, location: SavedLocation, date: Date, sunData: SunData) {
-        self = self.sortedByMeridian(descending: descending, location: location, date: date, sunData: sunData)
-    }
-    
-    func sortedByDec(descending: Bool) -> Self {
-        if descending {
-            return self.sorted(by: {$0.dec > $1.dec})
-        } else {
-            return self.sorted(by: {$0.dec < $1.dec})
-        }
-    }
-    
-    mutating func sortByDec(descending: Bool) {
-        self = self.sortedByDec(descending: descending)
-    }
-    
-    func sortedByRA(descending: Bool) -> Self {
-        if descending {
-            return self.sorted(by: {$0.ra > $1.ra})
-        } else {
-            return self.sorted(by: {$0.ra < $1.ra})
-        }
-    }
-    
-    mutating func sortByRA(descending: Bool) {
-        self = self.sortedByRA(descending: descending)
-    }
-    
-    func sortedByMagnitude(descending: Bool) -> Self {
-        if descending {
-            return self.sorted(by: {$0.apparentMag > $1.apparentMag})
-        } else {
-            return self.sorted(by: {$0.apparentMag < $1.apparentMag})
-        }
-    }
-    
-    mutating func sortByMagnitude(descending: Bool) {
-        self = self.sortedByMagnitude(descending: descending)
-    }
-    
-    func sortedBySize(descending: Bool) -> Self {
-        if descending {
-            return self.sorted(by: {$0.arcLength > $1.arcLength})
-        } else {
-            return self.sorted(by: {$0.arcLength < $1.arcLength})
-        }
-    }
-    
-    mutating func sortBySize(descending: Bool) {
-        self = self.sortedBySize(descending: descending)
-    }
-    
-    func sortedByCatalog(descending: Bool, catalog: DSOCatalog) -> Self {
-        if descending {
-            return self.sorted { t1, t2 in
-                return t1.designation.first { des in
-                    return des.catalog == catalog
-                }!.number > t2.designation.first { des in
-                    return des.catalog == catalog
-                }!.number
-            }
-        } else {
-            return self.sorted { t1, t2 in
-                return t1.designation.first { des in
-                    return des.catalog == catalog
-                }!.number < t2.designation.first { des in
-                    return des.catalog == catalog
-                }!.number
-            }
-        }
-    }
-    
-    mutating func sortByCatalog(descending: Bool, catalog: DSOCatalog) {
-        self = self.sortedByCatalog(descending: descending, catalog: catalog)
+    mutating func sortByCatalog(catalog: DSOCatalog) {
+        self = self.sortedByCatalog(catalog: catalog)
     }
 }
