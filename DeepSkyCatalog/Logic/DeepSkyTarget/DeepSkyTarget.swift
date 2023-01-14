@@ -7,22 +7,6 @@
 
 import Foundation
 
-/**
- An object that represents a specific deep sky target.
- - Parameter name: The common names of the target.
- - Parameter designation: The official catalog designations of the target.
- - Parameter image: Fllenames for images of the target.
- - Parameter description: A detailed description of the target.
- - Parameter descriptionURL: A Wikipedia link.
- - Parameter type: The type of deep sky object.
- - Parameter constellation: The constellation the target lies in.
- - Parameter ra: The right ascension of the target (J2000).
- - Parameter dec: The declination of the target (J2000).
- - Parameter arcLength: The longer side of the target measured in arcminutes.
- - Parameter arcWidth: The shorter side of the target measured in arcminutes.
- - Parameter apparentMag: The apparent magnitude of the target.
- */
-
 struct DeepSkyTarget: Identifiable, Hashable {
     // identifiers
     let id = UUID()
@@ -62,6 +46,11 @@ struct DeepSkyTarget: Identifiable, Hashable {
         
         let source: ImageSource
         let copyright: String?
+        
+        init() {
+            self.source = .local(fileName: "power_star")
+            self.copyright = nil
+        }
     }
     
     /**
@@ -259,7 +248,13 @@ extension DeepSkyTarget: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode([String].self, forKey: .name)
         self.designation = try container.decode([Designation].self, forKey: .designation)
-        self.image = try container.decode(TargetImage.self, forKey: .image)
+        self.image = {
+            do {
+                return try container.decode(TargetImage.self, forKey: .image)
+            } catch {
+                return TargetImage()
+            }
+        }()
         self.description = try container.decode(String.self, forKey: .description)
         self.descriptionURL = try container.decode(URL.self, forKey: .descriptionURL)
         self.type = try container.decode([DSOType].self, forKey: .type)

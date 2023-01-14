@@ -60,8 +60,7 @@
             "apod":{
                "id":"060418"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"NGC 246 (also known as the Skull Nebula[4] or Caldwell 56) is a planetary nebula in the constellation Cetus. The nebula and the stars associated with it are listed in several catalogs, as summarized by the SIMBAD database.[1] It is roughly 1,600 light-years away.[6] The nebula's central star is the 12th magnitude[6] white dwarf HIP 3678. It is not to be confused with the Rosette Nebula (NGC 2337), which is also referred to as the Skull.[7]",
       "descriptionURL":"https://en.wikipedia.org/wiki/NGC_246",
@@ -104,8 +103,7 @@
             "apod":{
                "id":"200414"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"Sculptor Galaxy (also known as the Silver Coin, Silver Dollar Galaxy, NGC 253, or Caldwell 65) is an intermediate spiral galaxy in the constellation Sculptor. The Sculptor Galaxy is a starburst galaxy, which means that it is currently undergoing a period of intense star formation.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Sculptor_Galaxy",
@@ -145,14 +143,6 @@
             "number":457
          }
       ],
-      "image":{
-         "source":{
-            "apod":{
-               "id":"power_star"
-            }
-         },
-         "copyright":"N/A"
-      },
       "description":"NGC 457 (also designated Caldwell 13, and known as the Dragonfly Cluster, E.T. Cluster, Owl Cluster, Kachina Doll Cluster or Phi Cassiopeiae Cluster)[2] is an open star cluster in the constellation Cassiopeia.",
       "descriptionURL":"https://en.wikipedia.org/wiki/NGC_457",
       "type":[
@@ -434,14 +424,6 @@
             "number":925
          }
       ],
-      "image":{
-         "source":{
-            "apod":{
-               "id":"power_star"
-            }
-         },
-         "copyright":"N/A"
-      },
       "description":"NGC 925 Amatha Galaxy is a barred spiral galaxy located about 30[4] million light-years away in the constellation Triangulum. The morphological classification of this galaxy is SB(s)d,[3] indicating that it has a bar structure and loosely wound spiral arms with no ring.[6] The spiral arm to the south is stronger than the northern arm, with the latter appearing flocculent and less coherent. The bar is offset from the center of the galaxy and is the site of star formation all along its length. Both of these morphological traits\u2014a dominant spiral arm and the offset bar\u2014are typically characteristics of a Magellanic spiral galaxy.[7]",
       "descriptionURL":"https://en.wikipedia.org/wiki/NGC_925",
       "type":[
@@ -528,8 +510,7 @@
             "apod":{
                "id":"130510"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"Messier 77 or M77, also known as NGC 1068 and the Squid Galaxy, is a barred spiral galaxy about 47 million light-years away in the constellation Cetus. Messier 77 was discovered by Pierre M\u00e9chain in 1780, who originally described it as a nebula. M\u00e9chain then communicated his discovery to Charles Messier, who subsequently listed the object in his catalog.[8] Both Messier and William Herschel described this galaxy as a star cluster.[8] Today, however, the object is known to be a galaxy.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Messier_77",
@@ -850,8 +831,7 @@
             "apod":{
                "id":"200906"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"The Crab Nebula (catalogue designations M1, NGC 1952, Taurus A) is a supernova remnant and pulsar wind nebula in the constellation of Taurus. The common name comes from William Parsons, 3rd Earl of Rosse, who observed the object in 1842 using a 36-inch (91 cm) telescope and produced a drawing that looked somewhat like a crab. The nebula was discovered by English astronomer John Bevis in 1731, and it corresponds with a bright supernova recorded by Chinese astronomers in 1054. The nebula was the first astronomical object identified that corresponds with a historical supernova explosion.[6]",
       "descriptionURL":"https://en.wikipedia.org/wiki/Crab_Nebula",
@@ -888,8 +868,7 @@
             "apod":{
                "id":"160113"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"Sh2-279 (alternatively designated S279 or Sharpless 279) is an HII region and bright nebulae that includes a reflection nebula located in the constellation Orion. It is the northernmost part of the asterism known as Orion's Sword, lying 0.6\u00b0 north of the Orion Nebula. The reflection nebula embedded in Sh2-279 is popularly known as the Running Man Nebula.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Sh2-279",
@@ -1094,14 +1073,6 @@
             "number":2099
          }
       ],
-      "image":{
-         "source":{
-            "apod":{
-               "id":"power_star"
-            }
-         },
-         "copyright":"N/A"
-      },
       "description":"Messier 37 (also known as M37 or NGC 2099) is the brightest and richest open cluster in the constellation Auriga. It was discovered by the Italian astronomer Giovanni Battista Hodierna before 1654. M37 was missed by French astronomer Guillaume Le Gentil when he rediscovered M36 and M38 in 1749. French astronomer Charles Messier independently rediscovered M37 in September 1764 but all three of these clusters were recorded by Hodierna. It is classified as Trumpler type I,1,r or I,2,r.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Messier_37",
       "type":[
@@ -1378,8 +1349,7 @@
             "apod":{
                "id":"200216"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"The Eskimo Nebula (NGC 2392), also known as the Clown-faced Nebula, Lion Nebula,[4] or Caldwell 39, is a bipolar[5] double-shell[6] planetary nebula (PN). It was discovered by astronomer William Herschel in 1787. The formation resembles a person's head surrounded by a parka hood. It is surrounded by gas that composed the outer layers of a Sun-like star. The visible inner filaments are ejected by a strong wind of particles from the central star. The outer disk contains unusual, light-year-long filaments.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Eskimo_Nebula",
@@ -1756,8 +1726,7 @@
             "apod":{
                "id":"190529"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"Messier 95, also known as M95 or NGC 3351, is a barred spiral galaxy about 33 million light-years away in the zodiac constellation Leo. It was discovered by Pierre M\u00e9chain in 1781, and catalogued by compatriot Charles Messier four days later. In 2012 its most recent supernova was discovered.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Messier_95",
@@ -2084,8 +2053,7 @@
             "apod":{
                "id":"181225"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"Messier 100 (also known as NGC 4321) is a grand design intermediate spiral galaxy in the southern part of the mildly northern Coma Berenices.[5] It is one of the brightest and largest galaxies in the Virgo Cluster and is approximately 55 million light-years[3] from our galaxy, its diameter being 107,000 light years, and being about 60% as large. It was discovered by Pierre M\u00e9chain in 1781[a] and 29 days later seen again and entered by Charles Messier in his catalogue \"of nebulae and star clusters\".[6][7]. It was one of the first spiral galaxies to be discovered,[7] and was listed as one of fourteen spiral nebulae by Lord William Parsons of Rosse in 1850. NGC 4323 and NGC 4328 are satellite galaxies of M100; the former is connected with it by a bridge of luminous matter.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Messier_100",
@@ -2168,8 +2136,7 @@
             "apod":{
                "id":"220423"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"The Sombrero Galaxy (also known as Messier Object 104, M104 or NGC 4594) is a peculiar galaxy of unclear classification[5] in the constellation borders of Virgo and Corvus, being about 9.55 megaparsecs (31.1 million light-years)[2] from the Milky Way galaxy. It is a member of the Virgo II Groups, a series of galaxies and galaxy clusters strung out from the southern edge of the Virgo Supercluster.[6] It has a diameter of approximately 15 kiloparsecs (49,000 light-years),[7] three-tenths the size of the Milky Way.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Sombrero_Galaxy",
@@ -2656,14 +2623,6 @@
             "number":6218
          }
       ],
-      "image":{
-         "source":{
-            "apod":{
-               "id":"power_star"
-            }
-         },
-         "copyright":"N/A"
-      },
       "description":"Messier 12 or M 12 (also designated NGC 6218) is a globular cluster in the constellation of Ophiuchus. It was discovered by the French astronomer Charles Messier on May 30, 1764, who described it as a \"nebula without stars\".[8] In dark conditions this cluster can be faintly seen with a pair of binoculars. Resolving the stellar components requires a telescope with an aperture of 8 in (20 cm) or greater.[9] In a 10 in (25 cm) scope, the granular core shows a diameter of 3\u2032 (arcminutes) surrounded by a 10\u2032 halo of stars.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Messier_12",
       "type":[
@@ -2703,8 +2662,7 @@
             "apod":{
                "id":"211107"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"The Cat's Eye Nebula (also known as NGC 6543 and Caldwell 6) is a planetary nebula in the northern constellation of Draco, discovered by William Herschel on February 15, 1786. It was the first planetary nebula whose spectrum was investigated by the English amateur astronomer William Huggins, demonstrating that planetary nebulae were gaseous and not stellar in nature. Structurally, the object has had high-resolution images by the Hubble Space Telescope revealing knots, jets, bubbles and complex arcs, being illuminated by the central hot planetary nebula nucleus (PNN).[3] It is a well-studied object that has been observed from radio to X-ray wavelengths.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Cat%27s_Eye_Nebula",
@@ -2998,8 +2956,7 @@
             "apod":{
                "id":"210817"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"The Ring Nebula (also catalogued as Messier 57, M57 and NGC 6720) is a planetary nebula in the northern constellation of Lyra.[4][C] Such a nebula is formed when a star, during the last stages of its evolution before becoming a white dwarf, expels a vast luminous envelope of ionized gas into the surrounding interstellar space.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Ring_Nebula",
@@ -3031,14 +2988,6 @@
             "number":6781
          }
       ],
-      "image":{
-         "source":{
-            "apod":{
-               "id":"power_star"
-            }
-         },
-         "copyright":"N/A"
-      },
       "description":"NGC 6781 is a planetary nebula located in the equatorial constellation of Aquila, about 2.5\u00b0 east-northeast of the 5th magnitude star 19 Aquilae.[3] It was discovered July 30, 1788 by the Anglo-German astronomer William Herschel.[5] The nebula lies at a distance of 1,500 ly from the Sun.[2] It has a visual magnitude of 11.4 and spans an angular size of 1.9 \u00d7 1.8 arcminutes.",
       "descriptionURL":"https://en.wikipedia.org/wiki/NGC_6781",
       "type":[
@@ -3243,8 +3192,7 @@
             "apod":{
                "id":"120109"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"NGC 6946, sometimes referred to as the Fireworks Galaxy, is a face-on intermediate spiral galaxy with a small bright nucleus, whose location in the sky straddles the boundary between the northern constellations of Cepheus and Cygnus. Its distance from Earth is about 25.2 million light-years or 7.72 megaparsecs,[2] similar to the distance of M101 (NGC 5457) in the constellation Ursa Major.[5] Both were once considered to be part of the Local Group,[6] but are now known to be among the dozen bright spiral galaxies near the Milky Way but beyond the confines of the Local Group.[7] NGC 6946 lies within the Virgo Supercluster",
       "descriptionURL":"https://en.wikipedia.org/wiki/NGC_6946",
@@ -3530,8 +3478,7 @@
             "apod":{
                "id":"190404"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"Messier 2 or M2 (also designated NGC 7089) is a globular cluster in the constellation Aquarius, five degrees north of the star Beta Aquarii. It was discovered by Jean-Dominique Maraldi in 1746, and is one of the largest known globular clusters.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Messier_2",
@@ -3731,8 +3678,7 @@
             "apod":{
                "id":"211218"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"Stephan's Quintet is a visual grouping of five galaxies of which four form the first compact galaxy group ever discovered.[2] The group, visible in the constellation Pegasus, was discovered by \u00c9douard Stephan in 1877 at the Marseille Observatory.[3] The group is the most studied of all the compact galaxy groups.[2] The brightest member of the visual grouping (and the only non-member of the true group) is NGC 7320, which has extensive H II regions, identified as red blobs, where active star formation is occurring.",
       "descriptionURL":"https://en.wikipedia.org/wiki/Stephan%27s_Quintet",
@@ -3898,8 +3844,7 @@
             "apod":{
                "id":"220323"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"NGC 7635, also known as the Bubble Nebula, Sharpless 162, or Caldwell 11, is an H II region[1] emission nebula in the constellation Cassiopeia. It lies close to the direction of the open cluster Messier 52. The \"bubble\" is created by the stellar wind from a massive hot, 8.7[1] magnitude young central star, SAO 20575 (BD+60\u00b02522).[7] The nebula is near a giant molecular cloud which contains the expansion of the bubble nebula while itself being excited by the hot central star, causing it to glow.[7] It was discovered in 1787 by William Herschel.",
       "descriptionURL":"https://en.wikipedia.org/wiki/NGC_7635",
@@ -3982,8 +3927,7 @@
             "apod":{
                "id":"961121"
             }
-         },
-         "copyright":"N/A"
+         }
       },
       "description":"NGC 7662 (also known as the Blue Snowball Nebula, Snowball Nebula, and Caldwell 22) is a planetary nebula located in the constellation Andromeda.",
       "descriptionURL":"https://en.wikipedia.org/wiki/NGC_7662",
