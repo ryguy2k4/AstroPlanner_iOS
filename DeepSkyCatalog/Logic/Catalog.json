@@ -27,16 +27,8 @@
          "galaxy"
       ],
       "constellation":"andromeda",
-      "ra":{
-         "hour":0,
-         "minute":42,
-         "second":44.3
-      },
-      "dec":{
-         "degree":41,
-         "minute":16,
-         "second":9
-      },
+      "ra":0.71231,
+      "dec":41.26917,
       "arcLength":178,
       "arcWidth":63,
       "apparentMag":3.44
@@ -68,16 +60,8 @@
          "planetaryNebula"
       ],
       "constellation":"cetus",
-      "ra":{
-         "hour":0,
-         "minute":47,
-         "second":3.338
-      },
-      "dec":{
-         "degree":-11,
-         "minute":52,
-         "second":18.94
-      },
+      "ra":0.78426,
+      "dec":-11.87193,
       "arcLength":5,
       "arcWidth":4,
       "apparentMag":8
@@ -111,16 +95,8 @@
          "galaxy"
       ],
       "constellation":"sculptor",
-      "ra":{
-         "hour":0,
-         "minute":47,
-         "second":33
-      },
-      "dec":{
-         "degree":-25,
-         "minute":17,
-         "second":18
-      },
+      "ra":0.7925,
+      "dec":-25.28833,
       "arcLength":25,
       "arcWidth":7,
       "apparentMag":8
@@ -149,16 +125,8 @@
          "openStarCluster"
       ],
       "constellation":"cassiopeia",
-      "ra":{
-         "hour":1,
-         "minute":19,
-         "second":32.6
-      },
-      "dec":{
-         "degree":58,
-         "minute":17,
-         "second":27
-      },
+      "ra":1.32572,
+      "dec":58.29083,
       "arcLength":30,
       "arcWidth":20,
       "apparentMag":6.4
@@ -191,16 +159,8 @@
          "galaxy"
       ],
       "constellation":"triangulum",
-      "ra":{
-         "hour":1,
-         "minute":33,
-         "second":50.02
-      },
-      "dec":{
-         "degree":30,
-         "minute":39,
-         "second":36.7
-      },
+      "ra":1.56389,
+      "dec":30.66019,
       "arcLength":63,
       "arcWidth":39,
       "apparentMag":5.72
@@ -233,16 +193,8 @@
          "galaxy"
       ],
       "constellation":"pisces",
-      "ra":{
-         "hour":1,
-         "minute":36,
-         "second":41.8
-      },
-      "dec":{
-         "degree":15,
-         "minute":47,
-         "second":1
-      },
+      "ra":1.61161,
+      "dec":15.78361,
       "arcLength":10,
       "arcWidth":10,
       "apparentMag":9.4
@@ -277,16 +229,8 @@
          "planetaryNebula"
       ],
       "constellation":"perseus",
-      "ra":{
-         "hour":1,
-         "minute":42,
-         "second":24
-      },
-      "dec":{
-         "degree":51,
-         "minute":34,
-         "second":31
-      },
+      "ra":1.70667,
+      "dec":51.57528,
       "arcLength":4,
       "arcWidth":3,
       "apparentMag":10.1
@@ -315,16 +259,8 @@
          "galaxy"
       ],
       "constellation":"aries",
-      "ra":{
-         "hour":1,
-         "minute":59,
-         "second":19.6
-      },
-      "dec":{
-         "degree":19,
-         "minute":0,
-         "second":27
-      },
+      "ra":1.98878,
+      "dec":19.0075,
       "arcLength":7,
       "arcWidth":5,
       "apparentMag":11.1
@@ -357,16 +293,8 @@
          "openStarCluster"
       ],
       "constellation":"perseus",
-      "ra":{
-         "hour":2,
-         "minute":20,
-         "second":0
-      },
-      "dec":{
-         "degree":57,
-         "minute":8,
-         "second":0
-      },
+      "ra":2.33333,
+      "dec":57.13333,
       "arcLength":60,
       "arcWidth":30,
       "apparentMag":3.7
@@ -400,16 +328,8 @@
          "galaxy"
       ],
       "constellation":"andromeda",
-      "ra":{
-         "hour":2,
-         "minute":22,
-         "second":33.4
-      },
-      "dec":{
-         "degree":42,
-         "minute":20,
-         "second":57
-      },
+      "ra":2.37594,
+      "dec":42.34917,
       "arcLength":14,
       "arcWidth":3,
       "apparentMag":10.8
@@ -430,16 +350,8 @@
          "galaxy"
       ],
       "constellation":"triangulum",
-      "ra":{
-         "hour":2,
-         "minute":27,
-         "second":19.913
-      },
-      "dec":{
-         "degree":33,
-         "minute":34,
-         "second":43.97
-      },
+      "ra":2.45553,
+      "dec":33.57888,
       "arcLength":11,
       "arcWidth":6,
       "apparentMag":10.7
@@ -477,16 +389,8 @@
          "emissionNebula"
       ],
       "constellation":"cassiopeia",
-      "ra":{
-         "hour":2,
-         "minute":33,
-         "second":22
-      },
-      "dec":{
-         "degree":61,
-         "minute":26,
-         "second":36
-      },
+      "ra":2.55611,
+      "dec":61.44333,
       "arcLength":60,
       "arcWidth":60,
       "apparentMag":18.3
@@ -518,16 +422,8 @@
          "galaxy"
       ],
       "constellation":"cetus",
-      "ra":{
-         "hour":2,
-         "minute":42,
-         "second":40.771
-      },
-      "dec":{
-         "degree":0,
-         "minute":0,
-         "second":-47.84
-      },
+      "ra":2.71133,
+      "dec":-0.01329,
       "arcLength":7,
       "arcWidth":6,
       "apparentMag":8.9
@@ -560,16 +456,8 @@
          "galaxy"
       ],
       "constellation":"camelopardalis",
-      "ra":{
-         "hour":3,
-         "minute":46,
-         "second":48.5
-      },
-      "dec":{
-         "degree":68,
-         "minute":5,
-         "second":46
-      },
+      "ra":3.78014,
+      "dec":68.09611,
       "arcLength":7,
       "arcWidth":6,
       "apparentMag":9.1
@@ -599,16 +487,8 @@
          "openStarCluster"
       ],
       "constellation":"taurus",
-      "ra":{
-         "hour":3,
-         "minute":47,
-         "second":24
-      },
-      "dec":{
-         "degree":24,
-         "minute":7,
-         "second":0
-      },
+      "ra":3.79,
+      "dec":24.11667,
       "arcLength":110,
       "arcWidth":110,
       "apparentMag":1.6
@@ -641,16 +521,8 @@
          "emissionNebula"
       ],
       "constellation":"perseus",
-      "ra":{
-         "hour":4,
-         "minute":3,
-         "second":18
-      },
-      "dec":{
-         "degree":36,
-         "minute":25,
-         "second":18
-      },
+      "ra":4.055,
+      "dec":36.42167,
       "arcLength":145,
       "arcWidth":40,
       "apparentMag":6
@@ -679,16 +551,8 @@
          "reflectionNebula"
       ],
       "constellation":"eridanus",
-      "ra":{
-         "hour":5,
-         "minute":2,
-         "second":0
-      },
-      "dec":{
-         "degree":-7,
-         "minute":54,
-         "second":0
-      },
+      "ra":5.03333,
+      "dec":-7.9,
       "arcLength":180,
       "arcWidth":60,
       "apparentMag":13
@@ -718,16 +582,8 @@
          "openStarCluster"
       ],
       "constellation":"auriga",
-      "ra":{
-         "hour":5,
-         "minute":22,
-         "second":44
-      },
-      "dec":{
-         "degree":33,
-         "minute":24,
-         "second":4
-      },
+      "ra":5.37889,
+      "dec":33.40111,
       "arcLength":40,
       "arcWidth":30,
       "apparentMag":7.5
@@ -756,16 +612,8 @@
          "openStarCluster"
       ],
       "constellation":"auriga",
-      "ra":{
-         "hour":5,
-         "minute":28,
-         "second":6
-      },
-      "dec":{
-         "degree":35,
-         "minute":19,
-         "second":30
-      },
+      "ra":5.46833,
+      "dec":35.325,
       "arcLength":6,
       "arcWidth":6,
       "apparentMag":8.2
@@ -798,16 +646,8 @@
          "openStarCluster"
       ],
       "constellation":"auriga",
-      "ra":{
-         "hour":5,
-         "minute":28,
-         "second":43
-      },
-      "dec":{
-         "degree":35,
-         "minute":51,
-         "second":18
-      },
+      "ra":5.47861,
+      "dec":35.855,
       "arcLength":15,
       "arcWidth":15,
       "apparentMag":7.4
@@ -839,16 +679,8 @@
          "supernovaRemnant"
       ],
       "constellation":"taurus",
-      "ra":{
-         "hour":5,
-         "minute":34,
-         "second":31.94
-      },
-      "dec":{
-         "degree":22,
-         "minute":0,
-         "second":52.2
-      },
+      "ra":5.57554,
+      "dec":22.0145,
       "arcLength":6,
       "arcWidth":4,
       "apparentMag":8.4
@@ -876,16 +708,8 @@
          "reflectionNebula"
       ],
       "constellation":"orion",
-      "ra":{
-         "hour":5,
-         "minute":35,
-         "second":16.2
-      },
-      "dec":{
-         "degree":-4,
-         "minute":47,
-         "second":7
-      },
+      "ra":5.58783,
+      "dec":-4.78528,
       "arcLength":20,
       "arcWidth":15,
       "apparentMag":7
@@ -919,16 +743,8 @@
          "reflectionNebula"
       ],
       "constellation":"orion",
-      "ra":{
-         "hour":5,
-         "minute":35,
-         "second":17.3
-      },
-      "dec":{
-         "degree":-5,
-         "minute":23,
-         "second":28
-      },
+      "ra":5.58814,
+      "dec":-5.39111,
       "arcLength":66,
       "arcWidth":60,
       "apparentMag":4
@@ -961,16 +777,8 @@
          "darkNebula"
       ],
       "constellation":"orion",
-      "ra":{
-         "hour":5,
-         "minute":40,
-         "second":59
-      },
-      "dec":{
-         "degree":-2,
-         "minute":27,
-         "second":30
-      },
+      "ra":5.68306,
+      "dec":-2.45833,
       "arcLength":60,
       "arcWidth":40,
       "apparentMag":6.8
@@ -1003,16 +811,8 @@
          "emissionNebula"
       ],
       "constellation":"orion",
-      "ra":{
-         "hour":5,
-         "minute":41,
-         "second":54
-      },
-      "dec":{
-         "degree":-1,
-         "minute":51,
-         "second":0
-      },
+      "ra":5.69833,
+      "dec":-1.85,
       "arcLength":30,
       "arcWidth":30,
       "apparentMag":10
@@ -1045,16 +845,8 @@
          "reflectionNebula"
       ],
       "constellation":"orion",
-      "ra":{
-         "hour":5,
-         "minute":46,
-         "second":46.7
-      },
-      "dec":{
-         "degree":0,
-         "minute":0,
-         "second":50
-      },
+      "ra":5.77964,
+      "dec":0.01389,
       "arcLength":8,
       "arcWidth":6,
       "apparentMag":8.3
@@ -1079,16 +871,8 @@
          "openStarCluster"
       ],
       "constellation":"auriga",
-      "ra":{
-         "hour":5,
-         "minute":52,
-         "second":18
-      },
-      "dec":{
-         "degree":32,
-         "minute":33,
-         "second":2
-      },
+      "ra":5.87167,
+      "dec":32.55056,
       "arcLength":15,
       "arcWidth":15,
       "apparentMag":6.2
@@ -1117,16 +901,8 @@
          "openStarCluster"
       ],
       "constellation":"gemini",
-      "ra":{
-         "hour":6,
-         "minute":7,
-         "second":25
-      },
-      "dec":{
-         "degree":24,
-         "minute":5,
-         "second":48
-      },
+      "ra":6.12361,
+      "dec":24.09667,
       "arcLength":5,
       "arcWidth":5,
       "apparentMag":8.6
@@ -1159,16 +935,8 @@
          "openStarCluster"
       ],
       "constellation":"gemini",
-      "ra":{
-         "hour":6,
-         "minute":8,
-         "second":54
-      },
-      "dec":{
-         "degree":24,
-         "minute":20,
-         "second":0
-      },
+      "ra":6.14833,
+      "dec":24.33333,
       "arcLength":25,
       "arcWidth":25,
       "apparentMag":5.3
@@ -1197,16 +965,8 @@
          "emissionNebula"
       ],
       "constellation":"orion",
-      "ra":{
-         "hour":6,
-         "minute":9,
-         "second":42
-      },
-      "dec":{
-         "degree":20,
-         "minute":30,
-         "second":0
-      },
+      "ra":6.16167,
+      "dec":20.5,
       "arcLength":45,
       "arcWidth":35,
       "apparentMag":6.8
@@ -1239,16 +999,8 @@
          "emissionNebula"
       ],
       "constellation":"monoceros",
-      "ra":{
-         "hour":6,
-         "minute":33,
-         "second":45
-      },
-      "dec":{
-         "degree":4,
-         "minute":59,
-         "second":54
-      },
+      "ra":6.5625,
+      "dec":4.99833,
       "arcLength":80,
       "arcWidth":60,
       "apparentMag":9
@@ -1280,16 +1032,8 @@
          "reflectionNebula"
       ],
       "constellation":"monoceros",
-      "ra":{
-         "hour":6,
-         "minute":41,
-         "second":0
-      },
-      "dec":{
-         "degree":9,
-         "minute":53,
-         "second":0
-      },
+      "ra":6.68333,
+      "dec":9.88333,
       "arcLength":20,
       "arcWidth":20,
       "apparentMag":3.9
@@ -1318,16 +1062,8 @@
          "planetaryNebula"
       ],
       "constellation":"gemini",
-      "ra":{
-         "hour":7,
-         "minute":29,
-         "second":2.69
-      },
-      "dec":{
-         "degree":13,
-         "minute":14,
-         "second":48.4
-      },
+      "ra":7.48408,
+      "dec":13.24678,
       "arcLength":12,
       "arcWidth":12,
       "apparentMag":15.99
@@ -1357,16 +1093,8 @@
          "planetaryNebula"
       ],
       "constellation":"gemini",
-      "ra":{
-         "hour":7,
-         "minute":29,
-         "second":10.7669
-      },
-      "dec":{
-         "degree":20,
-         "minute":54,
-         "second":42.488
-      },
+      "ra":7.48632,
+      "dec":20.9118,
       "arcLength":0.7,
       "arcWidth":0.7,
       "apparentMag":10.1
@@ -1399,16 +1127,8 @@
          "openStarCluster"
       ],
       "constellation":"puppis",
-      "ra":{
-         "hour":7,
-         "minute":36,
-         "second":36
-      },
-      "dec":{
-         "degree":-14,
-         "minute":30,
-         "second":0
-      },
+      "ra":7.61,
+      "dec":-14.5,
       "arcLength":25,
       "arcWidth":25,
       "apparentMag":4.4
@@ -1441,16 +1161,8 @@
          "galaxy"
       ],
       "constellation":"camelopardalis",
-      "ra":{
-         "hour":7,
-         "minute":36,
-         "second":51.4
-      },
-      "dec":{
-         "degree":65,
-         "minute":36,
-         "second":9
-      },
+      "ra":7.61428,
+      "dec":65.6025,
       "arcLength":23,
       "arcWidth":12,
       "apparentMag":8.9
@@ -1484,16 +1196,8 @@
          "planetaryNebula"
       ],
       "constellation":"puppis",
-      "ra":{
-         "hour":7,
-         "minute":41,
-         "second":46
-      },
-      "dec":{
-         "degree":-14,
-         "minute":48,
-         "second":36
-      },
+      "ra":7.69611,
+      "dec":-14.81,
       "arcLength":20,
       "arcWidth":20,
       "apparentMag":6
@@ -1527,16 +1231,8 @@
          "openStarCluster"
       ],
       "constellation":"cancer",
-      "ra":{
-         "hour":8,
-         "minute":40,
-         "second":24
-      },
-      "dec":{
-         "degree":19,
-         "minute":59,
-         "second":0
-      },
+      "ra":8.67333,
+      "dec":19.98333,
       "arcLength":95,
       "arcWidth":95,
       "apparentMag":3.7
@@ -1571,16 +1267,8 @@
          "openStarCluster"
       ],
       "constellation":"cancer",
-      "ra":{
-         "hour":8,
-         "minute":51,
-         "second":18
-      },
-      "dec":{
-         "degree":11,
-         "minute":49,
-         "second":0
-      },
+      "ra":8.855,
+      "dec":11.81667,
       "arcLength":30,
       "arcWidth":30,
       "apparentMag":6.1
@@ -1609,16 +1297,8 @@
          "galaxy"
       ],
       "constellation":"leo",
-      "ra":{
-         "hour":9,
-         "minute":32,
-         "second":10.111
-      },
-      "dec":{
-         "degree":21,
-         "minute":30,
-         "second":2.99
-      },
+      "ra":9.53614,
+      "dec":21.50083,
       "arcLength":13,
       "arcWidth":7,
       "apparentMag":9
@@ -1651,16 +1331,8 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":{
-         "hour":9,
-         "minute":55,
-         "second":33.2
-      },
-      "dec":{
-         "degree":69,
-         "minute":3,
-         "second":55
-      },
+      "ra":9.92589,
+      "dec":69.06528,
       "arcLength":26,
       "arcWidth":14,
       "apparentMag":6.94
@@ -1693,16 +1365,8 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":{
-         "hour":9,
-         "minute":55,
-         "second":52.2
-      },
-      "dec":{
-         "degree":69,
-         "minute":40,
-         "second":47
-      },
+      "ra":9.93117,
+      "dec":69.67972,
       "arcLength":11,
       "arcWidth":5,
       "apparentMag":8.41
@@ -1734,16 +1398,8 @@
          "galaxy"
       ],
       "constellation":"leo",
-      "ra":{
-         "hour":10,
-         "minute":43,
-         "second":57.7
-      },
-      "dec":{
-         "degree":11,
-         "minute":42,
-         "second":14
-      },
+      "ra":10.73269,
+      "dec":11.70389,
       "arcLength":7,
       "arcWidth":5,
       "apparentMag":9.7
@@ -1776,16 +1432,8 @@
          "galaxy"
       ],
       "constellation":"leo",
-      "ra":{
-         "hour":10,
-         "minute":46,
-         "second":45.7
-      },
-      "dec":{
-         "degree":11,
-         "minute":49,
-         "second":12
-      },
+      "ra":10.77936,
+      "dec":11.82,
       "arcLength":7,
       "arcWidth":5,
       "apparentMag":9.2
@@ -1818,16 +1466,8 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":{
-         "hour":11,
-         "minute":11,
-         "second":31
-      },
-      "dec":{
-         "degree":55,
-         "minute":40,
-         "second":27
-      },
+      "ra":11.19194,
+      "dec":55.67417,
       "arcLength":8,
       "arcWidth":3,
       "apparentMag":10
@@ -1860,16 +1500,8 @@
          "planetaryNebula"
       ],
       "constellation":"ursaMajor",
-      "ra":{
-         "hour":11,
-         "minute":14,
-         "second":47.734
-      },
-      "dec":{
-         "degree":55,
-         "minute":1,
-         "second":8.5
-      },
+      "ra":11.24659,
+      "dec":55.01903,
       "arcLength":3,
       "arcWidth":3,
       "apparentMag":9.9
@@ -1898,16 +1530,8 @@
          "galaxy"
       ],
       "constellation":"leo",
-      "ra":{
-         "hour":11,
-         "minute":20,
-         "second":17
-      },
-      "dec":{
-         "degree":13,
-         "minute":35,
-         "second":23
-      },
+      "ra":11.33806,
+      "dec":13.58972,
       "arcLength":14,
       "arcWidth":3,
       "apparentMag":9.5
@@ -1936,16 +1560,8 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":{
-         "hour":11,
-         "minute":32,
-         "second":34.94
-      },
-      "dec":{
-         "degree":53,
-         "minute":4,
-         "second":4.18
-      },
+      "ra":11.54304,
+      "dec":53.06783,
       "arcLength":22,
       "arcWidth":15,
       "apparentMag":10.61
@@ -1978,16 +1594,8 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":{
-         "hour":11,
-         "minute":57,
-         "second":36
-      },
-      "dec":{
-         "degree":53,
-         "minute":22,
-         "second":28
-      },
+      "ra":11.96,
+      "dec":53.37444,
       "arcLength":8,
       "arcWidth":5,
       "apparentMag":9.8
@@ -2020,16 +1628,8 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":{
-         "hour":12,
-         "minute":18,
-         "second":57.5
-      },
-      "dec":{
-         "degree":47,
-         "minute":18,
-         "second":14
-      },
+      "ra":12.31597,
+      "dec":47.30389,
       "arcLength":18,
       "arcWidth":8,
       "apparentMag":8.4
@@ -2061,16 +1661,8 @@
          "galaxy"
       ],
       "constellation":"comaBerenices",
-      "ra":{
-         "hour":12,
-         "minute":22,
-         "second":54.9
-      },
-      "dec":{
-         "degree":15,
-         "minute":49,
-         "second":21
-      },
+      "ra":12.38192,
+      "dec":15.8225,
       "arcLength":7,
       "arcWidth":6,
       "apparentMag":9.3
@@ -2103,16 +1695,8 @@
          "galaxy"
       ],
       "constellation":"comaBerenices",
-      "ra":{
-         "hour":12,
-         "minute":36,
-         "second":20.8
-      },
-      "dec":{
-         "degree":25,
-         "minute":59,
-         "second":16
-      },
+      "ra":12.60578,
+      "dec":25.98778,
       "arcLength":16,
       "arcWidth":3,
       "apparentMag":10.42
@@ -2144,16 +1728,8 @@
          "galaxy"
       ],
       "constellation":"virgo",
-      "ra":{
-         "hour":12,
-         "minute":39,
-         "second":59.4
-      },
-      "dec":{
-         "degree":-11,
-         "minute":37,
-         "second":23
-      },
+      "ra":12.6665,
+      "dec":-11.62306,
       "arcLength":9,
       "arcWidth":4,
       "apparentMag":8
@@ -2186,16 +1762,8 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":{
-         "hour":12,
-         "minute":42,
-         "second":8
-      },
-      "dec":{
-         "degree":32,
-         "minute":32,
-         "second":29
-      },
+      "ra":12.70222,
+      "dec":32.54139,
       "arcLength":15,
       "arcWidth":3,
       "apparentMag":9.8
@@ -2225,16 +1793,8 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":{
-         "hour":12,
-         "minute":43,
-         "second":57.7
-      },
-      "dec":{
-         "degree":32,
-         "minute":10,
-         "second":5
-      },
+      "ra":12.73269,
+      "dec":32.16806,
       "arcLength":15,
       "arcWidth":3,
       "apparentMag":11
@@ -2263,16 +1823,8 @@
          "galaxy"
       ],
       "constellation":"comaBerenices",
-      "ra":{
-         "hour":12,
-         "minute":50,
-         "second":26.57
-      },
-      "dec":{
-         "degree":25,
-         "minute":30,
-         "second":2.74
-      },
+      "ra":12.84071,
+      "dec":25.50076,
       "arcLength":11,
       "arcWidth":8,
       "apparentMag":10.1
@@ -2305,16 +1857,8 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":{
-         "hour":12,
-         "minute":50,
-         "second":53.1
-      },
-      "dec":{
-         "degree":41,
-         "minute":7,
-         "second":14
-      },
+      "ra":12.84808,
+      "dec":41.12056,
       "arcLength":11,
       "arcWidth":9,
       "apparentMag":8.2
@@ -2347,16 +1891,8 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":{
-         "hour":13,
-         "minute":15,
-         "second":49.27
-      },
-      "dec":{
-         "degree":42,
-         "minute":1,
-         "second":45.73
-      },
+      "ra":13.26369,
+      "dec":42.02937,
       "arcLength":12,
       "arcWidth":8,
       "apparentMag":9.3
@@ -2389,16 +1925,8 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":{
-         "hour":13,
-         "minute":29,
-         "second":52.7
-      },
-      "dec":{
-         "degree":47,
-         "minute":11,
-         "second":43
-      },
+      "ra":13.49797,
+      "dec":47.19528,
       "arcLength":11,
       "arcWidth":8,
       "apparentMag":8.4
@@ -2431,16 +1959,8 @@
          "globularStarCluster"
       ],
       "constellation":"canesVenatici",
-      "ra":{
-         "hour":13,
-         "minute":42,
-         "second":11.62
-      },
-      "dec":{
-         "degree":28,
-         "minute":22,
-         "second":38.2
-      },
+      "ra":13.70323,
+      "dec":28.37728,
       "arcLength":18,
       "arcWidth":18,
       "apparentMag":6.39
@@ -2473,16 +1993,8 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":{
-         "hour":14,
-         "minute":3,
-         "second":12.6
-      },
-      "dec":{
-         "degree":54,
-         "minute":20,
-         "second":57
-      },
+      "ra":14.0535,
+      "dec":54.34917,
       "arcLength":29,
       "arcWidth":27,
       "apparentMag":7.9
@@ -2511,16 +2023,8 @@
          "galaxy"
       ],
       "constellation":"draco",
-      "ra":{
-         "hour":15,
-         "minute":15,
-         "second":53.8
-      },
-      "dec":{
-         "degree":56,
-         "minute":19,
-         "second":44
-      },
+      "ra":15.26494,
+      "dec":56.32889,
       "arcLength":12,
       "arcWidth":2,
       "apparentMag":11.1
@@ -2553,16 +2057,8 @@
          "globularStarCluster"
       ],
       "constellation":"serpens",
-      "ra":{
-         "hour":15,
-         "minute":18,
-         "second":33.22
-      },
-      "dec":{
-         "degree":2,
-         "minute":4,
-         "second":51.7
-      },
+      "ra":15.30923,
+      "dec":2.08103,
       "arcLength":23,
       "arcWidth":23,
       "apparentMag":5.6
@@ -2595,16 +2091,8 @@
          "globularStarCluster"
       ],
       "constellation":"hercules",
-      "ra":{
-         "hour":16,
-         "minute":41,
-         "second":41.24
-      },
-      "dec":{
-         "degree":36,
-         "minute":27,
-         "second":35.5
-      },
+      "ra":16.69479,
+      "dec":36.45986,
       "arcLength":29,
       "arcWidth":20,
       "apparentMag":5.8
@@ -2629,16 +2117,8 @@
          "globularStarCluster"
       ],
       "constellation":"ophiuchus",
-      "ra":{
-         "hour":16,
-         "minute":47,
-         "second":14.18
-      },
-      "dec":{
-         "degree":-1,
-         "minute":56,
-         "second":54.7
-      },
+      "ra":16.78727,
+      "dec":-1.94853,
       "arcLength":16,
       "arcWidth":16,
       "apparentMag":6.7
@@ -2670,16 +2150,8 @@
          "planetaryNebula"
       ],
       "constellation":"draco",
-      "ra":{
-         "hour":17,
-         "minute":58,
-         "second":33.423
-      },
-      "dec":{
-         "degree":66,
-         "minute":37,
-         "second":59.52
-      },
+      "ra":17.97595,
+      "dec":66.6332,
       "arcLength":5.8,
       "arcWidth":5.8,
       "apparentMag":9.8
@@ -2712,16 +2184,8 @@
          "emissionNebula"
       ],
       "constellation":"sagittarius",
-      "ra":{
-         "hour":18,
-         "minute":2,
-         "second":23
-      },
-      "dec":{
-         "degree":-23,
-         "minute":1,
-         "second":48
-      },
+      "ra":18.03972,
+      "dec":-23.03,
       "arcLength":29,
       "arcWidth":27,
       "apparentMag":6.3
@@ -2754,16 +2218,8 @@
          "emissionNebula"
       ],
       "constellation":"sagittarius",
-      "ra":{
-         "hour":18,
-         "minute":3,
-         "second":37
-      },
-      "dec":{
-         "degree":-24,
-         "minute":23,
-         "second":12
-      },
+      "ra":18.06028,
+      "dec":-24.38667,
       "arcLength":90,
       "arcWidth":40,
       "apparentMag":4.6
@@ -2796,16 +2252,8 @@
          "emissionNebula"
       ],
       "constellation":"serpens",
-      "ra":{
-         "hour":18,
-         "minute":18,
-         "second":48
-      },
-      "dec":{
-         "degree":-13,
-         "minute":49,
-         "second":0
-      },
+      "ra":18.31333,
+      "dec":-13.81667,
       "arcLength":35,
       "arcWidth":28,
       "apparentMag":6.4
@@ -2839,16 +2287,8 @@
          "emissionNebula"
       ],
       "constellation":"sagittarius",
-      "ra":{
-         "hour":18,
-         "minute":20,
-         "second":26
-      },
-      "dec":{
-         "degree":-16,
-         "minute":10,
-         "second":36
-      },
+      "ra":18.34056,
+      "dec":-16.17667,
       "arcLength":46,
       "arcWidth":37,
       "apparentMag":6
@@ -2881,16 +2321,8 @@
          "globularStarCluster"
       ],
       "constellation":"sagittarius",
-      "ra":{
-         "hour":18,
-         "minute":36,
-         "second":23.94
-      },
-      "dec":{
-         "degree":-23,
-         "minute":54,
-         "second":17.1
-      },
+      "ra":18.60665,
+      "dec":-23.90475,
       "arcLength":32,
       "arcWidth":32,
       "apparentMag":5.1
@@ -2923,16 +2355,8 @@
          "openStarCluster"
       ],
       "constellation":"scutum",
-      "ra":{
-         "hour":18,
-         "minute":51,
-         "second":0.5
-      },
-      "dec":{
-         "degree":-6,
-         "minute":16,
-         "second":12
-      },
+      "ra":18.85014,
+      "dec":-6.27,
       "arcLength":11,
       "arcWidth":11,
       "apparentMag":5.8
@@ -2964,16 +2388,8 @@
          "planetaryNebula"
       ],
       "constellation":"lyra",
-      "ra":{
-         "hour":18,
-         "minute":53,
-         "second":35.079
-      },
-      "dec":{
-         "degree":33,
-         "minute":1,
-         "second":45.03
-      },
+      "ra":18.89308,
+      "dec":33.02918,
       "arcLength":3,
       "arcWidth":3,
       "apparentMag":8.8
@@ -2994,16 +2410,8 @@
          "planetaryNebula"
       ],
       "constellation":"aquila",
-      "ra":{
-         "hour":19,
-         "minute":18,
-         "second":28.085
-      },
-      "dec":{
-         "degree":6,
-         "minute":32,
-         "second":19.29
-      },
+      "ra":19.3078,
+      "dec":6.53869,
       "arcLength":1.8,
       "arcWidth":1.8,
       "apparentMag":11.4
@@ -3040,16 +2448,8 @@
          "galaxy"
       ],
       "constellation":"sagittarius",
-      "ra":{
-         "hour":19,
-         "minute":44,
-         "second":56.6
-      },
-      "dec":{
-         "degree":-14,
-         "minute":47,
-         "second":21
-      },
+      "ra":19.74906,
+      "dec":-14.78917,
       "arcLength":15,
       "arcWidth":14,
       "apparentMag":9.3
@@ -3083,16 +2483,8 @@
          "planetaryNebula"
       ],
       "constellation":"vulpecula",
-      "ra":{
-         "hour":19,
-         "minute":59,
-         "second":36.34
-      },
-      "dec":{
-         "degree":22,
-         "minute":43,
-         "second":16.09
-      },
+      "ra":19.99343,
+      "dec":22.72114,
       "arcLength":7,
       "arcWidth":7,
       "apparentMag":7.4
@@ -3125,16 +2517,8 @@
          "emissionNebula"
       ],
       "constellation":"cygnus",
-      "ra":{
-         "hour":20,
-         "minute":12,
-         "second":7
-      },
-      "dec":{
-         "degree":38,
-         "minute":21,
-         "second":18
-      },
+      "ra":20.20194,
+      "dec":38.355,
       "arcLength":29,
       "arcWidth":10,
       "apparentMag":7.4
@@ -3163,16 +2547,8 @@
          "openStarCluster"
       ],
       "constellation":"cepheus",
-      "ra":{
-         "hour":20,
-         "minute":31,
-         "second":30
-      },
-      "dec":{
-         "degree":60,
-         "minute":39,
-         "second":42
-      },
+      "ra":20.525,
+      "dec":60.66167,
       "arcLength":8,
       "arcWidth":7,
       "apparentMag":7.8
@@ -3200,16 +2576,8 @@
          "galaxy"
       ],
       "constellation":"cygnus",
-      "ra":{
-         "hour":20,
-         "minute":34,
-         "second":52.3
-      },
-      "dec":{
-         "degree":60,
-         "minute":9,
-         "second":14
-      },
+      "ra":20.58119,
+      "dec":60.15389,
       "arcLength":11,
       "arcWidth":10,
       "apparentMag":9.6
@@ -3243,16 +2611,8 @@
          "supernovaRemnant"
       ],
       "constellation":"cygnus",
-      "ra":{
-         "hour":20,
-         "minute":45,
-         "second":38
-      },
-      "dec":{
-         "degree":30,
-         "minute":42,
-         "second":30
-      },
+      "ra":20.76056,
+      "dec":30.70833,
       "arcLength":180,
       "arcWidth":180,
       "apparentMag":7
@@ -3281,16 +2641,8 @@
          "emissionNebula"
       ],
       "constellation":"cygnus",
-      "ra":{
-         "hour":20,
-         "minute":50,
-         "second":48
-      },
-      "dec":{
-         "degree":44,
-         "minute":21,
-         "second":0
-      },
+      "ra":20.84667,
+      "dec":44.35,
       "arcLength":80,
       "arcWidth":60,
       "apparentMag":8
@@ -3323,16 +2675,8 @@
          "emissionNebula"
       ],
       "constellation":"cygnus",
-      "ra":{
-         "hour":20,
-         "minute":59,
-         "second":17.1
-      },
-      "dec":{
-         "degree":44,
-         "minute":31,
-         "second":44
-      },
+      "ra":20.98808,
+      "dec":44.52889,
       "arcLength":129,
       "arcWidth":100,
       "apparentMag":4
@@ -3361,16 +2705,8 @@
          "planetaryNebula"
       ],
       "constellation":"cygnus",
-      "ra":{
-         "hour":21,
-         "minute":0,
-         "second":32.503
-      },
-      "dec":{
-         "degree":54,
-         "minute":32,
-         "second":36.18
-      },
+      "ra":21.00903,
+      "dec":54.54338,
       "arcLength":2.5,
       "arcWidth":1.5,
       "apparentMag":12
@@ -3403,16 +2739,8 @@
          "reflectionNebula"
       ],
       "constellation":"cepheus",
-      "ra":{
-         "hour":21,
-         "minute":1,
-         "second":35.6
-      },
-      "dec":{
-         "degree":68,
-         "minute":10,
-         "second":10
-      },
+      "ra":21.02656,
+      "dec":68.16944,
       "arcLength":10,
       "arcWidth":10,
       "apparentMag":6.8
@@ -3445,16 +2773,8 @@
          "globularStarCluster"
       ],
       "constellation":"pegasus",
-      "ra":{
-         "hour":21,
-         "minute":29,
-         "second":58.33
-      },
-      "dec":{
-         "degree":12,
-         "minute":10,
-         "second":1.2
-      },
+      "ra":21.49954,
+      "dec":12.167,
       "arcLength":18,
       "arcWidth":18,
       "apparentMag":6.2
@@ -3486,16 +2806,8 @@
          "globularStarCluster"
       ],
       "constellation":"aquarius",
-      "ra":{
-         "hour":21,
-         "minute":33,
-         "second":27.02
-      },
-      "dec":{
-         "degree":0,
-         "minute":49,
-         "second":23.7
-      },
+      "ra":21.55751,
+      "dec":0.82325,
       "arcLength":17,
       "arcWidth":17,
       "apparentMag":6.5
@@ -3524,16 +2836,8 @@
          "emissionNebula"
       ],
       "constellation":"cepheus",
-      "ra":{
-         "hour":21,
-         "minute":38,
-         "second":58.75
-      },
-      "dec":{
-         "degree":57,
-         "minute":29,
-         "second":39.9
-      },
+      "ra":21.64965,
+      "dec":57.49442,
       "arcLength":90,
       "arcWidth":90,
       "apparentMag":3.5
@@ -3571,16 +2875,8 @@
          "reflectionNebula"
       ],
       "constellation":"cygnus",
-      "ra":{
-         "hour":21,
-         "minute":53,
-         "second":28.7
-      },
-      "dec":{
-         "degree":47,
-         "minute":16,
-         "second":1
-      },
+      "ra":21.89131,
+      "dec":47.26694,
       "arcLength":12,
       "arcWidth":12,
       "apparentMag":7.2
@@ -3610,16 +2906,8 @@
          "darkNebula"
       ],
       "constellation":"cepheus",
-      "ra":{
-         "hour":22,
-         "minute":13,
-         "second":36
-      },
-      "dec":{
-         "degree":-20,
-         "minute":48,
-         "second":0
-      },
+      "ra":22.22667,
+      "dec":-20.8,
       "arcLength":12,
       "arcWidth":6,
       "apparentMag":8.8
@@ -3652,16 +2940,8 @@
          "planetaryNebula"
       ],
       "constellation":"aquarius",
-      "ra":{
-         "hour":22,
-         "minute":29,
-         "second":38.55
-      },
-      "dec":{
-         "degree":-20,
-         "minute":50,
-         "second":13.6
-      },
+      "ra":22.49404,
+      "dec":-20.83711,
       "arcLength":18,
       "arcWidth":18,
       "apparentMag":7.6
@@ -3686,16 +2966,8 @@
          "galaxyGroup"
       ],
       "constellation":"pegasus",
-      "ra":{
-         "hour":22,
-         "minute":35,
-         "second":57.5
-      },
-      "dec":{
-         "degree":33,
-         "minute":57,
-         "second":36
-      },
+      "ra":22.59931,
+      "dec":33.96,
       "arcLength":4,
       "arcWidth":3,
       "apparentMag":12
@@ -3724,16 +2996,8 @@
          "galaxyGroup"
       ],
       "constellation":"pegasus",
-      "ra":{
-         "hour":22,
-         "minute":37,
-         "second":0
-      },
-      "dec":{
-         "degree":34,
-         "minute":25,
-         "second":0
-      },
+      "ra":22.61667,
+      "dec":34.41667,
       "arcLength":10,
       "arcWidth":10,
       "apparentMag":9.48
@@ -3763,16 +3027,8 @@
          "openStarCluster"
       ],
       "constellation":"cepheus",
-      "ra":{
-         "hour":22,
-         "minute":47,
-         "second":21
-      },
-      "dec":{
-         "degree":58,
-         "minute":7,
-         "second":54
-      },
+      "ra":22.78917,
+      "dec":58.13167,
       "arcLength":20,
       "arcWidth":20,
       "apparentMag":7.2
@@ -3807,16 +3063,8 @@
          "darkNebula"
       ],
       "constellation":"cepheus",
-      "ra":{
-         "hour":22,
-         "minute":57,
-         "second":17.14
-      },
-      "dec":{
-         "degree":62,
-         "minute":28,
-         "second":33.4
-      },
+      "ra":22.95476,
+      "dec":62.47594,
       "arcLength":50,
       "arcWidth":30,
       "apparentMag":7.7
@@ -3852,16 +3100,8 @@
          "emissionNebula"
       ],
       "constellation":"cassiopeia",
-      "ra":{
-         "hour":23,
-         "minute":20,
-         "second":48.3
-      },
-      "dec":{
-         "degree":61,
-         "minute":12,
-         "second":6
-      },
+      "ra":23.34675,
+      "dec":61.20167,
       "arcLength":15,
       "arcWidth":8,
       "apparentMag":10
@@ -3894,16 +3134,8 @@
          "openStarCluster"
       ],
       "constellation":"cassiopeia",
-      "ra":{
-         "hour":23,
-         "minute":24,
-         "second":48
-      },
-      "dec":{
-         "degree":61,
-         "minute":35,
-         "second":36
-      },
+      "ra":23.41333,
+      "dec":61.59333,
       "arcLength":16,
       "arcWidth":16,
       "apparentMag":7.3
@@ -3935,16 +3167,8 @@
          "planetaryNebula"
       ],
       "constellation":"andromeda",
-      "ra":{
-         "hour":23,
-         "minute":25,
-         "second":54
-      },
-      "dec":{
-         "degree":42,
-         "minute":32,
-         "second":6
-      },
+      "ra":23.43167,
+      "dec":42.535,
       "arcLength":0.6,
       "arcWidth":0.6,
       "apparentMag":8.6
