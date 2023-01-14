@@ -21,14 +21,14 @@ struct DetailView: View {
                     
                     // Target Image
                     VStack {
-                        NavigationLink(destination: ImageViewer(image: target.image)) {
-                            Image(target.image)
+                        NavigationLink(destination: ImageViewer(image: target.image.source.fileName)) {
+                            Image(target.image.source.fileName)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 200)
                                 .cornerRadius(12)
                         }
-                        if let credit = target.imageCopyright {
+                        if let credit = target.image.copyright {
                             Text("Image Copyright: " + credit)
                                 .fontWeight(.light)
                                 .lineLimit(1)

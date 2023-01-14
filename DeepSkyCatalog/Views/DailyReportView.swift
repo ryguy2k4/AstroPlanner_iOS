@@ -112,7 +112,7 @@ private struct TopFiveView: View {
                 ForEach(report.topFive, id: \.id) { target in
                     NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
                         ZStack {
-                            Image(target.image)
+                            Image(target.image.source.fileName)
                                 .resizable()
                                 .cornerRadius(12)
                                 .aspectRatio(contentMode: .fit)

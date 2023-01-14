@@ -30,8 +30,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
     let designation: [Designation]
     
     // image
-    let image: String
-    let imageCopyright: String?
+    let image: TargetImage
     
     // description
     let description: String
@@ -45,6 +44,25 @@ struct DeepSkyTarget: Identifiable, Hashable {
     let arcLength: Double
     let arcWidth: Double
     let apparentMag: Double
+    
+    struct TargetImage: Hashable, Codable {
+        enum ImageSource: Hashable, Codable {
+            case apod(id: String)
+            case local(fileName: String)
+            
+            var fileName: String {
+                switch self {
+                case .apod(id: let id):
+                    return "apod_" + id
+                case .local(fileName: let filename):
+                    return filename
+                }
+            }
+        }
+        
+        let source: ImageSource
+        let copyright: String?
+    }
     
     /**
      Gets the altitude of the target.
@@ -241,8 +259,7 @@ extension DeepSkyTarget: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode([String].self, forKey: .name)
         self.designation = try container.decode([Designation].self, forKey: .designation)
-        self.image = try container.decode(String.self, forKey: .image)
-        self.imageCopyright = try container.decodeIfPresent(String.self, forKey: .imageCopyright)
+        self.image = try container.decode(TargetImage.self, forKey: .image)
         self.description = try container.decode(String.self, forKey: .description)
         self.descriptionURL = try container.decode(URL.self, forKey: .descriptionURL)
         self.type = try container.decode([DSOType].self, forKey: .type)
