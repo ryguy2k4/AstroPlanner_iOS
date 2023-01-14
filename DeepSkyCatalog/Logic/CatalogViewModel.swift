@@ -98,16 +98,6 @@ final class CatalogViewModel: ObservableObject {
             targets.filterByMeridian(minMerScore, location: location, date: date, sunData: sunData)
         }
         
-        // if currentSort is catalog AND catalog selection IS NOT EQUAL to 1
-        // safeguard against sorting by catalog with more than 1 catalog selected
-        if self.catalogSelection.count != 1 {
-            if case .catalog = currentSort {
-                currentSort = .ra
-                refreshList(sunData: sunData)
-            }
-        }
-        
-        
         // sort the list
         switch currentSort {
         case .visibility:
@@ -122,8 +112,6 @@ final class CatalogViewModel: ObservableObject {
             targets.sortByMagnitude()
         case .size:
             targets.sortBySize()
-        case .catalog(let dSOCatalog):
-            targets.sortByCatalog(catalog: dSOCatalog)
         }
         
         if !sortDecending {

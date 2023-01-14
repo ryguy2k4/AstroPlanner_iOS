@@ -19,21 +19,7 @@ struct MessierInfo: View {
             }
             Text("The Messier catalog was created by Charles Messier. Messier was only interested in finding comets, so he compiled this list of 110 non-comet objects that frustrated him.")
                 .padding()
-            List {
-                ForEach(DeepSkyTargetList.allTargets.filteredByCatalog([.messier]).sortedByCatalog(catalog: .messier).reversed()) { target in
-                    HStack {
-                        Text("#\(target.designation.first(where: {$0.catalog == .messier})!.number)")
-                        Divider()
-                        Text(target.name.first!)
-                    }
-                }
-            }
+            CatalogList(catalog: .messier)
         }
-    }
-}
-
-struct MessierInfo_Previews: PreviewProvider {
-    static var previews: some View {
-        MessierInfo()
     }
 }

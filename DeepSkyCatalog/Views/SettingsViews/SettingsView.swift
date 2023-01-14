@@ -15,8 +15,9 @@ struct SettingsView: View {
     @State var tabSelection = 0
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form  {
+                
                 ConfigSection(header: "Settings") {
                     NavigationLink(destination: LocationSettings()) {
                         Label("Location", systemImage: "location")
@@ -28,6 +29,19 @@ struct SettingsView: View {
                         Label("Report Settings", systemImage: "doc.text")
                     }
                 }
+                
+                ConfigSection(header: "Catalogs") {
+                    NavigationLink(destination: MessierInfo()) {
+                        Label("Messier", systemImage: "m.circle")
+                    }
+                    NavigationLink(destination: CaldwellInfo()) {
+                        Label("Caldwell", systemImage: "c.circle")
+                    }
+                    NavigationLink(destination: SharplessInfo()) {
+                        Label("Sharpless", systemImage: "s.circle")
+                    }
+                }
+                
                 ConfigSection {
                     NavigationLink(destination: AboutView()) {
                         Label("About", systemImage: "info.circle")

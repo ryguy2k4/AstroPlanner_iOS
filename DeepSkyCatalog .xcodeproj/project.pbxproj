@@ -31,6 +31,9 @@
 		7186D8F2295CEEC500601467 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7186D8F1295CEEC500601467 /* JournalView.swift */; };
 		718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
+		7190D74E2972514300938E14 /* CatalogList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7190D74D2972514300938E14 /* CatalogList.swift */; };
+		7190D750297252EB00938E14 /* CaldwellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7190D74F297252EB00938E14 /* CaldwellInfo.swift */; };
+		7190D7522972538B00938E14 /* SharplessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7190D7512972538B00938E14 /* SharplessInfo.swift */; };
 		719B26D7295167A100E1165A /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B26D6295167A100E1165A /* NumberPicker.swift */; };
 		71ACF32D2964EA9A00CC83D5 /* DSOType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* DSOType.swift */; };
 		71ACF32E2964EAA000CC83D5 /* DSOCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* DSOCatalog.swift */; };
@@ -127,6 +130,9 @@
 		7186D8F1295CEEC500601467 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		718CA9A729244FD600F3F5A7 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
 		71901C7629299D5C00D95AA5 /* Constellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
+		7190D74D2972514300938E14 /* CatalogList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogList.swift; sourceTree = "<group>"; };
+		7190D74F297252EB00938E14 /* CaldwellInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaldwellInfo.swift; sourceTree = "<group>"; };
+		7190D7512972538B00938E14 /* SharplessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharplessInfo.swift; sourceTree = "<group>"; };
 		719B26D6295167A100E1165A /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		71ACF33B2964F04D00CC83D5 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		71ACF33E2964F0D800CC83D5 /* TopThreeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopThreeEntry.swift; sourceTree = "<group>"; };
@@ -251,6 +257,17 @@
 			path = "Reusable Views";
 			sourceTree = "<group>";
 		};
+		7190D74C29724E6600938E14 /* TargetCatalogs */ = {
+			isa = PBXGroup;
+			children = (
+				7190D74D2972514300938E14 /* CatalogList.swift */,
+				71BD753C2970FF0D00D7751F /* MessierInfo.swift */,
+				7190D74F297252EB00938E14 /* CaldwellInfo.swift */,
+				7190D7512972538B00938E14 /* SharplessInfo.swift */,
+			);
+			path = TargetCatalogs;
+			sourceTree = "<group>";
+		};
 		719B26D8295173CD00E1165A /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,7 +328,7 @@
 				713B49B629541216008EFC81 /* SettingsViews */,
 				7186D8F1295CEEC500601467 /* JournalView.swift */,
 				718B56AF294C349900914BDB /* Reusable Views */,
-				71BD753C2970FF0D00D7751F /* MessierInfo.swift */,
+				7190D74C29724E6600938E14 /* TargetCatalogs */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -539,7 +556,9 @@
 				710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */,
 				71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */,
 				71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */,
+				7190D750297252EB00938E14 /* CaldwellInfo.swift in Sources */,
 				71BCF9822921EF8B008C7614 /* Date.swift in Sources */,
+				7190D74E2972514300938E14 /* CatalogList.swift in Sources */,
 				7109A3F5292EBA7A00980527 /* RawMoonData.swift in Sources */,
 				71D77FA82921F99200709252 /* Double.swift in Sources */,
 				71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */,
@@ -560,6 +579,7 @@
 				71E96D68292831AA00E019F9 /* CatalogViewModel.swift in Sources */,
 				71B14F692958D905003C11BD /* DateSelector.swift in Sources */,
 				71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */,
+				7190D7522972538B00938E14 /* SharplessInfo.swift in Sources */,
 				719B26D7295167A100E1165A /* NumberPicker.swift in Sources */,
 				7133FC67294C14560080AE0C /* View.swift in Sources */,
 				71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */,

@@ -17,7 +17,6 @@ enum SortMethod: CaseIterable, Hashable, Identifiable {
     case ra
     case magnitude
     case size
-    case catalog(DSOCatalog)
     
     var info: (name: String, icon: String) {
         switch self {
@@ -33,8 +32,6 @@ enum SortMethod: CaseIterable, Hashable, Identifiable {
             return ("Magnitude", "sun.min.fill")
         case .size:
             return ("Size", "arrow.up.left.and.arrow.down.right")
-        case .catalog:
-            return ("Catalog", "list.star")
         }
     }
 }

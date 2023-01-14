@@ -21,9 +21,6 @@ struct EditAllFiltersView: View {
                         ForEach(SortMethod.allCases) { method in
                             Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
                         }
-                        if viewModel.catalogSelection.count == 1 {
-                            Label("Sort by Catalog", systemImage: "list.star").tag(SortMethod.catalog(viewModel.catalogSelection.first!))
-                        }
                     }
                     .onChange(of: viewModel.currentSort) { _ in
                         viewModel.refreshList(sunData: data.sun)
