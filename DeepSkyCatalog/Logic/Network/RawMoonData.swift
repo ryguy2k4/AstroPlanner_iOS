@@ -28,35 +28,32 @@ struct RawMoonData: Decodable {
 }
 
 struct MoonData {
-    
-    static let dummy: MoonData = MoonData()
-    
     let phase: String
     let illuminated: Double
     let moonInterval: DateInterval
     
-    init(from rawMoonData: RawMoonData, and rawMoonDataTomorrow: RawMoonData, on date: Date, sun: SunData) {
-        self.phase = rawMoonData.properties.data.curphase
-        self.illuminated = (Double(rawMoonData.properties.data.fracillum.replacingOccurrences(of: "%", with: "")) ?? .nan)/100
+    init(dataToday: RawMoonData, dataTomorrow: RawMoonData, on date: Date, sun: SunData) {
+        self.phase = dataToday.properties.data.curphase
+        self.illuminated = (Double(dataToday.properties.data.fracillum.replacingOccurrences(of: "%", with: "")) ?? .nan)/100
         
         
         var riseToday: Date? = nil
-        for item in rawMoonData.properties.data.moondata where item.phen == "Rise" {
+        for item in dataToday.properties.data.moondata where item.phen == "Rise" {
             riseToday = item.time.formatStringToDate(with: "HH:mm", on: date)
         }
 
         var setToday: Date? = nil
-        for item in rawMoonData.properties.data.moondata where item.phen == "Set" {
+        for item in dataToday.properties.data.moondata where item.phen == "Set" {
             setToday = item.time.formatStringToDate(with: "HH:mm", on: date)
         }
         
         var riseTomorrow: Date? = nil
-        for item in rawMoonDataTomorrow.properties.data.moondata where item.phen == "Rise" {
+        for item in dataTomorrow.properties.data.moondata where item.phen == "Rise" {
             riseTomorrow = item.time.formatStringToDate(with: "HH:mm", on: date.addingTimeInterval(86400))
         }
 
         var setTomorrow: Date? = nil
-        for item in rawMoonDataTomorrow.properties.data.moondata where item.phen == "Set" {
+        for item in dataTomorrow.properties.data.moondata where item.phen == "Set" {
             setTomorrow = item.time.formatStringToDate(with: "HH:mm", on: date.addingTimeInterval(86400))
         }
         
@@ -75,7 +72,11 @@ struct MoonData {
             moonInterval = DateInterval(start: riseToday!, end: setToday!)
         }
     }
-    
+}
+
+extension MoonData {
+    static let dummy: MoonData = MoonData()
+
     private init() {
         self.illuminated = 0
         self.moonInterval = DateInterval(start: Date.today, end: Date.tomorrow)

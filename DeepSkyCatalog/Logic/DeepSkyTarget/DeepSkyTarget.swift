@@ -207,5 +207,50 @@ struct DeepSkyTarget: Identifiable, Hashable {
             return 1 - interval
         }
     }
+}
+
+extension DeepSkyTarget: Codable {
     
+    struct RANum: Codable {
+        let hour: Int
+        let minute: Int
+        let second: Double
+        var decimal: Double {
+            get {
+                return (Double(hour) + (Double(minute) / 60) + (second / 3600))*15
+            }
+        }
+    }
+
+    struct DecNum: Codable {
+        let degree: Int
+        let minute: Int
+        let second: Double
+        var decimal: Double {
+            get {
+                if (degree > 0) {
+                    return Double(degree) + (Double(minute) / 60) + (second / 3600)
+                } else {
+                    return Double(degree) - (Double(minute) / 60) - (second / 3600)
+                }
+            }
+        }
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode([String].self, forKey: .name)
+        self.designation = try container.decode([Designation].self, forKey: .designation)
+        self.image = try container.decode(String.self, forKey: .image)
+        self.imageCopyright = try container.decodeIfPresent(String.self, forKey: .imageCopyright)
+        self.description = try container.decode(String.self, forKey: .description)
+        self.descriptionURL = try container.decode(URL.self, forKey: .descriptionURL)
+        self.type = try container.decode([DSOType].self, forKey: .type)
+        self.constellation = try container.decode(Constellation.self, forKey: .constellation)
+        self.ra = try container.decode(RANum.self, forKey: .ra).decimal
+        self.dec = try container.decode(DecNum.self, forKey: .dec).decimal
+        self.arcLength = try container.decode(Double.self, forKey: .arcLength)
+        self.arcWidth = try container.decode(Double.self, forKey: .arcWidth)
+        self.apparentMag = try container.decode(Double.self, forKey: .apparentMag)
+    }
 }

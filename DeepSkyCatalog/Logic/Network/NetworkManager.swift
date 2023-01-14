@@ -32,8 +32,8 @@ final class NetworkManager: ObservableObject {
             async let decodedSunDataTomorrow: RawSunData = try fetchTask(
                 from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&formatted=0")
             
-            let sunToday = SunData(from: try await decodedSunDataToday, and: try await decodedSunDataTomorrow)
-            let moonToday = MoonData(from: try await decodedMoonDataToday, and: try await decodedMoonDataTomorrow, on: date, sun: sunToday)
+            let sunToday = SunData(dataToday: try await decodedSunDataToday, dataTomorrow: try await decodedSunDataTomorrow)
+            let moonToday = MoonData(dataToday: try await decodedMoonDataToday, dataTomorrow: try await decodedMoonDataTomorrow, on: date, sun: sunToday)
             self.data[.init(date: date, location: location)] = (sunToday, moonToday)
             print("API Data Fetched")
         } catch FetchError.unableToFetch {
