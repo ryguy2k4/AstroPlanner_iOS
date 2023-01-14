@@ -77,7 +77,11 @@ struct DetailView: View {
                             }
                         } else {
                             VStack {
-                                Text("Target Never Rises or Target Never Sets")
+                                if target.getAltitude(location: location, time: date) > reportSettings.limitingAltitude {
+                                    Text("Target Never Sets")
+                                } else {
+                                    Text("Target Never Rises")
+                                }
                                 EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: data.sun), image: "arrow.right.and.line.vertical.and.arrow.left")
                             }
                         }
