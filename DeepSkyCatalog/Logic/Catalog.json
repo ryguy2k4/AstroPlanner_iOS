@@ -27,7 +27,7 @@
          "galaxy"
       ],
       "constellation":"andromeda",
-      "ra":0.71231,
+      "ra":10.68465,
       "dec":41.26917,
       "arcLength":178,
       "arcWidth":63,
@@ -60,7 +60,7 @@
          "planetaryNebula"
       ],
       "constellation":"cetus",
-      "ra":0.78426,
+      "ra":11.7639,
       "dec":-11.87193,
       "arcLength":5,
       "arcWidth":4,
@@ -95,7 +95,7 @@
          "galaxy"
       ],
       "constellation":"sculptor",
-      "ra":0.7925,
+      "ra":11.8875,
       "dec":-25.28833,
       "arcLength":25,
       "arcWidth":7,
@@ -125,7 +125,7 @@
          "openStarCluster"
       ],
       "constellation":"cassiopeia",
-      "ra":1.32572,
+      "ra":19.8858,
       "dec":58.29083,
       "arcLength":30,
       "arcWidth":20,
@@ -159,7 +159,7 @@
          "galaxy"
       ],
       "constellation":"triangulum",
-      "ra":1.56389,
+      "ra":23.45835,
       "dec":30.66019,
       "arcLength":63,
       "arcWidth":39,
@@ -193,7 +193,7 @@
          "galaxy"
       ],
       "constellation":"pisces",
-      "ra":1.61161,
+      "ra":24.17415,
       "dec":15.78361,
       "arcLength":10,
       "arcWidth":10,
@@ -229,7 +229,7 @@
          "planetaryNebula"
       ],
       "constellation":"perseus",
-      "ra":1.70667,
+      "ra":25.60005,
       "dec":51.57528,
       "arcLength":4,
       "arcWidth":3,
@@ -259,7 +259,7 @@
          "galaxy"
       ],
       "constellation":"aries",
-      "ra":1.98878,
+      "ra":29.8317,
       "dec":19.0075,
       "arcLength":7,
       "arcWidth":5,
@@ -293,7 +293,7 @@
          "openStarCluster"
       ],
       "constellation":"perseus",
-      "ra":2.33333,
+      "ra":34.99995,
       "dec":57.13333,
       "arcLength":60,
       "arcWidth":30,
@@ -328,7 +328,7 @@
          "galaxy"
       ],
       "constellation":"andromeda",
-      "ra":2.37594,
+      "ra":35.6391,
       "dec":42.34917,
       "arcLength":14,
       "arcWidth":3,
@@ -350,7 +350,7 @@
          "galaxy"
       ],
       "constellation":"triangulum",
-      "ra":2.45553,
+      "ra":36.83295,
       "dec":33.57888,
       "arcLength":11,
       "arcWidth":6,
@@ -389,7 +389,7 @@
          "emissionNebula"
       ],
       "constellation":"cassiopeia",
-      "ra":2.55611,
+      "ra":38.34165,
       "dec":61.44333,
       "arcLength":60,
       "arcWidth":60,
@@ -422,7 +422,7 @@
          "galaxy"
       ],
       "constellation":"cetus",
-      "ra":2.71133,
+      "ra":40.66995,
       "dec":-0.01329,
       "arcLength":7,
       "arcWidth":6,
@@ -456,7 +456,7 @@
          "galaxy"
       ],
       "constellation":"camelopardalis",
-      "ra":3.78014,
+      "ra":56.702099999999994,
       "dec":68.09611,
       "arcLength":7,
       "arcWidth":6,
@@ -487,7 +487,7 @@
          "openStarCluster"
       ],
       "constellation":"taurus",
-      "ra":3.79,
+      "ra":56.85,
       "dec":24.11667,
       "arcLength":110,
       "arcWidth":110,
@@ -521,7 +521,7 @@
          "emissionNebula"
       ],
       "constellation":"perseus",
-      "ra":4.055,
+      "ra":60.824999999999996,
       "dec":36.42167,
       "arcLength":145,
       "arcWidth":40,
@@ -551,7 +551,7 @@
          "reflectionNebula"
       ],
       "constellation":"eridanus",
-      "ra":5.03333,
+      "ra":75.49995,
       "dec":-7.9,
       "arcLength":180,
       "arcWidth":60,
@@ -582,7 +582,7 @@
          "openStarCluster"
       ],
       "constellation":"auriga",
-      "ra":5.37889,
+      "ra":80.68335,
       "dec":33.40111,
       "arcLength":40,
       "arcWidth":30,
@@ -612,7 +612,7 @@
          "openStarCluster"
       ],
       "constellation":"auriga",
-      "ra":5.46833,
+      "ra":82.02495,
       "dec":35.325,
       "arcLength":6,
       "arcWidth":6,
@@ -646,7 +646,7 @@
          "openStarCluster"
       ],
       "constellation":"auriga",
-      "ra":5.47861,
+      "ra":82.17914999999999,
       "dec":35.855,
       "arcLength":15,
       "arcWidth":15,
@@ -679,7 +679,7 @@
          "supernovaRemnant"
       ],
       "constellation":"taurus",
-      "ra":5.57554,
+      "ra":83.6331,
       "dec":22.0145,
       "arcLength":6,
       "arcWidth":4,
@@ -708,7 +708,7 @@
          "reflectionNebula"
       ],
       "constellation":"orion",
-      "ra":5.58783,
+      "ra":83.81745000000001,
       "dec":-4.78528,
       "arcLength":20,
       "arcWidth":15,
@@ -743,7 +743,7 @@
          "reflectionNebula"
       ],
       "constellation":"orion",
-      "ra":5.58814,
+      "ra":83.8221,
       "dec":-5.39111,
       "arcLength":66,
       "arcWidth":60,
@@ -777,7 +777,7 @@
          "darkNebula"
       ],
       "constellation":"orion",
-      "ra":5.68306,
+      "ra":85.2459,
       "dec":-2.45833,
       "arcLength":60,
       "arcWidth":40,
@@ -811,7 +811,7 @@
          "emissionNebula"
       ],
       "constellation":"orion",
-      "ra":5.69833,
+      "ra":85.47495,
       "dec":-1.85,
       "arcLength":30,
       "arcWidth":30,
@@ -845,7 +845,7 @@
          "reflectionNebula"
       ],
       "constellation":"orion",
-      "ra":5.77964,
+      "ra":86.6946,
       "dec":0.01389,
       "arcLength":8,
       "arcWidth":6,
@@ -871,7 +871,7 @@
          "openStarCluster"
       ],
       "constellation":"auriga",
-      "ra":5.87167,
+      "ra":88.07505,
       "dec":32.55056,
       "arcLength":15,
       "arcWidth":15,
@@ -901,7 +901,7 @@
          "openStarCluster"
       ],
       "constellation":"gemini",
-      "ra":6.12361,
+      "ra":91.85415,
       "dec":24.09667,
       "arcLength":5,
       "arcWidth":5,
@@ -935,7 +935,7 @@
          "openStarCluster"
       ],
       "constellation":"gemini",
-      "ra":6.14833,
+      "ra":92.22494999999999,
       "dec":24.33333,
       "arcLength":25,
       "arcWidth":25,
@@ -965,7 +965,7 @@
          "emissionNebula"
       ],
       "constellation":"orion",
-      "ra":6.16167,
+      "ra":92.42505,
       "dec":20.5,
       "arcLength":45,
       "arcWidth":35,
@@ -999,7 +999,7 @@
          "emissionNebula"
       ],
       "constellation":"monoceros",
-      "ra":6.5625,
+      "ra":98.4375,
       "dec":4.99833,
       "arcLength":80,
       "arcWidth":60,
@@ -1032,7 +1032,7 @@
          "reflectionNebula"
       ],
       "constellation":"monoceros",
-      "ra":6.68333,
+      "ra":100.24995,
       "dec":9.88333,
       "arcLength":20,
       "arcWidth":20,
@@ -1062,7 +1062,7 @@
          "planetaryNebula"
       ],
       "constellation":"gemini",
-      "ra":7.48408,
+      "ra":112.26119999999999,
       "dec":13.24678,
       "arcLength":12,
       "arcWidth":12,
@@ -1093,7 +1093,7 @@
          "planetaryNebula"
       ],
       "constellation":"gemini",
-      "ra":7.48632,
+      "ra":112.2948,
       "dec":20.9118,
       "arcLength":0.7,
       "arcWidth":0.7,
@@ -1127,7 +1127,7 @@
          "openStarCluster"
       ],
       "constellation":"puppis",
-      "ra":7.61,
+      "ra":114.15,
       "dec":-14.5,
       "arcLength":25,
       "arcWidth":25,
@@ -1161,7 +1161,7 @@
          "galaxy"
       ],
       "constellation":"camelopardalis",
-      "ra":7.61428,
+      "ra":114.2142,
       "dec":65.6025,
       "arcLength":23,
       "arcWidth":12,
@@ -1196,7 +1196,7 @@
          "planetaryNebula"
       ],
       "constellation":"puppis",
-      "ra":7.69611,
+      "ra":115.44165,
       "dec":-14.81,
       "arcLength":20,
       "arcWidth":20,
@@ -1231,7 +1231,7 @@
          "openStarCluster"
       ],
       "constellation":"cancer",
-      "ra":8.67333,
+      "ra":130.09995,
       "dec":19.98333,
       "arcLength":95,
       "arcWidth":95,
@@ -1267,7 +1267,7 @@
          "openStarCluster"
       ],
       "constellation":"cancer",
-      "ra":8.855,
+      "ra":132.82500000000002,
       "dec":11.81667,
       "arcLength":30,
       "arcWidth":30,
@@ -1297,7 +1297,7 @@
          "galaxy"
       ],
       "constellation":"leo",
-      "ra":9.53614,
+      "ra":143.0421,
       "dec":21.50083,
       "arcLength":13,
       "arcWidth":7,
@@ -1331,7 +1331,7 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":9.92589,
+      "ra":148.88835,
       "dec":69.06528,
       "arcLength":26,
       "arcWidth":14,
@@ -1365,7 +1365,7 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":9.93117,
+      "ra":148.96755,
       "dec":69.67972,
       "arcLength":11,
       "arcWidth":5,
@@ -1398,7 +1398,7 @@
          "galaxy"
       ],
       "constellation":"leo",
-      "ra":10.73269,
+      "ra":160.99035,
       "dec":11.70389,
       "arcLength":7,
       "arcWidth":5,
@@ -1432,7 +1432,7 @@
          "galaxy"
       ],
       "constellation":"leo",
-      "ra":10.77936,
+      "ra":161.6904,
       "dec":11.82,
       "arcLength":7,
       "arcWidth":5,
@@ -1466,7 +1466,7 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":11.19194,
+      "ra":167.87910000000002,
       "dec":55.67417,
       "arcLength":8,
       "arcWidth":3,
@@ -1500,7 +1500,7 @@
          "planetaryNebula"
       ],
       "constellation":"ursaMajor",
-      "ra":11.24659,
+      "ra":168.69885,
       "dec":55.01903,
       "arcLength":3,
       "arcWidth":3,
@@ -1530,7 +1530,7 @@
          "galaxy"
       ],
       "constellation":"leo",
-      "ra":11.33806,
+      "ra":170.0709,
       "dec":13.58972,
       "arcLength":14,
       "arcWidth":3,
@@ -1560,7 +1560,7 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":11.54304,
+      "ra":173.1456,
       "dec":53.06783,
       "arcLength":22,
       "arcWidth":15,
@@ -1594,7 +1594,7 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":11.96,
+      "ra":179.4,
       "dec":53.37444,
       "arcLength":8,
       "arcWidth":5,
@@ -1628,7 +1628,7 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":12.31597,
+      "ra":184.73955,
       "dec":47.30389,
       "arcLength":18,
       "arcWidth":8,
@@ -1661,7 +1661,7 @@
          "galaxy"
       ],
       "constellation":"comaBerenices",
-      "ra":12.38192,
+      "ra":185.72879999999998,
       "dec":15.8225,
       "arcLength":7,
       "arcWidth":6,
@@ -1695,7 +1695,7 @@
          "galaxy"
       ],
       "constellation":"comaBerenices",
-      "ra":12.60578,
+      "ra":189.08669999999998,
       "dec":25.98778,
       "arcLength":16,
       "arcWidth":3,
@@ -1728,7 +1728,7 @@
          "galaxy"
       ],
       "constellation":"virgo",
-      "ra":12.6665,
+      "ra":189.9975,
       "dec":-11.62306,
       "arcLength":9,
       "arcWidth":4,
@@ -1762,7 +1762,7 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":12.70222,
+      "ra":190.5333,
       "dec":32.54139,
       "arcLength":15,
       "arcWidth":3,
@@ -1793,7 +1793,7 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":12.73269,
+      "ra":190.99035,
       "dec":32.16806,
       "arcLength":15,
       "arcWidth":3,
@@ -1823,7 +1823,7 @@
          "galaxy"
       ],
       "constellation":"comaBerenices",
-      "ra":12.84071,
+      "ra":192.61065,
       "dec":25.50076,
       "arcLength":11,
       "arcWidth":8,
@@ -1857,7 +1857,7 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":12.84808,
+      "ra":192.72119999999998,
       "dec":41.12056,
       "arcLength":11,
       "arcWidth":9,
@@ -1891,7 +1891,7 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":13.26369,
+      "ra":198.95535,
       "dec":42.02937,
       "arcLength":12,
       "arcWidth":8,
@@ -1925,7 +1925,7 @@
          "galaxy"
       ],
       "constellation":"canesVenatici",
-      "ra":13.49797,
+      "ra":202.46955,
       "dec":47.19528,
       "arcLength":11,
       "arcWidth":8,
@@ -1959,7 +1959,7 @@
          "globularStarCluster"
       ],
       "constellation":"canesVenatici",
-      "ra":13.70323,
+      "ra":205.54845,
       "dec":28.37728,
       "arcLength":18,
       "arcWidth":18,
@@ -1993,7 +1993,7 @@
          "galaxy"
       ],
       "constellation":"ursaMajor",
-      "ra":14.0535,
+      "ra":210.8025,
       "dec":54.34917,
       "arcLength":29,
       "arcWidth":27,
@@ -2023,7 +2023,7 @@
          "galaxy"
       ],
       "constellation":"draco",
-      "ra":15.26494,
+      "ra":228.9741,
       "dec":56.32889,
       "arcLength":12,
       "arcWidth":2,
@@ -2057,7 +2057,7 @@
          "globularStarCluster"
       ],
       "constellation":"serpens",
-      "ra":15.30923,
+      "ra":229.63844999999998,
       "dec":2.08103,
       "arcLength":23,
       "arcWidth":23,
@@ -2091,7 +2091,7 @@
          "globularStarCluster"
       ],
       "constellation":"hercules",
-      "ra":16.69479,
+      "ra":250.42185,
       "dec":36.45986,
       "arcLength":29,
       "arcWidth":20,
@@ -2117,7 +2117,7 @@
          "globularStarCluster"
       ],
       "constellation":"ophiuchus",
-      "ra":16.78727,
+      "ra":251.80904999999998,
       "dec":-1.94853,
       "arcLength":16,
       "arcWidth":16,
@@ -2150,7 +2150,7 @@
          "planetaryNebula"
       ],
       "constellation":"draco",
-      "ra":17.97595,
+      "ra":269.63925,
       "dec":66.6332,
       "arcLength":5.8,
       "arcWidth":5.8,
@@ -2184,7 +2184,7 @@
          "emissionNebula"
       ],
       "constellation":"sagittarius",
-      "ra":18.03972,
+      "ra":270.5958,
       "dec":-23.03,
       "arcLength":29,
       "arcWidth":27,
@@ -2218,7 +2218,7 @@
          "emissionNebula"
       ],
       "constellation":"sagittarius",
-      "ra":18.06028,
+      "ra":270.9042,
       "dec":-24.38667,
       "arcLength":90,
       "arcWidth":40,
@@ -2252,7 +2252,7 @@
          "emissionNebula"
       ],
       "constellation":"serpens",
-      "ra":18.31333,
+      "ra":274.69995,
       "dec":-13.81667,
       "arcLength":35,
       "arcWidth":28,
@@ -2287,7 +2287,7 @@
          "emissionNebula"
       ],
       "constellation":"sagittarius",
-      "ra":18.34056,
+      "ra":275.1084,
       "dec":-16.17667,
       "arcLength":46,
       "arcWidth":37,
@@ -2321,7 +2321,7 @@
          "globularStarCluster"
       ],
       "constellation":"sagittarius",
-      "ra":18.60665,
+      "ra":279.09975,
       "dec":-23.90475,
       "arcLength":32,
       "arcWidth":32,
@@ -2355,7 +2355,7 @@
          "openStarCluster"
       ],
       "constellation":"scutum",
-      "ra":18.85014,
+      "ra":282.7521,
       "dec":-6.27,
       "arcLength":11,
       "arcWidth":11,
@@ -2388,7 +2388,7 @@
          "planetaryNebula"
       ],
       "constellation":"lyra",
-      "ra":18.89308,
+      "ra":283.3962,
       "dec":33.02918,
       "arcLength":3,
       "arcWidth":3,
@@ -2410,7 +2410,7 @@
          "planetaryNebula"
       ],
       "constellation":"aquila",
-      "ra":19.3078,
+      "ra":289.617,
       "dec":6.53869,
       "arcLength":1.8,
       "arcWidth":1.8,
@@ -2448,7 +2448,7 @@
          "galaxy"
       ],
       "constellation":"sagittarius",
-      "ra":19.74906,
+      "ra":296.2359,
       "dec":-14.78917,
       "arcLength":15,
       "arcWidth":14,
@@ -2483,7 +2483,7 @@
          "planetaryNebula"
       ],
       "constellation":"vulpecula",
-      "ra":19.99343,
+      "ra":299.90145,
       "dec":22.72114,
       "arcLength":7,
       "arcWidth":7,
@@ -2517,7 +2517,7 @@
          "emissionNebula"
       ],
       "constellation":"cygnus",
-      "ra":20.20194,
+      "ra":303.0291,
       "dec":38.355,
       "arcLength":29,
       "arcWidth":10,
@@ -2547,7 +2547,7 @@
          "openStarCluster"
       ],
       "constellation":"cepheus",
-      "ra":20.525,
+      "ra":307.875,
       "dec":60.66167,
       "arcLength":8,
       "arcWidth":7,
@@ -2576,7 +2576,7 @@
          "galaxy"
       ],
       "constellation":"cygnus",
-      "ra":20.58119,
+      "ra":308.71785,
       "dec":60.15389,
       "arcLength":11,
       "arcWidth":10,
@@ -2611,7 +2611,7 @@
          "supernovaRemnant"
       ],
       "constellation":"cygnus",
-      "ra":20.76056,
+      "ra":311.40840000000003,
       "dec":30.70833,
       "arcLength":180,
       "arcWidth":180,
@@ -2641,7 +2641,7 @@
          "emissionNebula"
       ],
       "constellation":"cygnus",
-      "ra":20.84667,
+      "ra":312.70005,
       "dec":44.35,
       "arcLength":80,
       "arcWidth":60,
@@ -2675,7 +2675,7 @@
          "emissionNebula"
       ],
       "constellation":"cygnus",
-      "ra":20.98808,
+      "ra":314.8212,
       "dec":44.52889,
       "arcLength":129,
       "arcWidth":100,
@@ -2705,7 +2705,7 @@
          "planetaryNebula"
       ],
       "constellation":"cygnus",
-      "ra":21.00903,
+      "ra":315.13545,
       "dec":54.54338,
       "arcLength":2.5,
       "arcWidth":1.5,
@@ -2739,7 +2739,7 @@
          "reflectionNebula"
       ],
       "constellation":"cepheus",
-      "ra":21.02656,
+      "ra":315.3984,
       "dec":68.16944,
       "arcLength":10,
       "arcWidth":10,
@@ -2773,7 +2773,7 @@
          "globularStarCluster"
       ],
       "constellation":"pegasus",
-      "ra":21.49954,
+      "ra":322.49309999999997,
       "dec":12.167,
       "arcLength":18,
       "arcWidth":18,
@@ -2806,7 +2806,7 @@
          "globularStarCluster"
       ],
       "constellation":"aquarius",
-      "ra":21.55751,
+      "ra":323.36265000000003,
       "dec":0.82325,
       "arcLength":17,
       "arcWidth":17,
@@ -2836,7 +2836,7 @@
          "emissionNebula"
       ],
       "constellation":"cepheus",
-      "ra":21.64965,
+      "ra":324.74475,
       "dec":57.49442,
       "arcLength":90,
       "arcWidth":90,
@@ -2875,7 +2875,7 @@
          "reflectionNebula"
       ],
       "constellation":"cygnus",
-      "ra":21.89131,
+      "ra":328.36965000000004,
       "dec":47.26694,
       "arcLength":12,
       "arcWidth":12,
@@ -2906,7 +2906,7 @@
          "darkNebula"
       ],
       "constellation":"cepheus",
-      "ra":22.22667,
+      "ra":333.40004999999996,
       "dec":-20.8,
       "arcLength":12,
       "arcWidth":6,
@@ -2940,7 +2940,7 @@
          "planetaryNebula"
       ],
       "constellation":"aquarius",
-      "ra":22.49404,
+      "ra":337.4106,
       "dec":-20.83711,
       "arcLength":18,
       "arcWidth":18,
@@ -2966,7 +2966,7 @@
          "galaxyGroup"
       ],
       "constellation":"pegasus",
-      "ra":22.59931,
+      "ra":338.98965,
       "dec":33.96,
       "arcLength":4,
       "arcWidth":3,
@@ -2996,7 +2996,7 @@
          "galaxyGroup"
       ],
       "constellation":"pegasus",
-      "ra":22.61667,
+      "ra":339.25005,
       "dec":34.41667,
       "arcLength":10,
       "arcWidth":10,
@@ -3027,7 +3027,7 @@
          "openStarCluster"
       ],
       "constellation":"cepheus",
-      "ra":22.78917,
+      "ra":341.83754999999996,
       "dec":58.13167,
       "arcLength":20,
       "arcWidth":20,
@@ -3063,7 +3063,7 @@
          "darkNebula"
       ],
       "constellation":"cepheus",
-      "ra":22.95476,
+      "ra":344.3214,
       "dec":62.47594,
       "arcLength":50,
       "arcWidth":30,
@@ -3100,7 +3100,7 @@
          "emissionNebula"
       ],
       "constellation":"cassiopeia",
-      "ra":23.34675,
+      "ra":350.20125,
       "dec":61.20167,
       "arcLength":15,
       "arcWidth":8,
@@ -3134,7 +3134,7 @@
          "openStarCluster"
       ],
       "constellation":"cassiopeia",
-      "ra":23.41333,
+      "ra":351.19995,
       "dec":61.59333,
       "arcLength":16,
       "arcWidth":16,
@@ -3167,7 +3167,7 @@
          "planetaryNebula"
       ],
       "constellation":"andromeda",
-      "ra":23.43167,
+      "ra":351.47505,
       "dec":42.535,
       "arcLength":0.6,
       "arcWidth":0.6,
