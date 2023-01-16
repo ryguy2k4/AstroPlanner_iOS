@@ -78,7 +78,7 @@
 		71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */; };
 		71D5FD28295FA1D10028FF8C /* EditAllFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */; };
 		71D77FA82921F99200709252 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
-		71E96D68292831AA00E019F9 /* CatalogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E96D67292831AA00E019F9 /* CatalogViewModel.swift */; };
+		71E96D68292831AA00E019F9 /* CatalogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E96D67292831AA00E019F9 /* CatalogManager.swift */; };
 		71F510BC297605E9008F7629 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71F510BD297606AC008F7629 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71F71573293FB4010011EF7F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
@@ -167,7 +167,7 @@
 		71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAllFiltersView.swift; sourceTree = "<group>"; };
 		71D77FA72921F99200709252 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
-		71E96D67292831AA00E019F9 /* CatalogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewModel.swift; sourceTree = "<group>"; };
+		71E96D67292831AA00E019F9 /* CatalogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogManager.swift; sourceTree = "<group>"; };
 		71F510BB297605E9008F7629 /* CaseNameCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseNameCodable.swift; sourceTree = "<group>"; };
 		71F71572293FB4010011EF7F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		71F844C8294A95E700DD2742 /* SelectableList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableList.swift; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 		71BCF9702921EF61008C7614 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				71E96D67292831AA00E019F9 /* CatalogViewModel.swift */,
+				71E96D67292831AA00E019F9 /* CatalogManager.swift */,
 				716531E929340CFE00D05B79 /* DailyReport.swift */,
 				71BD75402971045100D7751F /* DeepSkyTarget */,
 				71FE96842956C0E700F6A4F2 /* Location */,
@@ -581,7 +581,7 @@
 				71BD7542297104AB00D7751F /* FilterMethods.swift in Sources */,
 				71B14F6B295A77AE003C11BD /* KeyboardDismissButton.swift in Sources */,
 				713B49BC29541242008EFC81 /* DailyReportSettings.swift in Sources */,
-				71E96D68292831AA00E019F9 /* CatalogViewModel.swift in Sources */,
+				71E96D68292831AA00E019F9 /* CatalogManager.swift in Sources */,
 				71B14F692958D905003C11BD /* DateSelector.swift in Sources */,
 				71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */,
 				7190D7522972538B00938E14 /* SharplessInfo.swift in Sources */,

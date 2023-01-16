@@ -11,11 +11,11 @@ struct CatalogView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
-    @StateObject var viewModel: CatalogViewModel
+    @StateObject var viewModel: CatalogManager
     @Binding var date: Date
     
     init(date: Binding<Date>, location: SavedLocation, reportSettings: ReportSettings) {
-        self._viewModel = StateObject(wrappedValue: CatalogViewModel(location: location, date: date.wrappedValue, reportSettings: reportSettings))
+        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date.wrappedValue, reportSettings: reportSettings))
         self._date = date
     }
         
@@ -141,17 +141,17 @@ private struct TargetCell: View {
  The array allows them to be sorted based on which ones are active.
  */
 private struct FilterButtonMenu: View {
-    @EnvironmentObject var viewModel: CatalogViewModel
+    @EnvironmentObject var viewModel: CatalogManager
     
     var body: some View {
         let buttons = [
-            FilterButton(method: .catalog, active: !viewModel.catalogSelection.isEmpty, modalControl: $viewModel.isCatalogModal),
-            FilterButton(method: .constellation, active: !viewModel.constellationSelection.isEmpty, modalControl: $viewModel.isConstellationModal),
-            FilterButton(method: .type, active: !viewModel.typeSelection.isEmpty, modalControl: $viewModel.isTypeModal),
-            FilterButton(method: .magnitude, active: !viewModel.dimmestMag.isNaN || !viewModel.brightestMag.isZero, modalControl: $viewModel.isMagModal),
-            FilterButton(method: .size, active: !viewModel.minSize.isZero || !viewModel.maxSize.isNaN, modalControl: $viewModel.isSizeModal),
-            FilterButton(method: .visibility, active: !viewModel.minVisScore.isZero, modalControl: $viewModel.isVisScoreModal),
-            FilterButton(method: .meridian, active: !viewModel.minMerScore.isZero, modalControl: $viewModel.isMerScoreModal)
+            FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection), modalControl: $viewModel.isCatalogModal),
+            FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection), modalControl: $viewModel.isConstellationModal),
+            FilterButton(method: .type, active: viewModel.isActive(criteria: viewModel.typeSelection), modalControl: $viewModel.isTypeModal),
+            FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag)), modalControl: $viewModel.isMagModal),
+            FilterButton(method: .size, active: viewModel.isActive(criteria: (min: viewModel.minSize, max: viewModel.maxSize)), modalControl: $viewModel.isSizeModal),
+            FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore), modalControl: $viewModel.isVisScoreModal),
+            FilterButton(method: .meridian, active: viewModel.isActive(criteria: viewModel.minMerScore), modalControl: $viewModel.isMerScoreModal)
         ].sorted(by: {$0.active && !$1.active})
         
         HStack {
@@ -187,7 +187,7 @@ private struct FilterButtonMenu: View {
  This View defines a singular filter button for a given filter method.
  */
 private struct FilterButton: View {
-    @EnvironmentObject var viewModel: CatalogViewModel
+    @EnvironmentObject var viewModel: CatalogManager
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date
     @Environment(\.data) var data
@@ -261,7 +261,7 @@ private struct CatalogToolbar: ToolbarContent {
  A Search Bar that binds its text to a given variable and executes a given action when text is submitted
  */
 private struct SearchBar: View {
-    @EnvironmentObject var viewModel: CatalogViewModel
+    @EnvironmentObject var viewModel: CatalogManager
     @FocusState var isInputActive: Bool
     var updateAction: () -> Void
     

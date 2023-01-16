@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditAllFiltersView: View {
-    @ObservedObject var viewModel: CatalogViewModel
+    @ObservedObject var viewModel: CatalogManager
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var reportSettings: ReportSettings
     @Environment(\.data) var data

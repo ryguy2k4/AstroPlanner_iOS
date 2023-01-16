@@ -1,5 +1,5 @@
 //
-//  CatalogViewModel.swift
+//  CatalogManager.swift
 //  DeepSkyCatalog
 //
 //  Created by Ryan Sponzilli on 11/18/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class CatalogViewModel: ObservableObject {
+final class CatalogManager: ObservableObject {
     @Published var location: SavedLocation
     @Published var date: Date
     @Published var reportSettings: ReportSettings
@@ -67,34 +67,49 @@ final class CatalogViewModel: ObservableObject {
             minVisScore = 0
         }
     }
+    
+    func isActive<T>(criteria: T) -> Bool {
+        switch criteria {
+        case let array as Array<Any>:
+            return !array.isEmpty
+        case let string as String:
+            return !string.isEmpty
+        case let double as Double:
+            return !double.isZero
+        case let range as (min: Double, max: Double):
+            return !range.min.isZero || !range.max.isNaN
+        default:
+            return false
+        }
+    }
         
     func refreshList(sunData: SunData) {
         // reset list
         targets = DeepSkyTargetList.allTargets.sorted(by: {$0.ra > $1.ra})
         
         //filter by current active filters
-        if !searchText.isEmpty {
+        if isActive(criteria: searchText) {
             targets.filterBySearch(searchText)
         }
-        if !catalogSelection.isEmpty {
+        if isActive(criteria: catalogSelection) {
             targets.filterByCatalog(catalogSelection)
         }
-        if !constellationSelection.isEmpty {
+        if isActive(criteria: constellationSelection) {
             targets.filterByConstellation(constellationSelection)
         }
-        if !typeSelection.isEmpty {
+        if isActive(criteria: typeSelection) {
             targets.filterByType(typeSelection)
         }
-        if !brightestMag.isZero || !dimmestMag.isNaN {
+        if isActive(criteria: (min: brightestMag, max: dimmestMag)) {
             targets.filterByMag(brightest: brightestMag, dimmest: dimmestMag)
         }
-        if !minSize.isZero || !maxSize.isNaN {
+        if isActive(criteria: (min: minSize, max: maxSize)) {
             targets.filterBySize(min: minSize, max: maxSize)
         }
-        if !minVisScore.isZero {
+        if isActive(criteria: minVisScore) {
             targets.filterByVisibility(minVisScore, location: location, date: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
         }
-        if !minMerScore.isZero {
+        if isActive(criteria: minMerScore) {
             targets.filterByMeridian(minMerScore, location: location, date: date, sunData: sunData)
         }
         

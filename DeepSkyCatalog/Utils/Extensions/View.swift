@@ -13,7 +13,7 @@ import UIKit
  Implements the custom view modifier FilterModal
  */
 extension View {
-    func filterModal<Content:View>(isPresented: Binding<Bool>, viewModel: CatalogViewModel, @ViewBuilder sheetContent: () -> Content) -> some View {
+    func filterModal<Content:View>(isPresented: Binding<Bool>, viewModel: CatalogManager, @ViewBuilder sheetContent: () -> Content) -> some View {
         modifier(FilterModal(isPresented: isPresented, viewModel: viewModel, sheetContent: sheetContent))
     }
 }
@@ -22,14 +22,14 @@ extension View {
  Custom view modifier that displays a filter modal
  */
 struct FilterModal<C: View>: ViewModifier {
-    @ObservedObject var viewModel: CatalogViewModel
+    @ObservedObject var viewModel: CatalogManager
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Environment(\.date) var date
     @Environment(\.data) var data
     let sheetContent: C
     @Binding var isPresented: Bool
     
-    init(isPresented: Binding<Bool>, viewModel: CatalogViewModel, @ViewBuilder sheetContent: () -> C) {
+    init(isPresented: Binding<Bool>, viewModel: CatalogManager, @ViewBuilder sheetContent: () -> C) {
         self.viewModel = viewModel
         self.sheetContent = sheetContent()
         self._isPresented = isPresented
