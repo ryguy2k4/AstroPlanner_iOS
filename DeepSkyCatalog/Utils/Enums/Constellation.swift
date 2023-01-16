@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Constellation: String, Filter, Codable {
+enum Constellation: String, Filter, CaseNameCodable {
     var id: Self { self }
     static let name = "Constellation"
     
@@ -47,84 +47,4 @@ enum Constellation: String, Filter, Codable {
     case cepheus = "Cepheus"
     case pegasus = "Pegasus"
     case aquarius = "Aquarius"
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let constellation = try? container.decode(String.self)
-        switch constellation {
-        case "andromeda":
-            self = .andromeda
-        case "cetus":
-            self = .cetus
-        case "sculptor":
-            self = .sculptor
-        case "cassiopeia":
-            self = .cassiopeia
-        case "triangulum":
-            self = .triangulum
-        case "pisces":
-            self = .pisces
-        case "perseus":
-            self = .perseus
-        case "aries":
-            self = .aries
-        case "camelopardalis":
-            self = .camelopardalis
-        case "taurus":
-            self = .taurus
-        case "eridanus":
-            self = .eridanus
-        case "auriga":
-            self = .auriga
-        case "orion":
-            self = .orion
-        case "gemini":
-            self = .gemini
-        case "monoceros":
-            self = .monoceros
-        case "canisMajor":
-            self = .canisMajor
-        case "puppis":
-            self = .puppis
-        case "cancer":
-            self = .cancer
-        case "leo":
-            self = .leo
-        case "ursaMajor":
-            self = .ursaMajor
-        case "canesVenatici":
-            self = .canesVenatici
-        case "comaBerenices":
-            self = .comaBerenices
-        case "virgo":
-            self = .virgo
-        case "draco":
-            self = .draco
-        case "serpens":
-            self = .serpens
-        case "hercules":
-            self = .hercules
-        case "ophiuchus":
-            self = .ophiuchus
-        case "sagittarius":
-            self = .sagittarius
-        case "scutum":
-            self = .scutum
-        case "lyra":
-            self = .lyra
-        case "aquila":
-            self = .aquila
-        case "vulpecula":
-            self = .vulpecula
-        case "cygnus":
-            self = .cygnus
-        case "cepheus":
-            self = .cepheus
-        case "pegasus":
-            self = .pegasus
-        case "aquarius":
-            self = .aquarius
-        default: self = .aquarius
-        }
-    }
 }

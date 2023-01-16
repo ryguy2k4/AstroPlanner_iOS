@@ -7,7 +7,7 @@
 
 import Foundation
  
-enum DSOCatalog: String, Filter, Codable {
+enum DSOCatalog: String, Filter, CaseNameCodable {
     static let name = "Catalog"
     var id: Self { self }
     case messier = "Messier"
@@ -16,20 +16,6 @@ enum DSOCatalog: String, Filter, Codable {
     case barnard = "Barnard"
     case ngc = "NGC"
     case ic = "IC"
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let catalog = try? container.decode(String.self)
-        switch catalog {
-            case "messier": self = .messier
-            case "caldwell": self = .caldwell
-            case "ngc": self = .ngc
-            case "ic": self = .ic
-            case "sh2": self = .sh2
-            case "barnard": self = .barnard
-            default: self = .messier
-        }
-    }
 }
 
 struct Designation: Hashable, Codable {

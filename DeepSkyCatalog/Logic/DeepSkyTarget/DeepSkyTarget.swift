@@ -239,4 +239,24 @@ extension DeepSkyTarget: Codable {
         self.arcWidth = try container.decode(Double.self, forKey: .arcWidth)
         self.apparentMag = try container.decode(Double.self, forKey: .apparentMag)
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case name, designation, image, description, descriptionURL, type, constellation, ra, dec, arcLength, arcWidth, apparentMag
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(designation, forKey: .designation)
+        try container.encode(image, forKey: .image)
+        try container.encode(designation, forKey: .description)
+        try container.encode(descriptionURL, forKey: .descriptionURL)
+        try container.encode(type, forKey: .type)
+        try container.encode(constellation, forKey: .constellation)
+        try container.encode(ra, forKey: .ra)
+        try container.encode(dec, forKey: .dec)
+        try container.encode(arcLength, forKey: .arcLength)
+        try container.encode(arcWidth, forKey: .arcWidth)
+        try container.encode(apparentMag, forKey: .apparentMag)
+    }
 }

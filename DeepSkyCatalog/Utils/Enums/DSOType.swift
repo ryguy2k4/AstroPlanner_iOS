@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DSOType: String, Filter, Codable {
+enum DSOType: String, Filter, CaseNameCodable {
     static let name = "Type"
     var id: Self { self }
     
@@ -34,21 +34,4 @@ enum DSOType: String, Filter, Codable {
     case galaxyGroup = "Galaxy Group"
     case openStarCluster = "Open Star Cluster"
     case globularStarCluster = "Globular Star Cluster"
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let type = try? container.decode(String.self)
-        switch type {
-        case "emissionNebula": self = .emissionNebula
-            case "reflectionNebula": self = .reflectionNebula
-            case "darkNebula": self = .darkNebula
-            case "planetaryNebula": self = .planetaryNebula
-            case "supernovaRemnant": self = .supernovaRemnant
-            case "galaxy": self = .galaxy
-            case "galaxyGroup": self = .galaxyGroup
-            case "openStarCluster": self = .openStarCluster
-            case "globularStarCluster": self = .globularStarCluster
-            default: self = .emissionNebula
-        }
-    }
 }
