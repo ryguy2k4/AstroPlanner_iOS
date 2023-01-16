@@ -66,6 +66,7 @@ struct ImagingPresetCreator: View {
     @Environment(\.managedObjectContext) var context
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
+    @State var showErrorAlert = false
     
     // Local state variables to hold information being entered
     @State private var name: String = ""
@@ -137,24 +138,34 @@ struct ImagingPresetCreator: View {
                     Button(preset != nil ? "Save" : "Add") {
                         if let preset = preset {
                             PersistenceManager.shared.editImagingPreset(preset: preset, name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
+                            dismiss()
                         } else {
                             if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth {
                                 PersistenceManager.shared.addImagingPreset(name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
+                                dismiss()
+                            } else {
+                                showErrorAlert = true
                             }
                         }
-                        dismiss()
                     }
                 }
             }
             .padding(0)
-        }
-        .onAppear() {
-            if let preset = preset {
-                self.name = preset.name!
-                self.focalLength = preset.focalLength
-                self.pixelSize = preset.pixelSize
-                self.resolutionLength = preset.resolutionLength
-                self.resolutionWidth = preset.resolutionWidth
+            .alert("Invalid Preset", isPresented: $showErrorAlert) {
+                Button("OK") {
+                    dismiss()
+                }
+            } message: {
+                Text("Fill in every parameter")
+            }
+            .onAppear() {
+                if let preset = preset {
+                    self.name = preset.name!
+                    self.focalLength = preset.focalLength
+                    self.pixelSize = preset.pixelSize
+                    self.resolutionLength = preset.resolutionLength
+                    self.resolutionWidth = preset.resolutionWidth
+                }
             }
         }
     }

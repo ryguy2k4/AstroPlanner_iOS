@@ -67,6 +67,7 @@ struct LocationEditor: View {
     @Environment(\.managedObjectContext) var context
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
+    @State var showErrorAlert = false
     let locationManager = LocationManager()
     
     // Local state variables to hold information being entered
@@ -132,23 +133,33 @@ struct LocationEditor: View {
                     Button(location != nil ? "Save" : "Add") {
                         if let location = location {
                             PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone, context: context)
+                            dismiss()
                         } else {
                             if let latitude = latitude, let longitude = longitude {
                                 PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone, context: context)
+                                dismiss()
+                            } else {
+                                showErrorAlert = true
                             }
                         }
-                        dismiss()
                     }
                 }
             }
             .padding(0)
-        }
-        .onAppear() {
-            if let location = location {
-                self.name = location.name!
-                self.latitude = location.latitude
-                self.longitude = location.longitude
-                self.timezone = location.timezone
+            .alert("Invalid Location", isPresented: $showErrorAlert) {
+                Button("OK") {
+                    dismiss()
+                }
+            } message: {
+                Text("Fill in every parameter")
+            }
+            .onAppear() {
+                if let location = location {
+                    self.name = location.name!
+                    self.latitude = location.latitude
+                    self.longitude = location.longitude
+                    self.timezone = location.timezone
+                }
             }
         }
     }
