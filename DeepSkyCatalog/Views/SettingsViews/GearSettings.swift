@@ -69,10 +69,10 @@ struct ImagingPresetCreator: View {
     
     // Local state variables to hold information being entered
     @State private var name: String = ""
-    @State private var focalLengthText: String = ""
-    @State private var pixelSizeText: String = ""
-    @State private var resolutionLength: String = ""
-    @State private var resolutionWidth: String = ""
+    @State private var focalLength: Double? = nil
+    @State private var pixelSize: Double? = nil
+    @State private var resolutionLength: Int16? = nil
+    @State private var resolutionWidth: Int16? = nil
     let preset: ImagingPreset?
     
     var body: some View {
@@ -83,22 +83,52 @@ struct ImagingPresetCreator: View {
                         // Fields to manually enter gear info
                         LabeledTextField(text: $name, label: "Name: ", keyboardType: .default)
                             .focused($isInputActive)
-                        LabeledTextField(text: $focalLengthText, label: "Focal Length (mm): ")
-                            .focused($isInputActive)
-                        LabeledTextField(text: $pixelSizeText, label: "Pixel Size (µm): ")
-                            .focused($isInputActive)
-                        LabeledTextField(text: $resolutionLength, label: "Resolution Length (px): ")
-                            .focused($isInputActive)
-                        LabeledTextField(text: $resolutionWidth, label: "Resolution Width (px): ")
-                            .focused($isInputActive)
+                        // Focal Length
+                        HStack {
+                            Text("Focal Length (mm): ")
+                                .font(.callout)
+                            TextField("Focal Length (mm): ", value: $focalLength, format: .number)
+                                .keyboardType(.numbersAndPunctuation)
+                                .focused($isInputActive)
+                        }
+                        // Pixel Size
+                        HStack {
+                            Text("Pixel Size (µm): ")
+                                .font(.callout)
+                            TextField("Pixel Size (µm): ", value: $pixelSize, format: .number)
+                                .keyboardType(.numbersAndPunctuation)
+                                .focused($isInputActive)
+                        }
+                        // Resolution Length
+                        HStack {
+                            Text("Resolution Length (px): ")
+                                .font(.callout)
+                            TextField("Resolution Length (px): ", value: $resolutionLength, format: .number)
+                                .keyboardType(.numbersAndPunctuation)
+                                .focused($isInputActive)
+                        }
+                        // Resolution Width
+                        HStack {
+                            Text("Resolution Width (px): ")
+                                .font(.callout)
+                            TextField("Resolution Width (px): ", value: $resolutionWidth, format: .number)
+                                .keyboardType(.numbersAndPunctuation)
+                                .focused($isInputActive)
+                        }
                     }
                 }
                 // Display Pixel Scale and FOV Size
-                let pixelScale = (Double(pixelSizeText) ?? .nan) / (Double(focalLengthText) ?? .nan) * 206.2648
-                let fovLength = pixelScale * (Double(resolutionLength) ?? .nan) / 60
-                let fovWidth = pixelScale * (Double(resolutionWidth) ?? .nan) / 60
-                Text("Pixel Scale: \(pixelScale)")
-                Text("FOV: \(fovLength)' x \(fovWidth)'")
+                if let pixelSize = pixelSize, let focalLength = focalLength {
+                    let pixelScale = pixelSize / focalLength * 206.2648
+                    Text("Pixel Scale: \(pixelScale)")
+                    if let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth {
+                        let fovLength = pixelScale * Double(resolutionLength) / 60
+                        let fovWidth = pixelScale * Double(resolutionWidth) / 60
+                        Text("FOV: \(fovLength)' x \(fovWidth)'")
+
+                    }
+                }
+                
                 Spacer()
             }
             .toolbar {
@@ -106,9 +136,11 @@ struct ImagingPresetCreator: View {
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button(preset != nil ? "Save" : "Add") {
                         if let preset = preset {
-                            PersistenceManager.shared.editImagingPreset(preset: preset, name: name, focalLength: Double(focalLengthText), pixelSize: Double(pixelSizeText), resLength: Int16(resolutionLength), resWidth: Int16(resolutionWidth), context: context)
+                            PersistenceManager.shared.editImagingPreset(preset: preset, name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
                         } else {
-                            PersistenceManager.shared.addImagingPreset(name: name, focalLength: Double(focalLengthText) ?? .nan, pixelSize: Double(pixelSizeText) ?? .nan, resLength: Int16(resolutionLength) ?? 1920, resWidth: Int16(resolutionWidth) ?? 1080, context: context)
+                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth {
+                                PersistenceManager.shared.addImagingPreset(name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
+                            }
                         }
                         dismiss()
                     }
@@ -119,10 +151,10 @@ struct ImagingPresetCreator: View {
         .onAppear() {
             if let preset = preset {
                 self.name = preset.name!
-                self.focalLengthText = String(preset.focalLength)
-                self.pixelSizeText = String(preset.pixelSize)
-                self.resolutionLength = String(preset.resolutionLength)
-                self.resolutionWidth = String(preset.resolutionWidth)
+                self.focalLength = preset.focalLength
+                self.pixelSize = preset.pixelSize
+                self.resolutionLength = preset.resolutionLength
+                self.resolutionWidth = preset.resolutionWidth
             }
         }
     }

@@ -71,8 +71,8 @@ struct LocationEditor: View {
     
     // Local state variables to hold information being entered
     @State private var name: String = ""
-    @State private var longitudeText: String = ""
-    @State private var latitudeText: String = ""
+    @State private var longitude: Double? = nil
+    @State private var latitude: Double? = nil
     @State private var timezone: Int16 = -6
     let location: SavedLocation?
     
@@ -80,13 +80,26 @@ struct LocationEditor: View {
         NavigationView {
             Form {
                 ConfigSection(footer: "Enter the numbers in decimal form, not degrees, minutes, and seconds") {
-                    // Fields to manually enter location info
+                    // Name
                     LabeledTextField(text: $name, label: "Name: ", keyboardType: .default)
                         .focused($isInputActive)
-                    LabeledTextField(text: $latitudeText, label: "Latitude: ", prompt: "Decimal Degrees")
-                        .focused($isInputActive)
-                    LabeledTextField(text: $longitudeText, label: "Longitude: ", prompt: "Decimal Degrees")
-                        .focused($isInputActive)
+                    // Latitude
+                    HStack {
+                        Text("Latitude: ")
+                            .font(.callout)
+                        TextField("Latitude: ", value: $latitude, format: .number)
+                            .keyboardType(.numbersAndPunctuation)
+                            .focused($isInputActive)
+                    }
+                    // Longitude
+                    HStack {
+                        Text("Longitude: ")
+                            .font(.callout)
+                        TextField("Longitude: ", value: $longitude, format: .number)
+                            .keyboardType(.numbersAndPunctuation)
+                            .focused($isInputActive)
+                    }
+                    // Timezone
                     Text("Timezone (GMT offset): ")
                     Picker("Timezone: \(timezone)", selection: $timezone) {
                         ForEach(-12..<13) {
@@ -107,8 +120,8 @@ struct LocationEditor: View {
                     // Handle the results from the "Current Location" button
                     .onReceive(locationManager.publisher(for: \.latestLocation)) { location in
                         if let location = location {
-                            self.longitudeText = "\(location.coordinate.longitude)"
-                            self.latitudeText = "\(location.coordinate.latitude)"
+                            self.longitude = location.coordinate.longitude
+                            self.latitude = location.coordinate.latitude
                         }
                     }
                 }
@@ -118,9 +131,11 @@ struct LocationEditor: View {
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button(location != nil ? "Save" : "Add") {
                         if let location = location {
-                            PersistenceManager.shared.editLocation(location: location, name: name, latitude: Double(latitudeText), longitude: Double(longitudeText), timezone: timezone, context: context)
+                            PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone, context: context)
                         } else {
-                            PersistenceManager.shared.addLocation(name: name, latitude: Double(latitudeText) ?? .nan, longitude: Double(longitudeText) ?? .nan, timezone: timezone, context: context)
+                            if let latitude = latitude, let longitude = longitude {
+                                PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone, context: context)
+                            }
                         }
                         dismiss()
                     }
@@ -131,8 +146,8 @@ struct LocationEditor: View {
         .onAppear() {
             if let location = location {
                 self.name = location.name!
-                self.latitudeText = String(location.latitude)
-                self.longitudeText = String(location.longitude)
+                self.latitude = location.latitude
+                self.longitude = location.longitude
                 self.timezone = location.timezone
             }
         }
