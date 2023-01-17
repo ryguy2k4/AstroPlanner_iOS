@@ -38,9 +38,9 @@ final class PersistenceManager: ObservableObject {
                 if count == 0 {
                     let settings = ReportSettings(context: self.container.viewContext)
                     settings.maxAllowedMoon = 0.2
-                    settings.limitingAltitude = 0
-                    settings.minFOVCoverage = 0.5
-                    settings.minVisibility = 0.5
+                    settings.limitingAltitude = 20
+                    settings.minFOVCoverage = 0.25
+                    settings.minVisibility = 0.6
                 }
             }
         }
