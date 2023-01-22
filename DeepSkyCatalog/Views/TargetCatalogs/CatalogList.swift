@@ -21,7 +21,7 @@ struct CatalogList: View {
                 HStack {
                     Text("#\(target.designation.first(where: {$0.catalog == catalog})!.number)")
                     Divider()
-                    Text(target.name.first!)
+                    Text(target.name?.first! ?? target.defaultName)
                 }
             }
         }

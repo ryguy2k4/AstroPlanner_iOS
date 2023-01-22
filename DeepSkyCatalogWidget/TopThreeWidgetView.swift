@@ -18,7 +18,7 @@ struct TopThreeWidgetView : View {
                     Image(target.image.source.fileName)
                         .resizable()
                         .scaledToFit()
-                    Text(target.name.first!)
+                    Text(target.name?.first! ?? target.defaultName)
                     Spacer()
                 }
             }

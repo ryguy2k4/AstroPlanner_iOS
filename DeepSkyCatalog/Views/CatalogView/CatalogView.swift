@@ -123,7 +123,7 @@ private struct TargetCell: View {
                 .frame(width: 100, height: 70)
                 .cornerRadius(4)
             VStack(alignment: .leading) {
-                Text(target.name[0])
+                Text(target.name?[0] ?? target.defaultName)
                     .fontWeight(.semibold)
                     .lineLimit(1)
                 Label(target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude).percent(), systemImage: "eye")

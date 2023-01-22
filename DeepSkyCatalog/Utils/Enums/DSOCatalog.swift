@@ -16,6 +16,23 @@ enum DSOCatalog: String, Filter, CaseNameCodable {
     case barnard = "Barnard"
     case ngc = "NGC"
     case ic = "IC"
+    
+    var abbr: String {
+        switch self {
+        case .messier:
+            return "M"
+        case .caldwell:
+            return "C"
+        case .sh2:
+            return "SH2-"
+        case .barnard:
+            return "Barnard"
+        case .ngc:
+            return "NGC "
+        case .ic:
+            return "IC "
+        }
+    }
 }
 
 struct Designation: Hashable, Codable {

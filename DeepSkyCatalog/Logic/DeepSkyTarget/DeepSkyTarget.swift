@@ -10,7 +10,12 @@ import Foundation
 struct DeepSkyTarget: Identifiable, Hashable {
     // identifiers
     let id = UUID()
-    let name: [String]
+    var name: [String]?
+    var defaultName: String {
+        get {
+            "\(type.first!.rawValue) \(designation.first!.catalog.abbr)\(designation.first!.number)"
+        }
+    }
     let designation: [Designation]
     
     // image
@@ -33,6 +38,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
         enum ImageSource: Hashable, Codable {
             case apod(id: String)
             case local(fileName: String)
+            case placeholder
             
             var fileName: String {
                 switch self {
@@ -40,17 +46,14 @@ struct DeepSkyTarget: Identifiable, Hashable {
                     return "apod_" + id
                 case .local(fileName: let filename):
                     return filename
+                case .placeholder:
+                    return "power_star"
                 }
             }
         }
         
         let source: ImageSource
         let copyright: String?
-        
-        init() {
-            self.source = .local(fileName: "power_star")
-            self.copyright = nil
-        }
     }
     
     /**
@@ -220,13 +223,19 @@ extension DeepSkyTarget: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode([String].self, forKey: .name)
+        self.name = {
+            do {
+                return try container.decode([String].self, forKey: .name)
+            } catch {
+                return nil
+            }
+        }()
         self.designation = try container.decode([Designation].self, forKey: .designation)
         self.image = {
             do {
                 return try container.decode(TargetImage.self, forKey: .image)
             } catch {
-                return TargetImage()
+                return TargetImage(source: .placeholder, copyright: nil)
             }
         }()
         self.description = try container.decode(String.self, forKey: .description)
@@ -246,10 +255,14 @@ extension DeepSkyTarget: Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
+        if self.name != nil {
+            try container.encode(name, forKey: .name)
+        }
         try container.encode(designation, forKey: .designation)
-        try container.encode(image, forKey: .image)
-        try container.encode(designation, forKey: .description)
+        if self.image.source != .placeholder {
+            try container.encode(image, forKey: .image)
+        }
+        try container.encode(description, forKey: .description)
         try container.encode(descriptionURL, forKey: .descriptionURL)
         try container.encode(type, forKey: .type)
         try container.encode(constellation, forKey: .constellation)

@@ -39,7 +39,7 @@ struct DetailView: View {
                     // Target Facts
                     VStack {
                         VStack {
-                            Text(target.name[0])
+                            Text(target.name?[0] ?? target.defaultName)
                                 .font(.title2)
                                 .fontWeight(.semibold)
                                 .lineLimit(1)

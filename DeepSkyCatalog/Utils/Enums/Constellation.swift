@@ -47,4 +47,9 @@ enum Constellation: String, Filter, CaseNameCodable {
     case cepheus = "Cepheus"
     case pegasus = "Pegasus"
     case aquarius = "Aquarius"
+    case scorpius = "Scorpius"
+    case capricornus = "Capricornus"
+    case hydra = "Hydra"
+    case sagitta = "Sagitta"
+    case lepus = "Lepus"
 }

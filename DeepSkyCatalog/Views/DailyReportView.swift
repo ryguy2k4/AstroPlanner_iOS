@@ -118,7 +118,7 @@ private struct TopFiveView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 368, height: 207)
                             VStack {
-                                Text(target.name[0])
+                                Text(target.name?[0] ?? target.defaultName)
                                     .padding(2)
                                     .background(.gray.opacity(0.8), in: Rectangle())
                                     .fontWeight(.semibold)
@@ -161,7 +161,7 @@ private struct TopTenTabView: View {
                 if !report.topTenNebulae.isEmpty {
                     List(report.topTenNebulae) { target in
                         NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
-                            Text(target.name.first!)
+                            Text(target.name?[0] ?? target.defaultName)
                         }
                     }.tag(0).listStyle(.inset)
                 } else {
@@ -173,7 +173,7 @@ private struct TopTenTabView: View {
                 if !report.topTenGalaxies.isEmpty {
                     List(report.topTenGalaxies) { target in
                         NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
-                            Text(target.name.first!)
+                            Text(target.name?[0] ?? target.defaultName)
                         }
                     }.tag(1).listStyle(.inset)
                 } else {
@@ -186,7 +186,7 @@ private struct TopTenTabView: View {
                 if !report.topTenStarClusters.isEmpty {
                     List(report.topTenStarClusters) { target in
                         NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
-                            Text(target.name.first!)
+                            Text(target.name?[0] ?? target.defaultName)
                         }
                     }.tag(2).listStyle(.inset)
                 } else {
