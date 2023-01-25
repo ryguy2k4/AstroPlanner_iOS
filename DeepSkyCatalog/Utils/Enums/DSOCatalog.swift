@@ -22,11 +22,11 @@ enum DSOCatalog: String, Filter, CaseNameCodable {
         case .messier:
             return "M"
         case .caldwell:
-            return "C"
+            return "C "
         case .sh2:
             return "SH2-"
         case .barnard:
-            return "Barnard"
+            return "Barnard "
         case .ngc:
             return "NGC "
         case .ic:

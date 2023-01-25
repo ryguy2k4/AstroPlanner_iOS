@@ -41,6 +41,7 @@ final class PersistenceManager: ObservableObject {
                     settings.limitingAltitude = 20
                     settings.minFOVCoverage = 0.25
                     settings.minVisibility = 0.6
+                    settings.hideNeverRises = true
                 }
             }
         }

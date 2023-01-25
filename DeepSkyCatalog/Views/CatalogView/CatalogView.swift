@@ -96,7 +96,7 @@ struct CatalogView: View {
         else {
             VStack {
                 ProgressView()
-                Text("Fetching Data...")
+                Text("Fetching Sun/Moon Data...")
             }
             .task {
                 await networkManager.getData(at: locationList.first!, on: date)
