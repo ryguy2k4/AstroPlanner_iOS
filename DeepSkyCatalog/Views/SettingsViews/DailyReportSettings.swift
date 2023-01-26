@@ -53,15 +53,6 @@ struct DailyReportSettings: View {
                     }
                     
                 }
-                Button {
-                    isLimitingAltitudeModal = true
-                } label: {
-                    HStack(spacing: 0) {
-                        Text("Lowest acceptable altitude to image: ")
-                            .foregroundColor(.primary)
-                        Text(settings.limitingAltitude.formatted(.number.precision(.significantDigits(0...5))) + "°")
-                    }
-                }
             }
         }
         .sheet(isPresented: $isMoonPercentModal) {
@@ -84,15 +75,6 @@ struct DailyReportSettings: View {
             Form {
                 ConfigSection(footer: "Targets shown in the daily report must be visible for at least this percentage of the night.") {
                     NumberPicker(num: $settings.minVisibility, placeValues: [.tenths, .hundredths])
-                }
-            }
-            .presentationDetents([.fraction(0.6)])
-        }
-        
-        .sheet(isPresented: $isLimitingAltitudeModal) {
-            Form {
-                ConfigSection(footer: "The visibility score will be calculated as the percentage of the night that the target is above this altitude. This setting will effect the visibility scores shown in the master catalog too.") {
-                    NumberPicker(num: $settings.limitingAltitude, placeValues: [.tens, .ones])
                 }
             }
             .presentationDetents([.fraction(0.6)])

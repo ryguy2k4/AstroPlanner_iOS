@@ -28,9 +28,9 @@ struct SettingsView: View {
                     NavigationLink(destination: DailyReportSettings()) {
                         Label("Report Settings", systemImage: "doc.text")
                     }
-//                    NavigationLink(destination: TargetSettings()) {
-//                        Label("Target Settings", systemImage: "star")
-//                    }
+                    NavigationLink(destination: TargetSettings()) {
+                        Label("Target Settings", systemImage: "star")
+                    }
                 }
                 
                 ConfigSection(header: "Catalogs") {

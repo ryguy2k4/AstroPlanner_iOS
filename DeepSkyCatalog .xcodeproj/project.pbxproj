@@ -84,6 +84,7 @@
 		71F510BD297606AC008F7629 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71F71573293FB4010011EF7F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
 		71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
+		71F9559029822EFB008F5196 /* hidden_targets.json in Resources */ = {isa = PBXBuildFile; fileRef = 71F9558F29822EFB008F5196 /* hidden_targets.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +174,7 @@
 		71F510BB297605E9008F7629 /* CaseNameCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseNameCodable.swift; sourceTree = "<group>"; };
 		71F71572293FB4010011EF7F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		71F844C8294A95E700DD2742 /* SelectableList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableList.swift; sourceTree = "<group>"; };
+		71F9558F29822EFB008F5196 /* hidden_targets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hidden_targets.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,7 +350,6 @@
 				71FE96842956C0E700F6A4F2 /* Location */,
 				71BCF98A2921F2AC008C7614 /* CoreData */,
 				719B26D8295173CD00E1165A /* Network */,
-				710ECDAC2965E68F00534D15 /* Catalog.json */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -376,6 +377,8 @@
 			children = (
 				71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */,
 				71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */,
+				710ECDAC2965E68F00534D15 /* Catalog.json */,
+				71F9558F29822EFB008F5196 /* hidden_targets.json */,
 				71BD753E2971044D00D7751F /* SortMethods.swift */,
 				71BD7541297104AB00D7751F /* FilterMethods.swift */,
 			);
@@ -509,6 +512,7 @@
 				71BCF9542921EE72008C7614 /* Preview Assets.xcassets in Resources */,
 				71BCF9512921EE72008C7614 /* Assets.xcassets in Resources */,
 				710ECDAD2965E68F00534D15 /* Catalog.json in Resources */,
+				71F9559029822EFB008F5196 /* hidden_targets.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,7 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DeepSkyCatalog/Preview Content\"";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = YES;
@@ -821,7 +825,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DeepSkyCatalog/Preview Content\"";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = YES;

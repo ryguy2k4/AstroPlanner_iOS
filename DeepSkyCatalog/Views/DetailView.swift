@@ -31,8 +31,9 @@ struct DetailView: View {
                         if let credit = target.image.copyright {
                             Text("Image Copyright: " + credit)
                                 .fontWeight(.light)
-                                .lineLimit(1)
+                                .lineLimit(2)
                                 .font(.caption)
+                                .padding(.horizontal)
                         }
                     }
                     
@@ -77,7 +78,7 @@ struct DetailView: View {
                             }
                         } else {
                             VStack {
-                                if target.getAltitude(location: location, time: date) > reportSettings.limitingAltitude {
+                                if target.getAltitude(location: location, time: date) > 0 {
                                     Text("Target Never Sets")
                                 } else {
                                     Text("Target Never Rises")
