@@ -12,7 +12,7 @@ struct CatalogList: View {
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     let catalog: DSOCatalog
     var body: some View {
-        List(DeepSkyTargetList.allTargets.filteredByCatalog([catalog]).sortedByCatalog(catalog: catalog).reversed()) { target in
+        List(Array(DeepSkyTargetList.allTargets.values).filteredByCatalog([catalog]).sortedByCatalog(catalog: catalog).reversed()) { target in
             NavigationLink {
                 DetailView(target: target)
                     .environmentObject(locationList.first!)

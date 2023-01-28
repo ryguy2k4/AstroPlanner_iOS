@@ -84,7 +84,6 @@
 		71F510BD297606AC008F7629 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71F71573293FB4010011EF7F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
 		71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
-		71F9559029822EFB008F5196 /* hidden_targets.json in Resources */ = {isa = PBXBuildFile; fileRef = 71F9558F29822EFB008F5196 /* hidden_targets.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,7 +173,6 @@
 		71F510BB297605E9008F7629 /* CaseNameCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseNameCodable.swift; sourceTree = "<group>"; };
 		71F71572293FB4010011EF7F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		71F844C8294A95E700DD2742 /* SelectableList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableList.swift; sourceTree = "<group>"; };
-		71F9558F29822EFB008F5196 /* hidden_targets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hidden_targets.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +224,14 @@
 				7156742F29273ECA00626B1B /* AboutView.swift */,
 			);
 			path = SettingsViews;
+			sourceTree = "<group>";
+		};
+		7149D9932984C6F3004BFBE6 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				71BD75402971045100D7751F /* DeepSkyTarget */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		7162D33C2964DBF0007C8710 /* Frameworks */ = {
@@ -289,6 +295,7 @@
 		71BCF9402921EE71008C7614 = {
 			isa = PBXGroup;
 			children = (
+				7149D9932984C6F3004BFBE6 /* Shared */,
 				71BCF94B2921EE71008C7614 /* DeepSkyCatalog */,
 				7162D3412964DBF1007C8710 /* DeepSkyCatalogWidget */,
 				7162D33C2964DBF0007C8710 /* Frameworks */,
@@ -346,7 +353,6 @@
 			children = (
 				71E96D67292831AA00E019F9 /* CatalogManager.swift */,
 				716531E929340CFE00D05B79 /* DailyReport.swift */,
-				71BD75402971045100D7751F /* DeepSkyTarget */,
 				71FE96842956C0E700F6A4F2 /* Location */,
 				71BCF98A2921F2AC008C7614 /* CoreData */,
 				719B26D8295173CD00E1165A /* Network */,
@@ -378,9 +384,11 @@
 				71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */,
 				71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */,
 				710ECDAC2965E68F00534D15 /* Catalog.json */,
-				71F9558F29822EFB008F5196 /* hidden_targets.json */,
 				71BD753E2971044D00D7751F /* SortMethods.swift */,
 				71BD7541297104AB00D7751F /* FilterMethods.swift */,
+				71B5AF95292C778D00323693 /* DSOCatalog.swift */,
+				71901C7629299D5C00D95AA5 /* Constellation.swift */,
+				71BCF97D2921EF8B008C7614 /* DSOType.swift */,
 			);
 			path = DeepSkyTarget;
 			sourceTree = "<group>";
@@ -400,9 +408,6 @@
 		71D77FA92921FD7B00709252 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				71B5AF95292C778D00323693 /* DSOCatalog.swift */,
-				71901C7629299D5C00D95AA5 /* Constellation.swift */,
-				71BCF97D2921EF8B008C7614 /* DSOType.swift */,
 				71B5FD1B294EBECF00833379 /* PlaceValue.swift */,
 				71F510BB297605E9008F7629 /* CaseNameCodable.swift */,
 				71359532292DB49700CA4295 /* Errors */,
@@ -512,7 +517,6 @@
 				71BCF9542921EE72008C7614 /* Preview Assets.xcassets in Resources */,
 				71BCF9512921EE72008C7614 /* Assets.xcassets in Resources */,
 				710ECDAD2965E68F00534D15 /* Catalog.json in Resources */,
-				71F9559029822EFB008F5196 /* hidden_targets.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,7 +813,7 @@
 				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -845,7 +849,7 @@
 				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;

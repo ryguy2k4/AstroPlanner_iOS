@@ -21,7 +21,7 @@ final class CatalogManager: ObservableObject {
     // Sort Control Variables
     @Published var currentSort: SortMethod = .ra
     @Published var sortDecending: Bool = true
-    @Published var targets: [DeepSkyTarget] = DeepSkyTargetList.allTargets.sorted(by: {$0.ra > $1.ra})
+    @Published var targets: [DeepSkyTarget] = Array(DeepSkyTargetList.whitelistedTargets.values).sorted(by: {$0.ra > $1.ra})
     
     // Filter Control Variables
     @Published var searchText = ""
@@ -85,7 +85,7 @@ final class CatalogManager: ObservableObject {
         
     func refreshList(sunData: SunData) {
         // reset list
-        targets = DeepSkyTargetList.allTargets.sorted(by: {$0.ra > $1.ra})
+        targets = DeepSkyTargetList.whitelistedTargets.values.sorted(by: {$0.ra > $1.ra})
         
         //filter by current active filters
         if isActive(criteria: searchText) {

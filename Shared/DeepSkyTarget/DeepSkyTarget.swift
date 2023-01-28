@@ -26,6 +26,13 @@ struct DeepSkyTarget: Identifiable, Hashable {
     let descriptionURL: URL
     let type: [DSOType]
     
+    let relationships: TargetRelationship?
+    
+    enum TargetRelationship: Hashable, Codable {
+        case superImposed(targets: [UUID])
+        case visualGrouping(targets: [UUID])
+    }
+    
     // characteristics
     let constellation: Constellation
     let ra: Double
@@ -223,24 +230,13 @@ extension DeepSkyTarget: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = {
-            do {
-                return try container.decode([String].self, forKey: .name)
-            } catch {
-                return nil
-            }
-        }()
+        self.name = try? container.decode([String].self, forKey: .name)
         self.designation = try container.decode([Designation].self, forKey: .designation)
-        self.image = {
-            do {
-                return try container.decode(TargetImage.self, forKey: .image)
-            } catch {
-                return TargetImage(source: .placeholder, copyright: nil)
-            }
-        }()
+        self.image = (try? container.decode(TargetImage.self, forKey: .image)) ?? TargetImage(source: .placeholder, copyright: nil)
         self.description = try container.decode(String.self, forKey: .description)
         self.descriptionURL = try container.decode(URL.self, forKey: .descriptionURL)
         self.type = try container.decode([DSOType].self, forKey: .type)
+        self.relationships = try? container.decode(TargetRelationship.self, forKey: .relationships)
         self.constellation = try container.decode(Constellation.self, forKey: .constellation)
         self.ra = try container.decode(Double.self, forKey: .ra)
         self.dec = try container.decode(Double.self, forKey: .dec)
@@ -250,7 +246,7 @@ extension DeepSkyTarget: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case name, designation, image, description, descriptionURL, type, constellation, ra, dec, arcLength, arcWidth, apparentMag
+        case name, designation, image, description, descriptionURL, type, relationships, constellation, ra, dec, arcLength, arcWidth, apparentMag
     }
     
     func encode(to encoder: Encoder) throws {

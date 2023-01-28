@@ -56,7 +56,7 @@ final class DailyReport: ObservableObject {
          Filters the list for broadband or narrowband based on the status of the moon
          */
         func getAvailableTargets() -> [DeepSkyTarget] {
-            var targets = DeepSkyTargetList.allTargets
+            var targets = Array(DeepSkyTargetList.whitelistedTargets.values)
             targets.filterByVisibility(settings.minVisibility, location: location, date: date, sunData: data.sun, limitingAlt: settings.limitingAltitude)
             
             // if moon is a problem, filter for narrowband
