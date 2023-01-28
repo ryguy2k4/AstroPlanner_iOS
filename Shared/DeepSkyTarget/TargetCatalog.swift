@@ -1,5 +1,5 @@
 //
-//  DSOCatalog.swift
+//  TargetCatalog.swift
 //  DeepSkyCatalog
 //
 //  Created by Ryan Sponzilli on 11/21/22.
@@ -7,7 +7,7 @@
 
 import Foundation
  
-enum DSOCatalog: String, Filter, CaseNameCodable {
+enum TargetCatalog: String, Filter, CaseNameCodable {
     static let name = "Catalog"
     var id: Self { self }
     case messier = "Messier"
@@ -31,16 +31,6 @@ enum DSOCatalog: String, Filter, CaseNameCodable {
             return "NGC "
         case .ic:
             return "IC "
-        }
-    }
-}
-
-struct Designation: Hashable, Codable {
-    let catalog: DSOCatalog
-    let number: Int
-    var description: String {
-        get {
-            return "\(catalog.rawValue) \(number)"
         }
     }
 }

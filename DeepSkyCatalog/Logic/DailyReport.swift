@@ -28,11 +28,11 @@ final class DailyReport: ObservableObject {
         self.presetList = presetList
                 
         self.topFive = createReportList(top: 5)
-        self.topTenNebulae = createReportList(for: DSOType.nebulae, top: 10)
-        self.topTenGalaxies = createReportList(for: DSOType.galaxies, top: 10)
-        self.topTenStarClusters = createReportList(for: DSOType.starClusters, top: 10)
+        self.topTenNebulae = createReportList(for: TargetType.nebulae, top: 10)
+        self.topTenGalaxies = createReportList(for: TargetType.galaxies, top: 10)
+        self.topTenStarClusters = createReportList(for: TargetType.starClusters, top: 10)
         
-        func createReportList(for type: [DSOType] = [], top num: Int) -> [DeepSkyTarget] {
+        func createReportList(for type: [TargetType] = [], top num: Int) -> [DeepSkyTarget] {
             // start with all targets
             var targets = getAvailableTargets()
             
@@ -61,11 +61,11 @@ final class DailyReport: ObservableObject {
             
             // if moon is a problem, filter for narrowband
             if data.moon.illuminated > settings.maxAllowedMoon {
-                targets.filterByType(DSOType.narrowband)
+                targets.filterByType(TargetType.narrowband)
             }
             // if moon is not a problem, but broadband preferred, filter for broadband only
             else if settings.preferBroadband {
-                targets.filterByType(DSOType.broadband)
+                targets.filterByType(TargetType.broadband)
             }
             return targets
         }

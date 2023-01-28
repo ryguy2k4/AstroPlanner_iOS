@@ -86,7 +86,7 @@ extension Array where Element == DeepSkyTarget {
         self = self.sortedBySize()
     }
     
-    func sortedByCatalog(catalog: DSOCatalog) -> Self {
+    func sortedByCatalog(catalog: TargetCatalog) -> Self {
         return self.sorted { t1, t2 in
             return t1.designation.first { des in
                 return des.catalog == catalog
@@ -96,7 +96,7 @@ extension Array where Element == DeepSkyTarget {
         }
     }
     
-    mutating func sortByCatalog(catalog: DSOCatalog) {
+    mutating func sortByCatalog(catalog: TargetCatalog) {
         self = self.sortedByCatalog(catalog: catalog)
     }
 }

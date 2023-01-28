@@ -112,7 +112,7 @@ struct DetailView: View {
                     // Target Description
                     VStack(alignment: .leading, spacing: 10) {
                         Text(target.description)
-                        Link(destination: target.descriptionURL) {
+                        Link(destination: target.wikipediaURL) {
                             Label("Wikipedia", systemImage: "arrow.up.forward.square")
                         }
                     }.padding()

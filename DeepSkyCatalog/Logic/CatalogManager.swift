@@ -25,9 +25,9 @@ final class CatalogManager: ObservableObject {
     
     // Filter Control Variables
     @Published var searchText = ""
-    @Published var catalogSelection: [DSOCatalog] = []
+    @Published var catalogSelection: [TargetCatalog] = []
     @Published var constellationSelection: [Constellation] = []
-    @Published var typeSelection: [DSOType] = []
+    @Published var typeSelection: [TargetType] = []
     @Published var brightestMag: Double = 0
     @Published var dimmestMag: Double = .nan
     @Published var minSize: Double = 0

@@ -55,7 +55,7 @@ extension Array where Element == DeepSkyTarget {
     }
     
     /// FILTER BY CATALOG
-    func filteredByCatalog(_ catalogSelection: [DSOCatalog]) -> Self {
+    func filteredByCatalog(_ catalogSelection: [TargetCatalog]) -> Self {
         return self.filter() {
             for catalog in catalogSelection {
                 for item in $0.designation {
@@ -66,7 +66,7 @@ extension Array where Element == DeepSkyTarget {
         }
     }
     
-    mutating func filterByCatalog(_ catalogSelection: [DSOCatalog]) {
+    mutating func filterByCatalog(_ catalogSelection: [TargetCatalog]) {
         self = self.filteredByCatalog(catalogSelection)
     }
     
@@ -85,7 +85,7 @@ extension Array where Element == DeepSkyTarget {
     }
     
     /// FILTER BY TYPE
-    func filteredByType(_ typeSelection: [DSOType]) -> Self {
+    func filteredByType(_ typeSelection: [TargetType]) -> Self {
         return self.filter() {
             for type in typeSelection {
                 for item in $0.type {
@@ -96,7 +96,7 @@ extension Array where Element == DeepSkyTarget {
         }
     }
     
-    mutating func filterByType(_ typeSelection: [DSOType]) {
+    mutating func filterByType(_ typeSelection: [TargetType]) {
         self = self.filteredByType(typeSelection)
     }
     

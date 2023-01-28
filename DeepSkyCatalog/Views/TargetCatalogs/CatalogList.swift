@@ -10,7 +10,7 @@ import SwiftUI
 struct CatalogList: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
-    let catalog: DSOCatalog
+    let catalog: TargetCatalog
     var body: some View {
         List(Array(DeepSkyTargetList.allTargets.values).filteredByCatalog([catalog]).sortedByCatalog(catalog: catalog).reversed()) { target in
             NavigationLink {

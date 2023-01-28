@@ -7,38 +7,57 @@
 
 import Foundation
 
+/**
+ The basic building block for this app. This struct defines a Deep Sky Target.
+ */
 struct DeepSkyTarget: Identifiable, Hashable {
     // identifiers
     let id = UUID()
+    
+    /// Common names for the target
     var name: [String]?
+    
+    /// A default name for a target composed of its type and designation
     var defaultName: String {
         get {
             "\(type.first!.rawValue) \(designation.first!.catalog.abbr)\(designation.first!.number)"
         }
     }
+    
+    /// Catalog designations that this target has
     let designation: [Designation]
     
-    // image
+    /// An image for the target, including copyright information
     let image: TargetImage
     
-    // description
+    /// A brief description of the target
     let description: String
-    let descriptionURL: URL
-    let type: [DSOType]
     
+    /// The target's wikipedia page
+    let wikipediaURL: URL
+    
+    /// The type of target
+    let type: [TargetType]
+    
+    /// The type of relationship this target has, if at all
     let relationships: TargetRelationship?
     
-    enum TargetRelationship: Hashable, Codable {
-        case superImposed(targets: [UUID])
-        case visualGrouping(targets: [UUID])
-    }
-    
-    // characteristics
+    /// The constellation the target resides in
     let constellation: Constellation
+    
+    /// The target's right ascension
     let ra: Double
+    
+    /// The target's declination
     let dec: Double
+    
+    /// The target's apparent angular length in the sky
     let arcLength: Double
+    
+    /// The target's apparent angular width in the sky
     let arcWidth: Double
+    
+    /// The target's apparent magnitude
     let apparentMag: Double
     
     struct TargetImage: Hashable, Codable {
@@ -62,6 +81,30 @@ struct DeepSkyTarget: Identifiable, Hashable {
         let source: ImageSource
         let copyright: String?
     }
+    
+    struct Designation: Hashable, Codable {
+        let catalog: TargetCatalog
+        let number: Int
+        var description: String {
+            get {
+                return "\(catalog.rawValue) \(number)"
+            }
+        }
+    }
+    
+    enum TargetRelationship: Hashable, Codable {
+        case superImposed(targets: [UUID])
+        case visualGrouping(targets: [UUID])
+    }
+}
+
+
+
+
+/**
+ All Functions performed on DeepSkyTarget
+ */
+extension DeepSkyTarget {
     
     /**
      Gets the altitude of the target.
@@ -226,6 +269,12 @@ struct DeepSkyTarget: Identifiable, Hashable {
     }
 }
 
+
+
+
+/**
+ A Codable Implementation for DeepSkyTarget
+ */
 extension DeepSkyTarget: Codable {
 
     init(from decoder: Decoder) throws {
@@ -234,8 +283,8 @@ extension DeepSkyTarget: Codable {
         self.designation = try container.decode([Designation].self, forKey: .designation)
         self.image = (try? container.decode(TargetImage.self, forKey: .image)) ?? TargetImage(source: .placeholder, copyright: nil)
         self.description = try container.decode(String.self, forKey: .description)
-        self.descriptionURL = try container.decode(URL.self, forKey: .descriptionURL)
-        self.type = try container.decode([DSOType].self, forKey: .type)
+        self.wikipediaURL = try container.decode(URL.self, forKey: .descriptionURL)
+        self.type = try container.decode([TargetType].self, forKey: .type)
         self.relationships = try? container.decode(TargetRelationship.self, forKey: .relationships)
         self.constellation = try container.decode(Constellation.self, forKey: .constellation)
         self.ra = try container.decode(Double.self, forKey: .ra)
@@ -259,7 +308,7 @@ extension DeepSkyTarget: Codable {
             try container.encode(image, forKey: .image)
         }
         try container.encode(description, forKey: .description)
-        try container.encode(descriptionURL, forKey: .descriptionURL)
+        try container.encode(wikipediaURL, forKey: .descriptionURL)
         try container.encode(type, forKey: .type)
         try container.encode(constellation, forKey: .constellation)
         try container.encode(ra, forKey: .ra)
