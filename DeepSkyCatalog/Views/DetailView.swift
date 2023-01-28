@@ -20,20 +20,22 @@ struct DetailView: View {
                 VStack(spacing: 10) {
                     
                     // Target Image
-                    VStack {
-                        NavigationLink(destination: ImageViewer(image: target.image.source.fileName)) {
-                            Image(target.image.source.fileName)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 200)
-                                .cornerRadius(12)
-                        }
-                        if let credit = target.image.copyright {
-                            Text("Image Copyright: " + credit)
-                                .fontWeight(.light)
-                                .lineLimit(2)
-                                .font(.caption)
-                                .padding(.horizontal)
+                    if let image = target.image {
+                        VStack {
+                            NavigationLink(destination: ImageViewer(image: image.source.fileName)) {
+                                Image(image.source.fileName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 200)
+                                    .cornerRadius(12)
+                            }
+                            if let credit = image.copyright {
+                                Text("Image Copyright: " + credit)
+                                    .fontWeight(.light)
+                                    .lineLimit(2)
+                                    .font(.caption)
+                                    .padding(.horizontal)
+                            }
                         }
                     }
                     

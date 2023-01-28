@@ -117,11 +117,11 @@ private struct TargetCell: View {
     
     var body: some View {
         HStack {
-            Image(target.image.source.fileName)
+            Image(target.image?.source.fileName ?? "\(target.type.first!)")
                 .resizable()
                 .scaledToFit()
+                .cornerRadius(8)
                 .frame(width: 100, height: 70)
-                .cornerRadius(4)
             VStack(alignment: .leading) {
                 Text(target.name?[0] ?? target.defaultName)
                     .fontWeight(.semibold)

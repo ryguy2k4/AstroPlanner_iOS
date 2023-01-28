@@ -28,7 +28,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
     let designation: [Designation]
     
     /// An image for the target, including copyright information
-    let image: TargetImage
+    let image: TargetImage?
     
     /// A brief description of the target
     let description: String
@@ -64,7 +64,6 @@ struct DeepSkyTarget: Identifiable, Hashable {
         enum ImageSource: Hashable, Codable {
             case apod(id: String)
             case local(fileName: String)
-            case placeholder
             
             var fileName: String {
                 switch self {
@@ -72,8 +71,6 @@ struct DeepSkyTarget: Identifiable, Hashable {
                     return "apod_" + id
                 case .local(fileName: let filename):
                     return filename
-                case .placeholder:
-                    return "power_star"
                 }
             }
         }
@@ -281,7 +278,7 @@ extension DeepSkyTarget: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try? container.decode([String].self, forKey: .name)
         self.designation = try container.decode([Designation].self, forKey: .designation)
-        self.image = (try? container.decode(TargetImage.self, forKey: .image)) ?? TargetImage(source: .placeholder, copyright: nil)
+        self.image = try? container.decode(TargetImage.self, forKey: .image)
         self.description = try container.decode(String.self, forKey: .description)
         self.wikipediaURL = try container.decode(URL.self, forKey: .descriptionURL)
         self.type = try container.decode([TargetType].self, forKey: .type)
@@ -300,11 +297,11 @@ extension DeepSkyTarget: Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        if self.name != nil {
+        if let name = self.name {
             try container.encode(name, forKey: .name)
         }
         try container.encode(designation, forKey: .designation)
-        if self.image.source != .placeholder {
+        if let image = self.image {
             try container.encode(image, forKey: .image)
         }
         try container.encode(description, forKey: .description)
