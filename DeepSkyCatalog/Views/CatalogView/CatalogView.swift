@@ -116,7 +116,7 @@ private struct TargetCell: View {
     var target: DeepSkyTarget
     
     var body: some View {
-        HStack {
+        HStack {                
             Image(target.image?.source.fileName ?? "\(target.type.first!)")
                 .resizable()
                 .scaledToFit()

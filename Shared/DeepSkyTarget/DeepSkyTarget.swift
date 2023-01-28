@@ -12,7 +12,7 @@ import Foundation
  */
 struct DeepSkyTarget: Identifiable, Hashable {
     // identifiers
-    let id = UUID()
+    let id: UUID
     
     /// Common names for the target
     var name: [String]?
@@ -276,11 +276,12 @@ extension DeepSkyTarget: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(UUID.self, forKey: .id)
         self.name = try? container.decode([String].self, forKey: .name)
         self.designation = try container.decode([Designation].self, forKey: .designation)
         self.image = try? container.decode(TargetImage.self, forKey: .image)
         self.description = try container.decode(String.self, forKey: .description)
-        self.wikipediaURL = try container.decode(URL.self, forKey: .descriptionURL)
+        self.wikipediaURL = try container.decode(URL.self, forKey: .wikipediaURL)
         self.type = try container.decode([TargetType].self, forKey: .type)
         self.relationships = try? container.decode(TargetRelationship.self, forKey: .relationships)
         self.constellation = try container.decode(Constellation.self, forKey: .constellation)
@@ -292,11 +293,12 @@ extension DeepSkyTarget: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case name, designation, image, description, descriptionURL, type, relationships, constellation, ra, dec, arcLength, arcWidth, apparentMag
+        case name, id, designation, image, description, wikipediaURL, type, relationships, constellation, ra, dec, arcLength, arcWidth, apparentMag
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
         if let name = self.name {
             try container.encode(name, forKey: .name)
         }
@@ -305,7 +307,7 @@ extension DeepSkyTarget: Codable {
             try container.encode(image, forKey: .image)
         }
         try container.encode(description, forKey: .description)
-        try container.encode(wikipediaURL, forKey: .descriptionURL)
+        try container.encode(wikipediaURL, forKey: .wikipediaURL)
         try container.encode(type, forKey: .type)
         try container.encode(constellation, forKey: .constellation)
         try container.encode(ra, forKey: .ra)

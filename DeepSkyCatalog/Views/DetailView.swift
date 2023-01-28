@@ -68,26 +68,26 @@ struct DetailView: View {
                         }
                     }
                     
-                    if let relationship = target.relationships {
-                        switch relationship {
-                        case .superImposed(targets: let targets):
-                            let dst = targets.map({DeepSkyTargetList.allTargets[$0]!})
-                            VStack {
-                                Text("Composed of: ")
-                                ForEach(dst) { target in
-                                    Text(target.name?.first ?? target.defaultName)
-                                }
-                            }
-                        case .visualGrouping(targets: let targets):
-                            let dst = targets.map({DeepSkyTargetList.allTargets[$0]!})
-                            VStack {
-                                Text("Group Contains: ")
-                                ForEach(dst) { target in
-                                    Text(target.name?.first ?? target.defaultName)
-                                }
-                            }
-                        }
-                    }
+//                    if let relationship = target.relationships {
+//                        switch relationship {
+//                        case .superImposed(targets: let targets):
+//                            let dst = targets.map({DeepSkyTargetList.allTargets[$0]!})
+//                            VStack {
+//                                Text("Composed of: ")
+//                                ForEach(dst) { target in
+//                                    Text(target.name?.first ?? target.defaultName)
+//                                }
+//                            }
+//                        case .visualGrouping(targets: let targets):
+//                            let dst = targets.map({DeepSkyTargetList.allTargets[$0]!})
+//                            VStack {
+//                                Text("Group Contains: ")
+//                                ForEach(dst) { target in
+//                                    Text(target.name?.first ?? target.defaultName)
+//                                }
+//                            }
+//                        }
+//                    }
                     
                     // Target Graph
                     VStack() {

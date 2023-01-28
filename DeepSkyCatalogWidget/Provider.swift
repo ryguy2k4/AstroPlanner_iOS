@@ -10,12 +10,12 @@ import WidgetKit
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> TopThreeEntry {
-        let topThree = [DeepSkyTargetList.whitelistedTargets.randomElement()!.value, DeepSkyTargetList.whitelistedTargets.randomElement()!.value, DeepSkyTargetList.whitelistedTargets.randomElement()!.value]
+        let topThree = [DeepSkyTargetList.whitelistedTargets[0], DeepSkyTargetList.whitelistedTargets[1], DeepSkyTargetList.whitelistedTargets[2]]
         return TopThreeEntry(date: Date(), topThree: topThree)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (TopThreeEntry) -> ()) {
-        let topThree = [DeepSkyTargetList.whitelistedTargets.randomElement()!.value, DeepSkyTargetList.whitelistedTargets.randomElement()!.value, DeepSkyTargetList.whitelistedTargets.randomElement()!.value]
+        let topThree = [DeepSkyTargetList.whitelistedTargets[0], DeepSkyTargetList.whitelistedTargets[1], DeepSkyTargetList.whitelistedTargets[2]]
         let entry = TopThreeEntry(date: Date(), topThree: topThree)
         completion(entry)
     }
@@ -25,7 +25,7 @@ struct Provider: TimelineProvider {
             
         // Generate a timline with 1 entry for the current date
         //let report = DailyReport(location: locationList.first!, date: date, settings: reportSettings.first!, preset: presetList.first!, data: data)
-        let topThree = [DeepSkyTargetList.whitelistedTargets.randomElement()!.value, DeepSkyTargetList.whitelistedTargets.randomElement()!.value, DeepSkyTargetList.whitelistedTargets.randomElement()!.value]
+        let topThree = [DeepSkyTargetList.whitelistedTargets[0], DeepSkyTargetList.whitelistedTargets[1], DeepSkyTargetList.whitelistedTargets[2]]
         let currentDate = Date()
         let entryDate = Calendar.current.startOfDay(for: currentDate)
         let entry = TopThreeEntry(date: entryDate, topThree: topThree)

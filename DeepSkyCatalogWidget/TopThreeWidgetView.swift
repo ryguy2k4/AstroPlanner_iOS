@@ -30,7 +30,7 @@ struct TopThreeWidgetView : View {
 
 struct TopThreeWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        let topThree = [DeepSkyTargetList.whitelistedTargets.randomElement()!.value, DeepSkyTargetList.whitelistedTargets.randomElement()!.value, DeepSkyTargetList.whitelistedTargets.randomElement()!.value]
+        let topThree = [DeepSkyTargetList.whitelistedTargets[0], DeepSkyTargetList.whitelistedTargets[1], DeepSkyTargetList.whitelistedTargets[2]]
         TopThreeWidgetView(entry: TopThreeEntry(date: Date(), topThree: topThree))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }

@@ -9,26 +9,20 @@ import Foundation
 import Swift
 
 struct DeepSkyTargetList {
-    static var allTargets: [UUID: DeepSkyTarget] {
+    static var allTargets: [DeepSkyTarget] {
         let decoder = JSONDecoder()
         let json = try! Data(contentsOf: Bundle.main.url(forResource: "Catalog", withExtension: "json")!)
-        let decoded = try! decoder.decode([String: DeepSkyTarget].self, from: json)
-        
-        var allTargets: [UUID: DeepSkyTarget] = [:]
-        for (key, value) in decoded {
-            allTargets[UUID(uuidString: key)!] = value
-        }
-        return allTargets
+        return try! decoder.decode([DeepSkyTarget].self, from: json)
     }
     
     static var blacklist: [UUID] {
         return []
     }
     
-    static var whitelistedTargets: [UUID: DeepSkyTarget] {
+    static var whitelistedTargets: [DeepSkyTarget] {
         var whitelist = allTargets
         for item in blacklist {
-            whitelist[item] = nil
+            whitelist.removeAll(where: {$0.id == item})
         }
         return whitelist
     }
