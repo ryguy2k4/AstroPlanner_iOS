@@ -192,6 +192,10 @@ extension DeepSkyTarget {
             else if riseToday < setToday && riseToday < dayStart {
                 return DateInterval(start: riseToday.tomorrow(), end: setTomorrow)
             }
+            // hot fix for another issue involving midnight (1/29/23 Witch's broom)
+            else if riseToday > setToday && setTomorrow > riseTomorrow {
+                return DateInterval(start: riseToday, end: setTomorrow.yesterday())
+            }
             // if rise > set
             else {
                 // set interval from riseToday to setTomorrow
