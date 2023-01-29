@@ -6,10 +6,8 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct SettingsView: View {
-    @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @Environment(\.date) var date
     @State var tabSelection = 0
@@ -43,6 +41,10 @@ struct SettingsView: View {
                     NavigationLink(destination: SharplessInfo()) {
                         Label("Sharpless", systemImage: "s.circle")
                     }
+                    NavigationLink(destination:  HiddenTargetsList()) {
+                        Label("Hidden Targets", systemImage: "eye.slash")
+                    }
+
                 }
                 
                 ConfigSection {

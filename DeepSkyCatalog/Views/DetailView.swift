@@ -9,6 +9,7 @@ import SwiftUI
 import Charts
 
 struct DetailView: View {
+    @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var reportSettings: ReportSettings
@@ -118,6 +119,21 @@ struct DetailView: View {
                             Label("Wikipedia", systemImage: "arrow.up.forward.square")
                         }
                     }.padding()
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Menu {
+                            Button("Hide Target") {
+                                let newHiddenTarget = HiddenTarget(context: context)
+                                newHiddenTarget.id = target.id
+                                reportSettings.addToHiddenTargets(newHiddenTarget)
+                                PersistenceManager.shared.saveData(context: context)
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis")
+                        }
+
+                    }
                 }
             }
         } else {

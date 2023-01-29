@@ -7,6 +7,7 @@
 
 import Foundation
 import Swift
+import CoreData
 
 struct DeepSkyTargetList {
     static var allTargets: [DeepSkyTarget] {
@@ -15,14 +16,11 @@ struct DeepSkyTargetList {
         return try! decoder.decode([DeepSkyTarget].self, from: json)
     }
     
-    static var blacklist: [UUID] {
-        return []
-    }
-    
     static var whitelistedTargets: [DeepSkyTarget] {
+        let hiddenTargets = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<ReportSettings>(entityName: "ReportSettings")).first!.hiddenTargets!.allObjects as! [HiddenTarget]
         var whitelist = allTargets
-        for item in blacklist {
-            whitelist.removeAll(where: {$0.id == item})
+        for item in hiddenTargets {
+            whitelist.removeAll(where: {$0.id == item.id})
         }
         return whitelist
     }

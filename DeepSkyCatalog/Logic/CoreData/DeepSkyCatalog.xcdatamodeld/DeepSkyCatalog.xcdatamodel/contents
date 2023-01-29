@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="HiddenTarget" representedClassName="HiddenTarget" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="reportSettings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReportSettings" inverseName="hiddenTargets" inverseEntity="ReportSettings"/>
+    </entity>
     <entity name="ImagingPreset" representedClassName="ImagingPreset" syncable="YES" codeGenerationType="class">
         <attribute name="focalLength" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="fovLength" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -18,6 +22,7 @@
         <attribute name="minFOVCoverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="minVisibility" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="preferBroadband" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="hiddenTargets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HiddenTarget" inverseName="reportSettings" inverseEntity="HiddenTarget"/>
     </entity>
     <entity name="SavedLocation" representedClassName="SavedLocation" syncable="YES" codeGenerationType="class">
         <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

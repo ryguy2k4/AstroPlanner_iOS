@@ -84,6 +84,8 @@
 		71F510BD297606AC008F7629 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71F71573293FB4010011EF7F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
 		71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
+		71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
+		71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +175,7 @@
 		71F510BB297605E9008F7629 /* CaseNameCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseNameCodable.swift; sourceTree = "<group>"; };
 		71F71572293FB4010011EF7F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		71F844C8294A95E700DD2742 /* SelectableList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableList.swift; sourceTree = "<group>"; };
+		71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTargetsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9682921EF20008C7614 /* SettingsView.swift */,
+				71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */,
 				713B49B72954122D008EFC81 /* LocationSettings.swift */,
 				713B49BB29541242008EFC81 /* DailyReportSettings.swift */,
 				71375E6A2980DB6F00B95F2E /* TargetSettings.swift */,
@@ -526,6 +530,7 @@
 				71ACF32D2964EA9A00CC83D5 /* TargetType.swift in Sources */,
 				71ACF3392964ED9100CC83D5 /* PlaceValue.swift in Sources */,
 				71ACF3312964ED0F00CC83D5 /* Date.swift in Sources */,
+				71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */,
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
 				71ACF3332964ED1400CC83D5 /* Double.swift in Sources */,
 				7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */,
@@ -556,6 +561,7 @@
 				71BCF9762921EF6D008C7614 /* DeepSkyTarget.swift in Sources */,
 				710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */,
 				71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */,
+				71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */,
 				71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */,
 				7190D750297252EB00938E14 /* CaldwellInfo.swift in Sources */,
 				71BCF9822921EF8B008C7614 /* Date.swift in Sources */,
