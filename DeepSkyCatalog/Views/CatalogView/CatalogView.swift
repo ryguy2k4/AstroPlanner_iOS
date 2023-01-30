@@ -15,7 +15,7 @@ struct CatalogView: View {
     @Binding var date: Date
     
     init(date: Binding<Date>, location: SavedLocation, reportSettings: ReportSettings) {
-        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date.wrappedValue, reportSettings: reportSettings))
+        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, reportSettings: reportSettings))
         self._date = date
     }
         
@@ -71,17 +71,18 @@ struct CatalogView: View {
             
             // When the date changes, make sure everything that depends on the date gets updated
             .onChange(of: date) { newDate in
-                viewModel.date = newDate
+                viewModel.refreshList(sunData: data.sun)
             }
             
             // When the location changes, make sure everything that depends on the date gets updated
             .onChange(of: locationList.first) { newLocation in
                 viewModel.location = newLocation!
+                viewModel.refreshList(sunData: data.sun)
             }
             
-            // When reportSettings changes, make sure everything that depends on the date gets updated
-            .onChange(of: reportSettings.first!) { newSettings in
-                viewModel.reportSettings = newSettings
+            // When target settings change, refresh the list
+            .onReceive(viewModel.reportSettings.objectWillChange) { _ in
+                viewModel.refreshList(sunData: data.sun)
             }
             
             // Passing the date and location to use into all child views

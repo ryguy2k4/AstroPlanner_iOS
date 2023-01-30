@@ -8,14 +8,14 @@
 import SwiftUI
 
 final class CatalogManager: ObservableObject {
-    @Published var location: SavedLocation
-    @Published var date: Date
-    @Published var reportSettings: ReportSettings
+    var location: SavedLocation
+    var reportSettings: ReportSettings
+    @Binding var date: Date
     
-    init(location: SavedLocation, date: Date, reportSettings: ReportSettings) {
+    init(location: SavedLocation, date: Binding<Date>, reportSettings: ReportSettings) {
         self.location = location
-        self.date = date
         self.reportSettings = reportSettings
+        self._date = date
     }
     
     // Sort Control Variables
@@ -86,6 +86,18 @@ final class CatalogManager: ObservableObject {
     func refreshList(sunData: SunData) {
         // reset list
         targets = DeepSkyTargetList.whitelistedTargets.sorted(by: {$0.ra > $1.ra})
+        if reportSettings.hideNeverRises {
+            for target in targets {
+                do {
+                    let _ = try target.getNextInterval(at: location, on: date, sunData: sunData)
+                } catch TargetCalculationError.neverRises {
+                    // if target doesn't rise, remove it from the list
+                    targets.removeAll(where: {$0 == target})
+                } catch {
+                    // do nothing
+                }
+            }
+        }
         
         //filter by current active filters
         if isActive(criteria: searchText) {
