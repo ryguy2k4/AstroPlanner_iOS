@@ -26,7 +26,7 @@ struct SettingsView: View {
                     NavigationLink(destination: DailyReportSettings()) {
                         Label("Report Settings", systemImage: "doc.text")
                     }
-                    NavigationLink(destination: TargetSettings()) {
+                    NavigationLink(destination: TargetSettingsView()) {
                         Label("Target Settings", systemImage: "star")
                     }
                 }

@@ -13,6 +13,7 @@ struct HomeView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse), SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @State var date: Date = Date.today
     var body: some View {
         TabView {
@@ -20,7 +21,7 @@ struct HomeView: View {
                 .tabItem {
                     Label("Daily Report", systemImage: "doc.text")
                 }
-            CatalogView(date: $date, location: locationList.first!, reportSettings: reportSettings.first!)
+            CatalogView(date: $date, location: locationList.first!, targetSettings: targetSettings.first!)
                 .tabItem {
                     Label("Master Catalog", systemImage: "tray.full.fill")
                 }

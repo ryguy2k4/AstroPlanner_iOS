@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="HiddenTarget" representedClassName="HiddenTarget" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="reportSettings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReportSettings" inverseName="hiddenTargets" inverseEntity="ReportSettings"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TargetSettings" inverseName="hiddenTargets" inverseEntity="TargetSettings"/>
     </entity>
     <entity name="ImagingPreset" representedClassName="ImagingPreset" syncable="YES" codeGenerationType="class">
         <attribute name="focalLength" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
@@ -16,13 +16,10 @@
         <attribute name="resolutionWidth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="ReportSettings" representedClassName="ReportSettings" syncable="YES" codeGenerationType="class">
-        <attribute name="hideNeverRises" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="limitingAltitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="maxAllowedMoon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="minFOVCoverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="minVisibility" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="preferBroadband" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="hiddenTargets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HiddenTarget" inverseName="reportSettings" inverseEntity="HiddenTarget"/>
+        <attribute name="maxAllowedMoon" optional="YES" attributeType="Double" defaultValueString="0.2" usesScalarValueType="YES"/>
+        <attribute name="minFOVCoverage" optional="YES" attributeType="Double" defaultValueString="0.25" usesScalarValueType="YES"/>
+        <attribute name="minVisibility" optional="YES" attributeType="Double" defaultValueString="0.6" usesScalarValueType="YES"/>
+        <attribute name="preferBroadband" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
     </entity>
     <entity name="SavedLocation" representedClassName="SavedLocation" syncable="YES" codeGenerationType="class">
         <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -30,5 +27,10 @@
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="timezone" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="TargetSettings" representedClassName="TargetSettings" syncable="YES" codeGenerationType="class">
+        <attribute name="hideNeverRises" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="limitingAltitude" optional="YES" attributeType="Double" defaultValueString="20" usesScalarValueType="YES"/>
+        <relationship name="hiddenTargets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HiddenTarget" inverseName="origin" inverseEntity="HiddenTarget"/>
     </entity>
 </model>

@@ -12,7 +12,7 @@ struct DetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var location: SavedLocation
-    @EnvironmentObject var reportSettings: ReportSettings
+    @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
     var target: DeepSkyTarget
     var body: some View {
@@ -61,7 +61,7 @@ struct DetailView: View {
                                 FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
                             }
                             VStack {
-                                Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude)).percent())")
+                                Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
                                     .foregroundColor(.secondary)
                                 Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: data.sun)).percent())")
                                     .foregroundColor(.secondary)
@@ -126,7 +126,7 @@ struct DetailView: View {
                             Button("Hide Target") {
                                 let newHiddenTarget = HiddenTarget(context: context)
                                 newHiddenTarget.id = target.id
-                                reportSettings.addToHiddenTargets(newHiddenTarget)
+                                targetSettings.addToHiddenTargets(newHiddenTarget)
                                 PersistenceManager.shared.saveData(context: context)
                             }
                         } label: {

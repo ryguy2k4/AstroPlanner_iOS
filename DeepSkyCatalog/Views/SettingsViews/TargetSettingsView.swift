@@ -8,13 +8,13 @@
 import SwiftUI
 import CoreData
 
-struct TargetSettings: View {
+struct TargetSettingsView: View {
     @Environment(\.managedObjectContext) var context
-    @ObservedObject var settings: ReportSettings
+    @ObservedObject var settings: TargetSettings
     @State var isLimitingAltitudeModal: Bool = false
     
     init() {
-        self.settings = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<ReportSettings>(entityName: "ReportSettings")).first!
+        self.settings = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<TargetSettings>(entityName: "TargetSettings")).first!
     }
     
     var body: some View {

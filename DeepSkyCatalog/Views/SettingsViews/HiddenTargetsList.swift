@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HiddenTargetsList: View {
     @Environment(\.managedObjectContext) var context
-    @FetchRequest(sortDescriptors: []) var settings: FetchedResults<ReportSettings>
+    @FetchRequest(sortDescriptors: []) var settings: FetchedResults<TargetSettings>
 
     var body: some View {
         Text("")

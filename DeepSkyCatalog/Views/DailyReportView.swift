@@ -12,6 +12,7 @@ struct DailyReportView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
@@ -36,7 +37,7 @@ struct DailyReportView: View {
         // Only display report if network data is available
         if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
             // every time the view refreshes, generate a report
-            let report = DailyReport(location: locationList.first!, date: date, settings: reportSettings.first!, presetList: presetList, data: data)
+            let report = DailyReport(location: locationList.first!, date: date, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
             NavigationView {
                 ScrollView {
                     VStack() {

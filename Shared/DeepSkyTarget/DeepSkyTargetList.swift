@@ -17,7 +17,7 @@ struct DeepSkyTargetList {
     }
     
     static var whitelistedTargets: [DeepSkyTarget] {
-        let hiddenTargets = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<ReportSettings>(entityName: "ReportSettings")).first!.hiddenTargets!.allObjects as! [HiddenTarget]
+        let hiddenTargets = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<TargetSettings>(entityName: "TargetSettings")).first!.hiddenTargets!.allObjects as! [HiddenTarget]
         var whitelist = allTargets
         for item in hiddenTargets {
             whitelist.removeAll(where: {$0.id == item.id})

@@ -9,12 +9,12 @@ import SwiftUI
 
 final class CatalogManager: ObservableObject {
     var location: SavedLocation
-    var reportSettings: ReportSettings
+    var targetSettings: TargetSettings
     @Binding var date: Date
     
-    init(location: SavedLocation, date: Binding<Date>, reportSettings: ReportSettings) {
+    init(location: SavedLocation, date: Binding<Date>, targetSettings: TargetSettings) {
         self.location = location
-        self.reportSettings = reportSettings
+        self.targetSettings = targetSettings
         self._date = date
     }
     
@@ -86,7 +86,7 @@ final class CatalogManager: ObservableObject {
     func refreshList(sunData: SunData) {
         // reset list
         targets = DeepSkyTargetList.whitelistedTargets.sorted(by: {$0.ra > $1.ra})
-        if reportSettings.hideNeverRises {
+        if targetSettings.hideNeverRises {
             for target in targets {
                 do {
                     let _ = try target.getNextInterval(at: location, on: date, sunData: sunData)
@@ -119,7 +119,7 @@ final class CatalogManager: ObservableObject {
             targets.filterBySize(min: minSize, max: maxSize)
         }
         if isActive(criteria: minVisScore) {
-            targets.filterByVisibility(minVisScore, location: location, date: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
+            targets.filterByVisibility(minVisScore, location: location, date: date, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
         }
         if isActive(criteria: minMerScore) {
             targets.filterByMeridian(minMerScore, location: location, date: date, sunData: sunData)
@@ -128,7 +128,7 @@ final class CatalogManager: ObservableObject {
         // sort the list
         switch currentSort {
         case .visibility:
-            targets.sortByVisibility(location: location, date: date, sunData: sunData, limitingAlt: reportSettings.limitingAltitude)
+            targets.sortByVisibility(location: location, date: date, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
         case .meridian:
             targets.sortByMeridian(location: location, date: date, sunData: sunData)
         case .dec:

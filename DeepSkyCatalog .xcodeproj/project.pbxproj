@@ -15,7 +15,7 @@
 		710ECDAD2965E68F00534D15 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
 		710ECDAE2965E68F00534D15 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
 		7133FC67294C14560080AE0C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133FC66294C14560080AE0C /* View.swift */; };
-		71375E6B2980DB6F00B95F2E /* TargetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71375E6A2980DB6F00B95F2E /* TargetSettings.swift */; };
+		71375E6B2980DB6F00B95F2E /* TargetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71375E6A2980DB6F00B95F2E /* TargetSettingsView.swift */; };
 		713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49B72954122D008EFC81 /* LocationSettings.swift */; };
 		713B49BC29541242008EFC81 /* DailyReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49BB29541242008EFC81 /* DailyReportSettings.swift */; };
 		714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E54CD293D52B00039ECE0 /* LocationManager.swift */; };
@@ -120,7 +120,7 @@
 		710D497629316B4F003F41F1 /* DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportView.swift; sourceTree = "<group>"; };
 		710ECDAC2965E68F00534D15 /* Catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Catalog.json; sourceTree = "<group>"; };
 		7133FC66294C14560080AE0C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		71375E6A2980DB6F00B95F2E /* TargetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSettings.swift; sourceTree = "<group>"; };
+		71375E6A2980DB6F00B95F2E /* TargetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSettingsView.swift; sourceTree = "<group>"; };
 		713B49B72954122D008EFC81 /* LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettings.swift; sourceTree = "<group>"; };
 		713B49BB29541242008EFC81 /* DailyReportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportSettings.swift; sourceTree = "<group>"; };
 		714E54CD293D52B00039ECE0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 				71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */,
 				713B49B72954122D008EFC81 /* LocationSettings.swift */,
 				713B49BB29541242008EFC81 /* DailyReportSettings.swift */,
-				71375E6A2980DB6F00B95F2E /* TargetSettings.swift */,
+				71375E6A2980DB6F00B95F2E /* TargetSettingsView.swift */,
 				71B6D2FC2954D983006ADC6F /* GearSettings.swift */,
 				7156742F29273ECA00626B1B /* AboutView.swift */,
 			);
@@ -550,7 +550,7 @@
 				71BCF96E2921EF20008C7614 /* HomeView.swift in Sources */,
 				7156743029273ECA00626B1B /* AboutView.swift in Sources */,
 				71BCF96C2921EF20008C7614 /* SettingsView.swift in Sources */,
-				71375E6B2980DB6F00B95F2E /* TargetSettings.swift in Sources */,
+				71375E6B2980DB6F00B95F2E /* TargetSettingsView.swift in Sources */,
 				71BCF9882921EF8B008C7614 /* RawSunData.swift in Sources */,
 				714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */,
 				71D5FD28295FA1D10028FF8C /* EditAllFiltersView.swift in Sources */,

@@ -18,31 +18,32 @@ final class PersistenceManager: ObservableObject {
             if let error = error {
                 print("Failed to load data: \(error.localizedDescription)")
             }
-            
-            // if there are no locations stored, then create one
-            if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "SavedLocation")) {
-                if count == 0 {
-                    self.addLocation(name: "Chicago", latitude: 41.833, longitude: -87.872, timezone: -6, isSelected: true, context: self.container.viewContext)
-                }
+        }
+        // if there are no locations stored, then create one
+        if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "SavedLocation")) {
+            if count == 0 {
+                self.addLocation(name: "Chicago", latitude: 41.833, longitude: -87.872, timezone: -6, isSelected: true, context: self.container.viewContext)
             }
-            
-            // if there are no imaging presets stored, then create one
-            if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "ImagingPreset")) {
-                if count == 0 {
-                    self.addImagingPreset(name: "Default", focalLength: 360, pixelSize: 3.76, resLength: 6216, resWidth: 4153, isSelected: true, context: self.container.viewContext)
-                }
+        }
+        
+        // if there are no imaging presets stored, then create one
+        if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "ImagingPreset")) {
+            if count == 0 {
+                self.addImagingPreset(name: "Default", focalLength: 360, pixelSize: 3.76, resLength: 6216, resWidth: 4153, isSelected: true, context: self.container.viewContext)
             }
-            
-            // if there are no report settings stored, then create one
-            if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "ReportSettings")) {
-                if count == 0 {
-                    let settings = ReportSettings(context: self.container.viewContext)
-                    settings.maxAllowedMoon = 0.2
-                    settings.limitingAltitude = 20
-                    settings.minFOVCoverage = 0.25
-                    settings.minVisibility = 0.6
-                    settings.hideNeverRises = true
-                }
+        }
+        
+        // if there are no report settings stored, then create one
+        if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "ReportSettings")) {
+            if count == 0 {
+                _ = ReportSettings(context: self.container.viewContext)
+            }
+        }
+        
+        // if there are no target settings stored, then create one
+        if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "TargetSettings")) {
+            if count == 0 {
+                _ = TargetSettings(context: self.container.viewContext)
             }
         }
     }

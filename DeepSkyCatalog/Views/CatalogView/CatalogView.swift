@@ -10,12 +10,12 @@ import SwiftUI
 struct CatalogView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
-    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @StateObject var viewModel: CatalogManager
     @Binding var date: Date
     
-    init(date: Binding<Date>, location: SavedLocation, reportSettings: ReportSettings) {
-        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, reportSettings: reportSettings))
+    init(date: Binding<Date>, location: SavedLocation, targetSettings: TargetSettings) {
+        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, targetSettings: targetSettings))
         self._date = date
     }
         
@@ -81,14 +81,14 @@ struct CatalogView: View {
             }
             
             // When target settings change, refresh the list
-            .onReceive(viewModel.reportSettings.objectWillChange) { _ in
+            .onReceive(viewModel.targetSettings.objectWillChange) { _ in
                 viewModel.refreshList(sunData: data.sun)
             }
             
             // Passing the date and location to use into all child views
             .environment(\.date, date)
             .environmentObject(locationList.first!)
-            .environmentObject(reportSettings.first!)
+            .environmentObject(targetSettings.first!)
             .environmentObject(viewModel)
             .environment(\.data, data)
         }
@@ -111,7 +111,7 @@ struct CatalogView: View {
  */
 private struct TargetCell: View {
     @EnvironmentObject var location: SavedLocation
-    @EnvironmentObject var reportSettings: ReportSettings
+    @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
     @Environment(\.data) var data
     var target: DeepSkyTarget
@@ -127,7 +127,7 @@ private struct TargetCell: View {
                 Text(target.name?[0] ?? target.defaultName)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Label(target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: reportSettings.limitingAltitude).percent(), systemImage: "eye")
+                Label(target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
                     .foregroundColor(.secondary)
                 Label(target.getMeridianScore(at: location, on: date, sunData: data.sun).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
                     .foregroundColor(.secondary)
