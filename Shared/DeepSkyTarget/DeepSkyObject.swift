@@ -10,7 +10,7 @@ import Foundation
 /**
  The basic building block for this app. This struct defines a Deep Sky Target.
  */
-struct DeepSkyTarget: Identifiable, Hashable {
+struct DeepSkyObject: Identifiable, Hashable {
     // identifiers
     let id: UUID
     
@@ -99,9 +99,9 @@ struct DeepSkyTarget: Identifiable, Hashable {
 
 
 /**
- All Functions performed on DeepSkyTarget
+ All Functions performed on DeepSkyObject
  */
-extension DeepSkyTarget {
+extension DeepSkyObject {
     
     /**
      Gets the altitude of the target.
@@ -274,9 +274,9 @@ extension DeepSkyTarget {
 
 
 /**
- A Codable Implementation for DeepSkyTarget
+ A Codable Implementation for DeepSkyObject
  */
-extension DeepSkyTarget: Codable {
+extension DeepSkyObject: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

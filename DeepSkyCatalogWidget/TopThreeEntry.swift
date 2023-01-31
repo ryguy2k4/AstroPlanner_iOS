@@ -10,5 +10,5 @@ import WidgetKit
 
 struct TopThreeEntry: TimelineEntry {
     let date: Date
-    let topThree: [DeepSkyTarget]
+    let topThree: [DeepSkyObject]
 }

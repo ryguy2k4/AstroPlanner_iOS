@@ -16,10 +16,10 @@ final class DailyReport: ObservableObject {
     let data: (sun: SunData, moon: MoonData)
     let presetList: FetchedResults<ImagingPreset>
     
-    let topFive: [DeepSkyTarget]
-    let topTenNebulae: [DeepSkyTarget]
-    let topTenGalaxies: [DeepSkyTarget]
-    let topTenStarClusters: [DeepSkyTarget]
+    let topFive: [DeepSkyObject]
+    let topTenNebulae: [DeepSkyObject]
+    let topTenGalaxies: [DeepSkyObject]
+    let topTenStarClusters: [DeepSkyObject]
     
     init(location: SavedLocation, date: Date, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: FetchedResults<ImagingPreset>, data: (sun: SunData, moon: MoonData)) {
         self.location = location
@@ -34,7 +34,7 @@ final class DailyReport: ObservableObject {
         self.topTenGalaxies = createReportList(for: TargetType.galaxies, top: 10)
         self.topTenStarClusters = createReportList(for: TargetType.starClusters, top: 10)
         
-        func createReportList(for type: [TargetType] = [], top num: Int) -> [DeepSkyTarget] {
+        func createReportList(for type: [TargetType] = [], top num: Int) -> [DeepSkyObject] {
             // start with all targets
             var targets = getAvailableTargets()
             
@@ -57,7 +57,7 @@ final class DailyReport: ObservableObject {
         /**
          Filters the list for broadband or narrowband based on the status of the moon
          */
-        func getAvailableTargets() -> [DeepSkyTarget] {
+        func getAvailableTargets() -> [DeepSkyObject] {
             var targets = Array(DeepSkyTargetList.whitelistedTargets)
             targets.filterByVisibility(reportSettings.minVisibility, location: location, date: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
             

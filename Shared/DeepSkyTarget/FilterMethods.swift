@@ -43,7 +43,7 @@ protocol Filter: RawRepresentable<String>, Identifiable, Hashable, CaseIterable 
     static var name: String { get }
 }
 
-extension Array where Element == DeepSkyTarget {
+extension Array where Element == DeepSkyObject {
     
     /// FILTER BY SEARCH
     func filteredBySearch(_ searchText: String) -> Self {

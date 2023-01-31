@@ -114,7 +114,7 @@ private struct TargetCell: View {
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
     @Environment(\.data) var data
-    var target: DeepSkyTarget
+    var target: DeepSkyObject
     
     var body: some View {
         HStack {                

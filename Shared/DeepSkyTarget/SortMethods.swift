@@ -36,7 +36,7 @@ enum SortMethod: CaseIterable, Hashable, Identifiable {
     }
 }
 
-extension Array where Element == DeepSkyTarget {
+extension Array where Element == DeepSkyObject {
     
     func sortedByVisibility(location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) -> Self {
         return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) > $1.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)})

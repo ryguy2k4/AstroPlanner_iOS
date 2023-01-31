@@ -10,13 +10,13 @@ import Swift
 import CoreData
 
 struct DeepSkyTargetList {
-    static var allTargets: [DeepSkyTarget] {
+    static var allTargets: [DeepSkyObject] {
         let decoder = JSONDecoder()
         let json = try! Data(contentsOf: Bundle.main.url(forResource: "Catalog", withExtension: "json")!)
-        return try! decoder.decode([DeepSkyTarget].self, from: json)
+        return try! decoder.decode([DeepSkyObject].self, from: json)
     }
     
-    static var whitelistedTargets: [DeepSkyTarget] {
+    static var whitelistedTargets: [DeepSkyObject] {
         let hiddenTargets = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<TargetSettings>(entityName: "TargetSettings")).first!.hiddenTargets!.allObjects as! [HiddenTarget]
         var whitelist = allTargets
         for item in hiddenTargets {
