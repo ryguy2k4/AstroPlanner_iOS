@@ -79,7 +79,7 @@ struct DailyReportView: View {
                     }
                 }
                 .environmentObject(locationList.first!)
-                .environmentObject(reportSettings.first!)
+                .environmentObject(targetSettings.first!)
                 .scrollIndicators(.hidden)
             }
         }
@@ -102,7 +102,7 @@ struct DailyReportView: View {
  */
 private struct TopFiveView: View {
     @EnvironmentObject var location: SavedLocation
-    @EnvironmentObject var reportSettings: ReportSettings
+    @EnvironmentObject var targetSettings: TargetSettings
     let report: DailyReport
     
     var body: some View {
@@ -111,7 +111,7 @@ private struct TopFiveView: View {
                 .fontWeight(.bold)
             TabView {
                 ForEach(report.topFive, id: \.id) { target in
-                    NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
+                    NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
                         ZStack {
                             Image(target.image?.source.fileName ?? "\(target.type.first!)")
                                 .resizable()
@@ -143,7 +143,7 @@ private struct TopFiveView: View {
  */
 private struct TopTenTabView: View {
     @EnvironmentObject var location: SavedLocation
-    @EnvironmentObject var reportSettings: ReportSettings
+    @EnvironmentObject var targetSettings: TargetSettings
     let report: DailyReport
     @State private var tabSelection: Int = 0
     
@@ -161,7 +161,7 @@ private struct TopTenTabView: View {
             TabView(selection: $tabSelection) {
                 if !report.topTenNebulae.isEmpty {
                     List(report.topTenNebulae) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
+                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
                             Text(target.name?[0] ?? target.defaultName)
                         }
                     }.tag(0).listStyle(.inset)
@@ -173,7 +173,7 @@ private struct TopTenTabView: View {
                 }
                 if !report.topTenGalaxies.isEmpty {
                     List(report.topTenGalaxies) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
+                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
                             Text(target.name?[0] ?? target.defaultName)
                         }
                     }.tag(1).listStyle(.inset)
@@ -186,7 +186,7 @@ private struct TopTenTabView: View {
                 }
                 if !report.topTenStarClusters.isEmpty {
                     List(report.topTenStarClusters) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(reportSettings)) {
+                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
                             Text(target.name?[0] ?? target.defaultName)
                         }
                     }.tag(2).listStyle(.inset)

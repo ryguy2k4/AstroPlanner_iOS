@@ -69,10 +69,12 @@ struct DetailView: View {
                         }
                     }
                     
-//                    if let relationship = target.relationships {
+//                    if let relationship = target.relationship {
 //                        switch relationship {
 //                        case .superImposed(targets: let targets):
-//                            let dst = targets.map({DeepSkyTargetList.allTargets[$0]!})
+//                            let dst: [DeepSkyTarget] = targets.map { id in
+//                                DeepSkyTargetList.allTargets.first(where: {$0.id == id})!
+//                            }
 //                            VStack {
 //                                Text("Composed of: ")
 //                                ForEach(dst) { target in
@@ -80,7 +82,9 @@ struct DetailView: View {
 //                                }
 //                            }
 //                        case .visualGrouping(targets: let targets):
-//                            let dst = targets.map({DeepSkyTargetList.allTargets[$0]!})
+//                            let dst: [DeepSkyTarget] = targets.map { id in
+//                                DeepSkyTargetList.allTargets.first(where: {$0.id == id})!
+//                            }
 //                            VStack {
 //                                Text("Group Contains: ")
 //                                ForEach(dst) { target in

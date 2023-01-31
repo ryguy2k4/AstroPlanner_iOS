@@ -40,7 +40,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
     let type: [TargetType]
     
     /// The type of relationship this target has, if at all
-    let relationships: TargetRelationship?
+    let relationship: TargetRelationship?
     
     /// The constellation the target resides in
     let constellation: Constellation
@@ -287,7 +287,7 @@ extension DeepSkyTarget: Codable {
         self.description = try container.decode(String.self, forKey: .description)
         self.wikipediaURL = try container.decode(URL.self, forKey: .wikipediaURL)
         self.type = try container.decode([TargetType].self, forKey: .type)
-        self.relationships = try? container.decode(TargetRelationship.self, forKey: .relationships)
+        self.relationship = try? container.decode(TargetRelationship.self, forKey: .relationship)
         self.constellation = try container.decode(Constellation.self, forKey: .constellation)
         self.ra = try container.decode(Double.self, forKey: .ra)
         self.dec = try container.decode(Double.self, forKey: .dec)
@@ -297,7 +297,7 @@ extension DeepSkyTarget: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case name, id, designation, image, description, wikipediaURL, type, relationships, constellation, ra, dec, arcLength, arcWidth, apparentMag
+        case name, id, designation, image, description, wikipediaURL, type, relationship, constellation, ra, dec, arcLength, arcWidth, apparentMag
     }
     
     func encode(to encoder: Encoder) throws {
@@ -313,6 +313,9 @@ extension DeepSkyTarget: Codable {
         try container.encode(description, forKey: .description)
         try container.encode(wikipediaURL, forKey: .wikipediaURL)
         try container.encode(type, forKey: .type)
+        if let relationship = self.relationship {
+            try container.encode(relationship, forKey: .relationship)
+        }
         try container.encode(constellation, forKey: .constellation)
         try container.encode(ra, forKey: .ra)
         try container.encode(dec, forKey: .dec)
