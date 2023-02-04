@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 extension String {
     /**
@@ -23,27 +22,5 @@ extension String {
         }
        
         return dateFormatter.date(from: self)!
-    }
-    
-    /**
-     Determines the pixel width of a String.
-     - Parameter usingFont: The font the String is displayed in.
-     - Returns: A CGFloat value of the width.
-     */
-    func widthOfString(usingFont font: UIFont) -> CGFloat {
-            let fontAttributes = [NSAttributedString.Key.font: font]
-            let size = self.size(withAttributes: fontAttributes)
-            return size.width
-    }
-    
-    /**
-     Determines the pixel height of a String.
-     - Parameter usingFont: The font the String is displayed in.
-     - Returns: A CGFloat value of the height.
-     */
-    func heightOfString(usingFont font: UIFont) -> CGFloat {
-            let fontAttributes = [NSAttributedString.Key.font: font]
-            let size = self.size(withAttributes: fontAttributes)
-            return size.height
     }
 }
