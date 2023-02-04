@@ -76,7 +76,11 @@ extension Date {
      - Parameter until: The date to calculate the interval to.
      */
     public static func daysSinceJ2000(until date: Date = Date.now) -> Double {
-        return DateInterval(start: Date.J2000, end: date).duration/60/60/24
+        if date > Date.J2000 {
+            return DateInterval(start: Date.J2000, end: date).duration/60/60/24
+        } else {
+            return (DateInterval(start: date, end: Date.J2000).duration/60/60/24) * -1
+        }
     }
     
     /**
