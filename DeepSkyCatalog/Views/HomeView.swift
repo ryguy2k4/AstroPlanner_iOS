@@ -33,6 +33,7 @@ struct HomeView: View {
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                 }
+                .environment(\.date, date)
         }
     }
 }

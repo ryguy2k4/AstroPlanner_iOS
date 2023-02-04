@@ -83,18 +83,20 @@ final class CatalogManager: ObservableObject {
         }
     }
         
-    func refreshList(sunData: SunData) {
+    func refreshList(sunData: SunData?) {
         // reset list
         targets = DeepSkyTargetList.whitelistedTargets.sorted(by: {$0.ra > $1.ra})
-        if targetSettings.hideNeverRises {
-            for target in targets {
-                do {
-                    let _ = try target.getNextInterval(at: location, on: date, sunData: sunData)
-                } catch TargetCalculationError.neverRises {
-                    // if target doesn't rise, remove it from the list
-                    targets.removeAll(where: {$0 == target})
-                } catch {
-                    // do nothing
+        if let sunData = sunData {
+            if targetSettings.hideNeverRises {
+                for target in targets {
+                    do {
+                        let _ = try target.getNextInterval(at: location, on: date, sunData: sunData)
+                    } catch TargetCalculationError.neverRises {
+                        // if target doesn't rise, remove it from the list
+                        targets.removeAll(where: {$0 == target})
+                    } catch {
+                        // do nothing
+                    }
                 }
             }
         }
@@ -118,19 +120,25 @@ final class CatalogManager: ObservableObject {
         if isActive(criteria: (min: minSize, max: maxSize)) {
             targets.filterBySize(min: minSize, max: maxSize)
         }
-        if isActive(criteria: minVisScore) {
-            targets.filterByVisibility(minVisScore, location: location, date: date, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
-        }
-        if isActive(criteria: minMerScore) {
-            targets.filterByMeridian(minMerScore, location: location, date: date, sunData: sunData)
+        if let sunData = sunData {
+            if isActive(criteria: minVisScore) {
+                targets.filterByVisibility(minVisScore, location: location, date: date, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+            }
+            if isActive(criteria: minMerScore) {
+                targets.filterByMeridian(minMerScore, location: location, date: date, sunData: sunData)
+            }
         }
         
         // sort the list
         switch currentSort {
         case .visibility:
-            targets.sortByVisibility(location: location, date: date, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+            if let sunData = sunData {
+                targets.sortByVisibility(location: location, date: date, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+            }
         case .meridian:
-            targets.sortByMeridian(location: location, date: date, sunData: sunData)
+            if let sunData = sunData {
+                targets.sortByMeridian(location: location, date: date, sunData: sunData)
+            }
         case .dec:
             targets.sortByDec()
         case .ra:

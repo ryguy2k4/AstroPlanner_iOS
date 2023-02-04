@@ -12,7 +12,7 @@ private struct DateKey: EnvironmentKey {
     static let defaultValue: Date = Date.today
 }
 private struct DataKey: EnvironmentKey {
-    static let defaultValue: (sun: SunData, moon: MoonData) = (SunData.dummy, MoonData.dummy)
+    static let defaultValue: (sun: SunData, moon: MoonData)? = nil
 }
 
 extension EnvironmentValues {
@@ -25,7 +25,7 @@ extension EnvironmentValues {
         }
     }
     
-    var data: (sun: SunData, moon: MoonData) {
+    var data: (sun: SunData, moon: MoonData)? {
         get {
             self[DataKey.self]
         }

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CoreData
+import WeatherKit
 
 struct DailyReportView: View {
     @Environment(\.managedObjectContext) var context
@@ -19,81 +19,45 @@ struct DailyReportView: View {
     @State var report: DailyReport?
     
     var body: some View {
-        let presetBinding = Binding(
-            get: { return presetList.first! },
-            set: {
-                for preset in presetList { preset.isSelected = false }
-                $0.isSelected = true
-            }
-        )
-        let locationBinding = Binding(
-            get: { return locationList.first! },
-            set: {
-                for location in locationList { location.isSelected = false }
-                $0.isSelected = true
-            }
-        )
-        
-        // Only display report if network data is available
-        if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
-            // every time the view refreshes, generate a report
-            let report = DailyReport(location: locationList.first!, date: date, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
-            NavigationView {
-                ScrollView {
-                    VStack() {
-                        
-                        // Header Section
-                        VStack {
-                            Text("Daily Report")
-                                .multilineTextAlignment(.center)
-                                .font(.largeTitle)
-                                .fontWeight(.semibold)
-                            Text("\(date.formatted(date: .long, time: .omitted))")
-                                .font(.subheadline)
-                                .fontWeight(.thin)
-                            Text("Moon: \(networkManager.data[.init(date: date, location: locationList.first!)]?.moon.illuminated.percent() ?? "%") illuminated")
-                                .font(.subheadline)
-                                .fontWeight(.thin)
-                        }.padding(.vertical)
-                        
-                        // Settings Section
-                        DateSelector(date: $date)
-                        HStack {
-                            Picker("Imaging Preset", selection: presetBinding) {
-                                ForEach(presetList) { preset in
-                                    Text(preset.name!).tag(preset)
-                                }
-                            }
-                            Picker("Location", selection: locationBinding) {
-                                ForEach(locationList) { location in
-                                    Text(location.name!).tag(location)
-                                }
-                            }
+        VStack {
+            // Header Section
+            ReportHeader()
+            
+            // Settings Section
+            ReportSettingsEditor(date: $date)
+            
+            // Only display report if network data is available
+            if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
+                // every time the view refreshes, generate a report
+                let report = DailyReport(location: locationList.first!, date: date, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
+                NavigationView {
+                    ScrollView {
+                        VStack() {
+                            // Report Section
+                            TopFiveView(report: report)
+                            TopTenTabView(report: report)
+                                .frame(height: 500)
                         }
-                        
-                        // Report Section
-                        //Text("Reccomended Scope: ")
-                        TopFiveView(report: report)
-                        TopTenTabView(report: report)
-                            .frame(height: 500)
                     }
                 }
-                .environmentObject(locationList.first!)
-                .environmentObject(targetSettings.first!)
-                .scrollIndicators(.hidden)
+            }
+            
+            
+            // If Network data is not fetched, show a loading screen and then request the necessary data
+            else {
+                VStack {
+                    ProgressView()
+                    Text("Fetching Sun/Moon Data...")
+                    Spacer()
+                }
+                .task {
+                    await networkManager.getData(at: locationList.first!, on: date)
+                }
             }
         }
-        
-        // If Network data is not fetched, show a loading screen and then request the necessary data
-        else {
-            VStack {
-                ProgressView()
-                Text("Fetching Sun/Moon Data...")
-            }
-            .task {
-                await networkManager.getData(at: locationList.first!, on: date)
-            }
-        }
+        .environmentObject(locationList.first!)
+        .environmentObject(targetSettings.first!)
+        .scrollIndicators(.hidden)
     }
 }
 
@@ -204,9 +168,60 @@ private struct TopTenTabView: View {
     }
 }
 
-//struct DailyReportView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DailyReportView()
-//    }
-//}
+struct ReportHeader: View {
+    @EnvironmentObject var networkManager: NetworkManager
+    @Environment(\.date) var date
+    @EnvironmentObject var location: SavedLocation
+    var body: some View {
+        VStack {
+            Text("Daily Report")
+                .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+            Text("\(date.formatted(date: .long, time: .omitted))")
+                .font(.subheadline)
+                .fontWeight(.thin)
+            Text("Moon: \(networkManager.data[.init(date: date, location: location)]?.moon.illuminated.percent() ?? "%") illuminated")
+                .font(.subheadline)
+                .fontWeight(.thin)
+        }.padding(.vertical)
+    }
+}
 
+struct ReportSettingsEditor: View {
+    @Binding var date: Date
+    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    
+    var body: some View {
+        let presetBinding = Binding(
+            get: { return presetList.first! },
+            set: {
+                for preset in presetList { preset.isSelected = false }
+                $0.isSelected = true
+            }
+        )
+        let locationBinding = Binding(
+            get: { return locationList.first! },
+            set: {
+                for location in locationList { location.isSelected = false }
+                $0.isSelected = true
+            }
+        )
+        VStack {
+            DateSelector(date: $date)
+            HStack {
+                Picker("Imaging Preset", selection: presetBinding) {
+                    ForEach(presetList) { preset in
+                        Text(preset.name!).tag(preset)
+                    }
+                }
+                Picker("Location", selection: locationBinding) {
+                    ForEach(locationList) { location in
+                        Text(location.name!).tag(location)
+                    }
+                }
+            }
+        }
+    }
+}

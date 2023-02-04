@@ -73,13 +73,3 @@ struct MoonData {
         }
     }
 }
-
-extension MoonData {
-    static let dummy: MoonData = MoonData()
-
-    private init() {
-        self.illuminated = 0
-        self.moonInterval = DateInterval(start: Date.today, end: Date.tomorrow)
-        self.phase = "Phase"
-    }
-}

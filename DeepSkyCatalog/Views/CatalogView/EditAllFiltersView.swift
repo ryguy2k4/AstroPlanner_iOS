@@ -18,12 +18,12 @@ struct EditAllFiltersView: View {
             Form {
                 ConfigSection(header: "Sort") {
                     Picker("Method:", selection: $viewModel.currentSort) {
-                        ForEach(SortMethod.allCases) { method in
+                        ForEach(data != nil ? SortMethod.allCases : SortMethod.offlineCases) { method in
                             Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
                         }
                     }
                     .onChange(of: viewModel.currentSort) { _ in
-                        viewModel.refreshList(sunData: data.sun)
+                        viewModel.refreshList(sunData: data?.sun)
                     }
                     Picker("Order:", selection: $viewModel.sortDecending) {
                         Label("Ascending", systemImage: "chevron.up").tag(false)
@@ -31,7 +31,7 @@ struct EditAllFiltersView: View {
                                 
                     }
                     .onChange(of: viewModel.sortDecending) { _ in
-                        viewModel.refreshList(sunData: data.sun)
+                        viewModel.refreshList(sunData: data?.sun)
                     }
                 }
                 ConfigSection(header: "Filters") {
@@ -50,14 +50,16 @@ struct EditAllFiltersView: View {
                     NavigationLink("Size Filter") {
                         MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
                     }
-                    NavigationLink("Visibility Score Filter") {
-                        Form {
-                            NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+                    if data != nil {
+                        NavigationLink("Visibility Score Filter") {
+                            Form {
+                                NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+                            }
                         }
-                    }
-                    NavigationLink("Meridian Score Filter") {
-                        Form {
-                            NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+                        NavigationLink("Meridian Score Filter") {
+                            Form {
+                                NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+                            }
                         }
                     }
                 }

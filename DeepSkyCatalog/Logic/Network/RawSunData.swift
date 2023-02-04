@@ -32,14 +32,3 @@ struct SunData {
         nightInterval = DateInterval(start: dataToday.results.sunset.formatStringToDate(), end: dataTomorrow.results.sunrise.formatStringToDate())
     }
 }
-
-extension SunData {
-    static let dummy: SunData = SunData()
-
-    private init() {
-        self.astronomicalTwilightBegin = Date.today
-        self.sunrise = Date.today
-        self.ATInterval = DateInterval(start: Date.today, end: Date.tomorrow)
-        self.nightInterval = DateInterval(start: Date.today, end: Date.tomorrow)
-    }
-}

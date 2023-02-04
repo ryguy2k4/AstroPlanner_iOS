@@ -21,88 +21,76 @@ struct CatalogView: View {
         
     var body: some View {
         // Only display targets if network data is available
-        if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
-            NavigationStack() {
-                SearchBar(updateAction: { viewModel.refreshList(sunData: data.sun) })
-                FilterButtonMenu()
-                
-                List(viewModel.targets, id: \.id) { target in
-                    NavigationLink(destination: DetailView(target: target)) {
-                        VStack {
-                            TargetCell(target: target)
-                        }
+        let data = networkManager.data[.init(date: date, location: locationList.first!)]
+        NavigationStack() {
+            SearchBar(updateAction: { viewModel.refreshList(sunData: data?.sun) })
+            FilterButtonMenu()
+            
+            List(viewModel.targets, id: \.id) { target in
+                NavigationLink(destination: DetailView(target: target)) {
+                    VStack {
+                        TargetCell(target: target)
                     }
                 }
-                .listStyle(.grouped)
-                .toolbar() {
-                    CatalogToolbar(date: $date)
-                }
             }
-            
-            // Modals for editing each filter
-            .filterModal(isPresented: $viewModel.isAllFilterModal, viewModel: viewModel) {
-                EditAllFiltersView(viewModel: viewModel)
-            }
-            .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
-                SelectableList(selection: $viewModel.typeSelection)
-            }
-            .filterModal(isPresented: $viewModel.isCatalogModal, viewModel: viewModel) {
-                SelectableList(selection: $viewModel.catalogSelection)
-            }
-            .filterModal(isPresented: $viewModel.isConstellationModal, viewModel: viewModel) {
-                SelectableList(selection: $viewModel.constellationSelection)
-            }
-            .filterModal(isPresented: $viewModel.isMagModal, viewModel: viewModel) {
-                MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
-            }
-            .filterModal(isPresented: $viewModel.isSizeModal, viewModel: viewModel) {
-                MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
-            }
-            .filterModal(isPresented: $viewModel.isVisScoreModal, viewModel: viewModel) {
-                Form {
-                    NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
-                }
-            }
-            .filterModal(isPresented: $viewModel.isMerScoreModal, viewModel: viewModel) {
-                Form {
-                    NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
-                }
-            }
-            
-            // When the date changes, make sure everything that depends on the date gets updated
-            .onChange(of: date) { newDate in
-                viewModel.refreshList(sunData: data.sun)
-            }
-            
-            // When the location changes, make sure everything that depends on the date gets updated
-            .onChange(of: locationList.first) { newLocation in
-                viewModel.location = newLocation!
-                viewModel.refreshList(sunData: data.sun)
-            }
-            
-            // When target settings change, refresh the list
-            .onReceive(viewModel.targetSettings.objectWillChange) { _ in
-                viewModel.refreshList(sunData: data.sun)
-            }
-            
-            // Passing the date and location to use into all child views
-            .environment(\.date, date)
-            .environmentObject(locationList.first!)
-            .environmentObject(targetSettings.first!)
-            .environmentObject(viewModel)
-            .environment(\.data, data)
-        }
-
-        // If network data is not available then show a loading icon
-        else {
-            VStack {
-                ProgressView()
-                Text("Fetching Sun/Moon Data...")
-            }
-            .task {
-                await networkManager.getData(at: locationList.first!, on: date)
+            .listStyle(.grouped)
+            .toolbar() {
+                CatalogToolbar(date: $date)
             }
         }
+        
+        // Modals for editing each filter
+        .filterModal(isPresented: $viewModel.isAllFilterModal, viewModel: viewModel) {
+            EditAllFiltersView(viewModel: viewModel)
+        }
+        .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
+            SelectableList(selection: $viewModel.typeSelection)
+        }
+        .filterModal(isPresented: $viewModel.isCatalogModal, viewModel: viewModel) {
+            SelectableList(selection: $viewModel.catalogSelection)
+        }
+        .filterModal(isPresented: $viewModel.isConstellationModal, viewModel: viewModel) {
+            SelectableList(selection: $viewModel.constellationSelection)
+        }
+        .filterModal(isPresented: $viewModel.isMagModal, viewModel: viewModel) {
+            MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
+        }
+        .filterModal(isPresented: $viewModel.isSizeModal, viewModel: viewModel) {
+            MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
+        }
+        .filterModal(isPresented: $viewModel.isVisScoreModal, viewModel: viewModel) {
+            Form {
+                NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+            }
+        }
+        .filterModal(isPresented: $viewModel.isMerScoreModal, viewModel: viewModel) {
+            Form {
+                NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+            }
+        }
+        
+        // When the date changes, make sure everything that depends on the date gets updated
+        .onChange(of: date) { newDate in
+            viewModel.refreshList(sunData: data?.sun)
+        }
+        
+        // When the location changes, make sure everything that depends on the date gets updated
+        .onChange(of: locationList.first) { newLocation in
+            viewModel.location = newLocation!
+            viewModel.refreshList(sunData: data?.sun)
+        }
+        
+        // When target settings change, refresh the list
+        .onReceive(viewModel.targetSettings.objectWillChange) { _ in
+            viewModel.refreshList(sunData: data?.sun)
+        }
+        
+        // Passing the date and location to use into all child views
+        .environment(\.date, date)
+        .environmentObject(locationList.first!)
+        .environmentObject(targetSettings.first!)
+        .environmentObject(viewModel)
+        .environment(\.data, data)
     }
 }
 
@@ -127,10 +115,12 @@ private struct TargetCell: View {
                 Text(target.name?[0] ?? target.defaultName)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Label(target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
-                    .foregroundColor(.secondary)
-                Label(target.getMeridianScore(at: location, on: date, sunData: data.sun).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
-                    .foregroundColor(.secondary)
+                if let sun = data?.sun {
+                    Label(target.getVisibilityScore(at: location, on: date, sunData: sun, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
+                        .foregroundColor(.secondary)
+                    Label(target.getMeridianScore(at: location, on: date, sunData: sun).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
+                        .foregroundColor(.secondary)
+                }
             }
         }
     }
@@ -143,17 +133,22 @@ private struct TargetCell: View {
  */
 private struct FilterButtonMenu: View {
     @EnvironmentObject var viewModel: CatalogManager
+    @Environment(\.data) var data
     
     var body: some View {
-        let buttons = [
-            FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection), modalControl: $viewModel.isCatalogModal),
-            FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection), modalControl: $viewModel.isConstellationModal),
-            FilterButton(method: .type, active: viewModel.isActive(criteria: viewModel.typeSelection), modalControl: $viewModel.isTypeModal),
-            FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag)), modalControl: $viewModel.isMagModal),
-            FilterButton(method: .size, active: viewModel.isActive(criteria: (min: viewModel.minSize, max: viewModel.maxSize)), modalControl: $viewModel.isSizeModal),
-            FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore), modalControl: $viewModel.isVisScoreModal),
-            FilterButton(method: .meridian, active: viewModel.isActive(criteria: viewModel.minMerScore), modalControl: $viewModel.isMerScoreModal)
-        ].sorted(by: {$0.active && !$1.active})
+        let buttons: [FilterButton] = {
+            var buttons: [FilterButton] = []
+            buttons.append(FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection), modalControl: $viewModel.isCatalogModal))
+            buttons.append(FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection), modalControl: $viewModel.isConstellationModal))
+            buttons.append(FilterButton(method: .type, active: viewModel.isActive(criteria: viewModel.typeSelection), modalControl: $viewModel.isTypeModal))
+            buttons.append(FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag)), modalControl: $viewModel.isMagModal))
+            buttons.append(FilterButton(method: .size, active: viewModel.isActive(criteria: (min: viewModel.minSize, max: viewModel.maxSize)), modalControl: $viewModel.isSizeModal))
+            if data != nil {
+                buttons.append(FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore), modalControl: $viewModel.isVisScoreModal))
+                buttons.append(FilterButton(method: .meridian, active: viewModel.isActive(criteria: viewModel.minMerScore), modalControl: $viewModel.isMerScoreModal))
+            }
+            return buttons.sorted(by: {$0.active && !$1.active})
+        }()
         
         HStack {
             // All filters button
@@ -210,7 +205,7 @@ private struct FilterButton: View {
                         .foregroundColor(.primary)
                     Button {
                         viewModel.clearFilter(for: method)
-                        viewModel.refreshList(sunData: data.sun)
+                        viewModel.refreshList(sunData: data?.sun)
                     } label: {
                         Image(systemName: active ? "x.circle" : "chevron.down")
                             .foregroundColor(.accentColor)

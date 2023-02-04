@@ -16,59 +16,61 @@ struct DetailView: View {
     @Environment(\.date) var date
     var target: DeepSkyObject
     var body: some View {
-        if let data = networkManager.data[.init(date: date, location: location)] {
+        let data = networkManager.data[.init(date: date, location: location)]
             ScrollView {
                 VStack(spacing: 10) {
                     
-                    // Target Image
-                    if let image = target.image {
-                        VStack {
-                            NavigationLink(destination: ImageViewer(image: image.source.fileName)) {
-                                Image(image.source.fileName)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 200)
-                                    .cornerRadius(12)
-                            }
-                            if let credit = image.copyright {
-                                Text("Image Copyright: " + credit)
-                                    .fontWeight(.light)
-                                    .lineLimit(2)
-                                    .font(.caption)
-                                    .padding(.horizontal)
-                            }
-                        }
-                    }
-                    
-                    // Target Facts
+                // Target Image
+                if let image = target.image {
                     VStack {
-                        VStack {
-                            Text(target.name?[0] ?? target.defaultName)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .lineLimit(1)
-                            Text(target.type[0].rawValue)
-                                .font(.subheadline)
-                                .fontWeight(.light)
-                                .lineLimit(1)
+                        NavigationLink(destination: ImageViewer(image: image.source.fileName)) {
+                            Image(image.source.fileName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 200)
+                                .cornerRadius(12)
                         }
-                        HStack {
-                            VStack(alignment: .leading) {
-                                FactLabel(text: target.constellation.rawValue, image: "star")
-                                FactLabel(text: " RA: \(target.ra.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
-                                FactLabel(text: "DEC: \(target.dec.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
-                                FactLabel(text: " Mag \(target.apparentMag)", image: "sun.min.fill")
-                                FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
-                            }
+                        if let credit = image.copyright {
+                            Text("Image Copyright: " + credit)
+                                .fontWeight(.light)
+                                .lineLimit(2)
+                                .font(.caption)
+                                .padding(.horizontal)
+                        }
+                    }
+                }
+                
+                // Target Facts
+                VStack {
+                    VStack {
+                        Text(target.name?[0] ?? target.defaultName)
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .lineLimit(1)
+                        Text(target.type[0].rawValue)
+                            .font(.subheadline)
+                            .fontWeight(.light)
+                            .lineLimit(1)
+                    }
+                    HStack {
+                        VStack(alignment: .leading) {
+                            FactLabel(text: target.constellation.rawValue, image: "star")
+                            FactLabel(text: " RA: \(target.ra.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
+                            FactLabel(text: "DEC: \(target.dec.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
+                            FactLabel(text: " Mag \(target.apparentMag)", image: "sun.min.fill")
+                            FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
+                        }
+                        if let sun = data?.sun {
                             VStack {
-                                Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
+                                Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
                                     .foregroundColor(.secondary)
-                                Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: data.sun)).percent())")
+                                Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: sun)).percent())")
                                     .foregroundColor(.secondary)
                             }
                         }
                     }
-                    
+                }
+                
 //                    if let relationship = target.relationship {
 //                        switch relationship {
 //                        case .superImposed(targets: let targets):
@@ -93,55 +95,33 @@ struct DetailView: View {
 //                            }
 //                        }
 //                    }
-                    
-                    // Target Graph
-                    VStack() {
-                        TargetAltitudeChart(target: target)
-                            .padding()
-                        if let interval = try? target.getNextInterval(at: location, on: date, sunData: data.sun) {
-                            HStack {
-                                EventLabel(date: interval.start, image: "sunrise")
-                                EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: data.sun), image: "arrow.right.and.line.vertical.and.arrow.left")
-                                EventLabel(date: interval.end, image: "sunset")
-                            }
-                        } else {
-                            VStack {
-                                if target.getAltitude(location: location, time: date) > 0 {
-                                    Text("Target Never Sets")
-                                } else {
-                                    Text("Target Never Rises")
-                                }
-                                EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: data.sun), image: "arrow.right.and.line.vertical.and.arrow.left")
-                            }
-                        }
+                
+                // Target Graph
+                TargetSchedule(target: target)
+                
+                // Target Description
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(target.description)
+                    Link(destination: target.wikipediaURL) {
+                        Label("Wikipedia", systemImage: "arrow.up.forward.square")
                     }
-                    
-                    // Target Description
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(target.description)
-                        Link(destination: target.wikipediaURL) {
-                            Label("Wikipedia", systemImage: "arrow.up.forward.square")
+                }.padding()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button("Hide Target") {
+                            let newHiddenTarget = HiddenTarget(context: context)
+                            newHiddenTarget.id = target.id
+                            targetSettings.addToHiddenTargets(newHiddenTarget)
+                            PersistenceManager.shared.saveData(context: context)
                         }
-                    }.padding()
-                }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Menu {
-                            Button("Hide Target") {
-                                let newHiddenTarget = HiddenTarget(context: context)
-                                newHiddenTarget.id = target.id
-                                targetSettings.addToHiddenTargets(newHiddenTarget)
-                                PersistenceManager.shared.saveData(context: context)
-                            }
-                        } label: {
-                            Image(systemName: "ellipsis")
-                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
 
-                    }
                 }
             }
-        } else {
-            ProgressView()
         }
     }
 }
@@ -207,3 +187,34 @@ private struct EventLabel: View {
 //        DetailView(target: DeepSkyTargetList.allTargets[0])
 //    }
 //}
+
+struct TargetSchedule: View {
+    @Environment(\.data) var data
+    @Environment(\.date) var date
+    @EnvironmentObject var location: SavedLocation
+    let target: DeepSkyObject
+    var body: some View {
+        if let sun = data?.sun {
+            VStack() {
+                TargetAltitudeChart(target: target)
+                    .padding()
+                if let interval = try? target.getNextInterval(at: location, on: date, sunData: sun) {
+                    HStack {
+                        EventLabel(date: interval.start, image: "sunrise")
+                        EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: sun), image: "arrow.right.and.line.vertical.and.arrow.left")
+                        EventLabel(date: interval.end, image: "sunset")
+                    }
+                } else {
+                    VStack {
+                        if target.getAltitude(location: location, time: date) > 0 {
+                            Text("Target Never Sets")
+                        } else {
+                            Text("Target Never Rises")
+                        }
+                        EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: sun), image: "arrow.right.and.line.vertical.and.arrow.left")
+                    }
+                }
+            }
+        }
+    }
+}

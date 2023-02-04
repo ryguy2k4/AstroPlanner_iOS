@@ -9,6 +9,7 @@ import Foundation
 
 enum SortMethod: CaseIterable, Hashable, Identifiable {
     static var allCases: [SortMethod] = [.visibility, .meridian, .dec, .ra, .magnitude, .size]
+    static var offlineCases: [SortMethod] = [.dec, .ra, .magnitude, .size]
     
     var id: Self { self }
     case visibility

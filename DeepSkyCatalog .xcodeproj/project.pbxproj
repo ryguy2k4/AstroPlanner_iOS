@@ -133,6 +133,7 @@
 		7162D3462964DBF1007C8710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7162D3482964DBF1007C8710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		716531E929340CFE00D05B79 /* DailyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReport.swift; sourceTree = "<group>"; };
+		716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalog.entitlements; sourceTree = "<group>"; };
 		7186D8F1295CEEC500601467 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		718CA9A729244FD600F3F5A7 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
 		71901C7629299D5C00D95AA5 /* Constellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
@@ -312,6 +313,7 @@
 		71BCF94B2921EE71008C7614 /* DeepSkyCatalog */ = {
 			isa = PBXGroup;
 			children = (
+				716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */,
 				71BCF9502921EE72008C7614 /* Assets.xcassets */,
 				71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */,
 				71BCF96F2921EF2E008C7614 /* Views */,
@@ -782,6 +784,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalog/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"DeepSkyCatalog/Preview Content\"";
@@ -818,6 +821,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalog/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"DeepSkyCatalog/Preview Content\"";

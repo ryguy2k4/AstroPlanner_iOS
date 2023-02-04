@@ -40,7 +40,7 @@ struct FilterModal<C: View>: ViewModifier {
             .sheet(isPresented: $isPresented) {
                 sheetContent
                     .onDisappear() {
-                        viewModel.refreshList(sunData: data.sun)
+                        viewModel.refreshList(sunData: data?.sun)
                     }
                     .presentationDetents([.fraction(0.5), .fraction(0.8)])
             }
