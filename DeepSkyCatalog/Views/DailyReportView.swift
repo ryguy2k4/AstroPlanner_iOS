@@ -17,22 +17,23 @@ struct DailyReportView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
     @State var report: DailyReport?
+    @State var internet: Bool = true
     
     var body: some View {
-        VStack {
-            // Header Section
-            ReportHeader()
-            
-            // Settings Section
-            ReportSettingsEditor(date: $date)
-            
-            // Only display report if network data is available
-            if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
-                // every time the view refreshes, generate a report
-                let report = DailyReport(location: locationList.first!, date: date, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
-                NavigationView {
+        NavigationView {
+            VStack {
+                // Header Section
+                ReportHeader()
+                
+                // Settings Section
+                ReportSettingsEditor(date: $date)
+                
+                // Only display report if network data is available
+                if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
+                    // every time the view refreshes, generate a report
+                    let report = DailyReport(location: locationList.first!, date: date, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
                     ScrollView {
-                        VStack() {
+                        VStack {
                             // Report Section
                             TopFiveView(report: report)
                             TopTenTabView(report: report)
@@ -40,24 +41,47 @@ struct DailyReportView: View {
                         }
                     }
                 }
-            }
-            
-            
-            // If Network data is not fetched, show a loading screen and then request the necessary data
-            else {
-                VStack {
-                    ProgressView()
-                    Text("Fetching Sun/Moon Data...")
-                    Spacer()
+                
+                
+                // If Network data is not fetched, show a loading screen and then request the necessary data
+                else {
+                    if internet {
+                        VStack {
+                            ProgressView()
+                                .padding(.top)
+                            Text("Fetching Sun/Moon Data...")
+                                .fontWeight(.bold)
+                            Spacer()
+                        }
+                        .task {
+                            do {
+                                try await networkManager.getData(at: locationList.first!, on: date)
+                            } catch {
+                                internet = false
+                            }
+                        }
+                    } else {
+                        Text("No Internet Connection")
+                            .fontWeight(.bold)
+                            .padding(.top)
+                        Button("Retry") {
+                            internet = true
+                            Task {
+                                do {
+                                    try await networkManager.getData(at: locationList.first!, on: date)
+                                } catch {
+                                    internet = false
+                                }
+                            }
+                        }
+                        Spacer()
+                    }
                 }
-                .task {
-                    await networkManager.getData(at: locationList.first!, on: date)
-                }
             }
+            .environmentObject(locationList.first!)
+            .environmentObject(targetSettings.first!)
+            .scrollIndicators(.hidden)
         }
-        .environmentObject(locationList.first!)
-        .environmentObject(targetSettings.first!)
-        .scrollIndicators(.hidden)
     }
 }
 

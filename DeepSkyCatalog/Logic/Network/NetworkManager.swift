@@ -28,7 +28,7 @@ final class NetworkManager: ObservableObject {
     private init() { }
     
     @MainActor
-    func getData(at location: SavedLocation, on date: Date) async {
+    func getData(at location: SavedLocation, on date: Date) async throws {
         do {
             async let decodedMoonDataToday: RawMoonData = try fetchTask(
                 from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(location.timezone)")
@@ -45,6 +45,7 @@ final class NetworkManager: ObservableObject {
             print("API Data Fetched")
         } catch FetchError.unableToFetch {
             print("Error: No Internet Connection")
+            throw FetchError.unableToFetch
         } catch FetchError.unableToDecode {
             print("Error: unable to decode data")
         } catch FetchError.unableToMakeURL {

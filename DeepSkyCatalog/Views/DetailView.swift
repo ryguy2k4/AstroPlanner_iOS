@@ -122,7 +122,7 @@ struct DetailView: View {
 
                 }
             }
-        }
+        }.environment(\.data, data)
     }
 }
 
