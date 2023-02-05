@@ -29,6 +29,10 @@
 		7162D3502964E906007C8710 /* DeepSkyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyObject.swift */; };
 		7162D3512964E909007C8710 /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
 		716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
+		71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
+		71668AD0298F266300AB0D19 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
+		71668AD1298F266B00AB0D19 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
+		71668AD5298F26AC00AB0D19 /* StringIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71668AD4298F26AC00AB0D19 /* StringIOS.swift */; };
 		7186D8F2295CEEC500601467 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7186D8F1295CEEC500601467 /* JournalView.swift */; };
 		718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
@@ -40,7 +44,6 @@
 		71ACF32E2964EAA000CC83D5 /* TargetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* TargetCatalog.swift */; };
 		71ACF32F2964EAA200CC83D5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
 		71ACF3312964ED0F00CC83D5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date.swift */; };
-		71ACF3322964ED1100CC83D5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
 		71ACF3332964ED1400CC83D5 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
 		71ACF3342964ED1D00CC83D5 /* TargetCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104F4972929F0E90000A66A /* TargetCalculationError.swift */; };
 		71ACF3352964ED2E00CC83D5 /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
@@ -106,7 +109,6 @@
 		71C26462298F1D4F0057EC04 /* RawSunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9802921EF8B008C7614 /* RawSunData.swift */; };
 		71C26463298F1D510057EC04 /* RawMoonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* RawMoonData.swift */; };
 		71C26465298F1D920057EC04 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C26464298F1D920057EC04 /* ZoomableScrollView.swift */; };
-		71C26469298F1EBE0057EC04 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C26468298F1EBE0057EC04 /* String.swift */; };
 		71C2646A298F1EF70057EC04 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
 		71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */; };
 		71D5FD28295FA1D10028FF8C /* EditAllFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */; };
@@ -164,6 +166,9 @@
 		7162D3462964DBF1007C8710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7162D3482964DBF1007C8710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		716531E929340CFE00D05B79 /* DailyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReport.swift; sourceTree = "<group>"; };
+		71668AD4298F26AC00AB0D19 /* StringIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringIOS.swift; sourceTree = "<group>"; };
+		71668AD6298F280A00AB0D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		71668AD7298F3C0400AB0D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalog.entitlements; sourceTree = "<group>"; };
 		7186D8F1295CEEC500601467 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		718CA9A729244FD600F3F5A7 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
@@ -210,7 +215,6 @@
 		71C26447298F1C640057EC04 /* DeepSkyCatalogMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogMac.entitlements; sourceTree = "<group>"; };
 		71C26464298F1D920057EC04 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
 		71C26466298F1E2D0057EC04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		71C26468298F1EBE0057EC04 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAllFiltersView.swift; sourceTree = "<group>"; };
 		71D77FA72921F99200709252 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
@@ -368,12 +372,13 @@
 		71BCF94B2921EE71008C7614 /* DeepSkyCatalog */ = {
 			isa = PBXGroup;
 			children = (
+				71668AD7298F3C0400AB0D19 /* Info.plist */,
 				716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */,
 				71BCF9502921EE72008C7614 /* Assets.xcassets */,
 				71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */,
 				71BCF96F2921EF2E008C7614 /* Views */,
-				71C26468298F1EBE0057EC04 /* String.swift */,
 				71BCF9522921EE72008C7614 /* Preview Content */,
+				71668AD4298F26AC00AB0D19 /* StringIOS.swift */,
 			);
 			path = DeepSkyCatalog;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 		71C26438298F1C630057EC04 /* DeepSkyCatalogMac */ = {
 			isa = PBXGroup;
 			children = (
+				71668AD6298F280A00AB0D19 /* Info.plist */,
 				71C26439298F1C630057EC04 /* DeepSkyCatalogMacApp.swift */,
 				71C2643B298F1C630057EC04 /* ContentView.swift */,
 				71C2643D298F1C640057EC04 /* Assets.xcassets */,
@@ -626,8 +632,9 @@
 			files = (
 				7162D3432964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift in Sources */,
 				71ACF3352964ED2E00CC83D5 /* DeepSkyCatalog.xcdatamodeld in Sources */,
+				71668AD0298F266300AB0D19 /* String.swift in Sources */,
+				71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */,
 				7162D3452964DBF1007C8710 /* DeepSkyCatalogWidget.swift in Sources */,
-				71ACF3322964ED1100CC83D5 /* String.swift in Sources */,
 				71ACF33D2964F0B400CC83D5 /* Provider.swift in Sources */,
 				71ACF3342964ED1D00CC83D5 /* TargetCalculationError.swift in Sources */,
 				71BD7543297109AF00D7751F /* SortMethods.swift in Sources */,
@@ -637,6 +644,7 @@
 				71ACF3412964F0F800CC83D5 /* TopThreeWidgetView.swift in Sources */,
 				7162D3512964E909007C8710 /* DeepSkyTargetList.swift in Sources */,
 				71ACF32D2964EA9A00CC83D5 /* TargetType.swift in Sources */,
+				71668AD1298F266B00AB0D19 /* PlaceValue.swift in Sources */,
 				71ACF3312964ED0F00CC83D5 /* Date.swift in Sources */,
 				71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */,
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
@@ -678,6 +686,7 @@
 				71D77FA82921F99200709252 /* Double.swift in Sources */,
 				71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */,
 				710BF588294BF18900A72073 /* ConfigSection.swift in Sources */,
+				71668AD5298F26AC00AB0D19 /* StringIOS.swift in Sources */,
 				71F71573293FB4010011EF7F /* Environment.swift in Sources */,
 				718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */,
 				71BCF9832921EF8B008C7614 /* String.swift in Sources */,
@@ -698,7 +707,6 @@
 				719B26D7295167A100E1165A /* NumberPicker.swift in Sources */,
 				7133FC67294C14560080AE0C /* View.swift in Sources */,
 				71F510BC297605E9008F7629 /* CaseNameCodable.swift in Sources */,
-				71C26469298F1EBE0057EC04 /* String.swift in Sources */,
 				71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				71B5AF96292C778D00323693 /* TargetCatalog.swift in Sources */,
 			);
@@ -933,6 +941,7 @@
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeepSkyCatalog/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Astro Planner";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1009,6 +1018,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeepSkyCatalogMac/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1038,6 +1048,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeepSkyCatalogMac/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -9,9 +9,19 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) private var locationList: FetchedResults<SavedLocation>
     var body: some View {
-        Text("Hello")
-        Text("\(locationList.first!.latitude)")
+        NavigationView {
+            VStack {
+                NavigationLink("List") {
+                    List(locationList) { location in
+                        Text("\(location.name!): \(location.longitude), \(location.latitude)")
+                    }
+                }
+                NavigationLink("Empty") {
+                    EmptyView()
+                }
+            }
+        }
     }
 }

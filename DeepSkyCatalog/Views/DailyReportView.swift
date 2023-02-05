@@ -213,6 +213,7 @@ struct ReportHeader: View {
 }
 
 struct ReportSettingsEditor: View {
+    @Environment(\.managedObjectContext) var context
     @Binding var date: Date
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
@@ -223,6 +224,7 @@ struct ReportSettingsEditor: View {
             set: {
                 for preset in presetList { preset.isSelected = false }
                 $0.isSelected = true
+                PersistenceManager.shared.saveData(context: context)
             }
         )
         let locationBinding = Binding(
@@ -230,6 +232,7 @@ struct ReportSettingsEditor: View {
             set: {
                 for location in locationList { location.isSelected = false }
                 $0.isSelected = true
+                PersistenceManager.shared.saveData(context: context)
             }
         )
         VStack {

@@ -14,17 +14,7 @@ final class PersistenceManager: ObservableObject {
     let container = NSPersistentCloudKitContainer(name: "DeepSkyCatalog")
     
     private init() {
-        // Only initialize the schema when building the app with the
-        // Debug build configuration.
-        #if DEBUG
-        do {
-            // Use the container to initialize the development schema.
-            try container.initializeCloudKitSchema(options: [])
-        } catch {
-            // Handle any errors.
-        }
-        #endif
-        
+        container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores() { description, error in
             if let error = error {
                 print("Failed to load data: \(error.localizedDescription)")
