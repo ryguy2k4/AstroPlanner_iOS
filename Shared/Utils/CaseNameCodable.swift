@@ -3,7 +3,7 @@
 //  DeepSkyCatalog
 //
 //  Created by Ryan Sponzilli on 1/16/23.
-//  Copied from StackOverflow
+//  Copied from StackOverflow ;)
 
 import Foundation
 

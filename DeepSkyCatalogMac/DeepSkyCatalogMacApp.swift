@@ -9,12 +9,13 @@ import SwiftUI
 
 @main
 struct DeepSkyCatalogMacApp: App {
-    let persistenceManager = PersistenceManager.shared
-
+    @StateObject private var persistenceManager = PersistenceManager.shared
+    @ObservedObject private var networkManager = NetworkManager.shared
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Mac_HomeView()
                 .environment(\.managedObjectContext, persistenceManager.container.viewContext)
+                .environmentObject(networkManager)
         }
     }
 }

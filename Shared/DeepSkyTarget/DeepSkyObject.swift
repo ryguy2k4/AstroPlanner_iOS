@@ -1,5 +1,5 @@
 //
-//  DeepSkyTarget.swift
+//  DeepSkyObject.swift
 //  Deep Sky Catalog
 //
 //  Created by Ryan Sponzilli on 11/2/22.
@@ -11,7 +11,8 @@ import Foundation
  The basic building block for this app. This struct defines a Deep Sky Target.
  */
 struct DeepSkyObject: Identifiable, Hashable {
-    // identifiers
+    
+    /// A unique ID for this target
     let id: UUID
     
     /// Common names for the target
@@ -269,9 +270,6 @@ extension DeepSkyObject {
         }
     }
 }
-
-
-
 
 /**
  A Codable Implementation for DeepSkyObject

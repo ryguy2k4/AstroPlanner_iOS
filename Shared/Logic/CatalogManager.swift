@@ -45,6 +45,10 @@ final class CatalogManager: ObservableObject {
     @Published var isMerScoreModal: Bool = false
     @Published var isVisScoreModal: Bool = false
     
+    
+    /**
+     Sets the filter control variable associated with the specified filter to its default value(s)
+     */
     func clearFilter(for method: FilterMethod) {
         switch method {
         case .search:
@@ -68,6 +72,9 @@ final class CatalogManager: ObservableObject {
         }
     }
     
+    /**
+     Determines if a filter control variable contains does not contain its default value
+     */
     func isActive<T>(criteria: T) -> Bool {
         switch criteria {
         case let array as Array<Any>:
@@ -82,7 +89,10 @@ final class CatalogManager: ObservableObject {
             return false
         }
     }
-        
+    
+    /**
+     Re-filters and re-sorts the list
+     */
     func refreshList(sunData: SunData?) {
         // reset list
         targets = DeepSkyTargetList.whitelistedTargets.sorted(by: {$0.ra > $1.ra})
@@ -101,7 +111,7 @@ final class CatalogManager: ObservableObject {
             }
         }
         
-        //filter by current active filters
+        // filter by current active filters
         if isActive(criteria: searchText) {
             targets.filterBySearch(searchText)
         }

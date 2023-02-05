@@ -7,17 +7,6 @@
 
 import Foundation
 
-struct RawSunData: Decodable {
-    let results: Results
-    
-    struct Results: Decodable {
-        let sunrise: String
-        let sunset: String
-        let astronomical_twilight_begin: String
-        let astronomical_twilight_end: String
-    }
-}
-
 struct SunData {
     let astronomicalTwilightBegin: Date
     let sunrise: Date
@@ -30,5 +19,16 @@ struct SunData {
         
         ATInterval = DateInterval(start: dataToday.results.astronomical_twilight_end.formatStringToDate(), end: dataTomorrow.results.astronomical_twilight_begin.formatStringToDate())
         nightInterval = DateInterval(start: dataToday.results.sunset.formatStringToDate(), end: dataTomorrow.results.sunrise.formatStringToDate())
+    }
+}
+
+struct RawSunData: Decodable {
+    let results: Results
+    
+    struct Results: Decodable {
+        let sunrise: String
+        let sunset: String
+        let astronomical_twilight_begin: String
+        let astronomical_twilight_end: String
     }
 }

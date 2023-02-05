@@ -1,31 +1,11 @@
 //
-//  RawMoonData.swift
+//  MoonData.swift
 //  DeepSkyCatalog
 //
 //  Created by Ryan Sponzilli on 11/23/22.
 //
 
 import Foundation
-
-struct RawMoonData: Decodable {
-    let properties: Properties
-    
-    struct Properties: Decodable {
-        let data: MoreData
-        
-        struct MoreData: Decodable {
-            let curphase: String
-            let day: Int
-            let fracillum: String
-            let moondata: [MoonTimes]
-            
-            struct MoonTimes: Decodable {
-                let phen: String
-                let time: String
-            }
-        }
-    }
-}
 
 struct MoonData {
     let phase: String
@@ -73,3 +53,24 @@ struct MoonData {
         }
     }
 }
+
+struct RawMoonData: Decodable {
+    let properties: Properties
+    
+    struct Properties: Decodable {
+        let data: MoreData
+        
+        struct MoreData: Decodable {
+            let curphase: String
+            let day: Int
+            let fracillum: String
+            let moondata: [MoonTimes]
+            
+            struct MoonTimes: Decodable {
+                let phen: String
+                let time: String
+            }
+        }
+    }
+}
+

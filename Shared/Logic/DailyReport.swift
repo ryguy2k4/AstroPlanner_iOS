@@ -1,5 +1,5 @@
 //
-//  DailyReportViewModel.swift
+//  DailyReport.swift
 //  DeepSkyCatalog
 //
 //  Created by Ryan Sponzilli on 11/27/22.

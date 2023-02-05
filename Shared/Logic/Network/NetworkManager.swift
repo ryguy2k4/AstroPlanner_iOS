@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import WeatherKit
 
 final class NetworkManager: ObservableObject {
     
@@ -17,13 +16,7 @@ final class NetworkManager: ObservableObject {
         let location: SavedLocation
     }
     
-    struct WeatherKey: Hashable {
-        let date: Date
-        let location: SavedLocation
-    }
-    
     @Published var data: [DataKey : (sun: SunData, moon: MoonData)] = [:]
-    @Published var weather: [WeatherKey : Weather] = [:]
     
     private init() { }
     

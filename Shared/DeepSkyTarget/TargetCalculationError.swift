@@ -1,5 +1,5 @@
 //
-//  LSTError.swift
+//  TargetCalculationError.swift
 //  DeepSkyCatalog
 //
 //  Created by Ryan Sponzilli on 11/19/22.
