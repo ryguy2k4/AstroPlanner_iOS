@@ -80,9 +80,11 @@
 		71BD7542297104AB00D7751F /* FilterMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD7541297104AB00D7751F /* FilterMethods.swift */; };
 		71BD7543297109AF00D7751F /* SortMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD753E2971044D00D7751F /* SortMethods.swift */; };
 		71BD7544297109B100D7751F /* FilterMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD7541297104AB00D7751F /* FilterMethods.swift */; };
+		71BE6EDC299035A400686E95 /* Mac_DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE6EDB299035A400686E95 /* Mac_DailyReportView.swift */; };
+		71BE6EDE299035DB00686E95 /* Mac_DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE6EDD299035DB00686E95 /* Mac_DetailView.swift */; };
+		71BE6EDF2990380900686E95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
 		71C2643A298F1C630057EC04 /* DeepSkyCatalogMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C26439298F1C630057EC04 /* DeepSkyCatalogMacApp.swift */; };
 		71C2643C298F1C630057EC04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2643B298F1C630057EC04 /* ContentView.swift */; };
-		71C2643E298F1C640057EC04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C2643D298F1C640057EC04 /* Assets.xcassets */; };
 		71C26441298F1C640057EC04 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C26440298F1C640057EC04 /* Preview Assets.xcassets */; };
 		71C2644B298F1C9F0057EC04 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date.swift */; };
 		71C2644D298F1CA50057EC04 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
@@ -203,10 +205,11 @@
 		71BD753C2970FF0D00D7751F /* MessierInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessierInfo.swift; sourceTree = "<group>"; };
 		71BD753E2971044D00D7751F /* SortMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMethods.swift; sourceTree = "<group>"; };
 		71BD7541297104AB00D7751F /* FilterMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMethods.swift; sourceTree = "<group>"; };
+		71BE6EDB299035A400686E95 /* Mac_DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_DailyReportView.swift; sourceTree = "<group>"; };
+		71BE6EDD299035DB00686E95 /* Mac_DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_DetailView.swift; sourceTree = "<group>"; };
 		71C26437298F1C630057EC04 /* DeepSkyCatalogMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeepSkyCatalogMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C26439298F1C630057EC04 /* DeepSkyCatalogMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogMacApp.swift; sourceTree = "<group>"; };
 		71C2643B298F1C630057EC04 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		71C2643D298F1C640057EC04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71C26440298F1C640057EC04 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		71C26447298F1C640057EC04 /* DeepSkyCatalogMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogMac.entitlements; sourceTree = "<group>"; };
 		71C26464298F1D920057EC04 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
@@ -276,6 +279,7 @@
 		7149D9932984C6F3004BFBE6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				71BCF9502921EE72008C7614 /* Assets.xcassets */,
 				71BCF9702921EF61008C7614 /* Logic */,
 				71BCF9792921EF76008C7614 /* Utils */,
 				71D77FA62921F97E00709252 /* Extensions */,
@@ -312,6 +316,8 @@
 			children = (
 				71C2643B298F1C630057EC04 /* ContentView.swift */,
 				716A19BA298F58A90025DB67 /* Mac_HomeView.swift */,
+				71BE6EDB299035A400686E95 /* Mac_DailyReportView.swift */,
+				71BE6EDD299035DB00686E95 /* Mac_DetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -421,7 +427,6 @@
 			children = (
 				71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */,
 				716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */,
-				71BCF9502921EE72008C7614 /* Assets.xcassets */,
 				71668AD7298F3C0400AB0D19 /* Info.plist */,
 				71BCF96F2921EF2E008C7614 /* Views */,
 				718B56AF294C349900914BDB /* Reusable Views */,
@@ -493,7 +498,6 @@
 			children = (
 				71C26439298F1C630057EC04 /* DeepSkyCatalogMacApp.swift */,
 				71C26447298F1C640057EC04 /* DeepSkyCatalogMac.entitlements */,
-				71C2643D298F1C640057EC04 /* Assets.xcassets */,
 				71668AD6298F280A00AB0D19 /* Info.plist */,
 				716A19B6298F57670025DB67 /* Views */,
 				71C2643F298F1C640057EC04 /* Preview Content */,
@@ -650,9 +654,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71BE6EDF2990380900686E95 /* Assets.xcassets in Resources */,
 				71C26450298F1CB20057EC04 /* Catalog.json in Resources */,
 				71C26441298F1C640057EC04 /* Preview Assets.xcassets in Resources */,
-				71C2643E298F1C640057EC04 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,11 +767,13 @@
 				71C26457298F1CC10057EC04 /* FilterMethods.swift in Sources */,
 				71C2645E298F1D430057EC04 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				71C2643C298F1C630057EC04 /* ContentView.swift in Sources */,
+				71BE6EDC299035A400686E95 /* Mac_DailyReportView.swift in Sources */,
 				716A19BE298F5B890025DB67 /* View.swift in Sources */,
 				71C2643A298F1C630057EC04 /* DeepSkyCatalogMacApp.swift in Sources */,
 				71C2645D298F1D3F0057EC04 /* LocationManager.swift in Sources */,
 				71C2646A298F1EF70057EC04 /* String.swift in Sources */,
 				71C26453298F1CB80057EC04 /* TargetCatalog.swift in Sources */,
+				71BE6EDE299035DB00686E95 /* Mac_DetailView.swift in Sources */,
 				71C26452298F1CB60057EC04 /* DeepSkyTargetList.swift in Sources */,
 				71C26451298F1CB40057EC04 /* DeepSkyObject.swift in Sources */,
 				71C2644D298F1CA50057EC04 /* Double.swift in Sources */,

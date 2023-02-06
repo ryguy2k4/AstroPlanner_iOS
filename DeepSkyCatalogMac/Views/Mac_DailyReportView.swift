@@ -1,8 +1,8 @@
 //
-//  DailyReportView.swift
-//  DeepSkyCatalog
+//  Mac_DailyReportView.swift
+//  DeepSkyCatalogMac
 //
-//  Created by Ryan Sponzilli on 11/25/22.
+//  Created by Ryan Sponzilli on 2/5/23.
 //
 
 import SwiftUI
@@ -19,7 +19,7 @@ struct DailyReportView: View {
     @State var internet: Bool = true
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 // Header Section
                 ReportHeader()
@@ -98,28 +98,39 @@ private struct TopFiveView: View {
                 .fontWeight(.bold)
             TabView {
                 ForEach(report.topFive, id: \.id) { target in
-                    NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                        ZStack {
-                            Image(target.image?.source.fileName ?? "\(target.type.first!)")
-                                .resizable()
-                                .cornerRadius(12)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 368, height: 207)
-                            VStack {
-                                Text(target.name?[0] ?? target.defaultName)
-                                    .padding(2)
-                                    .background(.gray.opacity(0.8), in: Rectangle())
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.primary)
-                                Spacer()
-                            }
-                            .padding(4)
-                        }
-                    }
+                    Image(target.image?.source.fileName ?? "\(target.type.first!)")
+                        .resizable()
+                        .cornerRadius(12)
+                        .aspectRatio(contentMode: .fit)
+//                    NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
+//                        ZStack {
+//                            Image(target.image?.source.fileName ?? "\(target.type.first!)")
+//                                .resizable()
+//                                .cornerRadius(12)
+//                                .aspectRatio(contentMode: .fit)
+//                                .scaledToFill()
+//                            VStack {
+//                                Text(target.name?[0] ?? target.defaultName)
+//                                    .padding(2)
+//                                    .background(.gray.opacity(0.8), in: Rectangle())
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(.primary)
+//                                Spacer()
+//                            }
+//                            .padding(4)
+//                        }
+//                    }
+//                    NavigationLink(value: target) {
+
+//                    }
                 }
             }
             .frame(width: 368, height: 207)
-            .tabViewStyle(.page)
+            .navigationDestination(for: DeepSkyObject.self) { target in
+                DetailView(target: target)
+                    .environmentObject(location)
+                    .environmentObject(targetSettings)
+            }
         }
     }
 }
@@ -183,7 +194,6 @@ private struct TopTenTabView: View {
                         Spacer()
                     }.tag(2)                }
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
             .scrollDisabled(true)
         }
         .padding(.vertical)
@@ -235,7 +245,7 @@ struct ReportSettingsEditor: View {
             }
         )
         VStack {
-            DateSelector(date: $date)
+//            DateSelector(date: $date)
             HStack {
                 Picker("Imaging Preset", selection: presetBinding) {
                     ForEach(presetList) { preset in
@@ -251,3 +261,4 @@ struct ReportSettingsEditor: View {
         }
     }
 }
+

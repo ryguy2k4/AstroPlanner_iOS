@@ -17,8 +17,7 @@ struct Mac_HomeView: View {
     @State var date: Date = Date.today
     var body: some View {
         TabView {
-            //DailyReportView(date: $date)
-            Text("Daily Report View")
+            DailyReportView(date: $date)
                 .tabItem {
                     Label("Daily Report", systemImage: "doc.text")
                 }
@@ -39,6 +38,7 @@ struct Mac_HomeView: View {
                 }
                 .environment(\.date, date)
         }
+        .frame(minWidth: 600, maxWidth: 2400, minHeight: 400,  maxHeight: 1600)
     }
 }
 
