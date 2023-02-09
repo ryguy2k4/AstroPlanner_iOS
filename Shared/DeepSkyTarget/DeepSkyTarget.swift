@@ -88,6 +88,16 @@ struct DeepSkyTarget: Identifiable, Hashable {
             }
         }
     }
+    
+    var subDesignationTargets: [DeepSkyTarget] {
+        var array: [DeepSkyTarget] = []
+        for item in subDesignations {
+            array.append(contentsOf: DeepSkyTargetList.allTargets.filter({ target in
+                target.designation.contains(where: {$0 == item})
+            }))
+        }
+        return Array(Set(array)).sortedBySize()
+    }
 }
 
 

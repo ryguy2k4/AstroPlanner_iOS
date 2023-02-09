@@ -29,23 +29,22 @@ struct SettingsView: View {
                     NavigationLink(destination: TargetSettingsView()) {
                         Label("Target Settings", systemImage: "star")
                     }
-                }
-                
-                ConfigSection(header: "Catalogs") {
-                    NavigationLink(destination: MessierInfo()) {
-                        Label("Messier", systemImage: "m.circle")
-                    }
-                    NavigationLink(destination: CaldwellInfo()) {
-                        Label("Caldwell", systemImage: "c.circle")
-                    }
-                    NavigationLink(destination: SharplessInfo()) {
-                        Label("Sharpless", systemImage: "s.circle")
-                    }
                     NavigationLink(destination:  HiddenTargetsList()) {
                         Label("Hidden Targets", systemImage: "eye.slash")
                     }
-
                 }
+                
+//                ConfigSection(header: "Glossary") {
+//                    NavigationLink(destination: MessierInfo()) {
+//                        Label("Messier", systemImage: "m.circle")
+//                    }
+//                    NavigationLink(destination: CaldwellInfo()) {
+//                        Label("Caldwell", systemImage: "c.circle")
+//                    }
+//                    NavigationLink(destination: SharplessInfo()) {
+//                        Label("Sharpless", systemImage: "s.circle")
+//                    }
+//                }
                 
                 ConfigSection {
                     NavigationLink(destination: AboutView()) {

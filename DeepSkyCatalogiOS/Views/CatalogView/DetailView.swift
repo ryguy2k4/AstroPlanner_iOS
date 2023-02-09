@@ -20,94 +20,90 @@ struct DetailView: View {
             ScrollView {
                 VStack(spacing: 10) {
                     
-                // Target Image
-                if let image = target.image {
-                    VStack {
-                        NavigationLink(destination: ImageViewer(image: image.source.fileName)) {
-                            Image(image.source.fileName)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 200)
-                                .cornerRadius(12)
-                        }
-                        if let credit = image.copyright {
-                            Text("Image Copyright: " + credit)
-                                .fontWeight(.light)
-                                .lineLimit(2)
-                                .font(.caption)
-                                .padding(.horizontal)
-                        }
-                    }
-                }
-                
-                // Target Facts
-                VStack {
-                    VStack {
-                        Text(target.name?[0] ?? target.defaultName)
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                            .lineLimit(1)
-                        Text(target.type.rawValue)
-                            .font(.subheadline)
-                            .fontWeight(.light)
-                            .lineLimit(1)
-                    }
-                    HStack {
-                        VStack(alignment: .leading) {
-                            FactLabel(text: target.constellation.rawValue, image: "star")
-                            FactLabel(text: " RA: \(target.ra.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
-                            FactLabel(text: "DEC: \(target.dec.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
-                            FactLabel(text: " Mag \(target.apparentMag)", image: "sun.min.fill")
-                            FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
-                        }
-                        if let sun = data?.sun {
-                            VStack {
-                                Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
-                                    .foregroundColor(.secondary)
-                                Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: sun)).percent())")
-                                    .foregroundColor(.secondary)
+                    // Target Image
+                    if let image = target.image {
+                        VStack {
+                            NavigationLink(destination: ImageViewer(image: image.source.fileName)) {
+                                Image(image.source.fileName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 200)
+                                    .cornerRadius(12)
+                            }
+                            if let credit = image.copyright {
+                                Text("Image Copyright: " + credit)
+                                    .fontWeight(.light)
+                                    .lineLimit(2)
+                                    .font(.caption)
+                                    .padding(.horizontal)
                             }
                         }
                     }
-                }
-                
-//                    if let relationship = target.relationship {
-//                        switch relationship {
-//                        case .superImposed(targets: let targets):
-//                            let dst: [DeepSkyTarget] = targets.map { id in
-//                                DeepSkyTargetList.allTargets.first(where: {$0.id == id})!
-//                            }
-//                            VStack {
-//                                Text("Composed of: ")
-//                                ForEach(dst) { target in
-//                                    Text(target.name?.first ?? target.defaultName)
-//                                }
-//                            }
-//                        case .visualGrouping(targets: let targets):
-//                            let dst: [DeepSkyTarget] = targets.map { id in
-//                                DeepSkyTargetList.allTargets.first(where: {$0.id == id})!
-//                            }
-//                            VStack {
-//                                Text("Group Contains: ")
-//                                ForEach(dst) { target in
-//                                    Text(target.name?.first ?? target.defaultName)
-//                                }
-//                            }
-//                        }
-//                    }
-                
-                // Target Graph
-                TargetSchedule(target: target)
-                
-                // Target Description
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(target.description)
-                    if let link = target.wikipediaURL {
-                        Link(destination: link) {
-                            Label("Wikipedia", systemImage: "arrow.up.forward.square")
+                    
+                    // Target Facts
+                    VStack {
+                        VStack {
+                            Text(target.name?[0] ?? target.defaultName)
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .lineLimit(1)
+                            Text(target.type.rawValue)
+                                .font(.subheadline)
+                                .fontWeight(.light)
+                                .lineLimit(1)
+                        }
+                        HStack {
+                            VStack(alignment: .leading) {
+                                FactLabel(text: target.constellation.rawValue, image: "star")
+                                FactLabel(text: " RA: \(target.ra.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
+                                FactLabel(text: "DEC: \(target.dec.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
+                                FactLabel(text: " Mag \(target.apparentMag)", image: "sun.min.fill")
+                                FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
+                            }
+                            if let sun = data?.sun {
+                                VStack {
+                                    Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
+                                        .foregroundColor(.secondary)
+                                    Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: sun)).percent())")
+                                        .foregroundColor(.secondary)
+                                }
+                            }
                         }
                     }
-                }.padding()
+                    
+                    // Target Graph
+                    TargetSchedule(target: target)
+                    
+                    // Target Description
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(target.description)
+                        if let link = target.wikipediaURL {
+                            Link(destination: link) {
+                                Label("Wikipedia", systemImage: "arrow.up.forward.square")
+                            }
+                        }
+                    }.padding()
+                    
+                    // List Sub Targets
+                    if !target.subDesignationTargets.isEmpty {
+                        Text("Sub Targets")
+                            .fontWeight(.semibold)
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(target.subDesignationTargets) { target in
+                                    VStack(alignment: .center) {
+                                        Image(target.image?.source.fileName ?? "\(target.type)")
+                                            .resizable()
+                                            .scaledToFit()
+                                        Text(target.name?.first ?? target.defaultName)
+                                    }
+                                    .frame(maxWidth: 150, maxHeight: 200)
+                                }
+                            }
+                            .padding()
+                        }
+                    }
+                
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -183,12 +179,6 @@ private struct EventLabel: View {
             
     }
 }
-
-//struct TargetDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailView(target: DeepSkyTargetList.allTargets[0])
-//    }
-//}
 
 struct TargetSchedule: View {
     @Environment(\.data) var data
