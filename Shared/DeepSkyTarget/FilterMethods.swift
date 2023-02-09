@@ -43,7 +43,7 @@ protocol Filter: RawRepresentable<String>, Identifiable, Hashable, CaseIterable 
     static var name: String { get }
 }
 
-extension Array where Element == DeepSkyObject {
+extension Array where Element == DeepSkyTarget {
     
     /// FILTER BY SEARCH
     func filteredBySearch(_ searchText: String) -> Self {
@@ -88,9 +88,7 @@ extension Array where Element == DeepSkyObject {
     func filteredByType(_ typeSelection: [TargetType]) -> Self {
         return self.filter() {
             for type in typeSelection {
-                for item in $0.type {
-                    if item == type { return true }
-                }
+                if $0.type == type { return true }
             }
             return false
         }

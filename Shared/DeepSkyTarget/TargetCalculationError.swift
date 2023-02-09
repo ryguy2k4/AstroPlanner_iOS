@@ -1,12 +1,11 @@
 //
 //  TargetCalculationError.swift
-//  DeepSkyCatalog
+//  DeepSkyTargetHelper
 //
-//  Created by Ryan Sponzilli on 11/19/22.
+//  Created by Ryan Sponzilli on 1/15/23.
 //
 
 import Foundation
-import SwiftUI
 
 enum TargetCalculationError: String, Error {
     case neverSets = "Target Never Sets"

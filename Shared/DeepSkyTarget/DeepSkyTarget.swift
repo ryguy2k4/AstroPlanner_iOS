@@ -1,5 +1,5 @@
 //
-//  DeepSkyObject.swift
+//  DeepSkyTarget.swift
 //  Deep Sky Catalog
 //
 //  Created by Ryan Sponzilli on 11/2/22.
@@ -10,10 +10,9 @@ import Foundation
 /**
  The basic building block for this app. This struct defines a Deep Sky Target.
  */
-struct DeepSkyObject: Identifiable, Hashable {
-    
-    /// A unique ID for this target
-    let id: UUID
+struct DeepSkyTarget: Identifiable, Hashable {
+    // identifiers
+    var id: UUID
     
     /// Common names for the target
     var name: [String]?
@@ -21,47 +20,50 @@ struct DeepSkyObject: Identifiable, Hashable {
     /// A default name for a target composed of its type and designation
     var defaultName: String {
         get {
-            "\(type.first!.rawValue) \(designation.first!.catalog.abbr)\(designation.first!.number)"
+            "\(type.rawValue) \(designation.first?.catalog.abbr ?? subDesignations.first?.catalog.abbr ?? "")\(designation.first?.number ?? subDesignations.first?.number ?? 0)"
         }
     }
     
     /// Catalog designations that this target has
-    let designation: [Designation]
+    var designation: [Designation]
+    
+    /// Sub-classifications this target contains
+    var subDesignations: [Designation]
     
     /// An image for the target, including copyright information
-    let image: TargetImage?
+    var image: TargetImage?
     
     /// A brief description of the target
-    let description: String
+    var description: String
     
     /// The target's wikipedia page
-    let wikipediaURL: URL
+    var wikipediaURL: URL?
     
     /// The type of target
-    let type: [TargetType]
-    
-    /// The type of relationship this target has, if at all
-    let relationship: TargetRelationship?
+    var type: TargetType
     
     /// The constellation the target resides in
-    let constellation: Constellation
+    var constellation: Constellation
     
     /// The target's right ascension
-    let ra: Double
+    var ra: Double
     
     /// The target's declination
-    let dec: Double
+    var dec: Double
     
     /// The target's apparent angular length in the sky
-    let arcLength: Double
+    var arcLength: Double
     
     /// The target's apparent angular width in the sky
-    let arcWidth: Double
+    var arcWidth: Double
     
     /// The target's apparent magnitude
-    let apparentMag: Double
+    var apparentMag: Double
     
     struct TargetImage: Hashable, Codable {
+        var source: ImageSource
+        var copyright: String?
+        
         enum ImageSource: Hashable, Codable {
             case apod(id: String)
             case local(fileName: String)
@@ -75,24 +77,16 @@ struct DeepSkyObject: Identifiable, Hashable {
                 }
             }
         }
-        
-        let source: ImageSource
-        let copyright: String?
     }
-    
+
     struct Designation: Hashable, Codable {
-        let catalog: TargetCatalog
-        let number: Int
+        var catalog: TargetCatalog
+        var number: Int
         var description: String {
             get {
                 return "\(catalog.rawValue) \(number)"
             }
         }
-    }
-    
-    enum TargetRelationship: Hashable, Codable {
-        case superImposed(targets: [UUID])
-        case visualGrouping(targets: [UUID])
     }
 }
 
@@ -102,7 +96,7 @@ struct DeepSkyObject: Identifiable, Hashable {
 /**
  All Functions performed on DeepSkyObject
  */
-extension DeepSkyObject {
+extension DeepSkyTarget {
     
     /**
      Gets the altitude of the target.
@@ -271,21 +265,24 @@ extension DeepSkyObject {
     }
 }
 
+
+
+
 /**
  A Codable Implementation for DeepSkyObject
  */
-extension DeepSkyObject: Codable {
+extension DeepSkyTarget: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
         self.name = try? container.decode([String].self, forKey: .name)
         self.designation = try container.decode([Designation].self, forKey: .designation)
+        self.subDesignations = try container.decode([Designation].self, forKey: .subDesignations)
         self.image = try? container.decode(TargetImage.self, forKey: .image)
         self.description = try container.decode(String.self, forKey: .description)
-        self.wikipediaURL = try container.decode(URL.self, forKey: .wikipediaURL)
-        self.type = try container.decode([TargetType].self, forKey: .type)
-        self.relationship = try? container.decode(TargetRelationship.self, forKey: .relationship)
+        self.wikipediaURL = try? container.decode(URL.self, forKey: .wikipediaURL)
+        self.type = try container.decode(TargetType.self, forKey: .type)
         self.constellation = try container.decode(Constellation.self, forKey: .constellation)
         self.ra = try container.decode(Double.self, forKey: .ra)
         self.dec = try container.decode(Double.self, forKey: .dec)
@@ -295,7 +292,7 @@ extension DeepSkyObject: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case name, id, designation, image, description, wikipediaURL, type, relationship, constellation, ra, dec, arcLength, arcWidth, apparentMag
+        case name, id, designation, subDesignations, image, description, wikipediaURL, type, constellation, ra, dec, arcLength, arcWidth, apparentMag
     }
     
     func encode(to encoder: Encoder) throws {
@@ -305,15 +302,15 @@ extension DeepSkyObject: Codable {
             try container.encode(name, forKey: .name)
         }
         try container.encode(designation, forKey: .designation)
+        try container.encode(subDesignations, forKey: .subDesignations)
         if let image = self.image {
             try container.encode(image, forKey: .image)
         }
         try container.encode(description, forKey: .description)
-        try container.encode(wikipediaURL, forKey: .wikipediaURL)
-        try container.encode(type, forKey: .type)
-        if let relationship = self.relationship {
-            try container.encode(relationship, forKey: .relationship)
+        if let wikipediaURL = self.wikipediaURL {
+            try container.encode(wikipediaURL, forKey: .wikipediaURL)
         }
+        try container.encode(type, forKey: .type)
         try container.encode(constellation, forKey: .constellation)
         try container.encode(ra, forKey: .ra)
         try container.encode(dec, forKey: .dec)

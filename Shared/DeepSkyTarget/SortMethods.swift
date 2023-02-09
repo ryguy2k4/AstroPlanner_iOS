@@ -37,8 +37,18 @@ enum SortMethod: CaseIterable, Hashable, Identifiable {
     }
 }
 
-extension Array where Element == DeepSkyObject {
+extension Array where Element == DeepSkyTarget {
     
+    func sortedBySearch(_ searchText: String) -> Self {
+        return self.sorted(by: {
+            $0.description.localizedCaseInsensitiveContains(searchText) && !$1.description.localizedCaseInsensitiveContains(searchText)
+        })
+    }
+    
+    mutating func sortBySearch(_ searchText: String) {
+        self = self.sortedBySearch(searchText)
+    }
+        
     func sortedByVisibility(location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) -> Self {
         return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) > $1.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)})
     }

@@ -14,7 +14,7 @@ struct DetailView: View {
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
-    var target: DeepSkyObject
+    var target: DeepSkyTarget
     var body: some View {
         let data = networkManager.data[.init(date: date, location: location)]
             ScrollView {
@@ -47,7 +47,7 @@ struct DetailView: View {
                             .font(.title2)
                             .fontWeight(.semibold)
                             .lineLimit(1)
-                        Text(target.type[0].rawValue)
+                        Text(target.type.rawValue)
                             .font(.subheadline)
                             .fontWeight(.light)
                             .lineLimit(1)
@@ -74,7 +74,7 @@ struct DetailView: View {
 //                    if let relationship = target.relationship {
 //                        switch relationship {
 //                        case .superImposed(targets: let targets):
-//                            let dst: [DeepSkyObject] = targets.map { id in
+//                            let dst: [DeepSkyTarget] = targets.map { id in
 //                                DeepSkyTargetList.allTargets.first(where: {$0.id == id})!
 //                            }
 //                            VStack {
@@ -84,7 +84,7 @@ struct DetailView: View {
 //                                }
 //                            }
 //                        case .visualGrouping(targets: let targets):
-//                            let dst: [DeepSkyObject] = targets.map { id in
+//                            let dst: [DeepSkyTarget] = targets.map { id in
 //                                DeepSkyTargetList.allTargets.first(where: {$0.id == id})!
 //                            }
 //                            VStack {
@@ -102,8 +102,10 @@ struct DetailView: View {
                 // Target Description
                 VStack(alignment: .leading, spacing: 10) {
                     Text(target.description)
-                    Link(destination: target.wikipediaURL) {
-                        Label("Wikipedia", systemImage: "arrow.up.forward.square")
+                    if let link = target.wikipediaURL {
+                        Link(destination: link) {
+                            Label("Wikipedia", systemImage: "arrow.up.forward.square")
+                        }
                     }
                 }.padding()
             }
@@ -132,7 +134,7 @@ struct DetailView: View {
 struct TargetAltitudeChart: View {
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date
-    var target: DeepSkyObject
+    var target: DeepSkyTarget
     var body: some View {
         Chart {
             ForEach(date.getEveryHour(), id: \.self) { hour in
@@ -192,7 +194,7 @@ struct TargetSchedule: View {
     @Environment(\.data) var data
     @Environment(\.date) var date
     @EnvironmentObject var location: SavedLocation
-    let target: DeepSkyObject
+    let target: DeepSkyTarget
     var body: some View {
         if let sun = data?.sun {
             VStack() {

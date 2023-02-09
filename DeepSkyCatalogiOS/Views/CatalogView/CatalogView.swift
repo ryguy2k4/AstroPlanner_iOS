@@ -102,11 +102,11 @@ private struct TargetCell: View {
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
     @Environment(\.data) var data
-    var target: DeepSkyObject
+    var target: DeepSkyTarget
     
     var body: some View {
         HStack {                
-            Image(target.image?.source.fileName ?? "\(target.type.first!)")
+            Image(target.image?.source.fileName ?? "\(target.type)")
                 .resizable()
                 .scaledToFit()
                 .cornerRadius(8)

@@ -15,7 +15,7 @@ struct TopThreeWidgetView : View {
         VStack {
             ForEach(entry.topThree) { target in
                 HStack {
-                    Image(target.image?.source.fileName ?? "\(target.type.first!)")
+                    Image(target.image?.source.fileName ?? "\(target.type)")
                         .resizable()
                         .scaledToFit()
                     Text(target.name?.first! ?? target.defaultName)

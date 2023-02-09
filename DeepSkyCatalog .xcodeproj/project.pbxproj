@@ -24,9 +24,8 @@
 		7162D3402964DBF1007C8710 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162D33F2964DBF1007C8710 /* SwiftUI.framework */; };
 		7162D3432964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */; };
 		7162D3452964DBF1007C8710 /* DeepSkyCatalogWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162D3442964DBF1007C8710 /* DeepSkyCatalogWidget.swift */; };
-		7162D3472964DBF1007C8710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7162D3462964DBF1007C8710 /* Assets.xcassets */; };
 		7162D34B2964DBF1007C8710 /* DeepSkyCatalogWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		7162D3502964E906007C8710 /* DeepSkyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyObject.swift */; };
+		7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
 		7162D3512964E909007C8710 /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
 		716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
@@ -69,7 +68,7 @@
 		71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9692921EF20008C7614 /* DetailView.swift */; };
 		71BCF96E2921EF20008C7614 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF96A2921EF20008C7614 /* HomeView.swift */; };
 		71BCF9752921EF6D008C7614 /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
-		71BCF9762921EF6D008C7614 /* DeepSkyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyObject.swift */; };
+		71BCF9762921EF6D008C7614 /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
 		71BCF9782921EF6D008C7614 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
 		71BCF9822921EF8B008C7614 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date.swift */; };
 		71BCF9832921EF8B008C7614 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
@@ -90,7 +89,7 @@
 		71C2644D298F1CA50057EC04 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
 		71C2644F298F1CAB0057EC04 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
 		71C26450298F1CB20057EC04 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
-		71C26451298F1CB40057EC04 /* DeepSkyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyObject.swift */; };
+		71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
 		71C26452298F1CB60057EC04 /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
 		71C26453298F1CB80057EC04 /* TargetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* TargetCatalog.swift */; };
 		71C26454298F1CBA0057EC04 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* TargetType.swift */; };
@@ -163,7 +162,6 @@
 		7162D33F2964DBF1007C8710 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogWidgetBundle.swift; sourceTree = "<group>"; };
 		7162D3442964DBF1007C8710 /* DeepSkyCatalogWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogWidget.swift; sourceTree = "<group>"; };
-		7162D3462964DBF1007C8710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7162D3482964DBF1007C8710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		716531E929340CFE00D05B79 /* DailyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReport.swift; sourceTree = "<group>"; };
 		71668AD4298F26AC00AB0D19 /* StringIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringIOS.swift; sourceTree = "<group>"; };
@@ -196,7 +194,7 @@
 		71BCF9692921EF20008C7614 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		71BCF96A2921EF20008C7614 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepSkyTargetList.swift; sourceTree = "<group>"; };
-		71BCF9722921EF6D008C7614 /* DeepSkyObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepSkyObject.swift; sourceTree = "<group>"; };
+		71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepSkyTarget.swift; sourceTree = "<group>"; };
 		71BCF9742921EF6D008C7614 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		71BCF97A2921EF8B008C7614 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		71BCF97B2921EF8B008C7614 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -303,7 +301,6 @@
 			children = (
 				7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */,
 				7162D3442964DBF1007C8710 /* DeepSkyCatalogWidget.swift */,
-				7162D3462964DBF1007C8710 /* Assets.xcassets */,
 				7162D3482964DBF1007C8710 /* Info.plist */,
 				716A19B8298F57BD0025DB67 /* Views */,
 				716A19B7298F57A90025DB67 /* Logic */,
@@ -481,7 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				710ECDAC2965E68F00534D15 /* Catalog.json */,
-				71BCF9722921EF6D008C7614 /* DeepSkyObject.swift */,
+				71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */,
 				71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */,
 				71B5AF95292C778D00323693 /* TargetCatalog.swift */,
 				71BCF97D2921EF8B008C7614 /* TargetType.swift */,
@@ -637,7 +634,6 @@
 			files = (
 				710ECDAE2965E68F00534D15 /* Catalog.json in Resources */,
 				71ACF33A2964EED200CC83D5 /* Assets.xcassets in Resources */,
-				7162D3472964DBF1007C8710 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,7 +682,7 @@
 				71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */,
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
 				71ACF3332964ED1400CC83D5 /* Double.swift in Sources */,
-				7162D3502964E906007C8710 /* DeepSkyObject.swift in Sources */,
+				7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */,
 				71ACF33F2964F0D800CC83D5 /* TopThreeEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,7 +707,7 @@
 				71BCF9782921EF6D008C7614 /* NetworkManager.swift in Sources */,
 				71B5FD1C294EBECF00833379 /* PlaceValue.swift in Sources */,
 				71BCF96B2921EF20008C7614 /* CatalogView.swift in Sources */,
-				71BCF9762921EF6D008C7614 /* DeepSkyObject.swift in Sources */,
+				71BCF9762921EF6D008C7614 /* DeepSkyTarget.swift in Sources */,
 				710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */,
 				71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */,
 				71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */,
@@ -775,7 +771,7 @@
 				71C26453298F1CB80057EC04 /* TargetCatalog.swift in Sources */,
 				71BE6EDE299035DB00686E95 /* Mac_DetailView.swift in Sources */,
 				71C26452298F1CB60057EC04 /* DeepSkyTargetList.swift in Sources */,
-				71C26451298F1CB40057EC04 /* DeepSkyObject.swift in Sources */,
+				71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */,
 				71C2644D298F1CA50057EC04 /* Double.swift in Sources */,
 				71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */,
 				716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */,

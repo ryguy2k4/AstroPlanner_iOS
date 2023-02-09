@@ -16,6 +16,8 @@ enum TargetCatalog: String, Filter, CaseNameCodable {
     case barnard = "Barnard"
     case ngc = "NGC"
     case ic = "IC"
+    // Atlas of Peculiar Galaxies
+    case arp = "Arp"
     
     var abbr: String {
         switch self {
@@ -31,6 +33,8 @@ enum TargetCatalog: String, Filter, CaseNameCodable {
             return "NGC "
         case .ic:
             return "IC "
+        case .arp:
+            return "Arp "
         }
     }
 }

@@ -21,7 +21,7 @@ final class CatalogManager: ObservableObject {
     // Sort Control Variables
     @Published var currentSort: SortMethod = .ra
     @Published var sortDecending: Bool = true
-    @Published var targets: [DeepSkyObject] = DeepSkyTargetList.whitelistedTargets.sorted(by: {$0.ra > $1.ra})
+    @Published var targets: [DeepSkyTarget] = DeepSkyTargetList.whitelistedTargets.sorted(by: {$0.ra > $1.ra})
     
     // Filter Control Variables
     @Published var searchText = ""
