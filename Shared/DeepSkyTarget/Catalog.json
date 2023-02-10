@@ -1235,7 +1235,7 @@
         "number" : 431
       }
     ],
-    "type" : "HIIRegion",
+    "type" : "mixedDiffuseNebulae",
     "image" : {
       "copyright" : "Jason Close",
       "source" : {
@@ -1268,7 +1268,7 @@
       }
     ],
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Horsehead_Nebula",
-    "type" : "darkNebula",
+    "type" : "mixedDiffuseNebulae",
     "image" : {
       "copyright" : "Osservatorio MTM",
       "source" : {
@@ -1355,7 +1355,6 @@
     "description" : "The Orion molecular cloud complex is a star-forming region with stellar ages ranging up to 12 Myr. Two giant molecular clouds are a part of it, Orion A and Orion B. The stars currently forming within the complex are located within these clouds. A number of other somewhat older stars no longer associated with the molecular gas are also part of the complex, most notably the Orion's Belt (Orion OB1b), as well as the dispersed population north of it (Orion OB1a). Near the head of Orion there is also a population of young stars that is centered on Meissa. The complex is between 1 000 and 1 400 light-years away, and hundreds of light-years across. The Orion complex is one of the most active regions of nearby stellar formation visible in the night sky, and is home to both protoplanetary discs and very young stars. Much of it is bright in infrared wavelengths due to the heat-intensive processes involved in stellar formation, though the complex contains dark nebulae, emission nebulae, reflection nebulae, and H II regions. The presence of ripples on the surface of Orion's molecular clouds was discovered in 2010. The ripples are a result of the expansion of the nebulae gas over pre-existing molecular gas. The Orion complex includes a large group of bright nebulae, dark clouds in the Orion constellation. Several nebulae can be observed through binoculars and small telescopes, and some parts (such as the Orion Nebula) are visible to the naked eye.",
     "arcWidth" : 900,
     "ra" : 83.825000000000003,
-    "apparentMag" : 20,
     "subDesignations" : [
       {
         "catalog" : "messier",
@@ -3406,7 +3405,6 @@
     "arcWidth" : 300,
     "description" : "The Coalsack Nebula is a prominent dark nebula in the skies, being easily visible to the naked eye as a dark patch obscuring a brief section of Milky Way stars as they cross their southernmost region of the sky, east of Acrux (Alpha Crucis) which is the bright, southern pointer star of the southern cross. It dominates and overspills the southeast corner of what is considered the extent of the constellation Crux at a little less than twice the distance of Acrux, 590 ly away from Earth.",
     "ra" : 12.833299999999999,
-    "apparentMag" : 20,
     "subDesignations" : [
 
     ],
@@ -5231,7 +5229,6 @@
     "description" : "NGC 6188 is an emission nebula located about 4,000 light years away in the constellation Ara. The bright open cluster NGC 6193, visible to the naked eye, is responsible for a region of reflection nebulosity within NGC 6188. NGC 6188 is a star forming nebula, and is sculpted by the massive, young stars that have recently formed there – some are only a few million years old. This spark of formation was probably caused when the last batch of stars went supernova.",
     "arcWidth" : 50,
     "ra" : 250.02432400000001,
-    "apparentMag" : 20,
     "subDesignations" : [
       {
         "catalog" : "caldwell",
@@ -5275,7 +5272,6 @@
     "arcWidth" : 90,
     "description" : "A large region in Ara with an H II region known as the Fighting Dragons of Ara. Below that, is a smaller bipolar nebula surrounding a hot O-type star.",
     "ra" : 250.02432400000001,
-    "apparentMag" : 20,
     "subDesignations" : [
       {
         "catalog" : "caldwell",
@@ -5795,7 +5791,6 @@
     "arcWidth" : 2,
     "description" : "NGC 6729 is a reflection\/emission nebula of the Corona Australis Molecular Cloud in the constellation Corona Australis. It was discovered by Johann Friedrich Julius Schmidt in 1861. This fan-shaped nebula opens from the star R Coronae Australis toward the star T CrA to the south-east. R CrA is a pre-main-sequence star in the Corona Australis molecular complex, one of the closer star-forming regions of the galaxy at a distance of 130 pc. NGC 6729 is a variable nebula which shows irregular variations in brightness and in shape.",
     "ra" : 285.48085099999997,
-    "apparentMag" : 20,
     "subDesignations" : [
 
     ],
@@ -8314,7 +8309,6 @@
     "description" : "The Dark Doodad Nebula is a dark nebula near the globular cluster NGC 4372, much closer than the centre of the galaxy and in the galactic plane, having a length of nearly three degrees of arc. Although officially unnamed, this long molecular cloud has come to be known under this name. It can be found in the southern constellation of Musca (the Fly) with strong binoculars.",
     "arcWidth" : 60,
     "ra" : 186.890083,
-    "apparentMag" : 20,
     "subDesignations" : [
       {
         "catalog" : "ngc",

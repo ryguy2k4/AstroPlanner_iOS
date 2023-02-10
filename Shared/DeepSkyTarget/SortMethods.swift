@@ -82,7 +82,7 @@ extension Array where Element == DeepSkyTarget {
     }
     
     func sortedByMagnitude() -> Self {
-        return self.sorted(by: {$0.apparentMag > $1.apparentMag})
+        return self.sorted(by: {$0.apparentMag ?? .greatestFiniteMagnitude > $1.apparentMag ?? .greatestFiniteMagnitude})
     }
     
     mutating func sortByMagnitude() {

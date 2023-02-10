@@ -102,9 +102,9 @@ extension Array where Element == DeepSkyTarget {
     func filteredByMagnitude(brightest: Double, dimmest: Double) -> Self {
         return self.filter() {
             if dimmest.isNaN {
-                return $0.apparentMag >= brightest
+                return $0.apparentMag ?? .greatestFiniteMagnitude >= brightest
             }
-            return $0.apparentMag >= brightest && $0.apparentMag <= dimmest
+            return $0.apparentMag ?? .greatestFiniteMagnitude >= brightest && $0.apparentMag ?? .greatestFiniteMagnitude <= dimmest
         }
     }
     

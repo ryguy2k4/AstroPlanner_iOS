@@ -57,7 +57,7 @@ struct DetailView: View {
                                 FactLabel(text: target.constellation.rawValue, image: "star")
                                 FactLabel(text: " RA: \(target.ra.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
                                 FactLabel(text: "DEC: \(target.dec.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
-                                FactLabel(text: " Mag \(target.apparentMag)", image: "sun.min.fill")
+                                FactLabel(text: " Mag \(target.apparentMag == nil ? "N/A" : String(target.apparentMag!))", image: "sun.min.fill")
                                 FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
                             }
                             if let sun = data?.sun {

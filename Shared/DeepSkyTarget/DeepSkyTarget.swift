@@ -58,7 +58,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
     var arcWidth: Double
     
     /// The target's apparent magnitude
-    var apparentMag: Double
+    var apparentMag: Double?
     
     struct TargetImage: Hashable, Codable {
         var source: ImageSource
@@ -298,7 +298,7 @@ extension DeepSkyTarget: Codable {
         self.dec = try container.decode(Double.self, forKey: .dec)
         self.arcLength = try container.decode(Double.self, forKey: .arcLength)
         self.arcWidth = try container.decode(Double.self, forKey: .arcWidth)
-        self.apparentMag = try container.decode(Double.self, forKey: .apparentMag)
+        self.apparentMag = try? container.decode(Double.self, forKey: .apparentMag)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -326,6 +326,8 @@ extension DeepSkyTarget: Codable {
         try container.encode(dec, forKey: .dec)
         try container.encode(arcLength, forKey: .arcLength)
         try container.encode(arcWidth, forKey: .arcWidth)
-        try container.encode(apparentMag, forKey: .apparentMag)
+        if let apparentMag = self.apparentMag {
+            try container.encode(apparentMag, forKey: .apparentMag)
+        }
     }
 }
