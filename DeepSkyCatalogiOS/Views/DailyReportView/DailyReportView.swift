@@ -79,6 +79,7 @@ struct DailyReportView: View {
             }
             .environmentObject(locationList.first!)
             .environmentObject(targetSettings.first!)
+            .environment(\.date, date)
             .scrollIndicators(.hidden)
         }
     }

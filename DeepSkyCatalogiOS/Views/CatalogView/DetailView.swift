@@ -91,13 +91,17 @@ struct DetailView: View {
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(target.subDesignationTargets) { target in
-                                    VStack(alignment: .center) {
-                                        Image(target.image?.source.fileName ?? "\(target.type)")
-                                            .resizable()
-                                            .scaledToFit()
-                                        Text(target.name?.first ?? target.defaultName)
+                                    NavigationLink {
+                                        DetailView(target: target)
+                                    } label: {
+                                        VStack(alignment: .center) {
+                                            Image(target.image?.source.fileName ?? "\(target.type)")
+                                                .resizable()
+                                                .scaledToFit()
+                                            Text(target.name?.first ?? target.defaultName)
+                                        }
+                                        .frame(maxWidth: 150, maxHeight: 200)
                                     }
-                                    .frame(maxWidth: 150, maxHeight: 200)
                                 }
                             }
                             .padding()

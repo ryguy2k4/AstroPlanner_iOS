@@ -98,7 +98,7 @@ private struct TopFiveView: View {
                 .fontWeight(.bold)
             TabView {
                 ForEach(report.topFive, id: \.id) { target in
-                    Image(target.image?.source.fileName ?? "\(target.type.first!)")
+                    Image(target.image?.source.fileName ?? "\(target.type)")
                         .resizable()
                         .cornerRadius(12)
                         .aspectRatio(contentMode: .fit)
@@ -126,7 +126,7 @@ private struct TopFiveView: View {
                 }
             }
             .frame(width: 368, height: 207)
-            .navigationDestination(for: DeepSkyObject.self) { target in
+            .navigationDestination(for: DeepSkyTarget.self) { target in
                 DetailView(target: target)
                     .environmentObject(location)
                     .environmentObject(targetSettings)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
-    let target: DeepSkyObject
+    let target: DeepSkyTarget
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
