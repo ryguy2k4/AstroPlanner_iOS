@@ -20,14 +20,12 @@ struct GearSettings: View {
                 List(presetList) { preset in
                     Text(preset.name!)
                         .swipeActions() {
-                            if presetList.count > 1 {
-                                Button(role: .destructive) {
-                                    context.delete(preset)
-                                    PersistenceManager.shared.saveData(context: context)
-                                    
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
+                            Button(role: .destructive) {
+                                context.delete(preset)
+                                PersistenceManager.shared.saveData(context: context)
+                                
+                            } label: {
+                                Label("Delete", systemImage: "trash")
                             }
                             Button {
                                 presetEditorModal = preset

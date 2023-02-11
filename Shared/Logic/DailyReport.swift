@@ -44,9 +44,11 @@ final class DailyReport: ObservableObject {
             }
             
             // filter by selected imaging preset
-            targets = targets.filter { target in
-                let ratio = target.arcLength / presetList.first!.fovLength
-                return ratio > reportSettings.minFOVCoverage && ratio <= 0.9
+            if let preset = presetList.first(where: {$0.isSelected == true}) {
+                targets = targets.filter { target in
+                    let ratio = target.arcLength / preset.fovLength
+                    return ratio > reportSettings.minFOVCoverage && ratio <= 0.9
+                }
             }
             
             targets.sortByVisibility(location: location, date: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)

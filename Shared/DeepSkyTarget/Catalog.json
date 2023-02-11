@@ -1797,7 +1797,7 @@
     "id" : "36496625-C5BD-485B-9B60-79A51B8F3490",
     "dec" : 68.096367999999998,
     "description" : "IC 342 is an intermediate spiral galaxy in the constellation Camelopardalis, located relatively close to the Milky Way. Despite its size and actual brightness, its location behind dusty areas near the galactic equator makes it difficult to observe, leading to the nickname The Hidden Galaxy, though it can readily be detected even with binoculars. If the galaxy were not obscured, it would be visible by naked eye.",
-    "arcWidth" : 6,
+    "arcWidth" : 20.899999999999999,
     "ra" : 56.702095,
     "apparentMag" : 9.0999999999999996,
     "subDesignations" : [
@@ -1814,7 +1814,7 @@
       }
     },
     "constellation" : "camelopardalis",
-    "arcLength" : 7,
+    "arcLength" : 21.399999999999999,
     "designation" : [
       {
         "catalog" : "caldwell",
@@ -7564,7 +7564,7 @@
     "id" : "A432301E-4403-4D4C-BB55-7DF2CCC40CC2",
     "dec" : 68.169567000000001,
     "description" : "The Iris Nebula is a bright reflection nebula in the constellation Cepheus. The designation NGC 7023 refers to the open cluster within the larger reflection nebula designated LBN 487.",
-    "arcWidth" : 10,
+    "arcWidth" : 18,
     "ra" : 315.39839999999998,
     "apparentMag" : 6.7999999999999998,
     "subDesignations" : [
@@ -7581,7 +7581,7 @@
       }
     },
     "constellation" : "cepheus",
-    "arcLength" : 10,
+    "arcLength" : 18,
     "designation" : [
       {
         "catalog" : "caldwell",

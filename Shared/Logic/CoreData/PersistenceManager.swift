@@ -27,11 +27,9 @@ final class PersistenceManager: ObservableObject {
             }
         }
         
-        // if there are no imaging presets stored, then create one
-        if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "ImagingPreset")) {
-            if count == 0 {
-                self.addImagingPreset(name: "Default", focalLength: 360, pixelSize: 3.76, resLength: 6216, resWidth: 4153, isSelected: true, context: self.container.viewContext)
-            }
+        if let defaultPreset = (try? self.container.viewContext.fetch(NSFetchRequest<ImagingPreset>(entityName: "ImagingPreset")))?.first(where: {$0.name == "Default"}) {
+            self.container.viewContext.delete(defaultPreset)
+            saveData(context: container.viewContext)
         }
         
         // if there are no report settings stored, then create one

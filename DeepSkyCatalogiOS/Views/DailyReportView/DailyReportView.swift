@@ -220,10 +220,12 @@ struct ReportSettingsEditor: View {
     
     var body: some View {
         let presetBinding = Binding(
-            get: { return presetList.first! },
+            get: { return presetList.firstIndex(where: {$0.isSelected == true}) ?? -1 },
             set: {
                 for preset in presetList { preset.isSelected = false }
-                $0.isSelected = true
+                if $0 >= 0 {
+                    presetList[$0].isSelected = true
+                }
                 PersistenceManager.shared.saveData(context: context)
             }
         )
@@ -239,8 +241,9 @@ struct ReportSettingsEditor: View {
             DateSelector(date: $date)
             HStack {
                 Picker("Imaging Preset", selection: presetBinding) {
-                    ForEach(presetList) { preset in
-                        Text(preset.name!).tag(preset)
+                    Text("All").tag(-1)
+                    ForEach(Array(presetList.enumerated()), id: \.element) { index, preset in
+                        Text(presetList[index].name!).tag(index)
                     }
                 }
                 Picker("Location", selection: locationBinding) {
