@@ -30,6 +30,9 @@ struct DeepSkyTarget: Identifiable, Hashable {
     /// Sub-classifications this target contains
     var subDesignations: [Designation]
     
+    /// Sub-targets this target contains
+    var subTargets: [UUID]
+    
     /// An image for the target, including copyright information
     var image: TargetImage?
     
@@ -97,6 +100,25 @@ struct DeepSkyTarget: Identifiable, Hashable {
             }))
         }
         return Array(Set(array)).sortedBySize()
+    }
+    
+    var designationDescription: String {
+        var string = "\(name?.first ?? defaultName) is designated as "
+        if designation.count == 1 {
+            string.append("\(designation[0].description).")
+        } else if designation.count == 2 {
+            string.append("\(designation[0].description) and \(designation[1].description).")
+        } else {
+            for index in designation.indices {
+                if index != designation.endIndex - 1 {
+                    string.append("\(designation[index].description), ")
+                } else {
+                    string.append("and \(designation[index].description).")
+                }
+            }
+        }
+        
+        return string
     }
 }
 
@@ -289,6 +311,7 @@ extension DeepSkyTarget: Codable {
         self.name = try? container.decode([String].self, forKey: .name)
         self.designation = try container.decode([Designation].self, forKey: .designation)
         self.subDesignations = try container.decode([Designation].self, forKey: .subDesignations)
+        self.subTargets = try container.decode([UUID].self, forKey: .subTargets)
         self.image = try? container.decode(TargetImage.self, forKey: .image)
         self.description = try container.decode(String.self, forKey: .description)
         self.wikipediaURL = try? container.decode(URL.self, forKey: .wikipediaURL)
@@ -302,7 +325,7 @@ extension DeepSkyTarget: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case name, id, designation, subDesignations, image, description, wikipediaURL, type, constellation, ra, dec, arcLength, arcWidth, apparentMag
+        case name, id, designation, subDesignations, subTargets, image, description, wikipediaURL, type, constellation, ra, dec, arcLength, arcWidth, apparentMag
     }
     
     func encode(to encoder: Encoder) throws {
@@ -313,6 +336,7 @@ extension DeepSkyTarget: Codable {
         }
         try container.encode(designation, forKey: .designation)
         try container.encode(subDesignations, forKey: .subDesignations)
+        try container.encode(subTargets, forKey: .subTargets)
         if let image = self.image {
             try container.encode(image, forKey: .image)
         }

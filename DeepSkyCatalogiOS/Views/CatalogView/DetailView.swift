@@ -85,12 +85,15 @@ struct DetailView: View {
                     }.padding()
                     
                     // List Sub Targets
-                    if !target.subDesignationTargets.isEmpty {
+                    if !target.subTargets.isEmpty {
                         Text("Sub Targets")
                             .fontWeight(.semibold)
                         ScrollView(.horizontal) {
                             HStack {
-                                ForEach(target.subDesignationTargets) { target in
+                                let targets = target.subTargets.map { id in
+                                    DeepSkyTargetList.allTargets.first(where: {$0.id == id})!
+                                }
+                                ForEach(targets) { target in
                                     NavigationLink {
                                         DetailView(target: target)
                                     } label: {
