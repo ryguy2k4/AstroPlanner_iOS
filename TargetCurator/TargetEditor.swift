@@ -92,6 +92,7 @@ struct TargetEditor: View {
 
 struct SubTargets: View {
     @Binding var subTargets: [String]
+    @State var isPopover = false
     
     var body: some View {
         Section {
@@ -101,15 +102,15 @@ struct SubTargets: View {
                 } label: {
                     Label("Add Sub Target", systemImage: "plus.circle")
                 }
-                ForEach($subTargets, id: \.self) { id in
+                ForEach(subTargets.indices, id: \.self) { index in
                     HStack {
-                        if let target = DeepSkyTargetList.objects.first(where: {$0.id.uuidString == id.wrappedValue}) {
+                        if let target = DeepSkyTargetList.objects.first(where: {$0.id.uuidString == subTargets[index]}) {
                             Text(target.name?.first ?? target.defaultName)
                         } else {
                             Text("No Match")
                                 .foregroundColor(.red)
                         }
-                        TextField("", text: id)
+                        TargetIDSearchField(searchText: $subTargets[index])
                     }
                 }
             }

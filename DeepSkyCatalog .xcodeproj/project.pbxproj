@@ -60,6 +60,7 @@
 		7181F02B299BD1F2002841A8 /* MoonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* MoonData.swift */; };
 		7181F02C299BD226002841A8 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		7181F02D299BD22C002841A8 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
+		7181F02F299BD32F002841A8 /* TargetIDSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */; };
 		7186D8F2295CEEC500601467 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7186D8F1295CEEC500601467 /* JournalView.swift */; };
 		718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
@@ -199,6 +200,7 @@
 		7181F005299BCFD1002841A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7181F011299BCFD2002841A8 /* TargetCurator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TargetCurator.entitlements; sourceTree = "<group>"; };
 		7181F027299BD0D0002841A8 /* TargetEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetEditor.swift; sourceTree = "<group>"; };
+		7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetIDSearchField.swift; sourceTree = "<group>"; };
 		7186D8F1295CEEC500601467 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		718CA9A729244FD600F3F5A7 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
 		71901C7629299D5C00D95AA5 /* Constellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				7181F005299BCFD1002841A8 /* ContentView.swift */,
 				7181F027299BD0D0002841A8 /* TargetEditor.swift */,
 				7181F011299BCFD2002841A8 /* TargetCurator.entitlements */,
+				7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */,
 			);
 			path = TargetCurator;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				7181F021299BD03F002841A8 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				7181F017299BCFF6002841A8 /* DeepSkyTargetList.swift in Sources */,
 				7181F016299BCFF4002841A8 /* DeepSkyTarget.swift in Sources */,
+				7181F02F299BD32F002841A8 /* TargetIDSearchField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
