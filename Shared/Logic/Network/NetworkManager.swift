@@ -84,6 +84,7 @@ final class NetworkManager: ObservableObject {
 struct APODImageData: Codable {
     let copyright: String?
     let explanation: String
+    let url: String
     let hdurl: String
     let title: String
     let date: String
