@@ -20,7 +20,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
     /// A default name for a target composed of its type and designation
     var defaultName: String {
         get {
-            "\(type.rawValue) \(designation.first?.catalog.abbr ?? subDesignations.first?.catalog.abbr ?? "")\(designation.first?.number ?? subDesignations.first?.number ?? 0)"
+            "\(type.rawValue) \(designation.first?.shortDescription ?? subDesignations.first?.shortDescription ?? "No Designation")"
         }
     }
     
@@ -85,9 +85,14 @@ struct DeepSkyTarget: Identifiable, Hashable {
     struct Designation: Hashable, Codable {
         var catalog: TargetCatalog
         var number: Int
-        var description: String {
+        var longDescription: String {
             get {
                 return "\(catalog.rawValue) \(number)"
+            }
+        }
+        var shortDescription: String {
+            get {
+                return "\(catalog.abbr)\(number)"
             }
         }
     }
@@ -105,15 +110,15 @@ struct DeepSkyTarget: Identifiable, Hashable {
     var designationDescription: String {
         var string = "\(name?.first ?? defaultName) is designated as "
         if designation.count == 1 {
-            string.append("\(designation[0].description).")
+            string.append("\(designation[0].longDescription).")
         } else if designation.count == 2 {
-            string.append("\(designation[0].description) and \(designation[1].description).")
+            string.append("\(designation[0].longDescription) and \(designation[1].longDescription).")
         } else {
             for index in designation.indices {
                 if index != designation.endIndex - 1 {
-                    string.append("\(designation[index].description), ")
+                    string.append("\(designation[index].longDescription), ")
                 } else {
-                    string.append("and \(designation[index].description).")
+                    string.append("and \(designation[index].longDescription).")
                 }
             }
         }

@@ -26,7 +26,7 @@ enum TargetCatalog: String, Filter, CaseNameCodable {
         case .caldwell:
             return "C "
         case .sh2:
-            return "SH2-"
+            return "Sh2-"
         case .barnard:
             return "Barnard "
         case .ngc:

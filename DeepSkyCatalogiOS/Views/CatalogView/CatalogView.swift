@@ -23,7 +23,6 @@ struct CatalogView: View {
         // Only display targets if network data is available
         let data = networkManager.data[.init(date: date, location: locationList.first!)]
         NavigationStack() {
-            SearchBar(updateAction: { viewModel.refreshList(sunData: data?.sun) })
             FilterButtonMenu()
             
             List(viewModel.targets, id: \.id) { target in
@@ -38,6 +37,16 @@ struct CatalogView: View {
                 CatalogToolbar(date: $date)
             }
         }
+        .searchable(text: $viewModel.searchText)
+        .onSubmit(of: .search) {
+            viewModel.refreshList(sunData: data?.sun)
+        }
+        .onChange(of: viewModel.searchText) { newValue in
+            if newValue.isEmpty {
+                viewModel.refreshList(sunData: data?.sun)
+            }
+        }
+
         
         // Modals for editing each filter
         .filterModal(isPresented: $viewModel.isAllFilterModal, viewModel: viewModel) {
@@ -249,36 +258,6 @@ private struct CatalogToolbar: ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             DateSelector(date: $date)
                 .padding(.horizontal)
-        }
-    }
-}
-
-/**
- A Search Bar that binds its text to a given variable and executes a given action when text is submitted
- */
-private struct SearchBar: View {
-    @EnvironmentObject var viewModel: CatalogManager
-    @FocusState var isInputActive: Bool
-    var updateAction: () -> Void
-    
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(Color("LightGray"))
-            HStack {
-                Image(systemName: "magnifyingglass")
-                TextField("Search", text: $viewModel.searchText)
-                    .onSubmit(updateAction)
-                    .focused($isInputActive)
-            }
-            .foregroundColor(.black)
-            .padding(.leading, 13)
-        }
-        .frame(height: 40)
-        .cornerRadius(13)
-        .padding()
-        .toolbar {
-            KeyboardDismissButton(isInputActive: _isInputActive)
         }
     }
 }

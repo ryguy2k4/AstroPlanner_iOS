@@ -47,7 +47,14 @@ extension Array where Element == DeepSkyTarget {
     
     /// FILTER BY SEARCH
     func filteredBySearch(_ searchText: String) -> Self {
-        return self.filter({$0.description.localizedCaseInsensitiveContains(searchText)})
+        return self.filter { target in
+            target.description.localizedCaseInsensitiveContains(searchText) ||
+            target.designation.contains(where: {$0.longDescription.localizedStandardContains(searchText)}) ||
+            target.subDesignations.contains(where: {$0.longDescription.localizedStandardContains(searchText)}) ||
+            target.designation.contains(where: {$0.shortDescription.localizedStandardContains(searchText)}) ||
+            target.subDesignations.contains(where: {$0.shortDescription.localizedStandardContains(searchText)}) ||
+            target.name?.contains(where: {$0.localizedCaseInsensitiveContains(searchText)}) ?? false
+        }
     }
         
     mutating func filterBySearch(_ searchText: String) {
