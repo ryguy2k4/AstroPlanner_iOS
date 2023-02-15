@@ -46,6 +46,27 @@ struct CatalogView: View {
                 viewModel.refreshList(sunData: data?.sun)
             }
         }
+        .searchSuggestions {
+            // grab top 15 search results
+            let suggestions: [DeepSkyTarget] = {
+                var list = DeepSkyTargetList.objects
+                list.filterBySearch(viewModel.searchText)
+                return list
+            }()
+            
+            // list the search results
+            ForEach(suggestions) { suggestion in
+                HStack {
+                    Image(suggestion.image?.source.fileName ?? "\(suggestion.type)")
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(8)
+                        .frame(width: 100, height: 70)
+                    Text(suggestion.name?.first ?? suggestion.defaultName)
+                        .foregroundColor(.primary)
+                }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
+            }
+        }
 
         
         // Modals for editing each filter

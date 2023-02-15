@@ -53,7 +53,8 @@ extension Array where Element == DeepSkyTarget {
             target.subDesignations.contains(where: {$0.longDescription.localizedStandardContains(searchText)}) ||
             target.designation.contains(where: {$0.shortDescription.localizedStandardContains(searchText)}) ||
             target.subDesignations.contains(where: {$0.shortDescription.localizedStandardContains(searchText)}) ||
-            target.name?.contains(where: {$0.localizedCaseInsensitiveContains(searchText)}) ?? false
+            target.name?.contains(where: {$0.localizedCaseInsensitiveContains(searchText)}) ?? false ||
+            target.defaultName.localizedCaseInsensitiveContains(searchText)
         }
     }
         

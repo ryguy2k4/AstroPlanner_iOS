@@ -425,8 +425,8 @@
   {
     "id" : "34296007-98D3-422C-A986-F395343DB8CB",
     "dec" : -1.947821,
-    "arcWidth" : 16,
     "description" : "Messier 12 is a globular cluster in the constellation of Ophiuchus. It was discovered by the French astronomer Charles Messier on May 30, 1764, who described it as a \"nebula without stars\". In dark conditions this cluster can be faintly seen with a pair of binoculars. Resolving the stellar components requires a telescope with an aperture of 8 in (20 cm) or greater. In a 10 in (25 cm) scope, the granular core shows a diameter of 3′ (arcminutes) surrounded by a 10′ halo of stars. It is rather loosely packed for a globular and was once thought to be a tightly concentrated open cluster. Thirteen variable stars have been recorded in this cluster. M12 is approaching us at a velocity of 16 km\/s.",
+    "arcWidth" : 16,
     "ra" : 251.810484,
     "apparentMag" : 6.7000000000000002,
     "subDesignations" : [
@@ -448,6 +448,9 @@
         "catalog" : "ngc",
         "number" : 6218
       }
+    ],
+    "name" : [
+      "Gumball Globular Cluster"
     ]
   },
   {
@@ -2431,34 +2434,6 @@
     ]
   },
   {
-    "id" : "0108CF33-172B-49C3-A870-E113612BE48F",
-    "dec" : -12.635503999999999,
-    "arcWidth" : 2.7999999999999998,
-    "description" : "Messier 73 is an asterism of four stars in the constellation Aquarius. It lies several arcminutes east of globular cluster M72. M73 was discovered by Charles Messier in 1780 who originally described the object as a cluster of four stars with some nebulosity. Much later observations by John Herschel could not find any nebulosity. Moreover, Herschel noted that the designation of M73 as a cluster was questionable. Nonetheless, Herschel included M73 in his General Catalogue of clusters, nebulae, and galaxies, and John Dreyer included M73 when he compiled the New General Catalogue.",
-    "ra" : 314.73321800000002,
-    "apparentMag" : 9,
-    "subDesignations" : [
-
-    ],
-    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_73",
-    "type" : "openStarCluster",
-    "constellation" : "aquarius",
-    "subTargets" : [
-
-    ],
-    "arcLength" : 2.7999999999999998,
-    "designation" : [
-      {
-        "catalog" : "messier",
-        "number" : 73
-      },
-      {
-        "catalog" : "ngc",
-        "number" : 6994
-      }
-    ]
-  },
-  {
     "id" : "3EB2A9FE-68CD-401C-B8F8-03327A582C5C",
     "dec" : 15.783662,
     "description" : "Messier 74 is a large spiral galaxy in the equatorial constellation Pisces.[a] It is about 32 million light-years away from Earth. The galaxy contains two clearly defined spiral arms and is therefore used as an archetypal example of a grand design spiral galaxy. The galaxy's low surface brightness makes it the most difficult Messier object for amateur astronomers to observe. Its relatively large angular (that is, apparent) size and the galaxy's face-on orientation make it an ideal object for professional astronomers who want to study spiral arm structure and spiral density waves. It is estimated that M74 hosts about 100 billion stars.",
@@ -3979,34 +3954,6 @@
     ]
   },
   {
-    "id" : "DA2F1E5F-AA96-4AA5-AAF7-744ECB36E667",
-    "dec" : 63.301439999999999,
-    "arcWidth" : 7,
-    "description" : "NGC 559 is an open cluster and Caldwell object in the constellation Cassiopeia. It is located near the open cluster NGC 637, and the bright magnitude +2.2 irregular variable star Gamma Cassiopeiae.",
-    "ra" : 22.388200000000001,
-    "apparentMag" : 9.5,
-    "subDesignations" : [
-
-    ],
-    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_559",
-    "type" : "openStarCluster",
-    "constellation" : "cassiopeia",
-    "subTargets" : [
-
-    ],
-    "arcLength" : 7,
-    "designation" : [
-      {
-        "catalog" : "caldwell",
-        "number" : 8
-      },
-      {
-        "catalog" : "ngc",
-        "number" : 559
-      }
-    ]
-  },
-  {
     "id" : "AC907C67-9F1A-4F26-9514-A6483D077716",
     "dec" : 62.475940000000001,
     "description" : "Sh2-155 is a diffuse nebula in the constellation Cepheus, within a larger nebula complex containing emission, reflection, and dark nebulosity. It is widely known as the Cave Nebula, though that name was applied earlier to Ced 201, a different nebula in Cepheus. Sh2-155 is an ionized H II region with ongoing star formation activity, at an estimated distance of 2400 light-years from Earth.",
@@ -4271,34 +4218,6 @@
       "Blinking Planetary Nebula"
     ],
     "arcLength" : 0.45000000000000001
-  },
-  {
-    "id" : "39C52B60-6090-4538-9C4F-1E841E52D354",
-    "dec" : 49.897512999999996,
-    "arcWidth" : 21,
-    "description" : "NGC 7243 is an open cluster and Caldwell object in the constellation Lacerta. It is located near the naked-eye stars Alpha Lacertae, 4 Lacertae, an A-class double star, and planetary nebula IC 5217. It lies approximately 2,800 light-years away, and is thought to be just over 100 million years old, consisting mainly of white and blue stars.",
-    "ra" : 333.785753,
-    "apparentMag" : 6.4000000000000004,
-    "subDesignations" : [
-
-    ],
-    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7243",
-    "type" : "openStarCluster",
-    "constellation" : "lacerta",
-    "subTargets" : [
-
-    ],
-    "arcLength" : 21,
-    "designation" : [
-      {
-        "catalog" : "caldwell",
-        "number" : 16
-      },
-      {
-        "catalog" : "ngc",
-        "number" : 7243
-      }
-    ]
   },
   {
     "id" : "74CEBF33-C1AF-416C-9601-0394E0A4E91D",
@@ -5037,34 +4956,6 @@
     ],
     "name" : [
       "Koi Fish Galaxy"
-    ]
-  },
-  {
-    "id" : "2773EFD5-918D-4B60-B475-CFD08F0B4642",
-    "dec" : 26.488804999999999,
-    "arcWidth" : 18,
-    "description" : "NGC 6885 is an open cluster in the constellation Vulpecula. It surrounds the naked eye Be star 20 Vulpeculae, and is located near M27 (Dumbbell nebula), the nebula IC 4954, and open clusters NGC 6882 and NGC 6940.",
-    "ra" : 302.982755,
-    "apparentMag" : 5.7000000000000002,
-    "subDesignations" : [
-
-    ],
-    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6885",
-    "type" : "openStarCluster",
-    "constellation" : "vulpecula",
-    "subTargets" : [
-
-    ],
-    "arcLength" : 7,
-    "designation" : [
-      {
-        "catalog" : "caldwell",
-        "number" : 37
-      },
-      {
-        "catalog" : "ngc",
-        "number" : 6885
-      }
     ]
   },
   {
@@ -6566,34 +6457,6 @@
     ]
   },
   {
-    "id" : "5109C0F8-8D7B-4A82-A24A-06F5438C01C1",
-    "dec" : -53.035479000000002,
-    "arcWidth" : 50,
-    "description" : "IC 2391 is an open cluster in the constellation Vela consisting of hot, young, blueish stars, some of which binaries and one of which is a quadruple. The Persian A. a.-R. Al Sufi first described it as \"a nebulous star\" about 964. It was re-found by Abbe Lacaille and cataloged as Lac II 5. It is centred about 490 light-years away from Earth and can be seen with the naked eye. It contains about 30 stars with a total visual magnitude of 2.5, spread out along 50 arcminutes.",
-    "ra" : 130.132847,
-    "apparentMag" : 2.5,
-    "subDesignations" : [
-
-    ],
-    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/IC_2391",
-    "type" : "openStarCluster",
-    "constellation" : "vela",
-    "subTargets" : [
-
-    ],
-    "arcLength" : 50,
-    "designation" : [
-      {
-        "catalog" : "caldwell",
-        "number" : 85
-      },
-      {
-        "catalog" : "ic",
-        "number" : 2391
-      }
-    ]
-  },
-  {
     "id" : "198C2083-AA3B-4F6D-AB5D-D8C6FDA8CC16",
     "dec" : -53.673689000000003,
     "description" : "NGC 6397 is a globular cluster in the constellation Ara. It is located about 7,800 light-years from Earth, making it one of the two nearest globular clusters to Earth (the other one being Messier 4). The cluster contains around 400,000 stars, and can be seen with the naked eye under good observing conditions. NGC 6397 is one of at least 20 globular clusters of the Milky Way Galaxy that have undergone a core collapse, meaning that the core has contracted to a very dense stellar agglomeration.",
@@ -6657,34 +6520,6 @@
       {
         "catalog" : "ngc",
         "number" : 1261
-      }
-    ]
-  },
-  {
-    "id" : "3DC3398C-AB42-42D5-85C7-A76822D8086D",
-    "dec" : 67.672310999999993,
-    "arcWidth" : 12,
-    "description" : "NGC 5823 is an open cluster in the southern constellation of Circinus, near (and extending across) its border with the constellation Lupus. It was discovered by Scottish astronomer James Dunlop in 1826.",
-    "ra" : 205.27399500000001,
-    "apparentMag" : 7.9000000000000004,
-    "subDesignations" : [
-
-    ],
-    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_5823",
-    "type" : "openStarCluster",
-    "constellation" : "circinus",
-    "subTargets" : [
-
-    ],
-    "arcLength" : 12,
-    "designation" : [
-      {
-        "catalog" : "caldwell",
-        "number" : 88
-      },
-      {
-        "catalog" : "ngc",
-        "number" : 5823
       }
     ]
   },
