@@ -403,12 +403,20 @@
 			isa = PBXGroup;
 			children = (
 				7181F003299BCFD1002841A8 /* TargetCuratorApp.swift */,
-				7181F005299BCFD1002841A8 /* ContentView.swift */,
-				7181F027299BD0D0002841A8 /* TargetEditor.swift */,
 				7181F011299BCFD2002841A8 /* TargetCurator.entitlements */,
-				7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */,
+				7181F030299C105F002841A8 /* Views */,
 			);
 			path = TargetCurator;
+			sourceTree = "<group>";
+		};
+		7181F030299C105F002841A8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7181F005299BCFD1002841A8 /* ContentView.swift */,
+				7181F027299BD0D0002841A8 /* TargetEditor.swift */,
+				7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		718B56AF294C349900914BDB /* Reusable Views */ = {
@@ -910,7 +918,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
@@ -938,7 +946,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
@@ -1168,7 +1176,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1206,7 +1214,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

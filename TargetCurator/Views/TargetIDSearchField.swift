@@ -18,7 +18,7 @@ struct TargetIDSearchField: View {
             .popover(isPresented: $isPopover) {
                 
                 // grab top 15 search results
-                var suggestions: [DeepSkyTarget] = {
+                let suggestions: [DeepSkyTarget] = {
                     var list = DeepSkyTargetList.objects
                     list.filterBySearch(searchText)
                     list.removeLast(list.count > 15 ? list.count-15 : 0)

@@ -104,6 +104,12 @@ struct SubTargets: View {
                 }
                 ForEach(subTargets.indices, id: \.self) { index in
                     HStack {
+                        Button {
+                            subTargets.remove(at: index)
+                        } label: {
+                            Image(systemName: "minus.circle")
+                        }
+
                         if let target = DeepSkyTargetList.objects.first(where: {$0.id.uuidString == subTargets[index]}) {
                             Text(target.name?.first ?? target.defaultName)
                         } else {

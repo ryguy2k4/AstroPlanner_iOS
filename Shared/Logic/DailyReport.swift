@@ -35,35 +35,18 @@ final class DailyReport: ObservableObject {
         self.topTenStarClusters = createReportList(for: TargetType.starClusters, top: 10)
         
         func createReportList(for type: [TargetType] = [], top num: Int) -> [DeepSkyTarget] {
-            // start with all targets
-            var targets = getAvailableTargets()
             
-            // filter by desired types
-            if !type.isEmpty {
-                targets.filterByType(type)
-            }
-            
-            // filter by selected imaging preset
-            if let preset = presetList.first(where: {$0.isSelected == true}) {
-                targets = targets.filter { target in
-                    let ratio = target.arcLength / preset.fovLength
-                    return ratio > reportSettings.minFOVCoverage && ratio <= 0.9
-                }
-            }
-            
-            targets.sortByVisibility(location: location, date: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
-            targets.removeLast(targets.count > num ? targets.count-num : 0)
-            return targets
-        }
-        
-        /**
-         Filters the list for broadband or narrowband based on the status of the moon
-         */
-        func getAvailableTargets() -> [DeepSkyTarget] {
+            // start with all whitelisted targets
             var targets = Array(DeepSkyTargetList.whitelistedTargets)
+            
+            // Remove all targets with a meridian score less than 50%
+            // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
+            targets.filterByMeridian(0.5, location: location, date: date, sunData: data.sun)
+            
+            // Remove all targets with a visibility score less than the user specified minimum
             targets.filterByVisibility(reportSettings.minVisibility, location: location, date: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
             
-            // if moon is a problem, filter for narrowband
+            // if moon is a problem, filter for narrowband targets
             if data.moon.illuminated > reportSettings.maxAllowedMoon {
                 targets.filterByType(TargetType.narrowband)
             }
@@ -71,6 +54,26 @@ final class DailyReport: ObservableObject {
             else if reportSettings.preferBroadband {
                 targets.filterByType(TargetType.broadband)
             }
+            
+            // filter for desired types passed to function
+            if !type.isEmpty {
+                targets.filterByType(type)
+            }
+            
+            // filter for selected imaging preset, if one is selected
+            if let preset = presetList.first(where: {$0.isSelected == true}) {
+                targets = targets.filter { target in
+                    let ratio = target.arcLength / preset.fovLength
+                    return ratio > reportSettings.minFOVCoverage && ratio <= 0.9
+                }
+            }
+            
+            // Sort the list by visibility
+            targets.sortByVisibility(location: location, date: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
+            
+            // Shorten the list to desired number passed to function
+            targets.removeLast(targets.count > num ? targets.count-num : 0)
+            
             return targets
         }
     }

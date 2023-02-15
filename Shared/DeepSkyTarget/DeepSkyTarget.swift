@@ -244,6 +244,7 @@ extension DeepSkyTarget {
      - Returns: The date and time that the object next passes the meridian.
      */
     func getNextMeridian(at location: SavedLocation, on date: Date, sunData: SunData) -> Date {
+        // need a conditional to determine whether to return [0] or [1] of the following function
         return getLocalTime(location: location, date: date, sunData: sunData, lst: ra)[1]
     }
     
@@ -293,11 +294,12 @@ extension DeepSkyTarget {
         
         let midnight = nightBegin.addingTimeInterval(Double(nightLength/2))
         if (targetMeridian < midnight){
+            // time between meridian crossing and midnight in fractional days
             let interval = DateInterval(start: targetMeridian, end: midnight).duration/60/60/24
-            return 1 - interval
+            return (1 - (interval / 0.5)).magnitude
         } else {
             let interval = DateInterval(start: midnight, end: targetMeridian).duration/60/60/24
-            return 1 - interval
+            return (1 - (interval / 0.5)).magnitude
         }
     }
 }
