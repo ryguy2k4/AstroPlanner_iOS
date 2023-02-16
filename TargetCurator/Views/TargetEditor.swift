@@ -52,8 +52,8 @@ struct TargetEditor: View {
                     NamesField(names: $names, id: target.id.uuidString)
                     DesignationsField(designation: $designation, sub: false)
                     DesignationsField(designation: $subDesignations, sub: true)
-                    SubTargets(subTargets: $subTargets)
-                    CoordinatesField(ra: $ra, dec: $dec, type: type)
+                    SubTargets(subTargets: $subTargets, subDesignations: $subDesignations)
+                    CoordinatesField(ra: $ra, dec: $dec, subTargets: subTargets)
                     TypesField(type: $type)
                 }
                 VStack(alignment: .leading) {
@@ -92,15 +92,29 @@ struct TargetEditor: View {
 
 struct SubTargets: View {
     @Binding var subTargets: [String]
+    @Binding var subDesignations: [DeepSkyTarget.Designation]
     @State var isPopover = false
     
     var body: some View {
         Section {
             VStack(alignment: .leading) {
-                Button {
-                    subTargets.append(.init())
-                } label: {
-                    Label("Add Sub Target", systemImage: "plus.circle")
+                HStack {
+                    Button {
+                        subTargets.append(.init())
+                    } label: {
+                        Label("Add Sub Target", systemImage: "plus.circle")
+                    }
+                    Button {
+                        var subs: Set<DeepSkyTarget.Designation> = []
+                        for item in subTargets {
+                            let target = DeepSkyTargetList.objects.first(where: {$0.id.uuidString == item})!
+                            subs.formUnion(target.designation)
+                            subs.formUnion(target.subDesignations)
+                        }
+                        subDesignations = Array(subs)
+                    } label: {
+                        Label("Merge Sub-Designations", systemImage: "arrow.triangle.merge")
+                    }
                 }
                 ForEach(subTargets.indices, id: \.self) { index in
                     HStack {
@@ -292,10 +306,26 @@ struct ConstellationField: View {
 struct CoordinatesField: View {
     @Binding var ra: Double
     @Binding var dec: Double
-    let type: TargetType
+    let subTargets: [String]
     var body: some View {
         Section {
             HStack {
+                Button("Center of Sub-Targets") {
+                    ra = {
+                        var sum = 0.0
+                        for id in subTargets {
+                            sum += DeepSkyTargetList.objects.first(where: {$0.id.uuidString == id})!.ra
+                        }
+                        return sum / Double(subTargets.count)
+                    }()
+                    dec = {
+                        var sum = 0.0
+                        for id in subTargets {
+                            sum += DeepSkyTargetList.objects.first(where: {$0.id.uuidString == id})!.dec
+                        }
+                        return sum / Double(subTargets.count)
+                    }()
+                }
                 Text("Ra:")
                 TextField("Ra:", value: $ra, format: .number)
                 Text("Dec:")
@@ -403,7 +433,7 @@ struct ImageField: View {
                                 self.image!.copyright = image.copyright
                                 isCopyrightInfo = image.copyright != nil
                                 
-                                let fileURL = URL(fileURLWithPath: "/Users/ryansponzilli/Documents/Xcode/DeepSkyCatalog Python Scripts/image script/apodurls.txt")
+                                let fileURL = URL(fileURLWithPath: "/Users/ryansponzilli/Documents/DeepSkyCatalog Python Scripts/image script/apodurls.txt")
                                     let text = "\(id);\(image.url)\n"
                                     
                                 if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {

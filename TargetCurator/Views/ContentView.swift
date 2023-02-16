@@ -34,14 +34,14 @@ struct ContentView: View {
                     }
                 }
                 List {
-                    ForEach(objects.indices) { index in
+                    ForEach(Array(objects.enumerated()), id: \.element) { index, object in
                         NavigationLink {
                             TargetEditor(target: $objects[index])
                                 .onAppear() {
                                     self.objectIndex = index
                                 }
                         } label: {
-                            TargetCell(target: objects[index])
+                            TargetCell(target: object)
                         }
                     }
                 }

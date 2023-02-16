@@ -131,7 +131,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
 
 
 /**
- All Functions performed on DeepSkyObject
+ All Functions performed on DeepSkyTargett
  */
 extension DeepSkyTarget {
     

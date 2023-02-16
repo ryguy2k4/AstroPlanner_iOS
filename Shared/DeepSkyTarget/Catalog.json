@@ -9179,5 +9179,483 @@
       "NGC 4372 and The Dark Doodad"
     ],
     "arcLength" : 180
+  },
+  {
+    "id" : "FF8BBD28-B2F6-4E8C-8D4E-BECF0B3579CA",
+    "dec" : -69.756125999999995,
+    "description" : "The Large Magellanic Cloud is a satellite galaxy of the Milky Way. At a distance of around 60,000 light-years the LMC is the second or third-closest galaxy to the Milky Way. The Large Magellanic Cloud is approximately 32,200 light-years across. It is roughly a hundredth as massive as the Milky Way[ and is the fourth-largest galaxy in the Local Group, after the Andromeda Galaxy (M31), the Milky Way and the Triangulum Galaxy (M33). The LMC is classified as a Magellanic spiral. It contains a stellar bar that is geometrically off center, suggesting that it was a barred dwarf spiral galaxy before its spiral arms were disrupted, likely by tidal interactions from the Small Magellanic Cloud (SMC) and the Milky Way's gravity. The LMC is visible as a faint \"cloud\" from the southern hemisphere of the Earth and from as far north as 20° N. It straddles the constellations Dorado and Mensa and has an apparent length of about 10° to the naked eye, 20 times the Moon's diameter, from dark sites away from light pollution",
+    "arcWidth" : 550,
+    "ra" : 80.893860000000004,
+    "apparentMag" : 0.13,
+    "subDesignations" : [
+      {
+        "catalog" : "ngc",
+        "number" : 2070
+      }
+    ],
+    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Large_Magellanic_Cloud",
+    "type" : "irregularGalaxy",
+    "image" : {
+      "copyright" : "Alessandro\nCipolat Bares",
+      "source" : {
+        "apod" : {
+          "id" : "190905"
+        }
+      }
+    },
+    "constellation" : "doradp",
+    "subTargets" : [
+      "06CEF9D4-AE16-4EC9-B7A1-8275EBFB52BB"
+    ],
+    "designation" : [
+
+    ],
+    "name" : [
+      "Large Magellanic Cloud",
+      "Nubecula Major"
+    ],
+    "arcLength" : 645
+  },
+  {
+    "id" : "41585375-B7FD-440A-8DC8-A5B171EBA82D",
+    "dec" : -72.828598999999997,
+    "description" : "The Small Magellanic Cloud (SMC) is a dwarf galaxy near the Milky Way. Classified as a dwarf irregular galaxy, the SMC has an isophotal diameter of about 18,900 light-years, and contains several hundred million stars. It has a total mass of approximately 7 billion solar masses. At a distance of about 200,000 light-years, the SMC is among the nearest intergalactic neighbors of the Milky Way and is one of the most distant objects visible to the naked eye. The SMC is visible from the entire Southern Hemisphere, but can be fully glimpsed low above the southern horizon from latitudes south of about 15° north. The galaxy is located across both the constellations of Tucana and part of Hydrus, appearing as a faint hazy patch resembling a detached piece of the Milky Way. The SMC has an average apparent diameter of about 4.2° (8 times the Moon's) and thus covers an area of about 14 square degrees (70 times the Moon's). Since its surface brightness is very low, this deep-sky object is best seen on clear moonless nights and away from city lights. The SMC forms a pair with the Large Magellanic Cloud (LMC), which lies 20° to the east, and like the LMC, it is a member of the Local Group. It is currently a satellite of the Milky Way, but is likely a former satellite of the LMC.",
+    "arcWidth" : 185,
+    "ra" : 13.186588,
+    "apparentMag" : 2.7000000000000002,
+    "subDesignations" : [
+
+    ],
+    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Small_Magellanic_Cloud",
+    "type" : "irregularGalaxy",
+    "image" : {
+      "copyright" : "José Mtanous",
+      "source" : {
+        "apod" : {
+          "id" : "210105"
+        }
+      }
+    },
+    "constellation" : "tucana",
+    "subTargets" : [
+
+    ],
+    "designation" : [
+      {
+        "catalog" : "ngc",
+        "number" : 292
+      }
+    ],
+    "name" : [
+      "Small Magellanic Cloud",
+      "Nubecula Minor"
+    ],
+    "arcLength" : 320
+  },
+  {
+    "id" : "B7329964-8D45-4A55-A813-836A0A3C98A4",
+    "dec" : -19.454671999999999,
+    "description" : "IC 4592 (also known as the Blue Horsehead Nebula) is a reflection nebula in the Scorpius constellation that is lit by Nu Scorpii.",
+    "arcWidth" : 110,
+    "ra" : 242.99444,
+    "subDesignations" : [
+      {
+        "catalog" : "ic",
+        "number" : 4601
+      }
+    ],
+    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/IC_4592",
+    "type" : "reflectionNebula",
+    "image" : {
+      "copyright" : "Adam BlockSteward Observatory,\nUniversity of Arizona",
+      "source" : {
+        "apod" : {
+          "id" : ""
+        }
+      }
+    },
+    "constellation" : "scorpius",
+    "subTargets" : [
+
+    ],
+    "designation" : [
+      {
+        "catalog" : "ic",
+        "number" : 4592
+      }
+    ],
+    "name" : [
+      "Blue Horsehead Nebula"
+    ],
+    "arcLength" : 220
+  },
+  {
+    "id" : "E0B9DE1C-9ADF-433D-97F4-7DF1688B9563",
+    "dec" : -24.468374000000001,
+    "description" : "The Rho Ophiuchi cloud complex is a complex of interstellar clouds with different nebulae, particularly dark nebulae which is centered 1° south of the star Rho Ophiuchi, which it among others extends to, of the constellation Ophiuchus. At an estimated distance of 460 light years, it is one of the closest star-forming regions to the Solar System.",
+    "arcWidth" : 390,
+    "ra" : 246.35198600000001,
+    "subDesignations" : [
+      {
+        "catalog" : "ic",
+        "number" : 4606
+      },
+      {
+        "catalog" : "ic",
+        "number" : 4605
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 6144
+      },
+      {
+        "catalog" : "ic",
+        "number" : 4603
+      },
+      {
+        "catalog" : "ic",
+        "number" : 4604
+      },
+      {
+        "catalog" : "messier",
+        "number" : 4
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 6121
+      }
+    ],
+    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Rho_Ophiuchi_cloud_complex",
+    "type" : "cloudComplex",
+    "image" : {
+      "copyright" : "Amir H. Abolfath",
+      "source" : {
+        "apod" : {
+          "id" : "201014"
+        }
+      }
+    },
+    "constellation" : "ophiuchus",
+    "subTargets" : [
+      "DDB2C958-6405-4500-89C8-2C0CB47CD2C4"
+    ],
+    "designation" : [
+
+    ],
+    "name" : [
+      "Rho Ophiuchi Cloud Complex"
+    ],
+    "arcLength" : 270
+  },
+  {
+    "id" : "E93FB83C-3F0F-4C80-B812-CF65675FD6D6",
+    "dec" : 0,
+    "description" : "NGC 1491 is a bright nebula in the constellation of Perseus.",
+    "arcWidth" : 30,
+    "ra" : 0,
+    "subDesignations" : [
+
+    ],
+    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_1491",
+    "type" : "HIIRegion",
+    "constellation" : "perseus",
+    "subTargets" : [
+
+    ],
+    "arcLength" : 40,
+    "designation" : [
+      {
+        "catalog" : "sh2",
+        "number" : 206
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 1491
+      }
+    ],
+    "name" : [
+      "Fossil Footprint Nebula"
+    ]
+  },
+  {
+    "id" : "90CA621E-ABD5-4581-B7D0-1EE2B931F73B",
+    "dec" : -24.106393000000001,
+    "description" : "NGC 6559 is a star-forming region located at a distance of about 5000 light-years from Earth, in the constellation of Sagittarius, showing both emission (red) and reflection (bluish) regions.",
+    "arcWidth" : 30,
+    "ra" : 272.48686700000002,
+    "subDesignations" : [
+      {
+        "catalog" : "ic",
+        "number" : 1275
+      }
+    ],
+    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6559",
+    "type" : "mixedDiffuseNebulae",
+    "image" : {
+      "copyright" : "Roberto Sartori",
+      "source" : {
+        "apod" : {
+          "id" : "211007"
+        }
+      }
+    },
+    "constellation" : "sagittarius",
+    "subTargets" : [
+
+    ],
+    "designation" : [
+      {
+        "catalog" : "ngc",
+        "number" : 6559
+      }
+    ],
+    "name" : [
+      "Chinese Dragon Nebula"
+    ],
+    "arcLength" : 45
+  },
+  {
+    "id" : "739E9A5A-4B5C-4F4D-9092-0ED72CC34365",
+    "dec" : -23.819487333333331,
+    "description" : "Three Nebulae in Saggitarius.",
+    "arcWidth" : 120,
+    "ra" : 271.36141900000001,
+    "subDesignations" : [
+      {
+        "catalog" : "sh2",
+        "number" : 25
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 6559
+      },
+      {
+        "catalog" : "messier",
+        "number" : 20
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 6523
+      },
+      {
+        "catalog" : "ic",
+        "number" : 1275
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 6514
+      },
+      {
+        "catalog" : "messier",
+        "number" : 8
+      },
+      {
+        "catalog" : "sh2",
+        "number" : 30
+      }
+    ],
+    "type" : "mixedDiffuseNebulae",
+    "image" : {
+      "copyright" : "Gabriel Rodrigues Santos",
+      "source" : {
+        "apod" : {
+          "id" : "210426"
+        }
+      }
+    },
+    "constellation" : "sagittarius",
+    "subTargets" : [
+      "48211243-452B-4AF3-B60B-F392F68069B4",
+      "54002EE0-6F85-4872-9E0A-AC7BC7698951",
+      "90CA621E-ABD5-4581-B7D0-1EE2B931F73B"
+    ],
+    "arcLength" : 150,
+    "designation" : [
+
+    ],
+    "name" : [
+      "The Lagoon and Trifid in Saggitarius"
+    ]
+  },
+  {
+    "id" : "59B1DBAF-D690-497B-8E18-7AB83FED7C2C",
+    "dec" : 60.402481000000002,
+    "description" : "The Soul Nebula is an emission nebula located in Cassiopeia. Small emission nebula IC 1871 is present just left of the top of the head, and small emission nebulae 670 and 669 are just below the lower back area. The galaxies Maffei 1 and Maffei 2 are both nearby the nebula, although light extinction from the Milky Way makes them very hard to see. Once thought to be part of the Local Group, they are now known to belong to their own group- the IC 342\/Maffei Group. This complex is the eastern neighbor of IC1805 (Heart Nebula) and the two are often mentioned together as the \"Heart and Soul\".",
+    "arcWidth" : 75,
+    "ra" : 42.794106999999997,
+    "subDesignations" : [
+      {
+        "catalog" : "ic",
+        "number" : 1871
+      }
+    ],
+    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Westerhout_5",
+    "type" : "HIIRegion",
+    "image" : {
+      "copyright" : "Jess M.Vargas & Maritxu Poyal",
+      "source" : {
+        "apod" : {
+          "id" : "180821"
+        }
+      }
+    },
+    "constellation" : "cassiopeia",
+    "subTargets" : [
+
+    ],
+    "designation" : [
+      {
+        "catalog" : "sh2",
+        "number" : 199
+      },
+      {
+        "catalog" : "ic",
+        "number" : 1848
+      }
+    ],
+    "name" : [
+      "Soul Nebula"
+    ],
+    "arcLength" : 150
+  },
+  {
+    "id" : "324C210D-C09D-4B43-A30B-047AA9411B35",
+    "dec" : 60.929679500000006,
+    "description" : "The Heart and Soul Nebulae together.",
+    "arcWidth" : 180,
+    "ra" : 40.483534499999998,
+    "subDesignations" : [
+      {
+        "catalog" : "sh2",
+        "number" : 199
+      },
+      {
+        "catalog" : "sh2",
+        "number" : 190
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 896
+      },
+      {
+        "catalog" : "ic",
+        "number" : 1805
+      },
+      {
+        "catalog" : "ic",
+        "number" : 1848
+      },
+      {
+        "catalog" : "ic",
+        "number" : 1871
+      },
+      {
+        "catalog" : "ic",
+        "number" : 1795
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 1027
+      }
+    ],
+    "type" : "HIIRegion",
+    "image" : {
+      "copyright" : "Mario Zauner",
+      "source" : {
+        "apod" : {
+          "id" : "190115"
+        }
+      }
+    },
+    "constellation" : "cassiopeia",
+    "subTargets" : [
+      "EEE3D0A1-383E-4A4E-A648-F47B337ACCE6",
+      "59B1DBAF-D690-497B-8E18-7AB83FED7C2C",
+      "F71E93D4-2D08-469C-B1F5-227659F4999F"
+    ],
+    "arcLength" : 345,
+    "designation" : [
+
+    ],
+    "name" : [
+      "Heart and Soul Nebulae"
+    ]
+  },
+  {
+    "id" : "DA5A8DE7-373A-4BA0-B733-472CCE1101F1",
+    "dec" : 59.664229666666671,
+    "description" : "The Heart and Soul Nebulae next to the Double Cluster in Cassiopeia.",
+    "arcWidth" : 360,
+    "ra" : 38.655673,
+    "subDesignations" : [
+      {
+        "catalog" : "ic",
+        "number" : 1805
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 1027
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 869
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 896
+      },
+      {
+        "catalog" : "caldwell",
+        "number" : 14
+      },
+      {
+        "catalog" : "ic",
+        "number" : 1795
+      },
+      {
+        "catalog" : "sh2",
+        "number" : 199
+      },
+      {
+        "catalog" : "ic",
+        "number" : 1848
+      },
+      {
+        "catalog" : "ic",
+        "number" : 1871
+      },
+      {
+        "catalog" : "sh2",
+        "number" : 190
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 884
+      }
+    ],
+    "type" : "multiple",
+    "image" : {
+      "copyright" : "Adrien Klamerius",
+      "source" : {
+        "apod" : {
+          "id" : "160924"
+        }
+      }
+    },
+    "constellation" : "cassiopeia",
+    "subTargets" : [
+      "EEE3D0A1-383E-4A4E-A648-F47B337ACCE6",
+      "59B1DBAF-D690-497B-8E18-7AB83FED7C2C",
+      "53B7272B-D9D9-4EDC-A85A-5E25D19A177D",
+      "F71E93D4-2D08-469C-B1F5-227659F4999F",
+      "324C210D-C09D-4B43-A30B-047AA9411B35"
+    ],
+    "arcLength" : 480,
+    "designation" : [
+
+    ],
+    "name" : [
+      "Heart, Soul, and Double Cluster"
+    ]
   }
 ]
