@@ -13,6 +13,8 @@ struct CatalogView: View {
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @StateObject var viewModel: CatalogManager
     @Binding var date: Date
+    @Environment(\.dismissSearch) private var dismissSearch
+    @Environment(\.isSearching) private var isSearching
     
     init(date: Binding<Date>, location: SavedLocation, targetSettings: TargetSettings) {
         self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, targetSettings: targetSettings))
@@ -48,11 +50,7 @@ struct CatalogView: View {
         }
         .searchSuggestions {
             // grab top 15 search results
-            let suggestions: [DeepSkyTarget] = {
-                var list = DeepSkyTargetList.objects
-                list.filterBySearch(viewModel.searchText)
-                return list
-            }()
+            let suggestions = DeepSkyTargetList.objects.filteredBySearch(viewModel.searchText)
             
             // list the search results
             ForEach(suggestions) { suggestion in
@@ -65,6 +63,11 @@ struct CatalogView: View {
                     Text(suggestion.name?.first ?? suggestion.defaultName)
                         .foregroundColor(.primary)
                 }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
+            }
+        }
+        .onChange(of: isSearching) { newValue in
+            if !isSearching {
+                dismissSearch()
             }
         }
 
