@@ -15,35 +15,51 @@ struct Mac_HomeView: View {
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @State var date: Date = Date.today
+    
+    enum SidebarItem: String, Identifiable, CaseIterable {
+        var id: Self { self }
+        case report = "Daily Report"
+        case catalog = "Master Catalog"
+        case journal = "Journal"
+        case settings = "Settings"
+        
+        var icon: String {
+            switch self {
+            case .report: return "doc.text"
+            case .catalog: return "tray.full.fill"
+            case .journal: return "magazine.fill"
+            case .settings: return "gearshape"
+            }
+        }
+    }
+    
+    @State var sidebarVisibility: NavigationSplitViewVisibility = .automatic
+    @State var sidebarItem: SidebarItem = .report
+    
+    
     var body: some View {
-        TabView {
-            DailyReportView(date: $date)
-                .tabItem {
-                    Label("Daily Report", systemImage: "doc.text")
-                }
-            //CatalogView(date: $date, location: locationList.first!, targetSettings: targetSettings.first!)
-            Text("Master Catalog View")
-                .tabItem {
-                    Label("Master Catalog", systemImage: "tray.full.fill")
-                }
-            //JournalView()
-            Text("Master Catalog View")
-                .tabItem {
-                    Label("Journal", systemImage: "magazine.fill")
-                }
-            //SettingsView()
-            Text("Settings View")
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape")
-                }
-                .environment(\.date, date)
+        NavigationSplitView(columnVisibility: $sidebarVisibility) {
+            List(SidebarItem.allCases, selection: $sidebarItem) { item in
+                Label(item.rawValue, systemImage: item.icon)
+            }
+        } detail: {
+            switch sidebarItem {
+            case .report:
+                DailyReportView(date: $date)
+            case .catalog:
+                CatalogView(date: $date, location: locationList.first!, targetSettings: targetSettings.first!)
+            case .journal:
+                Text("Under Construction")
+            case .settings:
+                Text("Under Construction")
+            }
         }
         .frame(minWidth: 600, maxWidth: 2400, minHeight: 400,  maxHeight: 1600)
     }
 }
 
-struct Mac_HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        Mac_HomeView()
-    }
-}
+//struct Mac_HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Mac_HomeView()
+//    }
+//}

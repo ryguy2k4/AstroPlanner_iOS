@@ -80,6 +80,7 @@ struct DailyReportView: View {
             .environmentObject(locationList.first!)
             .environmentObject(targetSettings.first!)
             .scrollIndicators(.hidden)
+            .navigationTitle("Daily Report")
         }
     }
 }
@@ -96,41 +97,31 @@ private struct TopFiveView: View {
         VStack {
             Text("Top Five Overall")
                 .fontWeight(.bold)
-            TabView {
-                ForEach(report.topFive, id: \.id) { target in
-                    Image(target.image?.source.fileName ?? "\(target.type)")
-                        .resizable()
-                        .cornerRadius(12)
-                        .aspectRatio(contentMode: .fit)
-//                    NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-//                        ZStack {
-//                            Image(target.image?.source.fileName ?? "\(target.type.first!)")
-//                                .resizable()
-//                                .cornerRadius(12)
-//                                .aspectRatio(contentMode: .fit)
-//                                .scaledToFill()
-//                            VStack {
-//                                Text(target.name?[0] ?? target.defaultName)
-//                                    .padding(2)
-//                                    .background(.gray.opacity(0.8), in: Rectangle())
-//                                    .fontWeight(.semibold)
-//                                    .foregroundColor(.primary)
-//                                Spacer()
-//                            }
-//                            .padding(4)
-//                        }
-//                    }
-//                    NavigationLink(value: target) {
-
-//                    }
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(report.topFive, id: \.id) { target in
+                        ZStack {
+                            Image(target.image?.source.fileName ?? "\(target.type)")
+                                .resizable()
+                                .cornerRadius(12)
+                                .aspectRatio(contentMode: .fit)
+                                .scaledToFill()
+                                .frame(width: 368, height: 207)
+                            VStack {
+                                Text(target.name?[0] ?? target.defaultName)
+                                    .padding(2)
+                                    .background(.gray.opacity(0.8), in: Rectangle())
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                            }
+                            .padding(4)
+                        }
+                    }
                 }
             }
-            .frame(width: 368, height: 207)
-            .navigationDestination(for: DeepSkyTarget.self) { target in
-                DetailView(target: target)
-                    .environmentObject(location)
-                    .environmentObject(targetSettings)
-            }
+            .padding()
+            .scrollIndicators(.never)
         }
     }
 }
@@ -143,61 +134,65 @@ private struct TopTenTabView: View {
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var targetSettings: TargetSettings
     let report: DailyReport
-    @State private var tabSelection: Int = 0
     
     var body: some View {
         VStack {
             Text("Top Ten")
                 .fontWeight(.bold)
-            Picker("Tab", selection: $tabSelection) {
-                Text("Nebulae").tag(0)
-                Text("Galaxies").tag(1)
-                Text("Star Clusters").tag(2)
-            }
-            .pickerStyle(.segmented)
-            .padding(.horizontal, 16)
-            TabView(selection: $tabSelection) {
+            HStack {
                 if !report.topTenNebulae.isEmpty {
-                    List(report.topTenNebulae) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                            Text(target.name?[0] ?? target.defaultName)
-                        }
-                    }.tag(0).listStyle(.inset)
+                    VStack {
+                        Text("Nebulae")
+                            .fontWeight(.bold)
+                        List(report.topTenNebulae) { target in
+                            NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
+                                Text(target.name?[0] ?? target.defaultName)
+                            }
+                        }.listStyle(.inset)
+                    }
                 } else {
                     VStack {
                         Text("No Nebulae")
                         Spacer()
-                    }.tag(0)
+                    }
                 }
                 if !report.topTenGalaxies.isEmpty {
-                    List(report.topTenGalaxies) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                            Text(target.name?[0] ?? target.defaultName)
-                        }
-                    }.tag(1).listStyle(.inset)
+                    VStack {
+                        Text("Galaxies")
+                            .fontWeight(.bold)
+                        List(report.topTenGalaxies) { target in
+                            NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
+                                Text(target.name?[0] ?? target.defaultName)
+                            }
+                        }.listStyle(.inset)
+                    }
+                    
                 } else {
                     VStack {
                         Text("No Galaxies")
                         Spacer()
-                    }.tag(1)
-                    
+                    }
                 }
                 if !report.topTenStarClusters.isEmpty {
-                    List(report.topTenStarClusters) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                            Text(target.name?[0] ?? target.defaultName)
-                        }
-                    }.tag(2).listStyle(.inset)
+                    VStack {
+                        Text("Star Clusters")
+                            .fontWeight(.bold)
+                        List(report.topTenStarClusters) { target in
+                            NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
+                                Text(target.name?[0] ?? target.defaultName)
+                            }
+                        }.listStyle(.inset)
+                    }
                 } else {
                     VStack {
                         Text("No Star Clusters")
                         Spacer()
-                    }.tag(2)                }
+                    }
+                }
             }
-            .scrollDisabled(true)
         }
+        .scrollDisabled(true)
         .padding(.vertical)
-
     }
 }
 

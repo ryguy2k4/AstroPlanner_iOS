@@ -110,7 +110,6 @@
 		71BE6EDE299035DB00686E95 /* Mac_DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE6EDD299035DB00686E95 /* Mac_DetailView.swift */; };
 		71BE6EDF2990380900686E95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
 		71C2643A298F1C630057EC04 /* DeepSkyCatalogMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C26439298F1C630057EC04 /* DeepSkyCatalogMacApp.swift */; };
-		71C2643C298F1C630057EC04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2643B298F1C630057EC04 /* ContentView.swift */; };
 		71C26441298F1C640057EC04 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C26440298F1C640057EC04 /* Preview Assets.xcassets */; };
 		71C2644B298F1C9F0057EC04 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date.swift */; };
 		71C2644D298F1CA50057EC04 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
@@ -241,7 +240,6 @@
 		71BE6EDD299035DB00686E95 /* Mac_DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_DetailView.swift; sourceTree = "<group>"; };
 		71C26437298F1C630057EC04 /* DeepSkyCatalogMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeepSkyCatalogMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C26439298F1C630057EC04 /* DeepSkyCatalogMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogMacApp.swift; sourceTree = "<group>"; };
-		71C2643B298F1C630057EC04 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		71C26440298F1C640057EC04 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		71C26447298F1C640057EC04 /* DeepSkyCatalogMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogMac.entitlements; sourceTree = "<group>"; };
 		71C26464298F1D920057EC04 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
@@ -352,7 +350,6 @@
 		716A19B6298F57670025DB67 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				71C2643B298F1C630057EC04 /* ContentView.swift */,
 				716A19BA298F58A90025DB67 /* Mac_HomeView.swift */,
 				71BE6EDB299035A400686E95 /* Mac_DailyReportView.swift */,
 				71BE6EDD299035DB00686E95 /* Mac_DetailView.swift */,
@@ -888,7 +885,6 @@
 				71C2644F298F1CAB0057EC04 /* Environment.swift in Sources */,
 				71C26457298F1CC10057EC04 /* FilterMethods.swift in Sources */,
 				71C2645E298F1D430057EC04 /* DeepSkyCatalog.xcdatamodeld in Sources */,
-				71C2643C298F1C630057EC04 /* ContentView.swift in Sources */,
 				71BE6EDC299035A400686E95 /* Mac_DailyReportView.swift in Sources */,
 				716A19BE298F5B890025DB67 /* View.swift in Sources */,
 				71C2643A298F1C630057EC04 /* DeepSkyCatalogMacApp.swift in Sources */,

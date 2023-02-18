@@ -1,8 +1,8 @@
 //
-//  CatalogView.swift
-//  Deep Sky Catalog
+//  Mac_CatalogView.swift
+//  DeepSkyCatalogMac
 //
-//  Created by Ryan Sponzilli on 11/6/22.
+//  Created by Ryan Sponzilli on 2/16/23.
 //
 
 import SwiftUI
@@ -25,7 +25,7 @@ struct CatalogView: View {
         // Only display targets if network data is available
         let data = networkManager.data[.init(date: date, location: locationList.first!)]
         NavigationStack() {
-            FilterButtonMenu()
+//            FilterButtonMenu()
             
             List(viewModel.targets, id: \.id) { target in
                 NavigationLink(destination: DetailView(target: target)) {
@@ -33,10 +33,6 @@ struct CatalogView: View {
                         TargetCell(target: target)
                     }
                 }
-            }
-            .listStyle(.grouped)
-            .toolbar() {
-                CatalogToolbar(date: $date)
             }
         }
         .searchable(text: $viewModel.searchText)
@@ -50,7 +46,11 @@ struct CatalogView: View {
         }
         .searchSuggestions {
             // grab top 15 search results
-            let suggestions = DeepSkyTargetList.objects.filteredBySearch(viewModel.searchText)
+            let suggestions: [DeepSkyTarget] = {
+                var list = DeepSkyTargetList.objects
+                list.filterBySearch(viewModel.searchText)
+                return list
+            }()
             
             // list the search results
             ForEach(suggestions) { suggestion in
@@ -74,31 +74,31 @@ struct CatalogView: View {
         
         // Modals for editing each filter
         .filterModal(isPresented: $viewModel.isAllFilterModal, viewModel: viewModel) {
-            EditAllFiltersView(viewModel: viewModel)
+//            EditAllFiltersView(viewModel: viewModel)
         }
         .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
-            SelectableList(selection: $viewModel.typeSelection)
+//            SelectableList(selection: $viewModel.typeSelection)
         }
         .filterModal(isPresented: $viewModel.isCatalogModal, viewModel: viewModel) {
-            SelectableList(selection: $viewModel.catalogSelection)
+//            SelectableList(selection: $viewModel.catalogSelection)
         }
         .filterModal(isPresented: $viewModel.isConstellationModal, viewModel: viewModel) {
-            SelectableList(selection: $viewModel.constellationSelection)
+//            SelectableList(selection: $viewModel.constellationSelection)
         }
         .filterModal(isPresented: $viewModel.isMagModal, viewModel: viewModel) {
-            MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
+//            MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
         }
         .filterModal(isPresented: $viewModel.isSizeModal, viewModel: viewModel) {
-            MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
+//            MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
         }
         .filterModal(isPresented: $viewModel.isVisScoreModal, viewModel: viewModel) {
             Form {
-                NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+//                NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
             }
         }
         .filterModal(isPresented: $viewModel.isMerScoreModal, viewModel: viewModel) {
             Form {
-                NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+//                NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
             }
         }
         
@@ -124,7 +124,6 @@ struct CatalogView: View {
         .environmentObject(targetSettings.first!)
         .environmentObject(viewModel)
         .environment(\.data, data)
-        .autocorrectionDisabled()
     }
 }
 
@@ -139,7 +138,7 @@ private struct TargetCell: View {
     var target: DeepSkyTarget
     
     var body: some View {
-        HStack {                
+        HStack {
             Image(target.image?.source.fileName ?? "\(target.type)")
                 .resizable()
                 .scaledToFit()
@@ -228,7 +227,7 @@ private struct FilterButton: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .frame(width: method.info.name.widthOfString(usingFont: UIFont.systemFont(ofSize: 20)) + 70, height: 30)
+//                .frame(width: method.info.name.widthOfString(usingFont: UIFont.systemFont(ofSize: 20)) + 70, height: 30)
                 .cornerRadius(13)
                 .foregroundColor(Color(active ? "LightBlue" : "LightGray"))
             Button {
@@ -251,45 +250,3 @@ private struct FilterButton: View {
     }
 }
 
-/**
- This View contains the ToolbarContent to be displayed in the Master Catalog
- */
-private struct CatalogToolbar: ToolbarContent {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
-    @Binding var date: Date
-    
-    var body: some ToolbarContent {
-        
-        // Custom binding to select and get the selected location
-        let locationBinding = Binding(
-            get: { return locationList.first! },
-            set: {
-                for location in locationList { location.isSelected = false }
-                $0.isSelected = true
-            }
-        )
-        
-        // The Location selector on the left hand side
-        ToolbarItemGroup(placement: .navigationBarLeading) {
-            Picker("Location", selection: locationBinding) {
-                ForEach(locationList) { location in
-                    Text(location.name!).tag(location)
-                }
-            }
-            .padding(.horizontal)
-        }
-        
-        // The DateSelector on the right hand side
-        ToolbarItem(placement: .navigationBarTrailing) {
-            DateSelector(date: $date)
-                .padding(.horizontal)
-        }
-    }
-}
-
-//struct Catalog_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CatalogView()
-//            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
-//    }
-//}
