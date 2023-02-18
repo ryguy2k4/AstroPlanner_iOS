@@ -18,6 +18,7 @@
 		71375E6B2980DB6F00B95F2E /* TargetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71375E6A2980DB6F00B95F2E /* TargetSettingsView.swift */; };
 		713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49B72954122D008EFC81 /* LocationSettings.swift */; };
 		713B49BC29541242008EFC81 /* DailyReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49BB29541242008EFC81 /* DailyReportSettings.swift */; };
+		714BB85329A094810084D438 /* TopTenLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BB85229A094810084D438 /* TopTenLists.swift */; };
 		714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E54CD293D52B00039ECE0 /* LocationManager.swift */; };
 		7156743029273ECA00626B1B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7156742F29273ECA00626B1B /* AboutView.swift */; };
 		7162D33E2964DBF1007C8710 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162D33D2964DBF0007C8710 /* WidgetKit.framework */; };
@@ -181,6 +182,7 @@
 		71375E6A2980DB6F00B95F2E /* TargetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSettingsView.swift; sourceTree = "<group>"; };
 		713B49B72954122D008EFC81 /* LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettings.swift; sourceTree = "<group>"; };
 		713B49BB29541242008EFC81 /* DailyReportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportSettings.swift; sourceTree = "<group>"; };
+		714BB85229A094810084D438 /* TopTenLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenLists.swift; sourceTree = "<group>"; };
 		714E54CD293D52B00039ECE0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7156742F29273ECA00626B1B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeepSkyCatalogWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -387,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				710D497629316B4F003F41F1 /* DailyReportView.swift */,
+				714BB85229A094810084D438 /* TopTenLists.swift */,
 			);
 			path = DailyReportView;
 			sourceTree = "<group>";
@@ -862,6 +865,7 @@
 				719B26D7295167A100E1165A /* NumberPicker.swift in Sources */,
 				7133FC67294C14560080AE0C /* View.swift in Sources */,
 				71F510BC297605E9008F7629 /* CaseNameCodable.swift in Sources */,
+				714BB85329A094810084D438 /* TopTenLists.swift in Sources */,
 				71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				71B5AF96292C778D00323693 /* TargetCatalog.swift in Sources */,
 			);

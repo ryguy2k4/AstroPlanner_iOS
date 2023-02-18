@@ -146,6 +146,9 @@ struct TargetAltitudeChart: View {
             }
             RuleMark(y: .value("Axis", 0))
                 .foregroundStyle(.gray)
+//            RuleMark(x: .value("Now", Date.now))
+//                .lineStyle(.init(dash: [5]))
+//                .foregroundStyle(.red)
         }
         .chartXAxis {
             AxisMarks(values: .stride(by: .hour, count: 6)) {

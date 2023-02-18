@@ -19,7 +19,7 @@ struct DailyReportView: View {
     @State var internet: Bool = true
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 // Header Section
                 ReportHeader()
@@ -36,11 +36,9 @@ struct DailyReportView: View {
                             // Report Section
                             TopFiveView(report: report)
                             TopTenTabView(report: report)
-                                .frame(height: 500)
                         }
                     }
                 }
-                
                 
                 // If Network data is not fetched, show a loading screen and then request the necessary data
                 else {
@@ -81,12 +79,17 @@ struct DailyReportView: View {
             .environmentObject(targetSettings.first!)
             .environment(\.date, date)
             .scrollIndicators(.hidden)
+            .navigationDestination(for: DeepSkyTarget.self) { target in
+                DetailView(target: target)
+                    .environmentObject(locationList.first!)
+                    .environmentObject(targetSettings.first!)
+            }
         }
     }
 }
 
 /**
- This View is a subview of DailyReportView that displays the topThree as defined withing the report.
+ This View is a subview of DailyReportView that displays the topThree as defined within the report.
  */
 private struct TopFiveView: View {
     @EnvironmentObject var location: SavedLocation
@@ -99,7 +102,7 @@ private struct TopFiveView: View {
                 .fontWeight(.bold)
             TabView {
                 ForEach(report.topFive, id: \.id) { target in
-                    NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
+                    NavigationLink(value: target) {
                         ZStack {
                             Image(target.image?.source.fileName ?? "\(target.type)")
                                 .resizable()
@@ -125,74 +128,7 @@ private struct TopFiveView: View {
     }
 }
 
-/**
- This View is a TabView that uses a Segmented Picker to switch between tabs.
- Each Tab displays the 3 topFive arrays defined in the report.
- */
-private struct TopTenTabView: View {
-    @EnvironmentObject var location: SavedLocation
-    @EnvironmentObject var targetSettings: TargetSettings
-    let report: DailyReport
-    @State private var tabSelection: Int = 0
-    
-    var body: some View {
-        VStack {
-            Text("Top Ten")
-                .fontWeight(.bold)
-            Picker("Tab", selection: $tabSelection) {
-                Text("Nebulae").tag(0)
-                Text("Galaxies").tag(1)
-                Text("Star Clusters").tag(2)
-            }
-            .pickerStyle(.segmented)
-            .padding(.horizontal, 16)
-            TabView(selection: $tabSelection) {
-                if !report.topTenNebulae.isEmpty {
-                    List(report.topTenNebulae) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                            Text(target.name?[0] ?? target.defaultName)
-                        }
-                    }.tag(0).listStyle(.inset)
-                } else {
-                    VStack {
-                        Text("No Nebulae")
-                        Spacer()
-                    }.tag(0)
-                }
-                if !report.topTenGalaxies.isEmpty {
-                    List(report.topTenGalaxies) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                            Text(target.name?[0] ?? target.defaultName)
-                        }
-                    }.tag(1).listStyle(.inset)
-                } else {
-                    VStack {
-                        Text("No Galaxies")
-                        Spacer()
-                    }.tag(1)
-                    
-                }
-                if !report.topTenStarClusters.isEmpty {
-                    List(report.topTenStarClusters) { target in
-                        NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                            Text(target.name?[0] ?? target.defaultName)
-                        }
-                    }.tag(2).listStyle(.inset)
-                } else {
-                    VStack {
-                        Text("No Star Clusters")
-                        Spacer()
-                    }.tag(2)                }
-            }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .scrollDisabled(true)
-        }
-        .padding(.vertical)
-
-    }
-}
-
-struct ReportHeader: View {
+fileprivate struct ReportHeader: View {
     @EnvironmentObject var networkManager: NetworkManager
     @Environment(\.date) var date
     @EnvironmentObject var location: SavedLocation
@@ -212,7 +148,10 @@ struct ReportHeader: View {
     }
 }
 
-struct ReportSettingsEditor: View {
+/**
+ The section of DailyReportView that contains the pickers for preset, location, and date
+ */
+fileprivate struct ReportSettingsEditor: View {
     @Environment(\.managedObjectContext) var context
     @Binding var date: Date
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
