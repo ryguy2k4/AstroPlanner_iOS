@@ -39,6 +39,8 @@ struct CatalogView: View {
                 CatalogToolbar(date: $date)
             }
         }
+        
+        // Modifiers to enable searching
         .searchable(text: $viewModel.searchText)
         .onSubmit(of: .search) {
             viewModel.refreshList(sunData: data?.sun)
@@ -70,36 +72,47 @@ struct CatalogView: View {
                 dismissSearch()
             }
         }
-
+        .autocorrectionDisabled()
         
         // Modals for editing each filter
-        .filterModal(isPresented: $viewModel.isAllFilterModal, viewModel: viewModel) {
+        .sheet(item: $viewModel.presentedFilterSheet) { method in
+            VStack {
+                switch method {
+                case .catalog:
+                    SelectableList(selection: $viewModel.catalogSelection)
+                case .constellation:
+                    SelectableList(selection: $viewModel.constellationSelection)
+                case .type:
+                    SelectableList(selection: $viewModel.typeSelection)
+                case .magnitude:
+                    MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
+                case .size:
+                    MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
+                case .visibility:
+                    Form {
+                        NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+                    }
+                case .meridian:
+                    Form {
+                        NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+                    }
+                default:
+                    EmptyView()
+                }
+            }
+            .onDisappear() {
+                viewModel.refreshList(sunData: data?.sun)
+            }
+            .presentationDetents([.fraction(0.5), .fraction(0.8)])
+        }
+        
+        // Modal for editing all filters
+        .sheet(isPresented: $viewModel.isAllFilterModal) {
             EditAllFiltersView(viewModel: viewModel)
-        }
-        .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
-            SelectableList(selection: $viewModel.typeSelection)
-        }
-        .filterModal(isPresented: $viewModel.isCatalogModal, viewModel: viewModel) {
-            SelectableList(selection: $viewModel.catalogSelection)
-        }
-        .filterModal(isPresented: $viewModel.isConstellationModal, viewModel: viewModel) {
-            SelectableList(selection: $viewModel.constellationSelection)
-        }
-        .filterModal(isPresented: $viewModel.isMagModal, viewModel: viewModel) {
-            MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
-        }
-        .filterModal(isPresented: $viewModel.isSizeModal, viewModel: viewModel) {
-            MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
-        }
-        .filterModal(isPresented: $viewModel.isVisScoreModal, viewModel: viewModel) {
-            Form {
-                NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
-            }
-        }
-        .filterModal(isPresented: $viewModel.isMerScoreModal, viewModel: viewModel) {
-            Form {
-                NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
-            }
+                .onDisappear() {
+                    viewModel.refreshList(sunData: data?.sun)
+                }
+                .presentationDetents([.fraction(0.5), .fraction(0.8)])
         }
         
         // When the date changes, make sure everything that depends on the date gets updated
@@ -124,7 +137,6 @@ struct CatalogView: View {
         .environmentObject(targetSettings.first!)
         .environmentObject(viewModel)
         .environment(\.data, data)
-        .autocorrectionDisabled()
     }
 }
 
@@ -172,14 +184,14 @@ private struct FilterButtonMenu: View {
     var body: some View {
         let buttons: [FilterButton] = {
             var buttons: [FilterButton] = []
-            buttons.append(FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection), modalControl: $viewModel.isCatalogModal))
-            buttons.append(FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection), modalControl: $viewModel.isConstellationModal))
-            buttons.append(FilterButton(method: .type, active: viewModel.isActive(criteria: viewModel.typeSelection), modalControl: $viewModel.isTypeModal))
-            buttons.append(FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag)), modalControl: $viewModel.isMagModal))
-            buttons.append(FilterButton(method: .size, active: viewModel.isActive(criteria: (min: viewModel.minSize, max: viewModel.maxSize)), modalControl: $viewModel.isSizeModal))
+            buttons.append(FilterButton(method: .type, active: viewModel.isActive(criteria: viewModel.typeSelection)))
+            buttons.append(FilterButton(method: .size, active: viewModel.isActive(criteria: (min: viewModel.minSize, max: viewModel.maxSize))))
+            buttons.append(FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection)))
+            buttons.append(FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection)))
+            buttons.append(FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag))))
             if data != nil {
-                buttons.append(FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore), modalControl: $viewModel.isVisScoreModal))
-                buttons.append(FilterButton(method: .meridian, active: viewModel.isActive(criteria: viewModel.minMerScore), modalControl: $viewModel.isMerScoreModal))
+                buttons.append(FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore)))
+                buttons.append(FilterButton(method: .meridian, active: viewModel.isActive(criteria: viewModel.minMerScore)))
             }
             return buttons.sorted(by: {$0.active && !$1.active})
         }()
@@ -223,7 +235,6 @@ private struct FilterButton: View {
     @Environment(\.data) var data
     let method: FilterMethod
     let active: Bool
-    @Binding var modalControl: Bool
     
     var body: some View {
         ZStack {
@@ -232,7 +243,7 @@ private struct FilterButton: View {
                 .cornerRadius(13)
                 .foregroundColor(Color(active ? "LightBlue" : "LightGray"))
             Button {
-                modalControl = true
+                viewModel.presentedFilterSheet = method
             } label: {
                 HStack {
                     Label(method.info.name, systemImage: method.info.icon)

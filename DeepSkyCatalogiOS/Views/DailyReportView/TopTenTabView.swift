@@ -1,5 +1,5 @@
 //
-//  TopTenLists.swift
+//  TopTenTabView.swift
 //  DeepSkyCatalogiOS
 //
 //  Created by Ryan Sponzilli on 2/17/23.

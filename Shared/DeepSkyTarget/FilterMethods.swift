@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum FilterMethod {
+enum FilterMethod: Identifiable {
+    var id: Self { self }
     case search
     case catalog
     case constellation

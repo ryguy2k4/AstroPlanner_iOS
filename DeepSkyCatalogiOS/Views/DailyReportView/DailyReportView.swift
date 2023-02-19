@@ -25,7 +25,7 @@ struct DailyReportView: View {
                 ReportHeader()
                 
                 // Settings Section
-                ReportSettingsEditor(date: $date)
+                //ReportSettingsEditor(date: $date)
                 
                 // Only display report if network data is available
                 if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
@@ -83,6 +83,17 @@ struct DailyReportView: View {
                 DetailView(target: target)
                     .environmentObject(locationList.first!)
                     .environmentObject(targetSettings.first!)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Image(systemName: "gearshape")
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Label("Astro Planner", systemImage: "hurricane")
+                        .fontWeight(.semibold)
+                        .font(.title2)
+                        .labelStyle(.titleAndIcon)
+                }
             }
         }
     }

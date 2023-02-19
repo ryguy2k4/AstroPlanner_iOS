@@ -37,13 +37,8 @@ final class CatalogManager: ObservableObject {
     
     // Modal Control Variables
     @Published var isAllFilterModal: Bool = false
-    @Published var isTypeModal: Bool = false
-    @Published var isConstellationModal: Bool = false
-    @Published var isCatalogModal: Bool = false
-    @Published var isMagModal: Bool = false
-    @Published var isSizeModal: Bool = false
-    @Published var isMerScoreModal: Bool = false
-    @Published var isVisScoreModal: Bool = false
+    
+    @Published var presentedFilterSheet: FilterMethod? = nil
     
     
     /**
