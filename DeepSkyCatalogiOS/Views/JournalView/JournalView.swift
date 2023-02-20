@@ -38,7 +38,12 @@ import SwiftUI
 
 struct JournalView: View {
     var body: some View {
-        Text("Under Construction")
+        NavigationStack {
+            Text("Under Construction")
+        }
+        .toolbar {
+            ToolbarLogo()
+        }
     }
 }
 

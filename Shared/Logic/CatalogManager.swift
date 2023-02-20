@@ -35,12 +35,6 @@ final class CatalogManager: ObservableObject {
     @Published var minVisScore: Double = 0
     @Published var minMerScore: Double = 0
     
-    // Modal Control Variables
-    @Published var isAllFilterModal: Bool = false
-    
-    @Published var presentedFilterSheet: FilterMethod? = nil
-    
-    
     /**
      Sets the filter control variable associated with the specified filter to its default value(s)
      */

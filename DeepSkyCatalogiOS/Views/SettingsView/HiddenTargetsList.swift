@@ -12,7 +12,6 @@ struct HiddenTargetsList: View {
     @FetchRequest(sortDescriptors: []) var settings: FetchedResults<TargetSettings>
 
     var body: some View {
-        Text("")
         VStack {
             if settings.first?.hiddenTargets?.allObjects.count == 0 {
                 Text("No Hidden Targets")
@@ -34,5 +33,7 @@ struct HiddenTargetsList: View {
                 }
             }
         }
+        .navigationTitle("Hidden Targets")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

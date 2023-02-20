@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct DailyReportView: View {
     @Environment(\.managedObjectContext) var context
@@ -17,15 +18,13 @@ struct DailyReportView: View {
     @Binding var date: Date
     @State var report: DailyReport?
     @State var internet: Bool = true
+    @State var isSettingsModal = false
     
     var body: some View {
         NavigationStack {
             VStack {
                 // Header Section
                 ReportHeader()
-                
-                // Settings Section
-                //ReportSettingsEditor(date: $date)
                 
                 // Only display report if network data is available
                 if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
@@ -85,15 +84,18 @@ struct DailyReportView: View {
                     .environmentObject(targetSettings.first!)
             }
             .toolbar {
+                ToolbarLogo()
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Image(systemName: "gearshape")
+                    Button {
+                        isSettingsModal = true
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                    }
                 }
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Label("Astro Planner", systemImage: "hurricane")
-                        .fontWeight(.semibold)
-                        .font(.title2)
-                        .labelStyle(.titleAndIcon)
-                }
+            }
+            .sheet(isPresented: $isSettingsModal) {
+                DailyReportSettings(date: $date)
+                    .presentationDetents([.fraction(0.6)])
             }
         }
     }
@@ -156,52 +158,5 @@ fileprivate struct ReportHeader: View {
                 .font(.subheadline)
                 .fontWeight(.thin)
         }.padding(.vertical)
-    }
-}
-
-/**
- The section of DailyReportView that contains the pickers for preset, location, and date
- */
-fileprivate struct ReportSettingsEditor: View {
-    @Environment(\.managedObjectContext) var context
-    @Binding var date: Date
-    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
-    
-    var body: some View {
-        let presetBinding = Binding(
-            get: { return presetList.firstIndex(where: {$0.isSelected == true}) ?? -1 },
-            set: {
-                for preset in presetList { preset.isSelected = false }
-                if $0 >= 0 {
-                    presetList[$0].isSelected = true
-                }
-                PersistenceManager.shared.saveData(context: context)
-            }
-        )
-        let locationBinding = Binding(
-            get: { return locationList.first! },
-            set: {
-                for location in locationList { location.isSelected = false }
-                $0.isSelected = true
-                PersistenceManager.shared.saveData(context: context)
-            }
-        )
-        VStack {
-            DateSelector(date: $date)
-            HStack {
-                Picker("Imaging Preset", selection: presetBinding) {
-                    Text("All").tag(-1)
-                    ForEach(Array(presetList.enumerated()), id: \.element) { index, preset in
-                        Text(presetList[index].name!).tag(index)
-                    }
-                }
-                Picker("Location", selection: locationBinding) {
-                    ForEach(locationList) { location in
-                        Text(location.name!).tag(location)
-                    }
-                }
-            }
-        }
     }
 }

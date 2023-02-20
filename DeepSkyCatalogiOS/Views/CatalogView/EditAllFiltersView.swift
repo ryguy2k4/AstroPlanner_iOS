@@ -11,8 +11,12 @@ struct EditAllFiltersView: View {
     @ObservedObject var viewModel: CatalogManager
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var reportSettings: ReportSettings
+    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    @Environment(\.managedObjectContext) var context
     @Environment(\.data) var data
     @Environment(\.date) var date
+    @Binding var dateBinding: Date
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -28,7 +32,7 @@ struct EditAllFiltersView: View {
                     Picker("Order:", selection: $viewModel.sortDecending) {
                         Label("Ascending", systemImage: "chevron.up").tag(false)
                         Label("Descending", systemImage: "chevron.down").tag(true)
-                                
+                        
                     }
                     .onChange(of: viewModel.sortDecending) { _ in
                         viewModel.refreshList(sunData: data?.sun)

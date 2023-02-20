@@ -19,16 +19,14 @@ struct TargetSettingsView: View {
     
     var body: some View {
         Form {
-            ConfigSection(header: "Target Settings") {
-                Toggle("Hide Targets that Never Rise", isOn: $settings.hideNeverRises)
-                Button {
-                    isLimitingAltitudeModal = true
-                } label: {
-                    HStack(spacing: 0) {
-                        Text("Lowest acceptable altitude to image: ")
-                            .foregroundColor(.primary)
-                        Text(settings.limitingAltitude.formatted(.number.precision(.significantDigits(0...5))) + "°")
-                    }
+            Toggle("Hide Targets that Never Rise", isOn: $settings.hideNeverRises)
+            Button {
+                isLimitingAltitudeModal = true
+            } label: {
+                HStack(spacing: 0) {
+                    Text("Lowest acceptable altitude to image: ")
+                        .foregroundColor(.primary)
+                    Text(settings.limitingAltitude.formatted(.number.precision(.significantDigits(0...5))) + "°")
                 }
             }
         }
@@ -43,6 +41,8 @@ struct TargetSettingsView: View {
         .onDisappear() {
             PersistenceManager.shared.saveData(context: context)
         }
+        .navigationTitle("Target Settings")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

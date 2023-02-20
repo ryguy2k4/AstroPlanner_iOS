@@ -15,7 +15,7 @@ struct GearSettings: View {
     
     var body: some View {
         Form {
-            ConfigSection(header: "Imaging Presets", footer: "Swipe left on a preset to delete") {
+            ConfigSection(footer: "Swipe left on a preset to delete") {
                 // Display each location preset
                 List(presetList) { preset in
                     Text(preset.name!)
@@ -57,6 +57,8 @@ struct GearSettings: View {
         .onDisappear {
             PersistenceManager.shared.saveData(context: context)
         }
+        .navigationTitle("Imaging Presets")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

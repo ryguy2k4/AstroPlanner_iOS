@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct CatalogView: View {
+    @Environment(\.dismissSearch) private var dismissSearch
+    @Environment(\.isSearching) private var isSearching
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-    @StateObject var viewModel: CatalogManager
+    @StateObject private var viewModel: CatalogManager
     @Binding var date: Date
-    @Environment(\.dismissSearch) private var dismissSearch
-    @Environment(\.isSearching) private var isSearching
+    @State private var isSettingsModal = false
+
     
     init(date: Binding<Date>, location: SavedLocation, targetSettings: TargetSettings) {
         self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, targetSettings: targetSettings))
@@ -25,7 +27,7 @@ struct CatalogView: View {
         // Only display targets if network data is available
         let data = networkManager.data[.init(date: date, location: locationList.first!)]
         NavigationStack() {
-            FilterButtonMenu()
+            FilterButtonMenu(date: $date)
             
             List(viewModel.targets, id: \.id) { target in
                 NavigationLink(destination: DetailView(target: target)) {
@@ -36,7 +38,17 @@ struct CatalogView: View {
             }
             .listStyle(.grouped)
             .toolbar() {
-                CatalogToolbar(date: $date)
+                ToolbarLogo()
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isSettingsModal = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "location")
+                            Image(systemName: "calendar")
+                        }
+                    }
+                }
             }
         }
         
@@ -74,45 +86,10 @@ struct CatalogView: View {
         }
         .autocorrectionDisabled()
         
-        // Modals for editing each filter
-        .sheet(item: $viewModel.presentedFilterSheet) { method in
-            VStack {
-                switch method {
-                case .catalog:
-                    SelectableList(selection: $viewModel.catalogSelection)
-                case .constellation:
-                    SelectableList(selection: $viewModel.constellationSelection)
-                case .type:
-                    SelectableList(selection: $viewModel.typeSelection)
-                case .magnitude:
-                    MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
-                case .size:
-                    MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
-                case .visibility:
-                    Form {
-                        NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
-                    }
-                case .meridian:
-                    Form {
-                        NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
-                    }
-                default:
-                    EmptyView()
-                }
-            }
-            .onDisappear() {
-                viewModel.refreshList(sunData: data?.sun)
-            }
-            .presentationDetents([.fraction(0.5), .fraction(0.8)])
-        }
-        
-        // Modal for editing all filters
-        .sheet(isPresented: $viewModel.isAllFilterModal) {
-            EditAllFiltersView(viewModel: viewModel)
-                .onDisappear() {
-                    viewModel.refreshList(sunData: data?.sun)
-                }
-                .presentationDetents([.fraction(0.5), .fraction(0.8)])
+        // Modal for settings
+        .sheet(isPresented: $isSettingsModal){
+            CatalogViewSettings(date: $date)
+                .presentationDetents([.fraction(0.4)])
         }
         
         // When the date changes, make sure everything that depends on the date gets updated
@@ -143,7 +120,7 @@ struct CatalogView: View {
 /**
  This View displays information about the target at a glance. It is used within the Master Catalog list.
  */
-private struct TargetCell: View {
+fileprivate struct TargetCell: View {
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
@@ -177,9 +154,11 @@ private struct TargetCell: View {
  The filter buttons are explicity defined in an array.
  The array allows them to be sorted based on which ones are active.
  */
-private struct FilterButtonMenu: View {
+fileprivate struct FilterButtonMenu: View {
     @EnvironmentObject var viewModel: CatalogManager
     @Environment(\.data) var data
+    @Binding var date: Date
+    @State private var isAllFilterModal: Bool = false
     
     var body: some View {
         let buttons: [FilterButton] = {
@@ -204,7 +183,7 @@ private struct FilterButtonMenu: View {
                     .cornerRadius(13)
                     .foregroundColor(Color(!buttons.allSatisfy({$0.active == false}) ? "LightBlue" : "LightGray"))
                 Button {
-                    viewModel.isAllFilterModal = true
+                    isAllFilterModal = true
                 } label: {
                     Image(systemName: "camera.filters")
                         .foregroundColor(.primary)
@@ -222,17 +201,28 @@ private struct FilterButtonMenu: View {
         }
         .padding(.horizontal)
         .scrollIndicators(.hidden)
+        
+        // Modal for editing all filters
+        .sheet(isPresented: $isAllFilterModal) {
+            EditAllFiltersView(viewModel: viewModel, dateBinding: $date)
+                .onDisappear() {
+                    viewModel.refreshList(sunData: data?.sun)
+                }
+                .presentationDetents([.fraction(0.5), .fraction(0.8)])
+        }
+        
     }
 }
 
 /**
  This View defines a singular filter button for a given filter method.
  */
-private struct FilterButton: View {
+fileprivate struct FilterButton: View {
     @EnvironmentObject var viewModel: CatalogManager
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date
     @Environment(\.data) var data
+    @State private var presentedFilterSheet: FilterMethod? = nil
     let method: FilterMethod
     let active: Bool
     
@@ -243,7 +233,7 @@ private struct FilterButton: View {
                 .cornerRadius(13)
                 .foregroundColor(Color(active ? "LightBlue" : "LightGray"))
             Button {
-                viewModel.presentedFilterSheet = method
+                presentedFilterSheet = method
             } label: {
                 HStack {
                     Label(method.info.name, systemImage: method.info.icon)
@@ -259,41 +249,70 @@ private struct FilterButton: View {
                 }
             }
         }
+        // Modals for editing each filter
+        .sheet(item: $presentedFilterSheet) { method in
+            VStack {
+                switch method {
+                case .catalog:
+                    SelectableList(selection: $viewModel.catalogSelection)
+                case .constellation:
+                    SelectableList(selection: $viewModel.constellationSelection)
+                case .type:
+                    SelectableList(selection: $viewModel.typeSelection)
+                case .magnitude:
+                    MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
+                case .size:
+                    MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
+                case .visibility:
+                    Form {
+                        NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+                    }
+                case .meridian:
+                    Form {
+                        NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+                    }
+                default:
+                    EmptyView()
+                }
+            }
+            .onDisappear() {
+                viewModel.refreshList(sunData: data?.sun)
+            }
+            .presentationDetents([.fraction(0.5), .fraction(0.8)])
+        }
     }
 }
 
 /**
- This View contains the ToolbarContent to be displayed in the Master Catalog
+ This view is for the modal that pops up on the Master Catalog to choose the date and location
  */
-private struct CatalogToolbar: ToolbarContent {
+fileprivate struct CatalogViewSettings: View {
+    @Environment(\.managedObjectContext) var context
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
-    
-    var body: some ToolbarContent {
-        
-        // Custom binding to select and get the selected location
+    var body: some View {
         let locationBinding = Binding(
             get: { return locationList.first! },
             set: {
                 for location in locationList { location.isSelected = false }
                 $0.isSelected = true
+                PersistenceManager.shared.saveData(context: context)
             }
         )
-        
-        // The Location selector on the left hand side
-        ToolbarItemGroup(placement: .navigationBarLeading) {
-            Picker("Location", selection: locationBinding) {
-                ForEach(locationList) { location in
-                    Text(location.name!).tag(location)
-                }
-            }
-            .padding(.horizontal)
-        }
-        
-        // The DateSelector on the right hand side
-        ToolbarItem(placement: .navigationBarTrailing) {
+        VStack {
             DateSelector(date: $date)
-                .padding(.horizontal)
+                .padding()
+                .font(.title2)
+                .fontWeight(.semibold)
+            Form {
+                Picker("Location", selection: locationBinding) {
+                    ForEach(locationList) { location in
+                        Text(location.name!).tag(location)
+                    }
+                }
+                .pickerStyle(.inline)
+                .headerProminence(.increased)
+            }
         }
     }
 }

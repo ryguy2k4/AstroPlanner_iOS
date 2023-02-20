@@ -31,12 +31,14 @@ struct DateSelector: View {
         }
         .sheet(isPresented: $isDatePickerModal) {
             DatePickerModal(date: $date)
+                .presentationDetents([.fraction(0.4)])
         }
     }
 }
 
 struct DatePickerModal: View {
     @State var date: Date
+    // this is necessary so that the date only updates after the modal is closed
     @Binding var boundDate: Date
     init(date: Binding<Date>) {
         self._date = State(initialValue: date.wrappedValue)
@@ -53,7 +55,6 @@ struct DatePickerModal: View {
             
             DatePicker("Date", selection: $date, displayedComponents: .date)
                 .datePickerStyle(.wheel)
-                .presentationDetents([.fraction(0.5)])
                 .labelsHidden()
         }
         .onDisappear() {

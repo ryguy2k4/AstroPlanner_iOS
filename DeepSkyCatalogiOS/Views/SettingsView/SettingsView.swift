@@ -15,23 +15,20 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form  {
-                
-                ConfigSection(header: "Settings") {
-                    NavigationLink(destination: LocationSettings()) {
-                        Label("Location", systemImage: "location")
-                    }
-                    NavigationLink(destination: GearSettings()) {
-                        Label("Imaging Presets", systemImage: "camera.aperture")
-                    }
-                    NavigationLink(destination: DailyReportSettings()) {
-                        Label("Report Settings", systemImage: "doc.text")
-                    }
-                    NavigationLink(destination: TargetSettingsView()) {
-                        Label("Target Settings", systemImage: "star")
-                    }
-                    NavigationLink(destination:  HiddenTargetsList()) {
-                        Label("Hidden Targets", systemImage: "eye.slash")
-                    }
+                NavigationLink(destination: LocationSettings()) {
+                    Label("Locations", systemImage: "location")
+                }
+                NavigationLink(destination: GearSettings()) {
+                    Label("Imaging Presets", systemImage: "camera.aperture")
+                }
+                NavigationLink(destination: TargetSettingsView()) {
+                    Label("Target Settings", systemImage: "star")
+                }
+                NavigationLink(destination:  HiddenTargetsList()) {
+                    Label("Hidden Targets", systemImage: "eye.slash")
+                }
+                NavigationLink(destination: AboutView()) {
+                    Label("About", systemImage: "info.circle")
                 }
                 
 //                ConfigSection(header: "Glossary") {
@@ -45,13 +42,12 @@ struct SettingsView: View {
 //                        Label("Sharpless", systemImage: "s.circle")
 //                    }
 //                }
-                
-                ConfigSection {
-                    NavigationLink(destination: AboutView()) {
-                        Label("About", systemImage: "info.circle")
-                    }
-                }
             }
+            .toolbar {
+                ToolbarLogo()
+            }
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

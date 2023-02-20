@@ -18,7 +18,7 @@ struct LocationSettings: View {
     
     var body: some View {
         Form {
-            ConfigSection(header: "Locations", footer: "Swipe left on a location to delete") {
+            ConfigSection(footer: "Swipe left on a location to delete") {
                 // Display each location preset
                 List(locationList) { location in
                     Text(location.name!)
@@ -59,6 +59,8 @@ struct LocationSettings: View {
             LocationEditor(location: location)
                 .presentationDetents([.fraction(0.8)])
         }
+        .navigationTitle("Locations")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
