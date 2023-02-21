@@ -89,7 +89,7 @@ struct CatalogView: View {
         // Modal for settings
         .sheet(isPresented: $isSettingsModal){
             CatalogViewSettings(date: $date)
-                .presentationDetents([.fraction(0.4)])
+                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
         }
         
         // When the date changes, make sure everything that depends on the date gets updated

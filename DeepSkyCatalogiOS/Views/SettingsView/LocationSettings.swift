@@ -82,7 +82,7 @@ struct LocationEditor: View {
     var body: some View {
         NavigationView {
             Form {
-                ConfigSection(footer: "Enter the numbers in decimal form, not degrees, minutes, and seconds") {
+                ConfigSection(footer: "Enter the numbers in decimal form, not degrees, minutes, and seconds. Don't forget negative signs for western longitudes. Timezone must match coordinates.") {
                     // Name
                     LabeledTextField(text: $name, label: "Name: ", keyboardType: .default)
                         .focused($isInputActive)

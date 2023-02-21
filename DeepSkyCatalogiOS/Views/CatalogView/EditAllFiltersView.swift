@@ -68,6 +68,7 @@ struct EditAllFiltersView: View {
                     }
                 }
             }
+            .scrollDisabled(true)
         }
     }
 }

@@ -99,6 +99,7 @@ struct DailyReportSettings: View {
                         }
                     }
                 }
+                .scrollDisabled(true)
             }
         }
         .sheet(isPresented: $isMoonPercentModal) {

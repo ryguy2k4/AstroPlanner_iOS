@@ -95,7 +95,7 @@ struct DailyReportView: View {
             }
             .sheet(isPresented: $isSettingsModal) {
                 DailyReportSettings(date: $date)
-                    .presentationDetents([.fraction(0.6)])
+                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
             }
         }
     }
