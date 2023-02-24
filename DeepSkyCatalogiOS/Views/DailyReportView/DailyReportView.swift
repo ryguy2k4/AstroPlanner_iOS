@@ -27,9 +27,11 @@ struct DailyReportView: View {
                 ReportHeader()
                 
                 // Only display report if network data is available
-                if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
+                if let data = data {
                     // every time the view refreshes, generate a report
                     let report = DailyReport(location: locationList.first!, date: date, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
+                    ReportHeader()
+                        .environment(\.data, data)
                     ScrollView {
                         VStack {
                             // Report Section
@@ -57,31 +59,30 @@ struct DailyReportView: View {
                             }
                         }
                     } else {
-                        Text("No Internet Connection")
-                            .fontWeight(.bold)
-                            .padding(.top)
-                        Button("Retry") {
-                            internet = true
-                            Task {
-                                do {
-                                    try await networkManager.getData(at: locationList.first!, on: date)
-                                } catch {
-                                    internet = false
+                        VStack {
+                            Text("Daily Report Unavailable Offline")
+                                .fontWeight(.bold)
+                                .padding(.vertical)
+                            Button("Retry") {
+                                internet = true
+                                Task {
+                                    do {
+                                        try await networkManager.getData(at: locationList.first!, on: date)
+                                    } catch {
+                                        internet = false
+                                    }
                                 }
                             }
+                            Spacer()
                         }
-                        Spacer()
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Image(systemName: "wifi.exclamationmark")
+                                    .foregroundColor(.red)
+                            }
+                        }
                     }
                 }
-            }
-            .environmentObject(locationList.first!)
-            .environmentObject(targetSettings.first!)
-            .environment(\.date, date)
-            .scrollIndicators(.hidden)
-            .navigationDestination(for: DeepSkyTarget.self) { target in
-                DetailView(target: target)
-                    .environmentObject(locationList.first!)
-                    .environmentObject(targetSettings.first!)
             }
             .toolbar {
                 ToolbarLogo()
@@ -143,20 +144,24 @@ private struct TopFiveView: View {
 
 fileprivate struct ReportHeader: View {
     @EnvironmentObject var networkManager: NetworkManager
+    @Environment(\.data) var data
     @Environment(\.date) var date
+    @Environment(\.viewingInterval) var viewingInterval
     @EnvironmentObject var location: SavedLocation
     var body: some View {
         VStack {
-            Text("Daily Report")
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-            Text("\(date.formatted(date: .long, time: .omitted))")
+            if viewingInterval == data?.sun.ATInterval {
+                Text("Night of \(date.formatted(date: .long, time: .omitted))")
+                    .font(.subheadline)
+                    .fontWeight(.thin)
+            } else {
+                Text("\(viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(viewingInterval.end.formatted(date: .omitted, time: .shortened))")
+                    .font(.subheadline)
+                    .fontWeight(.thin)
+            }
+            Text("Moon is \(networkManager.data[.init(date: date, location: location)]?.moon.illuminated.percent() ?? "%") illuminated")
                 .font(.subheadline)
                 .fontWeight(.thin)
-            Text("Moon: \(networkManager.data[.init(date: date, location: location)]?.moon.illuminated.percent() ?? "%") illuminated")
-                .font(.subheadline)
-                .fontWeight(.thin)
-        }.padding(.vertical)
+        }.padding(.bottom)
     }
 }

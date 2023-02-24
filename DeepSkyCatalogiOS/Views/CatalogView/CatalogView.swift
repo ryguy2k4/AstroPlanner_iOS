@@ -39,6 +39,12 @@ struct CatalogView: View {
             .listStyle(.grouped)
             .toolbar() {
                 ToolbarLogo()
+                if data == nil {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Image(systemName: "wifi.exclamationmark")
+                            .foregroundColor(.red)
+                    }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         isSettingsModal = true
@@ -90,6 +96,7 @@ struct CatalogView: View {
         .sheet(isPresented: $isSettingsModal){
             CatalogViewSettings(date: $date)
                 .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+                .disabled(data == nil)
         }
         
         // When the date changes, make sure everything that depends on the date gets updated

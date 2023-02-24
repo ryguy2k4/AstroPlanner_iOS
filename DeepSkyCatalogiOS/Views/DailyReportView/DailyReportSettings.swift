@@ -10,6 +10,8 @@ import CoreData
 
 struct DailyReportSettings: View {
     @Environment(\.managedObjectContext) var context
+    @Environment(\.isEnabled) var isEnabled
+    @Environment(\.data) var data
     @ObservedObject var settings: ReportSettings
     @Binding var date: Date
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
@@ -65,12 +67,13 @@ struct DailyReportSettings: View {
                         }
                         .pickerStyle(.navigationLink)
                         Toggle("Prefer Broadband on Moonless Nights", isOn: $settings.preferBroadband)
+                            .foregroundColor(isEnabled ? .primary : .secondary)
                         Button {
                             isMoonPercentModal = true
                         } label: {
                             HStack {
                                 Text("Max Moon for Broadband: ")
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(isEnabled ? .primary : .secondary)
                                 Spacer()
                                 Text(settings.maxAllowedMoon.percent())
                             }
@@ -81,7 +84,7 @@ struct DailyReportSettings: View {
                         } label: {
                             HStack {
                                 Text("Minimum FOV Coverage: ")
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(isEnabled ? .primary : .secondary)
                                 Spacer()
                                 Text(settings.minFOVCoverage.percent())
                             }
@@ -91,7 +94,7 @@ struct DailyReportSettings: View {
                         } label: {
                             HStack {
                                 Text("Minimum Visibility: ")
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(isEnabled ? .primary : .secondary)
                                 Spacer()
                                 Text(settings.minVisibility.percent())
                             }
