@@ -14,6 +14,7 @@ struct DailyReportSettings: View {
     @Environment(\.data) var data
     @ObservedObject var settings: ReportSettings
     @Binding var date: Date
+    @Binding var viewingInterval: DateInterval
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @State var isMoonPercentModal: Bool = false
@@ -21,8 +22,9 @@ struct DailyReportSettings: View {
     @State var isMinFOVCoverageModal: Bool = false
     @State var isMinVisibilityModal: Bool = false
 
-    init(date: Binding<Date>) {
+    init(date: Binding<Date>, viewingInterval: Binding<DateInterval>) {
         self._date = date
+        self._viewingInterval = viewingInterval
         self.settings = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<ReportSettings>(entityName: "ReportSettings")).first!
     }
     
@@ -51,7 +53,11 @@ struct DailyReportSettings: View {
                     .padding()
                     .font(.title2)
                     .fontWeight(.semibold)
+                
                 Form {
+                    ConfigSection(header: "Viewing Interval") {
+                        DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != data?.sun.ATInterval, sun: data?.sun)
+                    }
                     ConfigSection(header: "Report Settings") {
                         Picker("Location", selection: locationBinding) {
                             ForEach(locationList) { location in

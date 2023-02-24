@@ -15,6 +15,10 @@ private struct DataKey: EnvironmentKey {
     static let defaultValue: (sun: SunData, moon: MoonData)? = nil
 }
 
+private struct ViewingIntervalKey: EnvironmentKey {
+    static let defaultValue: DateInterval = DateInterval(start: Date.today.addingTimeInterval(68400), end: Date.tomorrow.addingTimeInterval(18000))
+}
+
 extension EnvironmentValues {
     var date: Date {
         get {
@@ -31,6 +35,15 @@ extension EnvironmentValues {
         }
         set {
             self[DataKey.self] = newValue
+        }
+    }
+    
+    var viewingInterval: DateInterval {
+        get {
+            self[ViewingIntervalKey.self]
+        }
+        set {
+            self[ViewingIntervalKey.self] = newValue
         }
     }
 }

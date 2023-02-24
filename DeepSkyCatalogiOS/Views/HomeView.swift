@@ -15,9 +15,11 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @State var date: Date = Date.today
+    @State var viewingInterval: DateInterval = DateInterval(start: Date.today.addingTimeInterval(68400), end: Date.tomorrow.addingTimeInterval(18000))
+    
     var body: some View {
         TabView {
-            DailyReportView(date: $date)
+            DailyReportView(date: $date, viewingInterval: $viewingInterval)
                 .tabItem {
                     Label("Daily Report", systemImage: "doc.text")
                 }

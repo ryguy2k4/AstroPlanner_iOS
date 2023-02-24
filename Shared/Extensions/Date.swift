@@ -89,4 +89,17 @@ extension Date {
     public func startOfDay() -> Date {
         return Calendar.current.startOfDay(for: self)
     }
+    
+    /**
+     - Returns: self at 11:59 PM
+     */
+    public func endOfDay() -> Date {
+        return Calendar.current.startOfDay(for: self.tomorrow()).addingTimeInterval(-1)
+    }
+}
+
+extension Date: Identifiable {
+    public var id: Self {
+        self
+    }
 }

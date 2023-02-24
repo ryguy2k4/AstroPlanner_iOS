@@ -16,15 +16,20 @@ struct DailyReportView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
+    @Binding var viewingInterval: DateInterval
     @State var report: DailyReport?
     @State var internet: Bool = true
     @State var isSettingsModal = false
     
     var body: some View {
+        let data = networkManager.data[.init(date: date, location: locationList.first!)]
         NavigationStack {
             VStack {
                 // Header Section
-                ReportHeader()
+                Text("Daily Report")
+                    .multilineTextAlignment(.center)
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
                 
                 // Only display report if network data is available
                 if let data = data {
@@ -94,9 +99,27 @@ struct DailyReportView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isSettingsModal) {
-                DailyReportSettings(date: $date)
-                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+        }
+        .environmentObject(locationList.first!)
+        .environmentObject(targetSettings.first!)
+        .environment(\.date, date)
+        .environment(\.viewingInterval, viewingInterval)
+        .scrollIndicators(.hidden)
+        .navigationDestination(for: DeepSkyTarget.self) { target in
+            DetailView(target: target)
+                .environmentObject(locationList.first!)
+                .environmentObject(targetSettings.first!)
+        }
+        .sheet(isPresented: $isSettingsModal) {
+            DailyReportSettings(date: $date, viewingInterval: $viewingInterval)
+                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+                .disabled(data == nil)
+                .environment(\.data, data)
+        }
+        .onChange(of: data?.sun.ATInterval) { newInterval in
+            if let newInterval = newInterval {
+                viewingInterval = newInterval
+                print(newInterval)
             }
         }
     }
