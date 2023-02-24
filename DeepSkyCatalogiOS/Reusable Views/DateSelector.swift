@@ -18,20 +18,31 @@ struct DateIntervalSelector: View {
             get: { return viewingInterval.start },
             set: {
                 if let sun = sun {
-                    // NON NEGOTIABLE CONDITIONS
-                    // if new start is before current end and after sunset
-                    if $0 < viewingInterval.end && $0 > sun.ATInterval.start {
-                        // allow new value
-                        viewingInterval.start = $0
+                    // new start is after sunset and before end
+                    if $0 > sun.ATInterval.start {
+                        // new start is on the next day
+                        print(viewingInterval.start.endOfDay())
+                        if $0 > viewingInterval.start.endOfDay() {
+                            // set the new value to the start of the next day
+                            let newDuration = DateInterval(start: viewingInterval.end.startOfDay(), end: viewingInterval.end).duration
+                            viewingInterval.start = viewingInterval.end.startOfDay()
+                            viewingInterval.duration = newDuration
+                        }
+                        // new start is on the current day
+                        else {
+                            // allow the new value
+                            let newDuration = DateInterval(start: $0, end: viewingInterval.end).duration
+                            viewingInterval.start = $0
+                            viewingInterval.duration = newDuration
+                        }
                     }
+                    // new start is before sunset
                     else {
-                        // set new value to the 12:00 AM on the end day
-                        viewingInterval.start = viewingInterval.end.startOfDay()
-                    }
-                    // if new end is before sunset and sunset is before current end
-                    if $0 < sun.ATInterval.start && sun.ATInterval.start < viewingInterval.end {
                         // set new value to sunset
+                        let newDuration = DateInterval(start: sun.ATInterval.start, end: viewingInterval.end).duration
                         viewingInterval.start = sun.ATInterval.start
+                        viewingInterval.duration = newDuration
+                        
                     }
                 }
             }
@@ -40,21 +51,27 @@ struct DateIntervalSelector: View {
             get: { return viewingInterval.end },
             set: {
                 if let sun = sun {
-                    // NON NEGOTIABLE CONDITIONS
-                    // if new end is after current start and before sunrise
-                    if $0 > viewingInterval.start && $0 < sun.ATInterval.end {
-                        // allow new value
-                        viewingInterval.end = $0
+                    // new end is before sunrise and after start
+                    if $0 < sun.ATInterval.end {
+                        // new end is on previous day
+                        if $0 < viewingInterval.end.startOfDay() {
+                            // set new value to the 11:59 PM on the start day
+                            let newDuration = DateInterval(start: viewingInterval.start, end: viewingInterval.start.endOfDay()).duration
+                            viewingInterval.duration = newDuration
+                        }
+                        // new end is on same day
+                        else {
+                            // allow new value
+                            let newDuration = DateInterval(start: viewingInterval.start, end: $0).duration
+                            viewingInterval.duration = newDuration
+                        }
+                        
                     }
-                    // if the end of the start day is before sunrise
-                    else if viewingInterval.start.endOfDay() < sun.ATInterval.end {
-                        // set new value to the 11:59 PM on the start day
-                        viewingInterval.end = viewingInterval.start.endOfDay()
-                    }
-                    // if new end is after sunrise and sunrise is after current start
-                    if $0 > sun.ATInterval.end && sun.ATInterval.end > viewingInterval.start {
+                    // new end is after sunrise
+                    else  {
                         // set new value to sunrise
-                        viewingInterval.end = sun.ATInterval.end
+                        let newDuration = DateInterval(start: viewingInterval.start, end: sun.ATInterval.end).duration
+                        viewingInterval.duration = newDuration
                     }
                 }
             }
