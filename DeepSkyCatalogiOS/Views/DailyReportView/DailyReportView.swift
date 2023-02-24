@@ -34,7 +34,7 @@ struct DailyReportView: View {
                 // Only display report if network data is available
                 if let data = data {
                     // every time the view refreshes, generate a report
-                    let report = DailyReport(location: locationList.first!, date: date, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
+                    let report = DailyReport(location: locationList.first!, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
                     ReportHeader()
                         .environment(\.data, data)
                     ScrollView {
@@ -99,17 +99,17 @@ struct DailyReportView: View {
                     }
                 }
             }
+            .navigationDestination(for: DeepSkyTarget.self) { target in
+                DetailView(target: target)
+                    .environmentObject(locationList.first!)
+                    .environmentObject(targetSettings.first!)
+            }
         }
         .environmentObject(locationList.first!)
         .environmentObject(targetSettings.first!)
         .environment(\.date, date)
         .environment(\.viewingInterval, viewingInterval)
         .scrollIndicators(.hidden)
-        .navigationDestination(for: DeepSkyTarget.self) { target in
-            DetailView(target: target)
-                .environmentObject(locationList.first!)
-                .environmentObject(targetSettings.first!)
-        }
         .sheet(isPresented: $isSettingsModal) {
             DailyReportSettings(date: $date, viewingInterval: $viewingInterval)
                 .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])

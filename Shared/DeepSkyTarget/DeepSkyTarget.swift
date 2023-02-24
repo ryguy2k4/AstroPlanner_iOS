@@ -127,31 +127,10 @@ struct DeepSkyTarget: Identifiable, Hashable {
     }
 }
 
-
-
-
 /**
  All Functions performed on DeepSkyTargett
  */
 extension DeepSkyTarget {
-    
-    /**
-     Gets the altitude of the target.
-     - Parameter location: The location to calculate the altitude at.
-     - Parameter time: The time to calculate the altitude at.
-     - Returns: The altitude of the target at the given time and location measured in degrees.
-     
-     LST = 100.46 + 0.985647 * d + long + 15*UT
-     HA = LST - RA
-     sin(ALT) = sin(DEC)*sin(LAT)+cos(DEC)*cos(LAT)*cos(HA)
-     */
-    func getAltitude(location: SavedLocation, time: Date) -> Double {
-        let d = Date.daysSinceJ2000(until: time)
-        let lst = 100.46 + (0.985647 * d) + location.longitude + (15 * time.dateToUTCHours(location: location)).mod(by: 360)
-        let ha = (lst - ra).mod(by: 360)
-        let sinAlt = sin(dec.toRadian()) * sin(location.latitude.toRadian()) + cos(dec.toRadian()) * cos(location.latitude.toRadian()) * cos(ha.toRadian())
-        return asin(sinAlt).toDegree()
-    }
         
     /**
      The local sidereal time (LST) that the target rises above the given altitude.
@@ -193,6 +172,25 @@ extension DeepSkyTarget {
         localTime[1] = ((-0.0657098 * dTomorrow) - (1/15*location.longitude) + (1/15*lst) - (5023/750)).mod(by: 24).hoursToDate(on: date.tomorrow())
         return localTime
         
+    }
+    
+    /**
+     Gets the altitude of the target at a specific time
+     Used for altitude graphs
+     - Parameter location: The location to calculate the altitude at.
+     - Parameter time: The time to calculate the altitude at.
+     - Returns: The altitude of the target at the given time and location measured in degrees.
+     
+     LST = 100.46 + 0.985647 * d + long + 15*UT
+     HA = LST - RA
+     sin(ALT) = sin(DEC)*sin(LAT)+cos(DEC)*cos(LAT)*cos(HA)
+     */
+    func getAltitude(location: SavedLocation, time: Date) -> Double {
+        let d = Date.daysSinceJ2000(until: time)
+        let lst = 100.46 + (0.985647 * d) + location.longitude + (15 * time.dateToUTCHours(location: location)).mod(by: 360)
+        let ha = (lst - ra).mod(by: 360)
+        let sinAlt = sin(dec.toRadian()) * sin(location.latitude.toRadian()) + cos(dec.toRadian()) * cos(location.latitude.toRadian()) * cos(ha.toRadian())
+        return asin(sinAlt).toDegree()
     }
     
     /**
@@ -256,20 +254,18 @@ extension DeepSkyTarget {
      - Returns: A decimal representing the percentage of the night that the target is visible.
      
      */
-    func getVisibilityScore(at location: SavedLocation, on date: Date, sunData: SunData, limitingAlt: Double) -> Double {
+    func getVisibilityScore(at location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Double {
         // retrieve necessary data
         do {
-            let targetInterval = try getNextInterval(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)
-            
-            let nightInterval = sunData.ATInterval
-            
+            let targetInterval = try getNextInterval(at: location, on: viewingInterval.start.startOfDay(), sunData: sunData, limitingAlt: limitingAlt)
+                        
             // calculate time that the target is in the sky during the night
-            guard let overlap = nightInterval.intersection(with: targetInterval) else {
+            guard let overlap = viewingInterval.intersection(with: targetInterval) else {
                 return 0
             }
             
             // calculate score
-            return overlap.duration / nightInterval.duration
+            return overlap.duration / viewingInterval.duration
         } catch TargetCalculationError.neverRises {
             return 0
         } catch TargetCalculationError.neverSets {
@@ -303,9 +299,6 @@ extension DeepSkyTarget {
         }
     }
 }
-
-
-
 
 /**
  A Codable Implementation for DeepSkyObject

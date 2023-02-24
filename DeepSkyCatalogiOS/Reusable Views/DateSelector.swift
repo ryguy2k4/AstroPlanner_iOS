@@ -92,19 +92,6 @@ struct DateIntervalSelector: View {
             DatePicker("End", selection: endBinding)
         }
         .disabled(!customViewingInterval)
-        
-        // This attempts to put the viewing interval back into its boundaries after changing the start and end times
-        // DateInterval maintains duration, so moving start forward could push end out of bounds
-        .onChange(of: viewingInterval) { newInterval in
-            if let sun = sun {
-                if newInterval.start < sun.ATInterval.start {
-                    viewingInterval.start = sun.ATInterval.start
-                }
-                if newInterval.end > sun.ATInterval.end && sun.ATInterval.end > viewingInterval.start {
-                    viewingInterval.end = sun.ATInterval.end
-                }
-            }
-        }
     }
 }
 

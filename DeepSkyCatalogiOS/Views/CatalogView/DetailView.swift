@@ -14,6 +14,7 @@ struct DetailView: View {
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
+    @Environment(\.viewingInterval) var viewingInterval
     var target: DeepSkyTarget
     var body: some View {
         let data = networkManager.data[.init(date: date, location: location)]
@@ -62,7 +63,7 @@ struct DetailView: View {
                         }
                         if let sun = data?.sun {
                             VStack {
-                                Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
+                                Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
                                     .foregroundColor(.secondary)
                                 Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: sun)).percent())")
                                     .foregroundColor(.secondary)

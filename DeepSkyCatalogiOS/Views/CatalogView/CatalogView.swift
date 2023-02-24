@@ -15,12 +15,14 @@ struct CatalogView: View {
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @StateObject private var viewModel: CatalogManager
     @Binding var date: Date
+    @Binding var viewingInterval: DateInterval
     @State private var isSettingsModal = false
 
     
-    init(date: Binding<Date>, location: SavedLocation, targetSettings: TargetSettings) {
-        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, targetSettings: targetSettings))
+    init(date: Binding<Date>, viewingInterval: Binding<DateInterval>, location: SavedLocation, targetSettings: TargetSettings) {
+        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, viewingInterval: viewingInterval, targetSettings: targetSettings))
         self._date = date
+        self._viewingInterval = viewingInterval
     }
         
     var body: some View {
@@ -94,7 +96,7 @@ struct CatalogView: View {
         
         // Modal for settings
         .sheet(isPresented: $isSettingsModal){
-            CatalogViewSettings(date: $date)
+            CatalogViewSettings(date: $date, viewingInterval: $viewingInterval)
                 .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
                 .disabled(data == nil)
         }
@@ -132,6 +134,7 @@ fileprivate struct TargetCell: View {
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
     @Environment(\.data) var data
+    @Environment(\.viewingInterval) var viewingInterval
     var target: DeepSkyTarget
     
     var body: some View {
@@ -146,7 +149,7 @@ fileprivate struct TargetCell: View {
                     .fontWeight(.semibold)
                     .lineLimit(1)
                 if let sun = data?.sun {
-                    Label(target.getVisibilityScore(at: location, on: date, sunData: sun, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
+                    Label(target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
                         .foregroundColor(.secondary)
                     Label(target.getMeridianScore(at: location, on: date, sunData: sun).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
                         .foregroundColor(.secondary)
@@ -295,8 +298,10 @@ fileprivate struct FilterButton: View {
  */
 fileprivate struct CatalogViewSettings: View {
     @Environment(\.managedObjectContext) var context
+    @Environment(\.data) var data
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
+    @Binding var viewingInterval: DateInterval
     var body: some View {
         let locationBinding = Binding(
             get: { return locationList.first! },
@@ -312,6 +317,9 @@ fileprivate struct CatalogViewSettings: View {
                 .font(.title2)
                 .fontWeight(.semibold)
             Form {
+                ConfigSection(header: "Viewing Interval") {
+                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != data?.sun.ATInterval, sun: data?.sun)
+                }
                 Picker("Location", selection: locationBinding) {
                     ForEach(locationList) { location in
                         Text(location.name!).tag(location)

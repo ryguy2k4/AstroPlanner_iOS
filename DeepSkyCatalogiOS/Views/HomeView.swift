@@ -23,7 +23,7 @@ struct HomeView: View {
                 .tabItem {
                     Label("Daily Report", systemImage: "doc.text")
                 }
-            CatalogView(date: $date, location: locationList.first!, targetSettings: targetSettings.first!)
+            CatalogView(date: $date, viewingInterval: $viewingInterval, location: locationList.first!, targetSettings: targetSettings.first!)
                 .tabItem {
                     Label("Master Catalog", systemImage: "tray.full.fill")
                 }

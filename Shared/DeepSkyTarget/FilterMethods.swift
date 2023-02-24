@@ -136,14 +136,14 @@ extension Array where Element == DeepSkyTarget {
     }
     
     /// FILTER BY VISIBILITY SCORE
-    func filteredByVisibility(min: Double, location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) -> Self {
+    func filteredByVisibility(min: Double, location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Self {
         return self.filter() {
-            return $0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) >= min
+            return $0.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt) >= min
         }
     }
     
-    mutating func filterByVisibility(_ min: Double, location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) {
-        self = self.filteredByVisibility(min: min, location: location, date: date, sunData: sunData, limitingAlt: limitingAlt)
+    mutating func filterByVisibility(_ min: Double, location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) {
+        self = self.filteredByVisibility(min: min, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt)
     }
     
     /// FILTER BY MERIDIAN SCORE

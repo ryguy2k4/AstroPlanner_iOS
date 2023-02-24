@@ -49,12 +49,12 @@ extension Array where Element == DeepSkyTarget {
         self = self.sortedBySearch(searchText)
     }
         
-    func sortedByVisibility(location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) -> Self {
-        return self.sorted(by: {$0.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt) > $1.getVisibilityScore(at: location, on: date, sunData: sunData, limitingAlt: limitingAlt)})
+    func sortedByVisibility(location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Self {
+        return self.sorted(by: {$0.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt) > $1.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt)})
     }
     
-    mutating func sortByVisibility(location: SavedLocation, date: Date, sunData: SunData, limitingAlt: Double) {
-        self = self.sortedByVisibility(location: location, date: date, sunData: sunData, limitingAlt: limitingAlt)
+    mutating func sortByVisibility(location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) {
+        self = self.sortedByVisibility(location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt)
     }
     
     func sortedByMeridian(location: SavedLocation, date: Date, sunData: SunData) -> Self {

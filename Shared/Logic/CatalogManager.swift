@@ -11,11 +11,13 @@ final class CatalogManager: ObservableObject {
     var location: SavedLocation
     var targetSettings: TargetSettings
     @Binding var date: Date
+    @Binding var viewingInterval: DateInterval
     
-    init(location: SavedLocation, date: Binding<Date>, targetSettings: TargetSettings) {
+    init(location: SavedLocation, date: Binding<Date>, viewingInterval: Binding<DateInterval>, targetSettings: TargetSettings) {
         self.location = location
         self.targetSettings = targetSettings
         self._date = date
+        self._viewingInterval = viewingInterval
     }
     
     // Sort Control Variables
@@ -121,7 +123,7 @@ final class CatalogManager: ObservableObject {
         }
         if let sunData = sunData {
             if isActive(criteria: minVisScore) {
-                targets.filterByVisibility(minVisScore, location: location, date: date, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+                targets.filterByVisibility(minVisScore, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             }
             if isActive(criteria: minMerScore) {
                 targets.filterByMeridian(minMerScore, location: location, date: date, sunData: sunData)
@@ -132,7 +134,7 @@ final class CatalogManager: ObservableObject {
         switch currentSort {
         case .visibility:
             if let sunData = sunData {
-                targets.sortByVisibility(location: location, date: date, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+                targets.sortByVisibility(location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             }
         case .meridian:
             if let sunData = sunData {

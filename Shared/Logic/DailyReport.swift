@@ -11,6 +11,7 @@ import SwiftUI
 final class DailyReport: ObservableObject {
     let location: SavedLocation
     let date: Date
+    let viewingInterval: DateInterval
     let reportSettings: ReportSettings
     let targetSettings: TargetSettings
     let data: (sun: SunData, moon: MoonData)
@@ -21,9 +22,10 @@ final class DailyReport: ObservableObject {
     let topTenGalaxies: [DeepSkyTarget]
     let topTenStarClusters: [DeepSkyTarget]
     
-    init(location: SavedLocation, date: Date, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: FetchedResults<ImagingPreset>, data: (sun: SunData, moon: MoonData)) {
+    init(location: SavedLocation, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: FetchedResults<ImagingPreset>, data: (sun: SunData, moon: MoonData)) {
         self.location = location
         self.date = date
+        self.viewingInterval = viewingInterval
         self.reportSettings = reportSettings
         self.targetSettings = targetSettings
         self.data = data
@@ -44,7 +46,7 @@ final class DailyReport: ObservableObject {
             targets.filterByMeridian(0.5, location: location, date: date, sunData: data.sun)
             
             // Remove all targets with a visibility score less than the user specified minimum
-            targets.filterByVisibility(reportSettings.minVisibility, location: location, date: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
+            targets.filterByVisibility(reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
             
             // if moon is a problem, filter for narrowband targets
             if data.moon.illuminated > reportSettings.maxAllowedMoon {
@@ -69,7 +71,7 @@ final class DailyReport: ObservableObject {
             }
             
             // Sort the list by visibility
-            targets.sortByVisibility(location: location, date: date, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
+            targets.sortByVisibility(location: location,viewingInterval: viewingInterval, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
             
             // Shorten the list to desired number passed to function
             targets.removeLast(targets.count > num ? targets.count-num : 0)
