@@ -141,7 +141,7 @@ extension DeepSkyTarget {
      - Parameter alt: The altitude that should be converted to local sidereal time.
      - Returns: The local sidereal times at which the object reaches the given altitude.
      */
-    private func getLST(location: SavedLocation, from alt: Double) throws -> [Double] {
+    private func getLST(location: SavedLocation, from alt: Double) throws -> (rise: Double, set: Double) {
         let cosHourAngle = sin(alt.toRadian()) * (1/cos(dec.toRadian())) * (1/cos(location.latitude.toRadian())) - tan(dec.toRadian()) * tan(location.latitude.toRadian())
         if cosHourAngle > 1 {
             throw TargetCalculationError.neverRises
@@ -149,7 +149,7 @@ extension DeepSkyTarget {
             throw TargetCalculationError.neverSets
         }
         let hourAngle = acos(cosHourAngle).toDegree()
-        return [360 - hourAngle + ra, hourAngle + ra]
+        return (rise: 360 - hourAngle + ra, set: hourAngle + ra)
     }
     
     /**
@@ -161,16 +161,15 @@ extension DeepSkyTarget {
      - Parameter lst: The local sidereal time that should be converted to local time.
      - Returns: Two dates representing the local time that the target is at lst today and tomorrow.
      */
-    private func getLocalTime(location: SavedLocation, date: Date, sunData: SunData, lst: Double) -> [Date] {
+    private func getLocalTime(location: SavedLocation, date: Date, sunData: SunData, lst: Double) -> (today: Date, tomorrow: Date) {
         let dToday = Date.daysSinceJ2000(until: sunData.astronomicalTwilightBegin)
         let dTomorrow = Date.daysSinceJ2000(until: sunData.ATInterval.end)
 
         
         // calculate time in decimal hours and then convert to a date object on the current date
-        var localTime: [Date] = [Date(), Date()]
-        localTime[0] = ((-0.0657098 * dToday) - (1/15*location.longitude) + (1/15*lst) - (5023/750)).mod(by: 24).hoursToDate(on: date)
-        localTime[1] = ((-0.0657098 * dTomorrow) - (1/15*location.longitude) + (1/15*lst) - (5023/750)).mod(by: 24).hoursToDate(on: date.tomorrow())
-        return localTime
+        let today = ((-0.0657098 * dToday) - (1/15*location.longitude) + (1/15*lst) - (5023/750)).mod(by: 24).hoursToDate(on: date)
+        let tomorrow = ((-0.0657098 * dTomorrow) - (1/15*location.longitude) + (1/15*lst) - (5023/750)).mod(by: 24).hoursToDate(on: date.tomorrow())
+        return (today: today, tomorrow: tomorrow)
         
     }
     
@@ -202,10 +201,10 @@ extension DeepSkyTarget {
      */
     func getNextInterval(at location: SavedLocation, on date: Date, sunData: SunData, limitingAlt: Double = 0) throws -> DateInterval {
         do {
-            let riseToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt)[0])[0]
-            let setToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt)[1])[0]
-            let riseTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt)[0])[1]
-            let setTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt)[1])[1]
+            let riseToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt).rise).today
+            let setToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt).set).today
+            let riseTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt).rise).tomorrow
+            let setTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt).set).tomorrow
             let dayStart = sunData.astronomicalTwilightBegin
 
             // if rise < set && rise > sunrise
@@ -243,7 +242,7 @@ extension DeepSkyTarget {
      */
     func getNextMeridian(at location: SavedLocation, on date: Date, sunData: SunData) -> Date {
         // need a conditional to determine whether to return [0] or [1] of the following function
-        return getLocalTime(location: location, date: date, sunData: sunData, lst: ra)[1]
+        return getLocalTime(location: location, date: date, sunData: sunData, lst: ra).tomorrow
     }
     
     /**
