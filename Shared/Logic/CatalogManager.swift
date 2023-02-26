@@ -35,7 +35,7 @@ final class CatalogManager: ObservableObject {
     @Published var minSize: Double = 0
     @Published var maxSize: Double = .nan
     @Published var minVisScore: Double = 0
-    @Published var minMerScore: Double = 0
+    @Published var minSeasonScore: Double = 0
     
     /**
      Sets the filter control variable associated with the specified filter to its default value(s)
@@ -56,8 +56,8 @@ final class CatalogManager: ObservableObject {
         case .size:
             minSize = 0
             maxSize = .nan
-        case .meridian:
-            minMerScore = 0
+        case .seasonScore:
+            minSeasonScore = 0
         case .visibility:
             minVisScore = 0
         }
@@ -118,8 +118,8 @@ final class CatalogManager: ObservableObject {
             if isActive(criteria: minVisScore) {
                 targets.filterByVisibility(minVisScore, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             }
-            if isActive(criteria: minMerScore) {
-                targets.filterByMeridian(minMerScore, location: location, date: date, sunData: sunData)
+            if isActive(criteria: minSeasonScore) {
+                targets.filterBySeasonScore(minSeasonScore, location: location, date: date, sunData: sunData)
             }
         }
         
@@ -129,7 +129,7 @@ final class CatalogManager: ObservableObject {
             if let sunData = sunData {
                 targets.sortByVisibility(location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             }
-        case .meridian:
+        case .seasonScore:
             if let sunData = sunData {
                 targets.sortByMeridian(location: location, date: date, sunData: sunData)
             }

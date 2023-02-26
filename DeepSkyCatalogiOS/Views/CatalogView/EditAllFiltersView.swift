@@ -62,7 +62,7 @@ struct EditAllFiltersView: View {
                         }
                         NavigationLink("Meridian Score Filter") {
                             Form {
-                                NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+                                NumberPicker(num: $viewModel.minSeasonScore, placeValues: [.tenths, .hundredths])
                             }
                         }
                     }

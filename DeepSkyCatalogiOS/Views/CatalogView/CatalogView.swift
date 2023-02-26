@@ -151,7 +151,7 @@ fileprivate struct TargetCell: View {
                 if let sun = data?.sun {
                     Label(target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
                         .foregroundColor(.secondary)
-                    Label(target.getMeridianScore(at: location, on: date, sunData: sun).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
+                    Label(target.getSeasonScore(at: location, on: date, sunData: sun).percent(), systemImage: "calendar.circle")
                         .foregroundColor(.secondary)
                 }
             }
@@ -180,7 +180,7 @@ fileprivate struct FilterButtonMenu: View {
             buttons.append(FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag))))
             if data != nil {
                 buttons.append(FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore)))
-                buttons.append(FilterButton(method: .meridian, active: viewModel.isActive(criteria: viewModel.minMerScore)))
+                buttons.append(FilterButton(method: .seasonScore, active: viewModel.isActive(criteria: viewModel.minSeasonScore)))
             }
             return buttons.sorted(by: {$0.active && !$1.active})
         }()
@@ -277,9 +277,9 @@ fileprivate struct FilterButton: View {
                     Form {
                         NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
                     }
-                case .meridian:
+                case .seasonScore:
                     Form {
-                        NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
+                        NumberPicker(num: $viewModel.minSeasonScore, placeValues: [.tenths, .hundredths])
                     }
                 default:
                     EmptyView()

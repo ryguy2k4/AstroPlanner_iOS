@@ -65,7 +65,7 @@ struct DetailView: View {
                             VStack {
                                 Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
                                     .foregroundColor(.secondary)
-                                Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: sun)).percent())")
+                                Text("Season Score: \((target.getSeasonScore(at: location, on: date, sunData: sun)).percent())")
                                     .foregroundColor(.secondary)
                             }
                         }

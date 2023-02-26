@@ -8,12 +8,12 @@
 import Foundation
 
 enum SortMethod: CaseIterable, Hashable, Identifiable {
-    static var allCases: [SortMethod] = [.visibility, .meridian, .dec, .ra, .magnitude, .size]
+    static var allCases: [SortMethod] = [.visibility, .seasonScore, .dec, .ra, .magnitude, .size]
     static var offlineCases: [SortMethod] = [.dec, .ra, .magnitude, .size]
     
     var id: Self { self }
     case visibility
-    case meridian
+    case seasonScore
     case dec
     case ra
     case magnitude
@@ -23,8 +23,8 @@ enum SortMethod: CaseIterable, Hashable, Identifiable {
         switch self {
         case .visibility:
             return ("Visibility", "eye.fill")
-        case .meridian:
-            return ("Meridian", "arrow.right.and.line.vertical.and.arrow.left")
+        case .seasonScore:
+            return ("Season", "calendar.circle")
         case .dec:
             return ("Dec", "arrow.up.arrow.down")
         case .ra:
@@ -58,7 +58,7 @@ extension Array where Element == DeepSkyTarget {
     }
     
     func sortedByMeridian(location: SavedLocation, date: Date, sunData: SunData) -> Self {
-        return self.sorted(by: {$0.getMeridianScore(at: location, on: date, sunData: sunData) > $1.getMeridianScore(at: location, on: date, sunData: sunData)})
+        return self.sorted(by: {$0.getSeasonScore(at: location, on: date, sunData: sunData) > $1.getSeasonScore(at: location, on: date, sunData: sunData)})
     }
     
     mutating func sortByMeridian(location: SavedLocation, date: Date, sunData: SunData) {

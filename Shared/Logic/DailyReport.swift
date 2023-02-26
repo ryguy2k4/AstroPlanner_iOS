@@ -43,7 +43,7 @@ final class DailyReport: ObservableObject {
             
             // Remove all targets with a meridian score less than 50%
             // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
-            targets.filterByMeridian(0.5, location: location, date: date, sunData: data.sun)
+            targets.filterBySeasonScore(0.5, location: location, date: date, sunData: data.sun)
             
             // Remove all targets with a visibility score less than the user specified minimum
             targets.filterByVisibility(reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)

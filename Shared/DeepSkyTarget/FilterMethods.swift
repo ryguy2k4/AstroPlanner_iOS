@@ -16,7 +16,7 @@ enum FilterMethod: Identifiable {
     case magnitude
     case size
     case visibility
-    case meridian    
+    case seasonScore    
     
     var info: (name: String, icon: String) {
             switch self {
@@ -34,8 +34,8 @@ enum FilterMethod: Identifiable {
                 return ("Size", "arrow.up.left.and.arrow.down.right")
             case .visibility:
                 return ("Visibility", "eye.fill")
-            case .meridian:
-                return ("Meridian", "arrow.right.and.line.vertical.and.arrow.left")
+            case .seasonScore:
+                return ("Season", "calendar.circle")
             }
         }
 }
@@ -147,13 +147,13 @@ extension Array where Element == DeepSkyTarget {
     }
     
     /// FILTER BY MERIDIAN SCORE
-    func filteredByMeridian(min: Double, location: SavedLocation, date: Date, sunData: SunData) -> Self {
+    func filteredBySeasonScore(min: Double, location: SavedLocation, date: Date, sunData: SunData) -> Self {
         return self.filter() {
-            return $0.getMeridianScore(at: location, on: date, sunData: sunData) >= min
+            return $0.getSeasonScore(at: location, on: date, sunData: sunData) >= min
         }
     }
     
-    mutating func filterByMeridian(_ min: Double, location: SavedLocation, date: Date, sunData: SunData) {
-        self = self.filteredByMeridian(min: min, location: location, date: date, sunData: sunData)
+    mutating func filterBySeasonScore(_ min: Double, location: SavedLocation, date: Date, sunData: SunData) {
+        self = self.filteredBySeasonScore(min: min, location: location, date: date, sunData: sunData)
     }
 }

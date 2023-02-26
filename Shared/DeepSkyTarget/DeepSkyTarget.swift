@@ -273,7 +273,7 @@ extension DeepSkyTarget {
      - Parameter date: The date on which to calculate the meridian score.
      - Returns: A decimal representing an abstract percentage.
      */
-    func getMeridianScore(at location: SavedLocation, on date: Date, sunData: SunData) -> Double {
+    func getSeasonScore(at location: SavedLocation, on date: Date, sunData: SunData) -> Double {
         let targetMeridian = getCulmination(location: location, date: date)
         let nightLength = sunData.ATInterval.duration
         let nightBegin = sunData.ATInterval.start

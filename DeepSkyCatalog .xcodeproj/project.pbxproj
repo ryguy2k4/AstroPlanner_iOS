@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710168842955621D00E0B028 /* MinMaxPicker.swift */; };
-		7104F4982929F0E90000A66A /* TargetCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104F4972929F0E90000A66A /* TargetCalculationError.swift */; };
 		7109A3F5292EBA7A00980527 /* MoonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* MoonData.swift */; };
 		710BF588294BF18900A72073 /* ConfigSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710BF587294BF18900A72073 /* ConfigSection.swift */; };
 		710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D497629316B4F003F41F1 /* DailyReportView.swift */; };
@@ -45,7 +44,6 @@
 		7181F01A299BCFFD002841A8 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
 		7181F01B299BCFFF002841A8 /* SortMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD753E2971044D00D7751F /* SortMethods.swift */; };
 		7181F01C299BD001002841A8 /* FilterMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD7541297104AB00D7751F /* FilterMethods.swift */; };
-		7181F01D299BD003002841A8 /* TargetCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104F4972929F0E90000A66A /* TargetCalculationError.swift */; };
 		7181F01E299BD019002841A8 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date.swift */; };
 		7181F01F299BD01B002841A8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
 		7181F020299BD01E002841A8 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
@@ -74,7 +72,6 @@
 		71ACF32F2964EAA200CC83D5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
 		71ACF3312964ED0F00CC83D5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date.swift */; };
 		71ACF3332964ED1400CC83D5 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
-		71ACF3342964ED1D00CC83D5 /* TargetCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104F4972929F0E90000A66A /* TargetCalculationError.swift */; };
 		71ACF3352964ED2E00CC83D5 /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
 		71ACF3362964ED3C00CC83D5 /* SunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9802921EF8B008C7614 /* SunData.swift */; };
 		71ACF33A2964EED200CC83D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
@@ -122,7 +119,6 @@
 		71C26455298F1CBD0057EC04 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
 		71C26456298F1CBF0057EC04 /* SortMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD753E2971044D00D7751F /* SortMethods.swift */; };
 		71C26457298F1CC10057EC04 /* FilterMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD7541297104AB00D7751F /* FilterMethods.swift */; };
-		71C26458298F1CC30057EC04 /* TargetCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104F4972929F0E90000A66A /* TargetCalculationError.swift */; };
 		71C26459298F1D230057EC04 /* CatalogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E96D67292831AA00E019F9 /* CatalogManager.swift */; };
 		71C2645A298F1D260057EC04 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		71C2645C298F1D330057EC04 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
@@ -172,7 +168,6 @@
 
 /* Begin PBXFileReference section */
 		710168842955621D00E0B028 /* MinMaxPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxPicker.swift; sourceTree = "<group>"; };
-		7104F4972929F0E90000A66A /* TargetCalculationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCalculationError.swift; sourceTree = "<group>"; };
 		7109A3F4292EBA7A00980527 /* MoonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonData.swift; sourceTree = "<group>"; };
 		710BF587294BF18900A72073 /* ConfigSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSection.swift; sourceTree = "<group>"; };
 		710D497629316B4F003F41F1 /* DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportView.swift; sourceTree = "<group>"; };
@@ -549,7 +544,6 @@
 				71901C7629299D5C00D95AA5 /* Constellation.swift */,
 				71BD753E2971044D00D7751F /* SortMethods.swift */,
 				71BD7541297104AB00D7751F /* FilterMethods.swift */,
-				7104F4972929F0E90000A66A /* TargetCalculationError.swift */,
 			);
 			path = DeepSkyTarget;
 			sourceTree = "<group>";
@@ -762,7 +756,6 @@
 				71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */,
 				7162D3452964DBF1007C8710 /* DeepSkyCatalogWidget.swift in Sources */,
 				71ACF33D2964F0B400CC83D5 /* Provider.swift in Sources */,
-				71ACF3342964ED1D00CC83D5 /* TargetCalculationError.swift in Sources */,
 				71BD7543297109AF00D7751F /* SortMethods.swift in Sources */,
 				71ACF3362964ED3C00CC83D5 /* SunData.swift in Sources */,
 				71ACF32E2964EAA000CC83D5 /* TargetCatalog.swift in Sources */,
@@ -787,7 +780,6 @@
 			files = (
 				7181F02A299BD1E4002841A8 /* MoonData.swift in Sources */,
 				7181F01B299BCFFF002841A8 /* SortMethods.swift in Sources */,
-				7181F01D299BD003002841A8 /* TargetCalculationError.swift in Sources */,
 				7181F019299BCFFB002841A8 /* TargetType.swift in Sources */,
 				7181F02C299BD226002841A8 /* CaseNameCodable.swift in Sources */,
 				7181F018299BCFF9002841A8 /* TargetCatalog.swift in Sources */,
@@ -816,7 +808,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				71B6D2FD2954D983006ADC6F /* GearSettings.swift in Sources */,
-				7104F4982929F0E90000A66A /* TargetCalculationError.swift in Sources */,
 				71BCF9852921EF8B008C7614 /* TargetType.swift in Sources */,
 				716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */,
 				71BCF96E2921EF20008C7614 /* HomeView.swift in Sources */,
@@ -874,7 +865,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71C26458298F1CC30057EC04 /* TargetCalculationError.swift in Sources */,
 				71C2645F298F1D460057EC04 /* PersistenceManager.swift in Sources */,
 				71C2645C298F1D330057EC04 /* CaseNameCodable.swift in Sources */,
 				71C26462298F1D4F0057EC04 /* SunData.swift in Sources */,
