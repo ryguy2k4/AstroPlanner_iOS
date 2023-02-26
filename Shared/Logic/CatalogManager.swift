@@ -89,13 +89,8 @@ final class CatalogManager: ObservableObject {
         targets = DeepSkyTargetList.whitelistedTargets.sorted(by: {$0.ra > $1.ra})
         if targetSettings.hideNeverRises {
             for target in targets {
-                do {
-                    let _ = try target.getNextInterval(location: location, date: date)
-                } catch TargetCalculationError.neverRises {
-                    // if target doesn't rise, remove it from the list
+                if case .never = target.getNextInterval(location: location, date: date).interval {
                     targets.removeAll(where: {$0 == target})
-                } catch {
-                    // do nothing
                 }
             }
         }

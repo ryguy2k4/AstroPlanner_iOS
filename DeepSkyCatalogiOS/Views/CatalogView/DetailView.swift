@@ -200,20 +200,19 @@ struct TargetSchedule: View {
         VStack() {
             TargetAltitudeChart(target: target)
                 .padding()
-            if let interval = try? target.getNextInterval(location: location, date: date) {
-                HStack {
+            let targetInterval = target.getNextInterval(location: location, date: date)
+            HStack {
+                switch targetInterval.interval {
+                case .never:
+                    Text("Target Never Visible")
+                    EventLabel(date: targetInterval.culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                case .always:
+                    Text("Target Always Visible")
+                    EventLabel(date: targetInterval.culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                case .sometimes(let interval):
                     EventLabel(date: interval.start, image: "sunrise")
-                    EventLabel(date: target.getCulmination(location: location, date: date), image: "arrow.right.and.line.vertical.and.arrow.left")
+                    EventLabel(date: targetInterval.culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
                     EventLabel(date: interval.end, image: "sunset")
-                }
-            } else {
-                VStack {
-                    if target.getAltitude(location: location, time: date) > 0 {
-                        Text("Target Never Sets")
-                    } else {
-                        Text("Target Never Rises")
-                    }
-                    EventLabel(date: target.getCulmination(location: location, date: date), image: "arrow.right.and.line.vertical.and.arrow.left")
                 }
             }
         }

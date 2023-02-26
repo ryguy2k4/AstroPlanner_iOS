@@ -132,6 +132,19 @@ struct DeepSkyTarget: Identifiable, Hashable {
  */
 extension DeepSkyTarget {
     
+    struct TargetInterval {
+        let antiCulmination: Date
+        let culmination: Date
+        let interval: TargetVisibility
+        
+        enum TargetVisibility {
+            case never
+            case always
+            case sometimes(DateInterval)
+        }
+        
+    }
+    
     /**
      Gets the altitude of the target at a specific time
      Used for altitude graphs
@@ -152,49 +165,48 @@ extension DeepSkyTarget {
     }
     
     /**
+     This function searches through the altitude function of this target looking for a certain condition to be satisfied
+     - Parameter startTime: The time to begin the altitude search at
+     - Parameter initialIncrement: The initial amount to increment altitude sampling times
+     - Parameter finalIncrement: The level of precision to hone in on the exact time
+     - Parameter condition: The condition that is satisfied when the time being searched for has not been found yet
+     */
+    private func binaryAltitudeSearch(startTime: Date, initialIncrement: TimeInterval, finalIncrement: TimeInterval, condition: (Date, TimeInterval) -> Bool) -> Date {
+        var start = startTime
+        var increment = initialIncrement
+        
+        while increment > finalIncrement {
+            if condition(start, increment) {
+                start.addTimeInterval(increment)
+            } else {
+                increment /= 2
+            }
+        }
+        
+        return start
+    }
+    
+    /**
      Calculates the time on the interval [noon today, noon tomorrow] that the target reaches its highest altitude
      - Parameter location: The location on Earth to calculate from
      - Parameter date: The date on which to calculate the culmination
      - Returns: The time at which the target reaches its highest altitude
      */
-    func getCulmination(location: SavedLocation, date: Date) -> Date {
-        var time = date.noon()
-        
-        // iterate forward by 1 hour until slope sign changes
-        while whileCondition(location: location, time: time, increment: 3600) {
-            time.addTimeInterval(3600)
-        }
-        
-        // iterate forward by 1 minute until slope sign changes
-        while whileCondition(location: location, time: time, increment: 60) {
-            time.addTimeInterval(60)
+    private func getCulmination(location: SavedLocation, date: Date) -> Date {
+        let time = binaryAltitudeSearch(startTime: date.noon(), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+            slope(location: location, time: time) > 0 || slope(location: location, time: time.addingTimeInterval(increment)) < 0
         }
         
         return time
         
-        // returns the IROC of the altitude at a given time
-        func firstDerivative(location: SavedLocation, time: Date) -> Double {
+        /**
+         - Returns: An approximate IROC for altitude vs time at the given time in degrees per second
+         */
+        func slope(location: SavedLocation, time: Date) -> Double {
            let alt1 = getAltitude(location: location, time: time)
            let alt2 = getAltitude(location: location, time: time.addingTimeInterval(1))
            return alt1 - alt2
         }
-        
-        // this detects a maximum in the altitude function
-        func whileCondition(location: SavedLocation, time: Date, increment: TimeInterval) -> Bool {
-            let derivative1 = firstDerivative(location: location, time: time)
-            let derivative2 = firstDerivative(location: location, time: time.addingTimeInterval(increment))
-            return !(derivative1 < 0 && derivative2 > 0)
-        }
-    }
-    
-    /**
-     Calculates the time on the interval [noon today, noon tomorrow] the target reaches its lowest alttude
-     - Parameter location: The location on Earth to calculate from
-     - Parameter date: The date on which to calculate the anti-culmination
-     - Returns: The time at which the target reaches its lowest altitude
-     */
-    func getAntiCulmination(location: SavedLocation, date: Date) -> Date {
-        return getCulmination(location: location, date: date).addingTimeInterval(-43_080)
     }
     
     /**
@@ -204,46 +216,30 @@ extension DeepSkyTarget {
      - Parameter date: The date on which to calculate the rise and set times.
      - Returns: A DateInterval object from the targets next rise to the targets next set.
      */
-    func getNextInterval(location: SavedLocation, date: Date) throws -> DateInterval {
+    func getNextInterval(location: SavedLocation, date: Date, limitingAlt: Double = 0) -> TargetInterval {
         
         let culmination = getCulmination(location: location, date: date)
-        let antiCulmination = getAntiCulmination(location: location, date: date)
+        let antiCulmination = culmination.addingTimeInterval(-43_080)
         
-        guard getAltitude(location: location, time: culmination) > 0 else {
-            throw TargetCalculationError.neverRises
+        guard getAltitude(location: location, time: culmination) > limitingAlt else {
+            return TargetInterval(antiCulmination: antiCulmination, culmination: culmination, interval: .never)
         }
         
-        guard getAltitude(location: location, time: antiCulmination) < 0 else {
-            throw TargetCalculationError.neverSets
+        guard getAltitude(location: location, time: antiCulmination) < limitingAlt else {
+            return TargetInterval(antiCulmination: antiCulmination, culmination: culmination, interval: .always)
         }
         
-        // start looking for rise at the lowest altitude
-        var rise = antiCulmination
-        
-        // increment by 1 hour until the target has risen
-        while getAltitude(location: location, time: rise) < 0 && getAltitude(location: location, time: rise.addingTimeInterval(3600)) < 0 {
-            rise.addTimeInterval(3600)
+        // search for the next rise time after the anti-culmination
+        let rise = binaryAltitudeSearch(startTime: antiCulmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+            getAltitude(location: location, time: time) < limitingAlt && getAltitude(location: location, time: time.addingTimeInterval(increment)) < limitingAlt
         }
         
-        // increment by 1 minute until the target has risen
-        while getAltitude(location: location, time: rise) < 0 && getAltitude(location: location, time: rise.addingTimeInterval(60)) < 0 {
-            rise.addTimeInterval(60)
+        // search for the next set time after the culmination
+        let set = binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+            getAltitude(location: location, time: time) > limitingAlt && getAltitude(location: location, time: time.addingTimeInterval(increment)) > limitingAlt
         }
         
-        // start looking for set at the highest altitude
-        var set = culmination
-        
-        // increment by 1 hour until the target has set
-        while getAltitude(location: location, time: set) > 0 && getAltitude(location: location, time: set.addingTimeInterval(3600)) > 0 {
-            set.addTimeInterval(3600)
-        }
-        
-        // increment by 1 minute until the target has risen
-        while getAltitude(location: location, time: set) > 0 && getAltitude(location: location, time: set.addingTimeInterval(60)) > 0 {
-            set.addTimeInterval(60)
-        }
-        
-       return DateInterval(start: rise, end: set)
+        return TargetInterval(antiCulmination: antiCulmination, culmination: culmination, interval: .sometimes(DateInterval(start: rise, end: set)))
     }
     
     /**
@@ -255,26 +251,19 @@ extension DeepSkyTarget {
      
      */
     func getVisibilityScore(at location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Double {
-        do {
-            // attempt to get target interval
-            let targetInterval = try getNextInterval(location: location, date: viewingInterval.start.addingTimeInterval(-43_200))
-                        
-            // calculate time that the target is in the sky during the night
-            guard let overlap = viewingInterval.intersection(with: targetInterval) else {
-                return 0
-            }
-            
-            // calculate score
-            return overlap.duration / viewingInterval.duration
-            
-        } catch TargetCalculationError.neverRises {
+        // attempt to get target interval
+        let targetInterval = getNextInterval(location: location, date: viewingInterval.start.addingTimeInterval(-43_200), limitingAlt: limitingAlt).interval
+                    
+        // calculate time that the target is in the sky during the night
+        switch targetInterval {
+        case .never:
             return 0
-        } catch TargetCalculationError.neverSets {
+        case .always:
             return 1
-        } catch {
-            return 0
+        case .sometimes(let interval):
+            return (viewingInterval.intersection(with: interval)?.duration ?? 0) / viewingInterval.duration
         }
-
+        
     }
     
     /**
