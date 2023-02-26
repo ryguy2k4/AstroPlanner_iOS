@@ -182,9 +182,12 @@ fileprivate struct ReportHeader: View {
                     .font(.subheadline)
                     .fontWeight(.thin)
             }
-            Text("Moon is \(networkManager.data[.init(date: date, location: location)]?.moon.illuminated.percent() ?? "%") illuminated")
-                .font(.subheadline)
-                .fontWeight(.thin)
+            if let moon = data?.moon {
+                let moonOverlap = (moon.moonInterval.intersection(with: viewingInterval)?.duration ?? 0) / viewingInterval.duration
+                Text("Moon: \(moon.illuminated.percent()) illuminated for \(moonOverlap.percent()) of the night")
+                    .font(.subheadline)
+                    .fontWeight(.thin)
+            }
         }.padding(.bottom)
     }
 }
