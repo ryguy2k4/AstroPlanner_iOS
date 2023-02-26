@@ -193,30 +193,27 @@ private struct EventLabel: View {
 }
 
 struct TargetSchedule: View {
-    @Environment(\.data) var data
     @Environment(\.date) var date
     @EnvironmentObject var location: SavedLocation
     let target: DeepSkyTarget
     var body: some View {
-        if let sun = data?.sun {
-            VStack() {
-                TargetAltitudeChart(target: target)
-                    .padding()
-                if let interval = try? target.getNextInterval(at: location, on: date, sunData: sun) {
-                    HStack {
-                        EventLabel(date: interval.start, image: "sunrise")
-                        EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: sun), image: "arrow.right.and.line.vertical.and.arrow.left")
-                        EventLabel(date: interval.end, image: "sunset")
+        VStack() {
+            TargetAltitudeChart(target: target)
+                .padding()
+            if let interval = try? target.getNextInterval(location: location, date: date) {
+                HStack {
+                    EventLabel(date: interval.start, image: "sunrise")
+                    EventLabel(date: target.getCulmination(location: location, date: date), image: "arrow.right.and.line.vertical.and.arrow.left")
+                    EventLabel(date: interval.end, image: "sunset")
+                }
+            } else {
+                VStack {
+                    if target.getAltitude(location: location, time: date) > 0 {
+                        Text("Target Never Sets")
+                    } else {
+                        Text("Target Never Rises")
                     }
-                } else {
-                    VStack {
-                        if target.getAltitude(location: location, time: date) > 0 {
-                            Text("Target Never Sets")
-                        } else {
-                            Text("Target Never Rises")
-                        }
-                        EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: sun), image: "arrow.right.and.line.vertical.and.arrow.left")
-                    }
+                    EventLabel(date: target.getCulmination(location: location, date: date), image: "arrow.right.and.line.vertical.and.arrow.left")
                 }
             }
         }

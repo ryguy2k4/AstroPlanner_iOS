@@ -87,17 +87,15 @@ final class CatalogManager: ObservableObject {
     func refreshList(sunData: SunData?) {
         // reset list
         targets = DeepSkyTargetList.whitelistedTargets.sorted(by: {$0.ra > $1.ra})
-        if let sunData = sunData {
-            if targetSettings.hideNeverRises {
-                for target in targets {
-                    do {
-                        let _ = try target.getNextInterval(at: location, on: date, sunData: sunData)
-                    } catch TargetCalculationError.neverRises {
-                        // if target doesn't rise, remove it from the list
-                        targets.removeAll(where: {$0 == target})
-                    } catch {
-                        // do nothing
-                    }
+        if targetSettings.hideNeverRises {
+            for target in targets {
+                do {
+                    let _ = try target.getNextInterval(location: location, date: date)
+                } catch TargetCalculationError.neverRises {
+                    // if target doesn't rise, remove it from the list
+                    targets.removeAll(where: {$0 == target})
+                } catch {
+                    // do nothing
                 }
             }
         }

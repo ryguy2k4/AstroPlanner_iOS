@@ -131,47 +131,6 @@ struct DeepSkyTarget: Identifiable, Hashable {
  All Functions performed on DeepSkyTargett
  */
 extension DeepSkyTarget {
-        
-    /**
-     The local sidereal time (LST) that the target rises above the given altitude.
-     LST = HA + RA
-     HA = 360 - ( acos ( sin(ALT) * sec(DEC) * sec(LAT) - tan(DEC) * tan(LAT) ) )
-     where HA is hour angle and RA is right ascension
-     - Parameter location: The location at which sidereal time should be calculated.
-     - Parameter alt: The altitude that should be converted to local sidereal time.
-     - Returns: The local sidereal times at which the object reaches the given altitude.
-     */
-    private func getLST(location: SavedLocation, from alt: Double) throws -> (rise: Double, set: Double) {
-        let cosHourAngle = sin(alt.toRadian()) * (1/cos(dec.toRadian())) * (1/cos(location.latitude.toRadian())) - tan(dec.toRadian()) * tan(location.latitude.toRadian())
-        if cosHourAngle > 1 {
-            throw TargetCalculationError.neverRises
-        } else if cosHourAngle < -1 {
-            throw TargetCalculationError.neverSets
-        }
-        let hourAngle = acos(cosHourAngle).toDegree()
-        return (rise: 360 - hourAngle + ra, set: hourAngle + ra)
-    }
-    
-    /**
-     The Local Time that the target rises above the given altitude.
-     UTC = (-0.0657098 * d) - (1 / 15 * longitude) + (1 / 15 * LST) - (5023 / 750)
-     where d = fractional days since J2000
-     - Parameter location: The location at which the local time is being calculated for.
-     - Parameter date: The date at which the local time is being calculated on.
-     - Parameter lst: The local sidereal time that should be converted to local time.
-     - Returns: Two dates representing the local time that the target is at lst today and tomorrow.
-     */
-    private func getLocalTime(location: SavedLocation, date: Date, sunData: SunData, lst: Double) -> (today: Date, tomorrow: Date) {
-        let dToday = Date.daysSinceJ2000(until: sunData.astronomicalTwilightBegin)
-        let dTomorrow = Date.daysSinceJ2000(until: sunData.ATInterval.end)
-
-        
-        // calculate time in decimal hours and then convert to a date object on the current date
-        let today = ((-0.0657098 * dToday) - (1/15*location.longitude) + (1/15*lst) - (5023/750)).mod(by: 24).hoursToDate(on: date)
-        let tomorrow = ((-0.0657098 * dTomorrow) - (1/15*location.longitude) + (1/15*lst) - (5023/750)).mod(by: 24).hoursToDate(on: date.tomorrow())
-        return (today: today, tomorrow: tomorrow)
-        
-    }
     
     /**
      Gets the altitude of the target at a specific time
@@ -193,56 +152,98 @@ extension DeepSkyTarget {
     }
     
     /**
+     Calculates the time on the interval [noon today, noon tomorrow] that the target reaches its highest altitude
+     - Parameter location: The location on Earth to calculate from
+     - Parameter date: The date on which to calculate the culmination
+     - Returns: The time at which the target reaches its highest altitude
+     */
+    func getCulmination(location: SavedLocation, date: Date) -> Date {
+        var time = date.noon()
+        
+        // iterate forward by 1 hour until slope sign changes
+        while whileCondition(location: location, time: time, increment: 3600) {
+            time.addTimeInterval(3600)
+        }
+        
+        // iterate forward by 1 minute until slope sign changes
+        while whileCondition(location: location, time: time, increment: 60) {
+            time.addTimeInterval(60)
+        }
+        
+        return time
+        
+        // returns the IROC of the altitude at a given time
+        func firstDerivative(location: SavedLocation, time: Date) -> Double {
+           let alt1 = getAltitude(location: location, time: time)
+           let alt2 = getAltitude(location: location, time: time.addingTimeInterval(1))
+           return alt1 - alt2
+        }
+        
+        // this detects a maximum in the altitude function
+        func whileCondition(location: SavedLocation, time: Date, increment: TimeInterval) -> Bool {
+            let derivative1 = firstDerivative(location: location, time: time)
+            let derivative2 = firstDerivative(location: location, time: time.addingTimeInterval(increment))
+            return !(derivative1 < 0 && derivative2 > 0)
+        }
+    }
+    
+    /**
+     Calculates the time on the interval [noon today, noon tomorrow] the target reaches its lowest alttude
+     - Parameter location: The location on Earth to calculate from
+     - Parameter date: The date on which to calculate the anti-culmination
+     - Returns: The time at which the target reaches its lowest altitude
+     */
+    func getAntiCulmination(location: SavedLocation, date: Date) -> Date {
+        return getCulmination(location: location, date: date).addingTimeInterval(-43_080)
+    }
+    
+    /**
      Gets the next interval that the target is in the sky, from rise to set.
      Next is defined as the next time the target rises after astronomical twilight begins on the current day.
      - Parameter location: The location with which to calculate the rise and set times.
      - Parameter date: The date on which to calculate the rise and set times.
      - Returns: A DateInterval object from the targets next rise to the targets next set.
      */
-    func getNextInterval(at location: SavedLocation, on date: Date, sunData: SunData, limitingAlt: Double = 0) throws -> DateInterval {
-        do {
-            let riseToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt).rise).today
-            let setToday = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt).set).today
-            let riseTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt).rise).tomorrow
-            let setTomorrow = try getLocalTime(location: location, date: date, sunData: sunData, lst: getLST(location: location, from: limitingAlt).set).tomorrow
-            let dayStart = sunData.astronomicalTwilightBegin
-
-            // if rise < set && rise > sunrise
-            if riseToday < setToday && riseToday > dayStart {
-                // set interval from riseToday to setToday
-                return DateInterval(start: riseToday, end: setToday)
-            }
-            // if rise < set && rise < sunrise
-            else if riseToday < setToday && riseToday < dayStart && riseTomorrow < setTomorrow {
-                // set interval from riseTomorrow to setTomorrow
-                return DateInterval(start: riseTomorrow, end: setTomorrow)
-            }
-            // hot fix for issues involving midnight (12/23/22)
-            else if riseToday < setToday && riseToday < dayStart {
-                return DateInterval(start: riseToday.tomorrow(), end: setTomorrow)
-            }
-            // hot fix for another issue involving midnight (1/29/23 Witch's broom)
-            else if riseToday > setToday && setTomorrow > riseTomorrow {
-                return DateInterval(start: riseToday, end: setTomorrow.yesterday())
-            }
-            // if rise > set
-            else {
-                // set interval from riseToday to setTomorrow
-                return DateInterval(start: riseToday, end: setTomorrow)
-            }
+    func getNextInterval(location: SavedLocation, date: Date) throws -> DateInterval {
+        
+        let culmination = getCulmination(location: location, date: date)
+        let antiCulmination = getAntiCulmination(location: location, date: date)
+        
+        guard getAltitude(location: location, time: culmination) > 0 else {
+            throw TargetCalculationError.neverRises
         }
-    }
-    
-    /**
-     Gets the next time at which the target crosses the meridian.
-     A target crosses the meridian when its right ascension is equal to the local sidereal time.
-     - Parameter location: The location at which to calculate the meridian crossing.
-     - Parameter date: The date on which to calculate the meridian crossing.
-     - Returns: The date and time that the object next passes the meridian.
-     */
-    func getNextMeridian(at location: SavedLocation, on date: Date, sunData: SunData) -> Date {
-        // need a conditional to determine whether to return [0] or [1] of the following function
-        return getLocalTime(location: location, date: date, sunData: sunData, lst: ra).tomorrow
+        
+        guard getAltitude(location: location, time: antiCulmination) < 0 else {
+            throw TargetCalculationError.neverSets
+        }
+        
+        // start looking for rise at the lowest altitude
+        var rise = antiCulmination
+        
+        // increment by 1 hour until the target has risen
+        while getAltitude(location: location, time: rise) < 0 && getAltitude(location: location, time: rise.addingTimeInterval(3600)) < 0 {
+            rise.addTimeInterval(3600)
+        }
+        
+        // increment by 1 minute until the target has risen
+        while getAltitude(location: location, time: rise) < 0 && getAltitude(location: location, time: rise.addingTimeInterval(60)) < 0 {
+            rise.addTimeInterval(60)
+        }
+        
+        // start looking for set at the highest altitude
+        var set = culmination
+        
+        // increment by 1 hour until the target has set
+        while getAltitude(location: location, time: set) > 0 && getAltitude(location: location, time: set.addingTimeInterval(3600)) > 0 {
+            set.addTimeInterval(3600)
+        }
+        
+        // increment by 1 minute until the target has risen
+        while getAltitude(location: location, time: set) > 0 && getAltitude(location: location, time: set.addingTimeInterval(60)) > 0 {
+            set.addTimeInterval(60)
+        }
+        
+       return DateInterval(start: rise, end: set)
     }
     
     /**
@@ -254,9 +255,9 @@ extension DeepSkyTarget {
      
      */
     func getVisibilityScore(at location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Double {
-        // retrieve necessary data
         do {
-            let targetInterval = try getNextInterval(at: location, on: viewingInterval.start.startOfDay(), sunData: sunData, limitingAlt: limitingAlt)
+            // attempt to get target interval
+            let targetInterval = try getNextInterval(location: location, date: viewingInterval.start.addingTimeInterval(-43_200))
                         
             // calculate time that the target is in the sky during the night
             guard let overlap = viewingInterval.intersection(with: targetInterval) else {
@@ -265,6 +266,7 @@ extension DeepSkyTarget {
             
             // calculate score
             return overlap.duration / viewingInterval.duration
+            
         } catch TargetCalculationError.neverRises {
             return 0
         } catch TargetCalculationError.neverSets {
@@ -283,7 +285,7 @@ extension DeepSkyTarget {
      - Returns: A decimal representing an abstract percentage.
      */
     func getMeridianScore(at location: SavedLocation, on date: Date, sunData: SunData) -> Double {
-        let targetMeridian = getNextMeridian(at: location, on: date, sunData: sunData)
+        let targetMeridian = getCulmination(location: location, date: date)
         let nightLength = sunData.ATInterval.duration
         let nightBegin = sunData.ATInterval.start
         

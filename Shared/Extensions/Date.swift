@@ -96,6 +96,10 @@ extension Date {
     public func endOfDay() -> Date {
         return Calendar.current.startOfDay(for: self.tomorrow()).addingTimeInterval(-1)
     }
+    
+    public func noon() -> Date {
+        return self.startOfDay().addingTimeInterval(43_200)
+    }
 }
 
 extension Date: Identifiable {
