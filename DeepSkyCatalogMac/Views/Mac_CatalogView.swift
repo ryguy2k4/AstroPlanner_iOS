@@ -13,12 +13,14 @@ struct CatalogView: View {
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @StateObject var viewModel: CatalogManager
     @Binding var date: Date
+    @Binding var viewingInterval: DateInterval
     @Environment(\.dismissSearch) private var dismissSearch
     @Environment(\.isSearching) private var isSearching
     
-    init(date: Binding<Date>, location: SavedLocation, targetSettings: TargetSettings) {
-        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, targetSettings: targetSettings))
+    init(date: Binding<Date>, viewingInterval: Binding<DateInterval>, location: SavedLocation, targetSettings: TargetSettings) {
+        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, viewingInterval: viewingInterval, targetSettings: targetSettings))
         self._date = date
+        self._viewingInterval = viewingInterval
     }
         
     var body: some View {
@@ -35,6 +37,7 @@ struct CatalogView: View {
                 }
             }
         }
+        // Modifiers to enable searching
         .searchable(text: $viewModel.searchText)
         .onSubmit(of: .search) {
             viewModel.refreshList(sunData: data?.sun)
@@ -46,11 +49,7 @@ struct CatalogView: View {
         }
         .searchSuggestions {
             // grab top 15 search results
-            let suggestions: [DeepSkyTarget] = {
-                var list = DeepSkyTargetList.objects
-                list.filterBySearch(viewModel.searchText)
-                return list
-            }()
+            let suggestions = DeepSkyTargetList.objects.filteredBySearch(viewModel.searchText)
             
             // list the search results
             ForEach(suggestions) { suggestion in
@@ -70,37 +69,15 @@ struct CatalogView: View {
                 dismissSearch()
             }
         }
+        .autocorrectionDisabled()
 
         
-        // Modals for editing each filter
-        .filterModal(isPresented: $viewModel.isAllFilterModal, viewModel: viewModel) {
-//            EditAllFiltersView(viewModel: viewModel)
-        }
-        .filterModal(isPresented: $viewModel.isTypeModal, viewModel: viewModel) {
-//            SelectableList(selection: $viewModel.typeSelection)
-        }
-        .filterModal(isPresented: $viewModel.isCatalogModal, viewModel: viewModel) {
-//            SelectableList(selection: $viewModel.catalogSelection)
-        }
-        .filterModal(isPresented: $viewModel.isConstellationModal, viewModel: viewModel) {
-//            SelectableList(selection: $viewModel.constellationSelection)
-        }
-        .filterModal(isPresented: $viewModel.isMagModal, viewModel: viewModel) {
-//            MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
-        }
-        .filterModal(isPresented: $viewModel.isSizeModal, viewModel: viewModel) {
-//            MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
-        }
-        .filterModal(isPresented: $viewModel.isVisScoreModal, viewModel: viewModel) {
-            Form {
-//                NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
-            }
-        }
-        .filterModal(isPresented: $viewModel.isMerScoreModal, viewModel: viewModel) {
-            Form {
-//                NumberPicker(num: $viewModel.minMerScore, placeValues: [.tenths, .hundredths])
-            }
-        }
+        // Modal for settings
+//        .sheet(isPresented: $isSettingsModal){
+//            CatalogViewSettings(date: $date, viewingInterval: $viewingInterval)
+//                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+//                .disabled(data == nil)
+//        }
         
         // When the date changes, make sure everything that depends on the date gets updated
         .onChange(of: date) { newDate in
@@ -130,11 +107,12 @@ struct CatalogView: View {
 /**
  This View displays information about the target at a glance. It is used within the Master Catalog list.
  */
-private struct TargetCell: View {
+fileprivate struct TargetCell: View {
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
     @Environment(\.data) var data
+    @Environment(\.viewingInterval) var viewingInterval
     var target: DeepSkyTarget
     
     var body: some View {
@@ -149,9 +127,9 @@ private struct TargetCell: View {
                     .fontWeight(.semibold)
                     .lineLimit(1)
                 if let sun = data?.sun {
-                    Label(target.getVisibilityScore(at: location, on: date, sunData: sun, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
+                    Label(target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
                         .foregroundColor(.secondary)
-                    Label(target.getMeridianScore(at: location, on: date, sunData: sun).percent(), systemImage: "arrow.right.and.line.vertical.and.arrow.left")
+                    Label(target.getSeasonScore(at: location, on: date, sunData: sun).percent(), systemImage: "calendar.circle")
                         .foregroundColor(.secondary)
                 }
             }
@@ -164,21 +142,23 @@ private struct TargetCell: View {
  The filter buttons are explicity defined in an array.
  The array allows them to be sorted based on which ones are active.
  */
-private struct FilterButtonMenu: View {
+fileprivate struct FilterButtonMenu: View {
     @EnvironmentObject var viewModel: CatalogManager
     @Environment(\.data) var data
+    @Binding var date: Date
+    @State private var isAllFilterModal: Bool = false
     
     var body: some View {
         let buttons: [FilterButton] = {
             var buttons: [FilterButton] = []
-            buttons.append(FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection), modalControl: $viewModel.isCatalogModal))
-            buttons.append(FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection), modalControl: $viewModel.isConstellationModal))
-            buttons.append(FilterButton(method: .type, active: viewModel.isActive(criteria: viewModel.typeSelection), modalControl: $viewModel.isTypeModal))
-            buttons.append(FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag)), modalControl: $viewModel.isMagModal))
-            buttons.append(FilterButton(method: .size, active: viewModel.isActive(criteria: (min: viewModel.minSize, max: viewModel.maxSize)), modalControl: $viewModel.isSizeModal))
+            buttons.append(FilterButton(method: .type, active: viewModel.isActive(criteria: viewModel.typeSelection)))
+            buttons.append(FilterButton(method: .size, active: viewModel.isActive(criteria: (min: viewModel.minSize, max: viewModel.maxSize))))
+            buttons.append(FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection)))
+            buttons.append(FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection)))
+            buttons.append(FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag))))
             if data != nil {
-                buttons.append(FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore), modalControl: $viewModel.isVisScoreModal))
-                buttons.append(FilterButton(method: .meridian, active: viewModel.isActive(criteria: viewModel.minMerScore), modalControl: $viewModel.isMerScoreModal))
+                buttons.append(FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore)))
+                buttons.append(FilterButton(method: .seasonScore, active: viewModel.isActive(criteria: viewModel.minSeasonScore)))
             }
             return buttons.sorted(by: {$0.active && !$1.active})
         }()
@@ -191,7 +171,7 @@ private struct FilterButtonMenu: View {
                     .cornerRadius(13)
                     .foregroundColor(Color(!buttons.allSatisfy({$0.active == false}) ? "LightBlue" : "LightGray"))
                 Button {
-                    viewModel.isAllFilterModal = true
+                    isAllFilterModal = true
                 } label: {
                     Image(systemName: "camera.filters")
                         .foregroundColor(.primary)
@@ -209,20 +189,30 @@ private struct FilterButtonMenu: View {
         }
         .padding(.horizontal)
         .scrollIndicators(.hidden)
+        
+        // Modal for editing all filters
+//        .sheet(isPresented: $isAllFilterModal) {
+//            EditAllFiltersView(viewModel: viewModel, dateBinding: $date)
+//                .onDisappear() {
+//                    viewModel.refreshList(sunData: data?.sun)
+//                }
+//                .presentationDetents([.fraction(0.5), .fraction(0.8)])
+//        }
+        
     }
 }
 
 /**
  This View defines a singular filter button for a given filter method.
  */
-private struct FilterButton: View {
+fileprivate struct FilterButton: View {
     @EnvironmentObject var viewModel: CatalogManager
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date
     @Environment(\.data) var data
+    @State private var presentedFilterSheet: FilterMethod? = nil
     let method: FilterMethod
     let active: Bool
-    @Binding var modalControl: Bool
     
     var body: some View {
         ZStack {
@@ -231,7 +221,7 @@ private struct FilterButton: View {
                 .cornerRadius(13)
                 .foregroundColor(Color(active ? "LightBlue" : "LightGray"))
             Button {
-                modalControl = true
+                presentedFilterSheet = method
             } label: {
                 HStack {
                     Label(method.info.name, systemImage: method.info.icon)
@@ -247,6 +237,75 @@ private struct FilterButton: View {
                 }
             }
         }
+        // Modals for editing each filter
+//        .sheet(item: $presentedFilterSheet) { method in
+//            VStack {
+//                switch method {
+//                case .catalog:
+//                    SelectableList(selection: $viewModel.catalogSelection)
+//                case .constellation:
+//                    SelectableList(selection: $viewModel.constellationSelection)
+//                case .type:
+//                    SelectableList(selection: $viewModel.typeSelection)
+//                case .magnitude:
+//                    MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
+//                case .size:
+//                    MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
+//                case .visibility:
+//                    Form {
+//                        NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+//                    }
+//                case .seasonScore:
+//                    Form {
+//                        NumberPicker(num: $viewModel.minSeasonScore, placeValues: [.tenths, .hundredths])
+//                    }
+//                default:
+//                    EmptyView()
+//                }
+//            }
+//            .onDisappear() {
+//                viewModel.refreshList(sunData: data?.sun)
+//            }
+//            .presentationDetents([.fraction(0.5), .fraction(0.8)])
+//        }
     }
 }
 
+///**
+// This view is for the modal that pops up on the Master Catalog to choose the date and location
+// */
+//fileprivate struct CatalogViewSettings: View {
+//    @Environment(\.managedObjectContext) var context
+//    @Environment(\.data) var data
+//    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+//    @Binding var date: Date
+//    @Binding var viewingInterval: DateInterval
+//    var body: some View {
+//        let locationBinding = Binding(
+//            get: { return locationList.first! },
+//            set: {
+//                for location in locationList { location.isSelected = false }
+//                $0.isSelected = true
+//                PersistenceManager.shared.saveData(context: context)
+//            }
+//        )
+//        VStack {
+//            DateSelector(date: $date)
+//                .padding()
+//                .font(.title2)
+//                .fontWeight(.semibold)
+//            Form {
+//                ConfigSection(header: "Viewing Interval") {
+//                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != data?.sun.ATInterval, sun: data?.sun)
+//                }
+//                Picker("Location", selection: locationBinding) {
+//                    ForEach(locationList) { location in
+//                        Text(location.name!).tag(location)
+//                    }
+//                }
+//                .pickerStyle(.inline)
+//                .headerProminence(.increased)
+//            }
+//        }
+//    }
+//}

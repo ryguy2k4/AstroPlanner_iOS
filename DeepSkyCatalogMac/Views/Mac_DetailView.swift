@@ -14,6 +14,7 @@ struct DetailView: View {
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
+    @Environment(\.viewingInterval) var viewingInterval
     var target: DeepSkyTarget
     var body: some View {
         let data = networkManager.data[.init(date: date, location: location)]
@@ -60,9 +61,9 @@ struct DetailView: View {
                             }
                             if let sun = data?.sun {
                                 VStack {
-                                    Text("Visibility Score: \((target.getVisibilityScore(at: location, on: date, sunData: sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
+                                    Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
                                         .foregroundColor(.secondary)
-                                    Text("Meridian Score: \((target.getMeridianScore(at: location, on: date, sunData: sun)).percent())")
+                                    Text("Season Score: \((target.getSeasonScore(at: location, on: date, sunData: sun)).percent())")
                                         .foregroundColor(.secondary)
                                 }
                             }
@@ -186,30 +187,26 @@ private struct EventLabel: View {
 }
 
 struct TargetSchedule: View {
-    @Environment(\.data) var data
     @Environment(\.date) var date
     @EnvironmentObject var location: SavedLocation
     let target: DeepSkyTarget
     var body: some View {
-        if let sun = data?.sun {
-            VStack() {
-                TargetAltitudeChart(target: target)
-                    .padding()
-                if let interval = try? target.getNextInterval(at: location, on: date, sunData: sun) {
-                    HStack {
-                        EventLabel(date: interval.start, image: "sunrise")
-                        EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: sun), image: "arrow.right.and.line.vertical.and.arrow.left")
-                        EventLabel(date: interval.end, image: "sunset")
-                    }
-                } else {
-                    VStack {
-                        if target.getAltitude(location: location, time: date) > 0 {
-                            Text("Target Never Sets")
-                        } else {
-                            Text("Target Never Rises")
-                        }
-                        EventLabel(date: target.getNextMeridian(at: location, on: date, sunData: sun), image: "arrow.right.and.line.vertical.and.arrow.left")
-                    }
+        VStack() {
+            TargetAltitudeChart(target: target)
+                .padding()
+            let targetInterval = target.getNextInterval(location: location, date: date)
+            HStack {
+                switch targetInterval.interval {
+                case .never:
+                    Text("Target Never Visible")
+                    EventLabel(date: targetInterval.culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                case .always:
+                    Text("Target Always Visible")
+                    EventLabel(date: targetInterval.culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                case .sometimes(let interval):
+                    EventLabel(date: interval.start, image: "sunrise")
+                    EventLabel(date: targetInterval.culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                    EventLabel(date: interval.end, image: "sunset")
                 }
             }
         }

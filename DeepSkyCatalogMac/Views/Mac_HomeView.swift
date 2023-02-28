@@ -15,6 +15,7 @@ struct Mac_HomeView: View {
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @State var date: Date = Date.today
+    @State var viewingInterval: DateInterval = DateInterval(start: Date.today.addingTimeInterval(68400), end: Date.tomorrow.addingTimeInterval(18000))
     
     enum SidebarItem: String, Identifiable, CaseIterable {
         var id: Self { self }
@@ -45,9 +46,9 @@ struct Mac_HomeView: View {
         } detail: {
             switch sidebarItem {
             case .report:
-                DailyReportView(date: $date)
+                DailyReportView(date: $date, viewingInterval: $viewingInterval)
             case .catalog:
-                CatalogView(date: $date, location: locationList.first!, targetSettings: targetSettings.first!)
+                CatalogView(date: $date, viewingInterval: $viewingInterval, location: locationList.first!, targetSettings: targetSettings.first!)
             case .journal:
                 Text("Under Construction")
             case .settings:

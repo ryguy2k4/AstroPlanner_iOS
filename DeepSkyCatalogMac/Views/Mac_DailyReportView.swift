@@ -15,6 +15,7 @@ struct DailyReportView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
+    @Binding var viewingInterval: DateInterval
     @State var report: DailyReport?
     @State var internet: Bool = true
     
@@ -30,7 +31,7 @@ struct DailyReportView: View {
                 // Only display report if network data is available
                 if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
                     // every time the view refreshes, generate a report
-                    let report = DailyReport(location: locationList.first!, date: date, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
+                    let report = DailyReport(location: locationList.first!, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
                     ScrollView {
                         VStack {
                             // Report Section
