@@ -15,14 +15,14 @@ final class DailyReport: ObservableObject {
     let reportSettings: ReportSettings
     let targetSettings: TargetSettings
     let data: (sun: SunData, moon: MoonData)
-    let presetList: FetchedResults<ImagingPreset>
+    let presetList: [ImagingPreset]
     
     let topFive: [DeepSkyTarget]
     let topTenNebulae: [DeepSkyTarget]
     let topTenGalaxies: [DeepSkyTarget]
     let topTenStarClusters: [DeepSkyTarget]
     
-    init(location: SavedLocation, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: FetchedResults<ImagingPreset>, data: (sun: SunData, moon: MoonData)) {
+    init(location: SavedLocation, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: [ImagingPreset], data: (sun: SunData, moon: MoonData)) {
         self.location = location
         self.date = date
         self.viewingInterval = viewingInterval

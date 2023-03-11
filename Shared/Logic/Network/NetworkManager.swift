@@ -21,7 +21,22 @@ final class NetworkManager: ObservableObject {
     private init() { }
     
     @MainActor
-    func getData(at location: SavedLocation, on date: Date) async throws {
+    func updateData(at location: SavedLocation, on date: Date) async throws {
+        do {
+            self.data[.init(date: date, location: location)] = try await getData(at: location, on: date)
+        } catch FetchError.unableToFetch {
+            print("Error: No Internet Connection")
+            throw FetchError.unableToFetch
+        } catch FetchError.unableToDecode {
+            print("Error: unable to decode data")
+        } catch FetchError.unableToMakeURL {
+            print("Error: Bad URL")
+        } catch {
+            print("Unknown Error: \(error.localizedDescription)")
+        }
+    }
+    
+    func getData(at location: SavedLocation, on date: Date) async throws -> (sun: SunData, moon: MoonData) {
         do {
             async let decodedMoonDataToday: RawMoonData = try fetchTask(
                 from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(location.timezone)")
@@ -34,17 +49,8 @@ final class NetworkManager: ObservableObject {
             
             let sunToday = SunData(dataToday: try await decodedSunDataToday, dataTomorrow: try await decodedSunDataTomorrow)
             let moonToday = MoonData(dataToday: try await decodedMoonDataToday, dataTomorrow: try await decodedMoonDataTomorrow, on: date, sun: sunToday)
-            self.data[.init(date: date, location: location)] = (sunToday, moonToday)
             print("API Data Fetched")
-        } catch FetchError.unableToFetch {
-            print("Error: No Internet Connection")
-            throw FetchError.unableToFetch
-        } catch FetchError.unableToDecode {
-            print("Error: unable to decode data")
-        } catch FetchError.unableToMakeURL {
-            print("Error: Bad URL")
-        } catch {
-            print("Unknown Error: \(error.localizedDescription)")
+            return (sun: sunToday, moon: moonToday)
         }
     }
     

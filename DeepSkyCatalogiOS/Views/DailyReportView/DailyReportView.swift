@@ -34,7 +34,7 @@ struct DailyReportView: View {
                 // Only display report if network data is available
                 if let data = data {
                     // every time the view refreshes, generate a report
-                    let report = DailyReport(location: locationList.first!, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
+                    let report = DailyReport(location: locationList.first!, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), data: data)
                     ReportHeader()
                         .environment(\.data, data)
                     ScrollView {
@@ -58,7 +58,7 @@ struct DailyReportView: View {
                         }
                         .task {
                             do {
-                                try await networkManager.getData(at: locationList.first!, on: date)
+                                try await networkManager.updateData(at: locationList.first!, on: date)
                             } catch {
                                 internet = false
                             }
@@ -72,7 +72,7 @@ struct DailyReportView: View {
                                 internet = true
                                 Task {
                                     do {
-                                        try await networkManager.getData(at: locationList.first!, on: date)
+                                        try await networkManager.updateData(at: locationList.first!, on: date)
                                     } catch {
                                         internet = false
                                     }

@@ -10,16 +10,40 @@ import CoreData
 final class PersistenceManager: ObservableObject {
     
     static let shared = PersistenceManager()
+        
+    /// The location of the old CoreData store before moving it to the AppGroup
+    var oldStoreURL: URL {
+        let directory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        return directory.appending(component: "DeepSkyCatalog.sqlite")
+    }
     
-    let container = NSPersistentCloudKitContainer(name: "DeepSkyCatalog")
+    /// The location of the new CoreData store within the AppGroup
+    var sharedStoreURL: URL {
+        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.ryansponzilli.DeepSkyCatalog")
+        return container!.appending(component: "DeepSkyCatalog.sqlite")
+    }
+    
+    let container: NSPersistentCloudKitContainer
     
     private init() {
-        container.viewContext.automaticallyMergesChangesFromParent = true
+        container = NSPersistentCloudKitContainer(name: "DeepSkyCatalog")
+        container.persistentStoreDescriptions.first!.url = sharedStoreURL
+        container.persistentStoreDescriptions.first!.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.DeepSkyCatalog")
         container.loadPersistentStores() { description, error in
             if let error = error {
-                print("Failed to load data: \(error.localizedDescription)")
+                fatalError("Failed to load data: \(error.localizedDescription)")
             }
         }
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        
+        // clean up legacy old store
+        do {
+            try FileManager.default.removeItem(at: oldStoreURL)
+            print("old store deleted successfully")
+        } catch {
+            print("unable to delete old store")
+        }
+        
         // if there are no locations stored, then create one
         if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "SavedLocation")) {
             if count == 0 {
@@ -27,6 +51,7 @@ final class PersistenceManager: ObservableObject {
             }
         }
         
+        // clean up legacy default preset
         if let defaultPreset = (try? self.container.viewContext.fetch(NSFetchRequest<ImagingPreset>(entityName: "ImagingPreset")))?.first(where: {$0.name == "Default"}) {
             self.container.viewContext.delete(defaultPreset)
             saveData(context: container.viewContext)
@@ -52,7 +77,7 @@ final class PersistenceManager: ObservableObject {
             try context.save()
             print("Data Saved")
         } catch {
-            print("Error saving data")
+            fatalError("Error saving data: \(error.localizedDescription)")
         }
     }
     

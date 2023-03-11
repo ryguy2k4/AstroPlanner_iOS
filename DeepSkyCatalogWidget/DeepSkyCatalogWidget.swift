@@ -23,8 +23,7 @@ struct DeepSkyCatalogWidget: Widget {
 
 struct DeepSkyCatalogWidget_Previews: PreviewProvider {
     static var previews: some View {
-        let topThree = [DeepSkyTargetList.whitelistedTargets[0], DeepSkyTargetList.whitelistedTargets[1], DeepSkyTargetList.whitelistedTargets[2]]
-        TopThreeWidgetView(entry: TopThreeEntry(date: Date(), topThree: topThree))
+        TopThreeWidgetView(entry: TopThreeEntry.placeholder)
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
