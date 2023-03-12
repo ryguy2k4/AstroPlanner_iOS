@@ -397,9 +397,9 @@
 			isa = PBXGroup;
 			children = (
 				7162D3442964DBF1007C8710 /* ReportListWidget.swift */,
-				7164CEC329BE4D11000A154A /* ReportListIntents.intentdefinition */,
 				71ACF33B2964F04D00CC83D5 /* Provider.swift */,
 				71ACF33E2964F0D800CC83D5 /* ReportListEntry.swift */,
+				7164CEC329BE4D11000A154A /* ReportListIntents.intentdefinition */,
 			);
 			path = ReportListWidget;
 			sourceTree = "<group>";
@@ -1289,7 +1289,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;
@@ -1328,7 +1328,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;

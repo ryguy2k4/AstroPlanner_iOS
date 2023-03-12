@@ -24,11 +24,11 @@ struct Provider: IntentTimelineProvider {
     }
     
     func placeholder(in context: Context) -> ReportListEntry {
-        return ReportListEntry.placeholder
+        return ReportListEntry.placeholder()
     }
     
     func getSnapshot(for configuration: ReportListIntent, in context: Context, completion: @escaping (ReportListEntry) -> Void) {
-        completion(ReportListEntry.placeholder)
+        completion(ReportListEntry.placeholder())
     }
     
     func getTimeline(for configuration: ReportListIntent, in context: Context, completion: @escaping (Timeline<ReportListEntry>) -> Void) {
@@ -64,7 +64,7 @@ struct Provider: IntentTimelineProvider {
             } catch {
                 // TEMPORARY -- CHANGE LATER
                 // if there are any problems fetching from core data, or making network calls, just use the placeholder data
-                let timeline = Timeline(entries: [ReportListEntry.placeholder], policy: .atEnd)
+                let timeline = Timeline(entries: [ReportListEntry.placeholder(error: error)], policy: .atEnd)
                 completion(timeline)
             }
         }

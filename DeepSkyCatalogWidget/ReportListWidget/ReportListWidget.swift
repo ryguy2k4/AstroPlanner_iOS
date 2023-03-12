@@ -25,31 +25,36 @@ struct ReportListView : View {
     var entry: ReportListEntry
 
     var body: some View {
-        let rows = entry.targets.count < entry.rows ? entry.targets.count : entry.rows
-        let targets = entry.targets.dropLast(entry.targets.count > rows ? entry.targets.count - rows : 0)
-        
-        VStack(alignment: .listRowSeparatorLeading) {
-            ForEach(targets) { target in
-                HStack {
-                    Image(target.image?.source.fileName ?? "\(target.type)")
-                        .resizable()
-                        .scaledToFit()
-                    Text(target.name?.first! ?? target.defaultName)
-                        .padding(.leading, 20)
-                        .font(.title2)
-                        .fontWeight(.medium)
-                        .minimumScaleFactor(0.6)
-                    Spacer()
+        if let error = entry.error {
+            Text("ERROR: \(error.localizedDescription)")
+        } else {
+            let rows = entry.targets.count < entry.rows ? entry.targets.count : entry.rows
+            let targets = entry.targets.dropLast(entry.targets.count > rows ? entry.targets.count - rows : 0)
+            
+            VStack(alignment: .listRowSeparatorLeading) {
+                ForEach(targets) { target in
+                    HStack {
+                        Image(target.image?.source.fileName ?? "\(target.type)")
+                            .resizable()
+                            .scaledToFit()
+                        Text(target.name?.first! ?? target.defaultName)
+                            .padding(.leading, 20)
+                            .font(.title2)
+                            .fontWeight(.medium)
+                            .minimumScaleFactor(0.6)
+                        Spacer()
+                    }
                 }
             }
+            .padding(20)
         }
-        .padding(20)
+        
     }
 }
 
 struct ReportListWidget_Previews: PreviewProvider {
     static var previews: some View {
-        ReportListView(entry: ReportListEntry.placeholder)
+        ReportListView(entry: ReportListEntry.placeholder())
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
