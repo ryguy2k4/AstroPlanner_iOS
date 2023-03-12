@@ -1,6 +1,6 @@
 //
 //  DeepSkyCatalogWidgetBundle.swift
-//  DeepSkyCatalogWidget
+//  ReportListWidget
 //
 //  Created by Ryan Sponzilli on 1/3/23.
 //
@@ -11,6 +11,6 @@ import SwiftUI
 @main
 struct DeepSkyCatalogWidgetBundle: WidgetBundle {
     var body: some Widget {
-        DeepSkyCatalogWidget()
+        ReportListWidget()
     }
 }

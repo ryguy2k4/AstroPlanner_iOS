@@ -26,10 +26,18 @@
 		7162D33E2964DBF1007C8710 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162D33D2964DBF0007C8710 /* WidgetKit.framework */; };
 		7162D3402964DBF1007C8710 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162D33F2964DBF1007C8710 /* SwiftUI.framework */; };
 		7162D3432964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */; };
-		7162D3452964DBF1007C8710 /* DeepSkyCatalogWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162D3442964DBF1007C8710 /* DeepSkyCatalogWidget.swift */; };
+		7162D3452964DBF1007C8710 /* ReportListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162D3442964DBF1007C8710 /* ReportListWidget.swift */; };
 		7162D34B2964DBF1007C8710 /* DeepSkyCatalogWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
 		7162D3512964E909007C8710 /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
+		7164CEC429BE4D11000A154A /* ReportListIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEC329BE4D11000A154A /* ReportListIntents.intentdefinition */; };
+		7164CEC529BE4D11000A154A /* ReportListIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEC329BE4D11000A154A /* ReportListIntents.intentdefinition */; };
+		7164CECC29BE4E72000A154A /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7164CECB29BE4E72000A154A /* Intents.framework */; };
+		7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CECE29BE4E72000A154A /* IntentHandler.swift */; };
+		7164CED329BE4E72000A154A /* DeepSkyCatalogIntents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7164CECA29BE4E72000A154A /* DeepSkyCatalogIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7164CED829BE4EFE000A154A /* ReportListIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEC329BE4D11000A154A /* ReportListIntents.intentdefinition */; };
+		7164CED929BE4FDA000A154A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
+		7164CEDA29BE4FDC000A154A /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
 		716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71668AD0298F266300AB0D19 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
@@ -79,8 +87,7 @@
 		71ACF3362964ED3C00CC83D5 /* SunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9802921EF8B008C7614 /* SunData.swift */; };
 		71ACF33A2964EED200CC83D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
 		71ACF33D2964F0B400CC83D5 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF33B2964F04D00CC83D5 /* Provider.swift */; };
-		71ACF33F2964F0D800CC83D5 /* TopThreeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF33E2964F0D800CC83D5 /* TopThreeEntry.swift */; };
-		71ACF3412964F0F800CC83D5 /* TopThreeWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF3402964F0F800CC83D5 /* TopThreeWidgetView.swift */; };
+		71ACF33F2964F0D800CC83D5 /* ReportListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF33E2964F0D800CC83D5 /* ReportListEntry.swift */; };
 		71B14F692958D905003C11BD /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B14F682958D905003C11BD /* DateSelector.swift */; };
 		71B14F6B295A77AE003C11BD /* KeyboardDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */; };
 		71B5AF96292C778D00323693 /* TargetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* TargetCatalog.swift */; };
@@ -153,6 +160,13 @@
 			remoteGlobalIDString = 7162D33A2964DBF0007C8710;
 			remoteInfo = DeepSkyCatalogWidgetExtension;
 		};
+		7164CED129BE4E72000A154A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71BCF9412921EE71008C7614 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7164CEC929BE4E72000A154A;
+			remoteInfo = DeepSkyCatalogIntents;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -162,6 +176,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				7164CED329BE4E72000A154A /* DeepSkyCatalogIntents.appex in Embed Foundation Extensions */,
 				7162D34B2964DBF1007C8710 /* DeepSkyCatalogWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -186,8 +201,14 @@
 		7162D33D2964DBF0007C8710 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		7162D33F2964DBF1007C8710 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogWidgetBundle.swift; sourceTree = "<group>"; };
-		7162D3442964DBF1007C8710 /* DeepSkyCatalogWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogWidget.swift; sourceTree = "<group>"; };
+		7162D3442964DBF1007C8710 /* ReportListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListWidget.swift; sourceTree = "<group>"; };
 		7162D3482964DBF1007C8710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7164CEC329BE4D11000A154A /* ReportListIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ReportListIntents.intentdefinition; sourceTree = "<group>"; };
+		7164CECA29BE4E72000A154A /* DeepSkyCatalogIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeepSkyCatalogIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7164CECB29BE4E72000A154A /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		7164CECE29BE4E72000A154A /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		7164CED029BE4E72000A154A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7164CED729BE4E7D000A154A /* DeepSkyCatalogIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogIntents.entitlements; sourceTree = "<group>"; };
 		716531E929340CFE00D05B79 /* DailyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReport.swift; sourceTree = "<group>"; };
 		71668AD4298F26AC00AB0D19 /* StringIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringIOS.swift; sourceTree = "<group>"; };
 		71668AD6298F280A00AB0D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -209,8 +230,7 @@
 		7190D7512972538B00938E14 /* SharplessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharplessInfo.swift; sourceTree = "<group>"; };
 		719B26D6295167A100E1165A /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		71ACF33B2964F04D00CC83D5 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
-		71ACF33E2964F0D800CC83D5 /* TopThreeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopThreeEntry.swift; sourceTree = "<group>"; };
-		71ACF3402964F0F800CC83D5 /* TopThreeWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopThreeWidgetView.swift; sourceTree = "<group>"; };
+		71ACF33E2964F0D800CC83D5 /* ReportListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListEntry.swift; sourceTree = "<group>"; };
 		71B14F682958D905003C11BD /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissButton.swift; sourceTree = "<group>"; };
 		71B5AF95292C778D00323693 /* TargetCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCatalog.swift; sourceTree = "<group>"; };
@@ -260,6 +280,14 @@
 			files = (
 				7162D3402964DBF1007C8710 /* SwiftUI.framework in Frameworks */,
 				7162D33E2964DBF1007C8710 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7164CEC729BE4E72000A154A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7164CECC29BE4E72000A154A /* Intents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +357,7 @@
 				71C26466298F1E2D0057EC04 /* UIKit.framework */,
 				7162D33D2964DBF0007C8710 /* WidgetKit.framework */,
 				7162D33F2964DBF1007C8710 /* SwiftUI.framework */,
+				7164CECB29BE4E72000A154A /* Intents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -337,12 +366,20 @@
 			isa = PBXGroup;
 			children = (
 				7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */,
-				7162D3442964DBF1007C8710 /* DeepSkyCatalogWidget.swift */,
 				7162D3482964DBF1007C8710 /* Info.plist */,
-				716A19B8298F57BD0025DB67 /* Views */,
-				716A19B7298F57A90025DB67 /* Logic */,
+				716A19B8298F57BD0025DB67 /* ReportListWidget */,
 			);
 			path = DeepSkyCatalogWidget;
+			sourceTree = "<group>";
+		};
+		7164CECD29BE4E72000A154A /* DeepSkyCatalogIntents */ = {
+			isa = PBXGroup;
+			children = (
+				7164CED729BE4E7D000A154A /* DeepSkyCatalogIntents.entitlements */,
+				7164CECE29BE4E72000A154A /* IntentHandler.swift */,
+				7164CED029BE4E72000A154A /* Info.plist */,
+			);
+			path = DeepSkyCatalogIntents;
 			sourceTree = "<group>";
 		};
 		716A19B6298F57670025DB67 /* Views */ = {
@@ -356,21 +393,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		716A19B7298F57A90025DB67 /* Logic */ = {
+		716A19B8298F57BD0025DB67 /* ReportListWidget */ = {
 			isa = PBXGroup;
 			children = (
+				7162D3442964DBF1007C8710 /* ReportListWidget.swift */,
+				7164CEC329BE4D11000A154A /* ReportListIntents.intentdefinition */,
 				71ACF33B2964F04D00CC83D5 /* Provider.swift */,
-				71ACF33E2964F0D800CC83D5 /* TopThreeEntry.swift */,
+				71ACF33E2964F0D800CC83D5 /* ReportListEntry.swift */,
 			);
-			path = Logic;
-			sourceTree = "<group>";
-		};
-		716A19B8298F57BD0025DB67 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				71ACF3402964F0F800CC83D5 /* TopThreeWidgetView.swift */,
-			);
-			path = Views;
+			path = ReportListWidget;
 			sourceTree = "<group>";
 		};
 		716A19B9298F57DA0025DB67 /* Logic */ = {
@@ -463,6 +494,7 @@
 				7149D9932984C6F3004BFBE6 /* Shared */,
 				71BCF94B2921EE71008C7614 /* DeepSkyCatalogiOS */,
 				7162D3412964DBF1007C8710 /* DeepSkyCatalogWidget */,
+				7164CECD29BE4E72000A154A /* DeepSkyCatalogIntents */,
 				71C26438298F1C630057EC04 /* DeepSkyCatalogMac */,
 				7181F002299BCFD1002841A8 /* TargetCurator */,
 				7162D33C2964DBF0007C8710 /* Frameworks */,
@@ -477,6 +509,7 @@
 				7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */,
 				71C26437298F1C630057EC04 /* DeepSkyCatalogMac.app */,
 				7181F001299BCFD1002841A8 /* TargetCurator.app */,
+				7164CECA29BE4E72000A154A /* DeepSkyCatalogIntents.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -610,6 +643,23 @@
 			productReference = 7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		7164CEC929BE4E72000A154A /* DeepSkyCatalogIntents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7164CED429BE4E72000A154A /* Build configuration list for PBXNativeTarget "DeepSkyCatalogIntents" */;
+			buildPhases = (
+				7164CEC629BE4E72000A154A /* Sources */,
+				7164CEC729BE4E72000A154A /* Frameworks */,
+				7164CEC829BE4E72000A154A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeepSkyCatalogIntents;
+			productName = DeepSkyCatalogIntents;
+			productReference = 7164CECA29BE4E72000A154A /* DeepSkyCatalogIntents.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		7181F000299BCFD1002841A8 /* TargetCurator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7181F014299BCFD2002841A8 /* Build configuration list for PBXNativeTarget "TargetCurator" */;
@@ -640,6 +690,7 @@
 			);
 			dependencies = (
 				7162D34A2964DBF1007C8710 /* PBXTargetDependency */,
+				7164CED229BE4E72000A154A /* PBXTargetDependency */,
 			);
 			name = DeepSkyCatalogiOS;
 			productName = DeepSkyCatalog;
@@ -676,6 +727,9 @@
 					7162D33A2964DBF0007C8710 = {
 						CreatedOnToolsVersion = 14.2;
 					};
+					7164CEC929BE4E72000A154A = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					7181F000299BCFD1002841A8 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -704,6 +758,7 @@
 				7162D33A2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension */,
 				71C26436298F1C630057EC04 /* DeepSkyCatalogMac */,
 				7181F000299BCFD1002841A8 /* TargetCurator */,
+				7164CEC929BE4E72000A154A /* DeepSkyCatalogIntents */,
 			);
 		};
 /* End PBXProject section */
@@ -715,6 +770,13 @@
 			files = (
 				710ECDAE2965E68F00534D15 /* Catalog.json in Resources */,
 				71ACF33A2964EED200CC83D5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7164CEC829BE4E72000A154A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,13 +820,13 @@
 				71ACF3352964ED2E00CC83D5 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				71668AD0298F266300AB0D19 /* String.swift in Sources */,
 				71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */,
-				7162D3452964DBF1007C8710 /* DeepSkyCatalogWidget.swift in Sources */,
+				7162D3452964DBF1007C8710 /* ReportListWidget.swift in Sources */,
 				71ACF33D2964F0B400CC83D5 /* Provider.swift in Sources */,
 				71BD7543297109AF00D7751F /* SortMethods.swift in Sources */,
+				7164CEC529BE4D11000A154A /* ReportListIntents.intentdefinition in Sources */,
 				71ACF3362964ED3C00CC83D5 /* SunData.swift in Sources */,
 				71ACF32E2964EAA000CC83D5 /* TargetCatalog.swift in Sources */,
 				71ACF32F2964EAA200CC83D5 /* Constellation.swift in Sources */,
-				71ACF3412964F0F800CC83D5 /* TopThreeWidgetView.swift in Sources */,
 				7135117B29B2819300725B1D /* DailyReport.swift in Sources */,
 				7181F02B299BD1F2002841A8 /* MoonData.swift in Sources */,
 				7162D3512964E909007C8710 /* DeepSkyTargetList.swift in Sources */,
@@ -776,7 +838,18 @@
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
 				71ACF3332964ED1400CC83D5 /* Double.swift in Sources */,
 				7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */,
-				71ACF33F2964F0D800CC83D5 /* TopThreeEntry.swift in Sources */,
+				71ACF33F2964F0D800CC83D5 /* ReportListEntry.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7164CEC629BE4E72000A154A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7164CED929BE4FDA000A154A /* PersistenceManager.swift in Sources */,
+				7164CED829BE4EFE000A154A /* ReportListIntents.intentdefinition in Sources */,
+				7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */,
+				7164CEDA29BE4FDC000A154A /* DeepSkyCatalog.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +890,7 @@
 				71BCF9852921EF8B008C7614 /* TargetType.swift in Sources */,
 				716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */,
 				71BCF96E2921EF20008C7614 /* HomeView.swift in Sources */,
+				7164CEC429BE4D11000A154A /* ReportListIntents.intentdefinition in Sources */,
 				7156743029273ECA00626B1B /* AboutView.swift in Sources */,
 				71BCF96C2921EF20008C7614 /* SettingsView.swift in Sources */,
 				71375E6B2980DB6F00B95F2E /* TargetSettingsView.swift in Sources */,
@@ -909,6 +983,11 @@
 			target = 7162D33A2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension */;
 			targetProxy = 7162D3492964DBF1007C8710 /* PBXContainerItemProxy */;
 		};
+		7164CED229BE4E72000A154A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7164CEC929BE4E72000A154A /* DeepSkyCatalogIntents */;
+			targetProxy = 7164CED129BE4E72000A154A /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -962,6 +1041,60 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog.DeepSkyCatalogWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7164CED529BE4E72000A154A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogIntents/DeepSkyCatalogIntents.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y68DX6VH2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeepSkyCatalogIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeepSkyCatalogIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog.DeepSkyCatalogIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7164CED629BE4E72000A154A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogIntents/DeepSkyCatalogIntents.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y68DX6VH2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeepSkyCatalogIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeepSkyCatalogIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog.DeepSkyCatalogIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1170,6 +1303,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1208,6 +1342,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1296,6 +1431,15 @@
 			buildConfigurations = (
 				7162D34D2964DBF1007C8710 /* Debug */,
 				7162D34E2964DBF1007C8710 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7164CED429BE4E72000A154A /* Build configuration list for PBXNativeTarget "DeepSkyCatalogIntents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7164CED529BE4E72000A154A /* Debug */,
+				7164CED629BE4E72000A154A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -36,6 +36,21 @@ final class PersistenceManager: ObservableObject {
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
         
+        // if there are no locations stored, then create one
+        if let count = try? self.container.viewContext.count(for: SavedLocation.fetchRequest()), count == 0 {
+            self.addLocation(name: "Chicago", latitude: 41.833, longitude: -87.872, timezone: -6, isSelected: true, context: self.container.viewContext)
+        }
+        
+        // if there are no report settings stored, then create one
+        if let count = try? self.container.viewContext.count(for: ReportSettings.fetchRequest()), count == 0 {
+            _ = ReportSettings(context: self.container.viewContext)
+        }
+        
+        // if there are no target settings stored, then create one
+        if let count = try? self.container.viewContext.count(for: TargetSettings.fetchRequest()), count == 0 {
+            _ = TargetSettings(context: self.container.viewContext)
+        }
+        
         // clean up legacy old store
         do {
             try FileManager.default.removeItem(at: oldStoreURL)
@@ -44,31 +59,10 @@ final class PersistenceManager: ObservableObject {
             print("unable to delete old store")
         }
         
-        // if there are no locations stored, then create one
-        if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "SavedLocation")) {
-            if count == 0 {
-                self.addLocation(name: "Chicago", latitude: 41.833, longitude: -87.872, timezone: -6, isSelected: true, context: self.container.viewContext)
-            }
-        }
-        
         // clean up legacy default preset
-        if let defaultPreset = (try? self.container.viewContext.fetch(NSFetchRequest<ImagingPreset>(entityName: "ImagingPreset")))?.first(where: {$0.name == "Default"}) {
+        if let defaultPreset = (try? self.container.viewContext.fetch(ImagingPreset.fetchRequest()))?.first(where: {$0.name == "Default"}) {
             self.container.viewContext.delete(defaultPreset)
             saveData(context: container.viewContext)
-        }
-        
-        // if there are no report settings stored, then create one
-        if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "ReportSettings")) {
-            if count == 0 {
-                _ = ReportSettings(context: self.container.viewContext)
-            }
-        }
-        
-        // if there are no target settings stored, then create one
-        if let count = try? self.container.viewContext.count(for: NSFetchRequest(entityName: "TargetSettings")) {
-            if count == 0 {
-                _ = TargetSettings(context: self.container.viewContext)
-            }
         }
     }
     
