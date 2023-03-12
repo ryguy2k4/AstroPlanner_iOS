@@ -31,24 +31,25 @@ struct ReportListView : View {
             let rows = entry.targets.count < entry.rows ? entry.targets.count : entry.rows
             let targets = entry.targets.dropLast(entry.targets.count > rows ? entry.targets.count - rows : 0)
             
-            VStack(alignment: .listRowSeparatorLeading) {
+            VStack(alignment: .listRowSeparatorLeading, spacing: 5) {
                 ForEach(targets) { target in
                     HStack {
-                        Image(target.image?.source.fileName ?? "\(target.type)")
+                        let image = UIImage(named: target.image?.source.fileName ?? "\(target.type)")!.scalePreservingAspectRatio(targetSize: .init(width: 300, height: 300))
+                        Image(uiImage: image)
                             .resizable()
                             .scaledToFit()
+                            .cornerRadius(10)
                         Text(target.name?.first! ?? target.defaultName)
-                            .padding(.leading, 20)
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.medium)
                             .minimumScaleFactor(0.6)
+                            .lineLimit(1)
                         Spacer()
                     }
                 }
             }
-            .padding(20)
+            .padding(10)
         }
-        
     }
 }
 

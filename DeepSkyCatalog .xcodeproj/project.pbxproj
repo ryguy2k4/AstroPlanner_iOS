@@ -38,6 +38,32 @@
 		7164CED829BE4EFE000A154A /* ReportListIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEC329BE4D11000A154A /* ReportListIntents.intentdefinition */; };
 		7164CED929BE4FDA000A154A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		7164CEDA29BE4FDC000A154A /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
+		7164CEDB29BE8F6A000A154A /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
+		7164CEDC29BE8F6E000A154A /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
+		7164CEDD29BE8F77000A154A /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
+		7164CEDE29BE8F79000A154A /* TargetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* TargetCatalog.swift */; };
+		7164CEDF29BE8F7C000A154A /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* TargetType.swift */; };
+		7164CEE029BE8F7E000A154A /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
+		7164CEE129BE8F81000A154A /* SortMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD753E2971044D00D7751F /* SortMethods.swift */; };
+		7164CEE229BE8F83000A154A /* FilterMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD7541297104AB00D7751F /* FilterMethods.swift */; };
+		7164CEE329BE8F8B000A154A /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
+		7164CEE429BE8F8D000A154A /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
+		7164CEE529BE8F95000A154A /* SunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9802921EF8B008C7614 /* SunData.swift */; };
+		7164CEE629BE8F98000A154A /* MoonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* MoonData.swift */; };
+		7164CEE729BE8F9A000A154A /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
+		7164CEE829BE8F9C000A154A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
+		7164CEE929BE8FA6000A154A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date.swift */; };
+		7164CEEA29BE8FA8000A154A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
+		7164CEEB29BE8FAA000A154A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double.swift */; };
+		7164CEED29BE8FB4000A154A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
+		7164CEEE29BE8FB5000A154A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
+		7164CEEF29BE8FB5000A154A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment.swift */; };
+		7164CEF029BE8FE6000A154A /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
+		7164CEF229BE97C7000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
+		7164CEF329BE97C7000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
+		7164CEF429BE97D2000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
+		7164CEF529BE97D2000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
+		7164CEF629BE97D3000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
 		716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71668AD0298F266300AB0D19 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
@@ -209,6 +235,7 @@
 		7164CECE29BE4E72000A154A /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		7164CED029BE4E72000A154A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7164CED729BE4E7D000A154A /* DeepSkyCatalogIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogIntents.entitlements; sourceTree = "<group>"; };
+		7164CEF129BE97C7000A154A /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		716531E929340CFE00D05B79 /* DailyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReport.swift; sourceTree = "<group>"; };
 		71668AD4298F26AC00AB0D19 /* StringIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringIOS.swift; sourceTree = "<group>"; };
 		71668AD6298F280A00AB0D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -611,6 +638,7 @@
 				71BCF97B2921EF8B008C7614 /* String.swift */,
 				71D77FA72921F99200709252 /* Double.swift */,
 				71F71572293FB4010011EF7F /* Environment.swift */,
+				7164CEF129BE97C7000A154A /* UIImage+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -777,6 +805,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7164CEDD29BE8F77000A154A /* Catalog.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,6 +863,8 @@
 				71ACF32D2964EA9A00CC83D5 /* TargetType.swift in Sources */,
 				716A19BC298F5B270025DB67 /* PlaceValue.swift in Sources */,
 				71ACF3312964ED0F00CC83D5 /* Date.swift in Sources */,
+				7164CEF329BE97C7000A154A /* UIImage+Ext.swift in Sources */,
+				7164CEED29BE8FB4000A154A /* Environment.swift in Sources */,
 				71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */,
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
 				71ACF3332964ED1400CC83D5 /* Double.swift in Sources */,
@@ -846,10 +877,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7164CEEA29BE8FA8000A154A /* String.swift in Sources */,
+				7164CEE629BE8F98000A154A /* MoonData.swift in Sources */,
+				7164CEE429BE8F8D000A154A /* CaseNameCodable.swift in Sources */,
 				7164CED929BE4FDA000A154A /* PersistenceManager.swift in Sources */,
 				7164CED829BE4EFE000A154A /* ReportListIntents.intentdefinition in Sources */,
+				7164CEE229BE8F83000A154A /* FilterMethods.swift in Sources */,
+				7164CEDC29BE8F6E000A154A /* DeepSkyTarget.swift in Sources */,
+				7164CEDB29BE8F6A000A154A /* DeepSkyTargetList.swift in Sources */,
+				7164CEE929BE8FA6000A154A /* Date.swift in Sources */,
+				7164CEE329BE8F8B000A154A /* PlaceValue.swift in Sources */,
+				7164CEEF29BE8FB5000A154A /* Environment.swift in Sources */,
+				7164CEF029BE8FE6000A154A /* DailyReport.swift in Sources */,
+				7164CEDF29BE8F7C000A154A /* TargetType.swift in Sources */,
+				7164CEE529BE8F95000A154A /* SunData.swift in Sources */,
+				7164CEE829BE8F9C000A154A /* NetworkManager.swift in Sources */,
+				7164CEF629BE97D3000A154A /* UIImage+Ext.swift in Sources */,
+				7164CEE029BE8F7E000A154A /* Constellation.swift in Sources */,
 				7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */,
 				7164CEDA29BE4FDC000A154A /* DeepSkyCatalog.xcdatamodeld in Sources */,
+				7164CEE129BE8F81000A154A /* SortMethods.swift in Sources */,
+				7164CEDE29BE8F79000A154A /* TargetCatalog.swift in Sources */,
+				7164CEEB29BE8FAA000A154A /* Double.swift in Sources */,
+				7164CEE729BE8F9A000A154A /* FetchError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,10 +916,12 @@
 				7181F029299BD1E2002841A8 /* SunData.swift in Sources */,
 				7181F020299BD01E002841A8 /* Double.swift in Sources */,
 				7181F02D299BD22C002841A8 /* PlaceValue.swift in Sources */,
+				7164CEF529BE97D2000A154A /* UIImage+Ext.swift in Sources */,
 				7181F024299BD049002841A8 /* FetchError.swift in Sources */,
 				7181F028299BD0D0002841A8 /* TargetEditor.swift in Sources */,
 				7181F006299BCFD1002841A8 /* ContentView.swift in Sources */,
 				7181F022299BD041002841A8 /* PersistenceManager.swift in Sources */,
+				7164CEEE29BE8FB5000A154A /* Environment.swift in Sources */,
 				7181F01C299BD001002841A8 /* FilterMethods.swift in Sources */,
 				7181F01F299BD01B002841A8 /* String.swift in Sources */,
 				7181F01A299BCFFD002841A8 /* Constellation.swift in Sources */,
@@ -926,6 +978,7 @@
 				713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */,
 				710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */,
 				71BD7542297104AB00D7751F /* FilterMethods.swift in Sources */,
+				7164CEF229BE97C7000A154A /* UIImage+Ext.swift in Sources */,
 				71B14F6B295A77AE003C11BD /* KeyboardDismissButton.swift in Sources */,
 				713B49BC29541242008EFC81 /* DailyReportSettings.swift in Sources */,
 				71E96D68292831AA00E019F9 /* CatalogManager.swift in Sources */,
@@ -966,6 +1019,7 @@
 				71BE6EDE299035DB00686E95 /* Mac_DetailView.swift in Sources */,
 				71C26452298F1CB60057EC04 /* DeepSkyTargetList.swift in Sources */,
 				71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */,
+				7164CEF429BE97D2000A154A /* UIImage+Ext.swift in Sources */,
 				71C2644D298F1CA50057EC04 /* Double.swift in Sources */,
 				71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */,
 				716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */,

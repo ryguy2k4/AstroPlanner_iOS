@@ -38,10 +38,10 @@ struct Provider: IntentTimelineProvider {
                 let currentDate = Date().startOfDay()
                 
                 // fetch core data configurations
-                let location = try viewContext.fetch(locationsFetchRequest).first(where: {$0.name == configuration.location})!
+                let location = try viewContext.fetch(locationsFetchRequest).first(where: {$0.name == configuration.location}) ?? viewContext.fetch(locationsFetchRequest).first!
                 let presetList = try viewContext.fetch(presetFetchRequest)
-                let targetSettings = try viewContext.fetch(TargetSettings.fetchRequest()).first!
-                let reportSettings = try viewContext.fetch(ReportSettings.fetchRequest()).first!
+                let targetSettings = try viewContext.fetch(TargetSettings.fetchRequest()).first ?? TargetSettings()
+                let reportSettings = try viewContext.fetch(ReportSettings.fetchRequest()).first ?? ReportSettings()
                 
                 // fetch sun and moon data from network
                 let data = try await NetworkManager.shared.getData(at: location, on: currentDate)
