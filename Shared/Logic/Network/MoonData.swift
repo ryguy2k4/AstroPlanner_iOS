@@ -12,11 +12,18 @@ struct MoonData {
     let illuminated: Double
     let moonInterval: DateInterval
     
+    init(phase: String, illuminated: Double, moonInterval: DateInterval) {
+        self.phase = phase
+        self.illuminated = illuminated
+        self.moonInterval = moonInterval
+    }
+    
+    
     init(dataToday: RawMoonData, dataTomorrow: RawMoonData, on date: Date, sun: SunData) {
         self.phase = dataToday.properties.data.curphase
         self.illuminated = (Double(dataToday.properties.data.fracillum.replacingOccurrences(of: "%", with: "")) ?? .nan)/100
-        
-        
+
+
         var riseToday: Date? = nil
         for item in dataToday.properties.data.moondata where item.phen == "Rise" {
             riseToday = item.time.formatStringToDate(with: "HH:mm", on: date)
@@ -26,7 +33,7 @@ struct MoonData {
         for item in dataToday.properties.data.moondata where item.phen == "Set" {
             setToday = item.time.formatStringToDate(with: "HH:mm", on: date)
         }
-        
+
         var riseTomorrow: Date? = nil
         for item in dataTomorrow.properties.data.moondata where item.phen == "Rise" {
             riseTomorrow = item.time.formatStringToDate(with: "HH:mm", on: date.addingTimeInterval(86400))
@@ -36,7 +43,7 @@ struct MoonData {
         for item in dataTomorrow.properties.data.moondata where item.phen == "Set" {
             setTomorrow = item.time.formatStringToDate(with: "HH:mm", on: date.addingTimeInterval(86400))
         }
-        
+
         // if moon does not set today, or it sets before it rises
         if setToday == nil || (riseToday != nil && setToday! < riseToday!) {
             // interval from today's rise to tomorrow's set
@@ -52,6 +59,10 @@ struct MoonData {
             moonInterval = DateInterval(start: riseToday!, end: setToday!)
         }
     }
+}
+
+extension MoonData {
+    static let dummy = MoonData(phase: "Full", illuminated: 0.1, moonInterval: DateInterval(start: Date().startOfDay().addingTimeInterval(30000), duration: 30000))
 }
 
 struct RawMoonData: Decodable {

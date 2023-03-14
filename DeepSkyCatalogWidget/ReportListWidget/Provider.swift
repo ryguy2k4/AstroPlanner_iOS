@@ -38,14 +38,21 @@ struct Provider: IntentTimelineProvider {
                 let currentDate = Date().startOfDay()
                 
                 // fetch core data configurations
-                let location = try viewContext.fetch(locationsFetchRequest).first(where: {$0.name == configuration.location}) ?? viewContext.fetch(locationsFetchRequest).first!
                 let presetList = try viewContext.fetch(presetFetchRequest)
-                let targetSettings = try viewContext.fetch(TargetSettings.fetchRequest()).first ?? TargetSettings()
-                let reportSettings = try viewContext.fetch(ReportSettings.fetchRequest()).first ?? ReportSettings()
-                
+                guard let location = try viewContext.fetch(locationsFetchRequest).first(where: {$0.name == configuration.location}) else {
+                    throw TimelineError.noLocations
+                }
+                guard let targetSettings = try viewContext.fetch(TargetSettings.fetchRequest()).first else {
+                    throw TimelineError.noTargetSettings
+                }
+                guard let reportSettings = try viewContext.fetch(ReportSettings.fetchRequest()).first else {
+                    throw TimelineError.noReportSettings
+                }
+
                 // fetch sun and moon data from network
                 let data = try await NetworkManager.shared.getData(at: location, on: currentDate)
-                
+//                let data = (sun: SunData.dummy, moon: MoonData.dummy)
+
                 // generate a report
                 let report = DailyReport(location: location, date: currentDate, viewingInterval: data.sun.ATInterval, reportSettings: reportSettings, targetSettings: targetSettings, presetList: presetList, data: data)
                 
@@ -67,6 +74,23 @@ struct Provider: IntentTimelineProvider {
                 let timeline = Timeline(entries: [ReportListEntry.placeholder(error: error)], policy: .atEnd)
                 completion(timeline)
             }
+        }
+    }
+}
+
+enum TimelineError: Error {
+    case noLocations
+    case noTargetSettings
+    case noReportSettings
+    
+    var localizedDescription: String {
+        switch self {
+        case .noLocations:
+            return "No Locations"
+        case .noTargetSettings:
+            return "No Target Settings"
+        case .noReportSettings:
+            return "No Report Settings"
         }
     }
 }

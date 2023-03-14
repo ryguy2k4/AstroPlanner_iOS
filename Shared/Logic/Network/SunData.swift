@@ -20,6 +20,19 @@ struct SunData {
         ATInterval = DateInterval(start: dataToday.results.astronomical_twilight_end.formatStringToDate(), end: dataTomorrow.results.astronomical_twilight_begin.formatStringToDate())
         nightInterval = DateInterval(start: dataToday.results.sunset.formatStringToDate(), end: dataTomorrow.results.sunrise.formatStringToDate())
     }
+    
+    init(astronomicalTwilightBegin: Date, sunrise: Date, ATInterval: DateInterval, nightInterval: DateInterval) {
+        self.astronomicalTwilightBegin = astronomicalTwilightBegin
+        self.sunrise = sunrise
+        self.ATInterval = ATInterval
+        self.nightInterval = nightInterval
+    }
+}
+
+extension SunData {
+    static var dummy: SunData {
+        SunData(astronomicalTwilightBegin: Date().startOfDay().addingTimeInterval(21000), sunrise: Date().startOfDay().addingTimeInterval(21600), ATInterval: DateInterval(start: Date().startOfDay().addingTimeInterval(68500), duration: 43200), nightInterval: DateInterval(start: Date().startOfDay().addingTimeInterval(70000), duration: 43200))
+    }
 }
 
 struct RawSunData: Decodable {
