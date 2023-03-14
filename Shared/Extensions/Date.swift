@@ -40,8 +40,8 @@ extension Date {
     public func dateToUTCHours(location: SavedLocation) -> Double {
         let time = Calendar.current.dateComponents([.hour, .minute, .second], from: self)
         let hours = Double(time.hour!) + Double(time.minute!) / 60 + Double(time.second!) / 3600
-        var tz = Double(location.timezone)
-        if location.timezone < 0 {
+        var tz = Double(TimeZone(identifier: location.timezone!)!.secondsFromGMT() / 3600)
+        if TimeZone(identifier: location.timezone!)!.secondsFromGMT() < 0 {
             tz = -tz
         }
         return (hours + tz).mod(by: 24)

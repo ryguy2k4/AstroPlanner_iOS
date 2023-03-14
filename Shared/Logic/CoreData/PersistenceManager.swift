@@ -38,7 +38,7 @@ final class PersistenceManager: ObservableObject {
         
         // if there are no locations stored, then create one
         if let count = try? self.container.viewContext.count(for: SavedLocation.fetchRequest()), count == 0 {
-            self.addLocation(name: "Chicago", latitude: 41.833, longitude: -87.872, timezone: -6, isSelected: true, context: self.container.viewContext)
+            self.addLocation(name: "Chicago", latitude: 41.833, longitude: -87.872, timezone: "America/Chicago", isSelected: true, context: self.container.viewContext)
         }
         
         // if there are no report settings stored, then create one
@@ -75,7 +75,7 @@ final class PersistenceManager: ObservableObject {
         }
     }
     
-    func addLocation(name: String, latitude: Double, longitude: Double, timezone: Int16, isSelected: Bool = false, context: NSManagedObjectContext) {
+    func addLocation(name: String, latitude: Double, longitude: Double, timezone: String, isSelected: Bool = false, context: NSManagedObjectContext) {
         let location = SavedLocation(context: context)
         location.name = name
         location.latitude = latitude
@@ -85,7 +85,7 @@ final class PersistenceManager: ObservableObject {
         saveData(context: context)
     }
     
-    func editLocation(location: SavedLocation, name: String? = nil, latitude: Double? = nil, longitude: Double? = nil, timezone: Int16? = nil, context: NSManagedObjectContext) {
+    func editLocation(location: SavedLocation, name: String? = nil, latitude: Double? = nil, longitude: Double? = nil, timezone: String? = nil, context: NSManagedObjectContext) {
         if let name = name {
             location.name = name
         }

@@ -76,7 +76,7 @@ struct LocationEditor: View {
     @State private var name: String = ""
     @State private var longitude: Double? = nil
     @State private var latitude: Double? = nil
-    @State private var timezone: Int16 = -6
+    @State private var timezone: TimeZone? = nil
     let location: SavedLocation?
     
     var body: some View {
@@ -102,20 +102,22 @@ struct LocationEditor: View {
                             .keyboardType(.numbersAndPunctuation)
                             .focused($isInputActive)
                     }
+                    
                     // Timezone
-                    Text("Timezone (GMT offset): ")
-                    Picker("Timezone: \(timezone)", selection: $timezone) {
-                        ForEach(-12..<13) {
-                            Text("\($0)").tag(Int16($0))
+                    Picker("Timezone: ", selection: $timezone) {
+                        let empty: TimeZone? = nil
+                        ForEach(TimeZone.knownTimeZoneIdentifiers, id: \.self) { zone in
+                            Text(zone.description).tag(TimeZone(identifier: zone))
                         }
+                        Text("Choose").tag(empty)
+                            .font(.italic(.body)())
                     }
-                    .pickerStyle(.wheel)
-                    .frame(height: 80)
+                    .pickerStyle(.navigationLink)
                     
                     // Button to autofill information for user's current location
                     LocationButton() {
                         self.locationManager.requestLocation()
-                        timezone = Int16(Calendar.current.timeZone.secondsFromGMT()/60/60)
+                        timezone = Calendar.current.timeZone
                     }
                     .cornerRadius(5)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
@@ -127,18 +129,38 @@ struct LocationEditor: View {
                             self.latitude = location.coordinate.latitude
                         }
                     }
+                    .onChange(of: latitude) { newValue in
+                        if let lat = newValue, let long = longitude {
+                            let location = CLLocation(latitude: lat, longitude: long)
+                            LocationManager.getTimeZone(location: location) { timezone in
+                                if let timezone = timezone {
+                                    self.timezone = timezone
+                                }
+                            }
+                        }
+                    }
+                    .onChange(of: longitude) { newValue in
+                        if let long = newValue, let lat = latitude {
+                            let location = CLLocation(latitude: lat, longitude: long)
+                            LocationManager.getTimeZone(location: location) { timezone in
+                                if let timezone = timezone {
+                                    self.timezone = timezone
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .toolbar {
                 KeyboardDismissButton(isInputActive: _isInputActive)
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button(location != nil ? "Save" : "Add") {
-                        if let location = location {
-                            PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone, context: context)
+                        if let location = location, let timezone = timezone {
+                            PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
                             dismiss()
                         } else {
-                            if let latitude = latitude, let longitude = longitude {
-                                PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone, context: context)
+                            if let latitude = latitude, let longitude = longitude, let timezone = timezone {
+                                PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
                                 dismiss()
                             } else {
                                 showErrorAlert = true
@@ -160,7 +182,7 @@ struct LocationEditor: View {
                     self.name = location.name!
                     self.latitude = location.latitude
                     self.longitude = location.longitude
-                    self.timezone = location.timezone
+                    self.timezone = TimeZone(identifier: location.timezone ?? "America/Chicago")
                 }
             }
         }

@@ -38,10 +38,11 @@ final class NetworkManager: ObservableObject {
     
     func getData(at location: SavedLocation, on date: Date) async throws -> (sun: SunData, moon: MoonData) {
         do {
+            let timezoneOffset = TimeZone(identifier: location.timezone!)!.secondsFromGMT() / 3600
             async let decodedMoonDataToday: RawMoonData = try fetchTask(
-                from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(location.timezone)")
+                from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(timezoneOffset)")
             async let decodedMoonDataTomorrow: RawMoonData = try fetchTask(
-                from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(location.timezone)")
+                from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(timezoneOffset)")
             async let decodedSunDataToday: RawSunData = try fetchTask(
                 from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.formatted(format: "YYYY-MM-dd"))&formatted=0")
             async let decodedSunDataTomorrow: RawSunData = try fetchTask(

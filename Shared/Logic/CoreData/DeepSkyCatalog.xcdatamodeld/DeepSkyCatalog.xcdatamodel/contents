@@ -26,7 +26,7 @@
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="timezone" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="String"/>
     </entity>
     <entity name="TargetSettings" representedClassName="TargetSettings" syncable="YES" codeGenerationType="class">
         <attribute name="hideNeverRises" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
