@@ -68,6 +68,11 @@
 		71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71668AD0298F266300AB0D19 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String.swift */; };
 		71668AD5298F26AC00AB0D19 /* StringIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71668AD4298F26AC00AB0D19 /* StringIOS.swift */; };
+		71694BB529C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Computed.swift */; };
+		71694BB629C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Computed.swift */; };
+		71694BB729C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Computed.swift */; };
+		71694BB829C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Computed.swift */; };
+		71694BB929C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Computed.swift */; };
 		716A19BB298F58A90025DB67 /* Mac_HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A19BA298F58A90025DB67 /* Mac_HomeView.swift */; };
 		716A19BC298F5B270025DB67 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
 		716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
@@ -240,6 +245,7 @@
 		71668AD4298F26AC00AB0D19 /* StringIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringIOS.swift; sourceTree = "<group>"; };
 		71668AD6298F280A00AB0D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		71668AD7298F3C0400AB0D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		71694BB429C00FD400EBB15F /* ImagingPreset+Computed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImagingPreset+Computed.swift"; sourceTree = "<group>"; };
 		716A19BA298F58A90025DB67 /* Mac_HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_HomeView.swift; sourceTree = "<group>"; };
 		716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalog.entitlements; sourceTree = "<group>"; };
 		7181F001299BCFD1002841A8 /* TargetCurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TargetCurator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -592,6 +598,7 @@
 			children = (
 				71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */,
 				71BCF9552921EE72008C7614 /* PersistenceManager.swift */,
+				71694BB429C00FD400EBB15F /* ImagingPreset+Computed.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -868,6 +875,7 @@
 				71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */,
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
 				71ACF3332964ED1400CC83D5 /* Double.swift in Sources */,
+				71694BB629C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */,
 				7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */,
 				71ACF33F2964F0D800CC83D5 /* ReportListEntry.swift in Sources */,
 			);
@@ -895,6 +903,7 @@
 				7164CEF629BE97D3000A154A /* UIImage+Ext.swift in Sources */,
 				7164CEE029BE8F7E000A154A /* Constellation.swift in Sources */,
 				7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */,
+				71694BB929C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */,
 				7164CEDA29BE4FDC000A154A /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				7164CEE129BE8F81000A154A /* SortMethods.swift in Sources */,
 				7164CEDE29BE8F79000A154A /* TargetCatalog.swift in Sources */,
@@ -919,6 +928,7 @@
 				7164CEF529BE97D2000A154A /* UIImage+Ext.swift in Sources */,
 				7181F024299BD049002841A8 /* FetchError.swift in Sources */,
 				7181F028299BD0D0002841A8 /* TargetEditor.swift in Sources */,
+				71694BB829C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */,
 				7181F006299BCFD1002841A8 /* ContentView.swift in Sources */,
 				7181F022299BD041002841A8 /* PersistenceManager.swift in Sources */,
 				7164CEEE29BE8FB5000A154A /* Environment.swift in Sources */,
@@ -962,6 +972,7 @@
 				7190D750297252EB00938E14 /* CaldwellInfo.swift in Sources */,
 				71BCF9822921EF8B008C7614 /* Date.swift in Sources */,
 				7190D74E2972514300938E14 /* CatalogList.swift in Sources */,
+				71694BB529C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */,
 				7109A3F5292EBA7A00980527 /* MoonData.swift in Sources */,
 				71D77FA82921F99200709252 /* Double.swift in Sources */,
 				71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */,
@@ -1025,6 +1036,7 @@
 				716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */,
 				71C26463298F1D510057EC04 /* MoonData.swift in Sources */,
 				71C26459298F1D230057EC04 /* CatalogManager.swift in Sources */,
+				71694BB729C00FD400EBB15F /* ImagingPreset+Computed.swift in Sources */,
 				71C2645A298F1D260057EC04 /* DailyReport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

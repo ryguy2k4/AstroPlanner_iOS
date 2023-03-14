@@ -109,9 +109,6 @@ final class PersistenceManager: ObservableObject {
         preset.pixelSize = pixelSize
         preset.resolutionLength = resLength
         preset.resolutionWidth = resWidth
-        preset.pixelScale =  pixelSize / focalLength * 206.2648
-        preset.fovLength = preset.pixelScale * Double(preset.resolutionLength) / 60
-        preset.fovWidth = preset.pixelScale * Double(preset.resolutionWidth) / 60
         saveData(context: context)
     }
     
@@ -131,9 +128,6 @@ final class PersistenceManager: ObservableObject {
         if let resWidth = resWidth {
             preset.resolutionWidth = resWidth
         }
-        preset.pixelScale = preset.pixelSize / preset.focalLength * 206.2648
-        preset.fovLength = preset.pixelScale * Double(preset.resolutionLength) / 60
-        preset.fovWidth = preset.pixelScale * Double(preset.resolutionWidth) / 60
         saveData(context: context)
         
     }
