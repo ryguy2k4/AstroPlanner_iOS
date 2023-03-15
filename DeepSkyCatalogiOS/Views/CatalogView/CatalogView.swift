@@ -11,118 +11,113 @@ struct CatalogView: View {
     @Environment(\.dismissSearch) private var dismissSearch
     @Environment(\.isSearching) private var isSearching
     @EnvironmentObject var networkManager: NetworkManager
+    @StateObject private var viewModel: CatalogManager = CatalogManager()
+    
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-    @StateObject private var viewModel: CatalogManager
     @Binding var date: Date
     @Binding var viewingInterval: DateInterval
-    @State private var isSettingsModal = false
-
     
-    init(date: Binding<Date>, viewingInterval: Binding<DateInterval>, location: SavedLocation, targetSettings: TargetSettings) {
-        self._viewModel = StateObject(wrappedValue: CatalogManager(location: location, date: date, viewingInterval: viewingInterval, targetSettings: targetSettings))
-        self._date = date
-        self._viewingInterval = viewingInterval
-    }
+    @State private var isSettingsModal = false
         
     var body: some View {
         // Only display targets if network data is available
-        let data = networkManager.data[.init(date: date, location: locationList.first!)]
-        NavigationStack() {
-            FilterButtonMenu(date: $date)
-            
-            List(viewModel.targets, id: \.id) { target in
-                NavigationLink(destination: DetailView(target: target)) {
-                    VStack {
-                        TargetCell(target: target)
+        if let location = locationList.first {
+            let data = networkManager.data[.init(date: date, location: location)]
+            NavigationStack() {
+                FilterButtonMenu(date: $date)
+                
+                List(viewModel.targets, id: \.id) { target in
+                    NavigationLink(destination: DetailView(target: target)) {
+                        VStack {
+                            TargetCell(target: target)
+                        }
                     }
                 }
-            }
-            .listStyle(.grouped)
-            .toolbar() {
-                ToolbarLogo()
-                if data == nil {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Image(systemName: "wifi.exclamationmark")
-                            .foregroundColor(.red)
+                .listStyle(.grouped)
+                .toolbar() {
+                    ToolbarLogo()
+                    if data == nil {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Image(systemName: "wifi.exclamationmark")
+                                .foregroundColor(.red)
+                        }
                     }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isSettingsModal = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "location")
-                            Image(systemName: "calendar")
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isSettingsModal = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "location")
+                                Image(systemName: "calendar")
+                            }
                         }
                     }
                 }
             }
-        }
-        
-        // Modifiers to enable searching
-        .searchable(text: $viewModel.searchText)
-        .onSubmit(of: .search) {
-            viewModel.refreshList(sunData: data?.sun)
-        }
-        .onChange(of: viewModel.searchText) { newValue in
-            if newValue.isEmpty {
-                viewModel.refreshList(sunData: data?.sun)
-            }
-        }
-        .searchSuggestions {
-            // grab top 15 search results
-            let suggestions = DeepSkyTargetList.objects.filteredBySearch(viewModel.searchText)
             
-            // list the search results
-            ForEach(suggestions) { suggestion in
-                HStack {
-                    Image(suggestion.image?.source.fileName ?? "\(suggestion.type)")
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(8)
-                        .frame(width: 100, height: 70)
-                    Text(suggestion.name?.first ?? suggestion.defaultName)
-                        .foregroundColor(.primary)
-                }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
+            // Modifiers to enable searching
+            .searchable(text: $viewModel.searchText)
+            .onSubmit(of: .search) {
+                viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
+            }
+            .onChange(of: viewModel.searchText) { newValue in
+                if newValue.isEmpty {
+                    viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
+                }
+            }
+            .searchSuggestions {
+                // grab top 15 search results
+                let suggestions = DeepSkyTargetList.objects.filteredBySearch(viewModel.searchText)
+                
+                // list the search results
+                ForEach(suggestions) { suggestion in
+                    HStack {
+                        Image(suggestion.image?.source.fileName ?? "\(suggestion.type)")
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(8)
+                            .frame(width: 100, height: 70)
+                        Text(suggestion.name?.first ?? suggestion.defaultName)
+                            .foregroundColor(.primary)
+                    }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
+                }
+            }
+            .onChange(of: isSearching) { newValue in
+                if !isSearching {
+                    dismissSearch()
+                }
+            }
+            .autocorrectionDisabled()
+            
+            // Modal for settings
+            .sheet(isPresented: $isSettingsModal){
+                CatalogViewSettings(date: $date, viewingInterval: $viewingInterval)
+                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+                    .disabled(data == nil)
+            }
+            
+            // Passing the date and location to use into all child views
+            .environment(\.date, date)
+            .environmentObject(location)
+            .environmentObject(targetSettings.first!)
+            .environmentObject(viewModel)
+            .environment(\.data, data)
+        }
+        
+        // if there is no location stored, then prompt the user to create one
+        else {
+            NavigationStack {
+                VStack {
+                    Text("Add a Location")
+                        .fontWeight(.semibold)
+                    NavigationLink(destination: LocationSettings()) {
+                        Label("Locations Settings", systemImage: "location")
+                    }
+                    .padding()
+                }
             }
         }
-        .onChange(of: isSearching) { newValue in
-            if !isSearching {
-                dismissSearch()
-            }
-        }
-        .autocorrectionDisabled()
-        
-        // Modal for settings
-        .sheet(isPresented: $isSettingsModal){
-            CatalogViewSettings(date: $date, viewingInterval: $viewingInterval)
-                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-                .disabled(data == nil)
-        }
-        
-        // When the date changes, make sure everything that depends on the date gets updated
-        .onChange(of: date) { newDate in
-            viewModel.refreshList(sunData: data?.sun)
-        }
-        
-        // When the location changes, make sure everything that depends on the date gets updated
-        .onChange(of: locationList.first) { newLocation in
-            viewModel.location = newLocation!
-            viewModel.refreshList(sunData: data?.sun)
-        }
-        
-        // When target settings change, refresh the list
-        .onReceive(viewModel.targetSettings.objectWillChange) { _ in
-            viewModel.refreshList(sunData: data?.sun)
-        }
-        
-        // Passing the date and location to use into all child views
-        .environment(\.date, date)
-        .environmentObject(locationList.first!)
-        .environmentObject(targetSettings.first!)
-        .environmentObject(viewModel)
-        .environment(\.data, data)
     }
 }
 
@@ -166,7 +161,10 @@ fileprivate struct TargetCell: View {
  */
 fileprivate struct FilterButtonMenu: View {
     @EnvironmentObject var viewModel: CatalogManager
+    @EnvironmentObject var location: SavedLocation
     @Environment(\.data) var data
+    @Environment(\.viewingInterval) var viewingInterval
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @Binding var date: Date
     @State private var isAllFilterModal: Bool = false
     
@@ -216,7 +214,7 @@ fileprivate struct FilterButtonMenu: View {
         .sheet(isPresented: $isAllFilterModal) {
             EditAllFiltersView(viewModel: viewModel, dateBinding: $date)
                 .onDisappear() {
-                    viewModel.refreshList(sunData: data?.sun)
+                    viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
                 }
                 .presentationDetents([.fraction(0.5), .fraction(0.8)])
         }
@@ -232,6 +230,8 @@ fileprivate struct FilterButton: View {
     @EnvironmentObject var location: SavedLocation
     @Environment(\.date) var date
     @Environment(\.data) var data
+    @Environment(\.viewingInterval) var viewingInterval
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @State private var presentedFilterSheet: FilterMethod? = nil
     let method: FilterMethod
     let active: Bool
@@ -250,7 +250,7 @@ fileprivate struct FilterButton: View {
                         .foregroundColor(.primary)
                     Button {
                         viewModel.clearFilter(for: method)
-                        viewModel.refreshList(sunData: data?.sun)
+                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
                     } label: {
                         Image(systemName: active ? "x.circle" : "chevron.down")
                             .foregroundColor(.accentColor)
@@ -286,7 +286,7 @@ fileprivate struct FilterButton: View {
                 }
             }
             .onDisappear() {
-                viewModel.refreshList(sunData: data?.sun)
+                viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
             }
             .presentationDetents([.fraction(0.5), .fraction(0.8)])
         }

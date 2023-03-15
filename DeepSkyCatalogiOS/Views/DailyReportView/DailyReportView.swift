@@ -22,104 +22,126 @@ struct DailyReportView: View {
     @State var isSettingsModal = false
     
     var body: some View {
-        let data = networkManager.data[.init(date: date, location: locationList.first!)]
-        NavigationStack {
-            VStack {
-                // Header Section
-                Text("Daily Report")
-                    .multilineTextAlignment(.center)
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                
-                // Only display report if network data is available
-                if let data = data {
-                    // every time the view refreshes, generate a report
-                    let report = DailyReport(location: locationList.first!, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), data: data)
-                    ReportHeader()
-                        .environment(\.data, data)
-                    ScrollView {
-                        VStack {
-                            // Report Section
-                            TopFiveView(report: report)
-                            TopTenTabView(report: report)
-                        }
-                    }
-                }
-                
-                // If Network data is not fetched, show a loading screen and then request the necessary data
-                else {
-                    if internet {
-                        VStack {
-                            ProgressView()
-                                .padding(.top)
-                            Text("Fetching Sun/Moon Data...")
-                                .fontWeight(.bold)
-                            Spacer()
-                        }
-                        .task {
-                            do {
-                                try await networkManager.updateData(at: locationList.first!, on: date)
-                            } catch {
-                                internet = false
+        if let location = locationList.first {
+            let data = networkManager.data[.init(date: date, location: location)]
+            
+            NavigationStack {
+                VStack {
+                    // Header Section
+                    Text("Daily Report")
+                        .multilineTextAlignment(.center)
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                    
+                    
+                    // Only display report if network data is available
+                    if let data = data, let report = DailyReport(location: location, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), data: data) {
+                        
+                        ReportHeader()
+                            .environment(\.data, data)
+                        ScrollView {
+                            VStack {
+                                // Report Section
+                                TopFiveView(report: report)
+                                let tabToShow: TargetTab = {
+                                    // show first non-empty tab
+                                    if !report.topTenNebulae.isEmpty { return .nebulae }
+                                    else if !report.topTenGalaxies.isEmpty { return .galaxies }
+                                    else if !report.topTenStarClusters.isEmpty { return .starClusters }
+                                    else { return .nebulae }
+                                }()
+                                TopTenTabView(report: report, tabSelection: tabToShow)
                             }
                         }
-                    } else {
-                        VStack {
-                            Text("Daily Report Unavailable Offline")
-                                .fontWeight(.bold)
-                                .padding(.vertical)
-                            Button("Retry") {
-                                internet = true
-                                Task {
-                                    do {
-                                        try await networkManager.updateData(at: locationList.first!, on: date)
-                                    } catch {
-                                        internet = false
-                                    }
+                    }
+                    // If Network data is not fetched, show a loading screen and then request the necessary data
+                    else {
+                        if internet {
+                            VStack {
+                                ProgressView()
+                                    .padding(.top)
+                                Text("Fetching Sun/Moon Data...")
+                                    .fontWeight(.bold)
+                                Spacer()
+                            }
+                            .task {
+                                do {
+                                    try await networkManager.updateData(at: location, on: date)
+                                } catch {
+                                    internet = false
                                 }
                             }
-                            Spacer()
-                        }
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Image(systemName: "wifi.exclamationmark")
-                                    .foregroundColor(.red)
+                        } else {
+                            VStack {
+                                Text("Daily Report Unavailable Offline")
+                                    .fontWeight(.bold)
+                                    .padding(.vertical)
+                                Button("Retry") {
+                                    internet = true
+                                    Task {
+                                        do {
+                                            try await networkManager.updateData(at: location, on: date)
+                                        } catch {
+                                            internet = false
+                                        }
+                                    }
+                                }
+                                Spacer()
+                            }
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
+                                    Image(systemName: "wifi.exclamationmark")
+                                        .foregroundColor(.red)
+                                }
                             }
                         }
                     }
                 }
-            }
-            .toolbar {
-                ToolbarLogo()
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isSettingsModal = true
-                    } label: {
-                        Image(systemName: "slider.horizontal.3")
+                .toolbar {
+                    ToolbarLogo()
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isSettingsModal = true
+                        } label: {
+                            Image(systemName: "slider.horizontal.3")
+                        }
                     }
                 }
+                .navigationDestination(for: DeepSkyTarget.self) { target in
+                    DetailView(target: target)
+                        .environmentObject(locationList.first!)
+                        .environmentObject(targetSettings.first!)
+                }
             }
-            .navigationDestination(for: DeepSkyTarget.self) { target in
-                DetailView(target: target)
-                    .environmentObject(locationList.first!)
-                    .environmentObject(targetSettings.first!)
+            .environmentObject(location)
+            .environmentObject(targetSettings.first!)
+            .environment(\.date, date)
+            .environment(\.viewingInterval, viewingInterval)
+            .scrollIndicators(.hidden)
+            .sheet(isPresented: $isSettingsModal) {
+                DailyReportSettings(date: $date, viewingInterval: $viewingInterval)
+                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+                    .disabled(data == nil)
+                    .environment(\.data, data)
+            }
+            .onChange(of: data?.sun.ATInterval) { newInterval in
+                if let newInterval = newInterval {
+                    viewingInterval = newInterval
+                    print(newInterval)
+                }
             }
         }
-        .environmentObject(locationList.first!)
-        .environmentObject(targetSettings.first!)
-        .environment(\.date, date)
-        .environment(\.viewingInterval, viewingInterval)
-        .scrollIndicators(.hidden)
-        .sheet(isPresented: $isSettingsModal) {
-            DailyReportSettings(date: $date, viewingInterval: $viewingInterval)
-                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-                .disabled(data == nil)
-                .environment(\.data, data)
-        }
-        .onChange(of: data?.sun.ATInterval) { newInterval in
-            if let newInterval = newInterval {
-                viewingInterval = newInterval
-                print(newInterval)
+        // if there is no location stored, then prompt the user to create one
+        else {
+            NavigationStack {
+                VStack {
+                    Text("Add a Location")
+                        .fontWeight(.semibold)
+                    NavigationLink(destination: LocationSettings()) {
+                        Label("Locations Settings", systemImage: "location")
+                    }
+                    .padding()
+                }
             }
         }
     }

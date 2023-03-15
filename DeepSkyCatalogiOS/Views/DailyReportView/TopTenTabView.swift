@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-fileprivate enum TargetTab: String, Identifiable, CaseIterable {
+enum TargetTab: String, Identifiable, CaseIterable {
     var id: Self { self }
     case nebulae = "Nebulae"
     case galaxies = "Galaxies"
@@ -23,7 +23,7 @@ struct TopTenTabView: View {
     @EnvironmentObject var targetSettings: TargetSettings
     let report: DailyReport
     
-    @State private var tabSelection: TargetTab = .nebulae
+    @State var tabSelection: TargetTab
     
     var body: some View {
         VStack {

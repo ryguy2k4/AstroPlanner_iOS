@@ -23,14 +23,12 @@ struct LocationSettings: View {
                 List(locationList) { location in
                     Text(location.name!)
                         .swipeActions() {
-                            if locationList.count > 1 {
-                                Button(role: .destructive) {
-                                    context.delete(location)
-                                    PersistenceManager.shared.saveData(context: context)
-                                    
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
+                            Button(role: .destructive) {
+                                context.delete(location)
+                                PersistenceManager.shared.saveData(context: context)
+                                
+                            } label: {
+                                Label("Delete", systemImage: "trash")
                             }
                             Button {
                                 locationEditorModal = location

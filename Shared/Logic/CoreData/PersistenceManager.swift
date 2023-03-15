@@ -36,11 +36,6 @@ final class PersistenceManager: ObservableObject {
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
         
-        // if there are no locations stored, then create one
-        if let count = try? self.container.viewContext.count(for: SavedLocation.fetchRequest()), count == 0 {
-            self.addLocation(name: "Chicago", latitude: 41.833, longitude: -87.872, timezone: "America/Chicago", isSelected: true, context: self.container.viewContext)
-        }
-        
         // if there are no report settings stored, then create one
         if let count = try? self.container.viewContext.count(for: ReportSettings.fetchRequest()), count == 0 {
             _ = ReportSettings(context: self.container.viewContext)

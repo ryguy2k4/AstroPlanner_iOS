@@ -12,9 +12,11 @@ struct EditAllFiltersView: View {
     @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var reportSettings: ReportSettings
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @Environment(\.managedObjectContext) var context
     @Environment(\.data) var data
     @Environment(\.date) var date
+    @Environment(\.viewingInterval) var viewingInterval
     @Binding var dateBinding: Date
     
     var body: some View {
@@ -27,7 +29,7 @@ struct EditAllFiltersView: View {
                         }
                     }
                     .onChange(of: viewModel.currentSort) { _ in
-                        viewModel.refreshList(sunData: data?.sun)
+                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
                     }
                     Picker("Order:", selection: $viewModel.sortDecending) {
                         Label("Ascending", systemImage: "chevron.up").tag(false)
@@ -35,7 +37,7 @@ struct EditAllFiltersView: View {
                         
                     }
                     .onChange(of: viewModel.sortDecending) { _ in
-                        viewModel.refreshList(sunData: data?.sun)
+                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
                     }
                 }
                 ConfigSection(header: "Filters") {
