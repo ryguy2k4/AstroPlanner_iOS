@@ -12,6 +12,7 @@ import Combine
 final class LocationManager: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     @objc dynamic var latestLocation: CLLocation?
+    @objc dynamic var didFail: Bool = false
 
     func requestLocation() {
         locationManager.delegate = self
@@ -20,10 +21,12 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         latestLocation = locations.last
+        didFail = false
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to get location")
+        didFail = true
     }
     
     static func getTimeZone(location: CLLocation, completion: @escaping ((TimeZone?) -> Void)) {

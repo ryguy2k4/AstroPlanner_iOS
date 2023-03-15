@@ -16,7 +16,7 @@ struct SettingsView: View {
         NavigationStack {
             Form  {
                 NavigationLink(destination: LocationSettings()) {
-                    Label("Locations", systemImage: "location")
+                    Label("Saved Locations", systemImage: "location")
                 }
                 NavigationLink(destination: GearSettings()) {
                     Label("Imaging Presets", systemImage: "camera.aperture")

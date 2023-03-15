@@ -13,51 +13,25 @@ import Combine
 struct LocationSettings: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: FetchedResults<SavedLocation>
     @Environment(\.managedObjectContext) var context
-    @State private var locationCreatorModal: Bool = false
-    @State private var locationEditorModal: SavedLocation? = nil
     
     var body: some View {
-        Form {
-            ConfigSection(footer: "Swipe left on a location to delete") {
-                // Display each location preset
-                List(locationList) { location in
+        NavigationStack {
+            List(locationList) { location in
+                NavigationLink(destination: LocationEditor(location: location)) {
                     Text(location.name!)
-                        .swipeActions() {
-                            Button(role: .destructive) {
-                                context.delete(location)
-                                PersistenceManager.shared.saveData(context: context)
-                                
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
-                            Button {
-                                locationEditorModal = location
-                            } label: {
-                                Label("Edit", systemImage: "pencil")
-                            }
-                            .tint(.yellow)
-                        }
                         .foregroundColor(.primary)
                 }
+            }
+            .toolbar() {
                 // Button for adding a new location
-                Button(action: { locationCreatorModal = true }) {
-                    HStack {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: LocationEditor(location: nil)) {
                         Image(systemName: "plus.circle")
-                        Text("Add Location")
-                            .fontWeight(.semibold)
                     }
                 }
             }
         }
-        .sheet(isPresented: $locationCreatorModal) {
-            LocationEditor(location: nil)
-                .presentationDetents([.fraction(0.8)])
-        }
-        .sheet(item: $locationEditorModal) { location in
-            LocationEditor(location: location)
-                .presentationDetents([.fraction(0.8)])
-        }
-        .navigationTitle("Locations")
+        .navigationTitle("Saved Locations")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -68,17 +42,19 @@ struct LocationEditor: View {
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
     @State var showErrorAlert = false
+    @State var showLocationError = false
     let locationManager = LocationManager()
+    @FetchRequest(sortDescriptors: []) var locationList: FetchedResults<SavedLocation>
     
     // Local state variables to hold information being entered
-    @State private var name: String = ""
+    @State private var name: String = "New Location"
     @State private var longitude: Double? = nil
     @State private var latitude: Double? = nil
     @State private var timezone: TimeZone? = nil
     let location: SavedLocation?
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 ConfigSection(footer: "Enter the numbers in decimal form, not degrees, minutes, and seconds. Don't forget negative signs for western longitudes. Timezone must match coordinates.") {
                     // Name
@@ -112,21 +88,7 @@ struct LocationEditor: View {
                     }
                     .pickerStyle(.navigationLink)
                     
-                    // Button to autofill information for user's current location
-                    LocationButton() {
-                        self.locationManager.requestLocation()
-                        timezone = Calendar.current.timeZone
-                    }
-                    .cornerRadius(5)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                    
-                    // Handle the results from the "Current Location" button
-                    .onReceive(locationManager.publisher(for: \.latestLocation)) { location in
-                        if let location = location {
-                            self.longitude = location.coordinate.longitude
-                            self.latitude = location.coordinate.latitude
-                        }
-                    }
+                    // automatically update timezone when latitude and longitude are entered
                     .onChange(of: latitude) { newValue in
                         if let lat = newValue, let long = longitude {
                             let location = CLLocation(latitude: lat, longitude: long)
@@ -148,16 +110,52 @@ struct LocationEditor: View {
                         }
                     }
                 }
+                if location == nil {
+                    Section {
+                        // Button to autofill information for user's current location
+                        Button("Get Current Location") {
+                            self.locationManager.requestLocation()
+                            timezone = Calendar.current.timeZone
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                        
+                        // Handle the results from the "Current Location" button
+                        .onReceive(locationManager.publisher(for: \.latestLocation)) { location in
+                            if let location = location {
+                                self.longitude = location.coordinate.longitude
+                                self.latitude = location.coordinate.latitude
+                            }
+                        }
+                        // Show an error message if location request fails
+                        .onReceive(locationManager.publisher(for: \.didFail)) { didFail in
+                            if didFail {
+                                showLocationError = true
+                                locationManager.didFail = false
+                            }
+                        }
+                    }
+                }
+                if let location = location {
+                    Section {
+                        // delete button
+                        Button("Delete \(name)", role: .destructive) {
+                            context.delete(location)
+                            PersistenceManager.shared.saveData(context: context)
+                            dismiss()
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                    }
+                }
             }
             .toolbar {
                 KeyboardDismissButton(isInputActive: _isInputActive)
-                ToolbarItemGroup(placement: .confirmationAction) {
-                    Button(location != nil ? "Save" : "Add") {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(location != nil ? "Save \(name)" : "Add \(name)") {
                         if let location = location, let timezone = timezone {
                             PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
                             dismiss()
                         } else {
-                            if let latitude = latitude, let longitude = longitude, let timezone = timezone {
+                            if let latitude = latitude, let longitude = longitude, let timezone = timezone, !locationList.contains(where: {$0.name! == name}) {
                                 PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
                                 dismiss()
                             } else {
@@ -169,11 +167,14 @@ struct LocationEditor: View {
             }
             .padding(0)
             .alert("Invalid Location", isPresented: $showErrorAlert) {
-                Button("OK") {
-                    dismiss()
-                }
+                Text("OK")
             } message: {
-                Text("Fill in every parameter")
+                Text("Every parameter must be filled in or there is already a location with this name")
+            }
+            .alert("Location Error", isPresented: $showLocationError) {
+                Text("OK")
+            } message: {
+                Text("Failed to get location")
             }
             .onAppear() {
                 if let location = location {

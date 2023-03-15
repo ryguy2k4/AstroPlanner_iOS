@@ -10,52 +10,23 @@ import SwiftUI
 struct GearSettings: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.name, order: .forward)]) var presetList: FetchedResults<ImagingPreset>
     @Environment(\.managedObjectContext) var context
-    @State private var presetCreatorModal: Bool = false
-    @State private var presetEditorModal: ImagingPreset? = nil
     
     var body: some View {
-        Form {
-            ConfigSection(footer: "Swipe left on a preset to delete") {
-                // Display each location preset
-                List(presetList) { preset in
+        NavigationStack {
+            List(presetList) { preset in
+                NavigationLink(destination: ImagingPresetCreator(preset: preset)) {
                     Text(preset.name!)
-                        .swipeActions() {
-                            Button(role: .destructive) {
-                                context.delete(preset)
-                                PersistenceManager.shared.saveData(context: context)
-                                
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
-                            Button {
-                                presetEditorModal = preset
-                            } label: {
-                                Label("Edit", systemImage: "pencil")
-                            }
-                            .tint(.yellow)
-                        }
                         .foregroundColor(.primary)
                 }
-                // Button for adding a new location
-                Button(action: { presetCreatorModal = true }) {
-                    HStack {
+            }
+            .toolbar() {
+                // Button for adding a new preset
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: ImagingPresetCreator(preset: nil)) {
                         Image(systemName: "plus.circle")
-                        Text("Add Preset")
-                            .fontWeight(.semibold)
                     }
                 }
             }
-        }
-        .sheet(isPresented: $presetCreatorModal) {
-            ImagingPresetCreator(preset: nil)
-                .presentationDetents([.fraction(0.8)])
-        }
-        .sheet(item: $presetEditorModal) { preset in
-            ImagingPresetCreator(preset: preset)
-                .presentationDetents([.fraction(0.8)])
-        }
-        .onDisappear {
-            PersistenceManager.shared.saveData(context: context)
         }
         .navigationTitle("Imaging Presets")
         .navigationBarTitleDisplayMode(.inline)
@@ -67,6 +38,7 @@ struct ImagingPresetCreator: View {
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
     @State var showErrorAlert = false
+    @FetchRequest(sortDescriptors: []) var presetList: FetchedResults<ImagingPreset>
     
     // Local state variables to hold information being entered
     @State private var name: String = ""
@@ -77,7 +49,7 @@ struct ImagingPresetCreator: View {
     let preset: ImagingPreset?
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Form {
                     ConfigSection {
@@ -117,6 +89,17 @@ struct ImagingPresetCreator: View {
                                 .focused($isInputActive)
                         }
                     }
+                    if let preset = preset {
+                        Section {
+                            // delete button
+                            Button("Delete \(name)", role: .destructive) {
+                                context.delete(preset)
+                                PersistenceManager.shared.saveData(context: context)
+                                dismiss()
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                        }
+                    }
                 }
                 // Display Pixel Scale and FOV Size
                 if let pixelSize = pixelSize, let focalLength = focalLength {
@@ -129,18 +112,17 @@ struct ImagingPresetCreator: View {
 
                     }
                 }
-                
                 Spacer()
             }
             .toolbar {
                 KeyboardDismissButton(isInputActive: _isInputActive)
                 ToolbarItemGroup(placement: .confirmationAction) {
-                    Button(preset != nil ? "Save" : "Add") {
+                    Button(preset != nil ? "Save \(name)" : "Add \(name)") {
                         if let preset = preset {
                             PersistenceManager.shared.editImagingPreset(preset: preset, name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
                             dismiss()
                         } else {
-                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth {
+                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth, !presetList.contains(where: {$0.name! == name}) {
                                 PersistenceManager.shared.addImagingPreset(name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
                                 dismiss()
                             } else {
@@ -153,10 +135,9 @@ struct ImagingPresetCreator: View {
             .padding(0)
             .alert("Invalid Preset", isPresented: $showErrorAlert) {
                 Button("OK") {
-                    dismiss()
                 }
             } message: {
-                Text("Fill in every parameter")
+                Text("Every parameter must be filled in or there is already a preset with this name")
             }
             .onAppear() {
                 if let preset = preset {
