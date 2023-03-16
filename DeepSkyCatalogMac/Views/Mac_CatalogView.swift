@@ -192,9 +192,9 @@ fileprivate struct FilterButtonMenu: View {
         
         // Modal for editing all filters
 //        .sheet(isPresented: $isAllFilterModal) {
-//            EditAllFiltersView(viewModel: viewModel, dateBinding: $date)
+//            EditAllFiltersView(viewModel: catalogManager, dateBinding: $date)
 //                .onDisappear() {
-//                    viewModel.refreshList(sunData: data?.sun)
+//                    catalogManager.refreshList(sunData: data?.sun)
 //                }
 //                .presentationDetents([.fraction(0.5), .fraction(0.8)])
 //        }
@@ -242,7 +242,7 @@ fileprivate struct FilterButton: View {
 //            VStack {
 //                switch method {
 //                case .catalog:
-//                    SelectableList(selection: $viewModel.catalogSelection)
+//                    SelectableList(selection: $catalogManager.catalogSelection)
 //                case .constellation:
 //                    SelectableList(selection: $viewModel.constellationSelection)
 //                case .type:

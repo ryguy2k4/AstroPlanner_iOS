@@ -14,7 +14,7 @@ struct GearSettings: View {
     var body: some View {
         NavigationStack {
             List(presetList) { preset in
-                NavigationLink(destination: ImagingPresetCreator(preset: preset)) {
+                NavigationLink(destination: ImagingPresetEditor(preset: preset)) {
                     Text(preset.name!)
                         .foregroundColor(.primary)
                 }
@@ -22,7 +22,7 @@ struct GearSettings: View {
             .toolbar() {
                 // Button for adding a new preset
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: ImagingPresetCreator(preset: nil)) {
+                    NavigationLink(destination: ImagingPresetEditor(preset: nil)) {
                         Image(systemName: "plus.circle")
                     }
                 }
@@ -33,7 +33,7 @@ struct GearSettings: View {
     }
 }
 
-struct ImagingPresetCreator: View {
+struct ImagingPresetEditor: View {
     @Environment(\.managedObjectContext) var context
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool

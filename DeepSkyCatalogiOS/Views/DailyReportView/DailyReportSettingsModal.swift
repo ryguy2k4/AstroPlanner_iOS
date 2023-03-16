@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct DailyReportSettings: View {
+struct DailyReportSettingsModal: View {
     @Environment(\.managedObjectContext) var context
     @Environment(\.isEnabled) var isEnabled
     @Environment(\.data) var data

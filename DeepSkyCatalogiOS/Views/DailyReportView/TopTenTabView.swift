@@ -37,9 +37,9 @@ struct TopTenTabView: View {
             }.pickerStyle(.segmented).padding(.horizontal, 16)
             
             TabView(selection: $tabSelection) {
-                TopTenTab(reportList: report.topTenNebulae, targetTab: .nebulae)
-                TopTenTab(reportList: report.topTenGalaxies, targetTab: .galaxies)
-                TopTenTab(reportList: report.topTenStarClusters, targetTab: .starClusters)
+                TopTenListView(reportList: report.topTenNebulae, targetTab: .nebulae)
+                TopTenListView(reportList: report.topTenGalaxies, targetTab: .galaxies)
+                TopTenListView(reportList: report.topTenStarClusters, targetTab: .starClusters)
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
@@ -49,7 +49,7 @@ struct TopTenTabView: View {
     }
 }
 
-fileprivate struct TopTenTab: View {
+fileprivate struct TopTenListView: View {
     let reportList: [DeepSkyTarget]
     let targetTab: TargetTab
     

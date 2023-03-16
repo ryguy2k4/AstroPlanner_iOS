@@ -40,10 +40,6 @@ enum FilterMethod: Identifiable {
         }
 }
 
-protocol Filter: RawRepresentable<String>, Identifiable, Hashable, CaseIterable where AllCases == Array<Self> {
-    static var name: String { get }
-}
-
 extension Array where Element == DeepSkyTarget {
     
     /// FILTER BY SEARCH
