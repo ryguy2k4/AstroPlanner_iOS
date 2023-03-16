@@ -304,10 +304,12 @@ fileprivate struct CatalogViewSettings: View {
     @Binding var viewingInterval: DateInterval
     var body: some View {
         let locationBinding = Binding(
-            get: { return locationList.first! },
+            get: { return locationList.firstIndex(where: {$0.isSelected == true}) ?? -1 },
             set: {
                 for location in locationList { location.isSelected = false }
-                $0.isSelected = true
+                if $0 >= 0 {
+                    locationList[$0].isSelected = true
+                }
                 PersistenceManager.shared.saveData(context: context)
             }
         )
@@ -321,8 +323,9 @@ fileprivate struct CatalogViewSettings: View {
                     DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != data?.sun.ATInterval, sun: data?.sun)
                 }
                 Picker("Location", selection: locationBinding) {
-                    ForEach(locationList) { location in
-                        Text(location.name!).tag(location)
+//                    Text("Current Location").tag(-1)
+                    ForEach(Array(locationList.enumerated()), id: \.element) { index, location in
+                        Text(locationList[index].name!).tag(index)
                     }
                 }
                 .pickerStyle(.inline)

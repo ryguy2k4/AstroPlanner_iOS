@@ -95,6 +95,22 @@ extension Double {
         let extraction = self - (oldDigit * pow(10, Double(place.rawValue)))
         return extraction + (Double(newDigit) * pow(10, Double(place.rawValue)))
     }
+    
+    func formatDMS(directionArgs: [FloatingPointSign : String]? = nil) -> String {
+        var string = ""
+        var negative = self < 0
+        var num = self.magnitude
+        string.append("\(Int(num))° ")
+        num = num.mod(by: 1) * 60
+        string.append("\(Int(num))' ")
+        num = num.mod(by: 1) * 60
+        string.append("\(Int(num))\" ")
+        if let directionArgs = directionArgs, let minus = directionArgs[.minus], let plus = directionArgs[.plus] {
+            string.append(negative ? minus : plus)
+        }
+        
+        return string
+    }
 }
 
 extension Optional where Wrapped == Double {

@@ -22,19 +22,17 @@ struct DailyReportView: View {
     @State var isSettingsModal = false
     
     var body: some View {
-        if let location = locationList.first {
-            let data = networkManager.data[.init(date: date, location: location)]
-            
-            NavigationStack {
+        NavigationStack {
+            if let location = locationList.first {
+                let data = networkManager.data[.init(date: date, location: location)]
                 VStack {
-                    // Header Section
+                    // header
                     Text("Daily Report")
                         .multilineTextAlignment(.center)
                         .font(.largeTitle)
                         .fontWeight(.semibold)
                     
-                    
-                    // Only display report if network data is available
+                    // display report if network data is available
                     if let data = data, let report = DailyReport(location: location, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), data: data) {
                         
                         ReportHeader()
@@ -54,46 +52,12 @@ struct DailyReportView: View {
                             }
                         }
                     }
-                    // If Network data is not fetched, show a loading screen and then request the necessary data
+                    // if network data is unavailable, show loading or failure screen
                     else {
                         if internet {
-                            VStack {
-                                ProgressView()
-                                    .padding(.top)
-                                Text("Fetching Sun/Moon Data...")
-                                    .fontWeight(.bold)
-                                Spacer()
-                            }
-                            .task {
-                                do {
-                                    try await networkManager.updateData(at: location, on: date)
-                                } catch {
-                                    internet = false
-                                }
-                            }
+                            DailyReportLoadingView(internet: $internet)
                         } else {
-                            VStack {
-                                Text("Daily Report Unavailable Offline")
-                                    .fontWeight(.bold)
-                                    .padding(.vertical)
-                                Button("Retry") {
-                                    internet = true
-                                    Task {
-                                        do {
-                                            try await networkManager.updateData(at: location, on: date)
-                                        } catch {
-                                            internet = false
-                                        }
-                                    }
-                                }
-                                Spacer()
-                            }
-                            .toolbar {
-                                ToolbarItem(placement: .navigationBarLeading) {
-                                    Image(systemName: "wifi.exclamationmark")
-                                        .foregroundColor(.red)
-                                }
-                            }
+                            DailyReportLoadingFailedView(internet: $internet)
                         }
                     }
                 }
@@ -112,36 +76,27 @@ struct DailyReportView: View {
                         .environmentObject(locationList.first!)
                         .environmentObject(targetSettings.first!)
                 }
-            }
-            .environmentObject(location)
-            .environmentObject(targetSettings.first!)
-            .environment(\.date, date)
-            .environment(\.viewingInterval, viewingInterval)
-            .scrollIndicators(.hidden)
-            .sheet(isPresented: $isSettingsModal) {
-                DailyReportSettings(date: $date, viewingInterval: $viewingInterval)
-                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-                    .disabled(data == nil)
-                    .environment(\.data, data)
-            }
-            .onChange(of: data?.sun.ATInterval) { newInterval in
-                if let newInterval = newInterval {
-                    viewingInterval = newInterval
-                    print(newInterval)
+                .environmentObject(location)
+                .environmentObject(targetSettings.first!)
+                .environment(\.date, date)
+                .environment(\.viewingInterval, viewingInterval)
+                .scrollIndicators(.hidden)
+                .sheet(isPresented: $isSettingsModal) {
+                    DailyReportSettings(date: $date, viewingInterval: $viewingInterval)
+                        .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+                        .disabled(data == nil)
+                        .environment(\.data, data)
                 }
-            }
-        }
-        // if there is no location stored, then prompt the user to create one
-        else {
-            NavigationStack {
-                VStack {
-                    Text("Add a Location")
-                        .fontWeight(.semibold)
-                    NavigationLink(destination: LocationSettings()) {
-                        Label("Locations Settings", systemImage: "location")
+                .onChange(of: data?.sun.ATInterval) { newInterval in
+                    if let newInterval = newInterval {
+                        viewingInterval = newInterval
+                        print(newInterval)
                     }
-                    .padding()
                 }
+            }
+            // if there is no location stored, then prompt the user to create one
+            else {
+                DailyReportNoLocationsView()
             }
         }
     }
@@ -211,5 +166,72 @@ fileprivate struct ReportHeader: View {
                     .fontWeight(.thin)
             }
         }.padding(.bottom)
+    }
+}
+
+fileprivate struct DailyReportLoadingView: View {
+    @Environment(\.date) var date
+    @EnvironmentObject var location: SavedLocation
+    @EnvironmentObject var networkManager: NetworkManager
+    @Binding var internet: Bool
+    var body: some View {
+        VStack {
+            ProgressView()
+                .padding(.top)
+            Text("Fetching Sun/Moon Data...")
+                .fontWeight(.bold)
+            Spacer()
+        }
+        .task {
+            do {
+                try await networkManager.updateData(at: location, on: date)
+            } catch {
+                internet = false
+            }
+        }
+    }
+}
+
+fileprivate struct DailyReportLoadingFailedView: View {
+    @Environment(\.date) var date
+    @EnvironmentObject var location: SavedLocation
+    @EnvironmentObject var networkManager: NetworkManager
+    @Binding var internet: Bool
+    var body: some View {
+        VStack {
+            Text("Daily Report Unavailable Offline")
+                .fontWeight(.bold)
+                .padding(.vertical)
+            Button("Retry") {
+                internet = true
+                Task {
+                    do {
+                        try await networkManager.updateData(at: location, on: date)
+                    } catch {
+                        internet = false
+                    }
+                }
+            }
+            Spacer()
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Image(systemName: "wifi.exclamationmark")
+                    .foregroundColor(.red)
+            }
+        }
+    }
+}
+
+fileprivate struct DailyReportNoLocationsView: View {
+    var body: some View {
+        VStack {
+            Text("Add a Location")
+                .fontWeight(.semibold)
+            NavigationLink(destination: LocationSettings()) {
+                Label("Locations Settings", systemImage: "location")
+            }
+            .padding()
+        }
     }
 }
