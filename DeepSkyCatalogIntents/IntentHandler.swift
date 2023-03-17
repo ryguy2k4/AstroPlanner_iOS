@@ -33,6 +33,14 @@ extension IntentHandler: ReportListIntentHandling {
     }
     
     func defaultLocation(for intent: ReportListIntent) -> String? {
-        return "Chicago"
+        var locationsFetchRequest: NSFetchRequest<SavedLocation> {
+            let request = SavedLocation.fetchRequest()
+            request.sortDescriptors = [NSSortDescriptor(SortDescriptor(\SavedLocation.isSelected, order: .reverse)), NSSortDescriptor(SortDescriptor(\SavedLocation.name, order: .forward))]
+            return request
+        }
+        
+        let locations = try? PersistenceManager.shared.container.viewContext.fetch(locationsFetchRequest)
+        
+        return locations?.first?.name
     }
 }

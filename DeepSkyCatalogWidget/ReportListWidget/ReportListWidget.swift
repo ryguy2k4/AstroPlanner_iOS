@@ -26,7 +26,18 @@ struct ReportListView : View {
 
     var body: some View {
         if let error = entry.error {
-            Text("ERROR: \(error.localizedDescription)")
+            if let error = error as? TimelineError {
+                switch error {
+                case .noLocations:
+                    Text("Create a Saved Location in the App")
+                case .noTargetSettings:
+                    Text("ERROR: \(error.localizedDescription)")
+                case .noReportSettings:
+                    Text("ERROR: \(error.localizedDescription)")
+                }
+            } else {
+                Text("ERROR: \(error.localizedDescription)")
+            }
         } else {
             let rows = entry.targets.count < entry.rows ? entry.targets.count : entry.rows
             let targets = entry.targets.dropLast(entry.targets.count > rows ? entry.targets.count - rows : 0)
