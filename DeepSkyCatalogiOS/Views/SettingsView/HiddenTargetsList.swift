@@ -13,8 +13,9 @@ struct HiddenTargetsList: View {
 
     var body: some View {
         VStack {
-            if settings.first?.hiddenTargets?.allObjects.count == 0 {
+            if settings.first!.hiddenTargets?.allObjects.isEmpty ?? true {
                 Text("No Hidden Targets")
+                    .padding()
             }
             List {
                 ForEach(settings.first!.hiddenTargets!.allObjects as! [HiddenTarget]) { hiddenTarget in

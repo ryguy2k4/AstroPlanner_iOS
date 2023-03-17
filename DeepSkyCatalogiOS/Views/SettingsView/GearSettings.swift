@@ -13,6 +13,10 @@ struct GearSettings: View {
     
     var body: some View {
         NavigationStack {
+            if presetList.isEmpty {
+                Text("Add a preset with the plus button")
+                    .padding()
+            }
             List(presetList) { preset in
                 NavigationLink(destination: ImagingPresetEditor(preset: preset)) {
                     Text(preset.name!)

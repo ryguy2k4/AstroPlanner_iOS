@@ -16,6 +16,10 @@ struct LocationSettings: View {
     
     var body: some View {
         NavigationStack {
+            if locationList.isEmpty {
+                Text("Add a location with the plus button")
+                    .padding()
+            }
             List(locationList) { location in
                 NavigationLink(destination: LocationEditor(location: location)) {
                     Text(location.name!)

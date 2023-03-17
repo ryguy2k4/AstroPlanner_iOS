@@ -29,7 +29,7 @@ struct ReportListView : View {
             if let error = error as? TimelineError {
                 switch error {
                 case .noLocations:
-                    Text("Create a Saved Location in the App")
+                    Text("Edit this widget and choose a location")
                 case .noTargetSettings:
                     Text("ERROR: \(error.localizedDescription)")
                 case .noReportSettings:

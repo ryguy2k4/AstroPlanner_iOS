@@ -30,10 +30,10 @@ struct HomeView: View {
                 .tabItem {
                     Label("Master Catalog", systemImage: "tray.full.fill")
                 }
-            JournalView()
-                .tabItem {
-                    Label("Journal", systemImage: "magazine.fill")
-                }
+//            JournalView()
+//                .tabItem {
+//                    Label("Journal", systemImage: "magazine.fill")
+//                }
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")

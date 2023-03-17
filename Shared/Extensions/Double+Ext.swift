@@ -56,7 +56,7 @@ extension Double {
      */
     public func mod(by divisor: Double) -> Double {
         let remainder = self.truncatingRemainder(dividingBy: divisor)
-        return (remainder > 0) ? remainder : (remainder + divisor)
+        return (remainder >= 0) ? remainder : (remainder + divisor)
     }
     
     /**
@@ -98,7 +98,7 @@ extension Double {
     
     func formatDMS(directionArgs: [FloatingPointSign : String]? = nil) -> String {
         var string = ""
-        var negative = self < 0
+        let negative = self < 0
         var num = self.magnitude
         string.append("\(Int(num))° ")
         num = num.mod(by: 1) * 60
