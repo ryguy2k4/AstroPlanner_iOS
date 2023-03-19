@@ -46,8 +46,9 @@ struct LocationEditor: View {
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
     @State var showErrorAlert = false
+    @State var showLocationPermissionError = false
     @State var showLocationError = false
-    let locationManager = LocationManager()
+    @EnvironmentObject var locationManager: LocationManager
     @FetchRequest(sortDescriptors: []) var locationList: FetchedResults<SavedLocation>
     
     // Local state variables to hold information being entered
@@ -119,25 +120,29 @@ struct LocationEditor: View {
                         Section {
                             // Button to autofill information for user's current location
                             Button("Get Current Location") {
-                                self.locationManager.requestLocation()
+                                if locationManager.locationEnabled {
+                                    if let latestLocation = locationManager.latestLocation {
+                                        latitude = latestLocation.coordinate.latitude
+                                        longitude = latestLocation.coordinate.longitude
+                                    } else {
+                                        showLocationError = true
+                                    }
+                                } else if !locationManager.didAskForPermission {
+                                    locationManager.requestAuthorization()
+                                } else {
+                                    showLocationPermissionError = true
+                                }
                                 timezone = Calendar.current.timeZone
                             }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                            
-                            // Handle the results from the "Current Location" button
-                            .onReceive(locationManager.publisher(for: \.latestLocation)) { location in
-                                if let location = location {
-                                    self.longitude = location.coordinate.longitude
-                                    self.latitude = location.coordinate.latitude
-                                }
-                            }
-                            // Show an error message if location request fails
-                            .onReceive(locationManager.publisher(for: \.didFail)) { didFail in
-                                if didFail {
+                            .onChange(of: locationManager.latestLocation) { latestLocation in
+                                if let latestLocation = latestLocation {
+                                    latitude = latestLocation.coordinate.latitude
+                                    longitude = latestLocation.coordinate.longitude
+                                } else {
                                     showLocationError = true
-                                    locationManager.didFail = false
                                 }
                             }
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                         }
                     }
                     if let location = location {
@@ -187,6 +192,11 @@ struct LocationEditor: View {
                 Text("OK")
             } message: {
                 Text("Failed to get location")
+            }
+            .alert("Location Error", isPresented: $showLocationPermissionError) {
+                Text("OK")
+            } message: {
+                Text("Astro Planner does not have location permissions enabled")
             }
             .onAppear() {
                 if let location = location {

@@ -12,11 +12,13 @@ import CoreData
 struct DeepSkyCatalogApp: App {
     @StateObject private var persistenceController = PersistenceManager.shared
     @ObservedObject private var networkManager = NetworkManager.shared
+    @ObservedObject private var locationManager = LocationManager()
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(networkManager)
+                .environmentObject(locationManager)
         }
     }
 }
