@@ -11,7 +11,6 @@ import SwiftUI
  This View is a subview of DailyReportView that displays the topThree as defined within the report.
  */
 struct TopFiveView: View {
-    @EnvironmentObject var location: SavedLocation
     @EnvironmentObject var targetSettings: TargetSettings
     let report: DailyReport
     

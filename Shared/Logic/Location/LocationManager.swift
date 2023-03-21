@@ -13,7 +13,6 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     
     @Published var latestLocation: CLLocation? = nil
     @Published var locationEnabled: Bool = false
-    @Published var didAskForPermission: Bool = false
     
     var locationManager = CLLocationManager()
 
@@ -22,25 +21,18 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
         locationManager.delegate = self
     }
     
-    // Function that shows a location permissions alert
-    func requestAuthorization() {
-        locationManager.requestWhenInUseAuthorization()
-    }
-    
     // Delegate function that activates whenever authorization status changes
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch locationManager.authorizationStatus {
         case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
             locationEnabled = false
-            didAskForPermission = false
         case .restricted, .denied:
             locationEnabled = false
-            didAskForPermission = true
         case .authorizedAlways, .authorizedWhenInUse:
             print("Started Monitoring Significant Location Changes")
             locationManager.startMonitoringSignificantLocationChanges()
             locationEnabled = true
-            didAskForPermission = true
         @unknown default:
             break
         }

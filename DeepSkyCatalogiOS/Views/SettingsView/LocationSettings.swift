@@ -127,8 +127,6 @@ struct LocationEditor: View {
                                     } else {
                                         showLocationError = true
                                     }
-                                } else if !locationManager.didAskForPermission {
-                                    locationManager.requestAuthorization()
                                 } else {
                                     showLocationPermissionError = true
                                 }

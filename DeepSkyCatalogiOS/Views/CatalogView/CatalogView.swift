@@ -11,6 +11,7 @@ struct CatalogView: View {
     @Environment(\.dismissSearch) private var dismissSearch
     @Environment(\.isSearching) private var isSearching
     @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var locationManager: LocationManager
     @StateObject private var catalogManager: CatalogManager = CatalogManager()
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
@@ -21,8 +22,24 @@ struct CatalogView: View {
     @State private var isSettingsModal = false
         
     var body: some View {
-        // Only display targets if network data is available
-        if let location = locationList.first {
+        let location: Location? = {
+            if let selected = locationList.first(where: { $0.isSelected == true }) {
+                // try to find a selected location
+                return Location(saved: selected)
+            } else if locationManager.locationEnabled, let latest = locationManager.latestLocation {
+                // try to get the current location
+                return Location(current: latest)
+            } else if let any = locationList.first {
+                // try to find any location
+                any.isSelected = true
+                return Location(saved: any)
+            } else {
+                // no location found
+                return nil
+            }
+        }()
+        
+        if let location = location {
             let data = networkManager.data[.init(date: date, location: location)]
             NavigationStack() {
                 FilterButtonMenu(date: $date)
@@ -99,7 +116,7 @@ struct CatalogView: View {
             
             // Passing the date and location to use into all child views
             .environment(\.date, date)
-            .environmentObject(location)
+            .environment(\.location, location)
             .environmentObject(targetSettings.first!)
             .environmentObject(catalogManager)
             .environment(\.data, data)
@@ -125,7 +142,7 @@ struct CatalogView: View {
  This View displays information about the target at a glance. It is used within the Master Catalog list.
  */
 fileprivate struct TargetCell: View {
-    @EnvironmentObject var location: SavedLocation
+    @Environment(\.location) var location: Location
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
     @Environment(\.data) var data

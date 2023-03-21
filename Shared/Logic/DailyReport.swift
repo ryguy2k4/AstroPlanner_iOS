@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 final class DailyReport: ObservableObject {
-    let location: SavedLocation
+    let location: Location
     let date: Date
     let viewingInterval: DateInterval
     let reportSettings: ReportSettings
@@ -22,7 +22,7 @@ final class DailyReport: ObservableObject {
     let topTenGalaxies: [DeepSkyTarget]
     let topTenStarClusters: [DeepSkyTarget]
     
-    init(location: SavedLocation, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: [ImagingPreset], data: (sun: SunData, moon: MoonData)) {
+    init(location: Location, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: [ImagingPreset], data: (sun: SunData, moon: MoonData)) {
         self.location = location
         self.date = date
         self.viewingInterval = viewingInterval

@@ -11,6 +11,7 @@ import CoreData
 struct DailyReportView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var locationManager: LocationManager
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
@@ -23,7 +24,24 @@ struct DailyReportView: View {
     
     var body: some View {
         NavigationStack {
-            if let location = locationList.first {
+            let location: Location? = {
+                if let selected = locationList.first(where: { $0.isSelected == true }) {
+                    // try to find a selected location
+                    return Location(saved: selected)
+                } else if locationManager.locationEnabled, let latest = locationManager.latestLocation {
+                    // try to get the current location
+                    return Location(current: latest)
+                } else if let any = locationList.first {
+                    // try to find any location
+                    any.isSelected = true
+                    return Location(saved: any)
+                } else {
+                    // no location found
+                    return nil
+                }
+            }()
+            
+            if let location = location {
                 let data = networkManager.data[.init(date: date, location: location)]
                 VStack {
                     // header
@@ -73,10 +91,10 @@ struct DailyReportView: View {
                 }
                 .navigationDestination(for: DeepSkyTarget.self) { target in
                     DetailView(target: target)
-                        .environmentObject(locationList.first!)
+                        .environment(\.location, location)
                         .environmentObject(targetSettings.first!)
                 }
-                .environmentObject(location)
+                .environment(\.location, location)
                 .environmentObject(targetSettings.first!)
                 .environment(\.date, date)
                 .environment(\.viewingInterval, viewingInterval)
@@ -90,7 +108,6 @@ struct DailyReportView: View {
                 .onChange(of: data?.sun.ATInterval) { newInterval in
                     if let newInterval = newInterval {
                         viewingInterval = newInterval
-                        print(newInterval)
                     }
                 }
             }
@@ -106,16 +123,16 @@ fileprivate struct ReportHeader: View {
     @EnvironmentObject var networkManager: NetworkManager
     @Environment(\.data) var data
     @Environment(\.date) var date
+    @Environment(\.location) var location: Location
     @Environment(\.viewingInterval) var viewingInterval
-    @EnvironmentObject var location: SavedLocation
     var body: some View {
         VStack {
             if viewingInterval == data?.sun.ATInterval {
-                Text("Night of \(date.formatted(date: .long, time: .omitted))")
+                Text("Night of \(date.formatted(date: .long, time: .omitted)) at \(location.name)")
                     .font(.subheadline)
                     .fontWeight(.thin)
             } else {
-                Text("\(viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(viewingInterval.end.formatted(date: .omitted, time: .shortened))")
+                Text("\(viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(location.name)")
                     .font(.subheadline)
                     .fontWeight(.thin)
             }
@@ -131,7 +148,7 @@ fileprivate struct ReportHeader: View {
 
 fileprivate struct DailyReportLoadingView: View {
     @Environment(\.date) var date
-    @EnvironmentObject var location: SavedLocation
+    @Environment(\.location) var location: Location
     @EnvironmentObject var networkManager: NetworkManager
     @Binding var internet: Bool
     var body: some View {
@@ -154,7 +171,7 @@ fileprivate struct DailyReportLoadingView: View {
 
 fileprivate struct DailyReportLoadingFailedView: View {
     @Environment(\.date) var date
-    @EnvironmentObject var location: SavedLocation
+    @Environment(\.location) var location: Location
     @EnvironmentObject var networkManager: NetworkManager
     @Binding var internet: Bool
     var body: some View {

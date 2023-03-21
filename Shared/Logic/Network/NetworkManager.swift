@@ -13,7 +13,7 @@ final class NetworkManager: ObservableObject {
     
     struct DataKey: Hashable {
         let date: Date
-        let location: SavedLocation
+        let location: Location
     }
     
     @Published var data: [DataKey : (sun: SunData, moon: MoonData)] = [:]
@@ -21,7 +21,7 @@ final class NetworkManager: ObservableObject {
     private init() { }
     
     @MainActor
-    func updateData(at location: SavedLocation, on date: Date) async throws {
+    func updateData(at location: Location, on date: Date) async throws {
         do {
             self.data[.init(date: date, location: location)] = try await getData(at: location, on: date)
         } catch FetchError.unableToFetch {
@@ -36,9 +36,9 @@ final class NetworkManager: ObservableObject {
         }
     }
     
-    func getData(at location: SavedLocation, on date: Date) async throws -> (sun: SunData, moon: MoonData) {
+    func getData(at location: Location, on date: Date) async throws -> (sun: SunData, moon: MoonData) {
         do {
-            let timezoneOffset = TimeZone(identifier: location.timezone!)!.secondsFromGMT() / 3600
+            let timezoneOffset = location.timezone.secondsFromGMT() / 3600
             async let decodedMoonDataToday: RawMoonData = try fetchTask(
                 from: "https://aa.usno.navy.mil/api/rstt/oneday?date=\(date.formatted(format: "YYYY-MM-dd"))&coords=\(location.latitude),\(location.longitude)&tz=\(timezoneOffset)")
             async let decodedMoonDataTomorrow: RawMoonData = try fetchTask(

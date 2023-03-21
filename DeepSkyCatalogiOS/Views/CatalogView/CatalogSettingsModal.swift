@@ -11,6 +11,7 @@ import SwiftUI
  This view is for the modal that pops up on the Master Catalog to choose the date and location
  */
 struct CatalogSettingsModal: View {
+    @EnvironmentObject var locationManager: LocationManager
     @Environment(\.managedObjectContext) var context
     @Environment(\.data) var data
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
@@ -37,7 +38,9 @@ struct CatalogSettingsModal: View {
                     DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != data?.sun.ATInterval, sun: data?.sun)
                 }
                 Picker("Location", selection: locationBinding) {
-//                    Text("Current Location").tag(-1)
+                    if locationManager.locationEnabled {
+                        Text("Current Location").tag(-1)
+                    }
                     ForEach(Array(locationList.enumerated()), id: \.element) { index, location in
                         Text(locationList[index].name!).tag(index)
                     }

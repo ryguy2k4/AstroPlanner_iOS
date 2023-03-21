@@ -19,6 +19,10 @@ private struct ViewingIntervalKey: EnvironmentKey {
     static let defaultValue: DateInterval = DateInterval(start: Date.today.addingTimeInterval(68400), end: Date.tomorrow.addingTimeInterval(18000))
 }
 
+private struct LocationKey: EnvironmentKey {
+    static let defaultValue: Location = Location(current: .init(latitude: 0, longitude: 0))
+}
+
 extension EnvironmentValues {
     var date: Date {
         get {
@@ -44,6 +48,15 @@ extension EnvironmentValues {
         }
         set {
             self[ViewingIntervalKey.self] = newValue
+        }
+    }
+    
+    var location: Location {
+        get {
+            self[LocationKey.self]
+        }
+        set {
+            self[LocationKey.self] = newValue
         }
     }
 }

@@ -11,7 +11,7 @@ import Charts
 struct DetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var location: SavedLocation
+    @Environment(\.location) var location: Location
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
     @Environment(\.viewingInterval) var viewingInterval
@@ -137,7 +137,7 @@ struct DetailView: View {
  A chart that plots altitude vs time for a target
  */
 struct TargetAltitudeChart: View {
-    @EnvironmentObject var location: SavedLocation
+    @Environment(\.location) var location: Location
     @Environment(\.date) var date
     var target: DeepSkyTarget
     var body: some View {
@@ -194,7 +194,7 @@ private struct EventLabel: View {
 
 struct TargetSchedule: View {
     @Environment(\.date) var date
-    @EnvironmentObject var location: SavedLocation
+    @Environment(\.location) var location: Location
     let target: DeepSkyTarget
     var body: some View {
         VStack() {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditAllFiltersView: View {
     @ObservedObject var viewModel: CatalogManager
-    @EnvironmentObject var location: SavedLocation
+    @Environment(\.location) var location: Location
     @EnvironmentObject var reportSettings: ReportSettings
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>

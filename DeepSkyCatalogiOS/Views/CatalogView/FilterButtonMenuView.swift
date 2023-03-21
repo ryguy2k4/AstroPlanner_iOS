@@ -14,7 +14,7 @@ import SwiftUI
  */
 struct FilterButtonMenu: View {
     @EnvironmentObject var viewModel: CatalogManager
-    @EnvironmentObject var location: SavedLocation
+    @Environment(\.location) var location: Location
     @Environment(\.data) var data
     @Environment(\.viewingInterval) var viewingInterval
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
@@ -80,7 +80,7 @@ struct FilterButtonMenu: View {
  */
 fileprivate struct FilterButton: View {
     @EnvironmentObject var viewModel: CatalogManager
-    @EnvironmentObject var location: SavedLocation
+    @Environment(\.location) var location: Location
     @Environment(\.date) var date
     @Environment(\.data) var data
     @Environment(\.viewingInterval) var viewingInterval

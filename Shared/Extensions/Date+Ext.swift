@@ -10,25 +10,25 @@ import Foundation
 extension Date {
     
     /// The J2000 Epoch on January 1, 2000 at 12:00 UTC
-    public static let J2000 = Date(timeIntervalSince1970: 946_728_000)
+    static let J2000 = Date(timeIntervalSince1970: 946_728_000)
     
     /// 12:00 AM on the current date
-    public static let today = Calendar.current.startOfDay(for: Date())
+    static let today = Calendar.current.startOfDay(for: Date())
     
     /// 12:00 AM on tomorrow's date
-    public static let tomorrow = Calendar.current.startOfDay(for: Date().tomorrow())
+    static let tomorrow = Calendar.current.startOfDay(for: Date().tomorrow())
         
     /**
      - Returns: self + 1 day
      */
-    public func tomorrow() -> Date {
+    func tomorrow() -> Date {
         return Calendar.current.date(byAdding: .day, value: 1, to: self)!
     }
     
     /**
      - Returns: self - 1 day
      */
-    public func yesterday() -> Date {
+    func yesterday() -> Date {
         return Calendar.current.date(byAdding: .day, value: -1, to: self)!
     }
     
@@ -37,11 +37,11 @@ extension Date {
      - Parameter location: Location to calculate the time at.
      - Returns: A Double representing decimal hours at the given timezone.
      */
-    public func dateToUTCHours(location: SavedLocation) -> Double {
+    func dateToUTCHours(location: Location) -> Double {
         let time = Calendar.current.dateComponents([.hour, .minute, .second], from: self)
         let hours = Double(time.hour!) + Double(time.minute!) / 60 + Double(time.second!) / 3600
-        var tz = Double(TimeZone(identifier: location.timezone!)!.secondsFromGMT() / 3600)
-        if TimeZone(identifier: location.timezone!)!.secondsFromGMT() < 0 {
+        var tz = Double(location.timezone.secondsFromGMT() / 3600)
+        if location.timezone.secondsFromGMT() < 0 {
             tz = -tz
         }
         return (hours + tz).mod(by: 24)
@@ -50,7 +50,7 @@ extension Date {
     /**
     - Returns: An array of date objects at every hour of the day, from noon today to noon the next day.
      */
-    public func getEveryHour() -> [Date] {
+    func getEveryHour() -> [Date] {
         var array: [Date] = []
         for hour in 0..<24 {
             array.append(self.addingTimeInterval(43200 + Double(3600*hour)))
@@ -63,7 +63,7 @@ extension Date {
      - Parameter format: The format to follow.
      - Returns: A String representation of the Date.
      */
-    public func formatted(format: String, timezone: Int16 = 0) -> String {
+    func formatted(format: String, timezone: Int16 = 0) -> String {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(secondsFromGMT: Int(timezone)*60*60)
         formatter.locale = .current
@@ -75,7 +75,7 @@ extension Date {
      Calculates the days between the Epoch J2000 and a given date.
      - Parameter until: The date to calculate the interval to.
      */
-    public static func daysSinceJ2000(until date: Date = Date.now) -> Double {
+    static func daysSinceJ2000(until date: Date = Date.now) -> Double {
         if date > Date.J2000 {
             return DateInterval(start: Date.J2000, end: date).duration/60/60/24
         } else {

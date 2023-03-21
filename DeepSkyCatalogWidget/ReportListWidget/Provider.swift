@@ -50,11 +50,11 @@ struct Provider: IntentTimelineProvider {
                 }
 
                 // fetch sun and moon data from network
-                let data = try await NetworkManager.shared.getData(at: location, on: currentDate)
+                let data = try await NetworkManager.shared.getData(at: Location(saved: location), on: currentDate)
 //                let data = (sun: SunData.dummy, moon: MoonData.dummy)
 
                 // generate a report
-                let report = DailyReport(location: location, date: currentDate, viewingInterval: data.sun.ATInterval, reportSettings: reportSettings, targetSettings: targetSettings, presetList: presetList, data: data)
+                let report = DailyReport(location: Location(saved: location), date: currentDate, viewingInterval: data.sun.ATInterval, reportSettings: reportSettings, targetSettings: targetSettings, presetList: presetList, data: data)
                 
                 // create a timline with 1 entry for the current date
                 var rows: Int {

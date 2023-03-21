@@ -156,7 +156,7 @@ extension DeepSkyTarget {
      HA = LST - RA
      sin(ALT) = sin(DEC)*sin(LAT)+cos(DEC)*cos(LAT)*cos(HA)
      */
-    func getAltitude(location: SavedLocation, time: Date) -> Double {
+    func getAltitude(location: Location, time: Date) -> Double {
         let d = Date.daysSinceJ2000(until: time)
         let lst = 100.46 + (0.985647 * d) + location.longitude + (15 * time.dateToUTCHours(location: location)).mod(by: 360)
         let ha = (lst - ra).mod(by: 360)
@@ -192,7 +192,7 @@ extension DeepSkyTarget {
      - Parameter date: The date on which to calculate the culmination
      - Returns: The time at which the target reaches its highest altitude
      */
-    private func getCulmination(location: SavedLocation, date: Date) -> Date {
+    private func getCulmination(location: Location, date: Date) -> Date {
         let time = binaryAltitudeSearch(startTime: date.noon(), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
             slope(location: location, time: time) > 0 || slope(location: location, time: time.addingTimeInterval(increment)) < 0
         }
@@ -202,7 +202,7 @@ extension DeepSkyTarget {
         /**
          - Returns: An approximate IROC for altitude vs time at the given time in degrees per second
          */
-        func slope(location: SavedLocation, time: Date) -> Double {
+        func slope(location: Location, time: Date) -> Double {
            let alt1 = getAltitude(location: location, time: time)
            let alt2 = getAltitude(location: location, time: time.addingTimeInterval(1))
            return alt1 - alt2
@@ -216,7 +216,7 @@ extension DeepSkyTarget {
      - Parameter date: The date on which to calculate the rise and set times.
      - Returns: A DateInterval object from the targets next rise to the targets next set.
      */
-    func getNextInterval(location: SavedLocation, date: Date, limitingAlt: Double = 0) -> TargetInterval {
+    func getNextInterval(location: Location, date: Date, limitingAlt: Double = 0) -> TargetInterval {
         
         let culmination = getCulmination(location: location, date: date)
         let antiCulmination = culmination.addingTimeInterval(-43_080)
@@ -250,7 +250,7 @@ extension DeepSkyTarget {
      - Returns: A decimal representing the percentage of the night that the target is visible.
      
      */
-    func getVisibilityScore(at location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Double {
+    func getVisibilityScore(at location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Double {
         // attempt to get target interval
         let targetInterval = getNextInterval(location: location, date: viewingInterval.start.addingTimeInterval(-43_200), limitingAlt: limitingAlt).interval
                     
@@ -273,7 +273,7 @@ extension DeepSkyTarget {
      - Parameter date: The date on which to calculate the meridian score.
      - Returns: A decimal representing an abstract percentage.
      */
-    func getSeasonScore(at location: SavedLocation, on date: Date, sunData: SunData) -> Double {
+    func getSeasonScore(at location: Location, on date: Date, sunData: SunData) -> Double {
         let targetMeridian = getCulmination(location: location, date: date)
         let nightLength = sunData.ATInterval.duration
         let nightBegin = sunData.ATInterval.start

@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct DailyReportSettingsModal: View {
+    @EnvironmentObject var locationManager: LocationManager
     @Environment(\.managedObjectContext) var context
     @Environment(\.isEnabled) var isEnabled
     @Environment(\.data) var data
@@ -62,7 +63,9 @@ struct DailyReportSettingsModal: View {
                     }
                     ConfigSection(header: "Report Settings") {
                         Picker("Location", selection: locationBinding) {
-//                            Text("Current Location").tag(-1)
+                            if locationManager.locationEnabled {
+                                Text("Current Location").tag(-1)
+                            }
                             ForEach(Array(locationList.enumerated()), id: \.element) { index, location in
                                 Text(locationList[index].name!).tag(index)
                             }

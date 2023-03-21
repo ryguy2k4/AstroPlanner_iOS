@@ -21,7 +21,6 @@ struct DateIntervalSelector: View {
                     // new start is after sunset and before end
                     if $0 > sun.ATInterval.start {
                         // new start is on the next day
-                        print(viewingInterval.start.endOfDay())
                         if $0 > viewingInterval.start.endOfDay() {
                             // set the new value to the start of the next day
                             let newDuration = DateInterval(start: viewingInterval.end.startOfDay(), end: viewingInterval.end).duration

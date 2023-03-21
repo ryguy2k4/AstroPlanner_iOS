@@ -132,24 +132,24 @@ extension Array where Element == DeepSkyTarget {
     }
     
     /// FILTER BY VISIBILITY SCORE
-    func filteredByVisibility(min: Double, location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Self {
+    func filteredByVisibility(min: Double, location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Self {
         return self.filter() {
             return $0.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt) >= min
         }
     }
     
-    mutating func filterByVisibility(_ min: Double, location: SavedLocation, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) {
+    mutating func filterByVisibility(_ min: Double, location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) {
         self = self.filteredByVisibility(min: min, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt)
     }
     
     /// FILTER BY MERIDIAN SCORE
-    func filteredBySeasonScore(min: Double, location: SavedLocation, date: Date, sunData: SunData) -> Self {
+    func filteredBySeasonScore(min: Double, location: Location, date: Date, sunData: SunData) -> Self {
         return self.filter() {
             return $0.getSeasonScore(at: location, on: date, sunData: sunData) >= min
         }
     }
     
-    mutating func filterBySeasonScore(_ min: Double, location: SavedLocation, date: Date, sunData: SunData) {
+    mutating func filterBySeasonScore(_ min: Double, location: Location, date: Date, sunData: SunData) {
         self = self.filteredBySeasonScore(min: min, location: location, date: date, sunData: sunData)
     }
 }
