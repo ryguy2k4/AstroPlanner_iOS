@@ -111,6 +111,18 @@ extension Double {
         
         return string
     }
+    
+    func formatHMS() -> String {
+        var string = ""
+        var num = self.magnitude / 15
+        string.append("\(Int(num))h ")
+        num = num.mod(by: 1) * 60
+        string.append("\(Int(num))' ")
+        num = num.mod(by: 1) * 60
+        string.append("\(Int(num))\" ")
+        
+        return string
+    }
 }
 
 extension Optional where Wrapped == Double {

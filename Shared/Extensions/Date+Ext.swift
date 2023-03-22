@@ -55,6 +55,25 @@ extension Date {
         for hour in 0..<24 {
             array.append(self.addingTimeInterval(43200 + Double(3600*hour)))
         }
+        array.append(self.addingTimeInterval(43200 + Double(3600*24) - 1))
+        return array
+    }
+    
+    func getEveryMonth() -> [Date] {
+        var array: [Date] = []
+        let year = Calendar.current.dateComponents([.year], from: .now).year
+        for month in 1..<13 {
+            var dateComps = DateComponents()
+            dateComps.year = year
+            dateComps.month = month
+            dateComps.day = 1
+            array.append(Calendar.current.date(from: dateComps)!)
+        }
+        var dateComps = DateComponents()
+        dateComps.year = year
+        dateComps.month = 12
+        dateComps.day = 31
+        array.append(Calendar.current.date(from: dateComps)!)
         return array
     }
 

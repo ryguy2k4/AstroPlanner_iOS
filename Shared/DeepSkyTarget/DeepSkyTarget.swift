@@ -288,6 +288,20 @@ extension DeepSkyTarget {
             return (1 - (interval / 0.5)).magnitude
         }
     }
+    
+    func getApproxSeasonScore(at location: Location, on date: Date) -> Double {
+        let targetMeridian = getCulmination(location: location, date: date)
+        
+        let midnight = date.endOfDay().addingTimeInterval(1)
+        if (targetMeridian < midnight){
+            // time between meridian crossing and midnight in fractional days
+            let interval = DateInterval(start: targetMeridian, end: midnight).duration/60/60/24
+            return (1 - (interval / 0.5)).magnitude
+        } else {
+            let interval = DateInterval(start: midnight, end: targetMeridian).duration/60/60/24
+            return (1 - (interval / 0.5)).magnitude
+        }
+    }
 }
 
 /**

@@ -15,6 +15,8 @@ struct DetailView: View {
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
     @Environment(\.viewingInterval) var viewingInterval
+    @State var showCoordinateDecimalFormat: Bool = false
+    @State var showLimitingAlt: Bool = true
     var target: DeepSkyTarget
     var body: some View {
         let data = networkManager.data[.init(date: date, location: location)]
@@ -42,38 +44,38 @@ struct DetailView: View {
                 }
                 
                 // Target Facts
-                VStack {
+                VStack(spacing: 8) {
                     VStack {
-                        Text(target.name?[0] ?? target.defaultName)
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                            .lineLimit(1)
-                        Text(target.type.rawValue)
+                        Text(target.type.rawValue + " in " + target.constellation.rawValue)
                             .font(.subheadline)
                             .fontWeight(.light)
                             .lineLimit(1)
                     }
                     HStack {
                         VStack(alignment: .leading) {
-                            FactLabel(text: target.constellation.rawValue, image: "star")
-                            FactLabel(text: " RA: \(target.ra.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.left.arrow.right")
-                            FactLabel(text: "DEC: \(target.dec.formatted(.number.precision(.significantDigits(0...5))))", image: "arrow.up.arrow.down")
+                            FactLabel(text: showCoordinateDecimalFormat ? (target.ra / 15).formatted(.number.precision(.significantDigits(0...5))) + "h" : target.ra.formatHMS(), image: "r.square.fill")
+                            FactLabel(text: showCoordinateDecimalFormat ? target.dec.formatted(.number.precision(.significantDigits(0...5))) + "°" : target.dec.formatDMS(), image: "d.square.fill")
+                        }
+                        .onTapGesture {
+                            showCoordinateDecimalFormat.toggle()
+                        }
+                        Divider()
+                        VStack(alignment: .leading) {
                             FactLabel(text: " Mag \(target.apparentMag == nil ? "N/A" : String(target.apparentMag!))", image: "sun.min.fill")
                             FactLabel(text:" \(target.arcLength)' x \(target.arcWidth)'", image: "arrow.up.left.and.arrow.down.right")
-                        }
-                        if let sun = data?.sun {
-                            VStack {
-                                Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: targetSettings.limitingAltitude)).percent())")
-                                    .foregroundColor(.secondary)
-                                Text("Season Score: \((target.getSeasonScore(at: location, on: date, sunData: sun)).percent())")
-                                    .foregroundColor(.secondary)
-                            }
                         }
                     }
                 }
                 
-                // Target Graph
-                TargetSchedule(target: target)
+                VStack {
+                    // Target Graphs
+                    TargetAltitudeChart(target: target, showLimitingAlt: showLimitingAlt)
+                        .onTapGesture {
+                            showLimitingAlt.toggle()
+                        }
+                    TargetSchedule(target: target, showLimitingAlt: showLimitingAlt)
+                    TargetSeasonScoreChart(target: target)
+                }
                 
                 // Target Description
                 VStack(alignment: .leading, spacing: 10) {
@@ -126,9 +128,15 @@ struct DetailView: View {
                 } label: {
                     Image(systemName: "ellipsis")
                 }
-
+            }
+            ToolbarItem(placement: .principal) {
+                Label(target.name?.first ?? target.defaultName, image: "gear")
+                    .labelStyle(.titleOnly)
+                    .font(.headline)
             }
         }
+//        .navigationTitle(target.name?.first ?? target.defaultName)
+//        .navigationBarTitleDisplayMode(.large)
         .environment(\.data, data)
     }
 }
@@ -137,28 +145,137 @@ struct DetailView: View {
  A chart that plots altitude vs time for a target
  */
 struct TargetAltitudeChart: View {
+    @EnvironmentObject var targetSettings: TargetSettings
+    @Environment(\.viewingInterval) var viewingInterval: DateInterval
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
+    @Environment(\.data) var data
+    @State var popover: Bool = false
     var target: DeepSkyTarget
+    let showLimitingAlt: Bool
     var body: some View {
+        // Graph
         Chart {
             ForEach(date.getEveryHour(), id: \.self) { hour in
-                LineMark(x: .value("Hour", hour, unit: .hour), y: .value("Altitude", target.getAltitude(location: location, time: hour)))
+                LineMark(x: .value("Hour", hour, unit: .minute), y: .value("Altitude", target.getAltitude(location: location, time: hour)))
                     .interpolationMethod(.catmullRom)
             }
-            RuleMark(y: .value("Axis", 0))
+            RuleMark(y: .value("Axis", showLimitingAlt ? targetSettings.limitingAltitude : 0))
                 .foregroundStyle(.gray)
-//            RuleMark(x: .value("Now", Date.now))
-//                .lineStyle(.init(dash: [5]))
-//                .foregroundStyle(.red)
+            if Date.now > date.noon() {
+                RuleMark(x: .value("Now", Date.now))
+                    .lineStyle(.init(dash: [5]))
+                    .foregroundStyle(.red)
+            } else {
+                RuleMark(x: .value("Now", date.noon()))
+                    .lineStyle(.init(dash: [5]))
+                    .foregroundStyle(.red)
+            }
+            if let sun = data?.sun {
+                RectangleMark(xStart: .value("", date.startOfDay().addingTimeInterval(43_200)), xEnd: .value("", sun.ATInterval.start))
+                    .foregroundStyle(.gray.opacity(0.1))
+                RectangleMark(xStart: .value("", sun.ATInterval.end), xEnd: .value("", date.tomorrow().addingTimeInterval(43_200)))
+                    .foregroundStyle(.gray.opacity(0.1))
+            }
         }
         .chartXAxis {
-            AxisMarks(values: .stride(by: .hour, count: 6)) {
+            AxisMarks(position: .bottom, values: .stride(by: .hour, count: 6)) {
                 AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
                 AxisGridLine()
             }
         }
-        .chartYAxisLabel("Altitude (°)")
+        .chartYAxisLabel(position: .top, alignment: .topTrailing) {
+            Text("Altitude (°)")
+        }
+        .chartYAxisLabel(position: .top, alignment: .center) {
+            if let sun = data?.sun {
+                Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: showLimitingAlt ? targetSettings.limitingAltitude : 0)).percent())")
+                    .foregroundColor(.secondary)
+                    .font(.headline)
+            } else {
+                Text("Visibility")
+                    .foregroundColor(.secondary)
+                    .font(.headline)
+            }
+        }
+        .chartYAxisLabel(position: .bottom, alignment: .bottomLeading) {
+            if targetSettings.limitingAltitude != 0 {
+                Text("Tap to toggle limiting altitude")
+            }
+        }
+        .padding(.horizontal)
+        .popover(isPresented: $popover) {
+            Text("Help")
+        }
+    }
+}
+
+struct TargetSchedule : View {
+    @EnvironmentObject var targetSettings: TargetSettings
+    @Environment(\.location) var location: Location
+    @Environment(\.date) var date
+    let target: DeepSkyTarget
+    let showLimitingAlt: Bool
+    var body: some View {
+        let targetInterval = target.getNextInterval(location: location, date: date, limitingAlt: showLimitingAlt ? targetSettings.limitingAltitude : 0)
+        HStack {
+            switch targetInterval.interval {
+            case .never:
+                EventLabel(date: target.getNextInterval(location: location, date: date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+            case .always:
+                EventLabel(date: target.getNextInterval(location: location, date: date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+            case .sometimes(let interval):
+                EventLabel(date: interval.start, image: "sunrise")
+                EventLabel(date: target.getNextInterval(location: location, date: date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                EventLabel(date: interval.end, image: "sunset")
+            }
+        }
+    }
+}
+
+/**
+ A chart that plots altitude vs time for a target
+ */
+struct TargetSeasonScoreChart: View {
+    @Environment(\.viewingInterval) var viewingInterval: DateInterval
+    @Environment(\.date) var date
+    @Environment(\.data) var data
+    @Environment(\.location) var location: Location
+    var target: DeepSkyTarget
+    var body: some View {
+        // Graph
+        Chart {
+            ForEach(date.getEveryMonth(), id: \.self) { month in
+                LineMark(x: .value("Month", month, unit: .day), y: .value("Score", target.getApproxSeasonScore(at: location, on: month)*100))
+                    .interpolationMethod(.catmullRom)
+            }
+            RuleMark(y: .value("Axis", 0))
+                .foregroundStyle(.gray)
+            RuleMark(x: .value("Now", Date.now))
+                .lineStyle(.init(dash: [5]))
+                .foregroundStyle(.red)
+        }
+        .chartXAxis {
+            AxisMarks(values: .stride(by: .month, count: 1)) {
+                AxisValueLabel(format: .dateTime.month(.narrow))
+                AxisGridLine()
+            }
+        }
+        .chartYAxisLabel(position: .top, alignment: .topTrailing) {
+            Text("Score")
+        }
+        .chartYAxisLabel(position: .top, alignment: .center) {
+            if let sun = data?.sun {
+                Text("Season Score: \((target.getSeasonScore(at: location, on: date, sunData: sun)).percent())")
+                    .foregroundColor(.secondary)
+                    .font(.headline)
+            } else {
+                Text("Season")
+                    .foregroundColor(.secondary)
+                    .font(.headline)
+            }
+        }
+        .padding(.horizontal)
     }
 }
 
@@ -189,32 +306,5 @@ private struct EventLabel: View {
         }
         .frame(width: 110, height: 60)
             
-    }
-}
-
-struct TargetSchedule: View {
-    @Environment(\.date) var date
-    @Environment(\.location) var location: Location
-    let target: DeepSkyTarget
-    var body: some View {
-        VStack() {
-            TargetAltitudeChart(target: target)
-                .padding()
-            let targetInterval = target.getNextInterval(location: location, date: date)
-            HStack {
-                switch targetInterval.interval {
-                case .never:
-                    Text("Target Never Visible")
-                    EventLabel(date: targetInterval.culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
-                case .always:
-                    Text("Target Always Visible")
-                    EventLabel(date: targetInterval.culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
-                case .sometimes(let interval):
-                    EventLabel(date: interval.start, image: "sunrise")
-                    EventLabel(date: targetInterval.culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
-                    EventLabel(date: interval.end, image: "sunset")
-                }
-            }
-        }
     }
 }
