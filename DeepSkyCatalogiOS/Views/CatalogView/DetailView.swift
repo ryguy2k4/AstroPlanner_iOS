@@ -19,7 +19,7 @@ struct DetailView: View {
     @State var showLimitingAlt: Bool = true
     var target: DeepSkyTarget
     var body: some View {
-        let data = networkManager.data[.init(date: date, location: location)]
+        let sunData = networkManager.sun[.init(date: date, location: location)]
         ScrollView {
             VStack(spacing: 10) {
                 
@@ -135,9 +135,7 @@ struct DetailView: View {
                     .font(.headline)
             }
         }
-//        .navigationTitle(target.name?.first ?? target.defaultName)
-//        .navigationBarTitleDisplayMode(.large)
-        .environment(\.data, data)
+        .environment(\.sunData, sunData)
     }
 }
 
@@ -149,7 +147,7 @@ struct TargetAltitudeChart: View {
     @Environment(\.viewingInterval) var viewingInterval: DateInterval
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
-    @Environment(\.data) var data
+    @Environment(\.sunData) var sunData
     @State var popover: Bool = false
     var target: DeepSkyTarget
     let showLimitingAlt: Bool
@@ -171,10 +169,10 @@ struct TargetAltitudeChart: View {
                     .lineStyle(.init(dash: [5]))
                     .foregroundStyle(.red)
             }
-            if let sun = data?.sun {
-                RectangleMark(xStart: .value("", date.startOfDay().addingTimeInterval(43_200)), xEnd: .value("", sun.ATInterval.start))
+            if let sunData = sunData {
+                RectangleMark(xStart: .value("", date.startOfDay().addingTimeInterval(43_200)), xEnd: .value("", sunData.ATInterval.start))
                     .foregroundStyle(.gray.opacity(0.1))
-                RectangleMark(xStart: .value("", sun.ATInterval.end), xEnd: .value("", date.tomorrow().addingTimeInterval(43_200)))
+                RectangleMark(xStart: .value("", sunData.ATInterval.end), xEnd: .value("", date.tomorrow().addingTimeInterval(43_200)))
                     .foregroundStyle(.gray.opacity(0.1))
             }
         }
@@ -188,8 +186,8 @@ struct TargetAltitudeChart: View {
             Text("Altitude (°)")
         }
         .chartYAxisLabel(position: .top, alignment: .center) {
-            if let sun = data?.sun {
-                Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: showLimitingAlt ? targetSettings.limitingAltitude : 0)).percent())")
+            if let sunData = sunData {
+                Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: showLimitingAlt ? targetSettings.limitingAltitude : 0)).percent())")
                     .foregroundColor(.secondary)
                     .font(.headline)
             } else {
@@ -204,9 +202,6 @@ struct TargetAltitudeChart: View {
             }
         }
         .padding(.horizontal)
-        .popover(isPresented: $popover) {
-            Text("Help")
-        }
     }
 }
 
@@ -239,7 +234,7 @@ struct TargetSchedule : View {
 struct TargetSeasonScoreChart: View {
     @Environment(\.viewingInterval) var viewingInterval: DateInterval
     @Environment(\.date) var date
-    @Environment(\.data) var data
+    @Environment(\.sunData) var sunData
     @Environment(\.location) var location: Location
     var target: DeepSkyTarget
     var body: some View {
@@ -265,8 +260,8 @@ struct TargetSeasonScoreChart: View {
             Text("Score")
         }
         .chartYAxisLabel(position: .top, alignment: .center) {
-            if let sun = data?.sun {
-                Text("Season Score: \((target.getSeasonScore(at: location, on: date, sunData: sun)).percent())")
+            if let sunData = sunData {
+                Text("Season Score: \((target.getSeasonScore(at: location, on: date, sunData: sunData)).percent())")
                     .foregroundColor(.secondary)
                     .font(.headline)
             } else {

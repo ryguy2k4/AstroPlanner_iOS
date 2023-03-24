@@ -42,7 +42,7 @@ struct DailyReportView: View {
             }()
             
             if let location = location {
-                let data = networkManager.data[.init(date: date, location: location)]
+                let sunData = networkManager.sun[.init(date: date, location: location)]
                 VStack {
                     // header
                     Text("Daily Report")
@@ -51,10 +51,10 @@ struct DailyReportView: View {
                         .fontWeight(.semibold)
                     
                     // display report if network data is available
-                    if let data = data, let report = DailyReport(location: location, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), data: data) {
+                    if let sunData = sunData, let report = DailyReport(location: location, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), sunData: sunData) {
                         
                         ReportHeader()
-                            .environment(\.data, data)
+                            .environment(\.sunData, sunData)
                         ScrollView {
                             VStack {
                                 // Report Section
@@ -102,10 +102,10 @@ struct DailyReportView: View {
                 .sheet(isPresented: $isSettingsModal) {
                     DailyReportSettingsModal(date: $date, viewingInterval: $viewingInterval)
                         .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-                        .disabled(data == nil)
-                        .environment(\.data, data)
+                        .disabled(sunData == nil)
+                        .environment(\.sunData, sunData)
                 }
-                .onChange(of: data?.sun.ATInterval) { newInterval in
+                .onChange(of: sunData?.ATInterval) { newInterval in
                     if let newInterval = newInterval {
                         viewingInterval = newInterval
                     }
@@ -121,13 +121,13 @@ struct DailyReportView: View {
 
 fileprivate struct ReportHeader: View {
     @EnvironmentObject var networkManager: NetworkManager
-    @Environment(\.data) var data
+    @Environment(\.sunData) var sunData
     @Environment(\.date) var date
     @Environment(\.location) var location: Location
     @Environment(\.viewingInterval) var viewingInterval
     var body: some View {
         VStack {
-            if viewingInterval == data?.sun.ATInterval {
+            if viewingInterval == sunData?.ATInterval {
                 Text("Night of \(date.formatted(date: .long, time: .omitted)) at \(location.name)")
                     .font(.subheadline)
                     .fontWeight(.thin)
@@ -136,11 +136,10 @@ fileprivate struct ReportHeader: View {
                     .font(.subheadline)
                     .fontWeight(.thin)
             }
-            if let moon = data?.moon {
-                Text("Moon: \(moon.illuminated.percent(sigFigs: 2)) illuminated")
-                    .font(.subheadline)
-                    .fontWeight(.thin)
-            }
+            let moonIllumination = MoonData.getMoonIllumination(date: date)
+            Text("Moon: \(moonIllumination.percent(sigFigs: 2)) illuminated")
+                .font(.subheadline)
+                .fontWeight(.thin)
         }.padding(.bottom)
     }
 }
@@ -160,7 +159,7 @@ fileprivate struct DailyReportLoadingView: View {
         }
         .task {
             do {
-                try await networkManager.updateData(at: location, on: date)
+                try await networkManager.updateSunData(at: location, on: date)
             } catch {
                 internet = false
             }
@@ -182,7 +181,7 @@ fileprivate struct DailyReportLoadingFailedView: View {
                 internet = true
                 Task {
                     do {
-                        try await networkManager.updateData(at: location, on: date)
+                        try await networkManager.updateSunData(at: location, on: date)
                     } catch {
                         internet = false
                     }

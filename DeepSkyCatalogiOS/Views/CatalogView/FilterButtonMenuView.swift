@@ -15,7 +15,7 @@ import SwiftUI
 struct FilterButtonMenu: View {
     @EnvironmentObject var viewModel: CatalogManager
     @Environment(\.location) var location: Location
-    @Environment(\.data) var data
+    @Environment(\.sunData) var sunData
     @Environment(\.viewingInterval) var viewingInterval
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @Binding var date: Date
@@ -29,7 +29,7 @@ struct FilterButtonMenu: View {
             buttons.append(FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection)))
             buttons.append(FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection)))
             buttons.append(FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag))))
-            if data != nil {
+            if sunData != nil {
                 buttons.append(FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore)))
                 buttons.append(FilterButton(method: .seasonScore, active: viewModel.isActive(criteria: viewModel.minSeasonScore)))
             }
@@ -67,7 +67,7 @@ struct FilterButtonMenu: View {
         .sheet(isPresented: $isAllFilterModal) {
             EditAllFiltersView(viewModel: viewModel, dateBinding: $date)
                 .onDisappear() {
-                    viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
+                    viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
                 }
                 .presentationDetents([.fraction(0.5), .fraction(0.8)])
         }
@@ -82,7 +82,7 @@ fileprivate struct FilterButton: View {
     @EnvironmentObject var viewModel: CatalogManager
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
-    @Environment(\.data) var data
+    @Environment(\.sunData) var sunData
     @Environment(\.viewingInterval) var viewingInterval
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @State private var presentedFilterSheet: FilterMethod? = nil
@@ -103,7 +103,7 @@ fileprivate struct FilterButton: View {
                         .foregroundColor(.primary)
                     Button {
                         viewModel.clearFilter(for: method)
-                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
+                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
                     } label: {
                         Image(systemName: active ? "x.circle" : "chevron.down")
                             .foregroundColor(.accentColor)
@@ -139,7 +139,7 @@ fileprivate struct FilterButton: View {
                 }
             }
             .onDisappear() {
-                viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
+                viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
             }
             .presentationDetents([.fraction(0.5), .fraction(0.8)])
         }

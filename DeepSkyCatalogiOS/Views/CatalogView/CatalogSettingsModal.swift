@@ -13,7 +13,7 @@ import SwiftUI
 struct CatalogSettingsModal: View {
     @EnvironmentObject var locationManager: LocationManager
     @Environment(\.managedObjectContext) var context
-    @Environment(\.data) var data
+    @Environment(\.sunData) var sunData
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
     @Binding var viewingInterval: DateInterval
@@ -35,7 +35,7 @@ struct CatalogSettingsModal: View {
                 .fontWeight(.semibold)
             Form {
                 ConfigSection(header: "Viewing Interval") {
-                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != data?.sun.ATInterval, sun: data?.sun)
+                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != sunData?.ATInterval, sunData: sunData)
                 }
                 Picker("Location", selection: locationBinding) {
                     if locationManager.locationEnabled {

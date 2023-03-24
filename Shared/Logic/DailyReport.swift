@@ -14,7 +14,7 @@ final class DailyReport: ObservableObject {
     let viewingInterval: DateInterval
     let reportSettings: ReportSettings
     let targetSettings: TargetSettings
-    let data: (sun: SunData, moon: MoonData)
+    let sunData: SunData
     let presetList: [ImagingPreset]
     
     let topFive: [DeepSkyTarget]
@@ -22,13 +22,13 @@ final class DailyReport: ObservableObject {
     let topTenGalaxies: [DeepSkyTarget]
     let topTenStarClusters: [DeepSkyTarget]
     
-    init(location: Location, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: [ImagingPreset], data: (sun: SunData, moon: MoonData)) {
+    init(location: Location, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: [ImagingPreset], sunData: SunData) {
         self.location = location
         self.date = date
         self.viewingInterval = viewingInterval
         self.reportSettings = reportSettings
         self.targetSettings = targetSettings
-        self.data = data
+        self.sunData = sunData
         self.presetList = presetList
                 
         self.topFive = createReportList(top: 5)
@@ -43,13 +43,14 @@ final class DailyReport: ObservableObject {
             
             // Remove all targets with a meridian score less than 50%
             // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
-            targets.filterBySeasonScore(0.5, location: location, date: date, sunData: data.sun)
+            targets.filterBySeasonScore(0.5, location: location, date: date, sunData: sunData)
             
             // Remove all targets with a visibility score less than the user specified minimum
-            targets.filterByVisibility(reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
+            targets.filterByVisibility(reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             
             // if bright moon is visible filter for narrowband targets
-            if data.moon.illuminated > reportSettings.maxAllowedMoon {
+            let moonIllumination = MoonData.getMoonIllumination(date: date)
+            if moonIllumination > reportSettings.maxAllowedMoon {
                 targets.filterByType(TargetType.narrowband)
             }
             // if moon is not a problem, but broadband preferred, filter for broadband only
@@ -71,7 +72,7 @@ final class DailyReport: ObservableObject {
             }
             
             // Sort the list by visibility
-            targets.sortByVisibility(location: location,viewingInterval: viewingInterval, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
+            targets.sortByVisibility(location: location,viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             
             // Shorten the list to desired number passed to function
             targets.removeLast(targets.count > num ? targets.count-num : 0)

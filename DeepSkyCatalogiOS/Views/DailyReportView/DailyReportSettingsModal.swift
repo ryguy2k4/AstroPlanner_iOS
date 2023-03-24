@@ -12,7 +12,7 @@ struct DailyReportSettingsModal: View {
     @EnvironmentObject var locationManager: LocationManager
     @Environment(\.managedObjectContext) var context
     @Environment(\.isEnabled) var isEnabled
-    @Environment(\.data) var data
+    @Environment(\.sunData) var sunData
     @ObservedObject var settings: ReportSettings
     @Binding var date: Date
     @Binding var viewingInterval: DateInterval
@@ -59,7 +59,7 @@ struct DailyReportSettingsModal: View {
                 
                 Form {
                     ConfigSection(header: "Viewing Interval") {
-                        DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != data?.sun.ATInterval, sun: data?.sun)
+                        DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != sunData?.ATInterval, sunData: sunData)
                     }
                     ConfigSection(header: "Report Settings") {
                         Picker("Location", selection: locationBinding) {

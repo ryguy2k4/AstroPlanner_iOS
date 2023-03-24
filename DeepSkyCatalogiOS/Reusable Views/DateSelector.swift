@@ -11,15 +11,15 @@ struct DateIntervalSelector: View {
     @Environment(\.date) var date
     @Binding var viewingInterval: DateInterval
     @State var customViewingInterval: Bool
-    let sun: SunData?
+    let sunData: SunData?
     
     var body: some View {
         let startBinding = Binding(
             get: { return viewingInterval.start },
             set: {
-                if let sun = sun {
+                if let sunData = sunData {
                     // new start is after sunset and before end
-                    if $0 > sun.ATInterval.start {
+                    if $0 > sunData.ATInterval.start {
                         // new start is on the next day
                         if $0 > viewingInterval.start.endOfDay() {
                             // set the new value to the start of the next day
@@ -38,8 +38,8 @@ struct DateIntervalSelector: View {
                     // new start is before sunset
                     else {
                         // set new value to sunset
-                        let newDuration = DateInterval(start: sun.ATInterval.start, end: viewingInterval.end).duration
-                        viewingInterval.start = sun.ATInterval.start
+                        let newDuration = DateInterval(start: sunData.ATInterval.start, end: viewingInterval.end).duration
+                        viewingInterval.start = sunData.ATInterval.start
                         viewingInterval.duration = newDuration
                         
                     }
@@ -49,9 +49,9 @@ struct DateIntervalSelector: View {
         let endBinding = Binding(
             get: { return viewingInterval.end },
             set: {
-                if let sun = sun {
+                if let sunData = sunData {
                     // new end is before sunrise and after start
-                    if $0 < sun.ATInterval.end {
+                    if $0 < sunData.ATInterval.end {
                         // new end is on previous day
                         if $0 < viewingInterval.end.startOfDay() {
                             // set new value to the 11:59 PM on the start day
@@ -69,7 +69,7 @@ struct DateIntervalSelector: View {
                     // new end is after sunrise
                     else  {
                         // set new value to sunrise
-                        let newDuration = DateInterval(start: viewingInterval.start, end: sun.ATInterval.end).duration
+                        let newDuration = DateInterval(start: viewingInterval.start, end: sunData.ATInterval.end).duration
                         viewingInterval.duration = newDuration
                     }
                 }
@@ -82,8 +82,8 @@ struct DateIntervalSelector: View {
         }
         .pickerStyle(.segmented)
         .onChange(of: customViewingInterval) { newValue in
-            if !newValue, let sun = sun {
-                viewingInterval = sun.ATInterval
+            if !newValue, let sunData = sunData {
+                viewingInterval = sunData.ATInterval
             }
         }
         VStack {

@@ -50,11 +50,10 @@ struct Provider: IntentTimelineProvider {
                 }
 
                 // fetch sun and moon data from network
-                let data = try await NetworkManager.shared.getAPIData(at: Location(saved: location), on: currentDate)
-//                let data = (sun: SunData.dummy, moon: MoonData.dummy)
+                let sunData = try await NetworkManager.shared.getAPIData(at: Location(saved: location), on: currentDate)
 
                 // generate a report
-                let report = DailyReport(location: Location(saved: location), date: currentDate, viewingInterval: data.sun.ATInterval, reportSettings: reportSettings, targetSettings: targetSettings, presetList: presetList, data: data)
+                let report = DailyReport(location: Location(saved: location), date: currentDate, viewingInterval: sunData.ATInterval, reportSettings: reportSettings, targetSettings: targetSettings, presetList: presetList, sunData: sunData)
                 
                 // create a timline with 1 entry for the current date
                 var rows: Int {
@@ -66,7 +65,7 @@ struct Provider: IntentTimelineProvider {
                     }
                 }
                 let entry = ReportListEntry(date: currentDate, targets: report.topFive, rows: rows)
-                let timeline = Timeline(entries: [entry], policy: .after(data.sun.ATInterval.end))
+                let timeline = Timeline(entries: [entry], policy: .after(sunData.ATInterval.end))
                 completion(timeline)
             } catch {
                 // TEMPORARY -- CHANGE LATER

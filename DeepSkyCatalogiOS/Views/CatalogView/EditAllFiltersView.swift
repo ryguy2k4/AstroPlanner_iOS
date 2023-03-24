@@ -14,7 +14,7 @@ struct EditAllFiltersView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @Environment(\.managedObjectContext) var context
-    @Environment(\.data) var data
+    @Environment(\.sunData) var sunData
     @Environment(\.date) var date
     @Environment(\.viewingInterval) var viewingInterval
     @Binding var dateBinding: Date
@@ -24,12 +24,12 @@ struct EditAllFiltersView: View {
             Form {
                 ConfigSection(header: "Sort") {
                     Picker("Method:", selection: $viewModel.currentSort) {
-                        ForEach(data != nil ? SortMethod.allCases : SortMethod.offlineCases) { method in
+                        ForEach(sunData != nil ? SortMethod.allCases : SortMethod.offlineCases) { method in
                             Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
                         }
                     }
                     .onChange(of: viewModel.currentSort) { _ in
-                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
+                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
                     }
                     Picker("Order:", selection: $viewModel.sortDecending) {
                         Label("Ascending", systemImage: "chevron.up").tag(false)
@@ -37,7 +37,7 @@ struct EditAllFiltersView: View {
                         
                     }
                     .onChange(of: viewModel.sortDecending) { _ in
-                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
+                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
                     }
                 }
                 ConfigSection(header: "Filters") {
@@ -56,7 +56,7 @@ struct EditAllFiltersView: View {
                     NavigationLink("Size Filter") {
                         MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
                     }
-                    if data != nil {
+                    if sunData != nil {
                         NavigationLink("Visibility Score Filter") {
                             Form {
                                 NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])

@@ -40,7 +40,7 @@ struct CatalogView: View {
         }()
         
         if let location = location {
-            let data = networkManager.data[.init(date: date, location: location)]
+            let sunData = networkManager.sun[.init(date: date, location: location)]
             NavigationStack() {
                 FilterButtonMenu(date: $date)
                 
@@ -54,7 +54,7 @@ struct CatalogView: View {
                 .listStyle(.grouped)
                 .toolbar() {
                     ToolbarLogo()
-                    if data == nil {
+                    if sunData == nil {
                         ToolbarItem(placement: .navigationBarLeading) {
                             Image(systemName: "wifi.exclamationmark")
                                 .foregroundColor(.red)
@@ -76,11 +76,11 @@ struct CatalogView: View {
             // Modifiers to enable searching
             .searchable(text: $catalogManager.searchText)
             .onSubmit(of: .search) {
-                catalogManager.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
+                catalogManager.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
             }
             .onChange(of: catalogManager.searchText) { newValue in
                 if newValue.isEmpty {
-                    catalogManager.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: data?.sun)
+                    catalogManager.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
                 }
             }
             .searchSuggestions {
@@ -111,7 +111,7 @@ struct CatalogView: View {
             .sheet(isPresented: $isSettingsModal){
                 CatalogSettingsModal(date: $date, viewingInterval: $viewingInterval)
                     .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-                    .disabled(data == nil)
+                    .disabled(sunData == nil)
             }
             
             // Passing the date and location to use into all child views
@@ -119,7 +119,7 @@ struct CatalogView: View {
             .environment(\.location, location)
             .environmentObject(targetSettings.first!)
             .environmentObject(catalogManager)
-            .environment(\.data, data)
+            .environment(\.sunData, sunData)
         }
         
         // if there is no location stored, then prompt the user to create one
@@ -145,7 +145,7 @@ fileprivate struct TargetCell: View {
     @Environment(\.location) var location: Location
     @EnvironmentObject var targetSettings: TargetSettings
     @Environment(\.date) var date
-    @Environment(\.data) var data
+    @Environment(\.sunData) var sunData
     @Environment(\.viewingInterval) var viewingInterval
     var target: DeepSkyTarget
     
@@ -160,10 +160,10 @@ fileprivate struct TargetCell: View {
                 Text(target.name?[0] ?? target.defaultName)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                if let sun = data?.sun {
-                    Label(target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sun, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
+                if let sunData = sunData {
+                    Label(target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
                         .foregroundColor(.secondary)
-                    Label(target.getSeasonScore(at: location, on: date, sunData: sun).percent(), systemImage: "calendar.circle")
+                    Label(target.getSeasonScore(at: location, on: date, sunData: sunData).percent(), systemImage: "calendar.circle")
                         .foregroundColor(.secondary)
                 }
             }
