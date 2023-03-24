@@ -24,6 +24,10 @@ struct Location: Hashable {
         }
     }
     
+    var clLocation: CLLocation {
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
     enum LocationSource: Hashable {
         case current
         case saved(String)

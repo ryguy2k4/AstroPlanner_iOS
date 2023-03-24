@@ -137,8 +137,7 @@ fileprivate struct ReportHeader: View {
                     .fontWeight(.thin)
             }
             if let moon = data?.moon {
-                let moonOverlap = (moon.moonInterval.intersection(with: viewingInterval)?.duration ?? 0) / viewingInterval.duration
-                Text("Moon: \(moon.illuminated.percent()) illuminated for \(moonOverlap.percent()) of the night")
+                Text("Moon: \(moon.illuminated.percent(sigFigs: 2)) illuminated")
                     .font(.subheadline)
                     .fontWeight(.thin)
             }

@@ -50,7 +50,7 @@ struct Provider: IntentTimelineProvider {
                 }
 
                 // fetch sun and moon data from network
-                let data = try await NetworkManager.shared.getData(at: Location(saved: location), on: currentDate)
+                let data = try await NetworkManager.shared.getAPIData(at: Location(saved: location), on: currentDate)
 //                let data = (sun: SunData.dummy, moon: MoonData.dummy)
 
                 // generate a report

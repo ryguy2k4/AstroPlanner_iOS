@@ -12,6 +12,9 @@ extension Date {
     /// The J2000 Epoch on January 1, 2000 at 12:00 UTC
     static let J2000 = Date(timeIntervalSince1970: 946_728_000)
     
+    /// The farthest back that WeatherKit can provide data for - August 1, 2021
+    static let weatherKitHistoricalLimit = Date(timeIntervalSince1970: 1_627_776_000)
+    
     /// 12:00 AM on the current date
     static let today = Calendar.current.startOfDay(for: Date())
     

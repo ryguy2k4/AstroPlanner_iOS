@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WeatherKit
 
 struct SunData {
     let astronomicalTwilightBegin: Date
@@ -26,6 +27,13 @@ struct SunData {
         self.sunrise = sunrise
         self.ATInterval = ATInterval
         self.nightInterval = nightInterval
+    }
+    
+    init(sunEventsToday: SunEvents, sunEventsTomorrow: SunEvents) {
+        astronomicalTwilightBegin = sunEventsToday.astronomicalDawn!
+        sunrise = sunEventsToday.sunrise!
+        ATInterval = DateInterval(start: sunEventsToday.astronomicalDusk!, end: sunEventsTomorrow.astronomicalDawn!)
+        nightInterval = DateInterval(start: sunEventsToday.sunset!, end: sunEventsTomorrow.sunrise!)
     }
 }
 

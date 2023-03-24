@@ -11,11 +11,11 @@ enum TargetType: String, Filter, CaseNameCodable {
     static let name = "Type"
     var id: Self { self }
     
-    static let nebulae: [TargetType] = [.planetaryNebula, .supernovaRemnant, .reflectionNebula, .darkNebula, .HIIRegion, .mixedDiffuseNebulae]
-    static let starClusters: [TargetType] = [.openStarCluster, .globularStarCluster]
-    static let galaxies: [TargetType] = [.ellipticalGalaxy, .spiralGalaxy, .irregularGalaxy, .galaxyGroup]
-    static let broadband: [TargetType] = [.ellipticalGalaxy, .spiralGalaxy, .irregularGalaxy, .darkNebula, .galaxyGroup, .reflectionNebula, .planetaryNebula, .mixedDiffuseNebulae]
-    static let narrowband: [TargetType] = [.HIIRegion, .supernovaRemnant, .openStarCluster, .globularStarCluster]
+    static let nebulae: [TargetType] = [.planetaryNebula, .supernovaRemnant, .reflectionNebula, .darkNebula, .HIIRegion, .mixedDiffuseNebulae, .cloudComplex]
+    static let starClusters: [TargetType] = [.openStarCluster, .globularStarCluster, .starCloud, .asterism]
+    static let galaxies: [TargetType] = [.ellipticalGalaxy, .spiralGalaxy, .irregularGalaxy, .galaxyGroup, .dwarfSpiralGalaxy, .dwarfIrregularGalaxy, .dwarfSpheroidalGalaxy, .peculiarGalaxy, .lenticularGalaxy, .barredSpiralGalaxy]
+    static let broadband: [TargetType] = galaxies + [.planetaryNebula, .reflectionNebula, .darkNebula, .mixedDiffuseNebulae]
+    static let narrowband: [TargetType] = starClusters + [.HIIRegion, .supernovaRemnant]
 
     // Nebulous
     case HIIRegion = "H II Region"

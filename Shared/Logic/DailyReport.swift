@@ -48,8 +48,8 @@ final class DailyReport: ObservableObject {
             // Remove all targets with a visibility score less than the user specified minimum
             targets.filterByVisibility(reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, sunData: data.sun, limitingAlt: targetSettings.limitingAltitude)
             
-            // if bright moon is visible for more than 10% of viewing interval, filter for narrowband targets
-            if data.moon.illuminated > reportSettings.maxAllowedMoon && (data.moon.moonInterval.intersection(with: viewingInterval)?.duration ?? 0) > 0.1 * viewingInterval.duration {
+            // if bright moon is visible filter for narrowband targets
+            if data.moon.illuminated > reportSettings.maxAllowedMoon {
                 targets.filterByType(TargetType.narrowband)
             }
             // if moon is not a problem, but broadband preferred, filter for broadband only

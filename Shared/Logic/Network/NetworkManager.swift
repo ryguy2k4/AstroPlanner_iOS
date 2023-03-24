@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WeatherKit
 
 final class NetworkManager: ObservableObject {
     
@@ -17,26 +18,68 @@ final class NetworkManager: ObservableObject {
     }
     
     @Published var data: [DataKey : (sun: SunData, moon: MoonData)] = [:]
+//    @Published var sun: [DataKey : SunData]
+//    @Published var moon: [DataKey : MoonData]
     
     private init() { }
-    
+        
     @MainActor
     func updateData(at location: Location, on date: Date) async throws {
+        // Try WeatherKit
         do {
-            self.data[.init(date: date, location: location)] = try await getData(at: location, on: date)
-        } catch FetchError.unableToFetch {
-            print("Error: No Internet Connection")
-            throw FetchError.unableToFetch
-        } catch FetchError.unableToDecode {
-            print("Error: unable to decode data")
-        } catch FetchError.unableToMakeURL {
-            print("Error: Bad URL")
-        } catch {
-            print("Unknown Error: \(error.localizedDescription)")
+            let data = try await getWeatherKitData(location: location, date: self.data.isEmpty ? date.yesterday() : date, endDate: self.data.isEmpty ? date.addingTimeInterval(86_400*9) : nil)
+            // merge the new data, overwriting if necessary
+            self.data.merge(data) { _, new in new }
+            print("Data Updated from WeatherKit")
+            
         }
+        // Fallback on APIs
+        catch {
+            print("WeatherKit Error: \(error.localizedDescription)")
+            print("Falling back on APIs")
+            do {
+                self.data[DataKey(date: date, location: location)] = try await getAPIData(at: location, on: date)
+                print("Data Updated from APIs")
+            } catch FetchError.unableToFetch {
+                print("Error: No Internet Connection")
+                throw FetchError.unableToFetch
+            } catch FetchError.unableToDecode {
+                print("Error: unable to decode data")
+            } catch FetchError.unableToMakeURL {
+                print("Error: Bad URL")
+            } catch {
+                print("Unknown Error: \(error.localizedDescription)")
+            }
+        }
+
     }
     
-    func getData(at location: Location, on date: Date) async throws -> (sun: SunData, moon: MoonData) {
+    func getWeatherKitData(location: Location, date: Date, endDate: Date? = nil) async throws -> [DataKey : (sun: SunData, moon: MoonData)] {
+        guard date >= .now.startOfDay().yesterday() && date <= .now.startOfDay().addingTimeInterval(86400*8) else {
+            throw FetchError.dateOutOfRange
+        }
+        
+        let forecast = try await WeatherService().weather(for: location.clLocation, including: .daily(startDate: date, endDate: endDate?.tomorrow() ?? date.tomorrow())).forecast
+        
+        // Make sure WeatherKit returned data
+        guard !forecast.isEmpty else {
+            throw FetchError.weatherKitNoData
+        }
+        
+        var array: [DataKey : (sun: SunData, moon: MoonData)] = [:]
+        for index in forecast.indices.dropLast() {
+            let dataKey = DataKey(date: forecast[index].date, location: location)
+            let sunData = SunData(sunEventsToday: forecast[index].sun, sunEventsTomorrow: forecast[index+1].sun)
+            let moonData = MoonData(moonDataToday: forecast[index].moon, moonDataTomorrow: forecast[index+1].moon, sun: forecast[index].sun)
+            array[dataKey] = (sun: sunData, moon: moonData)
+        }
+
+        print("WeatherKit Data Fetched")
+        return array
+            
+    }
+    
+    func getAPIData(at location: Location, on date: Date) async throws -> (sun: SunData, moon: MoonData) {
         do {
             let timezoneOffset = location.timezone.secondsFromGMT() / 3600
             async let decodedMoonDataToday: RawMoonData = try fetchTask(
