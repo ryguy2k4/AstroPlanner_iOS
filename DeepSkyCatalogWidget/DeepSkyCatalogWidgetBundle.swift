@@ -11,6 +11,15 @@ import SwiftUI
 @main
 struct DeepSkyCatalogWidgetBundle: WidgetBundle {
     var body: some Widget {
-        ReportListWidget()
+//        ReportListWidget()
+        EmptyWidget()
+    }
+}
+
+struct EmptyWidget: Widget {
+    let kind: String = "empty"
+
+    var body: some WidgetConfiguration {
+        EmptyWidgetConfiguration()
     }
 }
