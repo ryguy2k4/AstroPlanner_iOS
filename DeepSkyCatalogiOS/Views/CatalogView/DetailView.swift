@@ -144,7 +144,7 @@ struct DetailView: View {
  */
 struct TargetAltitudeChart: View {
     @EnvironmentObject var targetSettings: TargetSettings
-    @Environment(\.viewingInterval) var viewingInterval: DateInterval
+    @Environment(\.viewingInterval) var viewingInterval
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
     @Environment(\.sunData) var sunData
@@ -169,10 +169,10 @@ struct TargetAltitudeChart: View {
                     .lineStyle(.init(dash: [5]))
                     .foregroundStyle(.red)
             }
-            if let sunData = sunData {
-                RectangleMark(xStart: .value("", date.startOfDay().addingTimeInterval(43_200)), xEnd: .value("", sunData.ATInterval.start))
+            if let viewingInterval = viewingInterval {
+                RectangleMark(xStart: .value("", date.startOfDay().addingTimeInterval(43_200)), xEnd: .value("", viewingInterval.start))
                     .foregroundStyle(.gray.opacity(0.1))
-                RectangleMark(xStart: .value("", sunData.ATInterval.end), xEnd: .value("", date.tomorrow().addingTimeInterval(43_200)))
+                RectangleMark(xStart: .value("", viewingInterval.end), xEnd: .value("", date.tomorrow().addingTimeInterval(43_200)))
                     .foregroundStyle(.gray.opacity(0.1))
             }
         }
@@ -186,7 +186,7 @@ struct TargetAltitudeChart: View {
             Text("Altitude (°)")
         }
         .chartYAxisLabel(position: .top, alignment: .center) {
-            if let sunData = sunData {
+            if let sunData = sunData, let viewingInterval = viewingInterval {
                 Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: showLimitingAlt ? targetSettings.limitingAltitude : 0)).percent())")
                     .foregroundColor(.secondary)
                     .font(.headline)
@@ -232,7 +232,7 @@ struct TargetSchedule : View {
  A chart that plots altitude vs time for a target
  */
 struct TargetSeasonScoreChart: View {
-    @Environment(\.viewingInterval) var viewingInterval: DateInterval
+    @Environment(\.viewingInterval) var viewingInterval
     @Environment(\.date) var date
     @Environment(\.sunData) var sunData
     @Environment(\.location) var location: Location

@@ -73,7 +73,7 @@ final class CatalogManager: ObservableObject {
     /**
      Re-filters and re-sorts the list
      */
-    func refreshList(date: Date, viewingInterval: DateInterval, location: Location, targetSettings: TargetSettings, sunData: SunData?) {
+    func refreshList(date: Date, viewingInterval: DateInterval?, location: Location, targetSettings: TargetSettings, sunData: SunData?) {
         // reset list
         targets = DeepSkyTargetList.whitelistedTargets.sorted(by: {$0.ra > $1.ra})
         if targetSettings.hideNeverRises {
@@ -103,7 +103,7 @@ final class CatalogManager: ObservableObject {
         if isActive(criteria: (min: minSize, max: maxSize)) {
             targets.filterBySize(min: minSize, max: maxSize)
         }
-        if let sunData = sunData {
+        if let sunData = sunData, let viewingInterval = viewingInterval {
             if isActive(criteria: minVisScore) {
                 targets.filterByVisibility(minVisScore, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             }
@@ -115,7 +115,7 @@ final class CatalogManager: ObservableObject {
         // sort the list
         switch currentSort {
         case .visibility:
-            if let sunData = sunData {
+            if let sunData = sunData, let viewingInterval = viewingInterval {
                 targets.sortByVisibility(location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             }
         case .seasonScore:

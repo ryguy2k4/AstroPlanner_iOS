@@ -35,6 +35,8 @@ struct TopFiveView: View {
                                     .foregroundColor(.primary)
                                 Spacer()
                             }
+                            .onAppear() {
+                            }
                             .padding(4)
                         }
                     }

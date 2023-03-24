@@ -8,74 +8,13 @@
 import SwiftUI
 
 struct DateIntervalSelector: View {
-    @Environment(\.date) var date
-    @Binding var viewingInterval: DateInterval
+    @Binding var viewingInterval: DateInterval?
     @State var customViewingInterval: Bool
-    let sunData: SunData?
+    @Environment(\.sunData) var sunData
+    @Environment(\.date) var date
     
     var body: some View {
-        let startBinding = Binding(
-            get: { return viewingInterval.start },
-            set: {
-                if let sunData = sunData {
-                    // new start is after sunset and before end
-                    if $0 > sunData.ATInterval.start {
-                        // new start is on the next day
-                        if $0 > viewingInterval.start.endOfDay() {
-                            // set the new value to the start of the next day
-                            let newDuration = DateInterval(start: viewingInterval.end.startOfDay(), end: viewingInterval.end).duration
-                            viewingInterval.start = viewingInterval.end.startOfDay()
-                            viewingInterval.duration = newDuration
-                        }
-                        // new start is on the current day
-                        else {
-                            // allow the new value
-                            let newDuration = DateInterval(start: $0, end: viewingInterval.end).duration
-                            viewingInterval.start = $0
-                            viewingInterval.duration = newDuration
-                        }
-                    }
-                    // new start is before sunset
-                    else {
-                        // set new value to sunset
-                        let newDuration = DateInterval(start: sunData.ATInterval.start, end: viewingInterval.end).duration
-                        viewingInterval.start = sunData.ATInterval.start
-                        viewingInterval.duration = newDuration
-                        
-                    }
-                }
-            }
-        )
-        let endBinding = Binding(
-            get: { return viewingInterval.end },
-            set: {
-                if let sunData = sunData {
-                    // new end is before sunrise and after start
-                    if $0 < sunData.ATInterval.end {
-                        // new end is on previous day
-                        if $0 < viewingInterval.end.startOfDay() {
-                            // set new value to the 11:59 PM on the start day
-                            let newDuration = DateInterval(start: viewingInterval.start, end: viewingInterval.start.endOfDay()).duration
-                            viewingInterval.duration = newDuration
-                        }
-                        // new end is on same day
-                        else {
-                            // allow new value
-                            let newDuration = DateInterval(start: viewingInterval.start, end: $0).duration
-                            viewingInterval.duration = newDuration
-                        }
-                        
-                    }
-                    // new end is after sunrise
-                    else  {
-                        // set new value to sunrise
-                        let newDuration = DateInterval(start: viewingInterval.start, end: sunData.ATInterval.end).duration
-                        viewingInterval.duration = newDuration
-                    }
-                }
-            }
-        )
-        
+        // Choose Auto vs Custom Interval
         Picker("", selection: $customViewingInterval) {
             Text("Dusk to Dawn").tag(false)
             Text("Custom").tag(true)
@@ -86,11 +25,36 @@ struct DateIntervalSelector: View {
                 viewingInterval = sunData.ATInterval
             }
         }
-        VStack {
-            DatePicker("Start", selection: startBinding)
-            DatePicker("End", selection: endBinding)
+        
+        // Custom Interval Selector
+        if let unwrapped = viewingInterval, sunData?.astronomicalTwilightBegin.startOfDay() == date {
+            let endBinding = Binding(
+                get: {
+                    return unwrapped.end
+                },
+                set: {
+                    let newDuration = DateInterval(start: viewingInterval!.start, end: $0).duration
+                    viewingInterval!.duration = newDuration
+                }
+            )
+            let startBinding = Binding(
+                get: {
+                    return unwrapped.start
+                },
+                set: {
+                    let newDuration = DateInterval(start: $0, end: viewingInterval!.end).duration
+                    viewingInterval!.start = $0
+                    viewingInterval!.duration = newDuration
+                }
+            )
+            let startRange: ClosedRange<Date> = sunData!.ATInterval.start...unwrapped.end
+            let endRange: ClosedRange<Date> = unwrapped.start...sunData!.ATInterval.end
+            VStack {
+                DatePicker("Start", selection: startBinding, in: startRange)
+                DatePicker("End", selection: endBinding, in: endRange)
+            }
+            .disabled(!customViewingInterval)
         }
-        .disabled(!customViewingInterval)
     }
 }
 

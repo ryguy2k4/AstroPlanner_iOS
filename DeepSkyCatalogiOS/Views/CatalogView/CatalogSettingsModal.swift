@@ -16,7 +16,7 @@ struct CatalogSettingsModal: View {
     @Environment(\.sunData) var sunData
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
-    @Binding var viewingInterval: DateInterval
+    @Binding var viewingInterval: DateInterval?
     var body: some View {
         let locationBinding = Binding(
             get: { return locationList.firstIndex(where: {$0.isSelected == true}) ?? -1 },
@@ -35,7 +35,9 @@ struct CatalogSettingsModal: View {
                 .fontWeight(.semibold)
             Form {
                 ConfigSection(header: "Viewing Interval") {
-                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != sunData?.ATInterval, sunData: sunData)
+                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != sunData?.ATInterval)
+                        .environment(\.sunData, sunData)
+                        .environment(\.date, date)
                 }
                 Picker("Location", selection: locationBinding) {
                     if locationManager.locationEnabled {

@@ -17,7 +17,7 @@ struct CatalogView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @Binding var date: Date
-    @Binding var viewingInterval: DateInterval
+    @Binding var viewingInterval: DateInterval?
     
     @State private var isSettingsModal = false
         
@@ -120,6 +120,7 @@ struct CatalogView: View {
             .environmentObject(targetSettings.first!)
             .environmentObject(catalogManager)
             .environment(\.sunData, sunData)
+            .environment(\.viewingInterval, viewingInterval)
         }
         
         // if there is no location stored, then prompt the user to create one
@@ -160,7 +161,7 @@ fileprivate struct TargetCell: View {
                 Text(target.name?[0] ?? target.defaultName)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                if let sunData = sunData {
+                if let sunData = sunData, let viewingInterval = viewingInterval {
                     Label(target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
                         .foregroundColor(.secondary)
                     Label(target.getSeasonScore(at: location, on: date, sunData: sunData).percent(), systemImage: "calendar.circle")

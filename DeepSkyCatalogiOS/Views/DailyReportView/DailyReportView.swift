@@ -17,7 +17,7 @@ struct DailyReportView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @Binding var date: Date
-    @Binding var viewingInterval: DateInterval
+    @Binding var viewingInterval: DateInterval?
     @State var report: DailyReport?
     @State var internet: Bool = true
     @State var isSettingsModal = false
@@ -51,7 +51,7 @@ struct DailyReportView: View {
                         .fontWeight(.semibold)
                     
                     // display report if network data is available
-                    if let sunData = sunData, let report = DailyReport(location: location, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), sunData: sunData) {
+                    if let sunData = sunData, let viewingInterval = viewingInterval, let report = DailyReport(location: location, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), sunData: sunData) {
                         
                         ReportHeader()
                             .environment(\.sunData, sunData)
@@ -93,6 +93,8 @@ struct DailyReportView: View {
                     DetailView(target: target)
                         .environment(\.location, location)
                         .environmentObject(targetSettings.first!)
+                        .environment(\.viewingInterval, viewingInterval)
+                        .environment(\.date, date)
                 }
                 .environment(\.location, location)
                 .environmentObject(targetSettings.first!)
@@ -127,12 +129,12 @@ fileprivate struct ReportHeader: View {
     @Environment(\.viewingInterval) var viewingInterval
     var body: some View {
         VStack {
-            if viewingInterval == sunData?.ATInterval {
+            if viewingInterval == sunData?.ATInterval || viewingInterval == nil {
                 Text("Night of \(date.formatted(date: .long, time: .omitted)) at \(location.name)")
                     .font(.subheadline)
                     .fontWeight(.thin)
             } else {
-                Text("\(viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(location.name)")
+                Text("\(viewingInterval!.start.formatted(date: .abbreviated, time: .shortened)) to \(viewingInterval!.end.formatted(date: .omitted, time: .shortened)) at \(location.name)")
                     .font(.subheadline)
                     .fontWeight(.thin)
             }

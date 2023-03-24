@@ -16,7 +16,7 @@ private struct SunDataKey: EnvironmentKey {
 }
 
 private struct ViewingIntervalKey: EnvironmentKey {
-    static let defaultValue: DateInterval = DateInterval(start: Date.today.addingTimeInterval(68400), end: Date.tomorrow.addingTimeInterval(18000))
+    static let defaultValue: DateInterval? = nil
 }
 
 private struct LocationKey: EnvironmentKey {
@@ -42,7 +42,7 @@ extension EnvironmentValues {
         }
     }
     
-    var viewingInterval: DateInterval {
+    var viewingInterval: DateInterval? {
         get {
             self[ViewingIntervalKey.self]
         }
