@@ -22,18 +22,21 @@ struct TopTenTabView: View {
     @EnvironmentObject var targetSettings: TargetSettings
     let report: DailyReport
     
-    @State var tabSelection: TargetTab
+    @Binding var tabSelection: TargetTab
     
     var body: some View {
         VStack {
             Text("Top Ten")
-                .fontWeight(.bold)
+                .font(.title2)
+                .underline()
             
             Picker("Tab", selection: $tabSelection) {
                 ForEach(TargetTab.allCases) { tab in
                     Text(tab.rawValue)
                 }
-            }.pickerStyle(.segmented).padding(.horizontal, 16)
+            }
+            .pickerStyle(.segmented)
+            .padding(.horizontal, 16)
             
             TabView(selection: $tabSelection) {
                 TopTenListView(reportList: report.topTenNebulae, targetTab: .nebulae)
@@ -61,7 +64,11 @@ fileprivate struct TopTenListView: View {
             }.tag(targetTab).listStyle(.inset)
         } else {
             VStack {
-                Text("No \(targetTab.rawValue)")
+                Spacer()
+                Text("No \(targetTab.rawValue) 🫤")
+                Spacer()
+                Spacer()
+                Spacer()
                 Spacer()
             }.tag(targetTab)
         }

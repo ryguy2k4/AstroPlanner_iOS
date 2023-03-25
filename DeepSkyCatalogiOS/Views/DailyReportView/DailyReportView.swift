@@ -20,7 +20,10 @@ struct DailyReportView: View {
     @Binding var viewingInterval: DateInterval?
     @State var report: DailyReport?
     @State var internet: Bool = true
-    @State var isSettingsModal = false
+    @State var isDateModal = false
+    @State var isLocationModal = false
+    @State var isReportSettingsModal = false
+    @State var topTenTab: TargetTab = .nebulae
     
     var body: some View {
         NavigationStack {
@@ -42,7 +45,7 @@ struct DailyReportView: View {
             }()
             
             if let location = location {
-                let sunData = networkManager.sun[.init(date: date, location: location)]
+                let sunData = networkManager.sun[NetworkManager.DataKey(date: date, location: location)]
                 VStack {
                     // header
                     Text("Daily Report")
@@ -59,14 +62,11 @@ struct DailyReportView: View {
                             VStack {
                                 // Report Section
                                 TopFiveView(report: report)
-                                let tabToShow: TargetTab = {
-                                    // show first non-empty tab
-                                    if !report.topTenNebulae.isEmpty { return .nebulae }
-                                    else if !report.topTenGalaxies.isEmpty { return .galaxies }
-                                    else if !report.topTenStarClusters.isEmpty { return .starClusters }
-                                    else { return .nebulae }
-                                }()
-                                TopTenTabView(report: report, tabSelection: tabToShow)
+                                TopTenTabView(report: report, tabSelection: $topTenTab)
+                                    .onAppear() {
+                                        if report.topTenNebulae.isEmpty { topTenTab = .starClusters }
+                                        else if report.topTenGalaxies.isEmpty { topTenTab = .galaxies }
+                                    }
                             }
                         }
                     }
@@ -74,6 +74,7 @@ struct DailyReportView: View {
                     else {
                         if internet {
                             DailyReportLoadingView(internet: $internet)
+                                .environment(\.location, location)
                         } else {
                             DailyReportLoadingFailedView(internet: $internet)
                         }
@@ -83,7 +84,21 @@ struct DailyReportView: View {
                     ToolbarLogo()
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            isSettingsModal = true
+                            isDateModal = true
+                        } label: {
+                            Image(systemName: "calendar")
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isLocationModal = true
+                        } label: {
+                            Image(systemName: "location")
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isReportSettingsModal = true
                         } label: {
                             Image(systemName: "slider.horizontal.3")
                         }
@@ -96,22 +111,33 @@ struct DailyReportView: View {
                         .environment(\.viewingInterval, viewingInterval)
                         .environment(\.date, date)
                 }
-                .environment(\.location, location)
-                .environmentObject(targetSettings.first!)
-                .environment(\.date, date)
-                .environment(\.viewingInterval, viewingInterval)
-                .scrollIndicators(.hidden)
-                .sheet(isPresented: $isSettingsModal) {
-                    DailyReportSettingsModal(date: $date, viewingInterval: $viewingInterval)
+                
+                // Modal for settings
+                .sheet(isPresented: $isDateModal){
+                    ViewingIntervalModal(date: $date, viewingInterval: $viewingInterval)
                         .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
                         .disabled(sunData == nil)
-                        .environment(\.sunData, sunData)
                 }
+                .sheet(isPresented: $isLocationModal){
+                    LocationPickerModal()
+                        .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+                }
+                .sheet(isPresented: $isReportSettingsModal){
+                    DailyReportSettingsModal()
+                        .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+                }
+                
                 .onChange(of: sunData?.ATInterval) { newInterval in
                     if let newInterval = newInterval {
                         viewingInterval = newInterval
                     }
                 }
+                .environment(\.location, location)
+                .environmentObject(targetSettings.first!)
+                .environment(\.date, date)
+                .environment(\.viewingInterval, viewingInterval)
+                .environment(\.sunData, sunData)
+                .scrollIndicators(.hidden)
             }
             // if there is no location stored, then prompt the user to create one
             else {

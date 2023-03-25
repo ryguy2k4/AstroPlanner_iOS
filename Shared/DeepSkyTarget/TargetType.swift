@@ -14,7 +14,7 @@ enum TargetType: String, Filter, CaseNameCodable {
     static let nebulae: [TargetType] = [.planetaryNebula, .supernovaRemnant, .reflectionNebula, .darkNebula, .HIIRegion, .mixedDiffuseNebulae, .cloudComplex]
     static let starClusters: [TargetType] = [.openStarCluster, .globularStarCluster, .starCloud, .asterism]
     static let galaxies: [TargetType] = [.ellipticalGalaxy, .spiralGalaxy, .irregularGalaxy, .galaxyGroup, .dwarfSpiralGalaxy, .dwarfIrregularGalaxy, .dwarfSpheroidalGalaxy, .peculiarGalaxy, .lenticularGalaxy, .barredSpiralGalaxy]
-    static let broadband: [TargetType] = galaxies + [.planetaryNebula, .reflectionNebula, .darkNebula, .mixedDiffuseNebulae]
+    static let broadband: [TargetType] = galaxies + [.planetaryNebula, .reflectionNebula, .darkNebula, .mixedDiffuseNebulae, .cloudComplex]
     static let narrowband: [TargetType] = starClusters + [.HIIRegion, .supernovaRemnant]
 
     // Nebulous

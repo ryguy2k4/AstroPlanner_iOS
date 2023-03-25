@@ -57,7 +57,7 @@ final class NetworkManager: ObservableObject {
             throw FetchError.dateOutOfRange
         }
         
-        let forecast = try await WeatherService().weather(for: location.clLocation, including: .daily(startDate: date, endDate: endDate?.tomorrow() ?? date.tomorrow())).forecast
+        let forecast = try await WeatherService().weather(for: location.clLocation, including: .daily(startDate: date, endDate: endDate?.tomorrow() ?? date.tomorrow().tomorrow())).forecast
         
         // Make sure WeatherKit returned data
         guard !forecast.isEmpty else {
@@ -66,18 +66,17 @@ final class NetworkManager: ObservableObject {
         
         var array: [DataKey : SunData] = [:]
         for index in forecast.indices.dropLast() {
-            let dataKey = DataKey(date: forecast[index].date, location: location)
+            let dataKey = DataKey(date: forecast[index].date.startOfDay(), location: location)
             array[dataKey] = SunData(sunEventsToday: forecast[index].sun, sunEventsTomorrow: forecast[index+1].sun)
         }
 
-        print("WeatherKit Data Fetched")
+        print("WeatherKit Data Fetched for \(array.count) day(s): \(forecast.first!.date)")
         return array
             
     }
     
     func getAPIData(at location: Location, on date: Date) async throws -> SunData {
         do {
-            let timezoneOffset = location.timezone.secondsFromGMT() / 3600
             async let decodedSunDataToday: RawSunData = try fetchTask(from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.formatted(format: "YYYY-MM-dd"))&formatted=0")
             async let decodedSunDataTomorrow: RawSunData = try fetchTask(from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&formatted=0")
             

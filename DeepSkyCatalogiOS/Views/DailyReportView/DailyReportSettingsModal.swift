@@ -9,24 +9,18 @@ import SwiftUI
 import CoreData
 
 struct DailyReportSettingsModal: View {
-    @EnvironmentObject var locationManager: LocationManager
     @Environment(\.managedObjectContext) var context
     @Environment(\.isEnabled) var isEnabled
-    @Environment(\.sunData) var sunData
     @ObservedObject var settings: ReportSettings
-    @Binding var date: Date
-    @Binding var viewingInterval: DateInterval?
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @State var isMoonPercentModal: Bool = false
     @State var isLimitingAltitudeModal: Bool = false
     @State var isMinFOVCoverageModal: Bool = false
     @State var isMinVisibilityModal: Bool = false
 
-    init(date: Binding<Date>, viewingInterval: Binding<DateInterval?>) {
-        self._date = date
-        self._viewingInterval = viewingInterval
-        self.settings = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<ReportSettings>(entityName: "ReportSettings")).first!
+    init() {
+        self.settings = try! PersistenceManager.shared.container.viewContext.fetch(ReportSettings.fetchRequest()).first!
     }
     
     var body: some View {
@@ -40,80 +34,49 @@ struct DailyReportSettingsModal: View {
                 PersistenceManager.shared.saveData(context: context)
             }
         )
-        let locationBinding = Binding(
-            get: { return locationList.firstIndex(where: {$0.isSelected == true}) ?? -1 },
-            set: {
-                for location in locationList { location.isSelected = false }
-                if $0 >= 0 {
-                    locationList[$0].isSelected = true
-                }
-                PersistenceManager.shared.saveData(context: context)
-            }
-        )
         NavigationStack {
-            VStack {
-                DateSelector(date: $date)
-                    .padding()
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                
-                Form {
-                    ConfigSection(header: "Viewing Interval") {
-                        DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != sunData?.ATInterval)
-                            .environment(\.sunData, sunData)
-                            .environment(\.date, date)
+            Form {
+                ConfigSection(header: "Report Settings") {
+                    Picker("Imaging Preset", selection: presetBinding) {
+                        Text("All").tag(-1)
+                        ForEach(Array(presetList.enumerated()), id: \.element) { index, preset in
+                            Text(presetList[index].name!).tag(index)
+                        }
                     }
-                    ConfigSection(header: "Report Settings") {
-                        Picker("Location", selection: locationBinding) {
-                            if locationManager.locationEnabled {
-                                Text("Current Location").tag(-1)
-                            }
-                            ForEach(Array(locationList.enumerated()), id: \.element) { index, location in
-                                Text(locationList[index].name!).tag(index)
-                            }
+                    .pickerStyle(.navigationLink)
+                    Toggle("Prefer Broadband on Moonless Nights", isOn: $settings.preferBroadband)
+                        .foregroundColor(isEnabled ? .primary : .secondary)
+                    Button {
+                        isMoonPercentModal = true
+                    } label: {
+                        HStack {
+                            Text("Max Moon for Broadband: ")
+                                .foregroundColor(isEnabled ? .primary : .secondary)
+                            Spacer()
+                            Text(settings.maxAllowedMoon.percent())
                         }
-                        .pickerStyle(.navigationLink)
-                        Picker("Imaging Preset", selection: presetBinding) {
-                            Text("All").tag(-1)
-                            ForEach(Array(presetList.enumerated()), id: \.element) { index, preset in
-                                Text(presetList[index].name!).tag(index)
-                            }
+                        
+                    }
+                    Button {
+                        isMinFOVCoverageModal = true
+                    } label: {
+                        HStack {
+                            Text("Minimum FOV Coverage: ")
+                                .foregroundColor(isEnabled ? .primary : .secondary)
+                            Spacer()
+                            Text(settings.minFOVCoverage.percent())
                         }
-                        .pickerStyle(.navigationLink)
-                        Toggle("Prefer Broadband on Moonless Nights", isOn: $settings.preferBroadband)
-                            .foregroundColor(isEnabled ? .primary : .secondary)
-                        Button {
-                            isMoonPercentModal = true
-                        } label: {
-                            HStack {
-                                Text("Max Moon for Broadband: ")
-                                    .foregroundColor(isEnabled ? .primary : .secondary)
-                                Spacer()
-                                Text(settings.maxAllowedMoon.percent())
-                            }
-                            
+                    }
+                    Button {
+                        isMinVisibilityModal = true
+                    } label: {
+                        HStack {
+                            Text("Minimum Visibility: ")
+                                .foregroundColor(isEnabled ? .primary : .secondary)
+                            Spacer()
+                            Text(settings.minVisibility.percent())
                         }
-                        Button {
-                            isMinFOVCoverageModal = true
-                        } label: {
-                            HStack {
-                                Text("Minimum FOV Coverage: ")
-                                    .foregroundColor(isEnabled ? .primary : .secondary)
-                                Spacer()
-                                Text(settings.minFOVCoverage.percent())
-                            }
-                        }
-                        Button {
-                            isMinVisibilityModal = true
-                        } label: {
-                            HStack {
-                                Text("Minimum Visibility: ")
-                                    .foregroundColor(isEnabled ? .primary : .secondary)
-                                Spacer()
-                                Text(settings.minVisibility.percent())
-                            }
-                            
-                        }
+                        
                     }
                 }
             }

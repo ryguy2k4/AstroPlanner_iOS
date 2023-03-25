@@ -19,7 +19,8 @@ struct CatalogView: View {
     @Binding var date: Date
     @Binding var viewingInterval: DateInterval?
     
-    @State private var isSettingsModal = false
+    @State private var isLocationModal = false
+    @State private var isDateModal = false
         
     var body: some View {
         let location: Location? = {
@@ -62,12 +63,16 @@ struct CatalogView: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            isSettingsModal = true
+                            isDateModal = true
                         } label: {
-                            HStack {
-                                Image(systemName: "location")
-                                Image(systemName: "calendar")
-                            }
+                            Image(systemName: "calendar")
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isLocationModal = true
+                        } label: {
+                            Image(systemName: "location")
                         }
                     }
                 }
@@ -108,10 +113,14 @@ struct CatalogView: View {
             .autocorrectionDisabled()
             
             // Modal for settings
-            .sheet(isPresented: $isSettingsModal){
-                CatalogSettingsModal(date: $date, viewingInterval: $viewingInterval)
+            .sheet(isPresented: $isDateModal){
+                ViewingIntervalModal(date: $date, viewingInterval: $viewingInterval)
                     .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
                     .disabled(sunData == nil)
+            }
+            .sheet(isPresented: $isLocationModal){
+                LocationPickerModal()
+                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
             }
             
             // Passing the date and location to use into all child views

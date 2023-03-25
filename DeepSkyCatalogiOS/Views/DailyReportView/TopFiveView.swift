@@ -12,38 +12,34 @@ import SwiftUI
  */
 struct TopFiveView: View {
     @EnvironmentObject var targetSettings: TargetSettings
+    @State var currentTarget: DeepSkyTarget?
     let report: DailyReport
     
     var body: some View {
         VStack {
             Text("Top Five Overall")
-                .fontWeight(.bold)
+                .font(.title2)
+                .underline()
             TabView {
                 ForEach(report.topFive, id: \.id) { target in
                     NavigationLink(value: target) {
-                        ZStack {
-                            Image(target.image?.source.fileName ?? "\(target.type)")
-                                .resizable()
-                                .cornerRadius(12)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 368, height: 207)
-                            VStack {
-                                Text(target.name?[0] ?? target.defaultName)
-                                    .padding(2)
-                                    .background(.gray.opacity(0.8), in: Rectangle())
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.primary)
-                                Spacer()
-                            }
-                            .onAppear() {
-                            }
+                        Image(target.image?.source.fileName ?? "\(target.type)")
+                            .resizable()
+                            .cornerRadius(12)
+                            .scaledToFit()
                             .padding(4)
-                        }
+                            .onAppear() {
+                                currentTarget = target
+                            }
                     }
                 }
             }
-            .frame(width: 368, height: 207)
-            .tabViewStyle(.page)
+            .frame(width: 384, height: 216)
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            Text(currentTarget?.name?[0] ?? currentTarget?.defaultName ?? "loading")
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
         }
     }
 }

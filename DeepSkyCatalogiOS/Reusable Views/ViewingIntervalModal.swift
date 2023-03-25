@@ -7,6 +7,27 @@
 
 import SwiftUI
 
+struct ViewingIntervalModal: View {
+    @Environment(\.sunData) var sunData
+    @Binding var date: Date
+    @Binding var viewingInterval: DateInterval?
+    var body: some View {
+        VStack {
+            DateSelector(date: $date)
+                .padding()
+                .font(.title2)
+                .fontWeight(.semibold)
+            Form {
+                ConfigSection(header: "Viewing Interval") {
+                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != sunData?.ATInterval)
+                        .environment(\.sunData, sunData)
+                        .environment(\.date, date)
+                }
+            }
+        }
+    }
+}
+
 struct DateIntervalSelector: View {
     @Binding var viewingInterval: DateInterval?
     @State var customViewingInterval: Bool
