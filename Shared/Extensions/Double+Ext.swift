@@ -10,28 +10,6 @@ import Foundation
 extension Double {
     
     /**
-     Create a date object from a double representing decimal hours on a given date.
-     - Parameter date: The date to attatch the hours to.
-     - Precondition: self represents a number of hours.
-     - Returns: A Date object on the given date at the specified time.
-     */
-    public func hoursToDate(on date: Date) -> Date {
-        let hour = floor(self)
-        let minute = floor((self - hour) * 60)
-        let second = floor((((self - hour) * 60) - minute) * 60)
-        let today = Calendar.current.dateComponents([.year, .day, .month], from: date)
-        var dateComps = DateComponents()
-        dateComps.hour = Int(hour)
-        dateComps.minute = Int(minute)
-        dateComps.second = Int(second)
-        dateComps.year = today.year
-        dateComps.day = today.day
-        dateComps.month = today.month
-        dateComps.timeZone = TimeZone(abbreviation: "UTC")
-        return Calendar.current.date(from: dateComps)!
-    }
-    
-    /**
      Converts degrees to radians.
      - Returns: The given degree in radians.
      - Precondition: self is a degree value.

@@ -48,7 +48,7 @@ struct DateIntervalSelector: View {
         }
         
         // Custom Interval Selector
-        if let unwrapped = viewingInterval, sunData?.astronomicalTwilightBegin.startOfDay() == date {
+        if let unwrapped = viewingInterval, sunData?.ATInterval.start.startOfDay() == date {
             let endBinding = Binding(
                 get: {
                     return unwrapped.end

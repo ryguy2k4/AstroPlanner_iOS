@@ -171,9 +171,9 @@ struct TargetAltitudeChart: View {
             }
             if let viewingInterval = viewingInterval {
                 RectangleMark(xStart: .value("", date.startOfDay().addingTimeInterval(43_200)), xEnd: .value("", viewingInterval.start))
-                    .foregroundStyle(.gray.opacity(0.1))
+                    .foregroundStyle(.tertiary.opacity(1))
                 RectangleMark(xStart: .value("", viewingInterval.end), xEnd: .value("", date.tomorrow().addingTimeInterval(43_200)))
-                    .foregroundStyle(.gray.opacity(0.1))
+                    .foregroundStyle(.tertiary.opacity(1))
             }
         }
         .chartXAxis {

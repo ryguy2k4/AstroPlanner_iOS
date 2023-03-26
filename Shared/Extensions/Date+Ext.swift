@@ -10,29 +10,29 @@ import Foundation
 extension Date {
     
     /// The J2000 Epoch on January 1, 2000 at 12:00 UTC
-    static let J2000 = Date(timeIntervalSince1970: 946_728_000)
+    static let J2000: Date = Date(timeIntervalSince1970: 946_728_000)
     
     /// The farthest back that WeatherKit can provide data for - August 1, 2021
-    static let weatherKitHistoricalLimit = Date(timeIntervalSince1970: 1_627_776_000)
+    static let weatherKitHistoricalLimit: Date = Date(timeIntervalSince1970: 1_627_776_000)
     
     /// 12:00 AM on the current date
-    static let today = Calendar.current.startOfDay(for: Date())
+    static let today: Date = .now.startOfDay()
     
     /// 12:00 AM on tomorrow's date
-    static let tomorrow = Calendar.current.startOfDay(for: Date().tomorrow())
+    static let tomorrow: Date = .now.startOfDay().tomorrow()
         
     /**
      - Returns: self + 1 day
      */
     func tomorrow() -> Date {
-        return Calendar.current.date(byAdding: .day, value: 1, to: self)!
+        return self.addingTimeInterval(86400)
     }
     
     /**
      - Returns: self - 1 day
      */
     func yesterday() -> Date {
-        return Calendar.current.date(byAdding: .day, value: -1, to: self)!
+        return self.addingTimeInterval(-86400)
     }
     
     /**
@@ -41,7 +41,10 @@ extension Date {
      - Returns: A Double representing decimal hours at the given timezone.
      */
     func dateToUTCHours(location: Location) -> Double {
-        let time = Calendar.current.dateComponents([.hour, .minute, .second], from: self)
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = location.timezone
+        
+        let time = calendar.dateComponents([.hour, .minute, .second], from: self)
         let hours = Double(time.hour!) + Double(time.minute!) / 60 + Double(time.second!) / 3600
         var tz = Double(location.timezone.secondsFromGMT() / 3600)
         if location.timezone.secondsFromGMT() < 0 {
@@ -123,7 +126,7 @@ extension Date {
      - Returns: self at 11:59 PM
      */
     public func endOfDay() -> Date {
-        return Calendar.current.startOfDay(for: self.tomorrow()).addingTimeInterval(-1)
+        return self.tomorrow().startOfDay().addingTimeInterval(-1)
     }
     
     public func noon() -> Date {

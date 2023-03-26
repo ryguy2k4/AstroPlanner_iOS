@@ -13,11 +13,11 @@ final class NetworkManager: ObservableObject {
     static var shared = NetworkManager()
     
     struct DataKey: Hashable {
-        let date: String
+        let date: Date
         let location: Location
         
         init(date: Date, location: Location) {
-            self.date = date.formatForDataKey()
+            self.date = date
             self.location = location
         }
     }
@@ -71,10 +71,12 @@ final class NetworkManager: ObservableObject {
             throw FetchError.weatherKitNoData
         }
         
+        var forecastDate = date
         var array: [DataKey : SunData] = [:]
         for index in forecast.indices.dropLast() {
-            let dataKey = DataKey(date: forecast[index].date, location: location)
+            let dataKey = DataKey(date: forecastDate, location: location)
             array[dataKey] = SunData(sunEventsToday: forecast[index].sun, sunEventsTomorrow: forecast[index+1].sun)
+            forecastDate = forecastDate.tomorrow()
         }
 
         print("WeatherKit Data Fetched for \(array.count) day(s)")
