@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import WeatherKit
 
 struct DailyReportView: View {
     @Environment(\.managedObjectContext) var context

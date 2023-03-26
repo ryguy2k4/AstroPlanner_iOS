@@ -13,8 +13,13 @@ final class NetworkManager: ObservableObject {
     static var shared = NetworkManager()
     
     struct DataKey: Hashable {
-        let date: Date
+        let date: String
         let location: Location
+        
+        init(date: Date, location: Location) {
+            self.date = date.formatForDataKey()
+            self.location = location
+        }
     }
     
     @Published var sun: [DataKey : SunData] = [:]
@@ -25,7 +30,9 @@ final class NetworkManager: ObservableObject {
     func updateSunData(at location: Location, on date: Date) async throws {
         // Try WeatherKit
         do {
-            let data = try await getWeatherKitData(location: location, date: self.sun.isEmpty ? date.yesterday() : date, endDate: self.sun.isEmpty ? date.addingTimeInterval(86_400*9) : nil)
+            let extendedCondition = !sun.keys.contains(where: {$0.location == location})
+            let endDate: Date? = extendedCondition && date == Date.today ? date.addingTimeInterval(86400*9) : nil
+            let data = try await getWeatherKitData(location: location, date: date, endDate: endDate)
             // merge the new data, overwriting if necessary
             self.sun.merge(data) { _, new in new }
             print("Data Updated from WeatherKit")
@@ -53,7 +60,7 @@ final class NetworkManager: ObservableObject {
     }
     
     func getWeatherKitData(location: Location, date: Date, endDate: Date? = nil) async throws -> [DataKey : SunData] {
-        guard date >= .now.startOfDay().yesterday() && date <= .now.startOfDay().addingTimeInterval(86400*8) else {
+        guard date >= .weatherKitHistoricalLimit && date <= .today.addingTimeInterval(86400*8) else {
             throw FetchError.dateOutOfRange
         }
         
@@ -66,11 +73,11 @@ final class NetworkManager: ObservableObject {
         
         var array: [DataKey : SunData] = [:]
         for index in forecast.indices.dropLast() {
-            let dataKey = DataKey(date: forecast[index].date.startOfDay(), location: location)
+            let dataKey = DataKey(date: forecast[index].date, location: location)
             array[dataKey] = SunData(sunEventsToday: forecast[index].sun, sunEventsTomorrow: forecast[index+1].sun)
         }
 
-        print("WeatherKit Data Fetched for \(array.count) day(s): \(forecast.first!.date)")
+        print("WeatherKit Data Fetched for \(array.count) day(s)")
         return array
             
     }
