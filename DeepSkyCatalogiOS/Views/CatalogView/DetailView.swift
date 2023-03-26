@@ -160,17 +160,17 @@ struct TargetAltitudeChart: View {
             }
             RuleMark(y: .value("Axis", showLimitingAlt ? targetSettings.limitingAltitude : 0))
                 .foregroundStyle(.gray)
-            if Date.now > date.noon() {
+            if Date.now > date.localNoon(timezone: location.timezone) {
                 RuleMark(x: .value("Now", Date.now))
                     .lineStyle(.init(dash: [5]))
                     .foregroundStyle(.red)
             } else {
-                RuleMark(x: .value("Now", date.noon()))
+                RuleMark(x: .value("Now", date.localNoon(timezone: location.timezone)))
                     .lineStyle(.init(dash: [5]))
                     .foregroundStyle(.red)
             }
             if let viewingInterval = viewingInterval {
-                RectangleMark(xStart: .value("", date.startOfDay().addingTimeInterval(43_200)), xEnd: .value("", viewingInterval.start))
+                RectangleMark(xStart: .value("", date.startOfLocalDay(timezone: location.timezone).addingTimeInterval(43_200)), xEnd: .value("", viewingInterval.start))
                     .foregroundStyle(.tertiary.opacity(1))
                 RectangleMark(xStart: .value("", viewingInterval.end), xEnd: .value("", date.tomorrow().addingTimeInterval(43_200)))
                     .foregroundStyle(.tertiary.opacity(1))

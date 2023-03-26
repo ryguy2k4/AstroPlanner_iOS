@@ -193,7 +193,7 @@ extension DeepSkyTarget {
      - Returns: The time at which the target reaches its highest altitude
      */
     private func getCulmination(location: Location, date: Date) -> Date {
-        let time = binaryAltitudeSearch(startTime: date.noon(), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+        let time = binaryAltitudeSearch(startTime: date.localNoon(timezone: location.timezone), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
             slope(location: location, time: time) > 0 || slope(location: location, time: time.addingTimeInterval(increment)) < 0
         }
         
@@ -292,7 +292,7 @@ extension DeepSkyTarget {
     func getApproxSeasonScore(at location: Location, on date: Date) -> Double {
         let targetMeridian = getCulmination(location: location, date: date)
         
-        let midnight = date.endOfDay().addingTimeInterval(1)
+        let midnight = date.endOfLocalDay(timezone: location.timezone).addingTimeInterval(1)
         if (targetMeridian < midnight){
             // time between meridian crossing and midnight in fractional days
             let interval = DateInterval(start: targetMeridian, end: midnight).duration/60/60/24

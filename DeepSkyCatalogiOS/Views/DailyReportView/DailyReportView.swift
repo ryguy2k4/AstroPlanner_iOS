@@ -53,6 +53,7 @@ struct DailyReportView: View {
                         .multilineTextAlignment(.center)
                         .font(.largeTitle)
                         .fontWeight(.semibold)
+                    Text("\(date.ISO8601Format())")
                     
                     // display report if network data is available
                     if let sunData = sunData, let viewingInterval = viewingInterval, let report = DailyReport(location: location, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), sunData: sunData) {
@@ -133,6 +134,12 @@ struct DailyReportView: View {
                         viewingInterval = newInterval
                     }
                 }
+                .onChange(of: location) { newLocation in
+                    date = .now.startOfLocalDay(timezone: newLocation.timezone)
+                }
+                .onAppear() {
+                    date = date.startOfLocalDay(timezone: location.timezone)
+                }
                 .environment(\.location, location)
                 .environmentObject(targetSettings.first!)
                 .environment(\.date, date)
@@ -157,7 +164,7 @@ fileprivate struct ReportHeader: View {
     var body: some View {
         VStack {
             if viewingInterval == sunData?.ATInterval || viewingInterval == nil {
-                Text("Night of \(date.formatted(date: .long, time: .omitted)) at \(location.name)")
+                Text("Night of \(date.formatted(format: "M dd, yyyy", timezone: location.timezone)) at \(location.name)")
                     .font(.subheadline)
                     .fontWeight(.thin)
             } else {

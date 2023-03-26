@@ -14,12 +14,6 @@ extension Date {
     
     /// The farthest back that WeatherKit can provide data for - August 1, 2021
     static let weatherKitHistoricalLimit: Date = Date(timeIntervalSince1970: 1_627_776_000)
-    
-    /// 12:00 AM on the current date
-    static let today: Date = .now.startOfDay()
-    
-    /// 12:00 AM on tomorrow's date
-    static let tomorrow: Date = .now.startOfDay().tomorrow()
         
     /**
      - Returns: self + 1 day
@@ -88,9 +82,9 @@ extension Date {
      - Parameter format: The format to follow.
      - Returns: A String representation of the Date.
      */
-    func formatted(format: String, timezone: Int16 = 0) -> String {
+    func formatted(format: String, timezone: TimeZone = .gmt) -> String {
         let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(secondsFromGMT: Int(timezone)*60*60)
+        formatter.timeZone = timezone
         formatter.locale = .current
         formatter.dateFormat = format
         return formatter.string(from: self)
@@ -118,19 +112,21 @@ extension Date {
     /**
      - Returns: self at 12:00 AM
      */
-    public func startOfDay() -> Date {
-        return Calendar.current.startOfDay(for: self)
+    public func startOfLocalDay(timezone: TimeZone) -> Date {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timezone
+        return calendar.startOfDay(for: self)
     }
     
     /**
      - Returns: self at 11:59 PM
      */
-    public func endOfDay() -> Date {
-        return self.tomorrow().startOfDay().addingTimeInterval(-1)
+    public func endOfLocalDay(timezone: TimeZone) -> Date {
+        return self.tomorrow().startOfLocalDay(timezone: timezone).addingTimeInterval(-1)
     }
     
-    public func noon() -> Date {
-        return self.startOfDay().addingTimeInterval(43_200)
+    public func localNoon(timezone: TimeZone) -> Date {
+        return self.startOfLocalDay(timezone: timezone).addingTimeInterval(43_200)
     }
 }
 

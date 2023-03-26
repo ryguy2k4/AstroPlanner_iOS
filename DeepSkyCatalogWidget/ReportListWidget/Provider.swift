@@ -34,8 +34,6 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: ReportListIntent, in context: Context, completion: @escaping (Timeline<ReportListEntry>) -> Void) {
         Task {
             do {
-                // use current date
-                let currentDate = Date().startOfDay()
                 
                 // fetch core data configurations
                 let presetList = try viewContext.fetch(presetFetchRequest)
@@ -48,6 +46,9 @@ struct Provider: IntentTimelineProvider {
                 guard let reportSettings = try viewContext.fetch(ReportSettings.fetchRequest()).first else {
                     throw TimelineError.noReportSettings
                 }
+                
+                // use current date
+                let currentDate: Date = .now.startOfLocalDay(timezone: TimeZone(identifier: location.timezone!)!)
 
                 // fetch sun and moon data from network
                 let sunData = try await NetworkManager.shared.getAPIData(at: Location(saved: location), on: currentDate)

@@ -17,7 +17,7 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     
     // create non-persistent date and viewingInterval objects
-    @State var date: Date = Date.today
+    @State var date: Date = .now
     @State var viewingInterval: DateInterval? = nil
     
     var body: some View {

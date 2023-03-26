@@ -29,9 +29,10 @@ final class NetworkManager: ObservableObject {
     @MainActor
     func updateSunData(at location: Location, on date: Date) async throws {
         // Try WeatherKit
+        let date = date.startOfLocalDay(timezone: location.timezone)
         do {
             let extendedCondition = !sun.keys.contains(where: {$0.location == location})
-            let endDate: Date? = extendedCondition && date == Date.today ? date.addingTimeInterval(86400*9) : nil
+            let endDate: Date? = extendedCondition && date == Date.now.startOfLocalDay(timezone: location.timezone) ? date.addingTimeInterval(86400*9) : nil
             let data = try await getWeatherKitData(location: location, date: date, endDate: endDate)
             // merge the new data, overwriting if necessary
             self.sun.merge(data) { _, new in new }
@@ -60,7 +61,7 @@ final class NetworkManager: ObservableObject {
     }
     
     func getWeatherKitData(location: Location, date: Date, endDate: Date? = nil) async throws -> [DataKey : SunData] {
-        guard date >= .weatherKitHistoricalLimit && date <= .today.addingTimeInterval(86400*8) else {
+        guard date >= .weatherKitHistoricalLimit && date <= .now.startOfLocalDay(timezone: location.timezone).addingTimeInterval(86400*8) else {
             throw FetchError.dateOutOfRange
         }
         

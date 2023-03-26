@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 private struct DateKey: EnvironmentKey {
-    static let defaultValue: Date = Date.today
+    static let defaultValue: Date = .now
 }
 private struct SunDataKey: EnvironmentKey {
     static let defaultValue: SunData? = nil

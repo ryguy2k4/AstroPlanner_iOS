@@ -37,12 +37,6 @@ struct SunData {
     }
 }
 
-extension SunData {
-    static var dummy: SunData {
-        SunData(astronomicalTwilightBegin: Date().startOfDay().addingTimeInterval(21000), sunrise: Date().startOfDay().addingTimeInterval(21600), ATInterval: DateInterval(start: Date().startOfDay().addingTimeInterval(68500), duration: 43200), nightInterval: DateInterval(start: Date().startOfDay().addingTimeInterval(70000), duration: 43200))
-    }
-}
-
 struct RawSunData: Decodable {
     let results: Results
     

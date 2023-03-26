@@ -33,6 +33,7 @@ struct DateIntervalSelector: View {
     @State var customViewingInterval: Bool
     @Environment(\.sunData) var sunData
     @Environment(\.date) var date
+    @Environment(\.location) var location
     
     var body: some View {
         // Choose Auto vs Custom Interval
@@ -48,7 +49,7 @@ struct DateIntervalSelector: View {
         }
         
         // Custom Interval Selector
-        if let unwrapped = viewingInterval, sunData?.ATInterval.start.startOfDay() == date {
+        if let unwrapped = viewingInterval, sunData?.ATInterval.start.startOfLocalDay(timezone: location.timezone) == date {
             let endBinding = Binding(
                 get: {
                     return unwrapped.end
@@ -111,6 +112,7 @@ struct DatePickerModal: View {
     @State var date: Date
     // this is necessary so that the date only updates after the modal is closed
     @Binding var boundDate: Date
+    @Environment(\.location) var location
     init(date: Binding<Date>) {
         self._date = State(initialValue: date.wrappedValue)
         self._boundDate = date
@@ -120,7 +122,7 @@ struct DatePickerModal: View {
         VStack {
             Button("Today") {
                 // doesnt work between 12am and morning
-                date = Date().startOfDay()
+                date = .now.startOfLocalDay(timezone: location.timezone)
             }
             .buttonStyle(.borderedProminent)
             
