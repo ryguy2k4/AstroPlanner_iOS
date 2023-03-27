@@ -11,15 +11,17 @@ import Charts
 struct DetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
-    @Environment(\.location) var location: Location
     @EnvironmentObject var targetSettings: TargetSettings
+
+    @Environment(\.location) var location: Location
     @Environment(\.date) var date
+    @Environment(\.sunData) var sunData
     @Environment(\.viewingInterval) var viewingInterval
+    
     @State var showCoordinateDecimalFormat: Bool = false
     @State var showLimitingAlt: Bool = true
     var target: DeepSkyTarget
     var body: some View {
-        let sunData = networkManager.sun[.init(date: date, location: location)]
         ScrollView {
             VStack(spacing: 10) {
                 

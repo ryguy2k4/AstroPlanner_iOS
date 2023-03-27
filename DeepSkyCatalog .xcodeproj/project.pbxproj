@@ -115,6 +115,8 @@
 		718C11F929C919550069ECD5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C11F429C89A880069ECD5 /* Location.swift */; };
 		718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
+		71950E8829D139900075081B /* NoLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71950E8729D139900075081B /* NoLocationsView.swift */; };
+		71950E8A29D139BE0075081B /* DataLoadingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71950E8929D139BE0075081B /* DataLoadingViews.swift */; };
 		719B26D7295167A100E1165A /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B26D6295167A100E1165A /* NumberPicker.swift */; };
 		71ACF32D2964EA9A00CC83D5 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* TargetType.swift */; };
 		71ACF32E2964EAA000CC83D5 /* TargetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* TargetCatalog.swift */; };
@@ -270,6 +272,8 @@
 		718C11F429C89A880069ECD5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		718CA9A729244FD600F3F5A7 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
 		71901C7629299D5C00D95AA5 /* Constellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
+		71950E8729D139900075081B /* NoLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLocationsView.swift; sourceTree = "<group>"; };
+		71950E8929D139BE0075081B /* DataLoadingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingViews.swift; sourceTree = "<group>"; };
 		719B26D6295167A100E1165A /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		71ACF33B2964F04D00CC83D5 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		71ACF33E2964F0D800CC83D5 /* ReportListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListEntry.swift; sourceTree = "<group>"; };
@@ -566,6 +570,8 @@
 			isa = PBXGroup;
 			children = (
 				71BCF96A2921EF20008C7614 /* HomeView.swift */,
+				71950E8729D139900075081B /* NoLocationsView.swift */,
+				71950E8929D139BE0075081B /* DataLoadingViews.swift */,
 				716A19BF298F5CD70025DB67 /* DailyReportView */,
 				71016881295561F600E0B028 /* CatalogView */,
 				716A19C0298F5D110025DB67 /* JournalView */,
@@ -970,6 +976,7 @@
 				71BCF9882921EF8B008C7614 /* SunData.swift in Sources */,
 				714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */,
 				71C26465298F1D920057EC04 /* ZoomableScrollView.swift in Sources */,
+				71950E8829D139900075081B /* NoLocationsView.swift in Sources */,
 				718C11F529C89A880069ECD5 /* Location.swift in Sources */,
 				71D5FD28295FA1D10028FF8C /* EditAllFiltersView.swift in Sources */,
 				71BCF9752921EF6D008C7614 /* DeepSkyTargetList.swift in Sources */,
@@ -982,6 +989,7 @@
 				71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */,
 				71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */,
 				71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */,
+				71950E8A29D139BE0075081B /* DataLoadingViews.swift in Sources */,
 				71BCF9822921EF8B008C7614 /* Date+Ext.swift in Sources */,
 				71694BB529C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				7109A3F5292EBA7A00980527 /* MoonData.swift in Sources */,

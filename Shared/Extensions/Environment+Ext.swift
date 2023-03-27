@@ -12,11 +12,11 @@ private struct DateKey: EnvironmentKey {
     static let defaultValue: Date = .now
 }
 private struct SunDataKey: EnvironmentKey {
-    static let defaultValue: SunData? = nil
+    static let defaultValue: SunData = SunData.init(astronomicalTwilightBegin: .now, sunrise: .now, ATInterval: DateInterval(start: .now, end: .now), nightInterval: DateInterval(start: .now, end: .now))
 }
 
 private struct ViewingIntervalKey: EnvironmentKey {
-    static let defaultValue: DateInterval? = nil
+    static let defaultValue: DateInterval = DateInterval(start: .now, end: .now)
 }
 
 private struct LocationKey: EnvironmentKey {
@@ -33,7 +33,7 @@ extension EnvironmentValues {
         }
     }
     
-    var sunData: SunData? {
+    var sunData: SunData {
         get {
             self[SunDataKey.self]
         }
@@ -42,7 +42,7 @@ extension EnvironmentValues {
         }
     }
     
-    var viewingInterval: DateInterval? {
+    var viewingInterval: DateInterval {
         get {
             self[ViewingIntervalKey.self]
         }

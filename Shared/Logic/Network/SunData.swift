@@ -15,11 +15,16 @@ struct SunData {
     let nightInterval: DateInterval
     
     init(dataToday: RawSunData, dataTomorrow: RawSunData) {
-        sunrise = dataToday.results.sunrise.formatStringToDate()
-        astronomicalTwilightBegin = dataToday.results.astronomical_twilight_begin.formatStringToDate()
+        sunrise = try! Date(dataToday.results.sunrise, strategy: .iso8601)
+        astronomicalTwilightBegin = try! Date(dataToday.results.astronomical_twilight_begin, strategy: .iso8601)
         
-        ATInterval = DateInterval(start: dataToday.results.astronomical_twilight_end.formatStringToDate(), end: dataTomorrow.results.astronomical_twilight_begin.formatStringToDate())
-        nightInterval = DateInterval(start: dataToday.results.sunset.formatStringToDate(), end: dataTomorrow.results.sunrise.formatStringToDate())
+        let atStart = try! Date(dataToday.results.astronomical_twilight_end, strategy: .iso8601)
+        let atEnd = try! Date(dataTomorrow.results.astronomical_twilight_begin, strategy: .iso8601)
+        ATInterval = DateInterval(start: atStart, end: atEnd)
+        
+        let nightStart = try! Date(dataToday.results.sunset, strategy: .iso8601)
+        let nightEnd = try! Date(dataTomorrow.results.sunrise, strategy: .iso8601)
+        nightInterval = DateInterval(start: nightStart, end: nightEnd)
     }
     
     init(astronomicalTwilightBegin: Date, sunrise: Date, ATInterval: DateInterval, nightInterval: DateInterval) {
@@ -29,7 +34,7 @@ struct SunData {
         self.nightInterval = nightInterval
     }
     
-    init(sunEventsToday: SunEvents, sunEventsTomorrow: SunEvents) {
+    init(sunEventsToday: SunEvents, sunEventsTomorrow: SunEvents, timezone: TimeZone) {
         astronomicalTwilightBegin = sunEventsToday.astronomicalDawn!
         sunrise = sunEventsToday.sunrise!
         ATInterval = DateInterval(start: sunEventsToday.astronomicalDusk!, end: sunEventsTomorrow.astronomicalDawn!)

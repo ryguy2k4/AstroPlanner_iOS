@@ -10,7 +10,7 @@ import SwiftUI
 struct ViewingIntervalModal: View {
     @Environment(\.sunData) var sunData
     @Binding var date: Date
-    @Binding var viewingInterval: DateInterval?
+    @Binding var viewingInterval: DateInterval
     var body: some View {
         VStack {
             DateSelector(date: $date)
@@ -19,7 +19,7 @@ struct ViewingIntervalModal: View {
                 .fontWeight(.semibold)
             Form {
                 ConfigSection(header: "Viewing Interval") {
-                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != sunData?.ATInterval)
+                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != sunData.ATInterval)
                         .environment(\.sunData, sunData)
                         .environment(\.date, date)
                 }
@@ -29,7 +29,7 @@ struct ViewingIntervalModal: View {
 }
 
 struct DateIntervalSelector: View {
-    @Binding var viewingInterval: DateInterval?
+    @Binding var viewingInterval: DateInterval
     @State var customViewingInterval: Bool
     @Environment(\.sunData) var sunData
     @Environment(\.date) var date
@@ -43,40 +43,42 @@ struct DateIntervalSelector: View {
         }
         .pickerStyle(.segmented)
         .onChange(of: customViewingInterval) { newValue in
-            if !newValue, let sunData = sunData {
+            if !newValue {
                 viewingInterval = sunData.ATInterval
             }
         }
+        .onChange(of: sunData.ATInterval) { newValue in
+            viewingInterval = newValue
+        }
         
         // Custom Interval Selector
-        if let unwrapped = viewingInterval, sunData?.ATInterval.start.startOfLocalDay(timezone: location.timezone) == date {
+        if sunData.ATInterval.start < viewingInterval.end && viewingInterval.start < sunData.ATInterval.end {
             let endBinding = Binding(
                 get: {
-                    return unwrapped.end
+                    return viewingInterval.end
                 },
                 set: {
-                    let newDuration = DateInterval(start: viewingInterval!.start, end: $0).duration
-                    viewingInterval!.duration = newDuration
+                    let newDuration = DateInterval(start: viewingInterval.start, end: $0).duration
+                    viewingInterval.duration = newDuration
                 }
             )
             let startBinding = Binding(
                 get: {
-                    return unwrapped.start
+                    return viewingInterval.start
                 },
                 set: {
-                    let newDuration = DateInterval(start: $0, end: viewingInterval!.end).duration
-                    viewingInterval!.start = $0
-                    viewingInterval!.duration = newDuration
+                    let newDuration = DateInterval(start: $0, end: viewingInterval.end).duration
+                    viewingInterval.start = $0
+                    viewingInterval.duration = newDuration
                 }
             )
-            let startRange: ClosedRange<Date> = sunData!.ATInterval.start...unwrapped.end
-            let endRange: ClosedRange<Date> = unwrapped.start...sunData!.ATInterval.end
+            let startRange: ClosedRange<Date> = sunData.ATInterval.start...viewingInterval.end
+            let endRange: ClosedRange<Date> = viewingInterval.start...sunData.ATInterval.end
             VStack {
                 DatePicker("Start", selection: startBinding, in: startRange)
                 DatePicker("End", selection: endBinding, in: endRange)
             }
-            .disabled(!customViewingInterval)
-        }
+            .disabled(!customViewingInterval)}
     }
 }
 

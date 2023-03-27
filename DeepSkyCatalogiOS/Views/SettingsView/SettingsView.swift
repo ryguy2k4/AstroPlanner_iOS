@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var networkManager: NetworkManager
-    @Environment(\.date) var date
     @State var tabSelection = 0
 
     var body: some View {
@@ -30,18 +29,6 @@ struct SettingsView: View {
                 NavigationLink(destination: AboutView()) {
                     Label("About", systemImage: "info.circle")
                 }
-                
-//                ConfigSection(header: "Glossary") {
-//                    NavigationLink(destination: MessierInfo()) {
-//                        Label("Messier", systemImage: "m.circle")
-//                    }
-//                    NavigationLink(destination: CaldwellInfo()) {
-//                        Label("Caldwell", systemImage: "c.circle")
-//                    }
-//                    NavigationLink(destination: SharplessInfo()) {
-//                        Label("Sharpless", systemImage: "s.circle")
-//                    }
-//                }
             }
             .toolbar {
                 ToolbarLogo()
