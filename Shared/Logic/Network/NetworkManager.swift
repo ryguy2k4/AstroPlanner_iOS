@@ -28,6 +28,11 @@ final class NetworkManager: ObservableObject {
         
     @MainActor
     func updateSunData(at location: Location, on date: Date) async throws {
+        
+        guard !sun.contains(where: {$0.key == DataKey(date: date, location: location)}) else {
+            return
+        }
+        
         // Try WeatherKit
         let date = date.startOfLocalDay(timezone: location.timezone)
         do {

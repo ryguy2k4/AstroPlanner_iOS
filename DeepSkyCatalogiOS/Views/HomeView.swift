@@ -17,11 +17,85 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     
-    // location -> date -> sundata -> viewinginterval
+    @State var internet = true
+    
+    @State var location: Location? = nil
+    @State var date: Date? = nil
+    @State var sunData: SunData? = nil
+    @State var viewingInterval: DateInterval? = nil
     
     var body: some View {
         TabView {
-            if let location: Location = {
+            if let location = location, let date = Binding($date) {
+                if let sunData = sunData, let viewingInterval = Binding($viewingInterval) {
+                    DailyReportView(date: date, viewingInterval: viewingInterval)
+                        .tabItem {
+                            Label("Daily Report", systemImage: "doc.text")
+                        }
+                        .environment(\.location, location)
+                        .environment(\.sunData, sunData)
+                    CatalogView(date: date, viewingInterval: viewingInterval)
+                        .tabItem {
+                            Label("Master Catalog", systemImage: "tray.full.fill")
+                        }
+                        .environment(\.location, location)
+                        .environment(\.sunData, sunData)
+                } else {
+                    if internet {
+                        DailyReportLoadingView(internet: $internet)
+                            .task {
+                                do {
+                                    try await networkManager.updateSunData(at: location, on: date.wrappedValue)
+                                    sunData = networkManager.sun[NetworkManager.DataKey(date: date.wrappedValue, location: location)]
+                                    viewingInterval = sunData?.ATInterval
+                                } catch {
+                                    internet = false
+                                }
+                            }
+                            .tabItem {
+                                Label("Daily Report", systemImage: "doc.text")
+                            }
+                    } else {
+                        DailyReportLoadingFailedView(internet: $internet)
+                            .tabItem {
+                                Label("Daily Report", systemImage: "doc.text")
+                            }
+                    }
+                }
+            } else {
+                NoLocationsView()
+                    .tabItem {
+                        Label("Daily Report", systemImage: "doc.text")
+                    }
+                    .onAppear() {
+                        self.location = {
+                            if let selected = locationList.first(where: { $0.isSelected == true }) {
+                                // try to find a selected location
+                                return Location(saved: selected)
+                            } else if locationManager.locationEnabled, let latest = locationManager.latestLocation {
+                                // try to get the current location
+                                return Location(current: latest)
+                            } else if let any = locationList.first {
+                                // try to find any location
+                                any.isSelected = true
+                                return Location(saved: any)
+                            } else {
+                                // no location found
+                                return nil
+                            }
+                        }()
+                        if let location = location {
+                            date = .now.startOfLocalDay(timezone: location.timezone)
+                        }
+                    }
+            }
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
+        }
+        .onReceive(locationList.publisher) { _ in
+            let newLocation: Location? = {
                 if let selected = locationList.first(where: { $0.isSelected == true }) {
                     // try to find a selected location
                     return Location(saved: selected)
@@ -36,89 +110,16 @@ struct HomeView: View {
                     // no location found
                     return nil
                 }
-            }() {
-                HomeViewWithLocation(location: location)
-            } else {
-                NoLocationsView()
-                    .tabItem {
-                        Label("Daily Report", systemImage: "doc.text")
-                    }
-            }
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape")
-                }
-        }
-    }
-}
-
-struct HomeViewWithLocation: View {
-    @EnvironmentObject var networkManager: NetworkManager
-    
-    let location: Location
-    @State var date: Date
-    @State var internet = true
-    @State var sunData: SunData? = nil
-    
-    init(location: Location) {
-        self.location = location
-        self._date = State(initialValue: .now.startOfLocalDay(timezone: location.timezone))
-    }
-    var body: some View {
-        if let sunData = sunData {
-            HomeViewWithSunData(location: location, date: $date, sunData: sunData)
-                .onChange(of: date) { _ in
-                    self.sunData = networkManager.sun[NetworkManager.DataKey(date: date, location: location)]
-                }
-        } else {
-            if internet {
-                DailyReportLoadingView(internet: $internet)
-                    .task {
-                        do {
-                            try await networkManager.updateSunData(at: location, on: date)
-                            sunData = networkManager.sun[NetworkManager.DataKey(date: date, location: location)]
-                        } catch {
-                            internet = false
-                        }
-                    }
-                    .tabItem {
-                        Label("Daily Report", systemImage: "doc.text")
-                    }
-            } else {
-                DailyReportLoadingFailedView(internet: $internet)
-                    .tabItem {
-                        Label("Daily Report", systemImage: "doc.text")
-                    }
+            }()
+            if let newLocation = newLocation, newLocation != self.location {
+                self.location = newLocation
+                self.date = .now.startOfLocalDay(timezone: newLocation.timezone)
             }
         }
-    }
-}
-
-struct HomeViewWithSunData: View {
-    let location: Location
-    @Binding var date: Date
-    let sunData: SunData
-    @State var viewingInterval: DateInterval
-    
-    init(location: Location, date: Binding<Date>, sunData: SunData) {
-        self.location = location
-        self._date = date
-        self.sunData = sunData
-        self._viewingInterval =  State(initialValue: sunData.ATInterval)
-    }
-    var body: some View {
-        DailyReportView(date: $date, viewingInterval: $viewingInterval)
-            .tabItem {
-                Label("Daily Report", systemImage: "doc.text")
-            }
-            .environment(\.location, location)
-            .environment(\.sunData, sunData)
-        CatalogView(date: $date, viewingInterval: $viewingInterval)
-            .tabItem {
-                Label("Master Catalog", systemImage: "tray.full.fill")
-            }
-            .environment(\.location, location)
-            .environment(\.sunData, sunData)
+        .onChange(of: date) { newDate in
+            sunData = nil
+            print("reset sundata")
+        }
     }
 }
 

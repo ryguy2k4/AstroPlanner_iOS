@@ -107,6 +107,7 @@ fileprivate struct ReportHeader: View {
     @Environment(\.viewingInterval) var viewingInterval
     var body: some View {
         VStack {
+            Text("\(sunData.ATInterval)")
             Text("Daily Report")
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
