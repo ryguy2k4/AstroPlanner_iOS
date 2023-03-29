@@ -180,7 +180,12 @@ struct TargetAltitudeChart: View {
         }
         .chartXAxis {
             AxisMarks(position: .bottom, values: .stride(by: .hour, count: 6)) {
-                AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
+                let format: Date.FormatStyle = {
+                    var format: Date.FormatStyle = .dateTime.hour(.defaultDigits(amPM: .abbreviated))
+                    format.timeZone = location.timezone
+                    return format
+                }()
+                AxisValueLabel(format: format)
                 AxisGridLine()
             }
         }
@@ -293,12 +298,27 @@ private struct FactLabel: View {
  A label that displays a target event
  */
 private struct EventLabel: View {
+    @Environment(\.location) var location
     var date: Date
     var image: String
     var body: some View {
         VStack(spacing: 3) {
-            Label(date.formatted(date: .omitted, time: .shortened) , systemImage: image)
-            Text(date.formatted(date: .numeric, time: .omitted))
+            let dateFormatter: DateFormatter = {
+                let formatter = DateFormatter()
+                formatter.timeZone = location.timezone
+                formatter.dateStyle = .short
+                formatter.timeStyle = .none
+                return formatter
+            }()
+            let timeFormatter: DateFormatter = {
+                let formatter = DateFormatter()
+                formatter.timeZone = location.timezone
+                formatter.dateStyle = .none
+                formatter.timeStyle = .short
+                return formatter
+            }()
+            Label(timeFormatter.string(from: date) , systemImage: image)
+            Text(dateFormatter.string(from: date))
                 .minimumScaleFactor(0.8)
         }
         .frame(width: 110, height: 60)

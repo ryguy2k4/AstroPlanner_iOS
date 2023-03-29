@@ -107,13 +107,19 @@ fileprivate struct ReportHeader: View {
     @Environment(\.viewingInterval) var viewingInterval
     var body: some View {
         VStack {
-            Text("\(sunData.ATInterval)")
             Text("Daily Report")
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             if viewingInterval == sunData.ATInterval {
-                Text("Night of \(date.formatted(format: "M dd, yyyy", timezone: location.timezone)) at \(location.name)")
+                let dateFormatter: DateFormatter = {
+                    let formatter = DateFormatter()
+                    formatter.timeZone = location.timezone
+                    formatter.dateStyle = .long
+                    formatter.timeStyle = .none
+                    return formatter
+                }()
+                Text("Night of \(dateFormatter.string(from: date)) | \(location.name)")
                     .font(.subheadline)
                     .fontWeight(.thin)
             } else {
