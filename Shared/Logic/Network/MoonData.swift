@@ -9,7 +9,8 @@ import Foundation
 import WeatherKit
 
 struct MoonData {
-    static func getMoonIllumination(date: Date) -> Double {
+    static func getMoonIllumination(date: Date, timezone: TimeZone) -> Double {
+        let date = date.endOfLocalDay(timezone: timezone)
         func getMoonAge(date: Date) -> Double {
             // lunar cycle length in seconds
             let cycle = 29.53058770576 * 24 * 60 * 60

@@ -61,7 +61,7 @@ extension Date {
     
     func getEveryMonth() -> [Date] {
         var array: [Date] = []
-        let year = Calendar.current.dateComponents([.year], from: .now).year
+        let year = Calendar.current.dateComponents([.year], from: self).year
         for month in 1..<13 {
             var dateComps = DateComponents()
             dateComps.year = year

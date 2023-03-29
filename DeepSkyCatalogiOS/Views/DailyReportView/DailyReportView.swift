@@ -127,7 +127,7 @@ fileprivate struct ReportHeader: View {
                     .font(.subheadline)
                     .fontWeight(.thin)
             }
-            let moonIllumination = MoonData.getMoonIllumination(date: date)
+            let moonIllumination = MoonData.getMoonIllumination(date: date, timezone: location.timezone)
             Text("Moon: \(moonIllumination.percent(sigFigs: 2)) illuminated")
                 .font(.subheadline)
                 .fontWeight(.thin)

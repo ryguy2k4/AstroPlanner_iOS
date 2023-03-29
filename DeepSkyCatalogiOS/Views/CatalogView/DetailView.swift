@@ -162,12 +162,8 @@ struct TargetAltitudeChart: View {
             }
             RuleMark(y: .value("Axis", showLimitingAlt ? targetSettings.limitingAltitude : 0))
                 .foregroundStyle(.gray)
-            if Date.now > date.localNoon(timezone: location.timezone) {
+            if Date.now > date.localNoon(timezone: location.timezone) && Date.now < date.localNoon(timezone: location.timezone).tomorrow() {
                 RuleMark(x: .value("Now", Date.now))
-                    .lineStyle(.init(dash: [5]))
-                    .foregroundStyle(.red)
-            } else {
-                RuleMark(x: .value("Now", date.localNoon(timezone: location.timezone)))
                     .lineStyle(.init(dash: [5]))
                     .foregroundStyle(.red)
             }
@@ -253,7 +249,7 @@ struct TargetSeasonScoreChart: View {
             }
             RuleMark(y: .value("Axis", 0))
                 .foregroundStyle(.gray)
-            RuleMark(x: .value("Now", Date.now))
+            RuleMark(x: .value("Now", date))
                 .lineStyle(.init(dash: [5]))
                 .foregroundStyle(.red)
         }
