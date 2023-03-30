@@ -52,7 +52,7 @@ struct DateIntervalSelector: View {
         }
         
         // Custom Interval Selector
-        if sunData.ATInterval.start < viewingInterval.end && viewingInterval.start < sunData.ATInterval.end {
+        if sunData.ATInterval.start <= viewingInterval.end && viewingInterval.start <= sunData.ATInterval.end {
             let endBinding = Binding(
                 get: {
                     return viewingInterval.end
