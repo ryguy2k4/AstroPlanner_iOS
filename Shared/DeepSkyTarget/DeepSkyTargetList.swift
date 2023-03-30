@@ -54,7 +54,7 @@ struct DeepSkyTargetList {
             encoder.outputFormatting = .prettyPrinted
             let data = try encoder.encode(list)
             if #available(macOS 13.0, *) {
-                let path = URL(filePath: "/Users/ryansponzilli/Documents/Xcode/DeepSkyCatalog/Shared/DeepSkyTarget/Catalog.json")
+                let path = URL(filePath: "/Users/ryansponzilli/Local Documents/DeepSkyCatalog/Shared/DeepSkyTarget/Catalog.json")
                 try data.write(to: path)
                 print("data exported")
             } else {
@@ -62,7 +62,7 @@ struct DeepSkyTargetList {
             }
 
         } catch {
-            print("error exporting")
+            print("error exporting: \(error)")
         }
     }
 }

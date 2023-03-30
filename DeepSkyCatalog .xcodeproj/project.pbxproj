@@ -65,9 +65,6 @@
 		7164CEF029BE8FE6000A154A /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		7164CEF229BE97C7000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
 		7164CEF329BE97C7000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
-		7164CEF429BE97D2000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
-		7164CEF529BE97D2000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
-		7164CEF629BE97D3000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
 		716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71668AD0298F266300AB0D19 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String+Ext.swift */; };
@@ -914,7 +911,6 @@
 				71E03E6529C0B5FF0034FE08 /* Intents.intentdefinition in Sources */,
 				7164CEE529BE8F95000A154A /* SunData.swift in Sources */,
 				7164CEE829BE8F9C000A154A /* NetworkManager.swift in Sources */,
-				7164CEF629BE97D3000A154A /* UIImage+Ext.swift in Sources */,
 				7164CEE029BE8F7E000A154A /* Constellation.swift in Sources */,
 				7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */,
 				71694BB929C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
@@ -939,7 +935,6 @@
 				7181F029299BD1E2002841A8 /* SunData.swift in Sources */,
 				7181F020299BD01E002841A8 /* Double+Ext.swift in Sources */,
 				7181F02D299BD22C002841A8 /* PlaceValue.swift in Sources */,
-				7164CEF529BE97D2000A154A /* UIImage+Ext.swift in Sources */,
 				7181F024299BD049002841A8 /* FetchError.swift in Sources */,
 				7181F028299BD0D0002841A8 /* TargetEditor.swift in Sources */,
 				71694BB829C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
@@ -1050,7 +1045,6 @@
 				71BE6EDE299035DB00686E95 /* Mac_DetailView.swift in Sources */,
 				71C26452298F1CB60057EC04 /* DeepSkyTargetList.swift in Sources */,
 				71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */,
-				7164CEF429BE97D2000A154A /* UIImage+Ext.swift in Sources */,
 				71C2644D298F1CA50057EC04 /* Double+Ext.swift in Sources */,
 				71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */,
 				716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */,
@@ -1376,7 +1370,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;
@@ -1416,7 +1410,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;

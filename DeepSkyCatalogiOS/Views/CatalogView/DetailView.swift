@@ -26,23 +26,24 @@ struct DetailView: View {
             VStack(spacing: 10) {
                 
                 // Target Image
-                if let image = target.image {
+                if let image = target.image, let filename = image.source.fileName {
                     VStack {
-                        NavigationLink(destination: ImageViewer(image: image.source.fileName)) {
-                            Image(image.source.fileName)
+                        NavigationLink(destination: ImageViewer(image: filename)) {
+                            Image(filename)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 200)
                                 .cornerRadius(12)
                         }
-                        if let credit = image.copyright {
-                            Text("Image Copyright: " + credit)
-                                .fontWeight(.light)
-                                .lineLimit(2)
-                                .font(.caption)
-                                .padding(.horizontal)
-                        }
+                        Text(image.credit)
+                            .fontWeight(.light)
+                            .lineLimit(2)
+                            .font(.caption)
+                            .padding(.horizontal)
                     }
+                } else if let image = target.image, let url = image.source.url {
+                    Link("View Image on APOD", destination: url)
+                        .padding(.bottom)
                 }
                 
                 // Target Facts

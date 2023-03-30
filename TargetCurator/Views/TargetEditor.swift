@@ -382,19 +382,31 @@ struct ImageField: View {
     @State var id: String
     @State var isCopyrightInfo: Bool
     
+    @State var copyrighted: Bool
+    
     init(image: Binding<DeepSkyTarget.TargetImage?>) {
         self._image = image
         self.id = {
             switch image.wrappedValue?.source {
             case .local(fileName: let filename):
                 return filename
-            case .apod(id: let id):
+            case .apod(id: let id, copyrighted: _):
                 return id
             case nil:
                 return ""
             }
         }()
-        self.isCopyrightInfo = image.wrappedValue?.copyright != nil
+        self.isCopyrightInfo = image.wrappedValue?.credit != nil
+        self.copyrighted = {
+            switch image.wrappedValue?.source {
+            case .local(fileName: _):
+                return false
+            case .apod(id: _, copyrighted: let copyrighted):
+                return copyrighted
+            case nil:
+                return false
+            }
+        }()
     }
     var body: some View {
         Section {
@@ -405,32 +417,20 @@ struct ImageField: View {
                         image = nil
                     }
                     Picker("", selection: unwrappedImage.source) {
-                        Text("APOD").tag(DeepSkyTarget.TargetImage.ImageSource.apod(id: id))
+                        Text("APOD").tag(DeepSkyTarget.TargetImage.ImageSource.apod(id: id, copyrighted: copyrighted))
                         Text("Local").tag(DeepSkyTarget.TargetImage.ImageSource.local(fileName: id))
                     }
-                    TextField("", text: $id)
+                    TextField("ID:", text: $id)
+                    Toggle("Copyrighted:", isOn: $copyrighted)
+                    TextField("Credit:", text: unwrappedImage.credit)
                     
-                    // Copyright toggle and textfield
-                    Toggle("Copyright:", isOn: $isCopyrightInfo)
-                        .onChange(of: isCopyrightInfo) { _ in
-                            if !isCopyrightInfo {
-                                image?.copyright = nil
-                            }
-                        }
-                    if isCopyrightInfo {
-                        let copyrightBinding = Binding(
-                            get: {image!.copyright ?? ""},
-                            set: {image!.copyright = $0}
-                        )
-                        TextField("Copyright:", text: copyrightBinding)
-                    }
                     // Button to retrieve APOD Info
                     Button("Get APOD Info") {
                         Task {
                             let image = try? await NetworkManager.shared.getImageData(for: id)
                             
                             if let image = image {
-                                self.image!.copyright = image.copyright
+                                self.image!.credit = image.copyright ?? "CREDIT"
                                 isCopyrightInfo = image.copyright != nil
                                 
                                 let fileURL = URL(fileURLWithPath: "/Users/ryansponzilli/Documents/DeepSkyCatalog Python Scripts/image script/apodurls.txt")
@@ -448,7 +448,7 @@ struct ImageField: View {
                     }
                 } else {
                     Button("Add Image") {
-                        image = DeepSkyTarget.TargetImage(source: .local(fileName: "power_star"))
+                        image = DeepSkyTarget.TargetImage(source: .apod(id: "APOD", copyrighted: false), credit: "CREDIT")
                     }
                 }
             }

@@ -12,9 +12,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Crab_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "200906"
+          "id" : "200906",
+          "copyrighted" : false
         }
       }
     },
@@ -54,9 +56,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_2",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "190404"
+          "id" : "190404",
+          "copyrighted" : false
         }
       }
     },
@@ -89,10 +93,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_3",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Karel Teuwen",
+      "credit" : "Karel Teuwen",
       "source" : {
         "apod" : {
-          "id" : "070609"
+          "id" : "070609",
+          "copyrighted" : false
         }
       }
     },
@@ -125,10 +130,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_4",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "T2KAKPNO 0.9-m TelescopeNOAOAURANSF",
+      "credit" : "T2KAKPNO 0.9-m TelescopeNOAOAURANSF",
       "source" : {
         "apod" : {
-          "id" : "000523"
+          "id" : "000523",
+          "copyrighted" : false
         }
       }
     },
@@ -165,10 +171,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_5",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Adam Block",
+      "credit" : "Adam Block",
       "source" : {
         "apod" : {
-          "id" : "190509"
+          "id" : "190509",
+          "copyrighted" : false
         }
       }
     },
@@ -204,10 +211,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Butterfly_Cluster",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Sergio Eguivar Buenos Aires Skies",
+      "credit" : "Sergio Eguivar Buenos Aires Skies",
       "source" : {
         "apod" : {
-          "id" : "110906"
+          "id" : "110906",
+          "copyrighted" : false
         }
       }
     },
@@ -243,10 +251,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_7",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Lorand Fenyes",
+      "credit" : "Lorand Fenyes",
       "source" : {
         "apod" : {
-          "id" : "140107"
+          "id" : "140107",
+          "copyrighted" : false
         }
       }
     },
@@ -282,10 +291,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Lagoon_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Nelson Ortega",
+      "credit" : "Nelson Ortega",
       "source" : {
         "apod" : {
-          "id" : "181112"
+          "id" : "181112",
+          "copyrighted" : false
         }
       }
     },
@@ -325,9 +335,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_9",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "120323"
+          "id" : "120323",
+          "copyrighted" : false
         }
       }
     },
@@ -360,10 +372,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_10",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Till Credner, Sven Kohle, Bonn University, Hoher List Observatory",
+      "credit" : "Till Credner, Sven Kohle, Bonn University, Hoher List Observatory",
       "source" : {
         "apod" : {
-          "id" : "010630"
+          "id" : "010630",
+          "copyrighted" : false
         }
       }
     },
@@ -396,10 +409,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Wild_Duck_Cluster",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Jean-Charles Cuillandre",
+      "credit" : "Jean-Charles Cuillandre",
       "source" : {
         "apod" : {
-          "id" : "030122"
+          "id" : "030122",
+          "copyrighted" : false
         }
       }
     },
@@ -466,10 +480,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_13",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Joan Josep Isach Cogollos",
+      "credit" : "Joan Josep Isach Cogollos",
       "source" : {
         "apod" : {
-          "id" : "220804"
+          "id" : "220804",
+          "copyrighted" : false
         }
       }
     },
@@ -533,10 +548,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_15",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Bernhard Hubl",
+      "credit" : "Bernhard Hubl",
       "source" : {
         "apod" : {
-          "id" : "181017"
+          "id" : "181017",
+          "copyrighted" : false
         }
       }
     },
@@ -569,10 +585,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Eagle_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Yannick Akar",
+      "credit" : "Yannick Akar",
       "source" : {
         "apod" : {
-          "id" : "221004"
+          "id" : "221004",
+          "copyrighted" : false
         }
       }
     },
@@ -617,10 +634,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Omega_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Subaru Telescope, NAOJ, Hubble Space Telescope, Processing: Robert Gendler & Roberto Colombari",
+      "credit" : "Subaru Telescope, NAOJ, Hubble Space Telescope, Processing: Robert Gendler & Roberto Colombari",
       "source" : {
         "apod" : {
-          "id" : "140527"
+          "id" : "140527",
+          "copyrighted" : false
         }
       }
     },
@@ -695,10 +713,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_19",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "N. A. Sharp, AURA, NOAO, NSF",
+      "credit" : "N. A. Sharp, AURA, NOAO, NSF",
       "source" : {
         "apod" : {
-          "id" : "000719"
+          "id" : "000719",
+          "copyrighted" : false
         }
       }
     },
@@ -731,10 +750,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Trifid_Nebula",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Vikas Chander",
+      "credit" : "Vikas Chander",
       "source" : {
         "apod" : {
-          "id" : "220805"
+          "id" : "220805",
+          "copyrighted" : false
         }
       }
     },
@@ -805,10 +825,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_22",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Jean-Charles Cuillandre",
+      "credit" : "Jean-Charles Cuillandre",
       "source" : {
         "apod" : {
-          "id" : "050627"
+          "id" : "050627",
+          "copyrighted" : false
         }
       }
     },
@@ -872,10 +893,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Small_Sagittarius_Star_Cloud",
     "type" : "starCloud",
     "image" : {
-      "copyright" : "Gabriel Rodrigues Santos",
+      "credit" : "Gabriel Rodrigues Santos",
       "source" : {
         "apod" : {
-          "id" : "220407"
+          "id" : "220407",
+          "copyrighted" : false
         }
       }
     },
@@ -911,10 +933,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_25",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Jean-Charles Cuillandre",
+      "credit" : "Jean-Charles Cuillandre",
       "source" : {
         "apod" : {
-          "id" : "090831"
+          "id" : "090831",
+          "copyrighted" : false
         }
       }
     },
@@ -975,10 +998,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Dumbbell_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "copyright" : "Bob Franke",
+      "credit" : "Bob Franke",
       "source" : {
         "apod" : {
-          "id" : "190829"
+          "id" : "190829",
+          "copyrighted" : false
         }
       }
     },
@@ -1121,10 +1145,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Andromeda_Galaxy",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "R. GendlerR. Croman",
+      "credit" : "R. GendlerR. Croman",
       "source" : {
         "apod" : {
-          "id" : "220119"
+          "id" : "220119",
+          "copyrighted" : false
         }
       }
     },
@@ -1160,10 +1185,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Triangulum_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Robert Gendler",
+      "credit" : "Robert Gendler",
       "source" : {
         "apod" : {
-          "id" : "221103"
+          "id" : "221103",
+          "copyrighted" : false
         }
       }
     },
@@ -1199,10 +1225,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_34",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Bob Franke",
+      "credit" : "Bob Franke",
       "source" : {
         "apod" : {
-          "id" : "100211"
+          "id" : "100211",
+          "copyrighted" : false
         }
       }
     },
@@ -1238,10 +1265,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_35",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Canada-France-Hawaii Telescope",
+      "credit" : "Canada-France-Hawaii Telescope",
       "source" : {
         "apod" : {
-          "id" : "031215"
+          "id" : "031215",
+          "copyrighted" : false
         }
       }
     },
@@ -1340,10 +1368,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_38",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "NOAO",
+      "credit" : "NOAO",
       "source" : {
         "apod" : {
-          "id" : "030107"
+          "id" : "030107",
+          "copyrighted" : false
         }
       }
     },
@@ -1379,9 +1408,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_39",
     "type" : "openStarCluster",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "090412"
+          "id" : "090412",
+          "copyrighted" : false
         }
       }
     },
@@ -1452,10 +1483,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Orion_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Josep M. DrudisDon Goldman",
+      "credit" : "Josep M. DrudisDon Goldman",
       "source" : {
         "apod" : {
-          "id" : "191030"
+          "id" : "191030",
+          "copyrighted" : false
         }
       }
     },
@@ -1491,10 +1523,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Beehive_Cluster",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Drew Evans",
+      "credit" : "Drew Evans",
       "source" : {
         "apod" : {
-          "id" : "220430"
+          "id" : "220430",
+          "copyrighted" : false
         }
       }
     },
@@ -1538,10 +1571,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Pleiades",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Hermann von Eiff",
+      "credit" : "Hermann von Eiff",
       "source" : {
         "apod" : {
-          "id" : "161019"
+          "id" : "161019",
+          "copyrighted" : false
         }
       }
     },
@@ -1574,10 +1608,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_47",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Chris Hetlage",
+      "credit" : "Chris Hetlage",
       "source" : {
         "apod" : {
-          "id" : "050804"
+          "id" : "050804",
+          "copyrighted" : false
         }
       }
     },
@@ -1666,10 +1701,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_50",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "S. Kohle, T. Credner et al",
+      "credit" : "S. Kohle, T. Credner et al",
       "source" : {
         "apod" : {
-          "id" : "970128"
+          "id" : "970128",
+          "copyrighted" : false
         }
       }
     },
@@ -1709,10 +1745,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Whirlpool_Galaxy",
     "type" : "peculiarGalaxy",
     "image" : {
-      "copyright" : "Josep Drudis",
+      "credit" : "Josep Drudis",
       "source" : {
         "apod" : {
-          "id" : "210902"
+          "id" : "210902",
+          "copyrighted" : false
         }
       }
     },
@@ -1753,10 +1790,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_52",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Lorand Fenyes",
+      "credit" : "Lorand Fenyes",
       "source" : {
         "apod" : {
-          "id" : "210925"
+          "id" : "210925",
+          "copyrighted" : false
         }
       }
     },
@@ -1793,9 +1831,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_53",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "210207"
+          "id" : "210207",
+          "copyrighted" : false
         }
       }
     },
@@ -1856,10 +1896,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_55",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Jean-Charles Cuillandre\nCuillandre",
+      "credit" : "Jean-Charles Cuillandre\nCuillandre",
       "source" : {
         "apod" : {
-          "id" : "080402"
+          "id" : "080402",
+          "copyrighted" : false
         }
       }
     },
@@ -1924,9 +1965,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Ring_Nebula",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "210817"
+          "id" : "210817",
+          "copyrighted" : false
         }
       }
     },
@@ -2019,10 +2062,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_61",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Robert Gendler & Roberto Colombari",
+      "credit" : "Robert Gendler & Roberto Colombari",
       "source" : {
         "apod" : {
-          "id" : "190828"
+          "id" : "190828",
+          "copyrighted" : false
         }
       }
     },
@@ -2089,10 +2133,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_63",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Hubble Legacy Archive",
+      "credit" : "Hubble Legacy Archive",
       "source" : {
         "apod" : {
-          "id" : "170712"
+          "id" : "170712",
+          "copyrighted" : false
         }
       }
     },
@@ -2128,9 +2173,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Black_Eye_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "210329"
+          "id" : "210329",
+          "copyrighted" : false
         }
       }
     },
@@ -2168,10 +2215,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_65",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Volker Wendel",
+      "credit" : "Volker Wendel",
       "source" : {
         "apod" : {
-          "id" : "070601"
+          "id" : "070601",
+          "copyrighted" : false
         }
       }
     },
@@ -2207,10 +2255,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_66",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Leo Shatz",
+      "credit" : "Leo Shatz",
       "source" : {
         "apod" : {
-          "id" : "210224"
+          "id" : "210224",
+          "copyrighted" : false
         }
       }
     },
@@ -2246,10 +2295,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_67",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Noel CarboniGreg Parker",
+      "credit" : "Noel CarboniGreg Parker",
       "source" : {
         "apod" : {
-          "id" : "070809"
+          "id" : "070809",
+          "copyrighted" : false
         }
       }
     },
@@ -2371,10 +2421,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_71",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Bob Franke",
+      "credit" : "Bob Franke",
       "source" : {
         "apod" : {
-          "id" : "141210"
+          "id" : "141210",
+          "copyrighted" : false
         }
       }
     },
@@ -2411,9 +2462,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_72",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "120819"
+          "id" : "120819",
+          "copyrighted" : false
         }
       }
     },
@@ -2446,10 +2499,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_74",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Descubre Foundation",
+      "credit" : "Descubre Foundation",
       "source" : {
         "apod" : {
-          "id" : "110406"
+          "id" : "110406",
+          "copyrighted" : false
         }
       }
     },
@@ -2513,10 +2567,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Little_Dumbbell_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "copyright" : "Ken Crawford",
+      "credit" : "Ken Crawford",
       "source" : {
         "apod" : {
-          "id" : "100723"
+          "id" : "100723",
+          "copyrighted" : false
         }
       }
     },
@@ -2554,9 +2609,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_77",
     "type" : "barredSpiralGalaxy",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "130510"
+          "id" : "130510",
+          "copyrighted" : false
         }
       }
     },
@@ -2592,10 +2649,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_78",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Richard S. Wright Jr.",
+      "credit" : "Richard S. Wright Jr.",
       "source" : {
         "apod" : {
-          "id" : "190308"
+          "id" : "190308",
+          "copyrighted" : false
         }
       }
     },
@@ -2656,10 +2714,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_80",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "F. R. Ferraro (ESO \/Bologna Obs.), M. Shara (STSci \/AMNH) et al.",
+      "credit" : "F. R. Ferraro (ESO \/Bologna Obs.), M. Shara (STSci \/AMNH) et al.",
       "source" : {
         "apod" : {
-          "id" : "990707"
+          "id" : "990707",
+          "copyrighted" : false
         }
       }
     },
@@ -2692,10 +2751,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_81",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Wissam Ayoub",
+      "credit" : "Wissam Ayoub",
       "source" : {
         "apod" : {
-          "id" : "210312"
+          "id" : "210312",
+          "copyrighted" : false
         }
       }
     },
@@ -2731,10 +2791,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_82",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Team ARO",
+      "credit" : "Team ARO",
       "source" : {
         "apod" : {
-          "id" : "210709"
+          "id" : "210709",
+          "copyrighted" : false
         }
       }
     },
@@ -2770,10 +2831,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_83",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Robert Gendler",
+      "credit" : "Robert Gendler",
       "source" : {
         "apod" : {
-          "id" : "190629"
+          "id" : "190629",
+          "copyrighted" : false
         }
       }
     },
@@ -2811,10 +2873,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_84",
     "type" : "ellipticalGalaxy",
     "image" : {
-      "copyright" : "Saulius Adomaitis",
+      "credit" : "Saulius Adomaitis",
       "source" : {
         "apod" : {
-          "id" : "220615"
+          "id" : "220615",
+          "copyrighted" : false
         }
       }
     },
@@ -2875,10 +2938,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_86",
     "type" : "ellipticalGalaxy",
     "image" : {
-      "copyright" : "Saulius Adomaitis",
+      "credit" : "Saulius Adomaitis",
       "source" : {
         "apod" : {
-          "id" : "220615"
+          "id" : "220615",
+          "copyrighted" : false
         }
       }
     },
@@ -2911,10 +2975,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_87",
     "type" : "ellipticalGalaxy",
     "image" : {
-      "copyright" : "Robert Gendler",
+      "credit" : "Robert Gendler",
       "source" : {
         "apod" : {
-          "id" : "060520"
+          "id" : "060520",
+          "copyrighted" : false
         }
       }
     },
@@ -2950,10 +3015,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_88",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Adam Block",
+      "credit" : "Adam Block",
       "source" : {
         "apod" : {
-          "id" : "221228"
+          "id" : "221228",
+          "copyrighted" : false
         }
       }
     },
@@ -2986,10 +3052,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_89",
     "type" : "ellipticalGalaxy",
     "image" : {
-      "copyright" : "Mark Hanson",
+      "credit" : "Mark Hanson",
       "source" : {
         "apod" : {
-          "id" : "170614"
+          "id" : "170614",
+          "copyrighted" : false
         }
       }
     },
@@ -3022,10 +3089,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_90",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Bill Keel, University of Alabama 1.1-meter Hall Telescope, Lowell Observatory\nLowell Observatory\n",
+      "credit" : "Bill Keel, University of Alabama 1.1-meter Hall Telescope, Lowell Observatory\nLowell Observatory\n",
       "source" : {
         "apod" : {
-          "id" : "960316"
+          "id" : "960316",
+          "copyrighted" : false
         }
       }
     },
@@ -3145,10 +3213,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_94",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Marcin Paciorek",
+      "credit" : "Marcin Paciorek",
       "source" : {
         "apod" : {
-          "id" : "090717"
+          "id" : "090717",
+          "copyrighted" : false
         }
       }
     },
@@ -3184,9 +3253,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_95",
     "type" : "barredSpiralGalaxy",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "190529"
+          "id" : "190529",
+          "copyrighted" : false
         }
       }
     },
@@ -3219,10 +3290,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_96",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Mark Hanson",
+      "credit" : "Mark Hanson",
       "source" : {
         "apod" : {
-          "id" : "220414"
+          "id" : "220414",
+          "copyrighted" : false
         }
       }
     },
@@ -3255,10 +3327,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Owl_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "copyright" : "Christoph Kaltseis",
+      "credit" : "Christoph Kaltseis",
       "source" : {
         "apod" : {
-          "id" : "150402"
+          "id" : "150402",
+          "copyrighted" : false
         }
       }
     },
@@ -3353,9 +3426,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_100",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "181225"
+          "id" : "181225",
+          "copyrighted" : false
         }
       }
     },
@@ -3388,10 +3463,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Pinwheel_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Joonhwa Lee",
+      "credit" : "Joonhwa Lee",
       "source" : {
         "apod" : {
-          "id" : "180504"
+          "id" : "180504",
+          "copyrighted" : false
         }
       }
     },
@@ -3487,9 +3563,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sombrero_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "220423"
+          "id" : "220423",
+          "copyrighted" : false
         }
       }
     },
@@ -3553,10 +3631,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_106",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Fabian Neyer",
+      "credit" : "Fabian Neyer",
       "source" : {
         "apod" : {
-          "id" : "160116"
+          "id" : "160116",
+          "copyrighted" : false
         }
       }
     },
@@ -3620,10 +3699,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_108",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Christoph Kaltseis",
+      "credit" : "Christoph Kaltseis",
       "source" : {
         "apod" : {
-          "id" : "150402"
+          "id" : "150402",
+          "copyrighted" : false
         }
       }
     },
@@ -3659,10 +3739,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_109",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Bob Franke",
+      "credit" : "Bob Franke",
       "source" : {
         "apod" : {
-          "id" : "130523"
+          "id" : "130523",
+          "copyrighted" : false
         }
       }
     },
@@ -3814,10 +3895,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Iris_Nebula",
     "type" : "reflectionNebula",
     "image" : {
-      "copyright" : "Satwant Kumar",
+      "credit" : "Satwant Kumar",
       "source" : {
         "apod" : {
-          "id" : "210903"
+          "id" : "210903",
+          "copyrighted" : false
         }
       }
     },
@@ -3853,10 +3935,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/IC_342",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Daniel Feller",
+      "credit" : "Daniel Feller",
       "source" : {
         "apod" : {
-          "id" : "220211"
+          "id" : "220211",
+          "copyrighted" : false
         }
       }
     },
@@ -3892,9 +3975,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Cat%27s_Eye_Nebula",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "211107"
+          "id" : "211107",
+          "copyrighted" : false
         }
       }
     },
@@ -3930,10 +4015,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2403",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Eric Coles",
+      "credit" : "Eric Coles",
       "source" : {
         "apod" : {
-          "id" : "160219"
+          "id" : "160219",
+          "copyrighted" : false
         }
       }
     },
@@ -3966,10 +4052,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sh2-155",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Anthony Quintile",
+      "credit" : "Anthony Quintile",
       "source" : {
         "apod" : {
-          "id" : "221130"
+          "id" : "221130",
+          "copyrighted" : false
         }
       }
     },
@@ -4037,9 +4124,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7635",
     "type" : "HIIRegion",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "220323"
+          "id" : "220323",
+          "copyrighted" : false
         }
       }
     },
@@ -4079,9 +4168,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6946",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "120109"
+          "id" : "120109",
+          "copyrighted" : false
         }
       }
     },
@@ -4159,10 +4250,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Double_Cluster",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Tommy Lease",
+      "credit" : "Tommy Lease",
       "source" : {
         "apod" : {
-          "id" : "221122"
+          "id" : "221122",
+          "copyrighted" : false
         }
       }
     },
@@ -4194,9 +4286,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6826",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "010526"
+          "id" : "010526",
+          "copyrighted" : false
         }
       }
     },
@@ -4288,10 +4382,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/IC_5146",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "David Jenkins",
+      "credit" : "David Jenkins",
       "source" : {
         "apod" : {
-          "id" : "220827"
+          "id" : "220827",
+          "copyrighted" : false
         }
       }
     },
@@ -4331,10 +4426,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/North_America_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Frank Sackenheim",
+      "credit" : "Frank Sackenheim",
       "source" : {
         "apod" : {
-          "id" : "220908"
+          "id" : "220908",
+          "copyrighted" : false
         }
       }
     },
@@ -4370,10 +4466,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_4449",
     "type" : "irregularGalaxy",
     "image" : {
-      "copyright" : "Hubble Legacy Archive",
+      "credit" : "Hubble Legacy Archive",
       "source" : {
         "apod" : {
-          "id" : "170714"
+          "id" : "170714",
+          "copyrighted" : false
         }
       }
     },
@@ -4409,9 +4506,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7662",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "961121"
+          "id" : "961121",
+          "copyrighted" : false
         }
       }
     },
@@ -4447,10 +4546,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_891",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Adam Block",
+      "credit" : "Adam Block",
       "source" : {
         "apod" : {
-          "id" : "170112"
+          "id" : "170112",
+          "copyrighted" : false
         }
       }
     },
@@ -4487,9 +4587,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_1275",
     "type" : "ellipticalGalaxy",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "170405"
+          "id" : "170405",
+          "copyrighted" : false
         }
       }
     },
@@ -4525,10 +4627,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2419",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Bob Franke",
+      "credit" : "Bob Franke",
       "source" : {
         "apod" : {
-          "id" : "150604"
+          "id" : "150604",
+          "copyrighted" : false
         }
       }
     },
@@ -4597,10 +4700,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Crescent_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Joe Navara",
+      "credit" : "Joe Navara",
       "source" : {
         "apod" : {
-          "id" : "210617"
+          "id" : "210617",
+          "copyrighted" : false
         }
       }
     },
@@ -4707,10 +4811,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7331",
     "type" : "galaxyGroup",
     "image" : {
-      "copyright" : "Tony Hallas",
+      "credit" : "Tony Hallas",
       "source" : {
         "apod" : {
-          "id" : "141218"
+          "id" : "141218",
+          "copyrighted" : false
         }
       }
     },
@@ -4746,10 +4851,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/IC_405",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Eric Coles",
+      "credit" : "Eric Coles",
       "source" : {
         "apod" : {
-          "id" : "200107"
+          "id" : "200107",
+          "copyrighted" : false
         }
       }
     },
@@ -4789,10 +4895,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_4631",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Michael Sherick",
+      "credit" : "Michael Sherick",
       "source" : {
         "apod" : {
-          "id" : "221006"
+          "id" : "221006",
+          "copyrighted" : false
         }
       }
     },
@@ -4828,10 +4935,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Veil_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
-      "copyright" : "Daniel LopezObservatorio del\nDaniel LopezObservatorio del\nDaniel LopezObservatorio del\nDaniel LopezObservatorio del\nDaniel LopezObservatorio del\n",
+      "credit" : "Daniel LopezObservatorio del\nDaniel LopezObservatorio del\nDaniel LopezObservatorio del\nDaniel LopezObservatorio del\nDaniel LopezObservatorio del\n",
       "source" : {
         "apod" : {
-          "id" : "091201"
+          "id" : "091201",
+          "copyrighted" : false
         }
       }
     },
@@ -4867,10 +4975,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Veil_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
-      "copyright" : "Martin PughHeaven's Mirror Observatory",
+      "credit" : "Martin PughHeaven's Mirror Observatory",
       "source" : {
         "apod" : {
-          "id" : "180408"
+          "id" : "180408",
+          "copyrighted" : false
         }
       }
     },
@@ -4971,10 +5080,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_4565",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Michael Sherick",
+      "credit" : "Michael Sherick",
       "source" : {
         "apod" : {
-          "id" : "220526"
+          "id" : "220526",
+          "copyrighted" : false
         }
       }
     },
@@ -5010,9 +5120,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Eskimo_Nebula",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "200216"
+          "id" : "200216",
+          "copyrighted" : false
         }
       }
     },
@@ -5078,10 +5190,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Hyades_(star_cluster)",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Jose Mtanous",
+      "credit" : "Jose Mtanous",
       "source" : {
         "apod" : {
-          "id" : "200122"
+          "id" : "200122",
+          "copyrighted" : false
         }
       }
     },
@@ -5141,10 +5254,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7814",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "CHART32 Team",
+      "credit" : "CHART32 Team",
       "source" : {
         "apod" : {
-          "id" : "210722"
+          "id" : "210722",
+          "copyrighted" : false
         }
       }
     },
@@ -5241,9 +5355,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2261",
     "type" : "reflectionNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "171108"
+          "id" : "171108",
+          "copyrighted" : false
         }
       }
     },
@@ -5279,9 +5395,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6934",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "101009"
+          "id" : "101009",
+          "copyrighted" : false
         }
       }
     },
@@ -5357,10 +5475,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Rosette_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Evangelos Souglakos",
+      "credit" : "Evangelos Souglakos",
       "source" : {
         "apod" : {
-          "id" : "170214"
+          "id" : "170214",
+          "copyrighted" : false
         }
       }
     },
@@ -5428,10 +5547,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_4697",
     "type" : "ellipticalGalaxy",
     "image" : {
-      "copyright" : "Stephen Leshin",
+      "credit" : "Stephen Leshin",
       "source" : {
         "apod" : {
-          "id" : "100429"
+          "id" : "100429",
+          "copyrighted" : false
         }
       }
     },
@@ -5523,9 +5643,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Saturn_Nebula",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "971230"
+          "id" : "971230",
+          "copyrighted" : false
         }
       }
     },
@@ -5561,9 +5683,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_246",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "060418"
+          "id" : "060418",
+          "copyrighted" : false
         }
       }
     },
@@ -5599,10 +5723,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6822",
     "type" : "irregularGalaxy",
     "image" : {
-      "copyright" : "Dietmar Hager",
+      "credit" : "Dietmar Hager",
       "source" : {
         "apod" : {
-          "id" : "211202"
+          "id" : "211202",
+          "copyrighted" : false
         }
       }
     },
@@ -5673,9 +5798,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_3242",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "051029"
+          "id" : "051029",
+          "copyrighted" : false
         }
       }
     },
@@ -5713,10 +5840,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_247",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Eric Benson",
+      "credit" : "Eric Benson",
       "source" : {
         "apod" : {
-          "id" : "200116"
+          "id" : "200116",
+          "copyrighted" : false
         }
       }
     },
@@ -5752,10 +5880,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Helix_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "copyright" : "Tommaso Stella",
+      "credit" : "Tommaso Stella",
       "source" : {
         "apod" : {
-          "id" : "221207"
+          "id" : "221207",
+          "copyrighted" : false
         }
       }
     },
@@ -5823,9 +5952,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sculptor_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "200414"
+          "id" : "200414",
+          "copyrighted" : false
         }
       }
     },
@@ -5891,10 +6022,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_1097",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Mike Selby",
+      "credit" : "Mike Selby",
       "source" : {
         "apod" : {
-          "id" : "221116"
+          "id" : "221116",
+          "copyrighted" : false
         }
       }
     },
@@ -5926,10 +6058,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6729",
     "type" : "reflectionNebula",
     "image" : {
-      "copyright" : "CHART32 Team",
+      "credit" : "CHART32 Team",
       "source" : {
         "apod" : {
-          "id" : "200112"
+          "id" : "200112",
+          "copyrighted" : false
         }
       }
     },
@@ -5962,9 +6095,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6302",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "221121"
+          "id" : "221121",
+          "copyrighted" : false
         }
       }
     },
@@ -6068,10 +6203,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_55",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Eric Benson",
+      "credit" : "Eric Benson",
       "source" : {
         "apod" : {
-          "id" : "190712"
+          "id" : "190712",
+          "copyrighted" : false
         }
       }
     },
@@ -6135,9 +6271,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_3132",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "220714"
+          "id" : "220714",
+          "copyrighted" : false
         }
       }
     },
@@ -6236,10 +6374,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Centaurus_A",
     "type" : "lenticularGalaxy",
     "image" : {
-      "copyright" : "David Alemazkour",
+      "credit" : "David Alemazkour",
       "source" : {
         "apod" : {
-          "id" : "220317"
+          "id" : "220317",
+          "copyrighted" : false
         }
       }
     },
@@ -6335,10 +6474,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Omega_Centauri",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Michael Miller",
+      "credit" : "Michael Miller",
       "source" : {
         "apod" : {
-          "id" : "190824"
+          "id" : "190824",
+          "copyrighted" : false
         }
       }
     },
@@ -6402,10 +6542,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_4945",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Dietmar Hager",
+      "credit" : "Dietmar Hager",
       "source" : {
         "apod" : {
-          "id" : "220226"
+          "id" : "220226",
+          "copyrighted" : false
         }
       }
     },
@@ -6469,9 +6610,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6397",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "030808"
+          "id" : "030808",
+          "copyrighted" : false
         }
       }
     },
@@ -6629,10 +6772,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Carina_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Ignacio Javier Diaz Bobillo",
+      "credit" : "Ignacio Javier Diaz Bobillo",
       "source" : {
         "apod" : {
-          "id" : "220425"
+          "id" : "220425",
+          "copyrighted" : false
         }
       }
     },
@@ -6670,10 +6814,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6752",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Jose Joaquin Perez",
+      "credit" : "Jose Joaquin Perez",
       "source" : {
         "apod" : {
-          "id" : "200123"
+          "id" : "200123",
+          "copyrighted" : false
         }
       }
     },
@@ -6709,10 +6854,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Jewel_Box_(star_cluster)",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Dieter Willasch Astro-Cabinet",
+      "credit" : "Dieter Willasch Astro-Cabinet",
       "source" : {
         "apod" : {
-          "id" : "100817"
+          "id" : "100817",
+          "copyrighted" : false
         }
       }
     },
@@ -6898,10 +7044,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/IC_2944",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Juan Filas",
+      "credit" : "Juan Filas",
       "source" : {
         "apod" : {
-          "id" : "200420"
+          "id" : "200420",
+          "copyrighted" : false
         }
       }
     },
@@ -6937,10 +7084,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6744",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Basudeb Chakrabarti",
+      "credit" : "Basudeb Chakrabarti",
       "source" : {
         "apod" : {
-          "id" : "220623"
+          "id" : "220623",
+          "copyrighted" : false
         }
       }
     },
@@ -7004,10 +7152,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2070",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Robert Gendler",
+      "credit" : "Robert Gendler",
       "source" : {
         "apod" : {
-          "id" : "220916"
+          "id" : "220916",
+          "copyrighted" : false
         }
       }
     },
@@ -7045,9 +7194,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_362",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "171011"
+          "id" : "171011",
+          "copyrighted" : false
         }
       }
     },
@@ -7111,10 +7262,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/47_Tucanae",
     "type" : "globularStarCluster",
     "image" : {
-      "copyright" : "Bernard Miller",
+      "credit" : "Bernard Miller",
       "source" : {
         "apod" : {
-          "id" : "220310"
+          "id" : "220310",
+          "copyrighted" : false
         }
       }
     },
@@ -7231,10 +7383,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_772",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Bernard Miller",
+      "credit" : "Bernard Miller",
       "source" : {
         "apod" : {
-          "id" : "200918"
+          "id" : "200918",
+          "copyrighted" : false
         }
       }
     },
@@ -7293,10 +7446,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/California_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Sara Wager",
+      "credit" : "Sara Wager",
       "source" : {
         "apod" : {
-          "id" : "190823"
+          "id" : "190823",
+          "copyrighted" : false
         }
       }
     },
@@ -7332,10 +7486,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/IC_2118",
     "type" : "reflectionNebula",
     "image" : {
-      "copyright" : "Jeff Signorelli",
+      "credit" : "Jeff Signorelli",
       "source" : {
         "apod" : {
-          "id" : "151030"
+          "id" : "151030",
+          "copyrighted" : false
         }
       }
     },
@@ -7398,10 +7553,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_1893",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Francesco Antonucci",
+      "credit" : "Francesco Antonucci",
       "source" : {
         "apod" : {
-          "id" : "170507"
+          "id" : "170507",
+          "copyrighted" : false
         }
       }
     },
@@ -7436,10 +7592,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2174",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Dan Kowall(Photonhunter.com)",
+      "credit" : "Dan Kowall(Photonhunter.com)",
       "source" : {
         "apod" : {
-          "id" : "061208"
+          "id" : "061208",
+          "copyrighted" : false
         }
       }
     },
@@ -7471,10 +7628,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Flame_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Team ARO",
+      "credit" : "Team ARO",
       "source" : {
         "apod" : {
-          "id" : "210412"
+          "id" : "210412",
+          "copyrighted" : false
         }
       }
     },
@@ -7540,10 +7698,11 @@
     ],
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Jason Close",
+      "credit" : "Jason Close",
       "source" : {
         "apod" : {
-          "id" : "221229"
+          "id" : "221229",
+          "copyrighted" : false
         }
       }
     },
@@ -7577,10 +7736,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Horsehead_Nebula",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Osservatorio MTM",
+      "credit" : "Osservatorio MTM",
       "source" : {
         "apod" : {
-          "id" : "100513"
+          "id" : "100513",
+          "copyrighted" : false
         }
       }
     },
@@ -7643,10 +7803,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Orion%27s_Sword",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Kerry-Ann Lecky Hepburn",
+      "credit" : "Kerry-Ann Lecky Hepburn",
       "source" : {
         "apod" : {
-          "id" : "090826"
+          "id" : "090826",
+          "copyrighted" : false
         }
       }
     },
@@ -7754,10 +7915,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Orion_molecular_cloud_complex",
     "type" : "cloudComplex",
     "image" : {
-      "copyright" : "John Gleason Rogelio\nBernal Andreo",
+      "credit" : "John Gleason Rogelio\nBernal Andreo",
       "source" : {
         "apod" : {
-          "id" : "190821"
+          "id" : "190821",
+          "copyrighted" : false
         }
       }
     },
@@ -7802,9 +7964,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sh2-279",
     "type" : "reflectionNebula",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "160113"
+          "id" : "160113",
+          "copyrighted" : false
         }
       }
     },
@@ -7836,10 +8000,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Medusa_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "copyright" : "Ken Crawford",
+      "credit" : "Ken Crawford",
       "source" : {
         "apod" : {
-          "id" : "121025"
+          "id" : "121025",
+          "copyrighted" : false
         }
       }
     },
@@ -7871,10 +8036,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2158",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Canada-France-Hawaii Telescope",
+      "credit" : "Canada-France-Hawaii Telescope",
       "source" : {
         "apod" : {
-          "id" : "031215"
+          "id" : "031215",
+          "copyrighted" : false
         }
       }
     },
@@ -7914,10 +8080,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_46",
     "type" : "multiple",
     "image" : {
-      "copyright" : "Denis Priou",
+      "credit" : "Denis Priou",
       "source" : {
         "apod" : {
-          "id" : "150417"
+          "id" : "150417",
+          "copyrighted" : false
         }
       }
     },
@@ -7946,10 +8113,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2264",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Miguel Claro",
+      "credit" : "Miguel Claro",
       "source" : {
         "apod" : {
-          "id" : "201226"
+          "id" : "201226",
+          "copyrighted" : false
         }
       }
     },
@@ -7981,10 +8149,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_3628",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Stefano Cancelli",
+      "credit" : "Stefano Cancelli",
       "source" : {
         "apod" : {
-          "id" : "200604"
+          "id" : "200604",
+          "copyrighted" : false
         }
       }
     },
@@ -8027,10 +8196,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Leo_Triplet",
     "type" : "galaxyGroup",
     "image" : {
-      "copyright" : "Francis Bozon",
+      "credit" : "Francis Bozon",
       "source" : {
         "apod" : {
-          "id" : "210320"
+          "id" : "210320",
+          "copyrighted" : false
         }
       }
     },
@@ -8064,10 +8234,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2903",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Tony Hallas",
+      "credit" : "Tony Hallas",
       "source" : {
         "apod" : {
-          "id" : "150410"
+          "id" : "150410",
+          "copyrighted" : false
         }
       }
     },
@@ -8111,9 +8282,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Antennae_Galaxies",
     "type" : "peculiarGalaxy",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "201203"
+          "id" : "201203",
+          "copyrighted" : false
         }
       }
     },
@@ -8153,10 +8326,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_60",
     "type" : "galaxyGroup",
     "image" : {
-      "copyright" : "NASA",
+      "credit" : "NASA",
       "source" : {
         "apod" : {
-          "id" : "160128"
+          "id" : "160128",
+          "copyrighted" : false
         }
       }
     },
@@ -8259,10 +8433,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Markarian%27s_Chain",
     "type" : "galaxyGroup",
     "image" : {
-      "copyright" : "Piotrek Sadowski",
+      "credit" : "Piotrek Sadowski",
       "source" : {
         "apod" : {
-          "id" : "090609"
+          "id" : "090609",
+          "copyrighted" : false
         }
       }
     },
@@ -8292,10 +8467,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_4725",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Bob English",
+      "credit" : "Bob English",
       "source" : {
         "apod" : {
-          "id" : "160812"
+          "id" : "160812",
+          "copyrighted" : false
         }
       }
     },
@@ -8327,10 +8503,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_4656_and_NGC_4657",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "copyright" : "Capella Observatory",
+      "credit" : "Capella Observatory",
       "source" : {
         "apod" : {
-          "id" : "090821"
+          "id" : "090821",
+          "copyrighted" : false
         }
       }
     },
@@ -8363,10 +8540,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_3718",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "Dietmar Hager",
+      "credit" : "Dietmar Hager",
       "source" : {
         "apod" : {
-          "id" : "080717"
+          "id" : "080717",
+          "copyrighted" : false
         }
       }
     },
@@ -8405,10 +8583,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6188",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Tian Lee",
+      "credit" : "Tian Lee",
       "source" : {
         "apod" : {
-          "id" : "181107"
+          "id" : "181107",
+          "copyrighted" : false
         }
       }
     },
@@ -8454,10 +8633,11 @@
     ],
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Shaun Robertson",
+      "credit" : "Shaun Robertson",
       "source" : {
         "apod" : {
-          "id" : "220607"
+          "id" : "220607",
+          "copyrighted" : false
         }
       }
     },
@@ -8486,10 +8666,11 @@
     ],
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Russell Croman",
+      "credit" : "Russell Croman",
       "source" : {
         "apod" : {
-          "id" : "221226"
+          "id" : "221226",
+          "copyrighted" : false
         }
       }
     },
@@ -8521,10 +8702,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_5907",
     "type" : "spiralGalaxy",
     "image" : {
-      "copyright" : "R Jay Gabany",
+      "credit" : "R Jay Gabany",
       "source" : {
         "apod" : {
-          "id" : "191116"
+          "id" : "191116",
+          "copyrighted" : false
         }
       }
     },
@@ -8584,10 +8766,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7008",
     "type" : "planetaryNebula",
     "image" : {
-      "copyright" : "Dietmar Hager",
+      "credit" : "Dietmar Hager",
       "source" : {
         "apod" : {
-          "id" : "080825"
+          "id" : "080825",
+          "copyrighted" : false
         }
       }
     },
@@ -8629,10 +8812,11 @@
     ],
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Frank Sackenheim",
+      "credit" : "Frank Sackenheim",
       "source" : {
         "apod" : {
-          "id" : "220908"
+          "id" : "220908",
+          "copyrighted" : false
         }
       }
     },
@@ -8663,10 +8847,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Pelican_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Frank Sackenheim",
+      "credit" : "Frank Sackenheim",
       "source" : {
         "apod" : {
-          "id" : "220908"
+          "id" : "220908",
+          "copyrighted" : false
         }
       }
     },
@@ -8729,10 +8914,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Cygnus_Loop",
     "type" : "supernovaRemnant",
     "image" : {
-      "copyright" : "Craig Stocks",
+      "credit" : "Craig Stocks",
       "source" : {
         "apod" : {
-          "id" : "220622"
+          "id" : "220622",
+          "copyrighted" : false
         }
       }
     },
@@ -8769,10 +8955,11 @@
     "wikipediaURL" : "https:\/\/wikipedia.org",
     "type" : "supernovaRemnant",
     "image" : {
-      "copyright" : "Sara Wager",
+      "credit" : "Sara Wager",
       "source" : {
         "apod" : {
-          "id" : "171110"
+          "id" : "171110",
+          "copyrighted" : false
         }
       }
     },
@@ -8800,10 +8987,11 @@
     ],
     "type" : "supernovaRemnant",
     "image" : {
-      "copyright" : "Howard Trottier",
+      "credit" : "Howard Trottier",
       "source" : {
         "apod" : {
-          "id" : "211027"
+          "id" : "211027",
+          "copyrighted" : false
         }
       }
     },
@@ -8838,10 +9026,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7380",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Ioan Popa",
+      "credit" : "Ioan Popa",
       "source" : {
         "apod" : {
-          "id" : "221114"
+          "id" : "221114",
+          "copyrighted" : false
         }
       }
     },
@@ -8872,10 +9061,11 @@
     ],
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Gianni Lacroce",
+      "credit" : "Gianni Lacroce",
       "source" : {
         "apod" : {
-          "id" : "221115"
+          "id" : "221115",
+          "copyrighted" : false
         }
       }
     },
@@ -8907,10 +9097,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Elephant%27s_Trunk_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "César Blanco González",
+      "credit" : "César Blanco González",
       "source" : {
         "apod" : {
-          "id" : "170720"
+          "id" : "170720",
+          "copyrighted" : false
         }
       }
     },
@@ -8942,10 +9133,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6939",
     "type" : "openStarCluster",
     "image" : {
-      "copyright" : "Paolo Demaria",
+      "credit" : "Paolo Demaria",
       "source" : {
         "apod" : {
-          "id" : "170525"
+          "id" : "170525",
+          "copyrighted" : false
         }
       }
     },
@@ -8989,9 +9181,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Stephan%27s_Quintet",
     "type" : "galaxyGroup",
     "image" : {
+      "credit" : "CREDIT",
       "source" : {
         "apod" : {
-          "id" : "211218"
+          "id" : "211218",
+          "copyrighted" : false
         }
       }
     },
@@ -9034,10 +9228,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Heart_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Daniel Marquardt",
+      "credit" : "Daniel Marquardt",
       "source" : {
         "apod" : {
-          "id" : "090214"
+          "id" : "090214",
+          "copyrighted" : false
         }
       }
     },
@@ -9073,10 +9268,11 @@
     ],
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Alan Pham",
+      "credit" : "Alan Pham",
       "source" : {
         "apod" : {
-          "id" : "190731"
+          "id" : "190731",
+          "copyrighted" : false
         }
       }
     },
@@ -9122,10 +9318,11 @@
     ],
     "type" : "galaxyGroup",
     "image" : {
-      "copyright" : "Dan Bartlett",
+      "credit" : "Dan Bartlett",
       "source" : {
         "apod" : {
-          "id" : "211104"
+          "id" : "211104",
+          "copyrighted" : false
         }
       }
     },
@@ -9161,10 +9358,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Dark_Doodad_Nebula",
     "type" : "multiple",
     "image" : {
-      "copyright" : "Marco Lorenzi",
+      "credit" : "Marco Lorenzi",
       "source" : {
         "apod" : {
-          "id" : "150910"
+          "id" : "150910",
+          "copyrighted" : false
         }
       }
     },
@@ -9196,10 +9394,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Large_Magellanic_Cloud",
     "type" : "irregularGalaxy",
     "image" : {
-      "copyright" : "Alessandro\nCipolat Bares",
+      "credit" : "Alessandro\nCipolat Bares",
       "source" : {
         "apod" : {
-          "id" : "190905"
+          "id" : "190905",
+          "copyrighted" : false
         }
       }
     },
@@ -9229,10 +9428,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Small_Magellanic_Cloud",
     "type" : "irregularGalaxy",
     "image" : {
-      "copyright" : "José Mtanous",
+      "credit" : "José Mtanous",
       "source" : {
         "apod" : {
-          "id" : "210105"
+          "id" : "210105",
+          "copyrighted" : false
         }
       }
     },
@@ -9267,10 +9467,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/IC_4592",
     "type" : "reflectionNebula",
     "image" : {
-      "copyright" : "Adam BlockSteward Observatory,\nUniversity of Arizona",
+      "credit" : "Adam BlockSteward Observatory,\nUniversity of Arizona",
       "source" : {
         "apod" : {
-          "id" : ""
+          "id" : "",
+          "copyrighted" : false
         }
       }
     },
@@ -9328,10 +9529,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Rho_Ophiuchi_cloud_complex",
     "type" : "cloudComplex",
     "image" : {
-      "copyright" : "Amir H. Abolfath",
+      "credit" : "Amir H. Abolfath",
       "source" : {
         "apod" : {
-          "id" : "201014"
+          "id" : "201014",
+          "copyrighted" : false
         }
       }
     },
@@ -9392,10 +9594,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6559",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Roberto Sartori",
+      "credit" : "Roberto Sartori",
       "source" : {
         "apod" : {
-          "id" : "211007"
+          "id" : "211007",
+          "copyrighted" : false
         }
       }
     },
@@ -9456,10 +9659,11 @@
     ],
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "copyright" : "Gabriel Rodrigues Santos",
+      "credit" : "Gabriel Rodrigues Santos",
       "source" : {
         "apod" : {
-          "id" : "210426"
+          "id" : "210426",
+          "copyrighted" : false
         }
       }
     },
@@ -9492,10 +9696,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Westerhout_5",
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Jess M.Vargas & Maritxu Poyal",
+      "credit" : "Jess M.Vargas & Maritxu Poyal",
       "source" : {
         "apod" : {
-          "id" : "180821"
+          "id" : "180821",
+          "copyrighted" : false
         }
       }
     },
@@ -9560,10 +9765,11 @@
     ],
     "type" : "HIIRegion",
     "image" : {
-      "copyright" : "Mario Zauner",
+      "credit" : "Mario Zauner",
       "source" : {
         "apod" : {
-          "id" : "190115"
+          "id" : "190115",
+          "copyrighted" : false
         }
       }
     },
@@ -9635,10 +9841,11 @@
     ],
     "type" : "multiple",
     "image" : {
-      "copyright" : "Adrien Klamerius",
+      "credit" : "Adrien Klamerius",
       "source" : {
         "apod" : {
-          "id" : "160924"
+          "id" : "160924",
+          "copyrighted" : false
         }
       }
     },
