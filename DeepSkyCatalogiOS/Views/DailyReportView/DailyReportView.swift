@@ -34,16 +34,15 @@ struct DailyReportView: View {
         NavigationStack {
             ReportHeader()
             ScrollView {
-                if let report = DailyReport(location: location, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), sunData: sunData) {
-                    VStack {
-                        // Report Section
-                        TopFiveView(report: report)
-                        TopTenTabView(report: report, tabSelection: $topTenTab)
-                            .onAppear() {
-                                if report.topTenNebulae.isEmpty { topTenTab = .starClusters }
-                                else if report.topTenGalaxies.isEmpty { topTenTab = .galaxies }
-                            }
-                    }
+                let report = DailyReport(location: location, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), sunData: sunData)
+                VStack {
+                    // Report Section
+                    TopFiveView(report: report)
+                    TopTenTabView(report: report, tabSelection: $topTenTab)
+                        .onAppear() {
+                            if report.topTenNebulae.isEmpty { topTenTab = .starClusters }
+                            else if report.topTenGalaxies.isEmpty { topTenTab = .galaxies }
+                        }
                 }
             }
             .toolbar {

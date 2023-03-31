@@ -61,6 +61,11 @@ struct HomeView: View {
                                 Label("Daily Report", systemImage: "doc.text")
                             }
                     }
+                    BasicCatalogView(date: date)
+                        .tabItem {
+                            Label("Master Catalog", systemImage: "tray.full.fill")
+                        }
+                        .environment(\.location, location)
                 }
             } else {
                 NoLocationsView()

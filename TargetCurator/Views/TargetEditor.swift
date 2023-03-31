@@ -453,10 +453,17 @@ struct ImageField: View {
                 }
             }
         } header: {
-            Text("Image")
-                .font(.title3)
-                .fontWeight(.bold)
-                .padding(.top)
+            HStack {
+                Text("Image")
+                if let url = image?.source.url {
+                    Link(destination: url) {
+                        Image(systemName: "arrow.up.forward.square")
+                    }
+                }
+            }
+            .font(.title3)
+            .fontWeight(.bold)
+            .padding(.top)
         }
     }
 }

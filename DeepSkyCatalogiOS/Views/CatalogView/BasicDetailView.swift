@@ -1,22 +1,20 @@
 //
-//  DetailView.swift
-//  Deep Sky Catalog
+//  BasicDetailView.swift
+//  DeepSkyCatalogiOS
 //
-//  Created by Ryan Sponzilli on 11/7/22.
+//  Created by Ryan Sponzilli on 3/31/23.
 //
 
 import SwiftUI
 import Charts
 
-struct DetailView: View {
+struct BasicDetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var targetSettings: TargetSettings
 
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
-    @Environment(\.sunData) var sunData
-    @Environment(\.viewingInterval) var viewingInterval
     
     @State var showCoordinateDecimalFormat: Bool = false
     @State var showLimitingAlt: Bool = true
@@ -138,7 +136,6 @@ struct DetailView: View {
                     .font(.headline)
             }
         }
-        .environment(\.sunData, sunData)
     }
 }
 
@@ -147,11 +144,8 @@ struct DetailView: View {
  */
 fileprivate struct TargetAltitudeChart: View {
     @EnvironmentObject var targetSettings: TargetSettings
-    @Environment(\.viewingInterval) var viewingInterval
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
-    @Environment(\.sunData) var sunData
-    @State var popover: Bool = false
     var target: DeepSkyTarget
     let showLimitingAlt: Bool
     var body: some View {
@@ -168,10 +162,6 @@ fileprivate struct TargetAltitudeChart: View {
                     .lineStyle(.init(dash: [5]))
                     .foregroundStyle(.red)
             }
-            RectangleMark(xStart: .value("", date.startOfLocalDay(timezone: location.timezone).addingTimeInterval(43_200)), xEnd: .value("", viewingInterval.start))
-                .foregroundStyle(.tertiary.opacity(1))
-            RectangleMark(xStart: .value("", viewingInterval.end), xEnd: .value("", date.tomorrow().addingTimeInterval(43_200)))
-                .foregroundStyle(.tertiary.opacity(1))
         }
         .chartXAxis {
             AxisMarks(position: .bottom, values: .stride(by: .hour, count: 6)) {
@@ -188,7 +178,7 @@ fileprivate struct TargetAltitudeChart: View {
             Text("Altitude (°)")
         }
         .chartYAxisLabel(position: .top, alignment: .center) {
-            Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: showLimitingAlt ? targetSettings.limitingAltitude : 0)).percent())")
+            Text("Visibility")
                 .foregroundColor(.secondary)
                 .font(.headline)
         }
@@ -228,9 +218,7 @@ fileprivate struct TargetSchedule : View {
  A chart that plots altitude vs time for a target
  */
 fileprivate struct TargetSeasonScoreChart: View {
-    @Environment(\.viewingInterval) var viewingInterval
     @Environment(\.date) var date
-    @Environment(\.sunData) var sunData
     @Environment(\.location) var location: Location
     var target: DeepSkyTarget
     var body: some View {
@@ -256,7 +244,7 @@ fileprivate struct TargetSeasonScoreChart: View {
             Text("Score")
         }
         .chartYAxisLabel(position: .top, alignment: .center) {
-            Text("Season Score: \((target.getSeasonScore(at: location, on: date, sunData: sunData)).percent())")
+            Text("Season")
                 .foregroundColor(.secondary)
                 .font(.headline)
         }

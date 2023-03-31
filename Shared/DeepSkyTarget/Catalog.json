@@ -12,7 +12,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Crab_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "200906",
@@ -56,7 +56,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_2",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "190404",
@@ -97,7 +97,7 @@
       "source" : {
         "apod" : {
           "id" : "070609",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -130,7 +130,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_4",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "T2KAKPNO 0.9-m TelescopeNOAOAURANSF",
+      "credit" : "T2KA, KPNO 0.9-m Telescope, NOAO, AURA, NSF",
       "source" : {
         "apod" : {
           "id" : "000523",
@@ -175,7 +175,7 @@
       "source" : {
         "apod" : {
           "id" : "190509",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -211,10 +211,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Butterfly_Cluster",
     "type" : "openStarCluster",
     "image" : {
-      "credit" : "Sergio Eguivar Buenos Aires Skies",
+      "credit" : "AURA, NOAO, NSF",
       "source" : {
         "apod" : {
-          "id" : "110906",
+          "id" : "990106",
           "copyrighted" : false
         }
       }
@@ -255,7 +255,7 @@
       "source" : {
         "apod" : {
           "id" : "140107",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -295,7 +295,7 @@
       "source" : {
         "apod" : {
           "id" : "181112",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -335,7 +335,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_9",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "120323",
@@ -376,7 +376,7 @@
       "source" : {
         "apod" : {
           "id" : "010630",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -413,7 +413,7 @@
       "source" : {
         "apod" : {
           "id" : "030122",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -484,7 +484,7 @@
       "source" : {
         "apod" : {
           "id" : "220804",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -548,10 +548,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_15",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "Bernhard Hubl",
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
-          "id" : "181017",
+          "id" : "110503",
           "copyrighted" : false
         }
       }
@@ -589,7 +589,7 @@
       "source" : {
         "apod" : {
           "id" : "221004",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -638,7 +638,7 @@
       "source" : {
         "apod" : {
           "id" : "140527",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -754,7 +754,7 @@
       "source" : {
         "apod" : {
           "id" : "220805",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -829,7 +829,7 @@
       "source" : {
         "apod" : {
           "id" : "050627",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -897,7 +897,7 @@
       "source" : {
         "apod" : {
           "id" : "220407",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -937,7 +937,7 @@
       "source" : {
         "apod" : {
           "id" : "090831",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1002,7 +1002,7 @@
       "source" : {
         "apod" : {
           "id" : "190829",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1145,11 +1145,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Andromeda_Galaxy",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "credit" : "R. GendlerR. Croman",
+      "credit" : "R. Gendler, R. Croman",
       "source" : {
         "apod" : {
           "id" : "220119",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1189,7 +1189,7 @@
       "source" : {
         "apod" : {
           "id" : "221103",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1229,7 +1229,7 @@
       "source" : {
         "apod" : {
           "id" : "100211",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1264,19 +1264,11 @@
     ],
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_35",
     "type" : "openStarCluster",
-    "image" : {
-      "credit" : "Canada-France-Hawaii Telescope",
-      "source" : {
-        "apod" : {
-          "id" : "031215",
-          "copyrighted" : false
-        }
-      }
-    },
     "constellation" : "gemini",
     "subTargets" : [
 
     ],
+    "arcLength" : 25,
     "designation" : [
       {
         "catalog" : "messier",
@@ -1289,8 +1281,7 @@
     ],
     "name" : [
       "Shoe-Buckle Cluster"
-    ],
-    "arcLength" : 25
+    ]
   },
   {
     "id" : "9761EE94-1E1A-4ADC-8714-FC8286D9E86C",
@@ -1368,7 +1359,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_38",
     "type" : "openStarCluster",
     "image" : {
-      "credit" : "NOAO",
+      "credit" : "NOAO, AURA, NSF",
       "source" : {
         "apod" : {
           "id" : "030107",
@@ -1408,7 +1399,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_39",
     "type" : "openStarCluster",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Heidi Schweiker, WIYN, NOAO, AURA, NSF",
       "source" : {
         "apod" : {
           "id" : "090412",
@@ -1487,7 +1478,7 @@
       "source" : {
         "apod" : {
           "id" : "191030",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1527,7 +1518,7 @@
       "source" : {
         "apod" : {
           "id" : "220430",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1575,7 +1566,7 @@
       "source" : {
         "apod" : {
           "id" : "161019",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1598,8 +1589,8 @@
   {
     "id" : "91327FBE-5E63-4D23-B1AD-6D72D1150C60",
     "dec" : -14.482597,
-    "description" : "Messier 47 is an open cluster in the mildly southern constellation of Puppis. It was discovered by Giovanni Batista Hodierna before 1654 and in his then keynote work re-discovered by Charles Messier on 1771. It was also independently discovered by Caroline Herschel. There is no cluster in the position indicated by Messier, which he expressed in terms of its right ascension and declination with respect to the star 2 Puppis. However, if the signs (+ and −) he wrote are swapped, the position matches. Until this equivalency was found, M47 was considered a lost Messier Object. This identification as the same thing (ad idem) only came in 1959 with a realization by Canadian astronomer T. F. Morris. M47 is centered about 1,600 light-years away and is about 78 million years old. There are around 500 members.",
     "arcWidth" : 25,
+    "description" : "Messier 47 is an open cluster in the mildly southern constellation of Puppis. It was discovered by Giovanni Batista Hodierna before 1654 and in his then keynote work re-discovered by Charles Messier on 1771. It was also independently discovered by Caroline Herschel. There is no cluster in the position indicated by Messier, which he expressed in terms of its right ascension and declination with respect to the star 2 Puppis. However, if the signs (+ and −) he wrote are swapped, the position matches. Until this equivalency was found, M47 was considered a lost Messier Object. This identification as the same thing (ad idem) only came in 1959 with a realization by Canadian astronomer T. F. Morris. M47 is centered about 1,600 light-years away and is about 78 million years old. There are around 500 members.",
     "ra" : 114.14593000000001,
     "apparentMag" : 4.4000000000000004,
     "subDesignations" : [
@@ -1607,15 +1598,6 @@
     ],
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_47",
     "type" : "openStarCluster",
-    "image" : {
-      "credit" : "Chris Hetlage",
-      "source" : {
-        "apod" : {
-          "id" : "050804",
-          "copyrighted" : false
-        }
-      }
-    },
     "constellation" : "puppis",
     "subTargets" : [
 
@@ -1705,7 +1687,7 @@
       "source" : {
         "apod" : {
           "id" : "970128",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1749,7 +1731,7 @@
       "source" : {
         "apod" : {
           "id" : "210902",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1794,7 +1776,7 @@
       "source" : {
         "apod" : {
           "id" : "210925",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1831,7 +1813,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_53",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "210207",
@@ -1900,7 +1882,7 @@
       "source" : {
         "apod" : {
           "id" : "080402",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -1965,7 +1947,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Ring_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble Legacy Archive, Judy Schmidt",
       "source" : {
         "apod" : {
           "id" : "210817",
@@ -2066,7 +2048,7 @@
       "source" : {
         "apod" : {
           "id" : "190828",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2133,11 +2115,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_63",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Hubble Legacy Archive",
+      "credit" : "Robert Gendler, Roberto Colombari, Don Goldman",
       "source" : {
         "apod" : {
           "id" : "170712",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2173,7 +2155,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Black_Eye_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble, PHANGS-HST Team, Judy Schmidt",
       "source" : {
         "apod" : {
           "id" : "210329",
@@ -2219,7 +2201,7 @@
       "source" : {
         "apod" : {
           "id" : "070601",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2259,7 +2241,7 @@
       "source" : {
         "apod" : {
           "id" : "210224",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2295,11 +2277,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_67",
     "type" : "openStarCluster",
     "image" : {
-      "credit" : "Noel CarboniGreg Parker",
+      "credit" : "Noel Carboni, Greg Parker",
       "source" : {
         "apod" : {
           "id" : "070809",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2425,7 +2407,7 @@
       "source" : {
         "apod" : {
           "id" : "141210",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2462,7 +2444,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_72",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble, HPOW",
       "source" : {
         "apod" : {
           "id" : "120819",
@@ -2503,7 +2485,7 @@
       "source" : {
         "apod" : {
           "id" : "110406",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2571,7 +2553,7 @@
       "source" : {
         "apod" : {
           "id" : "100723",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2609,7 +2591,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_77",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, André van der Hoeven",
       "source" : {
         "apod" : {
           "id" : "130510",
@@ -2653,7 +2635,7 @@
       "source" : {
         "apod" : {
           "id" : "190308",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2718,7 +2700,7 @@
       "source" : {
         "apod" : {
           "id" : "990707",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2755,7 +2737,7 @@
       "source" : {
         "apod" : {
           "id" : "210312",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2795,7 +2777,7 @@
       "source" : {
         "apod" : {
           "id" : "210709",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2835,7 +2817,7 @@
       "source" : {
         "apod" : {
           "id" : "190629",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2877,7 +2859,7 @@
       "source" : {
         "apod" : {
           "id" : "220615",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2942,7 +2924,7 @@
       "source" : {
         "apod" : {
           "id" : "220615",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -2979,7 +2961,7 @@
       "source" : {
         "apod" : {
           "id" : "060520",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3019,7 +3001,7 @@
       "source" : {
         "apod" : {
           "id" : "221228",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3056,7 +3038,7 @@
       "source" : {
         "apod" : {
           "id" : "170614",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3093,7 +3075,7 @@
       "source" : {
         "apod" : {
           "id" : "960316",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3217,7 +3199,7 @@
       "source" : {
         "apod" : {
           "id" : "090717",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3253,11 +3235,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_95",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Robert Gendler & Roberto Colombari",
       "source" : {
         "apod" : {
           "id" : "190529",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3294,7 +3276,7 @@
       "source" : {
         "apod" : {
           "id" : "220414",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3331,7 +3313,7 @@
       "source" : {
         "apod" : {
           "id" : "150402",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3426,7 +3408,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_100",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "181225",
@@ -3467,7 +3449,7 @@
       "source" : {
         "apod" : {
           "id" : "180504",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3563,11 +3545,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sombrero_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Ignacio Diaz Bobillo",
       "source" : {
         "apod" : {
           "id" : "220423",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3635,7 +3617,7 @@
       "source" : {
         "apod" : {
           "id" : "160116",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3703,7 +3685,7 @@
       "source" : {
         "apod" : {
           "id" : "150402",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3743,7 +3725,7 @@
       "source" : {
         "apod" : {
           "id" : "130523",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3899,7 +3881,7 @@
       "source" : {
         "apod" : {
           "id" : "210903",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3939,7 +3921,7 @@
       "source" : {
         "apod" : {
           "id" : "220211",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -3975,11 +3957,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Cat%27s_Eye_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Rudy Pohl",
       "source" : {
         "apod" : {
           "id" : "211107",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4019,7 +4001,7 @@
       "source" : {
         "apod" : {
           "id" : "160219",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4056,7 +4038,7 @@
       "source" : {
         "apod" : {
           "id" : "221130",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4124,11 +4106,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7635",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Mehmet Hakan Özsaraç",
       "source" : {
         "apod" : {
           "id" : "220323",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4168,11 +4150,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6946",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Robert Gendler",
       "source" : {
         "apod" : {
           "id" : "120109",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4254,7 +4236,7 @@
       "source" : {
         "apod" : {
           "id" : "221122",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4286,7 +4268,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6826",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : " B. Balick, J. Alexander (University of Washington), et al., NASA",
       "source" : {
         "apod" : {
           "id" : "010526",
@@ -4386,7 +4368,7 @@
       "source" : {
         "apod" : {
           "id" : "220827",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4430,7 +4412,7 @@
       "source" : {
         "apod" : {
           "id" : "220908",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4466,11 +4448,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_4449",
     "type" : "irregularGalaxy",
     "image" : {
-      "credit" : "Hubble Legacy Archive",
+      "credit" : "Domingo Pestana Galvan, Raul Villaverde Fraile",
       "source" : {
         "apod" : {
           "id" : "170714",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4506,7 +4488,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7662",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "B. Balick (U. Washington) et al., WFPC2, HST, NASA",
       "source" : {
         "apod" : {
           "id" : "961121",
@@ -4550,7 +4532,7 @@
       "source" : {
         "apod" : {
           "id" : "170112",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4587,11 +4569,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_1275",
     "type" : "ellipticalGalaxy",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Domingo Pestana",
       "source" : {
         "apod" : {
           "id" : "170405",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4631,7 +4613,7 @@
       "source" : {
         "apod" : {
           "id" : "150604",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4704,7 +4686,7 @@
       "source" : {
         "apod" : {
           "id" : "210617",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4815,7 +4797,7 @@
       "source" : {
         "apod" : {
           "id" : "141218",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4855,7 +4837,7 @@
       "source" : {
         "apod" : {
           "id" : "200107",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4899,7 +4881,7 @@
       "source" : {
         "apod" : {
           "id" : "221006",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4935,11 +4917,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Veil_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
-      "credit" : "Daniel LopezObservatorio del\nDaniel LopezObservatorio del\nDaniel LopezObservatorio del\nDaniel LopezObservatorio del\nDaniel LopezObservatorio del\n",
+      "credit" : "Daniel Lopez (Observatorio del Teide)",
       "source" : {
         "apod" : {
           "id" : "091201",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -4979,7 +4961,7 @@
       "source" : {
         "apod" : {
           "id" : "180408",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -5084,7 +5066,7 @@
       "source" : {
         "apod" : {
           "id" : "220526",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -5120,7 +5102,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Eskimo_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble, Chandra, Judy Schmidt",
       "source" : {
         "apod" : {
           "id" : "200216",
@@ -5194,7 +5176,7 @@
       "source" : {
         "apod" : {
           "id" : "200122",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -5258,7 +5240,7 @@
       "source" : {
         "apod" : {
           "id" : "210722",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -5355,7 +5337,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2261",
     "type" : "reflectionNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Hubble, NASA, ESA, Mark Clampin, Judy Schmidt",
       "source" : {
         "apod" : {
           "id" : "171108",
@@ -5395,7 +5377,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6934",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "101009",
@@ -5479,7 +5461,7 @@
       "source" : {
         "apod" : {
           "id" : "170214",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -5551,7 +5533,7 @@
       "source" : {
         "apod" : {
           "id" : "100429",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -5643,7 +5625,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Saturn_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "CREDITB. Balick (U. Washington) et al., WFPC2, HST, NASA",
       "source" : {
         "apod" : {
           "id" : "971230",
@@ -5683,7 +5665,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_246",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Gemini South GMOS, Travis Rector (Univ. Alaska)",
       "source" : {
         "apod" : {
           "id" : "060418",
@@ -5727,7 +5709,7 @@
       "source" : {
         "apod" : {
           "id" : "211202",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -5798,7 +5780,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_3242",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Bruce Balick (U. Washington) et al., HST, NASA",
       "source" : {
         "apod" : {
           "id" : "051029",
@@ -5844,7 +5826,7 @@
       "source" : {
         "apod" : {
           "id" : "200116",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -5884,7 +5866,7 @@
       "source" : {
         "apod" : {
           "id" : "221207",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -5952,11 +5934,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sculptor_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Robert Gendler & Roberto Colombari",
       "source" : {
         "apod" : {
           "id" : "200414",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -6026,7 +6008,7 @@
       "source" : {
         "apod" : {
           "id" : "221116",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -6062,7 +6044,7 @@
       "source" : {
         "apod" : {
           "id" : "200112",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -6095,7 +6077,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6302",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble; Processing: William Ostling\nNASA, ESA, Hubble; Processing: William Ostling\nNASA, ESA, Hubble; Processing: William Ostling\nNASA, ESA, Hubble; Processing: William Ostling\n NASA, ESA, Hubble, William Ostling",
       "source" : {
         "apod" : {
           "id" : "221121",
@@ -6207,7 +6189,7 @@
       "source" : {
         "apod" : {
           "id" : "190712",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -6271,7 +6253,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_3132",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, CSA, STScI, NIRCam\nNASA, ESA, CSA, STScI, NIRCam\nNASA, ESA, CSA, STScI, NIRCam\nNASA, ESA, CSA, STScI, NIRCam",
       "source" : {
         "apod" : {
           "id" : "220714",
@@ -6378,7 +6360,7 @@
       "source" : {
         "apod" : {
           "id" : "220317",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -6478,7 +6460,7 @@
       "source" : {
         "apod" : {
           "id" : "190824",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -6546,7 +6528,7 @@
       "source" : {
         "apod" : {
           "id" : "220226",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -6610,7 +6592,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6397",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Hubble Heritage Team (STScI \/ AURA), A. Cool (SFSU) et al., NASA",
       "source" : {
         "apod" : {
           "id" : "030808",
@@ -6776,7 +6758,7 @@
       "source" : {
         "apod" : {
           "id" : "220425",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -6818,7 +6800,7 @@
       "source" : {
         "apod" : {
           "id" : "200123",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -6858,7 +6840,7 @@
       "source" : {
         "apod" : {
           "id" : "100817",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7048,7 +7030,7 @@
       "source" : {
         "apod" : {
           "id" : "200420",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7088,7 +7070,7 @@
       "source" : {
         "apod" : {
           "id" : "220623",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7156,7 +7138,7 @@
       "source" : {
         "apod" : {
           "id" : "220916",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7194,7 +7176,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_362",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Hubble WFC3, NASA, ESA, J. Heyl, I. Caiazzo, & Javiera Parada (UBC)",
       "source" : {
         "apod" : {
           "id" : "171011",
@@ -7266,7 +7248,7 @@
       "source" : {
         "apod" : {
           "id" : "220310",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7387,7 +7369,7 @@
       "source" : {
         "apod" : {
           "id" : "200918",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7450,7 +7432,7 @@
       "source" : {
         "apod" : {
           "id" : "190823",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7490,7 +7472,7 @@
       "source" : {
         "apod" : {
           "id" : "151030",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7557,7 +7539,7 @@
       "source" : {
         "apod" : {
           "id" : "170507",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7596,7 +7578,7 @@
       "source" : {
         "apod" : {
           "id" : "061208",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7632,7 +7614,7 @@
       "source" : {
         "apod" : {
           "id" : "210412",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7702,7 +7684,7 @@
       "source" : {
         "apod" : {
           "id" : "221229",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7740,7 +7722,7 @@
       "source" : {
         "apod" : {
           "id" : "100513",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7807,7 +7789,7 @@
       "source" : {
         "apod" : {
           "id" : "090826",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7919,7 +7901,7 @@
       "source" : {
         "apod" : {
           "id" : "190821",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -7964,11 +7946,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sh2-279",
     "type" : "reflectionNebula",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Adam Block, Mt. Lemmon SkyCenter, Univ. Arizona",
       "source" : {
         "apod" : {
           "id" : "160113",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8004,7 +7986,7 @@
       "source" : {
         "apod" : {
           "id" : "121025",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8040,7 +8022,7 @@
       "source" : {
         "apod" : {
           "id" : "031215",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8084,7 +8066,7 @@
       "source" : {
         "apod" : {
           "id" : "150417",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8117,7 +8099,7 @@
       "source" : {
         "apod" : {
           "id" : "201226",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8153,7 +8135,7 @@
       "source" : {
         "apod" : {
           "id" : "200604",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8200,7 +8182,7 @@
       "source" : {
         "apod" : {
           "id" : "210320",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8238,7 +8220,7 @@
       "source" : {
         "apod" : {
           "id" : "150410",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8282,7 +8264,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Antennae_Galaxies",
     "type" : "peculiarGalaxy",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "201203",
@@ -8326,7 +8308,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_60",
     "type" : "galaxyGroup",
     "image" : {
-      "credit" : "NASA",
+      "credit" : "NASA, ESA, Hubble Heritage Team (STScI\/AURA)",
       "source" : {
         "apod" : {
           "id" : "160128",
@@ -8437,7 +8419,7 @@
       "source" : {
         "apod" : {
           "id" : "090609",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8471,7 +8453,7 @@
       "source" : {
         "apod" : {
           "id" : "160812",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8507,7 +8489,7 @@
       "source" : {
         "apod" : {
           "id" : "090821",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8544,7 +8526,7 @@
       "source" : {
         "apod" : {
           "id" : "080717",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8587,7 +8569,7 @@
       "source" : {
         "apod" : {
           "id" : "181107",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8637,7 +8619,7 @@
       "source" : {
         "apod" : {
           "id" : "220607",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8670,7 +8652,7 @@
       "source" : {
         "apod" : {
           "id" : "221226",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8706,7 +8688,7 @@
       "source" : {
         "apod" : {
           "id" : "191116",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8770,7 +8752,7 @@
       "source" : {
         "apod" : {
           "id" : "080825",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8816,7 +8798,7 @@
       "source" : {
         "apod" : {
           "id" : "220908",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8851,7 +8833,7 @@
       "source" : {
         "apod" : {
           "id" : "220908",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8918,7 +8900,7 @@
       "source" : {
         "apod" : {
           "id" : "220622",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8959,7 +8941,7 @@
       "source" : {
         "apod" : {
           "id" : "171110",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -8991,7 +8973,7 @@
       "source" : {
         "apod" : {
           "id" : "211027",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9030,7 +9012,7 @@
       "source" : {
         "apod" : {
           "id" : "221114",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9065,7 +9047,7 @@
       "source" : {
         "apod" : {
           "id" : "221115",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9101,7 +9083,7 @@
       "source" : {
         "apod" : {
           "id" : "170720",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9137,7 +9119,7 @@
       "source" : {
         "apod" : {
           "id" : "170525",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9181,11 +9163,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Stephan%27s_Quintet",
     "type" : "galaxyGroup",
     "image" : {
-      "credit" : "CREDIT",
+      "credit" : "Bernard Miller",
       "source" : {
         "apod" : {
           "id" : "211218",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9232,7 +9214,7 @@
       "source" : {
         "apod" : {
           "id" : "090214",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9272,7 +9254,7 @@
       "source" : {
         "apod" : {
           "id" : "190731",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9322,7 +9304,7 @@
       "source" : {
         "apod" : {
           "id" : "211104",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9362,7 +9344,7 @@
       "source" : {
         "apod" : {
           "id" : "150910",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9398,7 +9380,7 @@
       "source" : {
         "apod" : {
           "id" : "190905",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9432,7 +9414,7 @@
       "source" : {
         "apod" : {
           "id" : "210105",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9470,7 +9452,7 @@
       "credit" : "Adam BlockSteward Observatory,\nUniversity of Arizona",
       "source" : {
         "apod" : {
-          "id" : "",
+          "id" : "210705",
           "copyrighted" : false
         }
       }
@@ -9533,7 +9515,7 @@
       "source" : {
         "apod" : {
           "id" : "201014",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9598,7 +9580,7 @@
       "source" : {
         "apod" : {
           "id" : "211007",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9663,7 +9645,7 @@
       "source" : {
         "apod" : {
           "id" : "210426",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9700,7 +9682,7 @@
       "source" : {
         "apod" : {
           "id" : "180821",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9769,7 +9751,7 @@
       "source" : {
         "apod" : {
           "id" : "190115",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
@@ -9845,7 +9827,7 @@
       "source" : {
         "apod" : {
           "id" : "160924",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },

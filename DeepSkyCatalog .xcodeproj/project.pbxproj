@@ -189,6 +189,8 @@
 		71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
 		71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */; };
+		71FE1AA929D79517000E2B2B /* BasicCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FE1AA829D79517000E2B2B /* BasicCatalogView.swift */; };
+		71FE1AAB29D795FB000E2B2B /* BasicDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -316,6 +318,8 @@
 		71F71572293FB4010011EF7F /* Environment+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Ext.swift"; sourceTree = "<group>"; };
 		71F844C8294A95E700DD2742 /* SelectableList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableList.swift; sourceTree = "<group>"; };
 		71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTargetsList.swift; sourceTree = "<group>"; };
+		71FE1AA829D79517000E2B2B /* BasicCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCatalogView.swift; sourceTree = "<group>"; };
+		71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,9 +368,11 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9672921EF20008C7614 /* CatalogView.swift */,
+				71FE1AA829D79517000E2B2B /* BasicCatalogView.swift */,
 				7113870229C3571400081584 /* FilterButtonMenuView.swift */,
 				71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */,
 				71BCF9692921EF20008C7614 /* DetailView.swift */,
+				71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */,
 			);
 			path = CatalogView;
 			sourceTree = "<group>";
@@ -1000,6 +1006,7 @@
 				7186D8F2295CEEC500601467 /* JournalView.swift in Sources */,
 				71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */,
 				71BD753F2971044D00D7751F /* SortMethods.swift in Sources */,
+				71FE1AAB29D795FB000E2B2B /* BasicDetailView.swift in Sources */,
 				713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */,
 				710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */,
 				71BD7542297104AB00D7751F /* FilterMethods.swift in Sources */,
@@ -1012,6 +1019,7 @@
 				719B26D7295167A100E1165A /* NumberPicker.swift in Sources */,
 				71F510BC297605E9008F7629 /* CaseNameCodable.swift in Sources */,
 				71462F3329A2E6A100F2914C /* ToolbarLogo.swift in Sources */,
+				71FE1AA929D79517000E2B2B /* BasicCatalogView.swift in Sources */,
 				714BB85329A094810084D438 /* TopTenTabView.swift in Sources */,
 				71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				717051DB29CE7A6D00D4EE1A /* LocationPickerModal.swift in Sources */,
