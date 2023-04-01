@@ -19,7 +19,7 @@ struct TargetIDSearchField: View {
                 
                 // grab top 15 search results
                 let suggestions: [DeepSkyTarget] = {
-                    var list = DeepSkyTargetList.objects
+                    var list = DeepSkyTargetList.allTargets
                     list.filterBySearch(searchText)
                     list.removeLast(list.count > 15 ? list.count-15 : 0)
                     return list
