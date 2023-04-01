@@ -12,7 +12,7 @@ import SwiftUI
  - Parameter selection: A binding to an array that holds the selected cases of the generic enum
  */
 struct SelectableList<T: Filter>: View {
-    @Binding var selection: [T]
+    @Binding var selection: Set<T>
     var body: some View {
         List {
             ConfigSection(header: T.name) {
@@ -20,9 +20,9 @@ struct SelectableList<T: Filter>: View {
                     Button() {
                         // toggle item selection
                         if selection.contains(item) {
-                            selection.removeAll(where: { $0 == item })
+                            selection.remove(item)
                         } else {
-                            selection.append(item)
+                            selection.insert(item)
                         }
                     } label: {
                         HStack {

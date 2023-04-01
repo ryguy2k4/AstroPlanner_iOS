@@ -60,7 +60,7 @@ extension Array where Element == DeepSkyTarget {
     }
     
     /// FILTER BY CATALOG
-    func filteredByCatalog(_ catalogSelection: [TargetCatalog]) -> Self {
+    func filteredByCatalog(_ catalogSelection: Set<TargetCatalog>) -> Self {
         return self.filter() {
             for catalog in catalogSelection {
                 for item in $0.designation {
@@ -71,12 +71,12 @@ extension Array where Element == DeepSkyTarget {
         }
     }
     
-    mutating func filterByCatalog(_ catalogSelection: [TargetCatalog]) {
+    mutating func filterByCatalog(_ catalogSelection: Set<TargetCatalog>) {
         self = self.filteredByCatalog(catalogSelection)
     }
     
     /// FILTER BY CONSTELLATION
-    func filteredByConstellation(_ constellationSelection: [Constellation]) -> Self {
+    func filteredByConstellation(_ constellationSelection: Set<Constellation>) -> Self {
         return self.filter() {
             for constellation in constellationSelection {
                 if $0.constellation == constellation { return true }
@@ -85,12 +85,12 @@ extension Array where Element == DeepSkyTarget {
         }
     }
     
-    mutating func filterByConstellation(_ constellationSelection: [Constellation]) {
+    mutating func filterByConstellation(_ constellationSelection: Set<Constellation>) {
         self = self.filteredByConstellation(constellationSelection)
     }
     
     /// FILTER BY TYPE
-    func filteredByType(_ typeSelection: [TargetType]) -> Self {
+    func filteredByType(_ typeSelection: Set<TargetType>) -> Self {
         return self.filter() {
             for type in typeSelection {
                 if $0.type == type { return true }
@@ -99,7 +99,7 @@ extension Array where Element == DeepSkyTarget {
         }
     }
     
-    mutating func filterByType(_ typeSelection: [TargetType]) {
+    mutating func filterByType(_ typeSelection: Set<TargetType>) {
         self = self.filteredByType(typeSelection)
     }
     

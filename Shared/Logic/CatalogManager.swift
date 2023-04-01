@@ -16,9 +16,9 @@ final class CatalogManager: ObservableObject {
     
     // Filter Control Variables
     @Published var searchText = ""
-    @Published var catalogSelection: [TargetCatalog] = []
-    @Published var constellationSelection: [Constellation] = []
-    @Published var typeSelection: [TargetType] = []
+    @Published var catalogSelection: Set<TargetCatalog> = []
+    @Published var constellationSelection: Set<Constellation> = []
+    @Published var typeSelection: Set<TargetType> = []
     @Published var brightestMag: Double = 0
     @Published var dimmestMag: Double = .nan
     @Published var minSize: Double = 0
@@ -57,8 +57,12 @@ final class CatalogManager: ObservableObject {
      */
     func isActive<T>(criteria: T) -> Bool {
         switch criteria {
-        case let array as Array<Any>:
-            return !array.isEmpty
+        case let catalogSet as Set<TargetCatalog>:
+            return !catalogSet.isEmpty
+        case let constellationSet as Set<Constellation>:
+            return !constellationSet.isEmpty
+        case let typeSet as Set<TargetType>:
+            return !typeSet.isEmpty
         case let string as String:
             return !string.isEmpty
         case let double as Double:

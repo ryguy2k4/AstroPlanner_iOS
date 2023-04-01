@@ -36,7 +36,7 @@ final class DailyReport: ObservableObject {
         self.topTenGalaxies = createReportList(for: TargetType.galaxies, top: 10)
         self.topTenStarClusters = createReportList(for: TargetType.starClusters, top: 10)
         
-        func createReportList(for type: [TargetType] = [], top num: Int) -> [DeepSkyTarget] {
+        func createReportList(for type: Set<TargetType> = [], top num: Int) -> [DeepSkyTarget] {
             
             // start with all whitelisted targets
             var targets = Array(DeepSkyTargetList.whitelistedTargets)
