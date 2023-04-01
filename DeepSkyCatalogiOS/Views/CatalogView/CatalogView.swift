@@ -68,7 +68,7 @@ struct CatalogView: View {
         }
         .searchSuggestions {
             // grab top 15 search results
-            let suggestions = DeepSkyTargetList.objects.filteredBySearch(catalogManager.searchText)
+            let suggestions = DeepSkyTargetList.whitelistedTargets.filteredBySearch(catalogManager.searchText)
             
             // list the search results
             ForEach(suggestions) { suggestion in

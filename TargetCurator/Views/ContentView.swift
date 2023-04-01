@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var objects = DeepSkyTargetList.objects
+    @State var objects = DeepSkyTargetList.allTargets
     @State var objectIndex = 0
     var body: some View {
         NavigationView {

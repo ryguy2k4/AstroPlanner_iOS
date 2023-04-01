@@ -107,7 +107,7 @@ struct SubTargets: View {
                     Button {
                         var subs: Set<DeepSkyTarget.Designation> = []
                         for item in subTargets {
-                            let target = DeepSkyTargetList.objects.first(where: {$0.id.uuidString == item})!
+                            let target = DeepSkyTargetList.allTargets.first(where: {$0.id.uuidString == item})!
                             subs.formUnion(target.designation)
                             subs.formUnion(target.subDesignations)
                         }
@@ -124,7 +124,7 @@ struct SubTargets: View {
                             Image(systemName: "minus.circle")
                         }
 
-                        if let target = DeepSkyTargetList.objects.first(where: {$0.id.uuidString == subTargets[index]}) {
+                        if let target = DeepSkyTargetList.allTargets.first(where: {$0.id.uuidString == subTargets[index]}) {
                             Text(target.name?.first ?? target.defaultName)
                         } else {
                             Text("No Match")
@@ -314,14 +314,14 @@ struct CoordinatesField: View {
                     ra = {
                         var sum = 0.0
                         for id in subTargets {
-                            sum += DeepSkyTargetList.objects.first(where: {$0.id.uuidString == id})!.ra
+                            sum += DeepSkyTargetList.allTargets.first(where: {$0.id.uuidString == id})!.ra
                         }
                         return sum / Double(subTargets.count)
                     }()
                     dec = {
                         var sum = 0.0
                         for id in subTargets {
-                            sum += DeepSkyTargetList.objects.first(where: {$0.id.uuidString == id})!.dec
+                            sum += DeepSkyTargetList.allTargets.first(where: {$0.id.uuidString == id})!.dec
                         }
                         return sum / Double(subTargets.count)
                     }()

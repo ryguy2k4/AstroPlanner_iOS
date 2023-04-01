@@ -10,43 +10,20 @@ import Swift
 import CoreData
 
 struct DeepSkyTargetList {
-    static var allTargets: [DeepSkyTarget] {
+    static var allTargets: [DeepSkyTarget] = {
         let decoder = JSONDecoder()
         let json = try! Data(contentsOf: Bundle.main.url(forResource: "Catalog", withExtension: "json")!)
         return try! decoder.decode([DeepSkyTarget].self, from: json)
-    }
+    }()
     
-    static var whitelistedTargets: [DeepSkyTarget] {
+    static var whitelistedTargets: [DeepSkyTarget] = {
         let hiddenTargets = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<TargetSettings>(entityName: "TargetSettings")).first!.hiddenTargets!.allObjects as! [HiddenTarget]
         var whitelist = allTargets
         for item in hiddenTargets {
             whitelist.removeAll(where: {$0.id == item.id})
         }
         return whitelist
-    }
-    
-    static var objects: [DeepSkyTarget] {
-        let decoder = JSONDecoder()
-        let json = try! Data(contentsOf: Bundle.main.url(forResource: "Catalog", withExtension: "json")!)
-        let array = try! decoder.decode([DeepSkyTarget].self, from: json)
-        
-        var messier: [DeepSkyTarget] = []
-        var caldwell: [DeepSkyTarget] = []
-        var other: [DeepSkyTarget] = []
-        
-        for item in array {
-            if item.designation.contains(where: {$0.catalog == .messier}) {
-                messier.append(item)
-            } else if item.designation.contains(where: {$0.catalog == .caldwell}) {
-                caldwell.append(item)
-            } else {
-                other.append(item)
-            }
-        }
-        messier.sort(by: {$0.designation.first(where: {$0.catalog == .messier})!.number < $1.designation.first(where: {$0.catalog == .messier})!.number})
-        caldwell.sort(by: {$0.designation.first(where: {$0.catalog == .caldwell})!.number < $1.designation.first(where: {$0.catalog == .caldwell})!.number})
-        return messier + caldwell + other
-    }
+    }()
     
     static func exportObjects(list: [DeepSkyTarget]) {
         do {
