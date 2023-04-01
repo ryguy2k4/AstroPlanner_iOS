@@ -68,13 +68,16 @@ struct DeepSkyTarget: Identifiable, Hashable {
         var credit: String
         
         enum ImageSource: Hashable, Codable {
+            // DEBUG Variable
+            static let respectCopyright = false
+            
             case apod(id: String, copyrighted: Bool)
             case local(fileName: String)
             
             var fileName: String? {
                 switch self {
                 case .apod(id: let id, copyrighted: let copyrighted):
-                    return copyrighted ? nil : "apod_" + id
+                    return copyrighted && Self.respectCopyright ? nil : "apod_" + id
                 case .local(fileName: let filename):
                     return filename
                 }
