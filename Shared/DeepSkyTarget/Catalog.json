@@ -93,11 +93,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_3",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "Karel Teuwen",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "070609",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "M3"
         }
       }
     },
@@ -585,11 +584,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Eagle_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Yannick Akar",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "221004",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "eaglenebula"
         }
       }
     },
@@ -1145,11 +1143,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Andromeda_Galaxy",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "credit" : "R. Gendler, R. Croman",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "220119",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "andromeda"
         }
       }
     },
@@ -1474,11 +1471,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Orion_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Josep M. DrudisDon Goldman",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "191030",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "orionnebula"
         }
       }
     },
@@ -1562,11 +1558,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Pleiades",
     "type" : "openStarCluster",
     "image" : {
-      "credit" : "Hermann von Eiff",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "161019",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "pleiades"
         }
       }
     },
@@ -1727,11 +1722,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Whirlpool_Galaxy",
     "type" : "peculiarGalaxy",
     "image" : {
-      "credit" : "Josep Drudis",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "210902",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "whirlpoolgalaxy"
         }
       }
     },
@@ -2733,11 +2727,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_81",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Wissam Ayoub",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "210312",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "M81"
         }
       }
     },
@@ -2773,11 +2766,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_82",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Team ARO",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "210709",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "M82"
         }
       }
     },
@@ -3445,11 +3437,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Pinwheel_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Joonhwa Lee",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "180504",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "pinwheelgalaxy"
         }
       }
     },
@@ -3748,8 +3739,8 @@
   {
     "id" : "0F2DBAF4-CDE5-4DE0-907F-36893A9BB3D6",
     "dec" : 41.685305999999997,
-    "arcWidth" : 11,
     "description" : "Messier 110, or M110, also known as NGC 205, is a dwarf elliptical galaxy that is a satellite of the Andromeda Galaxy in the Local Group. Charles Messier never included the galaxy in his list, but it was depicted by him, together with M32, on his drawing of \"Nébuleuse D'Andromède\", later known as the Andromeda Galaxy. A label of the drawing indicates that Messier first saw the object in 1773. M110 was independently discovered by Caroline Herschel on August 27, 1783; her brother William Herschel described her discovery in 1785. The suggestion to assign the galaxy a Messier number was made by Kenneth Glyn Jones in 1967, making it the last member of the Messier List.",
+    "arcWidth" : 11,
     "ra" : 10.092000000000001,
     "apparentMag" : 8.5,
     "subDesignations" : [
@@ -3757,6 +3748,14 @@
     ],
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_110",
     "type" : "dwarfSpheroidalGalaxy",
+    "image" : {
+      "credit" : "Ryan Sponzilli",
+      "source" : {
+        "local" : {
+          "fileName" : "M110"
+        }
+      }
+    },
     "constellation" : "andromeda",
     "subTargets" : [
 
@@ -4408,11 +4407,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/North_America_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Frank Sackenheim",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "220908",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "northamericannebula"
         }
       }
     },
@@ -4917,11 +4915,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Veil_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
-      "credit" : "Daniel Lopez (Observatorio del Teide)",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "091201",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "eastveil"
         }
       }
     },
@@ -4957,11 +4954,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Veil_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
-      "credit" : "Martin PughHeaven's Mirror Observatory",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "180408",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "witchbroom"
         }
       }
     },
@@ -7428,11 +7424,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/California_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Sara Wager",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "190823",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "californianebula"
         }
       }
     },
@@ -7491,7 +7486,7 @@
       }
     ],
     "name" : [
-      "Witch head Nebula"
+      "Witch Head Nebula"
     ],
     "arcLength" : 180
   },
@@ -7785,11 +7780,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Orion%27s_Sword",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "credit" : "Kerry-Ann Lecky Hepburn",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "090826",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "orionnebula+runningman"
         }
       }
     },
@@ -7946,11 +7940,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sh2-279",
     "type" : "reflectionNebula",
     "image" : {
-      "credit" : "Adam Block, Mt. Lemmon SkyCenter, Univ. Arizona",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "160113",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "runningmannebula"
         }
       }
     },
@@ -8095,11 +8088,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2264",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Miguel Claro",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "201226",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "NGC2264"
         }
       }
     },
@@ -8415,11 +8407,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Markarian%27s_Chain",
     "type" : "galaxyGroup",
     "image" : {
-      "credit" : "Piotrek Sadowski",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "090609",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "markarianschain"
         }
       }
     },
@@ -8794,11 +8785,10 @@
     ],
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Frank Sackenheim",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "220908",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "northamerican+pelican"
         }
       }
     },
@@ -8829,11 +8819,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Pelican_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Frank Sackenheim",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "220908",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "pelicannebula"
         }
       }
     },
@@ -8896,11 +8885,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Cygnus_Loop",
     "type" : "supernovaRemnant",
     "image" : {
-      "credit" : "Craig Stocks",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "220622",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "cygnusloop"
         }
       }
     },
@@ -8937,11 +8925,10 @@
     "wikipediaURL" : "https:\/\/wikipedia.org",
     "type" : "supernovaRemnant",
     "image" : {
-      "credit" : "Sara Wager",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "171110",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "flemingstriangularwisp"
         }
       }
     },
@@ -8969,11 +8956,10 @@
     ],
     "type" : "supernovaRemnant",
     "image" : {
-      "credit" : "Howard Trottier",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "211027",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "batnebula"
         }
       }
     },
@@ -9079,11 +9065,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Elephant%27s_Trunk_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "César Blanco González",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "170720",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "IC1396"
         }
       }
     },
@@ -9210,11 +9195,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Heart_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Daniel Marquardt",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "090214",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "heartnebula"
         }
       }
     },
@@ -9678,11 +9662,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Westerhout_5",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Jess M.Vargas & Maritxu Poyal",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "180821",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "soulnebula"
         }
       }
     },

@@ -9,13 +9,15 @@ import SwiftUI
 
 struct NoLocationsView: View {
     var body: some View {
-        VStack {
-            Text("Add a Location")
-                .fontWeight(.semibold)
-            NavigationLink(destination: LocationSettings()) {
-                Label("Locations Settings", systemImage: "location")
+        NavigationStack {
+            VStack {
+                Text("Add a Location")
+                    .fontWeight(.semibold)
+                NavigationLink(destination: LocationSettings()) {
+                    Label("Locations Settings", systemImage: "location")
+                }
+                .padding()
             }
-            .padding()
         }
     }
 }

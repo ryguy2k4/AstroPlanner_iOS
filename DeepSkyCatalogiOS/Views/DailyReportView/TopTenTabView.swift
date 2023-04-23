@@ -26,10 +26,6 @@ struct TopTenTabView: View {
     
     var body: some View {
         VStack {
-            Text("Top Ten")
-                .font(.title2)
-                .underline()
-            
             Picker("Tab", selection: $tabSelection) {
                 ForEach(TargetTab.allCases) { tab in
                     Text(tab.rawValue)

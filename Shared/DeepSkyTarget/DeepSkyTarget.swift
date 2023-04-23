@@ -69,7 +69,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
         
         enum ImageSource: Hashable, Codable {
             // DEBUG Variable
-            static let respectCopyright = false
+            static let respectCopyright = true
             
             case apod(id: String, copyrighted: Bool)
             case local(fileName: String)

@@ -151,7 +151,6 @@ fileprivate struct TargetAltitudeChart: View {
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
     @Environment(\.sunData) var sunData
-    @State var popover: Bool = false
     var target: DeepSkyTarget
     let showLimitingAlt: Bool
     var body: some View {
