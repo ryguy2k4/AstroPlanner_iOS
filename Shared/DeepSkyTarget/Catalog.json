@@ -170,11 +170,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_5",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "Adam Block",
+      "credit" : "HST, ESA, NASA",
       "source" : {
         "apod" : {
-          "id" : "190509",
-          "copyrighted" : true
+          "id" : "171104",
+          "copyrighted" : false
         }
       }
     },
@@ -479,11 +479,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_13",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "Joan Josep Isach Cogollos",
+      "credit" : "NASA, ESA, and the Hubble Heritage Team",
       "source" : {
-        "apod" : {
-          "id" : "220804",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "M13"
         }
       }
     },
@@ -748,11 +747,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Trifid_Nebula",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "credit" : "Vikas Chander",
+      "credit" : "NOAO",
       "source" : {
-        "apod" : {
-          "id" : "220805",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "trifidnebula"
         }
       }
     },
@@ -1182,11 +1180,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Triangulum_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Robert Gendler",
+      "credit" : "NASA, ESA, M. Durbin, J. Dalcanton, and B. F. Williams",
       "source" : {
         "apod" : {
-          "id" : "221103",
-          "copyrighted" : true
+          "id" : "190223",
+          "copyrighted" : false
         }
       }
     },
@@ -2791,6 +2789,53 @@
       "Cigar Galaxy"
     ],
     "arcLength" : 11
+  },
+  {
+    "id" : "A1F10BEB-20D0-4347-A7E1-7512F60EC664",
+    "dec" : 69.372339000000011,
+    "description" : "The M81 Group is a galaxy group in the constellations Ursa Major and Camelopardalis that includes the galaxies Messier 81 and Messier 82, as well as several other galaxies with high apparent brightnesses.",
+    "arcWidth" : 25,
+    "ra" : 148.88822099999999,
+    "subDesignations" : [
+      {
+        "catalog" : "ngc",
+        "number" : 3034
+      },
+      {
+        "catalog" : "messier",
+        "number" : 81
+      },
+      {
+        "catalog" : "ngc",
+        "number" : 3031
+      },
+      {
+        "catalog" : "messier",
+        "number" : 82
+      }
+    ],
+    "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/M81_Group",
+    "type" : "galaxyGroup",
+    "image" : {
+      "credit" : "Ryan Sponzilli",
+      "source" : {
+        "local" : {
+          "fileName" : "M81+M82"
+        }
+      }
+    },
+    "constellation" : "ursaMajor",
+    "subTargets" : [
+      "00649F61-34CB-46FC-8BE2-FF9827C6A0DD",
+      "3663E062-8C7A-4F7C-A1B3-DB303439A251"
+    ],
+    "designation" : [
+
+    ],
+    "name" : [
+      "M81 Group"
+    ],
+    "arcLength" : 56
   },
   {
     "id" : "08B757A4-650D-462A-A826-7815A91369A1",
@@ -7130,11 +7175,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2070",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Robert Gendler",
+      "credit" : "NASA, ESA, CSA, STScI, Webb ERO Production Team",
       "source" : {
-        "apod" : {
-          "id" : "220916",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "tarantulanebula"
         }
       }
     },
@@ -9148,11 +9192,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Stephan%27s_Quintet",
     "type" : "galaxyGroup",
     "image" : {
-      "credit" : "Bernard Miller",
+      "credit" : "Ryan Sponzilli",
       "source" : {
-        "apod" : {
-          "id" : "211218",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "stephansquintet"
         }
       }
     },

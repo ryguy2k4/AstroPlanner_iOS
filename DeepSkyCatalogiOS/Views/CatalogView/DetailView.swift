@@ -28,7 +28,14 @@ struct DetailView: View {
                 // Target Image
                 if let image = target.image, let filename = image.source.fileName {
                     VStack {
-                        NavigationLink(destination: ImageViewer(image: filename)) {
+                        NavigationLink {
+                            ZoomableScrollView {
+                                Image(filename)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .padding()
+                            }
+                        } label: {
                             Image(filename)
                                 .resizable()
                                 .scaledToFit()
