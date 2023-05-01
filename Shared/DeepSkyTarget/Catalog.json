@@ -2036,11 +2036,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_61",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "credit" : "Robert Gendler & Roberto Colombari",
+      "credit" : "ESA\/Hubble, NASA",
       "source" : {
         "apod" : {
-          "id" : "190828",
-          "copyrighted" : true
+          "id" : "140520",
+          "copyrighted" : false
         }
       }
     },
@@ -2189,11 +2189,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_65",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Volker Wendel",
+      "credit" : "ESA\/Hubble & NASA and S. Smartt (Queen's University Belfast)",
       "source" : {
         "apod" : {
-          "id" : "070601",
-          "copyrighted" : true
+          "id" : "151130",
+          "copyrighted" : false
         }
       }
     },
@@ -2473,11 +2473,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_74",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Descubre Foundation",
+      "credit" : "NASA, ESA and the GMOS Commissioning Team (Gemini Observatory)",
       "source" : {
-        "apod" : {
-          "id" : "110406",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "M74"
         }
       }
     },
@@ -2688,11 +2687,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_80",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "F. R. Ferraro (ESO \/Bologna Obs.), M. Shara (STSci \/AMNH) et al.",
+      "credit" : "Hubble Heritage Team (AURA\/STScl\/NASA)",
       "source" : {
-        "apod" : {
-          "id" : "990707",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "M80"
         }
       }
     },
@@ -2850,11 +2848,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_83",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "credit" : "Robert Gendler",
+      "credit" : "NASA, ESA, Hubble Heritage Team (STScI\/AURA), and W. P. Blair (JHU) et al.",
       "source" : {
         "apod" : {
-          "id" : "190629",
-          "copyrighted" : true
+          "id" : "140128",
+          "copyrighted" : false
         }
       }
     },
@@ -2994,11 +2992,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_87",
     "type" : "ellipticalGalaxy",
     "image" : {
-      "credit" : "Robert Gendler",
+      "credit" : "NASA, ESA, and the Hubble Heritage Team (STScI\/AURA)",
       "source" : {
-        "apod" : {
-          "id" : "060520",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "M87"
         }
       }
     },
@@ -3232,11 +3229,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_94",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Marcin Paciorek",
+      "credit" : "ESA\/Hubble & NASA",
       "source" : {
         "apod" : {
-          "id" : "090717",
-          "copyrighted" : true
+          "id" : "220731",
+          "copyrighted" : false
         }
       }
     },
@@ -3309,11 +3306,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_96",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Mark Hanson",
+      "credit" : "ESA\/Hubble & NASA and the LEGUS Team",
       "source" : {
         "apod" : {
-          "id" : "220414",
-          "copyrighted" : true
+          "id" : "150921",
+          "copyrighted" : false
         }
       }
     },
@@ -3581,11 +3578,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sombrero_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Ignacio Diaz Bobillo",
+      "credit" : "Hubble Heritage Team (AURA\/STScI \/NASA)",
       "source" : {
         "apod" : {
-          "id" : "220423",
-          "copyrighted" : true
+          "id" : "150726",
+          "copyrighted" : false
         }
       }
     },
@@ -3649,11 +3646,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_106",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Fabian Neyer",
+      "credit" : "NASA, ESA, the Hubble Heritage Team (STScI\/AURA), and R. Gendler (for the Hubble Heritage Team)",
       "source" : {
-        "apod" : {
-          "id" : "160116",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "M106"
         }
       }
     },
@@ -9480,7 +9476,7 @@
       "source" : {
         "apod" : {
           "id" : "210705",
-          "copyrighted" : false
+          "copyrighted" : true
         }
       }
     },
