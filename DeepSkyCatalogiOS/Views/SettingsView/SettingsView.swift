@@ -29,6 +29,16 @@ struct SettingsView: View {
                 NavigationLink(destination: AboutView()) {
                     Label("About", systemImage: "info.circle")
                 }
+                let binding = Binding(
+                    get: {
+                        DeepSkyTarget.TargetImage.ImageSource.overrideCopyright
+                    },
+                    set: {
+                        DeepSkyTarget.TargetImage.ImageSource.overrideCopyright = $0
+                    }
+                )
+                Toggle("FOR PRERELEASE ONLY: Show copyrighted images", isOn: binding)
+
             }
             .toolbar {
                 ToolbarLogo()

@@ -69,7 +69,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
         
         enum ImageSource: Hashable, Codable {
             // DEBUG Variable
-            static let respectCopyright = true
+            static var overrideCopyright = false
             
             case apod(id: String, copyrighted: Bool)
             case local(fileName: String)
@@ -77,7 +77,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
             var fileName: String? {
                 switch self {
                 case .apod(id: let id, copyrighted: let copyrighted):
-                    return copyrighted && Self.respectCopyright ? nil : "apod_" + id
+                    return copyrighted && !Self.overrideCopyright ? nil : "apod_" + id
                 case .local(fileName: let filename):
                     return filename
                 }
