@@ -3997,11 +3997,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Cat%27s_Eye_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "Rudy Pohl",
+      "credit" : "NASA, ESA, HEIC, and The Hubble Heritage Team (STScI\/AURA)",
       "source" : {
         "apod" : {
-          "id" : "211107",
-          "copyrighted" : true
+          "id" : "141109",
+          "copyrighted" : false
         }
       }
     },
@@ -4037,11 +4037,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2403",
     "type" : "spiralGalaxy",
     "image" : {
-      "credit" : "Eric Coles",
+      "credit" : "NASA, ESA, A.V. Filippenko (University of California, Berkeley) and Z. Levay (STScI)",
       "source" : {
-        "apod" : {
-          "id" : "160219",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "NGC2403"
         }
       }
     },
@@ -4146,11 +4145,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7635",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Mehmet Hakan Özsaraç",
+      "credit" : "NASA, ESA, Hubble Heritage Team (STScI \/ AURA)",
       "source" : {
         "apod" : {
-          "id" : "220323",
-          "copyrighted" : true
+          "id" : "160422",
+          "copyrighted" : false
         }
       }
     },
@@ -5899,11 +5898,11 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Helix_Nebula",
     "type" : "planetaryNebula",
     "image" : {
-      "credit" : "Tommaso Stella",
+      "credit" : "C. R. O'Dell, (Vanderbilt) et al. ESA, NOAO, NASA",
       "source" : {
         "apod" : {
-          "id" : "221207",
-          "copyrighted" : true
+          "id" : "200823",
+          "copyrighted" : false
         }
       }
     },
@@ -6493,11 +6492,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Omega_Centauri",
     "type" : "globularStarCluster",
     "image" : {
-      "credit" : "Michael Miller",
+      "credit" : "NASA, ESA, and the Hubble Heritage Team (STScI\/AURA)",
       "source" : {
-        "apod" : {
-          "id" : "190824",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "omegacentauri"
         }
       }
     },
@@ -6791,11 +6789,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Carina_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "credit" : "Ignacio Javier Diaz Bobillo",
+      "credit" : "NASA, ESA, Digitized Sky Survey, and Z. Levay (STScI)",
       "source" : {
-        "apod" : {
-          "id" : "220425",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "carinanebula"
         }
       }
     },
@@ -9399,11 +9396,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Large_Magellanic_Cloud",
     "type" : "irregularGalaxy",
     "image" : {
-      "credit" : "Alessandro\nCipolat Bares",
+      "credit" : "NASA, ESA, J. Roman-Duval (STScI), ULLYSES program, and R. Gendler",
       "source" : {
-        "apod" : {
-          "id" : "190905",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "LMC"
         }
       }
     },
@@ -9433,11 +9429,10 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Small_Magellanic_Cloud",
     "type" : "irregularGalaxy",
     "image" : {
-      "credit" : "José Mtanous",
+      "credit" : "NASA, ESA, J. Roman-Duval (STScI), ULLYSES program, and S. Guisard",
       "source" : {
-        "apod" : {
-          "id" : "210105",
-          "copyrighted" : true
+        "local" : {
+          "fileName" : "SMC"
         }
       }
     },
