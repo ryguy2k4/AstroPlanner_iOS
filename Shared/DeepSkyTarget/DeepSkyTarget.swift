@@ -11,6 +11,9 @@ import Foundation
  The basic building block for this app. This struct defines a Deep Sky Target.
  */
 struct DeepSkyTarget: Identifiable, Hashable {
+    // DEBUG Variable
+    static var overrideCopyright = false
+    
     // identifiers
     var id: UUID
     
@@ -68,16 +71,13 @@ struct DeepSkyTarget: Identifiable, Hashable {
         var credit: String
         
         enum ImageSource: Hashable, Codable {
-            // DEBUG Variable
-            static var overrideCopyright = false
-            
             case apod(id: String, copyrighted: Bool)
             case local(fileName: String)
             
             var fileName: String? {
                 switch self {
                 case .apod(id: let id, copyrighted: let copyrighted):
-                    return copyrighted && !Self.overrideCopyright ? nil : "apod_" + id
+                    return copyrighted && !DeepSkyTarget.overrideCopyright ? nil : "apod_" + id
                 case .local(fileName: let filename):
                     return filename
                 }
