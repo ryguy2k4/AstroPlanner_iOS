@@ -47,6 +47,7 @@ struct DetailView: View {
                             .lineLimit(2)
                             .font(.caption)
                             .padding(.horizontal)
+                            .multilineTextAlignment(.center)
                     }
                 } else if let image = target.image, let url = image.source.url {
                     Link("View Image on APOD", destination: url)
