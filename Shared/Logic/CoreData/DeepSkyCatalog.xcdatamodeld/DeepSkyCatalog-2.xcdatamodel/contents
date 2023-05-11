@@ -13,9 +13,9 @@
         <attribute name="resolutionWidth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="ReportSettings" representedClassName="ReportSettings" syncable="YES" codeGenerationType="class">
-        <attribute name="filterForMoonPhase" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="filterForMoonPhase" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="maxAllowedMoon" optional="YES" attributeType="Double" defaultValueString="0.2" usesScalarValueType="YES"/>
-        <attribute name="minFOVCoverage" optional="YES" attributeType="Double" defaultValueString="0.25" usesScalarValueType="YES"/>
+        <attribute name="minFOVCoverage" optional="YES" attributeType="Double" defaultValueString="0.1" usesScalarValueType="YES"/>
         <attribute name="minVisibility" optional="YES" attributeType="Double" defaultValueString="0.6" usesScalarValueType="YES"/>
         <attribute name="preferBroadband" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
     </entity>
