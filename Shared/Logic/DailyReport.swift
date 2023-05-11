@@ -48,14 +48,26 @@ final class DailyReport: ObservableObject {
             // Remove all targets with a visibility score less than the user specified minimum
             targets.filterByVisibility(reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             
-            // if bright moon is visible filter for narrowband targets
-            let moonIllumination = MoonData.getMoonIllumination(date: date, timezone: location.timezone)
-            if moonIllumination > reportSettings.maxAllowedMoon {
-                targets.filterByType(TargetType.narrowband)
-            }
-            // if moon is not a problem, but broadband preferred, filter for broadband only
-            else if reportSettings.preferBroadband {
-                targets.filterByType(TargetType.broadband)
+            // Moon Phase Based Filtering
+            if reportSettings.filterForMoonPhase {
+                
+                // if bright moon is visible filter for narrowband targets
+                let moonIllumination = MoonData.getMoonIllumination(date: date, timezone: location.timezone)
+                if moonIllumination > reportSettings.maxAllowedMoon {
+                    targets.filterByType(TargetType.narrowband)
+                }
+                // if moon is not a problem, but broadband preferred --> move broadband targets to the top of the list
+                else if reportSettings.preferBroadband {
+                    var narrowband: [DeepSkyTarget] = []
+                    for target in targets where TargetType.narrowband.contains(target.type) {
+                        narrowband.append(target)
+                        targets.removeAll(where: {$0 == target})
+                    }
+                    targets.append(contentsOf: narrowband)
+                    targets.filterByType(TargetType.broadband)
+                }
+                
+                // else (new moon) --> do not filter anything, all is fine
             }
             
             // filter for desired types passed to function

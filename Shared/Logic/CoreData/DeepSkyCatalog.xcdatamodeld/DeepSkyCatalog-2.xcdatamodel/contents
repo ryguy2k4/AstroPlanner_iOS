@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="HiddenTarget" representedClassName="HiddenTarget" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TargetSettings" inverseName="hiddenTargets" inverseEntity="TargetSettings"/>
@@ -13,6 +13,7 @@
         <attribute name="resolutionWidth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="ReportSettings" representedClassName="ReportSettings" syncable="YES" codeGenerationType="class">
+        <attribute name="filterForMoonPhase" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="maxAllowedMoon" optional="YES" attributeType="Double" defaultValueString="0.2" usesScalarValueType="YES"/>
         <attribute name="minFOVCoverage" optional="YES" attributeType="Double" defaultValueString="0.25" usesScalarValueType="YES"/>
         <attribute name="minVisibility" optional="YES" attributeType="Double" defaultValueString="0.6" usesScalarValueType="YES"/>

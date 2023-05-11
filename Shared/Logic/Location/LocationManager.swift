@@ -41,7 +41,10 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     // Delegate function that activates whenever it recieves a location update
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("Did Update Location")
-        latestLocation = locations.first
+        let newLocation = locations.first
+        if newLocation?.coordinate.latitude ?? 0 < 65 && newLocation?.coordinate.latitude ?? 0 > -65 {
+            latestLocation = locations.first
+        }
     }
     
     // Delegate function that activates whenever an error occurs getting a location

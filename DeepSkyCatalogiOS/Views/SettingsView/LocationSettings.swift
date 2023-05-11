@@ -166,11 +166,11 @@ struct LocationEditor: View {
                 KeyboardDismissButton(isInputActive: _isInputActive)
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(location != nil ? "Save \(name)" : "Add \(name)") {
-                        if let location = location, let timezone = timezone {
+                        if let location = location, let timezone = timezone, latitude ?? 0 < 65, latitude ?? 0 > -65 {
                             PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
                             dismiss()
                         } else {
-                            if let latitude = latitude, let longitude = longitude, let timezone = timezone, !locationList.contains(where: {$0.name! == name}) {
+                            if let latitude = latitude, latitude < 65, latitude > -65, let longitude = longitude, let timezone = timezone, !locationList.contains(where: {$0.name! == name}) {
                                 PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
                                 dismiss()
                             } else {
@@ -184,7 +184,7 @@ struct LocationEditor: View {
             .alert("Invalid Location", isPresented: $showErrorAlert) {
                 Text("OK")
             } message: {
-                Text("Every parameter must be filled in or there is already a location with this name")
+                Text("Every parameter must be filled, there is already a location with this name, or the latitude is too extreme")
             }
             .alert("Location Error", isPresented: $showLocationError) {
                 Text("OK")

@@ -44,19 +44,7 @@ struct DailyReportSettingsModal: View {
                         }
                     }
                     .pickerStyle(.navigationLink)
-                    Toggle("Prefer Broadband on Moonless Nights", isOn: $settings.preferBroadband)
-                        .foregroundColor(isEnabled ? .primary : .secondary)
-                    Button {
-                        isMoonPercentModal = true
-                    } label: {
-                        HStack {
-                            Text("Max Moon for Broadband: ")
-                                .foregroundColor(isEnabled ? .primary : .secondary)
-                            Spacer()
-                            Text(settings.maxAllowedMoon.percent())
-                        }
-                        
-                    }
+                    
                     Button {
                         isMinFOVCoverageModal = true
                     } label: {
@@ -71,13 +59,35 @@ struct DailyReportSettingsModal: View {
                         isMinVisibilityModal = true
                     } label: {
                         HStack {
-                            Text("Minimum Visibility: ")
+                            Text("Minimum Visibility Score: ")
                                 .foregroundColor(isEnabled ? .primary : .secondary)
                             Spacer()
                             Text(settings.minVisibility.percent())
                         }
                         
                     }
+                    
+                    Toggle("Filter For Moon Phase", isOn: $settings.filterForMoonPhase)
+                        .foregroundColor(isEnabled ? .primary : .secondary)
+                    
+                    Button {
+                        isMoonPercentModal = true
+                    } label: {
+                        HStack {
+                            Text("Max Moon for Broadband: ")
+                                .foregroundColor(settings.filterForMoonPhase ? .primary : .secondary)
+                                .foregroundColor(isEnabled ? .primary : .secondary)
+                            Spacer()
+                            Text(settings.maxAllowedMoon.percent())
+                        }
+                        
+                    }
+                    .disabled(!settings.filterForMoonPhase)
+                    
+                    Toggle("Prefer Broadband on Moonless Nights", isOn: $settings.preferBroadband)
+                        .foregroundColor(settings.filterForMoonPhase ? .primary : .secondary)
+                        .foregroundColor(isEnabled ? .primary : .secondary)
+                        .disabled(!settings.filterForMoonPhase)
                 }
             }
         }

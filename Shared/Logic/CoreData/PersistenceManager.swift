@@ -36,6 +36,19 @@ final class PersistenceManager: ObservableObject {
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
         
+//        // Only initialize the schema when building the app with the
+//        // Debug build configuration.
+//        #if DEBUG
+//        do {
+//            // Use the container to initialize the development schema.
+//            try container.initializeCloudKitSchema(options: [])
+//            print("schema initialized")
+//        } catch {
+//            // Handle any errors.
+//            print("schema initialization failed: \(error)")
+//        }
+//        #endif
+        
         // if there are no report settings stored, then create one
         if let count = try? self.container.viewContext.count(for: ReportSettings.fetchRequest()), count == 0 {
             _ = ReportSettings(context: self.container.viewContext)

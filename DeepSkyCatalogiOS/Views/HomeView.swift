@@ -47,6 +47,7 @@ struct HomeView: View {
                                 do {
                                     try await networkManager.updateSunData(at: location, on: date.wrappedValue)
                                     sunData = networkManager.sun[NetworkManager.DataKey(date: date.wrappedValue, location: location)]
+                                    // here insert check for requesting data between midnight and night end should get info for the previous day still
                                     viewingInterval = sunData?.ATInterval
                                 } catch {
                                     internet = false
@@ -123,7 +124,6 @@ struct HomeView: View {
         }
         .onChange(of: date) { newDate in
             sunData = nil
-            print("reset sundata")
         }
     }
 }
