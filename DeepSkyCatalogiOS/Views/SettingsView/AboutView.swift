@@ -33,12 +33,14 @@ struct AboutView: View {
             Text("The core idea behind this app is to make it easy to filter through a catalog of targets or use an algorithm that chooses the best target for a given night")
                 .multilineTextAlignment(.center)
                 .fontWeight(.medium)
+                .lineLimit(6)
             VStack(spacing: 10) {
                 Text("Features Coming Soon:")
                     .font(.title3)
                     .fontWeight(.semibold)
                 Text("Favorites, iMessage Sharing, Custom  Horizons, Target Framing Overlays, User-Submitted Photos, Journal of Previosuly Imaged Targets, More Targets, Support for Extreme Latitudes, and Planetary Targets")
                     .multilineTextAlignment(.center)
+                    .lineLimit(8)
             }
             VStack(spacing: 10) {
                 Text("Attributions:")
