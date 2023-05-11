@@ -12,8 +12,7 @@ struct AboutView: View {
     @State var attribution: WeatherAttribution? = nil
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
-        VStack() {
-            Spacer()
+        VStack(spacing: 30) {
             VStack(spacing: 10) {
                 Text("Made by Ryan Sponzilli")
                     .font(.title2)
@@ -31,16 +30,16 @@ struct AboutView: View {
                     .buttonStyle(.bordered)
                 }
             }
-            Spacer()
             Text("The core idea behind this app is to make it easy to filter through a catalog of targets or use an algorithm that chooses the best target for a given night")
                 .multilineTextAlignment(.center)
-            Spacer()
-            Text("Features Coming Soon:")
-                .font(.title3)
-                .fontWeight(.semibold)
-            Text("Favorites, iMessage Sharing, Custom  Horizons, Target Framing Overlays, User-Submitted Photos, Journal of Previosuly Imaged Targets, More Targets, Support for Extreme Latitudes, and Planetary Targets")
-                .multilineTextAlignment(.center)
-            Spacer()
+                .fontWeight(.medium)
+            VStack(spacing: 10) {
+                Text("Features Coming Soon:")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                Text("Favorites, iMessage Sharing, Custom  Horizons, Target Framing Overlays, User-Submitted Photos, Journal of Previosuly Imaged Targets, More Targets, Support for Extreme Latitudes, and Planetary Targets")
+                    .multilineTextAlignment(.center)
+            }
             VStack(spacing: 10) {
                 Text("Attributions:")
                     .font(.title3)
@@ -63,6 +62,7 @@ struct AboutView: View {
             
         }
         .padding(.horizontal, 50)
+        .padding(.vertical, 25)
         .task {
             attribution = try? await WeatherService().attribution
         }
