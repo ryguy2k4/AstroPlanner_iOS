@@ -125,6 +125,12 @@ struct HomeView: View {
         .onChange(of: date) { newDate in
             sunData = nil
         }
+        .onAppear {
+            // correct the transparency bug for Tab bars
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        }
     }
 }
 
