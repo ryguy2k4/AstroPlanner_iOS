@@ -12,61 +12,61 @@ struct AboutView: View {
     @State var attribution: WeatherAttribution? = nil
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
-        VStack(spacing: 30) {
-            VStack(spacing: 10) {
-                Text("Made by Ryan Sponzilli")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                HStack {
-                    Button(action: {}) {
-                        Image(systemName: "play.circle.fill")
-                        Link("YouTube", destination: URL(string: "https://www.youtube.com/@ryansponzilli")!)
+        ScrollView {
+            VStack(spacing: 30) {
+                VStack(spacing: 10) {
+                    Text("Made by Ryan Sponzilli")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    HStack {
+                        Button(action: {}) {
+                            Image(systemName: "play.circle.fill")
+                            Link("YouTube", destination: URL(string: "https://www.youtube.com/@ryansponzilli")!)
+                        }
+                        .buttonStyle(.bordered)
+                        Button(action: {}) {
+                            Image(systemName: "camera.circle.fill")
+                            Link("Instagram", destination: URL(string: "https://www.instagram.com/ryansponzilli_astro/")!)
+                        }
+                        .buttonStyle(.bordered)
                     }
-                    .buttonStyle(.bordered)
-                    Button(action: {}) {
-                        Image(systemName: "camera.circle.fill")
-                        Link("Instagram", destination: URL(string: "https://www.instagram.com/ryansponzilli_astro/")!)
-                    }
-                    .buttonStyle(.bordered)
                 }
-            }
-            Text("The core idea behind this app is to make it easy to filter through a catalog of targets or use an algorithm that chooses the best target for a given night")
-                .multilineTextAlignment(.center)
-                .fontWeight(.medium)
-                .lineLimit(6)
-            VStack(spacing: 10) {
-                Text("Features Coming Soon:")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                Text("Favorites, iMessage Sharing, Custom  Horizons, Target Framing Overlays, User-Submitted Photos, Journal of Previosuly Imaged Targets, More Targets, Support for Extreme Latitudes, and Planetary Targets")
+                Text("The core idea behind this app is to make it easy to filter through a catalog of targets or use an algorithm that chooses the best target for a given night")
                     .multilineTextAlignment(.center)
-                    .lineLimit(8)
-            }
-            VStack(spacing: 10) {
-                Text("Attributions:")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                Link("sunrise-sunset.org", destination: URL(string: "https://sunrise-sunset.org/")!)
-                if let attribution = attribution {
-                    Link(destination: attribution.legalPageURL) {
-                        AsyncImage(url: colorScheme != .dark ? attribution.combinedMarkLightURL : attribution.combinedMarkDarkURL) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 15)
-                        } placeholder: {
-                            ProgressView()
+                    .fontWeight(.medium)
+                VStack(spacing: 10) {
+                    Text("Features Coming Soon:")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Text("Favorites, iMessage Sharing, Custom  Horizons, Target Framing Overlays, User-Submitted Photos, Journal of Previosuly Imaged Targets, More Targets, Support for Extreme Latitudes, and Planetary Targets")
+                        .multilineTextAlignment(.center)
+                }
+                VStack(spacing: 10) {
+                    Text("Attributions:")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Link("sunrise-sunset.org", destination: URL(string: "https://sunrise-sunset.org/")!)
+                    if let attribution = attribution {
+                        Link(destination: attribution.legalPageURL) {
+                            AsyncImage(url: colorScheme != .dark ? attribution.combinedMarkLightURL : attribution.combinedMarkDarkURL) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 15)
+                            } placeholder: {
+                                ProgressView()
+                            }
                         }
                     }
                 }
+                Spacer()
+                
             }
-            Spacer()
-            
-        }
-        .padding(.horizontal, 50)
-        .padding(.vertical, 25)
-        .task {
-            attribution = try? await WeatherService().attribution
+            .padding(.horizontal, 50)
+            .padding(.vertical, 25)
+            .task {
+                attribution = try? await WeatherService().attribution
+            }
         }
     }
 }

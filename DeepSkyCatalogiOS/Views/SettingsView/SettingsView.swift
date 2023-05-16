@@ -29,10 +29,10 @@ struct SettingsView: View {
                 NavigationLink(destination: AboutView()) {
                     Label("About", systemImage: "info.circle")
                 }
-                Button("FOR PRERELEASE ONLY: Show/Hide Copyrighted Images") {
-                    DeepSkyTarget.overrideCopyright.toggle()
-                }
-                .buttonStyle(.bordered)
+//                Button("FOR PRERELEASE ONLY: Show/Hide Copyrighted Images") {
+//                    DeepSkyTarget.overrideCopyright.toggle()
+//                }
+//                .buttonStyle(.bordered)
             }
             .toolbar {
                 ToolbarLogo()
