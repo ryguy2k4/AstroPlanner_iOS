@@ -42,10 +42,10 @@ final class PersistenceManager: ObservableObject {
 //        do {
 //            // Use the container to initialize the development schema.
 //            try container.initializeCloudKitSchema(options: [])
-//            print("schema initialized")
+//            //print("schema initialized")
 //        } catch {
 //            // Handle any errors.
-//            print("schema initialization failed: \(error)")
+//            //print("schema initialization failed: \(error)")
 //        }
 //        #endif
         
@@ -62,9 +62,9 @@ final class PersistenceManager: ObservableObject {
         // clean up legacy old store
         do {
             try FileManager.default.removeItem(at: oldStoreURL)
-            print("old store deleted successfully")
+            //print("old store deleted successfully")
         } catch {
-            print("unable to delete old store")
+            //print("unable to delete old store")
         }
         
         // clean up legacy default preset
@@ -77,7 +77,7 @@ final class PersistenceManager: ObservableObject {
     func saveData(context: NSManagedObjectContext) {
         do {
             try context.save()
-            print("Data Saved")
+            //print("Data Saved")
         } catch {
             fatalError("Error saving data: \(error.localizedDescription)")
         }

@@ -54,7 +54,7 @@ struct ImageViewer: View {
             do {
                 imageData = try await networkManager.getImageData(for: image.replacingOccurrences(of: "apod_", with: ""))
             } catch {
-                print(error.localizedDescription)
+               //print(error.localizedDescription)
             }
         }
     }

@@ -30,7 +30,7 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
         case .restricted, .denied:
             locationEnabled = false
         case .authorizedAlways, .authorizedWhenInUse:
-            print("Started Monitoring Significant Location Changes")
+            //print("Started Monitoring Significant Location Changes")
             locationManager.startMonitoringSignificantLocationChanges()
             locationEnabled = true
         @unknown default:
@@ -40,7 +40,7 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     
     // Delegate function that activates whenever it recieves a location update
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Did Update Location")
+        //print("Did Update Location")
         let newLocation = locations.first
         if newLocation?.coordinate.latitude ?? 0 < 65 && newLocation?.coordinate.latitude ?? 0 > -65 {
             latestLocation = locations.first
@@ -49,7 +49,7 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     
     // Delegate function that activates whenever an error occurs getting a location
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Did Fail With Error")
+        //print("Did Fail With Error")
         return
     }
     

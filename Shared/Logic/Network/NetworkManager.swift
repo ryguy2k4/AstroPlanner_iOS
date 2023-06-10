@@ -26,11 +26,11 @@ final class NetworkManager: ObservableObject {
     
     private init() { }
         
-    @MainActor
-    func updateSunData(at location: Location, on date: Date) async throws {
+    func updateSunData(at location: Location, on date: Date) async throws -> [DataKey : SunData] {
+        //print("UPDATE")
         
         guard !sun.contains(where: {$0.key == DataKey(date: date, location: location)}) else {
-            return
+            return [:]
         }
         
         // Try WeatherKit
@@ -38,31 +38,30 @@ final class NetworkManager: ObservableObject {
         do {
             let extendedCondition = !sun.keys.contains(where: {$0.location == location})
             let endDate: Date? = extendedCondition && date == Date.now.startOfLocalDay(timezone: location.timezone) ? date.addingTimeInterval(86400*9) : nil
-            let data = try await getWeatherKitData(location: location, date: date, endDate: endDate)
+            return try await getWeatherKitData(location: location, date: date, endDate: endDate)
             // merge the new data, overwriting if necessary
-            self.sun.merge(data) { _, new in new }
-            print("Data Updated from WeatherKit")
-            
+            // self.sun.merge(data) { _, new in new }
         }
         // Fallback on APIs
         catch {
-            print("WeatherKit Error: \(error.localizedDescription)")
-            print("Falling back on APIs")
+            //print("WeatherKit Error: \(error.localizedDescription)")
+            //print("Falling back on APIs")
             do {
-                self.sun[DataKey(date: date, location: location)] = try await getAPIData(at: location, on: date)
-                print("Data Updated from APIs")
+                return [DataKey(date: date, location: location) : try await getAPIData(at: location, on: date)]
             } catch FetchError.unableToFetch {
-                print("Error: No Internet Connection")
+                //print("Error: No Internet Connection")
                 throw FetchError.unableToFetch
             } catch FetchError.unableToDecode {
-                print("Error: unable to decode data")
+                //print("Error: unable to decode data")
+                return [:]
             } catch FetchError.unableToMakeURL {
-                print("Error: Bad URL")
+                //print("Error: Bad URL")
+                return [:]
             } catch {
-                print("Unknown Error: \(error.localizedDescription)")
+                //print("Unknown Error: \(error.localizedDescription)")
+                return [:]
             }
         }
-
     }
     
     func getWeatherKitData(location: Location, date: Date, endDate: Date? = nil) async throws -> [DataKey : SunData] {
@@ -80,13 +79,13 @@ final class NetworkManager: ObservableObject {
         var forecastDate = date
         var array: [DataKey : SunData] = [:]
         for index in forecast.indices.dropLast() {
-            print(forecastDate.formatted(format: "yyyy-MM-dd HH:mm:ss Z", timezone: location.timezone))
+            //print(forecastDate.formatted(format: "yyyy-MM-dd HH:mm:ss Z", timezone: location.timezone))
             let dataKey = DataKey(date: forecastDate, location: location)
             array[dataKey] = SunData(sunEventsToday: forecast[index].sun, sunEventsTomorrow: forecast[index+1].sun, timezone: location.timezone)
             forecastDate = forecastDate.tomorrow()
         }
 
-        print("WeatherKit Data Fetched for \(array.count) day(s)")
+        //print("WeatherKit Data Fetched for \(array.count) day(s)")
         return array
             
     }
@@ -98,7 +97,7 @@ final class NetworkManager: ObservableObject {
             
             let sunToday = SunData(dataToday: try await decodedSunDataToday, dataTomorrow: try await decodedSunDataTomorrow)
             
-            print("API Data Fetched")
+            //print("API Data Fetched")
             return sunToday
         }
     }

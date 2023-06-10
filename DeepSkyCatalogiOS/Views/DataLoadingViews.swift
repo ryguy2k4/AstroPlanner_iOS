@@ -43,7 +43,9 @@ struct DailyReportLoadingFailedView: View {
                     internet = true
                     Task {
                         do {
-                            try await networkManager.updateSunData(at: location, on: date)
+                            let data = try await networkManager.updateSunData(at: location, on: date)
+                            // merge the new data, overwriting if necessary
+                            networkManager.sun.merge(data) { _, new in new }
                         } catch {
                             internet = false
                         }

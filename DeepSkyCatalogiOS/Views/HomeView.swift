@@ -45,7 +45,9 @@ struct HomeView: View {
                         DailyReportLoadingView(internet: $internet)
                             .task {
                                 do {
-                                    try await networkManager.updateSunData(at: location, on: date.wrappedValue)
+                                    let data = try await networkManager.updateSunData(at: location, on: date.wrappedValue)
+                                    // merge the new data, overwriting if necessary
+                                    networkManager.sun.merge(data) { _, new in new }
                                     sunData = networkManager.sun[NetworkManager.DataKey(date: date.wrappedValue, location: location)]
                                     // here insert check for requesting data between midnight and night end should get info for the previous day still
                                     viewingInterval = sunData?.ATInterval
