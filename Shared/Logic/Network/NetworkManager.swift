@@ -39,8 +39,6 @@ final class NetworkManager: ObservableObject {
             let extendedCondition = !sun.keys.contains(where: {$0.location == location})
             let endDate: Date? = extendedCondition && date == Date.now.startOfLocalDay(timezone: location.timezone) ? date.addingTimeInterval(86400*9) : nil
             return try await getWeatherKitData(location: location, date: date, endDate: endDate)
-            // merge the new data, overwriting if necessary
-            // self.sun.merge(data) { _, new in new }
         }
         // Fallback on APIs
         catch {

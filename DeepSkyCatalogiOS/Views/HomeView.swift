@@ -125,6 +125,7 @@ struct HomeView: View {
             }
         }
         .onChange(of: date) { newDate in
+            print("Date Change")
             sunData = nil
         }
         .onAppear {

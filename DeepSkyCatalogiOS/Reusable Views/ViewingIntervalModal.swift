@@ -99,6 +99,7 @@ struct DateSelector: View {
             }
             Button {
                 date = date.tomorrow()
+                print("Button Pressed")
             } label: {
                 Image(systemName: "chevron.right")
             }
