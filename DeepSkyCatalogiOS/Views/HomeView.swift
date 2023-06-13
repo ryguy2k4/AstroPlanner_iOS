@@ -20,21 +20,21 @@ struct HomeView: View {
     @State var internet = true
     
     @State var location: Location? = nil
-    @State var date: Date? = nil
+    @State var date: Date = .now
     @State var sunData: SunData? = nil
     @State var viewingInterval: DateInterval? = nil
     
     var body: some View {
         TabView {
-            if let location = location, let date = Binding($date) {
+            if let location = location {
                 if let sunData = sunData, let viewingInterval = Binding($viewingInterval) {
-                    DailyReportView(date: date, viewingInterval: viewingInterval)
+                    DailyReportView(date: $date, viewingInterval: viewingInterval)
                         .tabItem {
                             Label("Daily Report", systemImage: "doc.text")
                         }
                         .environment(\.location, location)
                         .environment(\.sunData, sunData)
-                    CatalogView(date: date, viewingInterval: viewingInterval)
+                    CatalogView(date: $date, viewingInterval: viewingInterval)
                         .tabItem {
                             Label("Master Catalog", systemImage: "tray.full.fill")
                         }
@@ -45,10 +45,10 @@ struct HomeView: View {
                         DailyReportLoadingView(internet: $internet)
                             .task {
                                 do {
-                                    let data = try await networkManager.updateSunData(at: location, on: date.wrappedValue)
+                                    let data = try await networkManager.updateSunData(at: location, on: $date.wrappedValue)
                                     // merge the new data, overwriting if necessary
                                     networkManager.sun.merge(data) { _, new in new }
-                                    sunData = networkManager.sun[NetworkManager.DataKey(date: date.wrappedValue, location: location)]
+                                    sunData = networkManager.sun[NetworkManager.DataKey(date: $date.wrappedValue, location: location)]
                                     // here insert check for requesting data between midnight and night end should get info for the previous day still
                                     viewingInterval = sunData?.ATInterval
                                 } catch {
@@ -64,7 +64,7 @@ struct HomeView: View {
                                 Label("Daily Report", systemImage: "doc.text")
                             }
                     }
-                    BasicCatalogView(date: date)
+                    BasicCatalogView(date: $date)
                         .tabItem {
                             Label("Master Catalog", systemImage: "tray.full.fill")
                         }
@@ -125,7 +125,7 @@ struct HomeView: View {
             }
         }
         .onChange(of: date) { newDate in
-            print("Date Change")
+            print("Date Change -> ", newDate)
             sunData = nil
         }
         .onAppear {

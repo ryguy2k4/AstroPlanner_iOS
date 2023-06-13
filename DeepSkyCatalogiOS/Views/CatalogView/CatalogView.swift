@@ -20,11 +20,17 @@ struct CatalogView: View {
     @Environment(\.location) var location
     @Environment(\.sunData) var sunData
     @Binding var date: Date
+    @State var pickerDate: Date = .now
     @Binding var viewingInterval: DateInterval
     
     @State private var isLocationModal = false
     @State private var isDateModal = false
         
+    init(date: Binding<Date>, viewingInterval: Binding<DateInterval>) {
+        self._date = date
+        self._viewingInterval = viewingInterval
+        self.pickerDate = date.wrappedValue
+    }
     var body: some View {
         NavigationStack() {
             FilterButtonMenu(date: $date)
@@ -92,13 +98,18 @@ struct CatalogView: View {
         
         // Modal for settings
         .sheet(isPresented: $isDateModal){
-            ViewingIntervalModal(date: $date, viewingInterval: $viewingInterval)
+            ViewingIntervalModal(date: $pickerDate, viewingInterval: $viewingInterval)
                 .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
         }
         .sheet(isPresented: $isLocationModal){
             LocationPickerModal()
                 .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
         }
+        .onChange(of: isDateModal, perform: { newValue in
+            if newValue == false {
+                date = pickerDate
+            }
+        })
         
         // Passing the date and location to use into all child views
         .environment(\.date, date)
