@@ -8,20 +8,18 @@
 import SwiftUI
 
 struct ViewingIntervalModal: View {
-    @Environment(\.sunData) var sunData
-    @Binding var date: Date
-    @Binding var viewingInterval: DateInterval
+    @EnvironmentObject var store: HomeViewModel
     var body: some View {
         VStack {
-            DateSelector(date: $date)
+            DateSelector()
+                .environmentObject(store)
                 .padding()
                 .font(.title2)
                 .fontWeight(.semibold)
             Form {
                 ConfigSection(header: "Viewing Interval") {
-                    DateIntervalSelector(viewingInterval: $viewingInterval, customViewingInterval: viewingInterval != sunData.ATInterval)
-                        .environment(\.sunData, sunData)
-                        .environment(\.date, date)
+                    DateIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: store.viewingInterval != store.sunData.ATInterval)
+                        .environment(\.sunData, store.sunData)
                 }
             }
         }
@@ -32,7 +30,6 @@ struct DateIntervalSelector: View {
     @Binding var viewingInterval: DateInterval
     @State var customViewingInterval: Bool
     @Environment(\.sunData) var sunData
-    @Environment(\.date) var date
     @Environment(\.location) var location
     
     var body: some View {
@@ -83,58 +80,50 @@ struct DateIntervalSelector: View {
 }
 
 struct DateSelector: View {
-    @Binding var date: Date
+    @EnvironmentObject var store: HomeViewModel
     @State var isDatePickerModal: Bool = false
+
     var body: some View {
         HStack {
             Button {
-                date = date.yesterday()
+                store.date = store.date.yesterday()
             } label: {
                 Image(systemName: "chevron.left")
             }
             Button {
                 isDatePickerModal = true
             } label: {
-                Text("\(date.formatted(date: .numeric, time: .omitted))")
+                Text("\(store.date.formatted(date: .numeric, time: .omitted))")
             }
             Button {
-                date = date.tomorrow()
+                store.date = store.date.tomorrow()
                 print("Button Pressed")
             } label: {
                 Image(systemName: "chevron.right")
             }
         }
         .sheet(isPresented: $isDatePickerModal) {
-            DatePickerModal(date: $date)
+            DatePickerModal()
+                .environmentObject(store)
                 .presentationDetents([.fraction(0.4)])
         }
     }
 }
 
 struct DatePickerModal: View {
-    @State var date: Date
-    // this is necessary so that the date only updates after the modal is closed
-    @Binding var boundDate: Date
-    @Environment(\.location) var location
-    init(date: Binding<Date>) {
-        self._date = State(initialValue: date.wrappedValue)
-        self._boundDate = date
-    }
+    @EnvironmentObject var store: HomeViewModel
     
     var body: some View {
         VStack {
             Button("Today") {
                 // doesnt work between 12am and morning
-                date = .now.startOfLocalDay(timezone: location.timezone)
+                store.date = .now.startOfLocalDay(timezone: store.location.timezone)
             }
             .buttonStyle(.borderedProminent)
             
-            DatePicker("Date", selection: $date, displayedComponents: .date)
+            DatePicker("Date", selection: $store.date, displayedComponents: .date)
                 .datePickerStyle(.wheel)
                 .labelsHidden()
-        }
-        .onDisappear() {
-            boundDate = date
         }
     }
 }

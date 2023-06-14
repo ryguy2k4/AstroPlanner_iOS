@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct CatalogView: View {
     @Environment(\.dismissSearch) private var dismissSearch
@@ -13,32 +14,23 @@ struct CatalogView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
     @StateObject private var catalogManager: CatalogManager = CatalogManager()
-    
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    @Environment(\.managedObjectContext) var context
+
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-    
-    @Environment(\.location) var location
-    @Environment(\.sunData) var sunData
-    @Binding var date: Date
-    @State var pickerDate: Date = .now
-    @Binding var viewingInterval: DateInterval
-    
+
+    @EnvironmentObject var store: HomeViewModel
     @State private var isLocationModal = false
     @State private var isDateModal = false
-        
-    init(date: Binding<Date>, viewingInterval: Binding<DateInterval>) {
-        self._date = date
-        self._viewingInterval = viewingInterval
-        self.pickerDate = date.wrappedValue
-    }
+
     var body: some View {
         NavigationStack() {
-            FilterButtonMenu(date: $date)
+            FilterButtonMenu(date: $store.date)
             
             List(catalogManager.targets, id: \.id) { target in
                 NavigationLink(destination: DetailView(target: target)) {
                     VStack {
                         TargetCell(target: target)
+                            .environmentObject(store)
                     }
                 }
             }
@@ -65,11 +57,11 @@ struct CatalogView: View {
         // Modifiers to enable searching
         .searchable(text: $catalogManager.searchText)
         .onSubmit(of: .search) {
-            catalogManager.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
+            catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
         }
         .onChange(of: catalogManager.searchText) { newValue in
             if newValue.isEmpty {
-                catalogManager.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
+                catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
             }
         }
         .searchSuggestions {
@@ -98,26 +90,16 @@ struct CatalogView: View {
         
         // Modal for settings
         .sheet(isPresented: $isDateModal){
-            ViewingIntervalModal(date: $pickerDate, viewingInterval: $viewingInterval)
+            ViewingIntervalModal()
+                .environmentObject(store)
                 .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
         }
         .sheet(isPresented: $isLocationModal){
             LocationPickerModal()
                 .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
         }
-        .onChange(of: isDateModal, perform: { newValue in
-            if newValue == false {
-                date = pickerDate
-            }
-        })
-        
         // Passing the date and location to use into all child views
-        .environment(\.date, date)
-        .environment(\.location, location)
-        .environmentObject(targetSettings.first!)
         .environmentObject(catalogManager)
-        .environment(\.sunData, sunData)
-        .environment(\.viewingInterval, viewingInterval)
     }
 }
 
@@ -125,13 +107,10 @@ struct CatalogView: View {
  This View displays information about the target at a glance. It is used within the Master Catalog list.
  */
 fileprivate struct TargetCell: View {
-    @Environment(\.location) var location: Location
-    @EnvironmentObject var targetSettings: TargetSettings
-    @Environment(\.date) var date
-    @Environment(\.sunData) var sunData
-    @Environment(\.viewingInterval) var viewingInterval
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     var target: DeepSkyTarget
-    
+    @EnvironmentObject var store: HomeViewModel
+
     var body: some View {
         HStack {                
             Image(target.image?.source.fileName ?? "\(target.type)")
@@ -143,9 +122,9 @@ fileprivate struct TargetCell: View {
                 Text(target.name?[0] ?? target.defaultName)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Label(target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude).percent(), systemImage: "eye")
+                Label(target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData, limitingAlt: targetSettings.first?.limitingAltitude ?? 0).percent(), systemImage: "eye")
                     .foregroundColor(.secondary)
-                Label(target.getSeasonScore(at: location, on: date, sunData: sunData).percent(), systemImage: "calendar.circle")
+                Label(target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData).percent(), systemImage: "calendar.circle")
                     .foregroundColor(.secondary)
             }
         }
