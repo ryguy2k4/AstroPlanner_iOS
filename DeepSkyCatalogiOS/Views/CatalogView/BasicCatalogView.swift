@@ -90,7 +90,6 @@ struct BasicCatalogView: View {
         .environmentObject(catalogManager)
         .environment(\.date, date)
         .environment(\.location, location)
-        .environmentObject(targetSettings.first!)
     }
 }
 

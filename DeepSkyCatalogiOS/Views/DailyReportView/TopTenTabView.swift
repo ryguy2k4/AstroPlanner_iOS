@@ -19,7 +19,6 @@ enum TargetTab: String, Identifiable, CaseIterable {
  Each Tab displays the 3 topFive arrays defined in the report.
  */
 struct TopTenTabView: View {
-    @EnvironmentObject var targetSettings: TargetSettings
     let report: DailyReport
     
     @Binding var tabSelection: TargetTab

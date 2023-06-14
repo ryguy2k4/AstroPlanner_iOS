@@ -11,7 +11,7 @@ import Charts
 struct DetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var targetSettings: TargetSettings
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
 
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
@@ -133,7 +133,7 @@ struct DetailView: View {
                     Button("Hide Target") {
                         let newHiddenTarget = HiddenTarget(context: context)
                         newHiddenTarget.id = target.id
-                        targetSettings.addToHiddenTargets(newHiddenTarget)
+                        targetSettings.first?.addToHiddenTargets(newHiddenTarget)
                         PersistenceManager.shared.saveData(context: context)
                     }
                 } label: {
@@ -154,7 +154,7 @@ struct DetailView: View {
  A chart that plots altitude vs time for a target
  */
 fileprivate struct TargetAltitudeChart: View {
-    @EnvironmentObject var targetSettings: TargetSettings
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @Environment(\.viewingInterval) var viewingInterval
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
@@ -168,7 +168,7 @@ fileprivate struct TargetAltitudeChart: View {
                 LineMark(x: .value("Hour", hour, unit: .minute), y: .value("Altitude", target.getAltitude(location: location, time: hour)))
                     .interpolationMethod(.catmullRom)
             }
-            RuleMark(y: .value("Axis", showLimitingAlt ? targetSettings.limitingAltitude : 0))
+            RuleMark(y: .value("Axis", showLimitingAlt ? (targetSettings.first?.limitingAltitude ?? 0) : 0))
                 .foregroundStyle(.gray)
             if Date.now > date.localNoon(timezone: location.timezone) && Date.now < date.localNoon(timezone: location.timezone).tomorrow() {
                 RuleMark(x: .value("Now", Date.now))
@@ -195,12 +195,12 @@ fileprivate struct TargetAltitudeChart: View {
             Text("Altitude (°)")
         }
         .chartYAxisLabel(position: .top, alignment: .center) {
-            Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: showLimitingAlt ? targetSettings.limitingAltitude : 0)).percent())")
+            Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: showLimitingAlt ? (targetSettings.first?.limitingAltitude ?? 0) : 0)).percent())")
                 .foregroundColor(.secondary)
                 .font(.headline)
         }
         .chartYAxisLabel(position: .bottom, alignment: .bottomLeading) {
-            if targetSettings.limitingAltitude != 0 {
+            if (targetSettings.first?.limitingAltitude ?? 0) != 0 {
                 Text("Tap to toggle limiting altitude")
             }
         }
@@ -209,13 +209,13 @@ fileprivate struct TargetAltitudeChart: View {
 }
 
 fileprivate struct TargetSchedule : View {
-    @EnvironmentObject var targetSettings: TargetSettings
+    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @Environment(\.location) var location: Location
     @Environment(\.date) var date
     let target: DeepSkyTarget
     let showLimitingAlt: Bool
     var body: some View {
-        let targetInterval = target.getNextInterval(location: location, date: date, limitingAlt: showLimitingAlt ? targetSettings.limitingAltitude : 0)
+        let targetInterval = target.getNextInterval(location: location, date: date, limitingAlt: showLimitingAlt ? targetSettings.first?.limitingAltitude ?? 0 : 0)
         HStack {
             switch targetInterval.interval {
             case .never:

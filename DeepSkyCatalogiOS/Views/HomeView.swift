@@ -7,7 +7,14 @@
 
 import SwiftUI
 import CoreData
+import CoreLocation
 
+class HomeViewModel: ObservableObject {
+    @Published var location: Location = Location(current: CLLocation(latitude: 0, longitude: 0))
+    @Published var date: Date = .now
+    @Published var sunData: SunData = SunData()
+    @Published var viewingInterval: DateInterval = .init(start: .now, duration: .pi)
+}
 struct HomeView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
@@ -18,39 +25,33 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     
     @State var internet = true
-    
-    @State var location: Location? = nil
-    @State var date: Date? = nil
-    @State var sunData: SunData? = nil
-    @State var viewingInterval: DateInterval? = nil
+    @StateObject var vm: HomeViewModel = HomeViewModel()
     
     var body: some View {
         TabView {
-            if let location = location, let date = Binding($date) {
-                if let sunData = sunData, let viewingInterval = Binding($viewingInterval) {
-                    DailyReportView(date: date, viewingInterval: viewingInterval)
+            if let location = vm.location {
+                if let _ = vm.sunData, let _ = Binding($vm.viewingInterval) {
+                    DailyReportView()
+                        .environmentObject(vm)
                         .tabItem {
                             Label("Daily Report", systemImage: "doc.text")
                         }
-                        .environment(\.location, location)
-                        .environment(\.sunData, sunData)
-                    CatalogView(date: date, viewingInterval: viewingInterval)
+                    CatalogView()
+                        .environmentObject(vm)
                         .tabItem {
                             Label("Master Catalog", systemImage: "tray.full.fill")
                         }
-                        .environment(\.location, location)
-                        .environment(\.sunData, sunData)
                 } else {
                     if internet {
                         DailyReportLoadingView(internet: $internet)
                             .task {
                                 do {
-                                    let data = try await networkManager.updateSunData(at: location, on: date.wrappedValue)
+                                    let data = try await networkManager.updateSunData(at: location, on: $vm.date.wrappedValue)
                                     // merge the new data, overwriting if necessary
                                     networkManager.sun.merge(data) { _, new in new }
-                                    sunData = networkManager.sun[NetworkManager.DataKey(date: date.wrappedValue, location: location)]
+                                    vm.sunData = networkManager.sun[NetworkManager.DataKey(date: $vm.date.wrappedValue, location: location)] ?? SunData()
                                     // here insert check for requesting data between midnight and night end should get info for the previous day still
-                                    viewingInterval = sunData?.ATInterval
+                                    vm.viewingInterval = vm.sunData.ATInterval
                                 } catch {
                                     internet = false
                                 }
@@ -64,7 +65,7 @@ struct HomeView: View {
                                 Label("Daily Report", systemImage: "doc.text")
                             }
                     }
-                    BasicCatalogView(date: date)
+                    BasicCatalogView(date: $vm.date)
                         .tabItem {
                             Label("Master Catalog", systemImage: "tray.full.fill")
                         }
@@ -76,7 +77,7 @@ struct HomeView: View {
                         Label("Daily Report", systemImage: "doc.text")
                     }
                     .onAppear() {
-                        self.location = {
+                        vm.location = {
                             if let selected = locationList.first(where: { $0.isSelected == true }) {
                                 // try to find a selected location
                                 return Location(saved: selected)
@@ -87,14 +88,15 @@ struct HomeView: View {
                                 // try to find any location
                                 any.isSelected = true
                                 return Location(saved: any)
-                            } else {
+                            }
+                            else {
                                 // no location found
-                                return nil
+                                return Location(current: CLLocation(latitude: 0, longitude: 0))
                             }
                         }()
-                        if let location = location {
-                            date = .now.startOfLocalDay(timezone: location.timezone)
-                        }
+                        //                        if let location = vm.location {
+                        vm.date = .now.startOfLocalDay(timezone: vm.location.timezone)
+                        //                        }
                     }
             }
             SettingsView()
@@ -119,21 +121,23 @@ struct HomeView: View {
                     return nil
                 }
             }()
-            if let newLocation = newLocation, newLocation != self.location {
-                self.location = newLocation
-                self.date = .now.startOfLocalDay(timezone: newLocation.timezone)
+            if let newLocation = newLocation, newLocation != vm.location {
+                vm.location = newLocation
+                vm.date = .now.startOfLocalDay(timezone: newLocation.timezone)
             }
         }
-        .onChange(of: date) { newDate in
-            print("Date Change")
-            sunData = nil
-        }
+        
+        .onReceive(vm.$date, perform: { newValue in
+            print("Date Change -> ", newValue)
+            vm.sunData = .init()
+        })
         .onAppear {
             // correct the transparency bug for Tab bars
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithOpaqueBackground()
             UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         }
+        
     }
 }
 
