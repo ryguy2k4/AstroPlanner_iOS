@@ -8,11 +8,12 @@
 import Foundation
 import WeatherKit
 
-struct SunData {
+struct SunData: Equatable {
     let astronomicalTwilightBegin: Date
     let sunrise: Date
     let ATInterval: DateInterval
     let nightInterval: DateInterval
+    static let `default`: SunData = .init()
     init(){
         self.astronomicalTwilightBegin = .now
         self.sunrise = .now

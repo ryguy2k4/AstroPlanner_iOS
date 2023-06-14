@@ -24,7 +24,7 @@ struct EditAllFiltersView: View {
             Form {
                 ConfigSection(header: "Sort") {
                     Picker("Method:", selection: $viewModel.currentSort) {
-                        ForEach(sunData != nil ? SortMethod.allCases : SortMethod.offlineCases) { method in
+                        ForEach(sunData != .default ? SortMethod.allCases : SortMethod.offlineCases) { method in
                             Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
                         }
                     }
@@ -56,7 +56,7 @@ struct EditAllFiltersView: View {
                     NavigationLink("Size Filter") {
                         MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
                     }
-                    if sunData != nil {
+                    if sunData != .default {
                         NavigationLink("Visibility Score Filter") {
                             Form {
                                 NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])

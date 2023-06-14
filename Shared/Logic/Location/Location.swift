@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-struct Location: Hashable {
+struct Location: Hashable, Equatable {
     let latitude: Double
     let longitude: Double
     let timezone: TimeZone
@@ -46,4 +46,6 @@ struct Location: Hashable {
         self.timezone = Calendar.current.timeZone
         self.source = .current
     }
+    
+    static let `default`: Location = .init(current: CLLocation(latitude: 0, longitude: 0))
 }
