@@ -10,9 +10,9 @@ import CoreData
 import CoreLocation
 
 class HomeViewModel: ObservableObject {
-    @Published var location: Location = Location(current: CLLocation(latitude: 0, longitude: 0))
+    @Published var location: Location = .default
     @Published var date: Date = .now
-    @Published var sunData: SunData = SunData()
+    @Published var sunData: SunData = .default
     @Published var viewingInterval: DateInterval = .init(start: .now, duration: .pi)
 }
 struct HomeView: View {
@@ -29,8 +29,8 @@ struct HomeView: View {
     
     var body: some View {
         TabView {
-            if let location = vm.location {
-                if let _ = vm.sunData, let _ = Binding($vm.viewingInterval) {
+            if vm.location != .default {
+                if vm.sunData != .default && vm.viewingInterval.duration != .pi {
                     DailyReportView()
                         .environmentObject(vm)
                         .tabItem {
@@ -46,10 +46,10 @@ struct HomeView: View {
                         DailyReportLoadingView(internet: $internet)
                             .task {
                                 do {
-                                    let data = try await networkManager.updateSunData(at: location, on: $vm.date.wrappedValue)
+                                    let data = try await networkManager.updateSunData(at: vm.location, on: $vm.date.wrappedValue)
                                     // merge the new data, overwriting if necessary
                                     networkManager.sun.merge(data) { _, new in new }
-                                    vm.sunData = networkManager.sun[NetworkManager.DataKey(date: $vm.date.wrappedValue, location: location)] ?? SunData()
+                                    vm.sunData = networkManager.sun[NetworkManager.DataKey(date: $vm.date.wrappedValue, location: vm.location)] ?? SunData()
                                     // here insert check for requesting data between midnight and night end should get info for the previous day still
                                     vm.viewingInterval = vm.sunData.ATInterval
                                 } catch {
@@ -69,7 +69,7 @@ struct HomeView: View {
                         .tabItem {
                             Label("Master Catalog", systemImage: "tray.full.fill")
                         }
-                        .environment(\.location, location)
+                        .environment(\.location, vm.location)
                 }
             } else {
                 NoLocationsView()
