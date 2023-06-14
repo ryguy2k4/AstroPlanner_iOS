@@ -15,21 +15,21 @@ final class DailyReport: ObservableObject {
     let reportSettings: ReportSettings
     let targetSettings: TargetSettings
     let sunData: SunData
-    let presetList: [ImagingPreset]
+    let preset: ImagingPreset?
     
     let topFive: [DeepSkyTarget]
     let topTenNebulae: [DeepSkyTarget]
     let topTenGalaxies: [DeepSkyTarget]
     let topTenStarClusters: [DeepSkyTarget]
     
-    init(location: Location, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, presetList: [ImagingPreset], sunData: SunData) {
+    init(location: Location, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, preset: ImagingPreset?, sunData: SunData) {
         self.location = location
         self.date = date
         self.viewingInterval = viewingInterval
         self.reportSettings = reportSettings
         self.targetSettings = targetSettings
         self.sunData = sunData
-        self.presetList = presetList
+        self.preset = preset
                 
         self.topFive = createReportList(top: 5)
         self.topTenNebulae = createReportList(for: TargetType.nebulae, top: 10)
@@ -76,7 +76,7 @@ final class DailyReport: ObservableObject {
             }
             
             // filter for selected imaging preset, if one is selected
-            if let preset = presetList.first(where: {$0.isSelected == true}) {
+            if let preset = preset {
                 targets = targets.filter { target in
                     let ratio = target.arcLength / preset.fovLength
                     return ratio > reportSettings.minFOVCoverage && ratio <= 0.9

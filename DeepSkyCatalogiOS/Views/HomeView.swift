@@ -126,10 +126,9 @@ struct HomeView: View {
                 vm.date = .now.startOfLocalDay(timezone: newLocation.timezone)
             }
         }
-        
         .onReceive(vm.$date, perform: { newValue in
             print("Date Change -> ", newValue)
-            vm.sunData = .init()
+            vm.sunData = .default
         })
         .onAppear {
             // correct the transparency bug for Tab bars

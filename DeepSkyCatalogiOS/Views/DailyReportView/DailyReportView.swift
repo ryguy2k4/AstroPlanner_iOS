@@ -95,8 +95,35 @@ struct DailyReportView: View {
         .environment(\.viewingInterval, store.viewingInterval)
         .environmentObject(store)
         .onAppear {
-            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: Array(presetList), sunData: store.sunData)
+            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
         }
+        
+        // update report on preset change
+        .onReceive(presetList.publisher) { _ in
+            let newPreset = presetList.first(where: {$0.isSelected == true})
+            if newPreset != report?.preset {
+                print("new preset")
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
+        }
+        
+        // update report on settings changes
+        .onChange(of: reportSettings.first?.minFOVCoverage) { _ in
+            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+        }
+        .onChange(of: reportSettings.first?.maxAllowedMoon) { _ in
+            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+        }
+        .onChange(of: reportSettings.first?.filterForMoonPhase) { _ in
+            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+        }
+        .onChange(of: reportSettings.first?.minVisibility) { _ in
+            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+        }
+        .onChange(of: reportSettings.first?.preferBroadband) { _ in
+            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+        }
+        
     }
 }
 
