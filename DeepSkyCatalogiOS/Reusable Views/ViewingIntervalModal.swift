@@ -111,19 +111,30 @@ struct DateSelector: View {
 }
 
 struct DatePickerModal: View {
+    @State var date: Date?
     @EnvironmentObject var store: HomeViewModel
     
     var body: some View {
         VStack {
-            Button("Today") {
-                // doesnt work between 12am and morning
-                store.date = .now.startOfLocalDay(timezone: store.location.timezone)
+            if let date = Binding($date) {
+                Button("Today") {
+                    // doesnt work between 12am and morning
+                    store.date = .now.startOfLocalDay(timezone: store.location.timezone)
+                }
+                .buttonStyle(.borderedProminent)
+                
+                DatePicker("Date", selection: date, displayedComponents: .date)
+                    .datePickerStyle(.wheel)
+                    .labelsHidden()
+                    .onDisappear() {
+                        store.date = date.wrappedValue
+                    }
+            } else {
+                ProgressView()
+                    .onAppear() {
+                        date = store.date
+                    }
             }
-            .buttonStyle(.borderedProminent)
-            
-            DatePicker("Date", selection: $store.date, displayedComponents: .date)
-                .datePickerStyle(.wheel)
-                .labelsHidden()
         }
     }
 }
