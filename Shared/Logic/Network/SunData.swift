@@ -14,12 +14,14 @@ struct SunData: Equatable {
     let ATInterval: DateInterval
     let nightInterval: DateInterval
     static let `default`: SunData = .init()
-    init(){
+    
+    init() {
         self.astronomicalTwilightBegin = .now
         self.sunrise = .now
         self.ATInterval = .init(start: .now, duration: .pi)
         self.nightInterval = .init(start: .now, duration: .pi)
     }
+    
     init(dataToday: RawSunData, dataTomorrow: RawSunData) {
         sunrise = try! Date(dataToday.results.sunrise, strategy: .iso8601)
         astronomicalTwilightBegin = try! Date(dataToday.results.astronomical_twilight_begin, strategy: .iso8601)
