@@ -105,7 +105,7 @@ struct DateSelector: View {
         .sheet(isPresented: $isDatePickerModal) {
             DatePickerModal()
                 .environmentObject(store)
-                .presentationDetents([.fraction(0.4)])
+                .presentationDetents([.fraction(0.5)])
         }
     }
 }
@@ -117,7 +117,7 @@ struct DatePickerModal: View {
     var body: some View {
         VStack {
             if let date = Binding($date) {
-                Button("Today") {
+                Button("Tonight") {
                     // doesnt work between 12am and morning
                     store.date = .now.startOfLocalDay(timezone: store.location.timezone)
                 }
