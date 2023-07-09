@@ -30,48 +30,46 @@ struct HomeView: View {
     var body: some View {
         TabView {
             if vm.location != .default {
+                // if available location and sunData and viewingInterval populated then show DailyReportView, CatalogView
                 if vm.sunData != .default && vm.viewingInterval.duration != .pi {
                     DailyReportView()
-                        .environmentObject(vm)
                         .tabItem {
                             Label("Daily Report", systemImage: "doc.text")
                         }
-                    CatalogView()
                         .environmentObject(vm)
+                    CatalogView()
                         .tabItem {
                             Label("Master Catalog", systemImage: "tray.full.fill")
                         }
-                } else {
+                        .environmentObject(vm)
+                }
+                else {
+                    // if available location but sunData and viewingInterval are being populated, then show a loading view
                     if internet {
                         DailyReportLoadingView(internet: $internet)
-                            .task {
-                                do {
-                                    let data = try await networkManager.updateSunData(at: vm.location, on: $vm.date.wrappedValue)
-                                    // merge the new data, overwriting if necessary
-                                    networkManager.sun.merge(data) { _, new in new }
-                                    vm.sunData = networkManager.sun[NetworkManager.DataKey(date: $vm.date.wrappedValue, location: vm.location)] ?? SunData()
-                                    // here insert check for requesting data between midnight and night end should get info for the previous day still
-                                    vm.viewingInterval = vm.sunData.ATInterval
-                                } catch {
-                                    internet = false
-                                }
-                            }
                             .tabItem {
                                 Label("Daily Report", systemImage: "doc.text")
                             }
-                    } else {
+                            .environmentObject(vm)
+                    }
+                    // if available location but sunData and viewingInterval failed to populate, then show an error screen
+                    else {
                         DailyReportLoadingFailedView(internet: $internet)
                             .tabItem {
                                 Label("Daily Report", systemImage: "doc.text")
                             }
+                            .environmentObject(vm)
                     }
-                    BasicCatalogView(date: $vm.date)
+                    // Append BasicCatalogView to the tab bar when sunData and viewingInterval are not populated
+                    BasicCatalogView()
                         .tabItem {
                             Label("Master Catalog", systemImage: "tray.full.fill")
                         }
-                        .environment(\.location, vm.location)
+                        .environmentObject(vm)
                 }
-            } else {
+            }
+            // if no location available, prompt user for location
+            else {
                 NoLocationsView()
                     .tabItem {
                         Label("Daily Report", systemImage: "doc.text")
@@ -94,11 +92,10 @@ struct HomeView: View {
                                 return Location(current: CLLocation(latitude: 0, longitude: 0))
                             }
                         }()
-                        //                        if let location = vm.location {
                         vm.date = .now.startOfLocalDay(timezone: vm.location.timezone)
-                        //                        }
                     }
             }
+            // Append SettingsView to the tab bar of every permutation
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")

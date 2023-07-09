@@ -19,7 +19,6 @@ struct ViewingIntervalModal: View {
             Form {
                 ConfigSection(header: "Viewing Interval") {
                     DateIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: store.viewingInterval != store.sunData.ATInterval)
-                        .environment(\.sunData, store.sunData)
                 }
             }
         }
@@ -29,8 +28,7 @@ struct ViewingIntervalModal: View {
 struct DateIntervalSelector: View {
     @Binding var viewingInterval: DateInterval
     @State var customViewingInterval: Bool
-    @Environment(\.sunData) var sunData
-    @Environment(\.location) var location
+    @EnvironmentObject var store: HomeViewModel
     
     var body: some View {
         // Choose Auto vs Custom Interval
@@ -41,15 +39,15 @@ struct DateIntervalSelector: View {
         .pickerStyle(.segmented)
         .onChange(of: customViewingInterval) { newValue in
             if !newValue {
-                viewingInterval = sunData.ATInterval
+                viewingInterval = store.sunData.ATInterval
             }
         }
-        .onChange(of: sunData.ATInterval) { newValue in
+        .onChange(of: store.sunData.ATInterval) { newValue in
             viewingInterval = newValue
         }
         
         // Custom Interval Selector
-        if sunData.ATInterval.start <= viewingInterval.end && viewingInterval.start <= sunData.ATInterval.end {
+        if store.sunData.ATInterval.start <= viewingInterval.end && viewingInterval.start <= store.sunData.ATInterval.end {
             let endBinding = Binding(
                 get: {
                     return viewingInterval.end
@@ -69,8 +67,8 @@ struct DateIntervalSelector: View {
                     viewingInterval.duration = newDuration
                 }
             )
-            let startRange: ClosedRange<Date> = sunData.ATInterval.start...viewingInterval.end
-            let endRange: ClosedRange<Date> = viewingInterval.start...sunData.ATInterval.end
+            let startRange: ClosedRange<Date> = store.sunData.ATInterval.start...viewingInterval.end
+            let endRange: ClosedRange<Date> = viewingInterval.start...store.sunData.ATInterval.end
             VStack {
                 DatePicker("Start", selection: startBinding, in: startRange)
                 DatePicker("End", selection: endBinding, in: endRange)

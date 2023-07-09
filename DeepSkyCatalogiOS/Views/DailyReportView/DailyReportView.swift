@@ -68,9 +68,6 @@ struct DailyReportView: View {
                 }
                 .navigationDestination(for: DeepSkyTarget.self) { target in
                     DetailView(target: target)
-                        .environment(\.location, store.location)
-                        .environment(\.viewingInterval, store.viewingInterval)
-                        .environment(\.date, store.date)
                 }
                 
                 // Modal for settings
@@ -91,8 +88,6 @@ struct DailyReportView: View {
                 
             }
         }
-        .environment(\.date, store.date)
-        .environment(\.viewingInterval, store.viewingInterval)
         .environmentObject(store)
         .onAppear {
             self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)

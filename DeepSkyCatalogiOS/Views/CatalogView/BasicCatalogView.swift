@@ -17,8 +17,7 @@ struct BasicCatalogView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     
-    @Environment(\.location) var location
-    @Binding var date: Date
+    @EnvironmentObject var store: HomeViewModel
     
     @State private var isLocationModal = false
     @State private var isDateModal = false
@@ -56,11 +55,11 @@ struct BasicCatalogView: View {
         // Modifiers to enable searching
         .searchable(text: $catalogManager.searchText)
         .onSubmit(of: .search) {
-            catalogManager.refreshList(date: date, viewingInterval: nil, location: location, targetSettings: targetSettings.first!, sunData: nil)
+            catalogManager.refreshList(date: store.date, viewingInterval: nil, location: store.location, targetSettings: targetSettings.first!, sunData: nil)
         }
         .onChange(of: catalogManager.searchText) { newValue in
             if newValue.isEmpty {
-                catalogManager.refreshList(date: date, viewingInterval: nil, location: location, targetSettings: targetSettings.first!, sunData: nil)
+                catalogManager.refreshList(date: store.date, viewingInterval: nil, location: store.location, targetSettings: targetSettings.first!, sunData: nil)
             }
         }
         .searchSuggestions {
@@ -87,9 +86,21 @@ struct BasicCatalogView: View {
         }
         .autocorrectionDisabled()
         
+        // Modal for settings
+        .sheet(isPresented: $isDateModal){
+            DateSelector()
+                .padding()
+                .font(.title2)
+                .fontWeight(.semibold)
+                .environmentObject(store)
+                .presentationDetents([.fraction(0.1), .fraction(0.2), .fraction(0.3)])
+        }
+        .sheet(isPresented: $isLocationModal){
+            LocationPickerModal()
+                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+        }
+        
         .environmentObject(catalogManager)
-        .environment(\.date, date)
-        .environment(\.location, location)
     }
 }
 

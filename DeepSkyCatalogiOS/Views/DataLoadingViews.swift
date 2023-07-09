@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct DailyReportLoadingView: View {
-    @Environment(\.date) var date
-    @Environment(\.location) var location: Location
     @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var store: HomeViewModel
     @Binding var internet: Bool
     var body: some View {
         NavigationStack {
@@ -24,13 +23,24 @@ struct DailyReportLoadingView: View {
             .toolbar {
                 ToolbarLogo()
             }
+            .task {
+                do {
+                    let data = try await networkManager.updateSunData(at: store.location, on: store.date)
+                    // merge the new data, overwriting if necessary
+                    networkManager.sun.merge(data) { _, new in new }
+                    store.sunData = networkManager.sun[NetworkManager.DataKey(date: store.date, location: store.location)] ?? SunData()
+                    // here insert check for requesting data between midnight and night end should get info for the previous day still
+                    store.viewingInterval = store.sunData.ATInterval
+                } catch {
+                    internet = false
+                }
+            }
         }
     }
 }
 
 struct DailyReportLoadingFailedView: View {
-    @Environment(\.date) var date
-    @Environment(\.location) var location: Location
+    @EnvironmentObject var store: HomeViewModel
     @EnvironmentObject var networkManager: NetworkManager
     @Binding var internet: Bool
     var body: some View {
@@ -43,7 +53,7 @@ struct DailyReportLoadingFailedView: View {
                     internet = true
                     Task {
                         do {
-                            let data = try await networkManager.updateSunData(at: location, on: date)
+                            let data = try await networkManager.updateSunData(at: store.location, on: store.date)
                             // merge the new data, overwriting if necessary
                             networkManager.sun.merge(data) { _, new in new }
                         } catch {

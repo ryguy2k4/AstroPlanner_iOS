@@ -368,11 +368,11 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9672921EF20008C7614 /* CatalogView.swift */,
+				71BCF9692921EF20008C7614 /* DetailView.swift */,
 				71FE1AA829D79517000E2B2B /* BasicCatalogView.swift */,
+				71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */,
 				7113870229C3571400081584 /* FilterButtonMenuView.swift */,
 				71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */,
-				71BCF9692921EF20008C7614 /* DetailView.swift */,
-				71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */,
 			);
 			path = CatalogView;
 			sourceTree = "<group>";

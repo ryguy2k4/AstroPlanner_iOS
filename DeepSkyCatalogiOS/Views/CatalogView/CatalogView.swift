@@ -24,7 +24,7 @@ struct CatalogView: View {
 
     var body: some View {
         NavigationStack() {
-            FilterButtonMenu(date: $store.date)
+            FilterButtonMenu()
             
             List(catalogManager.targets, id: \.id) { target in
                 NavigationLink(destination: DetailView(target: target)) {

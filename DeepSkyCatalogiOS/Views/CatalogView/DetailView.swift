@@ -12,11 +12,6 @@ struct DetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-
-    @Environment(\.location) var location: Location
-    @Environment(\.date) var date
-    @Environment(\.sunData) var sunData
-    @Environment(\.viewingInterval) var viewingInterval
     
     @State var showCoordinateDecimalFormat: Bool = false
     @State var showLimitingAlt: Bool = true
@@ -146,7 +141,6 @@ struct DetailView: View {
                     .font(.headline)
             }
         }
-        .environment(\.sunData, sunData)
     }
 }
 
@@ -155,36 +149,33 @@ struct DetailView: View {
  */
 fileprivate struct TargetAltitudeChart: View {
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-    @Environment(\.viewingInterval) var viewingInterval
-    @Environment(\.location) var location: Location
-    @Environment(\.date) var date
-    @Environment(\.sunData) var sunData
+    @EnvironmentObject var store: HomeViewModel
     var target: DeepSkyTarget
     let showLimitingAlt: Bool
     var body: some View {
         // Graph
         Chart {
-            ForEach(date.getEveryHour(), id: \.self) { hour in
-                LineMark(x: .value("Hour", hour, unit: .minute), y: .value("Altitude", target.getAltitude(location: location, time: hour)))
+            ForEach(store.date.getEveryHour(), id: \.self) { hour in
+                LineMark(x: .value("Hour", hour, unit: .minute), y: .value("Altitude", target.getAltitude(location: store.location, time: hour)))
                     .interpolationMethod(.catmullRom)
             }
             RuleMark(y: .value("Axis", showLimitingAlt ? (targetSettings.first?.limitingAltitude ?? 0) : 0))
                 .foregroundStyle(.gray)
-            if Date.now > date.localNoon(timezone: location.timezone) && Date.now < date.localNoon(timezone: location.timezone).tomorrow() {
+            if Date.now > store.date.localNoon(timezone: store.location.timezone) && Date.now < store.date.localNoon(timezone: store.location.timezone).tomorrow() {
                 RuleMark(x: .value("Now", Date.now))
                     .lineStyle(.init(dash: [5]))
                     .foregroundStyle(.red)
             }
-            RectangleMark(xStart: .value("", date.startOfLocalDay(timezone: location.timezone).addingTimeInterval(43_200)), xEnd: .value("", viewingInterval.start))
+            RectangleMark(xStart: .value("", store.date.startOfLocalDay(timezone: store.location.timezone).addingTimeInterval(43_200)), xEnd: .value("", store.viewingInterval.start))
                 .foregroundStyle(.tertiary.opacity(1))
-            RectangleMark(xStart: .value("", viewingInterval.end), xEnd: .value("", date.tomorrow().addingTimeInterval(43_200)))
+            RectangleMark(xStart: .value("", store.viewingInterval.end), xEnd: .value("", store.date.tomorrow().addingTimeInterval(43_200)))
                 .foregroundStyle(.tertiary.opacity(1))
         }
         .chartXAxis {
             AxisMarks(position: .bottom, values: .stride(by: .hour, count: 6)) {
                 let format: Date.FormatStyle = {
                     var format: Date.FormatStyle = .dateTime.hour(.defaultDigits(amPM: .abbreviated))
-                    format.timeZone = location.timezone
+                    format.timeZone = store.location.timezone
                     return format
                 }()
                 AxisValueLabel(format: format)
@@ -195,7 +186,7 @@ fileprivate struct TargetAltitudeChart: View {
             Text("Altitude (°)")
         }
         .chartYAxisLabel(position: .top, alignment: .center) {
-            Text("Visibility Score: \((target.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: showLimitingAlt ? (targetSettings.first?.limitingAltitude ?? 0) : 0)).percent())")
+            Text("Visibility Score: \((target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData, limitingAlt: showLimitingAlt ? (targetSettings.first?.limitingAltitude ?? 0) : 0)).percent())")
                 .foregroundColor(.secondary)
                 .font(.headline)
         }
@@ -210,21 +201,20 @@ fileprivate struct TargetAltitudeChart: View {
 
 fileprivate struct TargetSchedule : View {
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-    @Environment(\.location) var location: Location
-    @Environment(\.date) var date
+    @EnvironmentObject var store: HomeViewModel
     let target: DeepSkyTarget
     let showLimitingAlt: Bool
     var body: some View {
-        let targetInterval = target.getNextInterval(location: location, date: date, limitingAlt: showLimitingAlt ? targetSettings.first?.limitingAltitude ?? 0 : 0)
+        let targetInterval = target.getNextInterval(location: store.location, date: store.date, limitingAlt: showLimitingAlt ? targetSettings.first?.limitingAltitude ?? 0 : 0)
         HStack {
             switch targetInterval.interval {
             case .never:
-                EventLabel(date: target.getNextInterval(location: location, date: date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                EventLabel(date: target.getNextInterval(location: store.location, date: store.date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
             case .always:
-                EventLabel(date: target.getNextInterval(location: location, date: date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                EventLabel(date: target.getNextInterval(location: store.location, date: store.date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
             case .sometimes(let interval):
                 EventLabel(date: interval.start, image: "sunrise")
-                EventLabel(date: target.getNextInterval(location: location, date: date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                EventLabel(date: target.getNextInterval(location: store.location, date: store.date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
                 EventLabel(date: interval.end, image: "sunset")
             }
         }
@@ -235,21 +225,18 @@ fileprivate struct TargetSchedule : View {
  A chart that plots altitude vs time for a target
  */
 fileprivate struct TargetSeasonScoreChart: View {
-    @Environment(\.viewingInterval) var viewingInterval
-    @Environment(\.date) var date
-    @Environment(\.sunData) var sunData
-    @Environment(\.location) var location: Location
+    @EnvironmentObject var store: HomeViewModel
     var target: DeepSkyTarget
     var body: some View {
         // Graph
         Chart {
-            ForEach(date.getEveryMonth(), id: \.self) { month in
-                LineMark(x: .value("Month", month, unit: .day), y: .value("Score", target.getApproxSeasonScore(at: location, on: month)*100))
+            ForEach(store.date.getEveryMonth(), id: \.self) { month in
+                LineMark(x: .value("Month", month, unit: .day), y: .value("Score", target.getApproxSeasonScore(at: store.location, on: month)*100))
                     .interpolationMethod(.catmullRom)
             }
             RuleMark(y: .value("Axis", 0))
                 .foregroundStyle(.gray)
-            RuleMark(x: .value("Now", date))
+            RuleMark(x: .value("Now", store.date))
                 .lineStyle(.init(dash: [5]))
                 .foregroundStyle(.red)
         }
@@ -263,7 +250,7 @@ fileprivate struct TargetSeasonScoreChart: View {
             Text("Score")
         }
         .chartYAxisLabel(position: .top, alignment: .center) {
-            Text("Season Score: \((target.getSeasonScore(at: location, on: date, sunData: sunData)).percent())")
+            Text("Season Score: \((target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)).percent())")
                 .foregroundColor(.secondary)
                 .font(.headline)
         }
@@ -288,21 +275,21 @@ private struct FactLabel: View {
  A label that displays a target event
  */
 private struct EventLabel: View {
-    @Environment(\.location) var location
+    @EnvironmentObject var store: HomeViewModel
     var date: Date
     var image: String
     var body: some View {
         VStack(spacing: 3) {
             let dateFormatter: DateFormatter = {
                 let formatter = DateFormatter()
-                formatter.timeZone = location.timezone
+                formatter.timeZone = store.location.timezone
                 formatter.dateStyle = .short
                 formatter.timeStyle = .none
                 return formatter
             }()
             let timeFormatter: DateFormatter = {
                 let formatter = DateFormatter()
-                formatter.timeZone = location.timezone
+                formatter.timeZone = store.location.timezone
                 formatter.dateStyle = .none
                 formatter.timeStyle = .short
                 return formatter

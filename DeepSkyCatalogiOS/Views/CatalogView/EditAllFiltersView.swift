@@ -9,27 +9,23 @@ import SwiftUI
 
 struct EditAllFiltersView: View {
     @ObservedObject var viewModel: CatalogManager
-    @Environment(\.location) var location: Location
     @EnvironmentObject var reportSettings: ReportSettings
     @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @Environment(\.managedObjectContext) var context
-    @Environment(\.sunData) var sunData
-    @Environment(\.date) var date
-    @Environment(\.viewingInterval) var viewingInterval
-    @Binding var dateBinding: Date
+    @EnvironmentObject var store: HomeViewModel
     
     var body: some View {
         NavigationStack {
             Form {
                 ConfigSection(header: "Sort") {
                     Picker("Method:", selection: $viewModel.currentSort) {
-                        ForEach(sunData != .default ? SortMethod.allCases : SortMethod.offlineCases) { method in
+                        ForEach(store.sunData != .default ? SortMethod.allCases : SortMethod.offlineCases) { method in
                             Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
                         }
                     }
                     .onChange(of: viewModel.currentSort) { _ in
-                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
+                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
                     }
                     Picker("Order:", selection: $viewModel.sortDecending) {
                         Label("Ascending", systemImage: "chevron.up").tag(false)
@@ -37,7 +33,7 @@ struct EditAllFiltersView: View {
                         
                     }
                     .onChange(of: viewModel.sortDecending) { _ in
-                        viewModel.refreshList(date: date, viewingInterval: viewingInterval, location: location, targetSettings: targetSettings.first!, sunData: sunData)
+                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
                     }
                 }
                 ConfigSection(header: "Filters") {
@@ -56,7 +52,7 @@ struct EditAllFiltersView: View {
                     NavigationLink("Size Filter") {
                         MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
                     }
-                    if sunData != .default {
+                    if store.sunData != .default {
                         NavigationLink("Visibility Score Filter") {
                             Form {
                                 NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
