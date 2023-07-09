@@ -94,6 +94,8 @@ struct HomeView: View {
                         }()
                         vm.date = .now.startOfLocalDay(timezone: vm.location.timezone)
                     }
+                    .environmentObject(locationManager)
+                    .environmentObject(vm)
             }
             // Append SettingsView to the tab bar of every permutation
             SettingsView()

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NoLocationsView: View {
+    @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var store: HomeViewModel
     var body: some View {
         NavigationStack {
             VStack {
@@ -17,6 +19,11 @@ struct NoLocationsView: View {
                     Label("Locations Settings", systemImage: "location")
                 }
                 .padding()
+            }
+            .onReceive(locationManager.$latestLocation) { location in
+                if let location = location {
+                    store.location = Location(current: location)
+                }
             }
         }
     }
