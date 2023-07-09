@@ -48,6 +48,8 @@ struct LocationEditor: View {
     @State var showErrorAlert = false
     @State var showLocationPermissionError = false
     @State var showLocationError = false
+    @State var showConfirmationMessage = false
+    @State var confirmationClosure: (() -> (save: () -> Void, lat: Double, long: Double, time: TimeZone))?
     @EnvironmentObject var locationManager: LocationManager
     @FetchRequest(sortDescriptors: []) var locationList: FetchedResults<SavedLocation>
     
@@ -166,21 +168,47 @@ struct LocationEditor: View {
                 KeyboardDismissButton(isInputActive: _isInputActive)
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(location != nil ? "Save \(name)" : "Add \(name)") {
-                        if let location = location, let timezone = timezone, latitude ?? 0 < 65, latitude ?? 0 > -65 {
-                            PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
-                            dismiss()
-                        } else {
-                            if let latitude = latitude, latitude < 65, latitude > -65, let longitude = longitude, let timezone = timezone, !locationList.contains(where: {$0.name! == name}) {
-                                PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
-                                dismiss()
+                        if let latitude = latitude, latitude < 65, latitude > -65, let longitude = longitude, let timezone = timezone {
+                            if let location = location {
+                                confirmationClosure = {
+                                    let save = {
+                                        PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
+                                    }
+                                    return (save: save, lat: latitude, long: longitude, time: timezone)
+                                }
+                                showConfirmationMessage = true
+                            } else if !locationList.contains(where: {$0.name! == name}) {
+                                confirmationClosure = {
+                                    let save = {
+                                        PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
+                                    }
+                                    return (save: save, lat: latitude, long: longitude, time: timezone)
+                                    
+                                }
+                                showConfirmationMessage = true
                             } else {
                                 showErrorAlert = true
                             }
+                        } else {
+                            showErrorAlert = true
                         }
                     }
                 }
             }
             .padding(0)
+            .alert("Confirm Location", isPresented: $showConfirmationMessage, presenting: confirmationClosure, actions: { location in
+                Button("Cancel") {}
+                Button {
+                    location().save()
+                    dismiss()
+                } label: {
+                    Text("Confirm")
+                }
+            }, message: { location in
+                VStack {
+                    Text("Latitude: \(location().lat)º / " + location().lat.formatDMS(directionArgs: [.minus : "S", .plus : "N"]) + "\nLongitude: \(location().long)º / " + location().long.formatDMS(directionArgs: [.minus : "W", .plus : "E"]) + "\nTimezone: \(String(describing: location().time))")
+                }
+            })
             .alert("Invalid Location", isPresented: $showErrorAlert) {
                 Text("OK")
             } message: {
