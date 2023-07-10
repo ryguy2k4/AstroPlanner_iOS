@@ -43,10 +43,14 @@ struct SunData: Equatable {
     }
     
     init(sunEventsToday: SunEvents, sunEventsTomorrow: SunEvents, timezone: TimeZone) {
-        astronomicalTwilightBegin = sunEventsToday.astronomicalDawn!
-        sunrise = sunEventsToday.sunrise!
-        ATInterval = DateInterval(start: sunEventsToday.astronomicalDusk!, end: sunEventsTomorrow.astronomicalDawn!)
-        nightInterval = DateInterval(start: sunEventsToday.sunset!, end: sunEventsTomorrow.sunrise!)
+        if let dawnToday = sunEventsToday.astronomicalDawn, let sunriseToday = sunEventsToday.sunrise, let duskToday = sunEventsToday.astronomicalDusk, let dawnTomorrow = sunEventsTomorrow.astronomicalDawn, let sunsetToday = sunEventsToday.sunset, let sunriseTomorrow = sunEventsTomorrow.sunrise {
+            astronomicalTwilightBegin = dawnToday
+            sunrise = sunriseToday
+            ATInterval = DateInterval(start: duskToday, end: dawnTomorrow)
+            nightInterval = DateInterval(start: sunsetToday, end: sunriseTomorrow)
+        } else {
+            fatalError("Nil SunEvent found")
+        }
     }
 }
 
