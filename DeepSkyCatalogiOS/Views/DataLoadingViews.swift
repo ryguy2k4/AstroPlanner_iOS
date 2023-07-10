@@ -14,10 +14,8 @@ struct DailyReportLoadingView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                ProgressView()
-                    .padding(.top)
-                Text("Fetching Sun/Moon Data...")
-                    .fontWeight(.bold)
+                ProgressView("Fetching Sun Data")
+                    .padding(.top, 50)
                 Spacer()
             }
             .toolbar {

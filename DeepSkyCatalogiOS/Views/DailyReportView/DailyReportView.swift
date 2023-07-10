@@ -28,68 +28,70 @@ struct DailyReportView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                ReportHeader()
-                ScrollView {
-                    VStack {
-                        if let report = report {
-                            // Report Section
-                            TopFiveView(report: report)
-                            TopTenTabView(report: report, tabSelection: $topTenTab)
-                                .onAppear() {
-                                    if report.topTenNebulae.isEmpty { topTenTab = .starClusters }
-                                    else if report.topTenGalaxies.isEmpty { topTenTab = .galaxies }
-                                }
-                        }
+                if let report = report {
+                    ReportHeader()
+                    ScrollView {
+                        // Report Section
+                        TopFiveView(report: report)
+                        TopTenTabView(report: report, tabSelection: $topTenTab)
+                            .onAppear() {
+                                if report.topTenNebulae.isEmpty { topTenTab = .starClusters }
+                                else if report.topTenGalaxies.isEmpty { topTenTab = .galaxies }
+                            }
                     }
+                } else {
+                    ProgressView("Generating Report")
+                        .padding(.top, 50)
+                    Spacer()
                 }
-                .toolbar {
-                    ToolbarLogo()
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            isDateModal = true
-                        } label: {
-                            Image(systemName: "calendar")
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            isLocationModal = true
-                        } label: {
-                            Image(systemName: "location")
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            isReportSettingsModal = true
-                        } label: {
-                            Image(systemName: "slider.horizontal.3")
-                        }
-                    }
-                }
-                .navigationDestination(for: DeepSkyTarget.self) { target in
-                    DetailView(target: target)
-                }
-                
-                // Modal for settings
-                .sheet(isPresented: $isDateModal){
-                    ViewingIntervalModal()
-                        .environmentObject(store)
-                        .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-                }
-                .sheet(isPresented: $isLocationModal){
-                    LocationPickerModal()
-                        .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-                }
-                .sheet(isPresented: $isReportSettingsModal){
-                    DailyReportSettingsModal()
-                        .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-                }
-                .scrollIndicators(.hidden)
-                
             }
+            .toolbar {
+                ToolbarLogo()
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isDateModal = true
+                    } label: {
+                        Image(systemName: "calendar")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isLocationModal = true
+                    } label: {
+                        Image(systemName: "location")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isReportSettingsModal = true
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                    }
+                }
+            }
+            .navigationDestination(for: DeepSkyTarget.self) { target in
+                DetailView(target: target)
+            }
+            
+            // Modal for settings
+            .sheet(isPresented: $isDateModal){
+                ViewingIntervalModal()
+                    .environmentObject(store)
+                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+            }
+            .sheet(isPresented: $isLocationModal){
+                LocationPickerModal()
+                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+            }
+            .sheet(isPresented: $isReportSettingsModal){
+                DailyReportSettingsModal()
+                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+            }
+            .scrollIndicators(.hidden)
+                
         }
         .environmentObject(store)
-        .onAppear {
+        .task {
             self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
         }
         
@@ -97,26 +99,43 @@ struct DailyReportView: View {
         .onReceive(presetList.publisher) { _ in
             let newPreset = presetList.first(where: {$0.isSelected == true})
             if newPreset != report?.preset {
-                print("new preset")
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                self.report = nil
+                Task {
+                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                }
             }
         }
         
         // update report on settings changes
         .onChange(of: reportSettings.first?.minFOVCoverage) { _ in
-            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
         }
         .onChange(of: reportSettings.first?.maxAllowedMoon) { _ in
-            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
         }
         .onChange(of: reportSettings.first?.filterForMoonPhase) { _ in
-            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
         }
         .onChange(of: reportSettings.first?.minVisibility) { _ in
-            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
         }
         .onChange(of: reportSettings.first?.preferBroadband) { _ in
-            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
         }
         
     }
