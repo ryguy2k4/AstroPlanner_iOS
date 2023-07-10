@@ -35,8 +35,8 @@ struct DailyReportView: View {
                         TopFiveView(report: report)
                         TopTenTabView(report: report, tabSelection: $topTenTab)
                             .onAppear() {
-                                if report.topTenNebulae.isEmpty { topTenTab = .starClusters }
-                                else if report.topTenGalaxies.isEmpty { topTenTab = .galaxies }
+                                if report.topTenNebulae.isEmpty { topTenTab = .galaxies }
+                                else if report.topTenNebulae.isEmpty && report.topTenGalaxies.isEmpty { topTenTab = .starClusters }
                             }
                     }
                 } else {

@@ -93,7 +93,7 @@ struct DailyReportSettingsModal: View {
         }
         .sheet(isPresented: $isMoonPercentModal) {
             Form {
-                ConfigSection(footer: "If the moon illumination is greater than this value, then broadband targets will not be suggested. Set to 99% to never exclude broadband targets.") {
+                ConfigSection(footer: "If the moon illumination is greater than this value, then broadband targets will not be suggested.") {
                     NumberPicker(num: $settings.maxAllowedMoon, placeValues: [.tenths, .hundredths])
                 }
             }
@@ -101,7 +101,7 @@ struct DailyReportSettingsModal: View {
         }
         .sheet(isPresented: $isMinFOVCoverageModal) {
             Form {
-                ConfigSection(footer: "This is the minimum ratio between your scope's FOV length and the target's arc length. Should probably be around 25%") {
+                ConfigSection(footer: "This is the minimum ratio between your scope's FOV length and the target's arc length. Should probably be around 25%.") {
                     NumberPicker(num: $settings.minFOVCoverage, placeValues: [.tenths, .hundredths])
                 }
             }

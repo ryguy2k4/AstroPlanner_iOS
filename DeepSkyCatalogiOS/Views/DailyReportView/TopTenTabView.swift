@@ -60,7 +60,7 @@ fileprivate struct TopTenListView: View {
         } else {
             VStack {
                 Spacer()
-                Text("No \(targetTab.rawValue) 🫤")
+                Text("No \(targetTab.rawValue) :/")
                 Spacer()
                 Spacer()
                 Spacer()

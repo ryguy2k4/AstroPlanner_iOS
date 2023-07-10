@@ -38,9 +38,11 @@ struct AboutView: View {
                     Text("Features Coming Soon:")
                         .font(.title3)
                         .fontWeight(.semibold)
-                    Text("Favorites, iMessage Sharing, Custom  Horizons, Target Framing Overlays, User-Submitted Photos, Journal of Previosuly Imaged Targets, More Targets, Support for Extreme Latitudes, and Planetary Targets")
+                    Text("Favorites, iMessage Sharing, Custom Horizons, Target Framing Overlays, User-Submitted Photos, Journal of Previosuly Imaged Targets, More Targets, Support for Extreme Latitudes, and Planetary Targets")
                         .multilineTextAlignment(.center)
                 }
+                Text("This app is fairly new, so bugs and issues are bound to be found. If you find any, feel free to contact me via instagram (@ryansponzilli_astro) It is my intention to ensure that this app is worth its price.")
+                    .multilineTextAlignment(.center)
                 VStack(spacing: 10) {
                     Text("Attributions:")
                         .font(.title3)
