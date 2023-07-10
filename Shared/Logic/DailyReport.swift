@@ -31,12 +31,12 @@ final class DailyReport: ObservableObject {
         self.sunData = sunData
         self.preset = preset
         
-        print("Starting Report List Creation...")
+        //print("Starting Report List Creation...")
         self.topFive = createReportList(top: 5)
         self.topTenNebulae = createReportList(for: TargetType.nebulae, top: 10)
         self.topTenGalaxies = createReportList(for: TargetType.galaxies, top: 10)
         self.topTenStarClusters = createReportList(for: TargetType.starClusters, top: 10)
-        print("...Finished Report List Creation")
+        //print("...Finished Report List Creation")
         
         func createReportList(for type: Set<TargetType> = [], top num: Int) -> [DeepSkyTarget] {
                         

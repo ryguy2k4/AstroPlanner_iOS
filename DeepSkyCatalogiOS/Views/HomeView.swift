@@ -126,7 +126,7 @@ struct HomeView: View {
             }
         }
         .onReceive(vm.$date, perform: { newValue in
-            print("Date Change -> ", newValue)
+            //print("Date Change -> ", newValue)
             vm.sunData = .default
         })
         .onAppear {
