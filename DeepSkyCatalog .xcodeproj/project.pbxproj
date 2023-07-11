@@ -1386,7 +1386,7 @@
 				INFOPLIST_FILE = DeepSkyCatalogiOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Astro Planner";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allows showing information for your current location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses the user's latitude and longitude when doing calculations determining the location of celestial objects as viewed from the user's location on Earth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1426,7 +1426,7 @@
 				INFOPLIST_FILE = DeepSkyCatalogiOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Astro Planner";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allows showing information for your current location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses the user's latitude and longitude when doing calculations determining the location of celestial objects as viewed from the user's location on Earth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
