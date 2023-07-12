@@ -79,7 +79,7 @@ final class NetworkManager: ObservableObject {
         for index in forecast.indices.dropLast() {
             //print(forecastDate.formatted(format: "yyyy-MM-dd HH:mm:ss Z", timezone: location.timezone))
             let dataKey = DataKey(date: forecastDate, location: location)
-            array[dataKey] = SunData(sunEventsToday: forecast[index].sun, sunEventsTomorrow: forecast[index+1].sun, timezone: location.timezone)
+            array[dataKey] = SunData(sunEventsToday: forecast[index].sun, sunEventsTomorrow: forecast[index+1].sun)
             forecastDate = forecastDate.tomorrow()
         }
 

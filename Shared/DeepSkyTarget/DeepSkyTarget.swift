@@ -287,16 +287,13 @@ extension DeepSkyTarget {
      */
     func getSeasonScore(at location: Location, on date: Date, sunData: SunData) -> Double {
         let targetMeridian = getCulmination(location: location, date: date)
-        let nightLength = sunData.ATInterval.duration
-        let nightBegin = sunData.ATInterval.start
-        
-        let midnight = nightBegin.addingTimeInterval(Double(nightLength/2))
-        if (targetMeridian < midnight){
+
+        if (targetMeridian < sunData.solarMidnight){
             // time between meridian crossing and midnight in fractional days
-            let interval = DateInterval(start: targetMeridian, end: midnight).duration/60/60/24
+            let interval = DateInterval(start: targetMeridian, end: sunData.solarMidnight).duration/60/60/24
             return (1 - (interval / 0.5)).magnitude
         } else {
-            let interval = DateInterval(start: midnight, end: targetMeridian).duration/60/60/24
+            let interval = DateInterval(start: sunData.solarMidnight, end: targetMeridian).duration/60/60/24
             return (1 - (interval / 0.5)).magnitude
         }
     }
