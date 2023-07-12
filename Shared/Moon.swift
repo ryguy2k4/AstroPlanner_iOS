@@ -1,14 +1,13 @@
 //
-//  MoonData.swift
+//  Moon.swift
 //  DeepSkyCatalog
 //
 //  Created by Ryan Sponzilli on 11/23/22.
 //
 
 import Foundation
-import WeatherKit
 
-struct MoonData {
+struct Moon {
     static func getMoonIllumination(date: Date, timezone: TimeZone) -> Double {
         let date = date.endOfLocalDay(timezone: timezone)
         func getMoonAge(date: Date) -> Double {

@@ -79,7 +79,7 @@ final class NetworkManager: ObservableObject {
         for index in forecast.indices.dropLast() {
             //print(forecastDate.formatted(format: "yyyy-MM-dd HH:mm:ss Z", timezone: location.timezone))
             let dataKey = DataKey(date: forecastDate, location: location)
-            array[dataKey] = SunData(sunEventsToday: forecast[index].sun, sunEventsTomorrow: forecast[index+1].sun)
+            array[dataKey] = SunData(sunEventsToday: forecast[index].sun, sunEventsTomorrow: forecast[index+1].sun, location: location)
             forecastDate = forecastDate.tomorrow()
         }
 
@@ -93,7 +93,7 @@ final class NetworkManager: ObservableObject {
             async let decodedSunDataToday: RawSunData = try fetchTask(from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.formatted(format: "YYYY-MM-dd"))&formatted=0")
             async let decodedSunDataTomorrow: RawSunData = try fetchTask(from: "https://api.sunrise-sunset.org/json?lat=\(location.latitude)&lng=\(location.longitude)&date=\(date.tomorrow().formatted(format: "YYYY-MM-dd"))&formatted=0")
             
-            let sunToday = SunData(dataToday: try await decodedSunDataToday, dataTomorrow: try await decodedSunDataTomorrow)
+            let sunToday = SunData(dataToday: try await decodedSunDataToday, dataTomorrow: try await decodedSunDataTomorrow, location: location)
             
             //print("API Data Fetched")
             return sunToday
@@ -126,7 +126,9 @@ final class NetworkManager: ObservableObject {
         guard let (data, _) = try? await URLSession.shared.data(from: url) else {
             throw FetchError.unableToFetch
         }
-        guard let decodedData = try? JSONDecoder().decode(T.self, from: data ) else {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard let decodedData = try? decoder.decode(T.self, from: data ) else {
             throw FetchError.unableToDecode
         }
         return decodedData

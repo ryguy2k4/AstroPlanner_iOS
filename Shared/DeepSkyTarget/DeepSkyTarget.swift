@@ -267,6 +267,11 @@ extension DeepSkyTarget {
         let targetInterval = getNextInterval(location: location, date: viewingInterval.start.addingTimeInterval(-43_200), limitingAlt: limitingAlt).interval
                     
         // calculate time that the target is in the sky during the night
+        
+        guard viewingInterval.duration != 0 else {
+            return 0
+        }
+        
         switch targetInterval {
         case .never:
             return 0

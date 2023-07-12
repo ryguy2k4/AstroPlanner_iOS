@@ -54,7 +54,7 @@ final class DailyReport: ObservableObject {
             if reportSettings.filterForMoonPhase {
                 
                 // if bright moon is visible filter for narrowband targets
-                let moonIllumination = MoonData.getMoonIllumination(date: date, timezone: location.timezone)
+                let moonIllumination = Moon.getMoonIllumination(date: date, timezone: location.timezone)
                 if moonIllumination > reportSettings.maxAllowedMoon {
                     targets.filterByType(TargetType.narrowband)
                 }

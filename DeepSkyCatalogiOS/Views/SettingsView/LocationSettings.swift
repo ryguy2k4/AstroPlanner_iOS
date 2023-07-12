@@ -168,7 +168,7 @@ struct LocationEditor: View {
                 KeyboardDismissButton(isInputActive: _isInputActive)
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(location != nil ? "Save \(name)" : "Add \(name)") {
-                        if let latitude = latitude, latitude < 65, latitude > -65, let longitude = longitude, let timezone = timezone {
+                        if let latitude = latitude, let longitude = longitude, let timezone = timezone {
                             if let location = location {
                                 confirmationClosure = {
                                     let save = {

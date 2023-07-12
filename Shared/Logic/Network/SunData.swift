@@ -26,32 +26,53 @@ struct SunData: Equatable {
         self.solarMidnight = .now
     }
     
-    init(dataToday: RawSunData, dataTomorrow: RawSunData) {
-        let atStart = try! Date(dataToday.results.astronomical_twilight_end, strategy: .iso8601)
-        let atEnd = try! Date(dataTomorrow.results.astronomical_twilight_begin, strategy: .iso8601)
-        ATInterval = DateInterval(start: atStart, end: atEnd)
+    init(dataToday: RawSunData, dataTomorrow: RawSunData, location: Location) {
+        let solarMidnightTomorrow = dataTomorrow.results.solar_noon.addingTimeInterval(43_200)
         
-        let nightStart = try! Date(dataToday.results.sunset, strategy: .iso8601)
-        let nightEnd = try! Date(dataTomorrow.results.sunrise, strategy: .iso8601)
-        nightInterval = DateInterval(start: nightStart, end: nightEnd)
+        if dataToday.results.astronomical_twilight_end != Date(timeIntervalSince1970: 0) && dataTomorrow.results.astronomical_twilight_begin != Date(timeIntervalSince1970: 0) {
+            ATInterval = DateInterval(start: dataToday.results.astronomical_twilight_end, end: dataTomorrow.results.astronomical_twilight_begin)
+        } else {
+            if Sun.getAltitude(location: location, time: solarMidnightTomorrow) > 0 {
+                ATInterval = DateInterval(start: dataToday.results.solar_noon, duration: 0)
+            } else {
+                ATInterval = DateInterval(start: dataToday.results.solar_noon, end: dataTomorrow.results.solar_noon)
+            }
+        }
         
-        let solarNoon = try! Date(dataToday.results.solar_noon, strategy: .iso8601)
-        solarMidnight = solarNoon.addingTimeInterval(43_200)
+        if dataToday.results.sunset != Date(timeIntervalSince1970: 0) && dataTomorrow.results.sunrise != Date(timeIntervalSince1970: 0) {
+            nightInterval = DateInterval(start: dataToday.results.sunset, end: dataTomorrow.results.sunrise)
+        } else {
+            if Sun.getAltitude(location: location, time: solarMidnightTomorrow) > 0 {
+                nightInterval = DateInterval(start: dataToday.results.solar_noon, duration: 0)
+            } else {
+                nightInterval = DateInterval(start: dataToday.results.solar_noon, end: dataTomorrow.results.solar_noon)
+            }
+        }
+        
+        solarMidnight = dataToday.results.solar_noon.addingTimeInterval(43_200)
     }
     
-    init(ATInterval: DateInterval, nightInterval: DateInterval, solarMidnight: Date) {
-        self.ATInterval = ATInterval
-        self.nightInterval = nightInterval
-        self.solarMidnight = solarMidnight
-    }
-    
-    init(sunEventsToday: SunEvents, sunEventsTomorrow: SunEvents) {
-        if let duskToday = sunEventsToday.astronomicalDusk, let dawnTomorrow = sunEventsTomorrow.astronomicalDawn, let sunsetToday = sunEventsToday.sunset, let sunriseTomorrow = sunEventsTomorrow.sunrise {
+    init(sunEventsToday: SunEvents, sunEventsTomorrow: SunEvents, location: Location) {
+        if let duskToday = sunEventsToday.astronomicalDusk, let dawnTomorrow = sunEventsTomorrow.astronomicalDawn {
             ATInterval = DateInterval(start: duskToday, end: dawnTomorrow)
+        } else {
+            if Sun.getAltitude(location: location, time: sunEventsTomorrow.solarMidnight!) > 0 {
+                ATInterval = DateInterval(start: sunEventsToday.solarNoon!, duration: 0)
+            } else {
+                ATInterval = DateInterval(start: sunEventsToday.solarNoon!, end: sunEventsTomorrow.solarNoon!)
+            }
+        }
+        
+        if let sunsetToday = sunEventsToday.sunset, let sunriseTomorrow = sunEventsTomorrow.sunrise {
             nightInterval = DateInterval(start: sunsetToday, end: sunriseTomorrow)
         } else {
-            fatalError("Nil SunEvent found")
+            if Sun.getAltitude(location: location, time: sunEventsTomorrow.solarMidnight!) > 0 {
+                nightInterval = DateInterval(start: sunEventsToday.solarNoon!, duration: 0)
+            } else {
+                nightInterval = DateInterval(start: sunEventsToday.solarNoon!, end: sunEventsTomorrow.solarNoon!)
+            }
         }
+        
         solarMidnight = sunEventsTomorrow.solarMidnight!
     }
 }
@@ -60,10 +81,10 @@ struct RawSunData: Decodable {
     let results: Results
     
     struct Results: Decodable {
-        let sunrise: String
-        let sunset: String
-        let astronomical_twilight_begin: String
-        let astronomical_twilight_end: String
-        let solar_noon: String
+        let sunrise: Date
+        let sunset: Date
+        let astronomical_twilight_begin: Date
+        let astronomical_twilight_end: Date
+        let solar_noon: Date
     }
 }
