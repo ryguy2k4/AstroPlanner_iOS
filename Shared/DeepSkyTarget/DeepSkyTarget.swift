@@ -23,7 +23,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
     /// A default name for a target composed of its type and designation
     var defaultName: String {
         get {
-            "\(type.rawValue) \(designation.first?.shortDescription ?? subDesignations.first?.shortDescription ?? "No Designation")"
+            name?.first ?? "\(type.rawValue) \(designation.first?.shortDescription ?? subDesignations.first?.shortDescription ?? "No Designation")"
         }
     }
     

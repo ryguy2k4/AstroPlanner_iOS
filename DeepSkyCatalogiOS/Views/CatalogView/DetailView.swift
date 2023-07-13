@@ -12,6 +12,7 @@ struct DetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @EnvironmentObject var store: HomeViewModel
     
     @State var showCoordinateDecimalFormat: Bool = false
     @State var showLimitingAlt: Bool = true
@@ -110,7 +111,7 @@ struct DetailView: View {
                                         Image(target.image?.source.fileName ?? "\(target.type)")
                                             .resizable()
                                             .scaledToFit()
-                                        Text(target.name?.first ?? target.defaultName)
+                                        Text(target.defaultName)
                                     }
                                     .frame(maxWidth: 150, maxHeight: 200)
                                 }
@@ -125,6 +126,34 @@ struct DetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
+                    let dateFormatter: DateFormatter = {
+                        let formatter = DateFormatter()
+                        formatter.timeZone = store.location.timezone
+                        formatter.dateStyle = .long
+                        formatter.timeStyle = .none
+                        return formatter
+                    }()
+                    let timeFormatter: DateFormatter = {
+                        let formatter = DateFormatter()
+                        formatter.timeZone = store.location.timezone
+                        formatter.dateStyle = .none
+                        formatter.timeStyle = .short
+                        return formatter
+                    }()
+                    let visibilityScore = target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData, limitingAlt: targetSettings.first?.limitingAltitude ?? 0)
+                    let seasonScore = target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)
+                    let targetInterval = target.getNextInterval(location: store.location, date: store.date, limitingAlt: showLimitingAlt ? targetSettings.first?.limitingAltitude ?? 0 : 0)
+                    let scheduleString: String = {
+                        switch targetInterval.interval {
+                        case .always:
+                            return "Target is always in the sky; Meridian crossing at \(timeFormatter.string(from: targetInterval.culmination))"
+                        case .never:
+                            return "Target is never in the sky; Meridian crossing at \(timeFormatter.string(from: targetInterval.culmination))"
+                        case .sometimes(let interval):
+                            return "Target rises at \(timeFormatter.string(from: interval.start)) and sets at \(timeFormatter.string(from: interval.end)); Meridian crossing is at \(timeFormatter.string(from: targetInterval.culmination))"
+                        }
+                    }()
+                    ShareLink("Share", item: "\(target.defaultName)\n\(target.type.rawValue) in \(target.constellation.rawValue) \n \(target.wikipediaURL?.absoluteString ?? "")\n\nNight of \(dateFormatter.string(from: store.date)) | \(store.location.name)\nVisibility Score: \(visibilityScore.percent())\nSeason Score: \(seasonScore.percent())\n\(scheduleString)")
                     Button("Hide Target") {
                         let newHiddenTarget = HiddenTarget(context: context)
                         newHiddenTarget.id = target.id
@@ -136,7 +165,7 @@ struct DetailView: View {
                 }
             }
             ToolbarItem(placement: .principal) {
-                Label(target.name?.first ?? target.defaultName, image: "gear")
+                Label(target.defaultName, image: "gear")
                     .labelStyle(.titleOnly)
                     .font(.headline)
             }

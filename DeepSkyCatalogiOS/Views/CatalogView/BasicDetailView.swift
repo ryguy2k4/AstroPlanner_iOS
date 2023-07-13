@@ -102,7 +102,7 @@ struct BasicDetailView: View {
                                         Image(target.image?.source.fileName ?? "\(target.type)")
                                             .resizable()
                                             .scaledToFit()
-                                        Text(target.name?.first ?? target.defaultName)
+                                        Text(target.defaultName)
                                     }
                                     .frame(maxWidth: 150, maxHeight: 200)
                                 }
@@ -117,6 +117,7 @@ struct BasicDetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
+                    ShareLink("Share", item: "\(target.defaultName)\n\(target.type.rawValue) in \(target.constellation.rawValue) \n \(target.wikipediaURL?.absoluteString ?? "")")
                     Button("Hide Target") {
                         let newHiddenTarget = HiddenTarget(context: context)
                         newHiddenTarget.id = target.id
@@ -128,7 +129,7 @@ struct BasicDetailView: View {
                 }
             }
             ToolbarItem(placement: .principal) {
-                Label(target.name?.first ?? target.defaultName, image: "gear")
+                Label(target.defaultName, image: "gear")
                     .labelStyle(.titleOnly)
                     .font(.headline)
             }

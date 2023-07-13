@@ -50,7 +50,7 @@ struct ReportListView : View {
                             .resizable()
                             .scaledToFit()
                             .cornerRadius(10)
-                        Text(target.name?.first! ?? target.defaultName)
+                        Text(target.defaultName)
                             .font(.headline)
                             .fontWeight(.medium)
                             .minimumScaleFactor(0.6)

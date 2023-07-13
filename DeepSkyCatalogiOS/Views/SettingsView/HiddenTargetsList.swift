@@ -20,7 +20,7 @@ struct HiddenTargetsList: View {
             List {
                 ForEach(settings.first!.hiddenTargets!.allObjects as! [HiddenTarget]) { hiddenTarget in
                     let target = DeepSkyTargetList.allTargets.first(where: {$0.id == hiddenTarget.id})!
-                    Text(target.name?.first ?? target.defaultName)
+                    Text(target.defaultName)
                         .swipeActions() {
                             Button() {
                                 settings.first!.removeFromHiddenTargets(hiddenTarget)

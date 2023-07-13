@@ -125,7 +125,7 @@ struct SubTargets: View {
                         }
 
                         if let target = DeepSkyTargetList.allTargets.first(where: {$0.id.uuidString == subTargets[index]}) {
-                            Text(target.name?.first ?? target.defaultName)
+                            Text(target.defaultName)
                         } else {
                             Text("No Match")
                                 .foregroundColor(.red)

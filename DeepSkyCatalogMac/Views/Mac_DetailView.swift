@@ -100,7 +100,7 @@ struct DetailView: View {
                                             Image(target.image?.source.fileName ?? "\(target.type)")
                                                 .resizable()
                                                 .scaledToFit()
-                                            Text(target.name?.first ?? target.defaultName)
+                                            Text(target.defaultName)
                                         }
                                         .frame(maxWidth: 150, maxHeight: 200)
                                     }
