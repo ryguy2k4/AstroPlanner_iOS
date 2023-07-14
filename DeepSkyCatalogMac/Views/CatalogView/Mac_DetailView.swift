@@ -1,14 +1,14 @@
 //
-//  DetailView.swift
-//  Deep Sky Catalog
+//  Mac_DetailView.swift
+//  DeepSkyCatalogMac
 //
-//  Created by Ryan Sponzilli on 11/7/22.
+//  Created by Ryan Sponzilli on 7/13/23.
 //
 
 import SwiftUI
 import Charts
 
-struct DetailView: View {
+struct Mac_DetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
@@ -20,24 +20,14 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
-                
                 // Target Image
                 if let image = target.image, let filename = image.source.fileName {
                     VStack {
-                        NavigationLink {
-                            ZoomableScrollView {
-                                Image(filename)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding()
-                            }
-                        } label: {
-                            Image(filename)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 200)
-                                .cornerRadius(12)
-                        }
+                        Image(filename)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
+                            .cornerRadius(12)
                         Text(image.credit)
                             .fontWeight(.light)
                             .lineLimit(2)
@@ -105,7 +95,7 @@ struct DetailView: View {
                             }
                             ForEach(targets) { target in
                                 NavigationLink {
-                                    DetailView(target: target)
+                                    Mac_DetailView(target: target)
                                 } label: {
                                     VStack(alignment: .center) {
                                         Image(target.image?.source.fileName ?? "\(target.type)")
@@ -120,54 +110,6 @@ struct DetailView: View {
                         .padding()
                     }
                 }
-            
-        }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Menu {
-                    let dateFormatter: DateFormatter = {
-                        let formatter = DateFormatter()
-                        formatter.timeZone = store.location.timezone
-                        formatter.dateStyle = .long
-                        formatter.timeStyle = .none
-                        return formatter
-                    }()
-                    let timeFormatter: DateFormatter = {
-                        let formatter = DateFormatter()
-                        formatter.timeZone = store.location.timezone
-                        formatter.dateStyle = .none
-                        formatter.timeStyle = .short
-                        return formatter
-                    }()
-                    let visibilityScore = target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData, limitingAlt: targetSettings.first?.limitingAltitude ?? 0)
-                    let seasonScore = target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)
-                    let targetInterval = target.getNextInterval(location: store.location, date: store.date, limitingAlt: showLimitingAlt ? targetSettings.first?.limitingAltitude ?? 0 : 0)
-                    let scheduleString: String = {
-                        switch targetInterval.interval {
-                        case .always:
-                            return "Target is always in the sky; Meridian crossing at \(timeFormatter.string(from: targetInterval.culmination))"
-                        case .never:
-                            return "Target is never in the sky; Meridian crossing at \(timeFormatter.string(from: targetInterval.culmination))"
-                        case .sometimes(let interval):
-                            return "Target rises at \(timeFormatter.string(from: interval.start)) and sets at \(timeFormatter.string(from: interval.end)); Meridian crossing is at \(timeFormatter.string(from: targetInterval.culmination))"
-                        }
-                    }()
-                    ShareLink("Share", item: "\(target.defaultName)\n\(target.type.rawValue) in \(target.constellation.rawValue) \n \(target.wikipediaURL?.absoluteString ?? "")\n\nNight of \(dateFormatter.string(from: store.date)) | \(store.location.name)\nVisibility Score: \(visibilityScore.percent())\nSeason Score: \(seasonScore.percent())\n\(scheduleString)")
-                    Button("Hide Target") {
-                        let newHiddenTarget = HiddenTarget(context: context)
-                        newHiddenTarget.id = target.id
-                        targetSettings.first?.addToHiddenTargets(newHiddenTarget)
-                        PersistenceManager.shared.saveData(context: context)
-                    }
-                } label: {
-                    Image(systemName: "ellipsis")
-                }
-            }
-            ToolbarItem(placement: .principal) {
-                Label(target.defaultName, image: "gear")
-                    .labelStyle(.titleOnly)
-                    .font(.headline)
             }
         }
     }
@@ -287,6 +229,7 @@ fileprivate struct TargetSeasonScoreChart: View {
     }
 }
 
+
 /**
  A label that displays a target fact
  */
@@ -331,3 +274,9 @@ private struct EventLabel: View {
             
     }
 }
+
+//struct Mac_DetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Mac_DetailView()
+//    }
+//}

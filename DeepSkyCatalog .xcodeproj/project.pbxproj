@@ -20,6 +20,9 @@
 		711386FB29C3548C00081584 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386F629C3548C00081584 /* Filter.swift */; };
 		711386FD29C356CA00081584 /* TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386FC29C356CA00081584 /* TopFiveView.swift */; };
 		7113870329C3571400081584 /* FilterButtonMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113870229C3571400081584 /* FilterButtonMenuView.swift */; };
+		712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */; };
+		712E83662A60F41200CA42DD /* Mac_TopTenTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83652A60F41200CA42DD /* Mac_TopTenTabView.swift */; };
+		712E83682A60F44F00CA42DD /* ReportSettingsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */; };
 		7135117B29B2819300725B1D /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		7135117C29B2820B00725B1D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
 		7135117D29B2829C00725B1D /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
@@ -239,6 +242,9 @@
 		711386F629C3548C00081584 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		711386FC29C356CA00081584 /* TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFiveView.swift; sourceTree = "<group>"; };
 		7113870229C3571400081584 /* FilterButtonMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonMenuView.swift; sourceTree = "<group>"; };
+		712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopFiveView.swift; sourceTree = "<group>"; };
+		712E83652A60F41200CA42DD /* Mac_TopTenTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopTenTabView.swift; sourceTree = "<group>"; };
+		712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSettingsEditor.swift; sourceTree = "<group>"; };
 		713568E92A60C661004196AE /* Mac_CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_CatalogView.swift; sourceTree = "<group>"; };
 		713568EB2A60C696004196AE /* Mac_DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_DetailView.swift; sourceTree = "<group>"; };
 		71375E6A2980DB6F00B95F2E /* TargetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSettingsView.swift; sourceTree = "<group>"; };
@@ -383,6 +389,26 @@
 			path = CatalogView;
 			sourceTree = "<group>";
 		};
+		712E83612A60F3B900CA42DD /* DailyReportView */ = {
+			isa = PBXGroup;
+			children = (
+				71BE6EDB299035A400686E95 /* Mac_DailyReportView.swift */,
+				712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */,
+				712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */,
+				712E83652A60F41200CA42DD /* Mac_TopTenTabView.swift */,
+			);
+			path = DailyReportView;
+			sourceTree = "<group>";
+		};
+		712E83622A60F3D600CA42DD /* CatalogView */ = {
+			isa = PBXGroup;
+			children = (
+				713568E92A60C661004196AE /* Mac_CatalogView.swift */,
+				713568EB2A60C696004196AE /* Mac_DetailView.swift */,
+			);
+			path = CatalogView;
+			sourceTree = "<group>";
+		};
 		713B49B629541216008EFC81 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,9 +472,8 @@
 			isa = PBXGroup;
 			children = (
 				716A19BA298F58A90025DB67 /* Mac_HomeView.swift */,
-				71BE6EDB299035A400686E95 /* Mac_DailyReportView.swift */,
-				713568E92A60C661004196AE /* Mac_CatalogView.swift */,
-				713568EB2A60C696004196AE /* Mac_DetailView.swift */,
+				712E83622A60F3D600CA42DD /* CatalogView */,
+				712E83612A60F3B900CA42DD /* DailyReportView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1053,6 +1078,7 @@
 				716A19BB298F58A90025DB67 /* Mac_HomeView.swift in Sources */,
 				71C26456298F1CBF0057EC04 /* SortMethods.swift in Sources */,
 				713568EC2A60C696004196AE /* Mac_DetailView.swift in Sources */,
+				712E83682A60F44F00CA42DD /* ReportSettingsEditor.swift in Sources */,
 				71C26455298F1CBD0057EC04 /* Constellation.swift in Sources */,
 				71C2644B298F1C9F0057EC04 /* Date+Ext.swift in Sources */,
 				71C2644F298F1CAB0057EC04 /* Environment+Ext.swift in Sources */,
@@ -1066,8 +1092,10 @@
 				71C26452298F1CB60057EC04 /* DeepSkyTargetList.swift in Sources */,
 				71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */,
 				71C2644D298F1CA50057EC04 /* Double+Ext.swift in Sources */,
+				712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */,
 				71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */,
 				716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */,
+				712E83662A60F41200CA42DD /* Mac_TopTenTabView.swift in Sources */,
 				71C26463298F1D510057EC04 /* Moon.swift in Sources */,
 				71C26459298F1D230057EC04 /* CatalogManager.swift in Sources */,
 				718C11F629C89A880069ECD5 /* Location.swift in Sources */,

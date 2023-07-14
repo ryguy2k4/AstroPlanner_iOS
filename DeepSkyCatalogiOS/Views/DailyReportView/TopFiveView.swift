@@ -30,8 +30,5 @@ struct TopFiveView: View {
                 }
             }
         }
-        .frame(width: 384, height: 246)
-        .tabViewStyle(.page(indexDisplayMode: .always))
-        .indexViewStyle(.page(backgroundDisplayMode: .always))
     }
 }
