@@ -7,215 +7,170 @@
 
 import SwiftUI
 
-struct DailyReportView: View {
+struct Mac_DailyReportView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var locationManager: LocationManager
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
-    @Binding var date: Date
-    @Binding var viewingInterval: DateInterval
+    @EnvironmentObject var store: HomeViewModel
     @State var report: DailyReport?
     @State var internet: Bool = true
-    
+    @State var isDateModal = false
+    @State var isLocationModal = false
+    @State var isReportSettingsModal = false
+    @State var topTenTab: TargetTab = .nebulae
+
     var body: some View {
         NavigationStack {
             VStack {
-                // Header Section
-                ReportHeader()
-                
-                // Settings Section
-                ReportSettingsEditor(date: $date)
-                
-                // Only display report if network data is available
-                if let data = networkManager.data[.init(date: date, location: locationList.first!)] {
-                    // every time the view refreshes, generate a report
-                    let report = DailyReport(location: locationList.first!, date: date, viewingInterval: viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, presetList: presetList, data: data)
+                if let report = report {
+                    ReportHeader()
                     ScrollView {
-                        VStack {
-                            // Report Section
-                            TopFiveView(report: report)
-                            TopTenTabView(report: report)
-                                .frame(height: 500)
-                        }
-                    }
-                }
-                
-                
-                // If Network data is not fetched, show a loading screen and then request the necessary data
-                else {
-                    if internet {
-                        VStack {
-                            ProgressView()
-                                .padding(.top)
-                            Text("Fetching Sun/Moon Data...")
-                                .fontWeight(.bold)
-                            Spacer()
-                        }
-                        .task {
-                            do {
-                                try await networkManager.getData(at: locationList.first!, on: date)
-                            } catch {
-                                internet = false
+                        // Report Section
+                        TopFiveView(report: report)
+                        TopTenTabView(report: report, tabSelection: $topTenTab)
+                            .onAppear() {
+                                if report.topTenNebulae.isEmpty { topTenTab = .galaxies }
+                                else if report.topTenNebulae.isEmpty && report.topTenGalaxies.isEmpty { topTenTab = .starClusters }
                             }
-                        }
-                    } else {
-                        Text("No Internet Connection")
-                            .fontWeight(.bold)
-                            .padding(.top)
-                        Button("Retry") {
-                            internet = true
-                            Task {
-                                do {
-                                    try await networkManager.getData(at: locationList.first!, on: date)
-                                } catch {
-                                    internet = false
-                                }
-                            }
-                        }
-                        Spacer()
                     }
+                } else {
+                    ProgressView("Generating Report")
+                        .padding(.top, 50)
+                    Spacer()
                 }
             }
-            .environmentObject(locationList.first!)
-            .environmentObject(targetSettings.first!)
+//            .toolbar {
+//                ToolbarLogo()
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button {
+//                        isDateModal = true
+//                    } label: {
+//                        Image(systemName: "calendar")
+//                    }
+//                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button {
+//                        isLocationModal = true
+//                    } label: {
+//                        Image(systemName: "location")
+//                    }
+//                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button {
+//                        isReportSettingsModal = true
+//                    } label: {
+//                        Image(systemName: "slider.horizontal.3")
+//                    }
+//                }
+//            }
+            .navigationDestination(for: DeepSkyTarget.self) { target in
+                Mac_DetailView(target: target)
+            }
+            
+            // Modal for settings
+//            .sheet(isPresented: $isDateModal){
+//                ViewingIntervalModal()
+//                    .environmentObject(store)
+//                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+//            }
+//            .sheet(isPresented: $isLocationModal){
+//                LocationPickerModal()
+//                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+//            }
+//            .sheet(isPresented: $isReportSettingsModal){
+//                DailyReportSettingsModal()
+//                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+//            }
             .scrollIndicators(.hidden)
-            .navigationTitle("Daily Report")
+                
         }
-    }
-}
-
-/**
- This View is a subview of DailyReportView that displays the topThree as defined withing the report.
- */
-private struct TopFiveView: View {
-    @EnvironmentObject var location: SavedLocation
-    @EnvironmentObject var targetSettings: TargetSettings
-    let report: DailyReport
-    
-    var body: some View {
-        VStack {
-            Text("Top Five Overall")
-                .fontWeight(.bold)
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(report.topFive, id: \.id) { target in
-                        ZStack {
-                            Image(target.image?.source.fileName ?? "\(target.type)")
-                                .resizable()
-                                .cornerRadius(12)
-                                .aspectRatio(contentMode: .fit)
-                                .scaledToFill()
-                                .frame(width: 368, height: 207)
-                            VStack {
-                                Text(target.name?[0] ?? target.defaultName)
-                                    .padding(2)
-                                    .background(.gray.opacity(0.8), in: Rectangle())
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.primary)
-                                Spacer()
-                            }
-                            .padding(4)
-                        }
-                    }
-                }
-            }
-            .padding()
-            .scrollIndicators(.never)
+        .environmentObject(store)
+        .task {
+            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
         }
-    }
-}
-
-/**
- This View is a TabView that uses a Segmented Picker to switch between tabs.
- Each Tab displays the 3 topFive arrays defined in the report.
- */
-private struct TopTenTabView: View {
-    @EnvironmentObject var location: SavedLocation
-    @EnvironmentObject var targetSettings: TargetSettings
-    let report: DailyReport
-    
-    var body: some View {
-        VStack {
-            Text("Top Ten")
-                .fontWeight(.bold)
-            HStack {
-                if !report.topTenNebulae.isEmpty {
-                    VStack {
-                        Text("Nebulae")
-                            .fontWeight(.bold)
-                        List(report.topTenNebulae) { target in
-                            NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                                Text(target.name?[0] ?? target.defaultName)
-                            }
-                        }.listStyle(.inset)
-                    }
-                } else {
-                    VStack {
-                        Text("No Nebulae")
-                        Spacer()
-                    }
-                }
-                if !report.topTenGalaxies.isEmpty {
-                    VStack {
-                        Text("Galaxies")
-                            .fontWeight(.bold)
-                        List(report.topTenGalaxies) { target in
-                            NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                                Text(target.name?[0] ?? target.defaultName)
-                            }
-                        }.listStyle(.inset)
-                    }
-                    
-                } else {
-                    VStack {
-                        Text("No Galaxies")
-                        Spacer()
-                    }
-                }
-                if !report.topTenStarClusters.isEmpty {
-                    VStack {
-                        Text("Star Clusters")
-                            .fontWeight(.bold)
-                        List(report.topTenStarClusters) { target in
-                            NavigationLink(destination: DetailView(target: target).environmentObject(location).environmentObject(targetSettings)) {
-                                Text(target.name?[0] ?? target.defaultName)
-                            }
-                        }.listStyle(.inset)
-                    }
-                } else {
-                    VStack {
-                        Text("No Star Clusters")
-                        Spacer()
-                    }
+        
+        // update report on preset change
+        .onReceive(presetList.publisher) { _ in
+            let newPreset = presetList.first(where: {$0.isSelected == true})
+            if newPreset != report?.preset {
+                self.report = nil
+                Task {
+                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
                 }
             }
         }
-        .scrollDisabled(true)
-        .padding(.vertical)
+        
+        // update report on settings changes
+        .onChange(of: reportSettings.first?.minFOVCoverage) { _ in
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
+        }
+        .onChange(of: reportSettings.first?.maxAllowedMoon) { _ in
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
+        }
+        .onChange(of: reportSettings.first?.filterForMoonPhase) { _ in
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
+        }
+        .onChange(of: reportSettings.first?.minVisibility) { _ in
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
+        }
+        .onChange(of: reportSettings.first?.preferBroadband) { _ in
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
+        }
+        
     }
 }
 
-struct ReportHeader: View {
-    @EnvironmentObject var networkManager: NetworkManager
-    @Environment(\.date) var date
-    @EnvironmentObject var location: SavedLocation
+fileprivate struct ReportHeader: View {
+    @EnvironmentObject var store: HomeViewModel
+    
     var body: some View {
         VStack {
             Text("Daily Report")
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-            Text("\(date.formatted(date: .long, time: .omitted))")
+            if store.viewingInterval == store.sunData.ATInterval {
+                let dateFormatter: DateFormatter = {
+                    let formatter = DateFormatter()
+                    formatter.timeZone = store.location.timezone
+                    formatter.dateStyle = .long
+                    formatter.timeStyle = .none
+                    return formatter
+                }()
+                Text("Night of \(dateFormatter.string(from: store.date)) | \(store.location.name)")
+                    .font(.subheadline)
+                    .fontWeight(.thin)
+            } else {
+                Text("\(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(store.location.name)")
+                    .font(.subheadline)
+                    .fontWeight(.thin)
+            }
+            let moonIllumination = Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone)
+            Text("Moon: \(moonIllumination.percent(sigFigs: 2)) illuminated")
                 .font(.subheadline)
                 .fontWeight(.thin)
-            Text("Moon: \(networkManager.data[.init(date: date, location: location)]?.moon.illuminated.percent() ?? "%") illuminated")
-                .font(.subheadline)
-                .fontWeight(.thin)
-        }.padding(.vertical)
+        }.padding(.bottom)
     }
 }
+
 
 struct ReportSettingsEditor: View {
     @Environment(\.managedObjectContext) var context
@@ -257,6 +212,97 @@ struct ReportSettingsEditor: View {
                     }
                 }
             }
+        }
+    }
+}
+
+/**
+ This View is a subview of DailyReportView that displays the topThree as defined within the report.
+ */
+struct TopFiveView: View {
+    let report: DailyReport
+    
+    var body: some View {
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(report.topFive, id: \.id) { target in
+                    NavigationLink(value: target) {
+                        VStack {
+                            Text(target.name?[0] ?? target.defaultName)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.primary)
+                            Image(target.image?.source.fileName ?? "\(target.type)")
+                                .resizable()
+                                .cornerRadius(12)
+                                .aspectRatio(contentMode: .fit)
+                                .scaledToFill()
+                                .frame(width: 368, height: 207)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+enum TargetTab: String, Identifiable, CaseIterable {
+    var id: Self { self }
+    case nebulae = "Nebulae"
+    case galaxies = "Galaxies"
+    case starClusters = "Star Clusters"
+}
+
+/**
+ This View is a TabView that uses a Segmented Picker to switch between tabs.
+ Each Tab displays the 3 topFive arrays defined in the report.
+ */
+struct TopTenTabView: View {
+    let report: DailyReport
+    
+    @Binding var tabSelection: TargetTab
+    
+    var body: some View {
+        VStack {
+            Picker("Tab", selection: $tabSelection) {
+                ForEach(TargetTab.allCases) { tab in
+                    Text(tab.rawValue)
+                }
+            }
+            .pickerStyle(.segmented)
+            .padding(.horizontal, 16)
+            
+            TabView(selection: $tabSelection) {
+                TopTenListView(reportList: report.topTenNebulae, targetTab: .nebulae)
+                TopTenListView(reportList: report.topTenGalaxies, targetTab: .galaxies)
+                TopTenListView(reportList: report.topTenStarClusters, targetTab: .starClusters)
+            }
+        }
+        .scrollDisabled(true)
+        .padding(.vertical)
+        .frame(minHeight: 500)
+    }
+}
+
+fileprivate struct TopTenListView: View {
+    let reportList: [DeepSkyTarget]
+    let targetTab: TargetTab
+    
+    var body: some View {
+        if !reportList.isEmpty {
+            List(reportList) { target in
+                NavigationLink(value: target) {
+                    Text(target.name?[0] ?? target.defaultName)
+                }
+            }.tag(targetTab).listStyle(.inset)
+        } else {
+            VStack {
+                Spacer()
+                Text("No \(targetTab.rawValue) :/")
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+            }.tag(targetTab)
         }
     }
 }
