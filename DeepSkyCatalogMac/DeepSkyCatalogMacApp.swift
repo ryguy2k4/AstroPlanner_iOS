@@ -17,5 +17,18 @@ struct DeepSkyCatalogMacApp: App {
                 .environment(\.managedObjectContext, persistenceManager.container.viewContext)
                 .environmentObject(networkManager)
         }
+        .commands {
+            Menus()
+        }
+        
+        WindowGroup(id: "settings") {
+            Mac_SettingsView()
+                .environment(\.managedObjectContext, persistenceManager.container.viewContext)
+                .environmentObject(networkManager)
+        }
+        
+        Window("About", id: "about") {
+            Mac_AboutView()
+        }
     }
 }

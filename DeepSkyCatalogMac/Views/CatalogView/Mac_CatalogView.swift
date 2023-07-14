@@ -98,6 +98,7 @@ struct Mac_CatalogView: View {
 //        }
         // Passing the date and location to use into all child views
         .environmentObject(catalogManager)
+        .navigationTitle("Master Catalog")
     }
 }
 

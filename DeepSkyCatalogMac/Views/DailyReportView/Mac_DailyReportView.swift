@@ -20,7 +20,6 @@ struct Mac_DailyReportView: View {
     @State var isDateModal = false
     @State var isLocationModal = false
     @State var isReportSettingsModal = false
-    @State var topTenTab: TargetTab = .nebulae
 
     var body: some View {
         NavigationStack {
@@ -29,11 +28,12 @@ struct Mac_DailyReportView: View {
                     ReportHeader()
                     // Report Section
                     Mac_TopFiveView(report: report)
-                    Mac_TopTenTabView(report: report, tabSelection: $topTenTab)
-                        .onAppear() {
-                            if report.topTenNebulae.isEmpty { topTenTab = .galaxies }
-                            else if report.topTenNebulae.isEmpty && report.topTenGalaxies.isEmpty { topTenTab = .starClusters }
-                        }
+                        .padding()
+                    HStack {
+                        Mac_TopTenListView(reportList: report.topTenNebulae, targetTab: .nebulae)
+                        Mac_TopTenListView(reportList: report.topTenGalaxies, targetTab: .galaxies)
+                        Mac_TopTenListView(reportList: report.topTenStarClusters, targetTab: .starClusters)
+                    }
                 } else {
                     ProgressView("Generating Report")
                         .padding(.top, 50)
@@ -133,6 +133,7 @@ struct Mac_DailyReportView: View {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
+        .navigationTitle("Daily Report")
         
     }
 }

@@ -14,7 +14,7 @@ struct Mac_TopFiveView: View {
     let report: DailyReport
     
     var body: some View {
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(report.topFive, id: \.id) { target in
                     VStack {
