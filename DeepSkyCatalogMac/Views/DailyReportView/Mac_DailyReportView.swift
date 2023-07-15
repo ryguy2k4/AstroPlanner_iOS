@@ -25,7 +25,6 @@ struct Mac_DailyReportView: View {
         NavigationStack {
             ScrollView {
                 if let report = report {
-                    ReportHeader()
                     // Report Section
                     Mac_TopFiveView(report: report)
                         .padding()
@@ -41,7 +40,6 @@ struct Mac_DailyReportView: View {
                 }
             }
 //            .toolbar {
-//                ToolbarLogo()
 //                ToolbarItem(placement: .navigationBarTrailing) {
 //                    Button {
 //                        isDateModal = true
@@ -133,40 +131,6 @@ struct Mac_DailyReportView: View {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .navigationTitle("Daily Report")
-        
-    }
-}
-
-fileprivate struct ReportHeader: View {
-    @EnvironmentObject var store: HomeViewModel
-    
-    var body: some View {
-        VStack {
-            Text("Daily Report")
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-            if store.viewingInterval == store.sunData.ATInterval {
-                let dateFormatter: DateFormatter = {
-                    let formatter = DateFormatter()
-                    formatter.timeZone = store.location.timezone
-                    formatter.dateStyle = .long
-                    formatter.timeStyle = .none
-                    return formatter
-                }()
-                Text("Night of \(dateFormatter.string(from: store.date)) | \(store.location.name)")
-                    .font(.subheadline)
-                    .fontWeight(.thin)
-            } else {
-                Text("\(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(store.location.name)")
-                    .font(.subheadline)
-                    .fontWeight(.thin)
-            }
-            let moonIllumination = Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone)
-            Text("Moon: \(moonIllumination.percent(sigFigs: 2)) illuminated")
-                .font(.subheadline)
-                .fontWeight(.thin)
-        }.padding(.bottom)
+        .navigationTitle("Daily Report | " + (store.viewingInterval == store.sunData.ATInterval ? "Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)" : "\(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(store.location.name)") + " | ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) illuminated")
     }
 }

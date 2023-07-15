@@ -269,22 +269,8 @@ private struct EventLabel: View {
     var image: String
     var body: some View {
         VStack(spacing: 3) {
-            let dateFormatter: DateFormatter = {
-                let formatter = DateFormatter()
-                formatter.timeZone = store.location.timezone
-                formatter.dateStyle = .short
-                formatter.timeStyle = .none
-                return formatter
-            }()
-            let timeFormatter: DateFormatter = {
-                let formatter = DateFormatter()
-                formatter.timeZone = store.location.timezone
-                formatter.dateStyle = .none
-                formatter.timeStyle = .short
-                return formatter
-            }()
-            Label(timeFormatter.string(from: store.date) , systemImage: image)
-            Text(dateFormatter.string(from: store.date))
+            Label(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: date) , systemImage: image)
+            Text(DateFormatter.shortDateOnly(timezone: store.location.timezone).string(from: date))
                 .minimumScaleFactor(0.8)
         }
         .frame(width: 110, height: 60)

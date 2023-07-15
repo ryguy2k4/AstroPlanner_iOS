@@ -151,14 +151,7 @@ fileprivate struct ReportHeader: View {
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             if store.viewingInterval == store.sunData.ATInterval {
-                let dateFormatter: DateFormatter = {
-                    let formatter = DateFormatter()
-                    formatter.timeZone = store.location.timezone
-                    formatter.dateStyle = .long
-                    formatter.timeStyle = .none
-                    return formatter
-                }()
-                Text("Night of \(dateFormatter.string(from: store.date)) | \(store.location.name)")
+                Text("Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)")
                     .font(.subheadline)
                     .fontWeight(.thin)
             } else {

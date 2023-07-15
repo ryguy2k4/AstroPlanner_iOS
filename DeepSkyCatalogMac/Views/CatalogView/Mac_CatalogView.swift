@@ -98,7 +98,7 @@ struct Mac_CatalogView: View {
 //        }
         // Passing the date and location to use into all child views
         .environmentObject(catalogManager)
-        .navigationTitle("Master Catalog")
+        .navigationTitle("Master Catalog | " + (store.viewingInterval == store.sunData.ATInterval ? "Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)" : "\(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(store.location.name)"))
     }
 }
 

@@ -14,18 +14,15 @@ struct Mac_SettingsView: View {
                 .tabItem {
                     Label("Saved Locations", systemImage: "location")
                 }
-                .navigationTitle("Saved Locations")
-            Text("Imaging Presets")
+            Mac_GearSettings()
                 .tabItem {
                     Label("Imaging Presets", systemImage: "camera.aperture")
                 }
-                .navigationTitle("Imaging Presets")
-            Text("Target Settings")
+            Mac_TargetSettingsView()
                 .tabItem {
                     Label("Target Settings", systemImage: "star")
                 }
-                .navigationTitle("Target Settings")
-            Text("Hidden Targets")
+            Mac_HiddenTargetsList()
                 .tabItem {
                     Label("Hidden Targets", systemImage: "eye.slash")
                 }

@@ -118,7 +118,17 @@ struct LocationEditor: View {
                             }
                         }
                     }
-                    if location == nil {
+                    if let location = location {
+                        Section {
+                            // delete button
+                            Button("Delete \(name)", role: .destructive) {
+                                context.delete(location)
+                                PersistenceManager.shared.saveData(context: context)
+                                dismiss()
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                        }
+                    } else {
                         Section {
                             // Button to autofill information for user's current location
                             Button("Get Current Location") {
@@ -141,17 +151,6 @@ struct LocationEditor: View {
                                 } else {
                                     showLocationError = true
                                 }
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                        }
-                    }
-                    if let location = location {
-                        Section {
-                            // delete button
-                            Button("Delete \(name)", role: .destructive) {
-                                context.delete(location)
-                                PersistenceManager.shared.saveData(context: context)
-                                dismiss()
                             }
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                         }

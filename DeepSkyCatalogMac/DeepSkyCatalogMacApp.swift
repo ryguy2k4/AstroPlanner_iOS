@@ -11,11 +11,13 @@ import SwiftUI
 struct DeepSkyCatalogMacApp: App {
     @StateObject private var persistenceManager = PersistenceManager.shared
     @ObservedObject private var networkManager = NetworkManager.shared
+    @ObservedObject private var locationManager = LocationManager()
     var body: some Scene {
         WindowGroup {
             Mac_HomeView()
                 .environment(\.managedObjectContext, persistenceManager.container.viewContext)
                 .environmentObject(networkManager)
+                .environmentObject(locationManager)
         }
         .commands {
             Menus()
@@ -25,6 +27,7 @@ struct DeepSkyCatalogMacApp: App {
             Mac_SettingsView()
                 .environment(\.managedObjectContext, persistenceManager.container.viewContext)
                 .environmentObject(networkManager)
+                .environmentObject(locationManager)
         }
         
         Window("About", id: "about") {
