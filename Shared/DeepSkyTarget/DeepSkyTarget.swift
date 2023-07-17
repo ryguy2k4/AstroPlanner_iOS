@@ -69,6 +69,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
     struct TargetImage: Hashable, Codable {
         var source: ImageSource
         var credit: String
+        var astrometry: AstrometryJobInfo.AstrometryCalibration?
         
         enum ImageSource: Hashable, Codable {
             case apod(id: String, copyrighted: Bool)
@@ -371,5 +372,18 @@ extension DeepSkyTarget: Codable {
         if let apparentMag = self.apparentMag {
             try container.encode(apparentMag, forKey: .apparentMag)
         }
+    }
+}
+
+struct AstrometryJobInfo: Codable, Hashable {
+    let calibration: AstrometryCalibration
+    
+    struct AstrometryCalibration: Codable, Hashable {
+        let ra: Double
+        let dec: Double
+        let radius: Double
+        let pixscale: Double
+        let orientation: Double
+        let parity: Double
     }
 }

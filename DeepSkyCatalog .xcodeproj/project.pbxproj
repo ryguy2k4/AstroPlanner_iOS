@@ -185,6 +185,9 @@
 		71C26463298F1D510057EC04 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* Moon.swift */; };
 		71C26465298F1D920057EC04 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C26464298F1D920057EC04 /* ZoomableScrollView.swift */; };
 		71C2646A298F1EF70057EC04 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String+Ext.swift */; };
+		71CC6A032A64CE0B003E29CB /* ImageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC6A022A64CE0B003E29CB /* ImageField.swift */; };
+		71CC6A052A64D1DF003E29CB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC6A042A64D1DF003E29CB /* APIService.swift */; };
+		71CC6A0A2A64EC78003E29CB /* URLRequest+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC6A092A64EC78003E29CB /* URLRequest+Ext.swift */; };
 		71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */; };
 		71D5FD28295FA1D10028FF8C /* EditAllFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */; };
 		71D77FA82921F99200709252 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double+Ext.swift */; };
@@ -331,6 +334,10 @@
 		71C26447298F1C640057EC04 /* DeepSkyCatalogMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogMac.entitlements; sourceTree = "<group>"; };
 		71C26464298F1D920057EC04 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
 		71C26466298F1E2D0057EC04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		71CC6A022A64CE0B003E29CB /* ImageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageField.swift; sourceTree = "<group>"; };
+		71CC6A042A64D1DF003E29CB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		71CC6A062A64DD7A003E29CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		71CC6A092A64EC78003E29CB /* URLRequest+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Ext.swift"; sourceTree = "<group>"; };
 		71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAllFiltersView.swift; sourceTree = "<group>"; };
 		71D77FA72921F99200709252 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
@@ -541,7 +548,10 @@
 		7181F002299BCFD1002841A8 /* TargetCurator */ = {
 			isa = PBXGroup;
 			children = (
+				71CC6A062A64DD7A003E29CB /* Info.plist */,
 				7181F003299BCFD1002841A8 /* TargetCuratorApp.swift */,
+				71CC6A042A64D1DF003E29CB /* APIService.swift */,
+				71CC6A092A64EC78003E29CB /* URLRequest+Ext.swift */,
 				7181F030299C105F002841A8 /* Views */,
 			);
 			path = TargetCurator;
@@ -552,6 +562,7 @@
 			children = (
 				7181F005299BCFD1002841A8 /* ContentView.swift */,
 				7181F027299BD0D0002841A8 /* TargetEditor.swift */,
+				71CC6A022A64CE0B003E29CB /* ImageField.swift */,
 				7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */,
 			);
 			path = Views;
@@ -1010,6 +1021,7 @@
 				7181F02C299BD226002841A8 /* CaseNameCodable.swift in Sources */,
 				7181F018299BCFF9002841A8 /* TargetCatalog.swift in Sources */,
 				7181F023299BD046002841A8 /* NetworkManager.swift in Sources */,
+				71CC6A0A2A64EC78003E29CB /* URLRequest+Ext.swift in Sources */,
 				7181F029299BD1E2002841A8 /* SunData.swift in Sources */,
 				7181F020299BD01E002841A8 /* Double+Ext.swift in Sources */,
 				71A6C8FC2A5F4E0D009F1C30 /* Sun.swift in Sources */,
@@ -1027,8 +1039,10 @@
 				7181F004299BCFD1002841A8 /* TargetCuratorApp.swift in Sources */,
 				7181F01E299BD019002841A8 /* Date+Ext.swift in Sources */,
 				7181F021299BD03F002841A8 /* DeepSkyCatalog.xcdatamodeld in Sources */,
+				71CC6A052A64D1DF003E29CB /* APIService.swift in Sources */,
 				7181F017299BCFF6002841A8 /* DeepSkyTargetList.swift in Sources */,
 				71DF8A822A62323C00923236 /* DateFormatter+Ext.swift in Sources */,
+				71CC6A032A64CE0B003E29CB /* ImageField.swift in Sources */,
 				711386FA29C3548C00081584 /* Filter.swift in Sources */,
 				7181F016299BCFF4002841A8 /* DeepSkyTarget.swift in Sources */,
 				7181F02F299BD32F002841A8 /* TargetIDSearchField.swift in Sources */,
@@ -1297,6 +1311,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TargetCurator/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1329,6 +1345,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TargetCurator/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1466,7 +1484,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;
@@ -1486,7 +1504,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1506,7 +1524,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;
@@ -1526,7 +1544,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1562,7 +1580,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalogMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1595,7 +1613,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalogMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

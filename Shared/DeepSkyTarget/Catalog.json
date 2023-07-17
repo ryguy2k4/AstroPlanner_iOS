@@ -94,6 +94,14 @@
     "type" : "globularStarCluster",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 28.376668705589097,
+        "ra" : 205.5621496557288,
+        "pixscale" : 1.540982854601685,
+        "orientation" : -92.602819381226908,
+        "parity" : 1,
+        "radius" : 0.30994188122483346
+      },
       "source" : {
         "local" : {
           "fileName" : "M3"

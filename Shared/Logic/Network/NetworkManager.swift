@@ -119,7 +119,7 @@ final class NetworkManager: ObservableObject {
      - Returns: The retrieved and decoded data
      - Throws: A FetchError
      */
-    private func fetchTask<T: Decodable>(from urlString: String) async throws -> T {
+    func fetchTask<T: Decodable>(from urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw FetchError.unableToMakeURL
         }
