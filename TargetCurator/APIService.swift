@@ -73,7 +73,7 @@ class APIService: ObservableObject {
         task.resume()
     }
     
-    func uploadImage(_ image: Data) {
+    func uploadImage(_ image: Data, ra: Double, dec: Double) {
         timer?.invalidate()
         guard let sessionKey = UserDefaults().string(forKey: Constants.sessionKey) else {
             login()
@@ -85,7 +85,7 @@ class APIService: ObservableObject {
         
         do {
             try request.setMultipartFormData([
-                "request-json": "{\"publicly_visible\": \"n\", \"allow_modifications\": \"n\", \"session\": \"\(sessionKey)\", \"allow_commercial_use\": \"n\"}",
+                "request-json": "{\"publicly_visible\": \"n\", \"allow_modifications\": \"n\", \"session\": \"\(sessionKey)\", \"allow_commercial_use\": \"n\", \"center_ra\": \"\(ra)\", \"center_dec\": \"\(dec)\", \"radius\": \"3\"}",
                 "file": image
             ], encoding: .utf8)
         } catch {

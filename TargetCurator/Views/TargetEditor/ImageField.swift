@@ -54,9 +54,10 @@ struct ImageField: View {
                             Text("APOD").tag(DeepSkyTarget.TargetImage.ImageSource.apod(id: id, copyrighted: copyrighted))
                             Text("Local").tag(DeepSkyTarget.TargetImage.ImageSource.local(fileName: id))
                         }
+                            .frame(width: 300)
                         TextField("ID:", text: $id)
                             .frame(width: 250)
-                            .padding(.trailing)
+                        Spacer()
                     }
                     HStack {
                         Toggle("Copyrighted:", isOn: $copyrighted)
@@ -97,17 +98,7 @@ struct ImageField: View {
                 HStack(spacing: 20) {
                     if let filename = image?.source.fileName, image?.astrometry == nil {
                         Button("Submit to Astrometry.net") {
-                            apiService.uploadImage(NSImage(imageLiteralResourceName: filename).tiffRepresentation!)
-                        }
-                        if apiService.status == .processing {
-                            ProgressView(apiService.status.rawValue)
-                                .frame(height: 10)
-
-                            if let subUrl = apiService.currentSubUrl() {
-                                Link(destination: subUrl) {
-                                    Label("Detailed Progress", systemImage: "arrow.up.forward.square")
-                                }
-                            }
+                            apiService.uploadImage(NSImage(imageLiteralResourceName: filename).tiffRepresentation!, ra: target.ra, dec: target.dec)
                         }
                         if let info = apiService.solvedJobInfo {
                             Text("Image Solved Successfully")
@@ -129,6 +120,18 @@ struct ImageField: View {
                             Spacer()
                         }
                     }
+                }
+                if apiService.status == .processing {
+                    ProgressView {
+                        if let subUrl = apiService.currentSubUrl() {
+                            Link(destination: subUrl) {
+                                Label("Processing", systemImage: "arrow.up.forward.square")
+                            }
+                        } else {
+                            Text("Processing")
+                        }
+                    }
+                    .frame(maxHeight: 10)
                 }
             }
         } header: {

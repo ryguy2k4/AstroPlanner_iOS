@@ -12,6 +12,7 @@ struct TargetIDSearchField: View {
     @State var isPopover: Bool = false
     var body: some View {
         TextField("", text: $searchText)
+            .frame(width: 300)
             .onChange(of: searchText) { newValue in
                 isPopover = true
             }

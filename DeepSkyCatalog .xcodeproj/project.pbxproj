@@ -189,6 +189,15 @@
 		71CC6A052A64D1DF003E29CB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC6A042A64D1DF003E29CB /* APIService.swift */; };
 		71CC6A0A2A64EC78003E29CB /* URLRequest+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC6A092A64EC78003E29CB /* URLRequest+Ext.swift */; };
 		71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */; };
+		71D4ECD02A660F1E009E7AFC /* SubTargetsField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECCF2A660F1D009E7AFC /* SubTargetsField.swift */; };
+		71D4ECD22A660F39009E7AFC /* NamesField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECD12A660F39009E7AFC /* NamesField.swift */; };
+		71D4ECD42A660F4D009E7AFC /* DesignationsField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECD32A660F4D009E7AFC /* DesignationsField.swift */; };
+		71D4ECD62A660F61009E7AFC /* DescriptionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECD52A660F61009E7AFC /* DescriptionField.swift */; };
+		71D4ECD82A660F73009E7AFC /* TypeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECD72A660F73009E7AFC /* TypeField.swift */; };
+		71D4ECDA2A660F8C009E7AFC /* ConstellationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECD92A660F8C009E7AFC /* ConstellationField.swift */; };
+		71D4ECDC2A660F9E009E7AFC /* CoordinatesField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECDB2A660F9E009E7AFC /* CoordinatesField.swift */; };
+		71D4ECDE2A660FB3009E7AFC /* SizeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECDD2A660FB3009E7AFC /* SizeField.swift */; };
+		71D4ECE02A660FCF009E7AFC /* MagnitudeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECDF2A660FCF009E7AFC /* MagnitudeField.swift */; };
 		71D5FD28295FA1D10028FF8C /* EditAllFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */; };
 		71D77FA82921F99200709252 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double+Ext.swift */; };
 		71DF8A6E2A61F59C00923236 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF8A6D2A61F59C00923236 /* Menus.swift */; };
@@ -339,6 +348,15 @@
 		71CC6A062A64DD7A003E29CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		71CC6A092A64EC78003E29CB /* URLRequest+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Ext.swift"; sourceTree = "<group>"; };
 		71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
+		71D4ECCF2A660F1D009E7AFC /* SubTargetsField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTargetsField.swift; sourceTree = "<group>"; };
+		71D4ECD12A660F39009E7AFC /* NamesField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesField.swift; sourceTree = "<group>"; };
+		71D4ECD32A660F4D009E7AFC /* DesignationsField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignationsField.swift; sourceTree = "<group>"; };
+		71D4ECD52A660F61009E7AFC /* DescriptionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionField.swift; sourceTree = "<group>"; };
+		71D4ECD72A660F73009E7AFC /* TypeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeField.swift; sourceTree = "<group>"; };
+		71D4ECD92A660F8C009E7AFC /* ConstellationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstellationField.swift; sourceTree = "<group>"; };
+		71D4ECDB2A660F9E009E7AFC /* CoordinatesField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatesField.swift; sourceTree = "<group>"; };
+		71D4ECDD2A660FB3009E7AFC /* SizeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeField.swift; sourceTree = "<group>"; };
+		71D4ECDF2A660FCF009E7AFC /* MagnitudeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnitudeField.swift; sourceTree = "<group>"; };
 		71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAllFiltersView.swift; sourceTree = "<group>"; };
 		71D77FA72921F99200709252 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		71DF8A6D2A61F59C00923236 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
@@ -561,9 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				7181F005299BCFD1002841A8 /* ContentView.swift */,
-				7181F027299BD0D0002841A8 /* TargetEditor.swift */,
-				71CC6A022A64CE0B003E29CB /* ImageField.swift */,
-				7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */,
+				71D4ECE12A661054009E7AFC /* TargetEditor */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -714,6 +730,25 @@
 				71C26440298F1C640057EC04 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		71D4ECE12A661054009E7AFC /* TargetEditor */ = {
+			isa = PBXGroup;
+			children = (
+				7181F027299BD0D0002841A8 /* TargetEditor.swift */,
+				71D4ECD12A660F39009E7AFC /* NamesField.swift */,
+				71D4ECD32A660F4D009E7AFC /* DesignationsField.swift */,
+				71D4ECCF2A660F1D009E7AFC /* SubTargetsField.swift */,
+				71D4ECDB2A660F9E009E7AFC /* CoordinatesField.swift */,
+				71D4ECD72A660F73009E7AFC /* TypeField.swift */,
+				71D4ECD92A660F8C009E7AFC /* ConstellationField.swift */,
+				71D4ECD52A660F61009E7AFC /* DescriptionField.swift */,
+				71CC6A022A64CE0B003E29CB /* ImageField.swift */,
+				71D4ECDD2A660FB3009E7AFC /* SizeField.swift */,
+				71D4ECDF2A660FCF009E7AFC /* MagnitudeField.swift */,
+				7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */,
+			);
+			path = TargetEditor;
 			sourceTree = "<group>";
 		};
 		71D77FA62921F97E00709252 /* Extensions */ = {
@@ -1020,29 +1055,38 @@
 				7181F019299BCFFB002841A8 /* TargetType.swift in Sources */,
 				7181F02C299BD226002841A8 /* CaseNameCodable.swift in Sources */,
 				7181F018299BCFF9002841A8 /* TargetCatalog.swift in Sources */,
+				71D4ECD62A660F61009E7AFC /* DescriptionField.swift in Sources */,
 				7181F023299BD046002841A8 /* NetworkManager.swift in Sources */,
 				71CC6A0A2A64EC78003E29CB /* URLRequest+Ext.swift in Sources */,
 				7181F029299BD1E2002841A8 /* SunData.swift in Sources */,
 				7181F020299BD01E002841A8 /* Double+Ext.swift in Sources */,
 				71A6C8FC2A5F4E0D009F1C30 /* Sun.swift in Sources */,
 				7181F02D299BD22C002841A8 /* PlaceValue.swift in Sources */,
+				71D4ECDC2A660F9E009E7AFC /* CoordinatesField.swift in Sources */,
+				71D4ECDE2A660FB3009E7AFC /* SizeField.swift in Sources */,
 				7181F024299BD049002841A8 /* FetchError.swift in Sources */,
 				7181F028299BD0D0002841A8 /* TargetEditor.swift in Sources */,
 				71694BB829C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				718C11F829C919550069ECD5 /* Location.swift in Sources */,
+				71D4ECD22A660F39009E7AFC /* NamesField.swift in Sources */,
 				7181F006299BCFD1002841A8 /* ContentView.swift in Sources */,
 				7181F022299BD041002841A8 /* PersistenceManager.swift in Sources */,
+				71D4ECDA2A660F8C009E7AFC /* ConstellationField.swift in Sources */,
 				7164CEEE29BE8FB5000A154A /* Environment+Ext.swift in Sources */,
 				7181F01C299BD001002841A8 /* FilterMethods.swift in Sources */,
 				7181F01F299BD01B002841A8 /* String+Ext.swift in Sources */,
 				7181F01A299BCFFD002841A8 /* Constellation.swift in Sources */,
 				7181F004299BCFD1002841A8 /* TargetCuratorApp.swift in Sources */,
 				7181F01E299BD019002841A8 /* Date+Ext.swift in Sources */,
+				71D4ECD42A660F4D009E7AFC /* DesignationsField.swift in Sources */,
 				7181F021299BD03F002841A8 /* DeepSkyCatalog.xcdatamodeld in Sources */,
+				71D4ECD02A660F1E009E7AFC /* SubTargetsField.swift in Sources */,
 				71CC6A052A64D1DF003E29CB /* APIService.swift in Sources */,
 				7181F017299BCFF6002841A8 /* DeepSkyTargetList.swift in Sources */,
+				71D4ECE02A660FCF009E7AFC /* MagnitudeField.swift in Sources */,
 				71DF8A822A62323C00923236 /* DateFormatter+Ext.swift in Sources */,
 				71CC6A032A64CE0B003E29CB /* ImageField.swift in Sources */,
+				71D4ECD82A660F73009E7AFC /* TypeField.swift in Sources */,
 				711386FA29C3548C00081584 /* Filter.swift in Sources */,
 				7181F016299BCFF4002841A8 /* DeepSkyTarget.swift in Sources */,
 				7181F02F299BD32F002841A8 /* TargetIDSearchField.swift in Sources */,

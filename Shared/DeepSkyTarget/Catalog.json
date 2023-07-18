@@ -219,6 +219,14 @@
     "type" : "openStarCluster",
     "image" : {
       "credit" : "AURA, NOAO, NSF",
+      "astrometry" : {
+        "dec" : -32.240550403522029,
+        "ra" : 265.06337663655364,
+        "pixscale" : 6.7629961959887313,
+        "orientation" : 177.95061408428182,
+        "parity" : 1,
+        "radius" : 0.59192987642463535
+      },
       "source" : {
         "apod" : {
           "id" : "990106",
@@ -592,6 +600,14 @@
     "type" : "HIIRegion",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : -13.804037645247256,
+        "ra" : 274.67690168494181,
+        "pixscale" : 4.2416114219254855,
+        "orientation" : 158.40927702148164,
+        "parity" : 1,
+        "radius" : 0.69213897881945374
+      },
       "source" : {
         "local" : {
           "fileName" : "eaglenebula"
@@ -1150,6 +1166,14 @@
     "type" : "barredSpiralGalaxy",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 41.29357846612416,
+        "ra" : 10.736770539075309,
+        "pixscale" : 12.584088669122625,
+        "orientation" : 95.927956575644956,
+        "parity" : 1,
+        "radius" : 2.1484144086393786
+      },
       "source" : {
         "local" : {
           "fileName" : "andromeda"
@@ -1363,6 +1387,14 @@
     "type" : "openStarCluster",
     "image" : {
       "credit" : "NOAO, AURA, NSF",
+      "astrometry" : {
+        "dec" : 35.863132291002152,
+        "ra" : 82.180397110109681,
+        "pixscale" : 4.3738872511602542,
+        "orientation" : 177.7081020308668,
+        "parity" : 1,
+        "radius" : 0.46913723036195237
+      },
       "source" : {
         "apod" : {
           "id" : "030107",
@@ -1403,6 +1435,14 @@
     "type" : "openStarCluster",
     "image" : {
       "credit" : "Heidi Schweiker, WIYN, NOAO, AURA, NSF",
+      "astrometry" : {
+        "dec" : 48.479665938715513,
+        "ra" : 322.9553001504915,
+        "pixscale" : 3.1033328955290469,
+        "orientation" : -179.20531603589203,
+        "parity" : 1,
+        "radius" : 0.4662177449860046
+      },
       "source" : {
         "apod" : {
           "id" : "090412",
@@ -1478,6 +1518,14 @@
     "type" : "HIIRegion",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : -5.4995915740346222,
+        "ra" : 83.743212178051365,
+        "pixscale" : 5.4213739252908857,
+        "orientation" : 175.90077230458991,
+        "parity" : 1,
+        "radius" : 0.92890816085500494
+      },
       "source" : {
         "local" : {
           "fileName" : "orionnebula"
@@ -1565,6 +1613,14 @@
     "type" : "openStarCluster",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 24.129603668716545,
+        "ra" : 56.682306021308435,
+        "pixscale" : 14.626774313890159,
+        "orientation" : 95.791431192411281,
+        "parity" : 1,
+        "radius" : 2.0509060749088559
+      },
       "source" : {
         "local" : {
           "fileName" : "pleiades"
@@ -1729,6 +1785,14 @@
     "type" : "peculiarGalaxy",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 47.209768564367685,
+        "ra" : 202.47220952698731,
+        "pixscale" : 1.7429960277226366,
+        "orientation" : -89.03532739206149,
+        "parity" : 1,
+        "radius" : 0.29335798839506727
+      },
       "source" : {
         "local" : {
           "fileName" : "whirlpoolgalaxy"
@@ -2732,6 +2796,14 @@
     "type" : "spiralGalaxy",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 69.080629928267939,
+        "ra" : 148.89925135150725,
+        "pixscale" : 1.9788459944800327,
+        "orientation" : -85.270286905759448,
+        "parity" : 1,
+        "radius" : 0.29703041438218275
+      },
       "source" : {
         "local" : {
           "fileName" : "M81"
@@ -2771,6 +2843,14 @@
     "type" : "spiralGalaxy",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 69.682686635912219,
+        "ra" : 148.98075477347868,
+        "pixscale" : 1.5358750819495106,
+        "orientation" : -85.214793530922222,
+        "parity" : 1,
+        "radius" : 0.21872368707742301
+      },
       "source" : {
         "local" : {
           "fileName" : "M82"
@@ -2824,6 +2904,14 @@
     "type" : "galaxyGroup",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 69.371341227251264,
+        "ra" : 148.93383986992504,
+        "pixscale" : 3.6655379849371634,
+        "orientation" : -85.199961813213577,
+        "parity" : 1,
+        "radius" : 0.61101887093715446
+      },
       "source" : {
         "local" : {
           "fileName" : "M81+M82"
@@ -3488,6 +3576,14 @@
     "type" : "spiralGalaxy",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 54.348499912324705,
+        "ra" : 210.80256034489449,
+        "pixscale" : 1.5352690210282429,
+        "orientation" : 75.194661765867835,
+        "parity" : 1,
+        "radius" : 0.26509448043268091
+      },
       "source" : {
         "local" : {
           "fileName" : "pinwheelgalaxy"
@@ -3799,6 +3895,14 @@
     "type" : "dwarfSpheroidalGalaxy",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 41.678983082888415,
+        "ra" : 10.071650827783586,
+        "pixscale" : 3.4827695260972211,
+        "orientation" : 95.771783283808745,
+        "parity" : 1,
+        "radius" : 0.57605918329518335
+      },
       "source" : {
         "local" : {
           "fileName" : "M110"
@@ -4456,6 +4560,14 @@
     "type" : "HIIRegion",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 44.050677659010724,
+        "ra" : 314.72699007974512,
+        "pixscale" : 10.572571619759257,
+        "orientation" : 2.9923367254815219,
+        "parity" : 1,
+        "radius" : 1.5851268814947601
+      },
       "source" : {
         "local" : {
           "fileName" : "northamericannebula"
@@ -4964,6 +5076,14 @@
     "type" : "supernovaRemnant",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 31.434773521455472,
+        "ra" : 313.95659093269643,
+        "pixscale" : 8.5928057191884299,
+        "orientation" : 123.03029058849104,
+        "parity" : 1,
+        "radius" : 1.3688567168213488
+      },
       "source" : {
         "local" : {
           "fileName" : "eastveil"
@@ -5003,6 +5123,14 @@
     "type" : "supernovaRemnant",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 30.641659646583527,
+        "ra" : 311.5211909546743,
+        "pixscale" : 7.6084515989983936,
+        "orientation" : 121.478383481705,
+        "parity" : 1,
+        "radius" : 1.0933018470455613
+      },
       "source" : {
         "local" : {
           "fileName" : "witchbroom"
@@ -7826,6 +7954,14 @@
     "type" : "mixedDiffuseNebulae",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : -5.3760925086725617,
+        "ra" : 83.788684177040864,
+        "pixscale" : 8.7215657811470404,
+        "orientation" : 175.9096458139206,
+        "parity" : 1,
+        "radius" : 1.4963987680234003
+      },
       "source" : {
         "local" : {
           "fileName" : "orionnebula+runningman"
@@ -7986,6 +8122,14 @@
     "type" : "reflectionNebula",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : -4.7770546580112887,
+        "ra" : 83.838404189665454,
+        "pixscale" : 2.4440039079488391,
+        "orientation" : 175.91669686343994,
+        "parity" : 1,
+        "radius" : 0.64131938914595721
+      },
       "source" : {
         "local" : {
           "fileName" : "runningmannebula"
@@ -8134,6 +8278,14 @@
     "type" : "HIIRegion",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 9.8186512544633047,
+        "ra" : 100.23745171090134,
+        "pixscale" : 7.9327224399782938,
+        "orientation" : -6.4092173515264603,
+        "parity" : 1,
+        "radius" : 1.1601690273161969
+      },
       "source" : {
         "local" : {
           "fileName" : "NGC2264"
@@ -8831,6 +8983,14 @@
     "type" : "HIIRegion",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 43.895702958012855,
+        "ra" : 314.09125604445154,
+        "pixscale" : 13.199906314043997,
+        "orientation" : 2.4853707601644692,
+        "parity" : 1,
+        "radius" : 2.1142253425565483
+      },
       "source" : {
         "local" : {
           "fileName" : "northamerican+pelican"
@@ -8865,6 +9025,14 @@
     "type" : "HIIRegion",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 43.961842750966177,
+        "ra" : 312.79130236625355,
+        "pixscale" : 6.7329089201931529,
+        "orientation" : -178.20891433998136,
+        "parity" : 1,
+        "radius" : 1.0828135988458518
+      },
       "source" : {
         "local" : {
           "fileName" : "pelicannebula"
@@ -8931,6 +9099,14 @@
     "type" : "supernovaRemnant",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 30.946735252329297,
+        "ra" : 312.64860919924314,
+        "pixscale" : 17.754754649448742,
+        "orientation" : 122.9617806657603,
+        "parity" : 1,
+        "radius" : 2.6526709959297055
+      },
       "source" : {
         "local" : {
           "fileName" : "cygnusloop"
@@ -8971,6 +9147,14 @@
     "type" : "supernovaRemnant",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 31.640451214065507,
+        "ra" : 312.10800045742519,
+        "pixscale" : 7.8126552128757289,
+        "orientation" : 121.98660959846273,
+        "parity" : 1,
+        "radius" : 1.0912633482624221
+      },
       "source" : {
         "local" : {
           "fileName" : "flemingstriangularwisp"
@@ -9002,6 +9186,14 @@
     "type" : "supernovaRemnant",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 31.069551145567964,
+        "ra" : 314.14035693328583,
+        "pixscale" : 3.0052941489076379,
+        "orientation" : -57.103792207981158,
+        "parity" : 1,
+        "radius" : 0.46616456089555292
+      },
       "source" : {
         "local" : {
           "fileName" : "batnebula"
@@ -9111,6 +9303,14 @@
     "type" : "HIIRegion",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 57.424237849931217,
+        "ra" : 324.76291944268996,
+        "pixscale" : 13.235776090670429,
+        "orientation" : 89.256713354291065,
+        "parity" : 1,
+        "radius" : 1.9225240392012626
+      },
       "source" : {
         "local" : {
           "fileName" : "IC1396"
@@ -9240,6 +9440,14 @@
     "type" : "HIIRegion",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 61.433501762581024,
+        "ra" : 38.39857934025639,
+        "pixscale" : 10.530241874625581,
+        "orientation" : -70.338891045682558,
+        "parity" : 1,
+        "radius" : 1.823244497089197
+      },
       "source" : {
         "local" : {
           "fileName" : "heartnebula"
@@ -9705,6 +9913,14 @@
     "type" : "HIIRegion",
     "image" : {
       "credit" : "Ryan Sponzilli",
+      "astrometry" : {
+        "dec" : 60.389244377250577,
+        "ra" : 43.741095973582397,
+        "pixscale" : 11.809865642463052,
+        "orientation" : 20.124031920613373,
+        "parity" : 1,
+        "radius" : 1.9271139038141072
+      },
       "source" : {
         "local" : {
           "fileName" : "soulnebula"
