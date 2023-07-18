@@ -425,9 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9672921EF20008C7614 /* CatalogView.swift */,
-				71BCF9692921EF20008C7614 /* DetailView.swift */,
 				71FE1AA829D79517000E2B2B /* BasicCatalogView.swift */,
-				71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */,
 				7113870229C3571400081584 /* FilterButtonMenuView.swift */,
 				71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */,
 			);
@@ -452,6 +450,17 @@
 				713568EB2A60C696004196AE /* Mac_DetailView.swift */,
 			);
 			path = CatalogView;
+			sourceTree = "<group>";
+		};
+		712E99942A675ACC00C354CA /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF9692921EF20008C7614 /* DetailView.swift */,
+				71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */,
+				71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */,
+				71C26464298F1D920057EC04 /* ZoomableScrollView.swift */,
+			);
+			path = DetailView;
 			sourceTree = "<group>";
 		};
 		713B49B629541216008EFC81 /* SettingsView */ = {
@@ -594,8 +603,6 @@
 				719B26D6295167A100E1165A /* NumberPicker.swift */,
 				710BF587294BF18900A72073 /* ConfigSection.swift */,
 				71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */,
-				71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */,
-				71C26464298F1D920057EC04 /* ZoomableScrollView.swift */,
 				71462F3229A2E6A100F2914C /* ToolbarLogo.swift */,
 			);
 			path = "Reusable Views";
@@ -657,6 +664,7 @@
 				71950E8729D139900075081B /* NoLocationsView.swift */,
 				71950E8929D139BE0075081B /* DataLoadingViews.swift */,
 				716A19BF298F5CD70025DB67 /* DailyReportView */,
+				712E99942A675ACC00C354CA /* DetailView */,
 				71016881295561F600E0B028 /* CatalogView */,
 				716A19C0298F5D110025DB67 /* JournalView */,
 				713B49B629541216008EFC81 /* SettingsView */,

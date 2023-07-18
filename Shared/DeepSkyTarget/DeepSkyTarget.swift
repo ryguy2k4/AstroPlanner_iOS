@@ -70,6 +70,8 @@ struct DeepSkyTarget: Identifiable, Hashable {
         var source: ImageSource
         var credit: String
         var astrometry: AstrometryJobInfo.AstrometryCalibration?
+        var width: Double
+        var height: Double
         
         enum ImageSource: Hashable, Codable {
             case apod(id: String, copyrighted: Bool)

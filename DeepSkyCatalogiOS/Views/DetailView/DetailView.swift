@@ -12,6 +12,7 @@ struct DetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
     @EnvironmentObject var store: HomeViewModel
     
     @State var showCoordinateDecimalFormat: Bool = false
@@ -32,11 +33,24 @@ struct DetailView: View {
                                     .padding()
                             }
                         } label: {
-                            Image(filename)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 200)
-                                .cornerRadius(12)
+                            ZStack {
+                                Image(filename)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 200)
+                                    .cornerRadius(12)
+                                if let pixelScale = image.astrometry?.pixscale {
+                                    let correctedPixelScale = pixelScale * (Double(image.height)/200.0)
+                                    let preset = presetList.first!
+                                    let width = preset.fovLength * 60 / correctedPixelScale
+                                    let height = preset.fovWidth * 60 / correctedPixelScale
+                                    Rectangle()
+                                        .stroke(lineWidth: 2)
+                                        .fill(.opacity(100))
+                                        .frame(width: width, height: height)
+                                        .foregroundColor(.red)
+                                }
+                            }
                         }
                         Text(image.credit)
                             .fontWeight(.light)

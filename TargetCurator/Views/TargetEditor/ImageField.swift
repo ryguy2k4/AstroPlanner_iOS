@@ -57,8 +57,20 @@ struct ImageField: View {
                             .frame(width: 300)
                         TextField("ID:", text: $id)
                             .frame(width: 250)
+                        Button("Extract Image Size") {
+                            let imageData = try! Data(contentsOf: AssetExtractor.createLocalUrl(forImageNamed: unwrappedImage.wrappedValue.source.fileName!)!)
+                            let metadata = ImageMetadata(data: imageData)
+                            image!.width = Double(metadata!.width!)
+                            image!.height = Double(metadata!.height!)
+                            
+                        }
+                        TextField("Width", value: unwrappedImage.width, format: .number)
+                            .frame(width: 60)
+                        TextField("Height", value: unwrappedImage.height, format: .number)
+                            .frame(width: 60)
                         Spacer()
                     }
+                    
                     HStack {
                         Toggle("Copyrighted:", isOn: $copyrighted)
                         TextField("Credit:", text: unwrappedImage.credit)
@@ -92,7 +104,7 @@ struct ImageField: View {
                     }
                 } else {
                     Button("Add Image") {
-                        image = DeepSkyTarget.TargetImage(source: .apod(id: "APOD", copyrighted: false), credit: "CREDIT")
+                        image = DeepSkyTarget.TargetImage(source: .apod(id: "APOD", copyrighted: false), credit: "CREDIT", width: 0, height: 0)
                     }
                 }
                 HStack(spacing: 20) {
@@ -148,4 +160,48 @@ struct ImageField: View {
             .padding(.top)
         }
     }
+}
+
+struct ImageMetadata {
+
+    var imageProperties : [CFString: Any]
+
+    init?(data: Data) {
+        let options = [kCGImageSourceShouldCache: kCFBooleanFalse]
+        if let imageSource = CGImageSourceCreateWithData(data as CFData, options as CFDictionary),
+            let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? [CFString: Any] {
+            self.imageProperties = imageProperties
+        } else {
+            return nil
+        }
+    }
+
+    var dpi : Int? { imageProperties[kCGImagePropertyDPIWidth] as? Int }
+    var width : Int? { imageProperties[kCGImagePropertyPixelWidth] as? Int }
+    var height : Int? { imageProperties[kCGImagePropertyPixelHeight] as? Int }
+
+}
+
+//It basically just gets image from assets, saves its data to disk and return file URL.
+class AssetExtractor {
+
+    static func createLocalUrl(forImageNamed name: String) -> URL? {
+
+        let fileManager = FileManager.default
+        let cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let url = cacheDirectory.appendingPathComponent("\(name).png")
+
+        guard fileManager.fileExists(atPath: url.path) else {
+            guard
+                let image = NSImage(named: name),
+                let data = image.tiffRepresentation
+            else { return nil }
+
+            fileManager.createFile(atPath: url.path, contents: data, attributes: nil)
+            return url
+        }
+
+        return url
+    }
+
 }
