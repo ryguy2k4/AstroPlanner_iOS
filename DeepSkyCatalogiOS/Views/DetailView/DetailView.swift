@@ -12,7 +12,6 @@ struct DetailView: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
     @EnvironmentObject var store: HomeViewModel
     
     @State var showCoordinateDecimalFormat: Bool = false
@@ -21,36 +20,17 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
-                
                 // Target Image
                 if let image = target.image, let filename = image.source.fileName {
                     VStack {
                         NavigationLink {
-                            ZoomableScrollView {
-                                Image(filename)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding()
-                            }
+                            ImageViewer(image: image, filename: filename)
                         } label: {
-                            ZStack {
-                                Image(filename)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 200)
-                                    .cornerRadius(12)
-                                if let pixelScale = image.astrometry?.pixscale {
-                                    let correctedPixelScale = pixelScale * (Double(image.height)/200.0)
-                                    let preset = presetList.first!
-                                    let width = preset.fovLength * 60 / correctedPixelScale
-                                    let height = preset.fovWidth * 60 / correctedPixelScale
-                                    Rectangle()
-                                        .stroke(lineWidth: 2)
-                                        .fill(.opacity(100))
-                                        .frame(width: width, height: height)
-                                        .foregroundColor(.red)
-                                }
-                            }
+                            Image(filename)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 200)
+                                .cornerRadius(12)
                         }
                         Text(image.credit)
                             .fontWeight(.light)

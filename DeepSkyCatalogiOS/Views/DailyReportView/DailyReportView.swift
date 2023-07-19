@@ -77,6 +77,7 @@ struct DailyReportView: View {
             .sheet(isPresented: $isDateModal){
                 ViewingIntervalModal()
                     .environmentObject(store)
+                    .environment(\.timeZone, store.location.timezone)
                     .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
             }
             .sheet(isPresented: $isLocationModal){

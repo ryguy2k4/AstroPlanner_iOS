@@ -23,7 +23,9 @@ struct BasicDetailView: View {
                 // Target Image
                 if let image = target.image, let filename = image.source.fileName {
                     VStack {
-                        NavigationLink(destination: ImageViewer(image: filename)) {
+                        NavigationLink {
+                            ImageViewer(image: image, filename: filename)
+                        } label: {
                             Image(filename)
                                 .resizable()
                                 .scaledToFit()
