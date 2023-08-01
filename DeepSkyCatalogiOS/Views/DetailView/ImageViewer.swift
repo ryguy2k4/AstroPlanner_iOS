@@ -20,17 +20,17 @@ struct ImageViewer: View {
                     .frame(width: 300)
                     .padding()
                 
-                if let pixelScale = image.astrometry?.pixscale {
-                    let correctedPixelScale = pixelScale * (Double(image.width)/300.0)
-                    let preset = presetList.first!
-                    let width = preset.fovLength * 60 / correctedPixelScale
-                    let height = preset.fovWidth * 60 / correctedPixelScale
-                    Rectangle()
-                        .stroke(lineWidth: 2)
-                        .fill(.opacity(100))
-                        .frame(width: width, height: height)
-                        .foregroundColor(.red)
-                }
+//                if let pixelScale = image.astrometry?.pixscale {
+//                    let correctedPixelScale = pixelScale * (Double(image.width)/300.0)
+//                    let preset = presetList.first!
+//                    let width = preset.fovLength * 60 / correctedPixelScale
+//                    let height = preset.fovWidth * 60 / correctedPixelScale
+//                    Rectangle()
+//                        .stroke(lineWidth: 2)
+//                        .fill(.opacity(100))
+//                        .frame(width: width, height: height)
+//                        .foregroundColor(.red)
+//                }
             }
         }
     }

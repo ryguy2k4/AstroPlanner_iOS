@@ -12,15 +12,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Crab_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "200906",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 807,
-      "credit" : "NASA, ESA, Hubble"
+      }
     },
     "constellation" : "taurus",
     "subTargets" : [
@@ -58,15 +56,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_2",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "190404",
           "copyrighted" : false
         }
-      },
-      "width" : 1024,
-      "height" : 1030,
-      "credit" : "NASA, ESA, Hubble"
+      }
     },
     "constellation" : "aquarius",
     "subTargets" : [
@@ -97,7 +93,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_3",
     "type" : "globularStarCluster",
     "image" : {
-      "height" : 1024,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 28.376668705589097,
         "ra" : 205.5621496557288,
@@ -110,9 +106,7 @@
         "local" : {
           "fileName" : "M3"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "canesVenatici",
     "subTargets" : [
@@ -143,15 +137,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_4",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "T2KA, KPNO 0.9-m Telescope, NOAO, AURA, NSF",
       "source" : {
         "apod" : {
           "id" : "000523",
           "copyrighted" : false
         }
-      },
-      "width" : 600,
-      "height" : 437,
-      "credit" : "T2KA, KPNO 0.9-m Telescope, NOAO, AURA, NSF"
+      }
     },
     "constellation" : "scorpius",
     "subTargets" : [
@@ -186,15 +178,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_5",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "HST, ESA, NASA",
       "source" : {
         "apod" : {
           "id" : "171104",
           "copyrighted" : false
         }
-      },
-      "width" : 1024,
-      "height" : 791,
-      "credit" : "HST, ESA, NASA"
+      }
     },
     "constellation" : "serpens",
     "subTargets" : [
@@ -228,7 +218,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Butterfly_Cluster",
     "type" : "openStarCluster",
     "image" : {
-      "height" : 390,
+      "credit" : "AURA, NOAO, NSF",
       "astrometry" : {
         "dec" : -32.240550403522029,
         "ra" : 265.06337663655364,
@@ -242,9 +232,7 @@
           "id" : "990106",
           "copyrighted" : false
         }
-      },
-      "width" : 495,
-      "credit" : "AURA, NOAO, NSF"
+      }
     },
     "constellation" : "scorpius",
     "subTargets" : [
@@ -362,15 +350,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_9",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "120323",
           "copyrighted" : false
         }
-      },
-      "width" : 800,
-      "height" : 800,
-      "credit" : "NASA, ESA, Hubble"
+      }
     },
     "constellation" : "ophiuchus",
     "subTargets" : [
@@ -509,14 +495,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_13",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "NASA, ESA, and the Hubble Heritage Team",
       "source" : {
         "local" : {
           "fileName" : "M13"
         }
-      },
-      "width" : 800,
-      "height" : 800,
-      "credit" : "NASA, ESA, and the Hubble Heritage Team"
+      }
     },
     "constellation" : "hercules",
     "subTargets" : [
@@ -578,15 +562,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_15",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "110503",
           "copyrighted" : false
         }
-      },
-      "width" : 900,
-      "height" : 750,
-      "credit" : "NASA, ESA, Hubble"
+      }
     },
     "constellation" : "pegasus",
     "subTargets" : [
@@ -617,7 +599,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Eagle_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 576,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : -13.804037645247256,
         "ra" : 274.67690168494181,
@@ -630,9 +612,7 @@
         "local" : {
           "fileName" : "eaglenebula"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "serpens",
     "subTargets" : [
@@ -754,15 +734,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_19",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "N. A. Sharp, AURA, NOAO, NSF",
       "source" : {
         "apod" : {
           "id" : "000719",
           "copyrighted" : false
         }
-      },
-      "width" : 625,
-      "height" : 447,
-      "credit" : "N. A. Sharp, AURA, NOAO, NSF"
+      }
     },
     "constellation" : "ophiuchus",
     "subTargets" : [
@@ -793,14 +771,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Trifid_Nebula",
     "type" : "mixedDiffuseNebulae",
     "image" : {
+      "credit" : "NOAO",
       "source" : {
         "local" : {
           "fileName" : "trifidnebula"
         }
-      },
-      "width" : 600,
-      "height" : 600,
-      "credit" : "NOAO"
+      }
     },
     "constellation" : "sagittarius",
     "subTargets" : [
@@ -1189,7 +1165,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Andromeda_Galaxy",
     "type" : "barredSpiralGalaxy",
     "image" : {
-      "height" : 680,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 41.29357846612416,
         "ra" : 10.736770539075309,
@@ -1202,9 +1178,7 @@
         "local" : {
           "fileName" : "andromeda"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "andromeda",
     "subTargets" : [
@@ -1238,15 +1212,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Triangulum_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, M. Durbin, J. Dalcanton, and B. F. Williams",
       "source" : {
         "apod" : {
           "id" : "190223",
           "copyrighted" : false
         }
-      },
-      "width" : 1280,
-      "height" : 720,
-      "credit" : "NASA, ESA, M. Durbin, J. Dalcanton, and B. F. Williams"
+      }
     },
     "constellation" : "triangulum",
     "subTargets" : [
@@ -1414,7 +1386,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_38",
     "type" : "openStarCluster",
     "image" : {
-      "height" : 417,
+      "credit" : "NOAO, AURA, NSF",
       "astrometry" : {
         "dec" : 35.863132291002152,
         "ra" : 82.180397110109681,
@@ -1428,9 +1400,7 @@
           "id" : "030107",
           "copyrighted" : false
         }
-      },
-      "width" : 650,
-      "credit" : "NOAO, AURA, NSF"
+      }
     },
     "constellation" : "auriga",
     "subTargets" : [
@@ -1464,7 +1434,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_39",
     "type" : "openStarCluster",
     "image" : {
-      "height" : 600,
+      "credit" : "Heidi Schweiker, WIYN, NOAO, AURA, NSF",
       "astrometry" : {
         "dec" : 48.479665938715513,
         "ra" : 322.9553001504915,
@@ -1478,9 +1448,7 @@
           "id" : "090412",
           "copyrighted" : false
         }
-      },
-      "width" : 900,
-      "credit" : "Heidi Schweiker, WIYN, NOAO, AURA, NSF"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -1549,7 +1517,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Orion_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 688,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : -5.4995915740346222,
         "ra" : 83.743212178051365,
@@ -1562,9 +1530,7 @@
         "local" : {
           "fileName" : "orionnebula"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "orion",
     "subTargets" : [
@@ -1646,7 +1612,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Pleiades",
     "type" : "openStarCluster",
     "image" : {
-      "height" : 840,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 24.129603668716545,
         "ra" : 56.682306021308435,
@@ -1659,9 +1625,7 @@
         "local" : {
           "fileName" : "pleiades"
         }
-      },
-      "width" : 560,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "taurus",
     "subTargets" : [
@@ -1820,7 +1784,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Whirlpool_Galaxy",
     "type" : "peculiarGalaxy",
     "image" : {
-      "height" : 648,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 47.209768564367685,
         "ra" : 202.47220952698731,
@@ -1833,9 +1797,7 @@
         "local" : {
           "fileName" : "whirlpoolgalaxy"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "canesVenatici",
     "subTargets" : [
@@ -1915,15 +1877,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_53",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "210207",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 988,
-      "credit" : "NASA, ESA, Hubble"
+      }
     },
     "constellation" : "comaBerenices",
     "subTargets" : [
@@ -2051,15 +2011,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Ring_Nebula",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "NASA, ESA, Hubble Legacy Archive, Judy Schmidt",
       "source" : {
         "apod" : {
           "id" : "210817",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 925,
-      "credit" : "NASA, ESA, Hubble Legacy Archive, Judy Schmidt"
+      }
     },
     "constellation" : "lyra",
     "subTargets" : [
@@ -2150,15 +2108,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_61",
     "type" : "barredSpiralGalaxy",
     "image" : {
+      "credit" : "ESA\/Hubble, NASA",
       "source" : {
         "apod" : {
           "id" : "140520",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 851,
-      "credit" : "ESA\/Hubble, NASA"
+      }
     },
     "constellation" : "virgo",
     "subTargets" : [
@@ -2263,15 +2219,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Black_Eye_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, Hubble, PHANGS-HST Team, Judy Schmidt",
       "source" : {
         "apod" : {
           "id" : "210329",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 829,
-      "credit" : "NASA, ESA, Hubble, PHANGS-HST Team, Judy Schmidt"
+      }
     },
     "constellation" : "comaBerenices",
     "subTargets" : [
@@ -2307,15 +2261,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_65",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "ESA\/Hubble & NASA and S. Smartt (Queen's University Belfast)",
       "source" : {
         "apod" : {
           "id" : "151130",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 723,
-      "credit" : "ESA\/Hubble & NASA and S. Smartt (Queen's University Belfast)"
+      }
     },
     "constellation" : "leo",
     "subTargets" : [
@@ -2556,15 +2508,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_72",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "NASA, ESA, Hubble, HPOW",
       "source" : {
         "apod" : {
           "id" : "120819",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 735,
-      "credit" : "NASA, ESA, Hubble, HPOW"
+      }
     },
     "constellation" : "aquarius",
     "subTargets" : [
@@ -2595,14 +2545,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_74",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "NASA, ESA and the GMOS Commissioning Team (Gemini Observatory)",
       "source" : {
         "local" : {
           "fileName" : "M74"
         }
-      },
-      "width" : 637,
-      "height" : 600,
-      "credit" : "NASA, ESA and the GMOS Commissioning Team (Gemini Observatory)"
+      }
     },
     "constellation" : "pisces",
     "subTargets" : [
@@ -2706,15 +2654,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_77",
     "type" : "barredSpiralGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, André van der Hoeven",
       "source" : {
         "apod" : {
           "id" : "130510",
           "copyrighted" : false
         }
-      },
-      "width" : 900,
-      "height" : 709,
-      "credit" : "NASA, ESA, André van der Hoeven"
+      }
     },
     "constellation" : "cetus",
     "subTargets" : [
@@ -2813,14 +2759,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_80",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "Hubble Heritage Team (AURA\/STScl\/NASA)",
       "source" : {
         "local" : {
           "fileName" : "M80"
         }
-      },
-      "width" : 640,
-      "height" : 800,
-      "credit" : "Hubble Heritage Team (AURA\/STScl\/NASA)"
+      }
     },
     "constellation" : "scorpius",
     "subTargets" : [
@@ -2851,7 +2795,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_81",
     "type" : "spiralGalaxy",
     "image" : {
-      "height" : 680,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 69.080629928267939,
         "ra" : 148.89925135150725,
@@ -2864,9 +2808,7 @@
         "local" : {
           "fileName" : "M81"
         }
-      },
-      "width" : 840,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "ursaMajor",
     "subTargets" : [
@@ -2900,7 +2842,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_82",
     "type" : "spiralGalaxy",
     "image" : {
-      "height" : 588,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 69.682686635912219,
         "ra" : 148.98075477347868,
@@ -2913,9 +2855,7 @@
         "local" : {
           "fileName" : "M82"
         }
-      },
-      "width" : 840,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "ursaMajor",
     "subTargets" : [
@@ -2963,7 +2903,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/M81_Group",
     "type" : "galaxyGroup",
     "image" : {
-      "height" : 626,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 69.371341227251264,
         "ra" : 148.93383986992504,
@@ -2976,9 +2916,7 @@
         "local" : {
           "fileName" : "M81+M82"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "ursaMajor",
     "subTargets" : [
@@ -3006,15 +2944,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_83",
     "type" : "barredSpiralGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, Hubble Heritage Team (STScI\/AURA), and W. P. Blair (JHU) et al.",
       "source" : {
         "apod" : {
           "id" : "140128",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 625,
-      "credit" : "NASA, ESA, Hubble Heritage Team (STScI\/AURA), and W. P. Blair (JHU) et al."
+      }
     },
     "constellation" : "hydra",
     "subTargets" : [
@@ -3152,14 +3088,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_87",
     "type" : "ellipticalGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, and the Hubble Heritage Team (STScI\/AURA)",
       "source" : {
         "local" : {
           "fileName" : "M87"
         }
-      },
-      "width" : 800,
-      "height" : 792,
-      "credit" : "NASA, ESA, and the Hubble Heritage Team (STScI\/AURA)"
+      }
     },
     "constellation" : "virgo",
     "subTargets" : [
@@ -3391,15 +3325,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_94",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "ESA\/Hubble & NASA",
       "source" : {
         "apod" : {
           "id" : "220731",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 940,
-      "credit" : "ESA\/Hubble & NASA"
+      }
     },
     "constellation" : "canesVenatici",
     "subTargets" : [
@@ -3470,15 +3402,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_96",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "ESA\/Hubble & NASA and the LEGUS Team",
       "source" : {
         "apod" : {
           "id" : "150921",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 979,
-      "credit" : "ESA\/Hubble & NASA and the LEGUS Team"
+      }
     },
     "constellation" : "leo",
     "subTargets" : [
@@ -3608,15 +3538,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_100",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "181225",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 951,
-      "credit" : "NASA, ESA, Hubble"
+      }
     },
     "constellation" : "comaBerenices",
     "subTargets" : [
@@ -3647,7 +3575,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Pinwheel_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
-      "height" : 705,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 54.348499912324705,
         "ra" : 210.80256034489449,
@@ -3660,9 +3588,7 @@
         "local" : {
           "fileName" : "pinwheelgalaxy"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "ursaMajor",
     "subTargets" : [
@@ -3756,15 +3682,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sombrero_Galaxy",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "Hubble Heritage Team (AURA\/STScI \/NASA)",
       "source" : {
         "apod" : {
           "id" : "150726",
           "copyrighted" : false
         }
-      },
-      "width" : 1080,
-      "height" : 605,
-      "credit" : "Hubble Heritage Team (AURA\/STScI \/NASA)"
+      }
     },
     "constellation" : "virgo",
     "subTargets" : [
@@ -3826,14 +3750,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_106",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, the Hubble Heritage Team (STScI\/AURA), and R. Gendler (for the Hubble Heritage Team)",
       "source" : {
         "local" : {
           "fileName" : "M106"
         }
-      },
-      "width" : 1280,
-      "height" : 1000,
-      "credit" : "NASA, ESA, the Hubble Heritage Team (STScI\/AURA), and R. Gendler (for the Hubble Heritage Team)"
+      }
     },
     "constellation" : "canesVenatici",
     "subTargets" : [
@@ -3972,7 +3894,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_110",
     "type" : "dwarfSpheroidalGalaxy",
     "image" : {
-      "height" : 608,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 41.678983082888415,
         "ra" : 10.071650827783586,
@@ -3985,9 +3907,7 @@
         "local" : {
           "fileName" : "M110"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "andromeda",
     "subTargets" : [
@@ -4189,15 +4109,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Cat%27s_Eye_Nebula",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "NASA, ESA, HEIC, and The Hubble Heritage Team (STScI\/AURA)",
       "source" : {
         "apod" : {
           "id" : "141109",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 785,
-      "credit" : "NASA, ESA, HEIC, and The Hubble Heritage Team (STScI\/AURA)"
+      }
     },
     "constellation" : "draco",
     "subTargets" : [
@@ -4231,14 +4149,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2403",
     "type" : "spiralGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, A.V. Filippenko (University of California, Berkeley) and Z. Levay (STScI)",
       "source" : {
         "local" : {
           "fileName" : "NGC2403"
         }
-      },
-      "width" : 750,
-      "height" : 750,
-      "credit" : "NASA, ESA, A.V. Filippenko (University of California, Berkeley) and Z. Levay (STScI)"
+      }
     },
     "constellation" : "camelopardalis",
     "subTargets" : [
@@ -4341,15 +4257,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7635",
     "type" : "HIIRegion",
     "image" : {
+      "credit" : "NASA, ESA, Hubble Heritage Team (STScI \/ AURA)",
       "source" : {
         "apod" : {
           "id" : "160422",
           "copyrighted" : false
         }
-      },
-      "width" : 1024,
-      "height" : 973,
-      "credit" : "NASA, ESA, Hubble Heritage Team (STScI \/ AURA)"
+      }
     },
     "constellation" : "cassiopeia",
     "subTargets" : [
@@ -4505,15 +4419,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6826",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : " B. Balick, J. Alexander (University of Washington), et al., NASA",
       "source" : {
         "apod" : {
           "id" : "010526",
           "copyrighted" : false
         }
-      },
-      "width" : 595,
-      "height" : 468,
-      "credit" : " B. Balick, J. Alexander (University of Washington), et al., NASA"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -4647,7 +4559,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/North_America_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 678,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 44.050677659010724,
         "ra" : 314.72699007974512,
@@ -4660,9 +4572,7 @@
         "local" : {
           "fileName" : "northamericannebula"
         }
-      },
-      "width" : 840,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -4736,15 +4646,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_7662",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "B. Balick (U. Washington) et al., WFPC2, HST, NASA",
       "source" : {
         "apod" : {
           "id" : "961121",
           "copyrighted" : false
         }
-      },
-      "width" : 368,
-      "height" : 368,
-      "credit" : "B. Balick (U. Washington) et al., WFPC2, HST, NASA"
+      }
     },
     "constellation" : "andromeda",
     "subTargets" : [
@@ -5167,7 +5075,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Veil_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
-      "height" : 781,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 31.434773521455472,
         "ra" : 313.95659093269643,
@@ -5180,9 +5088,7 @@
         "local" : {
           "fileName" : "eastveil"
         }
-      },
-      "width" : 840,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -5216,7 +5122,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Veil_Nebula",
     "type" : "supernovaRemnant",
     "image" : {
-      "height" : 604,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 30.641659646583527,
         "ra" : 311.5211909546743,
@@ -5229,9 +5135,7 @@
         "local" : {
           "fileName" : "witchbroom"
         }
-      },
-      "width" : 840,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -5370,15 +5274,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Eskimo_Nebula",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "NASA, ESA, Hubble, Chandra, Judy Schmidt",
       "source" : {
         "apod" : {
           "id" : "200216",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 716,
-      "credit" : "NASA, ESA, Hubble, Chandra, Judy Schmidt"
+      }
     },
     "constellation" : "gemini",
     "subTargets" : [
@@ -5607,15 +5509,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2261",
     "type" : "reflectionNebula",
     "image" : {
+      "credit" : "Hubble, NASA, ESA, Mark Clampin, Judy Schmidt",
       "source" : {
         "apod" : {
           "id" : "171108",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 727,
-      "credit" : "Hubble, NASA, ESA, Mark Clampin, Judy Schmidt"
+      }
     },
     "constellation" : "monoceros",
     "subTargets" : [
@@ -5649,15 +5549,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6934",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "101009",
           "copyrighted" : false
         }
-      },
-      "width" : 900,
-      "height" : 766,
-      "credit" : "NASA, ESA, Hubble"
+      }
     },
     "constellation" : "delphinus",
     "subTargets" : [
@@ -5899,15 +5797,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Saturn_Nebula",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "CREDITB. Balick (U. Washington) et al., WFPC2, HST, NASA",
       "source" : {
         "apod" : {
           "id" : "971230",
           "copyrighted" : false
         }
-      },
-      "width" : 506,
-      "height" : 426,
-      "credit" : "CREDITB. Balick (U. Washington) et al., WFPC2, HST, NASA"
+      }
     },
     "constellation" : "aquarius",
     "subTargets" : [
@@ -5941,15 +5837,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_246",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "Gemini South GMOS, Travis Rector (Univ. Alaska)",
       "source" : {
         "apod" : {
           "id" : "060418",
           "copyrighted" : false
         }
-      },
-      "width" : 622,
-      "height" : 536,
-      "credit" : "Gemini South GMOS, Travis Rector (Univ. Alaska)"
+      }
     },
     "constellation" : "cetus",
     "subTargets" : [
@@ -6058,15 +5952,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_3242",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "Bruce Balick (U. Washington) et al., HST, NASA",
       "source" : {
         "apod" : {
           "id" : "051029",
           "copyrighted" : false
         }
-      },
-      "width" : 673,
-      "height" : 539,
-      "credit" : "Bruce Balick (U. Washington) et al., HST, NASA"
+      }
     },
     "constellation" : "hydra",
     "subTargets" : [
@@ -6142,15 +6034,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Helix_Nebula",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "C. R. O'Dell, (Vanderbilt) et al. ESA, NOAO, NASA",
       "source" : {
         "apod" : {
           "id" : "200823",
           "copyrighted" : false
         }
-      },
-      "width" : 1080,
-      "height" : 821,
-      "credit" : "C. R. O'Dell, (Vanderbilt) et al. ESA, NOAO, NASA"
+      }
     },
     "constellation" : "aquarius",
     "subTargets" : [
@@ -6359,15 +6249,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6302",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "NASA, ESA, Hubble; Processing: William Ostling\nNASA, ESA, Hubble; Processing: William Ostling\nNASA, ESA, Hubble; Processing: William Ostling\nNASA, ESA, Hubble; Processing: William Ostling\n NASA, ESA, Hubble, William Ostling",
       "source" : {
         "apod" : {
           "id" : "221121",
           "copyrighted" : false
         }
-      },
-      "width" : 960,
-      "height" : 895,
-      "credit" : "NASA, ESA, Hubble; Processing: William Ostling\nNASA, ESA, Hubble; Processing: William Ostling\nNASA, ESA, Hubble; Processing: William Ostling\nNASA, ESA, Hubble; Processing: William Ostling\n NASA, ESA, Hubble, William Ostling"
+      }
     },
     "constellation" : "scorpius",
     "subTargets" : [
@@ -6537,15 +6425,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_3132",
     "type" : "planetaryNebula",
     "image" : {
+      "credit" : "NASA, ESA, CSA, STScI, NIRCam\nNASA, ESA, CSA, STScI, NIRCam\nNASA, ESA, CSA, STScI, NIRCam\nNASA, ESA, CSA, STScI, NIRCam",
       "source" : {
         "apod" : {
           "id" : "220714",
           "copyrighted" : false
         }
-      },
-      "width" : 1024,
-      "height" : 954,
-      "credit" : "NASA, ESA, CSA, STScI, NIRCam\nNASA, ESA, CSA, STScI, NIRCam\nNASA, ESA, CSA, STScI, NIRCam\nNASA, ESA, CSA, STScI, NIRCam"
+      }
     },
     "constellation" : "vela",
     "subTargets" : [
@@ -6742,14 +6628,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Omega_Centauri",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "NASA, ESA, and the Hubble Heritage Team (STScI\/AURA)",
       "source" : {
         "local" : {
           "fileName" : "omegacentauri"
         }
-      },
-      "width" : 877,
-      "height" : 800,
-      "credit" : "NASA, ESA, and the Hubble Heritage Team (STScI\/AURA)"
+      }
     },
     "constellation" : "centaurus",
     "subTargets" : [
@@ -6879,15 +6763,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_6397",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "Hubble Heritage Team (STScI \/ AURA), A. Cool (SFSU) et al., NASA",
       "source" : {
         "apod" : {
           "id" : "030808",
           "copyrighted" : false
         }
-      },
-      "width" : 650,
-      "height" : 507,
-      "credit" : "Hubble Heritage Team (STScI \/ AURA), A. Cool (SFSU) et al., NASA"
+      }
     },
     "constellation" : "ara",
     "subTargets" : [
@@ -7043,22 +6925,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Carina_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 646,
-      "astrometry" : {
-        "dec" : -59.946334596630756,
-        "ra" : 162.01545401468391,
-        "pixscale" : 27.822987383266618,
-        "orientation" : -178.26922019403892,
-        "parity" : 1,
-        "radius" : 3.9735040913160802
-      },
+      "credit" : "NASA, ESA, Digitized Sky Survey, and Z. Levay (STScI)",
       "source" : {
         "local" : {
           "fileName" : "carinanebula"
         }
-      },
-      "width" : 800,
-      "credit" : "NASA, ESA, Digitized Sky Survey, and Z. Levay (STScI)"
+      }
     },
     "constellation" : "carina",
     "subTargets" : [
@@ -7432,14 +7304,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2070",
     "type" : "HIIRegion",
     "image" : {
+      "credit" : "NASA, ESA, CSA, STScI, Webb ERO Production Team",
       "source" : {
         "local" : {
           "fileName" : "tarantulanebula"
         }
-      },
-      "width" : 2000,
-      "height" : 1157,
-      "credit" : "NASA, ESA, CSA, STScI, Webb ERO Production Team"
+      }
     },
     "constellation" : "doradp",
     "subTargets" : [
@@ -7475,15 +7345,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_362",
     "type" : "globularStarCluster",
     "image" : {
+      "credit" : "Hubble WFC3, NASA, ESA, J. Heyl, I. Caiazzo, & Javiera Parada (UBC)",
       "source" : {
         "apod" : {
           "id" : "171011",
           "copyrighted" : false
         }
-      },
-      "width" : 1080,
-      "height" : 633,
-      "credit" : "Hubble WFC3, NASA, ESA, J. Heyl, I. Caiazzo, & Javiera Parada (UBC)"
+      }
     },
     "constellation" : "tucana",
     "subTargets" : [
@@ -7729,22 +7597,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/California_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 1024,
-      "astrometry" : {
-        "dec" : 36.581489496637872,
-        "ra" : 60.349996094517444,
-        "pixscale" : 11.627233508120966,
-        "orientation" : 120.17255005933507,
-        "parity" : 1,
-        "radius" : 1.9415534037899216
-      },
+      "credit" : "Ryan Sponzilli",
       "source" : {
         "local" : {
           "fileName" : "californianebula"
         }
-      },
-      "width" : 630,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "perseus",
     "subTargets" : [
@@ -8095,7 +7953,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Orion%27s_Sword",
     "type" : "mixedDiffuseNebulae",
     "image" : {
-      "height" : 1024,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : -5.3760925086725617,
         "ra" : 83.788684177040864,
@@ -8108,9 +7966,7 @@
         "local" : {
           "fileName" : "orionnebula+runningman"
         }
-      },
-      "width" : 691,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "orion",
     "subTargets" : [
@@ -8265,7 +8121,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Sh2-279",
     "type" : "reflectionNebula",
     "image" : {
-      "height" : 945,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : -4.7770546580112887,
         "ra" : 83.838404189665454,
@@ -8278,9 +8134,7 @@
         "local" : {
           "fileName" : "runningmannebula"
         }
-      },
-      "width" : 1636,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "orion",
     "subTargets" : [
@@ -8423,7 +8277,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/NGC_2264",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 840,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 9.8186512544633047,
         "ra" : 100.23745171090134,
@@ -8436,9 +8290,7 @@
         "local" : {
           "fileName" : "NGC2264"
         }
-      },
-      "width" : 635,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "monoceros",
     "subTargets" : [
@@ -8601,15 +8453,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Antennae_Galaxies",
     "type" : "peculiarGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, Hubble",
       "source" : {
         "apod" : {
           "id" : "201203",
           "copyrighted" : false
         }
-      },
-      "width" : 1024,
-      "height" : 1017,
-      "credit" : "NASA, ESA, Hubble"
+      }
     },
     "constellation" : "corvus",
     "subTargets" : [
@@ -8647,15 +8497,13 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Messier_60",
     "type" : "galaxyGroup",
     "image" : {
+      "credit" : "NASA, ESA, Hubble Heritage Team (STScI\/AURA)",
       "source" : {
         "apod" : {
           "id" : "160128",
           "copyrighted" : false
         }
-      },
-      "width" : 900,
-      "height" : 720,
-      "credit" : "NASA, ESA, Hubble Heritage Team (STScI\/AURA)"
+      }
     },
     "constellation" : "virgo",
     "subTargets" : [
@@ -8756,14 +8604,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Markarian%27s_Chain",
     "type" : "galaxyGroup",
     "image" : {
+      "credit" : "Ryan Sponzilli",
       "source" : {
         "local" : {
           "fileName" : "markarianschain"
         }
-      },
-      "width" : 1024,
-      "height" : 623,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "virgo",
     "subTargets" : [
@@ -9136,7 +8982,7 @@
     ],
     "type" : "HIIRegion",
     "image" : {
-      "height" : 639,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 43.895702958012855,
         "ra" : 314.09125604445154,
@@ -9149,9 +8995,7 @@
         "local" : {
           "fileName" : "northamerican+pelican"
         }
-      },
-      "width" : 960,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -9180,7 +9024,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Pelican_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 840,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 43.961842750966177,
         "ra" : 312.79130236625355,
@@ -9193,9 +9037,7 @@
         "local" : {
           "fileName" : "pelicannebula"
         }
-      },
-      "width" : 797,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -9256,7 +9098,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Cygnus_Loop",
     "type" : "supernovaRemnant",
     "image" : {
-      "height" : 672,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 30.946735252329297,
         "ra" : 312.64860919924314,
@@ -9269,9 +9111,7 @@
         "local" : {
           "fileName" : "cygnusloop"
         }
-      },
-      "width" : 840,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -9306,7 +9146,7 @@
     "wikipediaURL" : "https:\/\/wikipedia.org",
     "type" : "supernovaRemnant",
     "image" : {
-      "height" : 553,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 31.640451214065507,
         "ra" : 312.10800045742519,
@@ -9319,9 +9159,7 @@
         "local" : {
           "fileName" : "flemingstriangularwisp"
         }
-      },
-      "width" : 840,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -9347,7 +9185,7 @@
     ],
     "type" : "supernovaRemnant",
     "image" : {
-      "height" : 840,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 31.069551145567964,
         "ra" : 314.14035693328583,
@@ -9360,9 +9198,7 @@
         "local" : {
           "fileName" : "batnebula"
         }
-      },
-      "width" : 736,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cygnus",
     "subTargets" : [
@@ -9466,7 +9302,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Elephant%27s_Trunk_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 623,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 57.424237849931217,
         "ra" : 324.76291944268996,
@@ -9479,9 +9315,7 @@
         "local" : {
           "fileName" : "IC1396"
         }
-      },
-      "width" : 840,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cepheus",
     "subTargets" : [
@@ -9559,14 +9393,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Stephan%27s_Quintet",
     "type" : "galaxyGroup",
     "image" : {
+      "credit" : "NASA, ESA, CSA, STScI",
       "source" : {
         "local" : {
           "fileName" : "stephansquintet"
         }
-      },
-      "width" : 2000,
-      "height" : 1917,
-      "credit" : "NASA, ESA, CSA, STScI"
+      }
     },
     "constellation" : "pegasus",
     "subTargets" : [
@@ -9607,7 +9439,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Heart_Nebula",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 711,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 61.433501762581024,
         "ra" : 38.39857934025639,
@@ -9620,9 +9452,7 @@
         "local" : {
           "fileName" : "heartnebula"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cassiopeia",
     "subTargets" : [
@@ -9782,14 +9612,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Large_Magellanic_Cloud",
     "type" : "irregularGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, J. Roman-Duval (STScI), ULLYSES program, and R. Gendler",
       "source" : {
         "local" : {
           "fileName" : "LMC"
         }
-      },
-      "width" : 1280,
-      "height" : 720,
-      "credit" : "NASA, ESA, J. Roman-Duval (STScI), ULLYSES program, and R. Gendler"
+      }
     },
     "constellation" : "doradp",
     "subTargets" : [
@@ -9817,14 +9645,12 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Small_Magellanic_Cloud",
     "type" : "irregularGalaxy",
     "image" : {
+      "credit" : "NASA, ESA, J. Roman-Duval (STScI), ULLYSES program, and S. Guisard",
       "source" : {
         "local" : {
           "fileName" : "SMC"
         }
-      },
-      "width" : 1280,
-      "height" : 720,
-      "credit" : "NASA, ESA, J. Roman-Duval (STScI), ULLYSES program, and S. Guisard"
+      }
     },
     "constellation" : "tucana",
     "subTargets" : [
@@ -10086,7 +9912,7 @@
     "wikipediaURL" : "https:\/\/en.wikipedia.org\/wiki\/Westerhout_5",
     "type" : "HIIRegion",
     "image" : {
-      "height" : 576,
+      "credit" : "Ryan Sponzilli",
       "astrometry" : {
         "dec" : 60.389244377250577,
         "ra" : 43.741095973582397,
@@ -10099,9 +9925,7 @@
         "local" : {
           "fileName" : "soulnebula"
         }
-      },
-      "width" : 1024,
-      "credit" : "Ryan Sponzilli"
+      }
     },
     "constellation" : "cassiopeia",
     "subTargets" : [
