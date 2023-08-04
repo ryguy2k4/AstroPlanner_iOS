@@ -22,7 +22,7 @@ struct DailyReportView: View {
     @State var internet: Bool = true
     @State var isDateModal = false
     @State var isLocationModal = false
-    @State var isReportSettingsModal = false
+    @State var isImagingPresetModal = false
     @State var topTenTab: TargetTab = .nebulae
 
     var body: some View {
@@ -49,6 +49,13 @@ struct DailyReportView: View {
                 ToolbarLogo()
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
+                        isImagingPresetModal = true
+                    } label: {
+                        Image(systemName: "camera.aperture")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
                         isDateModal = true
                     } label: {
                         Image(systemName: "calendar")
@@ -59,13 +66,6 @@ struct DailyReportView: View {
                         isLocationModal = true
                     } label: {
                         Image(systemName: "location")
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isReportSettingsModal = true
-                    } label: {
-                        Image(systemName: "slider.horizontal.3")
                     }
                 }
             }
@@ -84,8 +84,8 @@ struct DailyReportView: View {
                 LocationPickerModal()
                     .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
             }
-            .sheet(isPresented: $isReportSettingsModal){
-                DailyReportSettingsModal()
+            .sheet(isPresented: $isImagingPresetModal){
+                ImagingPresetModal()
                     .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
             }
             .scrollIndicators(.hidden)

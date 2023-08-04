@@ -20,8 +20,8 @@ struct SettingsView: View {
                 NavigationLink(destination: GearSettings()) {
                     Label("Imaging Presets", systemImage: "camera.aperture")
                 }
-                NavigationLink(destination: TargetSettingsView()) {
-                    Label("Target Settings", systemImage: "star")
+                NavigationLink(destination: AdvancedSettingsView()) {
+                    Label("Advanced Settings", systemImage: "star")
                 }
                 NavigationLink(destination:  HiddenTargetsList()) {
                     Label("Hidden Targets", systemImage: "eye.slash")

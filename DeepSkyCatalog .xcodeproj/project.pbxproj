@@ -28,9 +28,8 @@
 		7135117D29B2829C00725B1D /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		713568EA2A60C661004196AE /* Mac_CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713568E92A60C661004196AE /* Mac_CatalogView.swift */; };
 		713568EC2A60C696004196AE /* Mac_DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713568EB2A60C696004196AE /* Mac_DetailView.swift */; };
-		71375E6B2980DB6F00B95F2E /* TargetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71375E6A2980DB6F00B95F2E /* TargetSettingsView.swift */; };
+		71375E6B2980DB6F00B95F2E /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71375E6A2980DB6F00B95F2E /* AdvancedSettingsView.swift */; };
 		713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49B72954122D008EFC81 /* LocationSettings.swift */; };
-		713B49BC29541242008EFC81 /* DailyReportSettingsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49BB29541242008EFC81 /* DailyReportSettingsModal.swift */; };
 		71462F3329A2E6A100F2914C /* ToolbarLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71462F3229A2E6A100F2914C /* ToolbarLogo.swift */; };
 		714BB85329A094810084D438 /* TopTenTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BB85229A094810084D438 /* TopTenTabView.swift */; };
 		714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E54CD293D52B00039ECE0 /* LocationManager.swift */; };
@@ -82,6 +81,7 @@
 		716A19BC298F5B270025DB67 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
 		716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
 		717051DB29CE7A6D00D4EE1A /* LocationPickerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */; };
+		717E9ACD2A7DBF81004E93FA /* ImagingPresetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */; };
 		7181F004299BCFD1002841A8 /* TargetCuratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7181F003299BCFD1002841A8 /* TargetCuratorApp.swift */; };
 		7181F006299BCFD1002841A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7181F005299BCFD1002841A8 /* ContentView.swift */; };
 		7181F015299BCFF1002841A8 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
@@ -271,9 +271,8 @@
 		712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSettingsEditor.swift; sourceTree = "<group>"; };
 		713568E92A60C661004196AE /* Mac_CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_CatalogView.swift; sourceTree = "<group>"; };
 		713568EB2A60C696004196AE /* Mac_DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_DetailView.swift; sourceTree = "<group>"; };
-		71375E6A2980DB6F00B95F2E /* TargetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSettingsView.swift; sourceTree = "<group>"; };
+		71375E6A2980DB6F00B95F2E /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
 		713B49B72954122D008EFC81 /* LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettings.swift; sourceTree = "<group>"; };
-		713B49BB29541242008EFC81 /* DailyReportSettingsModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportSettingsModal.swift; sourceTree = "<group>"; };
 		71462F3229A2E6A100F2914C /* ToolbarLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarLogo.swift; sourceTree = "<group>"; };
 		714BB85229A094810084D438 /* TopTenTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenTabView.swift; sourceTree = "<group>"; };
 		714E54CD293D52B00039ECE0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -298,6 +297,7 @@
 		716A19BA298F58A90025DB67 /* Mac_HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_HomeView.swift; sourceTree = "<group>"; };
 		716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalog.entitlements; sourceTree = "<group>"; };
 		717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerModal.swift; sourceTree = "<group>"; };
+		717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagingPresetModal.swift; sourceTree = "<group>"; };
 		7181F001299BCFD1002841A8 /* TargetCurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TargetCurator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7181F003299BCFD1002841A8 /* TargetCuratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCuratorApp.swift; sourceTree = "<group>"; };
 		7181F005299BCFD1002841A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -469,7 +469,7 @@
 				71BCF9682921EF20008C7614 /* SettingsView.swift */,
 				713B49B72954122D008EFC81 /* LocationSettings.swift */,
 				71B6D2FC2954D983006ADC6F /* GearSettings.swift */,
-				71375E6A2980DB6F00B95F2E /* TargetSettingsView.swift */,
+				71375E6A2980DB6F00B95F2E /* AdvancedSettingsView.swift */,
 				71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */,
 				7156742F29273ECA00626B1B /* AboutView.swift */,
 			);
@@ -557,7 +557,7 @@
 			isa = PBXGroup;
 			children = (
 				710D497629316B4F003F41F1 /* DailyReportView.swift */,
-				713B49BB29541242008EFC81 /* DailyReportSettingsModal.swift */,
+				717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */,
 				711386FC29C356CA00081584 /* TopFiveView.swift */,
 				714BB85229A094810084D438 /* TopTenTabView.swift */,
 			);
@@ -1113,7 +1113,7 @@
 				71BCF96E2921EF20008C7614 /* HomeView.swift in Sources */,
 				7156743029273ECA00626B1B /* AboutView.swift in Sources */,
 				71BCF96C2921EF20008C7614 /* SettingsView.swift in Sources */,
-				71375E6B2980DB6F00B95F2E /* TargetSettingsView.swift in Sources */,
+				71375E6B2980DB6F00B95F2E /* AdvancedSettingsView.swift in Sources */,
 				71BCF9882921EF8B008C7614 /* SunData.swift in Sources */,
 				714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */,
 				71C26465298F1D920057EC04 /* ZoomableScrollView.swift in Sources */,
@@ -1153,10 +1153,10 @@
 				71BD7542297104AB00D7751F /* FilterMethods.swift in Sources */,
 				7164CEF229BE97C7000A154A /* UIImage+Ext.swift in Sources */,
 				71B14F6B295A77AE003C11BD /* KeyboardDismissButton.swift in Sources */,
-				713B49BC29541242008EFC81 /* DailyReportSettingsModal.swift in Sources */,
 				71E96D68292831AA00E019F9 /* CatalogManager.swift in Sources */,
 				71B14F692958D905003C11BD /* ViewingIntervalModal.swift in Sources */,
 				71A6C8FB2A5F4DE0009F1C30 /* Sun.swift in Sources */,
+				717E9ACD2A7DBF81004E93FA /* ImagingPresetModal.swift in Sources */,
 				71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */,
 				719B26D7295167A100E1165A /* NumberPicker.swift in Sources */,
 				71F510BC297605E9008F7629 /* CaseNameCodable.swift in Sources */,
