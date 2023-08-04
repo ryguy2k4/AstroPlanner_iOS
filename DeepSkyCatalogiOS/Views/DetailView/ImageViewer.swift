@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ImageViewer: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
     let image: DeepSkyTarget.TargetImage
     let filename: String
     var body: some View {
