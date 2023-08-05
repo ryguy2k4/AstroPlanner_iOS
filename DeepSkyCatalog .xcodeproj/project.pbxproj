@@ -298,6 +298,7 @@
 		716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalog.entitlements; sourceTree = "<group>"; };
 		717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerModal.swift; sourceTree = "<group>"; };
 		717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagingPresetModal.swift; sourceTree = "<group>"; };
+		717E9ACF2A7E00BF004E93FA /* DeepSkyCatalog-3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DeepSkyCatalog-3.xcdatamodel"; sourceTree = "<group>"; };
 		7181F001299BCFD1002841A8 /* TargetCurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TargetCurator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7181F003299BCFD1002841A8 /* TargetCuratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCuratorApp.swift; sourceTree = "<group>"; };
 		7181F005299BCFD1002841A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -1737,10 +1738,11 @@
 		71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				717E9ACF2A7E00BF004E93FA /* DeepSkyCatalog-3.xcdatamodel */,
 				71E03E6729C0B9FC0034FE08 /* DeepSkyCatalog-2.xcdatamodel */,
 				71BCF9582921EE72008C7614 /* DeepSkyCatalog.xcdatamodel */,
 			);
-			currentVersion = 71E03E6729C0B9FC0034FE08 /* DeepSkyCatalog-2.xcdatamodel */;
+			currentVersion = 717E9ACF2A7E00BF004E93FA /* DeepSkyCatalog-3.xcdatamodel */;
 			path = DeepSkyCatalog.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -25,8 +25,16 @@ struct AdvancedSettingsView: View {
     
     var body: some View {
         Form {
-            ConfigSection(header: "Target Settings") {
+            
+            // Hide Targets that Never Rise
+            Section {
                 Toggle("Hide Targets that Never Rise", isOn: $targetSettings.hideNeverRises)
+            } footer: {
+                Text("Prevents targets that never rise at the selected location from appearing in the master catalog.")
+            }
+            
+            // Limiting Altitude
+            Section {
                 Button {
                     isLimitingAltitudeModal = true
                 } label: {
@@ -36,8 +44,23 @@ struct AdvancedSettingsView: View {
                         Text(targetSettings.limitingAltitude.formatted(.number.precision(.significantDigits(0...5))) + "°")
                     }
                 }
+            } footer: {
+                Text("The visibility score will be calculated as the percentage of the night that the target is above this altitude. This setting will affect the visibility scores shown in the master catalog too. The default value is 0 (the horizon).")
             }
-            ConfigSection(header: "Report Settings") {
+            
+            // Darkness Threshold
+            Section {
+                Picker("Darkness Threshold", selection: $reportSettings.darknessThreshold) {
+                    Text("Civil Twilight").tag(Int16(0))
+                    Text("Nautical Twilight").tag(Int16(1))
+                    Text("Astronomical Twilight").tag(Int16(2))
+                }
+            } footer: {
+                Text("The darkness threshold specifies how dark it needs to be in order to be considered night time, or in other words, time that is eligible to be imaging. This setting impacts visibility score. The default value is Civil Twilight.")
+            }
+            
+            // Minimum FOV Coverage
+            Section {
                 Button {
                     isMinFOVCoverageModal = true
                 } label: {
@@ -48,6 +71,12 @@ struct AdvancedSettingsView: View {
                         Text(reportSettings.minFOVCoverage.percent())
                     }
                 }
+            } footer: {
+                Text("This is the minimum ratio between your scope's FOV length and the target's arc length. The default value is 10%.")
+            }
+            
+            // Minimum Target Visibility Score
+            Section {
                 Button {
                     isMinVisibilityModal = true
                 } label: {
@@ -59,10 +88,20 @@ struct AdvancedSettingsView: View {
                     }
                     
                 }
-                
+            } footer: {
+                Text("The minimum visibility score a target must have in order to be shown in the daily report. The default value is 60%.")
+            }
+            
+            // Filter for Moon Phase
+            Section {
                 Toggle("Filter For Moon Phase", isOn: $reportSettings.filterForMoonPhase)
                     .foregroundColor(isEnabled ? .primary : .secondary)
-                
+            } footer: {
+                Text("When enabled, the daily report algorithm will take into consideration the moon's illumination. On an illuminated night, only narrowband targets will be presented. The next two settings further customize this functionality.")
+            }
+            
+            // Maximum Moon for Broadband Suggestions
+            Section {
                 Button {
                     isMoonPercentModal = true
                 } label: {
@@ -76,42 +115,42 @@ struct AdvancedSettingsView: View {
                     
                 }
                 .disabled(!reportSettings.filterForMoonPhase)
-                
+            } footer: {
+                Text("This value is the cutoff illumination value for what will be considered a moonless night.")
+            }
+            
+            // Prefer Broadband Targets on Moonless Nights
+            Section {
                 Toggle("Prefer Broadband on Moonless Nights", isOn: $reportSettings.preferBroadband)
                     .foregroundColor(reportSettings.filterForMoonPhase ? .primary : .secondary)
                     .foregroundColor(isEnabled ? .primary : .secondary)
                     .disabled(!reportSettings.filterForMoonPhase)
+            } footer: {
+                Text("When enabled, narowband targets will be excluded from the daily report, and only broadband targets will be suggested in order to allow the moonless night to be taken advantage of.")
             }
+            
         }
         .sheet(isPresented: $isLimitingAltitudeModal) {
             Form {
-                ConfigSection(footer: "The visibility score will be calculated as the percentage of the night that the target is above this altitude. This setting will effect the visibility scores shown in the master catalog too.") {
-                    NumberPicker(num: $targetSettings.limitingAltitude, placeValues: [.tens, .ones])
-                }
+                NumberPicker(num: $targetSettings.limitingAltitude, placeValues: [.tens, .ones])
             }
             .presentationDetents([.fraction(0.6)])
         }
         .sheet(isPresented: $isMoonPercentModal) {
             Form {
-                ConfigSection(footer: "If the moon illumination is greater than this value, then broadband targets will not be suggested.") {
-                    NumberPicker(num: $reportSettings.maxAllowedMoon, placeValues: [.tenths, .hundredths])
-                }
+                NumberPicker(num: $reportSettings.maxAllowedMoon, placeValues: [.tenths, .hundredths])
             }
             .presentationDetents([.fraction(0.4)])
         }
         .sheet(isPresented: $isMinFOVCoverageModal) {
             Form {
-                ConfigSection(footer: "This is the minimum ratio between your scope's FOV length and the target's arc length. Should probably be around 25%.") {
-                    NumberPicker(num: $reportSettings.minFOVCoverage, placeValues: [.tenths, .hundredths])
-                }
+                NumberPicker(num: $reportSettings.minFOVCoverage, placeValues: [.tenths, .hundredths])
             }
             .presentationDetents([.fraction(0.4)])
         }
         .sheet(isPresented: $isMinVisibilityModal) {
             Form {
-                ConfigSection(footer: "Targets shown in the daily report must be visible for at least this percentage of the night.") {
-                    NumberPicker(num: $reportSettings.minVisibility, placeValues: [.tenths, .hundredths])
-                }
+                NumberPicker(num: $reportSettings.minVisibility, placeValues: [.tenths, .hundredths])
             }
             .presentationDetents([.fraction(0.4)])
         }
