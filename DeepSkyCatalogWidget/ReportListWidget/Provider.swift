@@ -54,6 +54,8 @@ struct Provider: IntentTimelineProvider {
                 let sunData = try await NetworkManager.shared.getAPIData(at: Location(saved: location), on: currentDate)
 
                 // generate a report
+                
+                //NEEDS TO COMPLY WITH DARKNESS LEVEL
                 let report = DailyReport(location: Location(saved: location), date: currentDate, viewingInterval: sunData.ATInterval, reportSettings: reportSettings, targetSettings: targetSettings, preset: presetList.first(where: {$0.isSelected == true}), sunData: sunData)
                 
                 // create a timline with 1 entry for the current date

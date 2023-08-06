@@ -101,7 +101,7 @@ struct SunData: Equatable {
             }
         }
         
-        if let nauticalDuskToday = sunEventsToday.civilDusk, let nauticalDawnTomorrow = sunEventsTomorrow.civilDawn {
+        if let nauticalDuskToday = sunEventsToday.nauticalDusk, let nauticalDawnTomorrow = sunEventsTomorrow.nauticalDawn {
             NTInterval = DateInterval(start: nauticalDuskToday, end: nauticalDawnTomorrow)
         } else {
             if Sun.getAltitude(location: location, time: sunEventsTomorrow.solarMidnight!) > 0 {

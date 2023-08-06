@@ -42,10 +42,10 @@ final class PersistenceManager: ObservableObject {
 //        do {
 //            // Use the container to initialize the development schema.
 //            try container.initializeCloudKitSchema(options: [])
-//            //print("schema initialized")
+//            print("schema initialized")
 //        } catch {
 //            // Handle any errors.
-//            //print("schema initialization failed: \(error)")
+//            print("schema initialization failed: \(error)")
 //        }
 //        #endif
         

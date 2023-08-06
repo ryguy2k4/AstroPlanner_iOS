@@ -127,6 +127,7 @@ struct Mac_HomeView: View {
 struct DailyReportLoadingView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var store: HomeViewModel
+    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @Binding var internet: Bool
     var body: some View {
         NavigationStack {
@@ -142,7 +143,13 @@ struct DailyReportLoadingView: View {
                     networkManager.sun.merge(data) { _, new in new }
                     store.sunData = networkManager.sun[NetworkManager.DataKey(date: store.date, location: store.location)] ?? SunData()
                     // here insert check for requesting data between midnight and night end should get info for the previous day still
-                    store.viewingInterval = store.sunData.ATInterval
+                    if reportSettings.first!.darknessThreshold == Int16(2) {
+                        store.viewingInterval = store.sunData.CTInterval
+                    } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                        store.viewingInterval = store.sunData.NTInterval
+                    } else {
+                        store.viewingInterval = store.sunData.ATInterval
+                    }
                 } catch {
                     internet = false
                 }

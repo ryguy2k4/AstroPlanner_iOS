@@ -138,6 +138,19 @@ struct DailyReportView: View {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
+        .onChange(of: reportSettings.first?.darknessThreshold) { new in
+            self.report = nil
+            if new == Int16(2) {
+                store.viewingInterval = store.sunData.CTInterval
+            } else if new == Int16(1) {
+                store.viewingInterval = store.sunData.NTInterval
+            } else {
+                store.viewingInterval = store.sunData.ATInterval
+            }
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
+        }
         
     }
 }
@@ -151,7 +164,7 @@ fileprivate struct ReportHeader: View {
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-            if store.viewingInterval == store.sunData.ATInterval {
+            if store.viewingInterval == store.sunData.ATInterval || store.viewingInterval == store.sunData.NTInterval || store.viewingInterval == store.sunData.CTInterval {
                 Text("Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)")
                     .font(.subheadline)
                     .fontWeight(.thin)

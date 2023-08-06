@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ViewingIntervalModal: View {
     @EnvironmentObject var store: HomeViewModel
+    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     var body: some View {
         VStack {
             DateSelector()
@@ -18,7 +19,18 @@ struct ViewingIntervalModal: View {
                 .fontWeight(.semibold)
             Form {
                 ConfigSection(header: "Viewing Interval") {
-                    DateIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: store.viewingInterval != store.sunData.ATInterval)
+                    DateIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: {
+                        let nightInterval: DateInterval = {
+                            if reportSettings.first!.darknessThreshold == Int16(2) {
+                                return store.sunData.CTInterval
+                            } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                                return store.sunData.NTInterval
+                            } else {
+                                return store.sunData.ATInterval
+                            }
+                        }()
+                        return store.viewingInterval != nightInterval
+                    }())
                 }
             }
         }
@@ -29,6 +41,7 @@ struct DateIntervalSelector: View {
     @Binding var viewingInterval: DateInterval
     @State var customViewingInterval: Bool
     @EnvironmentObject var store: HomeViewModel
+    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     
     var body: some View {
         // Choose Auto vs Custom Interval
@@ -39,15 +52,31 @@ struct DateIntervalSelector: View {
         .pickerStyle(.segmented)
         .onChange(of: customViewingInterval) { newValue in
             if !newValue {
-                viewingInterval = store.sunData.ATInterval
+                if reportSettings.first!.darknessThreshold == Int16(2) {
+                    viewingInterval = store.sunData.CTInterval
+                } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                    viewingInterval = store.sunData.NTInterval
+                } else {
+                    viewingInterval = store.sunData.ATInterval
+                }
             }
         }
         .onChange(of: store.sunData.ATInterval) { newValue in
             viewingInterval = newValue
         }
         
+        let nightInterval: DateInterval = {
+            if reportSettings.first!.darknessThreshold == Int16(2) {
+                return store.sunData.CTInterval
+            } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                return store.sunData.NTInterval
+            } else {
+                return store.sunData.ATInterval
+            }
+        }()
+        
         // Custom Interval Selector
-        if store.sunData.ATInterval.start <= viewingInterval.end && viewingInterval.start <= store.sunData.ATInterval.end {
+        if nightInterval.start <= viewingInterval.end && viewingInterval.start <= nightInterval.end {
             let endBinding = Binding(
                 get: {
                     return viewingInterval.end
@@ -67,13 +96,14 @@ struct DateIntervalSelector: View {
                     viewingInterval.duration = newDuration
                 }
             )
-            let startRange: ClosedRange<Date> = store.sunData.ATInterval.start...viewingInterval.end
-            let endRange: ClosedRange<Date> = viewingInterval.start...store.sunData.ATInterval.end
+            let startRange: ClosedRange<Date> = nightInterval.start...viewingInterval.end
+            let endRange: ClosedRange<Date> = viewingInterval.start...nightInterval.end
             VStack {
                 DatePicker("Start", selection: startBinding, in: startRange)
                 DatePicker("End", selection: endBinding, in: endRange)
             }
-            .disabled(!customViewingInterval)}
+            .disabled(!customViewingInterval)
+        }
     }
 }
 

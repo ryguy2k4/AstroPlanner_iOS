@@ -51,9 +51,9 @@ struct AdvancedSettingsView: View {
             // Darkness Threshold
             Section {
                 Picker("Darkness Threshold", selection: $reportSettings.darknessThreshold) {
-                    Text("Civil Twilight").tag(Int16(0))
+                    Text("Civil Twilight").tag(Int16(2))
                     Text("Nautical Twilight").tag(Int16(1))
-                    Text("Astronomical Twilight").tag(Int16(2))
+                    Text("Astronomical Twilight").tag(Int16(0))
                 }
             } footer: {
                 Text("The darkness threshold specifies how dark it needs to be in order to be considered night time, or in other words, time that is eligible to be imaging. This setting impacts visibility score. The default value is Civil Twilight.")
