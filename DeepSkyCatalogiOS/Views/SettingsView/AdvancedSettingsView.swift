@@ -30,7 +30,7 @@ struct AdvancedSettingsView: View {
             Section {
                 Toggle("Hide Targets that Never Rise", isOn: $targetSettings.hideNeverRises)
             } footer: {
-                Text("Prevents targets that never rise at the selected location from appearing in the master catalog.")
+                Text("By enabling this setting, targets that never rise at the selected location will not appear in the master catalog.")
             }
             
             // Limiting Altitude
@@ -45,7 +45,7 @@ struct AdvancedSettingsView: View {
                     }
                 }
             } footer: {
-                Text("The visibility score will be calculated as the percentage of the night that the target is above this altitude. This setting will affect the visibility scores shown in the master catalog too. The default value is 0 (the horizon).")
+                Text("The limiting altitude determines the rise and set times of each target, and in turn the visibility score, which represents the percentage of the night the target is above this altitude. The default value is 0 (representing the horizon).")
             }
             
             // Darkness Threshold
@@ -56,7 +56,7 @@ struct AdvancedSettingsView: View {
                     Text("Astronomical Twilight").tag(Int16(0))
                 }
             } footer: {
-                Text("The darkness threshold specifies how dark it needs to be in order to be considered night time, or in other words, time that is eligible to be imaging. This setting impacts visibility score. The default value is Civil Twilight.")
+                Text("The darkness threshold specifies how dark it needs to be in order to start imaging. This setting impacts visibility score. The default value is Civil Twilight.")
             }
             
             // Minimum FOV Coverage
@@ -72,7 +72,7 @@ struct AdvancedSettingsView: View {
                     }
                 }
             } footer: {
-                Text("This is the minimum ratio between your scope's FOV length and the target's arc length. The default value is 10%.")
+                Text("This is the minimum ratio between the length of the imaging preset's field of view and the arc length of the target. The default value is 10%.")
             }
             
             // Minimum Target Visibility Score
@@ -89,7 +89,7 @@ struct AdvancedSettingsView: View {
                     
                 }
             } footer: {
-                Text("The minimum visibility score a target must have in order to be shown in the daily report. The default value is 60%.")
+                Text("This setting specifies the minimum visibility score a target must have in order to be shown in the daily report. The default value is 60%.")
             }
             
             // Filter for Moon Phase
@@ -116,7 +116,7 @@ struct AdvancedSettingsView: View {
                 }
                 .disabled(!reportSettings.filterForMoonPhase)
             } footer: {
-                Text("This value is the cutoff illumination value for what will be considered a moonless night.")
+                Text("This value is the cutoff illumination value for what will be considered a moonless night. The default value is 20%.")
             }
             
             // Prefer Broadband Targets on Moonless Nights
@@ -126,7 +126,7 @@ struct AdvancedSettingsView: View {
                     .foregroundColor(isEnabled ? .primary : .secondary)
                     .disabled(!reportSettings.filterForMoonPhase)
             } footer: {
-                Text("When enabled, narowband targets will be excluded from the daily report, and only broadband targets will be suggested in order to allow the moonless night to be taken advantage of.")
+                Text("When enabled, narowband targets will be excluded from the daily report on moonless nights and only broadband targets will be suggested. This is to take advantage of moonless nights.")
             }
             
         }

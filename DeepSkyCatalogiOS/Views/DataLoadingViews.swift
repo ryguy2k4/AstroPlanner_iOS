@@ -28,6 +28,7 @@ struct DailyReportLoadingView: View {
                     // merge the new data, overwriting if necessary
                     networkManager.sun.merge(data) { _, new in new }
                     store.sunData = networkManager.sun[NetworkManager.DataKey(date: store.date, location: store.location)] ?? SunData()
+//                    store.sunData = Sun.getNextInterval(location: store.location, date: store.date)
                     // here insert check for requesting data between midnight and night end should get info for the previous day still
                     if reportSettings.first!.darknessThreshold == Int16(2) {
                         store.viewingInterval = store.sunData.CTInterval

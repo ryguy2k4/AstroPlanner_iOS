@@ -34,6 +34,14 @@ struct SunData: Equatable {
         self.solarMidnight = .now
     }
     
+    init(astronomicalTwilightBegin: Date, astronomicalTwilightEnd: Date, nauticalTwilightBegin: Date, nauticalTwilightEnd: Date, civilTwilightBegin: Date, civilTwilightEnd: Date, sunset: Date, sunrise: Date, solarMidnight: Date) {
+        self.ATInterval = .init(start: astronomicalTwilightBegin, end: astronomicalTwilightEnd)
+        self.CTInterval = .init(start: nauticalTwilightBegin, end: nauticalTwilightEnd)
+        self.NTInterval = .init(start: civilTwilightBegin, end: civilTwilightEnd)
+        self.nightInterval = .init(start: sunset, end: sunrise)
+        self.solarMidnight = solarMidnight
+    }
+    
     init(dataToday: RawSunData, dataTomorrow: RawSunData, location: Location) {
         let solarMidnightTomorrow = dataTomorrow.results.solar_noon.addingTimeInterval(43_200)
         
