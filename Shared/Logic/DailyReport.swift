@@ -31,15 +31,13 @@ final class DailyReport: ObservableObject {
         self.sunData = sunData
         self.preset = preset
         
-        //print("Starting Report List Creation...")
-        self.topFive = createReportList(top: 5)
-        self.topTenNebulae = createReportList(for: TargetType.nebulae, top: 10)
-        self.topTenGalaxies = createReportList(for: TargetType.galaxies, top: 10)
-        self.topTenStarClusters = createReportList(for: TargetType.starClusters, top: 10)
-        //print("...Finished Report List Creation")
+        let targets = generateSuitableTargets()
+        self.topFive = createReportList(with: targets, top: 5)
+        self.topTenNebulae = createReportList(with: targets, for: TargetType.nebulae, top: 10)
+        self.topTenGalaxies = createReportList(with: targets, for: TargetType.galaxies, top: 10)
+        self.topTenStarClusters = createReportList(with: targets, for: TargetType.starClusters, top: 10)
         
-        func createReportList(for type: Set<TargetType> = [], top num: Int) -> [DeepSkyTarget] {
-                        
+        func generateSuitableTargets() -> [DeepSkyTarget] {
             // start with all whitelisted targets
             var targets = Array(DeepSkyTargetList.whitelistedTargets)
             
@@ -72,11 +70,6 @@ final class DailyReport: ObservableObject {
                 // else (new moon) --> do not filter anything, all is fine
             }
             
-            // filter for desired types passed to function
-            if !type.isEmpty {
-                targets.filterByType(type)
-            }
-            
             // filter for selected imaging preset, if one is selected
             if let preset = preset {
                 targets = targets.filter { target in
@@ -85,7 +78,27 @@ final class DailyReport: ObservableObject {
                 }
             }
             
+            return targets
+        }
+        
+        func createReportList(with targets: [DeepSkyTarget], for type: Set<TargetType> = [], top num: Int) -> [DeepSkyTarget] {
+            
+            var targets = targets
+            
+            // filter for desired types passed to function
+            if !type.isEmpty {
+                targets.filterByType(type)
+            }
+            
+            // Time Save Optimization
+            // if the list can be filtered down, this avoids needlessly sorting a few lines down at the time hog
+            let smallTargetsArray = targets.filteredByVisibility(min: 0.95, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+            if smallTargetsArray.count >= 10 {
+                targets = smallTargetsArray
+            }
+            
             // Sort the list by visibility
+            // TIME HOG ALERT
             targets.sortByVisibility(location: location,viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
             
             // Shorten the list to desired number passed to function

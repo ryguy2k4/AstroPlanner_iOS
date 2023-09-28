@@ -90,7 +90,6 @@ struct Sun {
         
         // astro dusk occurs if the sun is above -18 degrees and goes below -18 degrees
         if culminationAltitude >= -18 && antiCulminationAltitude <= -18 {
-            print("Astro Twilight Occurs")
             // search for the next astro twilight time after the culmination
             events.astronomicalDusk = binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
                 getAltitude(location: location, time: time) < -18 || getAltitude(location: location, time: time.addingTimeInterval(increment)) > -18
@@ -103,7 +102,6 @@ struct Sun {
         
         // nautical dusk occurs if the sun is above -12 degrees goes below -12 degrees
         if culminationAltitude >= -12 && antiCulminationAltitude <= -12 {
-            print("Nautical Twilight Occurs")
             // search for the next set time after the culmination
             events.nauticalDusk = binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
                 getAltitude(location: location, time: time) < -12 || getAltitude(location: location, time: time.addingTimeInterval(increment)) > -12
@@ -117,7 +115,6 @@ struct Sun {
         
         // civil dusk occurs if the sun is above -6 degrees and goes below -6 degrees
         if culminationAltitude >= -6 && antiCulminationAltitude <= -6 {
-            print("Civil Twilight Occurs")
             // search for the next set time after the culmination
             events.civilDusk = binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
                 getAltitude(location: location, time: time) < -6 || getAltitude(location: location, time: time.addingTimeInterval(increment)) > -6
@@ -131,7 +128,6 @@ struct Sun {
         
         // sunset occurs if the sun is above 0 degrees and goes below 0 degrees
         if culminationAltitude >= 0 && antiCulminationAltitude <= 0  {
-            print("Sunset Occurs")
             // search for the next set time after the culmination
             events.sunset = binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
                 getAltitude(location: location, time: time) < 0 || getAltitude(location: location, time: time.addingTimeInterval(increment)) > 0
@@ -142,8 +138,6 @@ struct Sun {
                 getAltitude(location: location, time: time) > 0 || getAltitude(location: location, time: time.addingTimeInterval(increment)) < 0
             }
         }
-        print(antiCulminationAltitude)
-        print(culminationAltitude)
         return SunData(events: events, location: location)
     }
 }
