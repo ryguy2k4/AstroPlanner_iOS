@@ -78,52 +78,71 @@ struct Sun {
         let culmination = Sun.getCulmination(location: location, date: date)
         let antiCulmination = culmination.addingTimeInterval(43_080)
         
-//        guard getAltitude(location: location, time: culmination) > 0 else {
-//            return TargetInterval(antiCulmination: antiCulmination, culmination: culmination, interval: .never)
-//        }
-//
-//        guard getAltitude(location: location, time: antiCulmination) < 0 else {
-//            return TargetInterval(antiCulmination: antiCulmination, culmination: culmination, interval: .always)
-//        }
+        let culminationAltitude = getAltitude(location: location, time: culmination)
+        let antiCulminationAltitude = getAltitude(location: location, time: antiCulmination)
         
-        // search for the next set time after the culmination
-        let astronomicalTwilightBegin = Sun.binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
-            Sun.getAltitude(location: location, time: time) > -18 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < -18
+        var astronomicalTwilightBegin: Date? = nil
+        var astronomicalTwilightEnd: Date? = nil
+        var nauticalTwilightEnd: Date? = nil
+        var nauticalTwilightBegin: Date? = nil
+        var civilTwilightEnd: Date? = nil
+        var civilTwilightBegin: Date? = nil
+        var sunrise: Date? = nil
+        var sunset: Date? = nil
+        
+        if antiCulminationAltitude < -18 {
+            print("No Astronomical Twilight")
+        } 
+        
+        if antiCulminationAltitude >= -18 {
+            print("No Nautical Twilight")
+            // search for the next astro twilight time after the culmination
+            astronomicalTwilightBegin = Sun.binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+                Sun.getAltitude(location: location, time: time) < -18 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) > -18
+            }
+            // search for the next astro twilight after the anti-culmination
+            astronomicalTwilightEnd = Sun.binaryAltitudeSearch(startTime: antiCulmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+                Sun.getAltitude(location: location, time: time) > -18 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < -18
+            }
         }
         
-        // search for the next rise time after the anti-culmination
-        let astronomicalTwilightEnd = Sun.binaryAltitudeSearch(startTime: astronomicalTwilightBegin.addingTimeInterval(60), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
-            Sun.getAltitude(location: location, time: time) > -18 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < -18
+        if antiCulminationAltitude >= -12 {
+            print("No Civil Twilight")
+            // search for the next set time after the culmination
+            nauticalTwilightBegin = Sun.binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+                Sun.getAltitude(location: location, time: time) < -12 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) > -12
+            }
+            
+            // search for the next rise time after the anti-culmination
+            nauticalTwilightEnd = Sun.binaryAltitudeSearch(startTime: antiCulmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+                Sun.getAltitude(location: location, time: time) > -12 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < -12
+            }
         }
         
-        // search for the next set time after the culmination
-        let nauticalTwilightBegin = Sun.binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
-            Sun.getAltitude(location: location, time: time) > -12 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < -12
+        if antiCulminationAltitude >= -6 {
+            print("No Sunrise")
+            // search for the next set time after the culmination
+            civilTwilightBegin = Sun.binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+                Sun.getAltitude(location: location, time: time) < -6 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) > -6
+            }
+            
+            // search for the next rise time after the anti-culmination
+            civilTwilightEnd = Sun.binaryAltitudeSearch(startTime: antiCulmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+                Sun.getAltitude(location: location, time: time) > -6 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < -6
+            }
         }
         
-        // search for the next rise time after the anti-culmination
-        let nauticalTwilightEnd = Sun.binaryAltitudeSearch(startTime: nauticalTwilightBegin.addingTimeInterval(60), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
-            Sun.getAltitude(location: location, time: time) > -12 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < -12
-        }
-        
-        // search for the next set time after the culmination
-        let civilTwilightBegin = Sun.binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
-            Sun.getAltitude(location: location, time: time) > -6 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < -6
-        }
-        
-        // search for the next rise time after the anti-culmination
-        let civilTwilightEnd = Sun.binaryAltitudeSearch(startTime: civilTwilightBegin.addingTimeInterval(60), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
-            Sun.getAltitude(location: location, time: time) > -6 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < -6
-        }
-        
-        // search for the next set time after the culmination
-        let sunset = Sun.binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
-            Sun.getAltitude(location: location, time: time) > 0 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < 0
-        }
-        
-        // search for the next rise time after the anti-culmination
-        let sunrise = Sun.binaryAltitudeSearch(startTime: sunset.addingTimeInterval(60), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
-            Sun.getAltitude(location: location, time: time) > 0 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < 0
+        if antiCulminationAltitude >= 0 {
+            print("No Sunrise")
+            // search for the next set time after the culmination
+            sunset = Sun.binaryAltitudeSearch(startTime: culmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+                Sun.getAltitude(location: location, time: time) < 0 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) > 0
+            }
+            
+            // search for the next rise time after the anti-culmination
+            sunrise = Sun.binaryAltitudeSearch(startTime: antiCulmination, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+                Sun.getAltitude(location: location, time: time) > 0 || Sun.getAltitude(location: location, time: time.addingTimeInterval(increment)) < 0
+            }
         }
         
         return SunData(astronomicalTwilightBegin: astronomicalTwilightBegin, astronomicalTwilightEnd: astronomicalTwilightEnd, nauticalTwilightBegin: nauticalTwilightBegin, nauticalTwilightEnd: nauticalTwilightEnd, civilTwilightBegin: civilTwilightBegin, civilTwilightEnd: civilTwilightEnd, sunset: sunset, sunrise: sunrise, solarMidnight: antiCulmination)
