@@ -51,7 +51,7 @@ struct Provider: IntentTimelineProvider {
                 let currentDate: Date = .now.startOfLocalDay(timezone: TimeZone(identifier: location.timezone!)!)
 
                 // fetch sun and moon data from network
-                let sunData = try await NetworkManager.shared.getAPIData(at: Location(saved: location), on: currentDate)
+                let sunData = Sun.sol.getNextInterval(location: Location(saved: location), date: currentDate)
 
                 // generate a report
                 

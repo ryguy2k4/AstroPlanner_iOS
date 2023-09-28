@@ -24,7 +24,6 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     
-    @State var internet = true
     @StateObject var vm: HomeViewModel = HomeViewModel()
     
     var body: some View {
@@ -43,23 +42,13 @@ struct HomeView: View {
                         }
                         .environmentObject(vm)
                 }
+                // show a loading view while sun data is being calculated
                 else {
-                    // if available location but sunData and viewingInterval are being populated, then show a loading view
-                    if internet {
-                        DailyReportLoadingView(internet: $internet)
-                            .tabItem {
-                                Label("Daily Report", systemImage: "doc.text")
-                            }
-                            .environmentObject(vm)
-                    }
-                    // if available location but sunData and viewingInterval failed to populate, then show an error screen
-                    else {
-                        DailyReportLoadingFailedView(internet: $internet)
-                            .tabItem {
-                                Label("Daily Report", systemImage: "doc.text")
-                            }
-                            .environmentObject(vm)
-                    }
+                    DailyReportLoadingView()
+                        .tabItem {
+                            Label("Daily Report", systemImage: "doc.text")
+                        }
+                        .environmentObject(vm)
                     // Append BasicCatalogView to the tab bar when sunData and viewingInterval are not populated
                     BasicCatalogView()
                         .tabItem {

@@ -7,17 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6F839FE8-2DBA-4631-B8CC-34927A996AED"
+            uuid = "085561C3-6852-4C62-AAAF-913783146645"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DeepSkyCatalogiOS/Views/DataLoadingViews.swift"
+            filePath = "Shared/Sun.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "getNextInterval(location:date:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "085561C3-6852-4C62-AAAF-913783146645 - 908c149c9bd83b66"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static DeepSkyCatalogiOS.Sun.getNextInterval(location: DeepSkyCatalogiOS.Location, date: Foundation.Date) -&gt; DeepSkyCatalogiOS.SunData"
+                  moduleName = "DeepSkyCatalogiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Sun.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "3480">
+               </Location>
+               <Location
+                  uuid = "085561C3-6852-4C62-AAAF-913783146645 - be57c7d636381f1d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #8 (Foundation.Date, Swift.Double) -&gt; Swift.Bool in static DeepSkyCatalogiOS.Sun.getNextInterval(location: DeepSkyCatalogiOS.Location, date: Foundation.Date) -&gt; DeepSkyCatalogiOS.SunData"
+                  moduleName = "DeepSkyCatalogiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Sun.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB94C8AB-42A6-4044-BB9A-9C68BC8D37CA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Sun.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "getNextInterval(location:date:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
