@@ -104,7 +104,7 @@ struct ImageField: View {
                     }
                 } else {
                     Button("Add Image") {
-                        image = DeepSkyTarget.TargetImage(source: .apod(id: "APOD", copyrighted: false), credit: "CREDIT", width: 0, height: 0)
+                        image = DeepSkyTarget.TargetImage(source: .apod(id: "APOD", copyrighted: false), credit: "CREDIT")
                     }
                 }
                 HStack(spacing: 20) {
