@@ -48,17 +48,6 @@ struct AdvancedSettingsView: View {
                 Text("The limiting altitude determines the rise and set times of each target, and in turn the visibility score, which represents the percentage of the night the target is above this altitude. The default value is 0 (representing the horizon).")
             }
             
-            // Darkness Threshold
-            Section {
-                Picker("Darkness Threshold", selection: $reportSettings.darknessThreshold) {
-                    Text("Civil Twilight").tag(Int16(2))
-                    Text("Nautical Twilight").tag(Int16(1))
-                    Text("Astronomical Twilight").tag(Int16(0))
-                }
-            } footer: {
-                Text("The darkness threshold specifies how dark it needs to be in order to start imaging. This setting impacts visibility score. The default value is Civil Twilight.")
-            }
-            
             // Minimum FOV Coverage
             Section {
                 Button {

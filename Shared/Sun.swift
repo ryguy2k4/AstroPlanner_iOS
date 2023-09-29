@@ -81,7 +81,7 @@ struct Sun {
     func getNextInterval(location: Location, date: Date) -> SunData {
         
         let culmination = getCulmination(location: location, date: date)
-        let antiCulmination = culmination.addingTimeInterval(43_080)
+        let antiCulmination = culmination.addingTimeInterval(43_200)
         
         let culminationAltitude = getAltitude(location: location, time: culmination)
         let antiCulminationAltitude = getAltitude(location: location, time: antiCulmination)
@@ -195,43 +195,50 @@ struct SunData: Equatable {
     }
     
     init(events: SunEvents, location: Location) {
+        
+        lazy var antiCulminationAltitude = Sun.sol.getAltitude(location: location, time: events.solarMidnight)
+        
+        // if sunset occurs, set the interval
         if let sunset = events.sunset, let sunrise = events.sunrise {
             nightInterval = DateInterval(start: sunset, end: sunrise)
         } else {
-            if Sun.sol.getAltitude(location: location, time: events.solarMidnight) > 0 {
+            // if sunset does not occur, and the sun is up the whole day, set the night interval to 0
+            if antiCulminationAltitude > 0 {
                 nightInterval = DateInterval(start: events.solarNoon, duration: 0)
-            } else {
-                nightInterval = DateInterval(start: events.solarNoon, end: events.solarNoon)
+            }
+            // if sunset does not occur and the sun is down the whole day, set the night interval to the whole day
+            else {
+                nightInterval = DateInterval(start: events.solarNoon, end: events.solarNoon.addingTimeInterval(86400))
             }
         }
         
         if let civilDusk = events.civilDusk, let civilDawn = events.civilDawn {
             CTInterval = DateInterval(start: civilDusk, end: civilDawn)
         } else {
-            if Sun.sol.getAltitude(location: location, time: events.solarMidnight) > 0 {
+            if antiCulminationAltitude > -6 {
                 CTInterval = DateInterval(start: events.solarNoon, duration: 0)
             } else {
-                CTInterval = DateInterval(start: events.solarNoon, end: events.solarNoon)
+                CTInterval = DateInterval(start: events.solarNoon, end: events.solarNoon.addingTimeInterval(86400))
             }
         }
         
         if let nauticalDusk = events.nauticalDusk, let nauticalDawn = events.nauticalDawn {
             NTInterval = DateInterval(start: nauticalDusk, end: nauticalDawn)
         } else {
-            if Sun.sol.getAltitude(location: location, time: events.solarMidnight) > 0 {
+            if antiCulminationAltitude > -12 {
                 NTInterval = DateInterval(start: events.solarNoon, duration: 0)
             } else {
-                NTInterval = DateInterval(start: events.solarNoon, end: events.solarNoon)
+                NTInterval = DateInterval(start: events.solarNoon, end: events.solarNoon.addingTimeInterval(86400))
             }
         }
         
         if let astronomicalDusk = events.astronomicalDusk, let astronomicalDawn = events.astronomicalDawn {
             ATInterval = DateInterval(start: astronomicalDusk, end: astronomicalDawn)
         } else {
-            if Sun.sol.getAltitude(location: location, time: events.solarMidnight) > 0 {
+            if antiCulminationAltitude > -18 {
                 ATInterval = DateInterval(start: events.solarNoon, duration: 0)
             } else {
-                ATInterval = DateInterval(start: events.solarNoon, end: events.solarNoon)
+                ATInterval = DateInterval(start: events.solarNoon, end: events.solarNoon.addingTimeInterval(86400))
             }
         }
         

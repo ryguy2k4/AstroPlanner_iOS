@@ -158,6 +158,7 @@ struct DailyReportLoadingView: View {
 struct DailyReportLoadingFailedView: View {
     @EnvironmentObject var store: HomeViewModel
     @EnvironmentObject var networkManager: NetworkManager
+    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @Binding var internet: Bool
     var body: some View {
         NavigationStack {
@@ -170,6 +171,13 @@ struct DailyReportLoadingFailedView: View {
                     Task {
                         do {
                             store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
+                            if reportSettings.first!.darknessThreshold == Int16(2) {
+                                store.viewingInterval = store.sunData.CTInterval
+                            } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                                store.viewingInterval = store.sunData.NTInterval
+                            } else {
+                                store.viewingInterval = store.sunData.ATInterval
+                            }
                         } catch {
                             internet = false
                         }
