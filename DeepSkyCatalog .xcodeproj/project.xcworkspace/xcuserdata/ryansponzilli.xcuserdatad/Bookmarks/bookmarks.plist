@@ -59,13 +59,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>26</string>
+					<string>27</string>
 					<key>StartingColumnNumber</key>
-					<string>99</string>
+					<string>120</string>
 					<key>StartingLineNumber</key>
-					<string>25</string>
+					<string>26</string>
 					<key>Timestamp</key>
-					<string>717635040.542532</string>
+					<string>717709649.582776</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -84,17 +84,17 @@
 				<string>
 </string>
 				<key>leading</key>
-				<string>            // in case it causes a hold up, and display a loading screen
-            .task {
-                store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)</string>
+				<string>            .task {
+                store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
+                // If its in the morning hours of the next day, still show the info for the previous day (current night)</string>
 				<key>trailing</key>
-				<string>                if reportSettings.first!.darknessThreshold == Int16(2) {
-                    store.viewingInterval = store.sunData.CTInterval
-                } else if reportSettings.first!.darknessThreshold == Int16(1) {
+				<string>                if Sun.sol.getAltitude(location: store.location, time: .now) &lt; -18 &amp;&amp; .now &gt; store.sunData.solarMidnight {
+                    store.date = store.date.yesterday()
+                }
 </string>
 			</dict>
 			<key>title</key>
-			<string>here insert check for requesting data between midnight and night end should get info for the previous day still</string>
+			<string>Test this</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

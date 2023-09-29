@@ -111,7 +111,7 @@ struct HomeView: View {
             }()
             if let newLocation = newLocation, newLocation != vm.location {
                 vm.location = newLocation
-                vm.date = .now.startOfLocalDay(timezone: newLocation.timezone)
+                vm.date = vm.date.startOfLocalDay(timezone: newLocation.timezone)
             }
         }
         .onReceive(vm.$date, perform: { newValue in

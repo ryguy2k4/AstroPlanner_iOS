@@ -24,6 +24,10 @@ struct DailyReportLoadingView: View {
             // in case it causes a hold up, and display a loading screen
             .task {
                 store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
+                // If its in the morning hours of the next day, still show the info for the previous day (current night)
+                if Sun.sol.getAltitude(location: store.location, time: .now) < -18 && .now > store.sunData.solarMidnight {
+                    store.date = store.date.yesterday()
+                }
                 if reportSettings.first!.darknessThreshold == Int16(2) {
                     store.viewingInterval = store.sunData.CTInterval
                 } else if reportSettings.first!.darknessThreshold == Int16(1) {

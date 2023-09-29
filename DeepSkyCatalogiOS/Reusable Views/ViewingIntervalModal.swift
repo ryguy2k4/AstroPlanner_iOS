@@ -162,13 +162,19 @@ struct DateSelector: View {
 struct DatePickerModal: View {
     @State var date: Date?
     @EnvironmentObject var store: HomeViewModel
+    @State var didHitTonight: Bool = false
     
     var body: some View {
         VStack {
             if let date = Binding($date) {
                 Button("Tonight") {
-                    // doesnt work between 12am and morning
-                    store.date = .now.startOfLocalDay(timezone: store.location.timezone)
+                    // If its in the morning hours of the next day, still show the info for the previous day (current night)
+                    if Sun.sol.getAltitude(location: store.location, time: .now) < -18 && .now > store.sunData.solarMidnight {
+                        store.date = .now.startOfLocalDay(timezone: store.location.timezone).yesterday()
+                    } else {
+                        store.date = .now.startOfLocalDay(timezone: store.location.timezone)
+                    }
+                    didHitTonight = true
                 }
                 .buttonStyle(.borderedProminent)
                 
@@ -176,7 +182,9 @@ struct DatePickerModal: View {
                     .datePickerStyle(.wheel)
                     .labelsHidden()
                     .onDisappear() {
-                        store.date = date.wrappedValue
+                        if !didHitTonight {
+                            store.date = date.wrappedValue
+                        }
                     }
             } else {
                 ProgressView()
