@@ -7,7 +7,6 @@
 
 import SwiftUI
 import CoreData
-import WeatherKit
 import CoreLocation
 
 struct DailyReportView: View {
