@@ -64,23 +64,23 @@ struct CatalogView: View {
                 catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
             }
         }
-        .searchSuggestions {
-            // grab top 15 search results
-            let suggestions = DeepSkyTargetList.whitelistedTargets.filteredBySearch(catalogManager.searchText)
-            
-            // list the search results
-            ForEach(suggestions) { suggestion in
-                HStack {
-                    Image(suggestion.image?.source.fileName ?? "\(suggestion.type)")
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(8)
-                        .frame(width: 100, height: 70)
-                    Text(suggestion.name?.first ?? suggestion.defaultName)
-                        .foregroundColor(.primary)
-                }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
-            }
-        }
+//        .searchSuggestions {
+//            // grab top 15 search results
+//            let suggestions = DeepSkyTargetList.whitelistedTargets.filteredBySearch(catalogManager.searchText)
+//            
+//            // list the search results
+//            ForEach(suggestions) { suggestion in
+//                HStack {
+//                    Image(suggestion.image?.source.fileName ?? "\(suggestion.type)")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .cornerRadius(8)
+//                        .frame(width: 100, height: 70)
+//                    Text(suggestion.name?.first ?? suggestion.defaultName)
+//                        .foregroundColor(.primary)
+//                }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
+//            }
+//        }
         .onChange(of: isSearching) { newValue in
             if !isSearching {
                 dismissSearch()
