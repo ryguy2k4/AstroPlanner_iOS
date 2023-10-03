@@ -50,13 +50,22 @@ struct Provider: IntentTimelineProvider {
                 // use current date
                 let currentDate: Date = .now.startOfLocalDay(timezone: TimeZone(identifier: location.timezone!)!)
 
-                // fetch sun and moon data from network
+                // generate sundata
                 let sunData = Sun.sol.getNextInterval(location: Location(saved: location), date: currentDate)
 
-                // generate a report
+                // get viewing interval
+                let viewingInterval = {
+                    if reportSettings.darknessThreshold == Int16(2) {
+                        return sunData.CTInterval
+                    } else if reportSettings.darknessThreshold == Int16(1) {
+                        return sunData.NTInterval
+                    } else {
+                        return sunData.ATInterval
+                    }
+                }()
                 
-                //NEEDS TO COMPLY WITH DARKNESS LEVEL
-                let report = DailyReport(location: Location(saved: location), date: currentDate, viewingInterval: sunData.ATInterval, reportSettings: reportSettings, targetSettings: targetSettings, preset: presetList.first(where: {$0.isSelected == true}), sunData: sunData)
+                // generate a report
+                let report = DailyReport(location: Location(saved: location), date: currentDate, viewingInterval: viewingInterval, reportSettings: reportSettings, targetSettings: targetSettings, preset: presetList.first(where: {$0.isSelected == true}), sunData: sunData)
                 
                 // create a timline with 1 entry for the current date
                 var rows: Int {

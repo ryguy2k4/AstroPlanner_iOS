@@ -205,6 +205,7 @@ fileprivate struct TargetAltitudeChart: View {
             }
         }
         .padding(.horizontal)
+        .frame(minHeight: 150)
     }
 }
 
@@ -264,6 +265,7 @@ fileprivate struct TargetSeasonScoreChart: View {
                 .font(.headline)
         }
         .padding(.horizontal)
+        .frame(minHeight: 150)
     }
 }
 

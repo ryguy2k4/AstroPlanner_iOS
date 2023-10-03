@@ -24,7 +24,6 @@ struct Mac_HomeView: View {
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
     @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
     
-    @State var internet = true
     @StateObject var vm: HomeViewModel = HomeViewModel()
     
     enum SidebarItem: String, Identifiable, CaseIterable {
@@ -61,26 +60,15 @@ struct Mac_HomeView: View {
                         Mac_CatalogView()
                             .environmentObject(vm)
                     }
-                } else {
-                    // if available location but sunData and viewingInterval are being populated, then show a loading view
-                    if internet {
-                        switch sidebarItem {
-                        case .report:
-                            DailyReportLoadingView(internet: $internet)
-                                .environmentObject(vm)
-                        case .catalog:
-                            Text("Basic Catalog View")
-                        }
-                    }
-                    // if available location but sunData and viewingInterval failed to populate, then show an error screen
-                    else {
-                        switch sidebarItem {
-                        case .report:
-                            DailyReportLoadingFailedView(internet: $internet)
-                                .environmentObject(vm)
-                        case .catalog:
-                            Text("Basic Catalog View")
-                        }
+                }
+                // if available location but sunData and viewingInterval are being populated, then show a loading view
+                else {
+                    switch sidebarItem {
+                    case .report:
+                        DailyReportLoadingView()
+                            .environmentObject(vm)
+                    case .catalog:
+                        Text("Basic Catalog View")
                     }
                 }
             } else {
@@ -128,7 +116,6 @@ struct DailyReportLoadingView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var store: HomeViewModel
     @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
-    @Binding var internet: Bool
     var body: some View {
         NavigationStack {
             VStack {
@@ -137,54 +124,50 @@ struct DailyReportLoadingView: View {
                 Spacer()
             }
             .task {
-                do {
-                    store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
-                    // here insert check for requesting data between midnight and night end should get info for the previous day still
-                    if reportSettings.first!.darknessThreshold == Int16(2) {
-                        store.viewingInterval = store.sunData.CTInterval
-                    } else if reportSettings.first!.darknessThreshold == Int16(1) {
-                        store.viewingInterval = store.sunData.NTInterval
-                    } else {
-                        store.viewingInterval = store.sunData.ATInterval
-                    }
-                } catch {
-                    internet = false
+                store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
+                // here insert check for requesting data between midnight and night end should get info for the previous day still
+                if reportSettings.first!.darknessThreshold == Int16(2) {
+                    store.viewingInterval = store.sunData.CTInterval
+                } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                    store.viewingInterval = store.sunData.NTInterval
+                } else {
+                    store.viewingInterval = store.sunData.ATInterval
                 }
             }
         }
     }
 }
 
-struct DailyReportLoadingFailedView: View {
-    @EnvironmentObject var store: HomeViewModel
-    @EnvironmentObject var networkManager: NetworkManager
-    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
-    @Binding var internet: Bool
-    var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Daily Report Unavailable Offline")
-                    .fontWeight(.bold)
-                    .padding(.vertical)
-                Button("Retry") {
-                    internet = true
-                    Task {
-                        do {
-                            store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
-                            if reportSettings.first!.darknessThreshold == Int16(2) {
-                                store.viewingInterval = store.sunData.CTInterval
-                            } else if reportSettings.first!.darknessThreshold == Int16(1) {
-                                store.viewingInterval = store.sunData.NTInterval
-                            } else {
-                                store.viewingInterval = store.sunData.ATInterval
-                            }
-                        } catch {
-                            internet = false
-                        }
-                    }
-                }
-                Spacer()
-            }
-        }
-    }
-}
+//struct DailyReportLoadingFailedView: View {
+//    @EnvironmentObject var store: HomeViewModel
+//    @EnvironmentObject var networkManager: NetworkManager
+//    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
+//    @Binding var internet: Bool
+//    var body: some View {
+//        NavigationStack {
+//            VStack {
+//                Text("Daily Report Unavailable Offline")
+//                    .fontWeight(.bold)
+//                    .padding(.vertical)
+//                Button("Retry") {
+//                    internet = true
+//                    Task {
+//                        do {
+//                            store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
+//                            if reportSettings.first!.darknessThreshold == Int16(2) {
+//                                store.viewingInterval = store.sunData.CTInterval
+//                            } else if reportSettings.first!.darknessThreshold == Int16(1) {
+//                                store.viewingInterval = store.sunData.NTInterval
+//                            } else {
+//                                store.viewingInterval = store.sunData.ATInterval
+//                            }
+//                        } catch {
+//                            internet = false
+//                        }
+//                    }
+//                }
+//                Spacer()
+//            }
+//        }
+//    }
+//}
