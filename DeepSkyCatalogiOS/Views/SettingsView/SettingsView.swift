@@ -37,8 +37,6 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarLogo()
             }
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

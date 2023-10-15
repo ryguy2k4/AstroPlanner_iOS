@@ -30,11 +30,13 @@ struct Mac_HomeView: View {
         var id: Self { self }
         case report = "Daily Report"
         case catalog = "Master Catalog"
+        case journal = "Journal"
         
         var icon: String {
             switch self {
             case .report: return "doc.text"
             case .catalog: return "tray.full.fill"
+            case .journal: return "doc.text"
             }
         }
     }
@@ -59,6 +61,8 @@ struct Mac_HomeView: View {
                     case .catalog:
                         Mac_CatalogView()
                             .environmentObject(vm)
+                    case .journal:
+                        Mac_JournalView()
                     }
                 }
                 // if available location but sunData and viewingInterval are being populated, then show a loading view
@@ -69,6 +73,8 @@ struct Mac_HomeView: View {
                             .environmentObject(vm)
                     case .catalog:
                         Text("Basic Catalog View")
+                    case .journal:
+                        Mac_JournalView()
                     }
                 }
             } else {

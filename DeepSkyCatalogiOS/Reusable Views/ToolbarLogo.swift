@@ -12,7 +12,7 @@ struct ToolbarLogo: ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             Label("Astro Planner", systemImage: "hurricane")
                 .fontWeight(.semibold)
-                .font(.title2)
+                .font(.title3)
                 .labelStyle(.titleAndIcon)
         }
     }

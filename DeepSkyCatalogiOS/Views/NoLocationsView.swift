@@ -25,6 +25,9 @@ struct NoLocationsView: View {
                     store.location = Location(current: location)
                 }
             }
+            .toolbar {
+                ToolbarLogo()
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ struct DailyReportLoadingView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                ProgressView("Fetching Sun Data")
+                ProgressView("Calculating Sun Data")
                     .padding(.top, 50)
                 Spacer()
             }
@@ -36,6 +36,19 @@ struct DailyReportLoadingView: View {
                     store.viewingInterval = store.sunData.ATInterval
                 }
             }
+        }
+    }
+}
+
+struct CatalogLoadingView: View {
+    var body: some View {
+        VStack {
+            ProgressView("Calculating Sun Data")
+                .padding(.top, 50)
+            Spacer()
+        }
+        .toolbar {
+            ToolbarLogo()
         }
     }
 }

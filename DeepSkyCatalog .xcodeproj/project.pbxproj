@@ -23,6 +23,7 @@
 		712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */; };
 		712E83662A60F41200CA42DD /* Mac_TopTenListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */; };
 		712E83682A60F44F00CA42DD /* ReportSettingsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */; };
+		7133FCA72ACCC26B00DB0B27 /* Mac_JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133FCA62ACCC26B00DB0B27 /* Mac_JournalView.swift */; };
 		7135117B29B2819300725B1D /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		7135117C29B2820B00725B1D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
 		7135117D29B2829C00725B1D /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
@@ -216,8 +217,6 @@
 		71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
 		71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */; };
-		71FE1AA929D79517000E2B2B /* BasicCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FE1AA829D79517000E2B2B /* BasicCatalogView.swift */; };
-		71FE1AAB29D795FB000E2B2B /* BasicDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +263,7 @@
 		712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopFiveView.swift; sourceTree = "<group>"; };
 		712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopTenListView.swift; sourceTree = "<group>"; };
 		712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSettingsEditor.swift; sourceTree = "<group>"; };
+		7133FCA62ACCC26B00DB0B27 /* Mac_JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_JournalView.swift; sourceTree = "<group>"; };
 		713568E92A60C661004196AE /* Mac_CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_CatalogView.swift; sourceTree = "<group>"; };
 		713568EB2A60C696004196AE /* Mac_DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_DetailView.swift; sourceTree = "<group>"; };
 		71375E6A2980DB6F00B95F2E /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
@@ -370,8 +370,6 @@
 		71F71572293FB4010011EF7F /* Environment+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Ext.swift"; sourceTree = "<group>"; };
 		71F844C8294A95E700DD2742 /* SelectableList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableList.swift; sourceTree = "<group>"; };
 		71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTargetsList.swift; sourceTree = "<group>"; };
-		71FE1AA829D79517000E2B2B /* BasicCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCatalogView.swift; sourceTree = "<group>"; };
-		71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,7 +418,6 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9672921EF20008C7614 /* CatalogView.swift */,
-				71FE1AA829D79517000E2B2B /* BasicCatalogView.swift */,
 				7113870229C3571400081584 /* FilterButtonMenuView.swift */,
 				71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */,
 			);
@@ -451,11 +448,18 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9692921EF20008C7614 /* DetailView.swift */,
-				71FE1AAA29D795FB000E2B2B /* BasicDetailView.swift */,
 				71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */,
 				71C26464298F1D920057EC04 /* ZoomableScrollView.swift */,
 			);
 			path = DetailView;
+			sourceTree = "<group>";
+		};
+		7133FCA52ACCC24700DB0B27 /* JournalView */ = {
+			isa = PBXGroup;
+			children = (
+				7133FCA62ACCC26B00DB0B27 /* Mac_JournalView.swift */,
+			);
+			path = JournalView;
 			sourceTree = "<group>";
 		};
 		713B49B629541216008EFC81 /* SettingsView */ = {
@@ -524,6 +528,7 @@
 				71DF8A722A61FB5F00923236 /* Mac_AboutView.swift */,
 				712E83622A60F3D600CA42DD /* CatalogView */,
 				712E83612A60F3B900CA42DD /* DailyReportView */,
+				7133FCA52ACCC24700DB0B27 /* JournalView */,
 				71DF8A6F2A61F9D500923236 /* SettingsView */,
 			);
 			path = Views;
@@ -886,7 +891,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					7162D33A2964DBF0007C8710 = {
 						CreatedOnToolsVersion = 14.2;
@@ -1137,7 +1142,6 @@
 				71DF8A7E2A62323700923236 /* DateFormatter+Ext.swift in Sources */,
 				71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */,
 				71BD753F2971044D00D7751F /* SortMethods.swift in Sources */,
-				71FE1AAB29D795FB000E2B2B /* BasicDetailView.swift in Sources */,
 				713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */,
 				710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */,
 				71BD7542297104AB00D7751F /* FilterMethods.swift in Sources */,
@@ -1151,7 +1155,6 @@
 				719B26D7295167A100E1165A /* NumberPicker.swift in Sources */,
 				71F510BC297605E9008F7629 /* CaseNameCodable.swift in Sources */,
 				71462F3329A2E6A100F2914C /* ToolbarLogo.swift in Sources */,
-				71FE1AA929D79517000E2B2B /* BasicCatalogView.swift in Sources */,
 				714BB85329A094810084D438 /* TopTenTabView.swift in Sources */,
 				71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				717051DB29CE7A6D00D4EE1A /* LocationPickerModal.swift in Sources */,
@@ -1197,6 +1200,7 @@
 				71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */,
 				71DF8A7B2A622DF700923236 /* Mac_HiddenTargetsList.swift in Sources */,
 				716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */,
+				7133FCA72ACCC26B00DB0B27 /* Mac_JournalView.swift in Sources */,
 				712E83662A60F41200CA42DD /* Mac_TopTenListView.swift in Sources */,
 				71C26463298F1D510057EC04 /* Moon.swift in Sources */,
 				71C26459298F1D230057EC04 /* CatalogManager.swift in Sources */,
@@ -1439,6 +1443,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1499,6 +1504,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1525,7 +1531,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;
@@ -1565,7 +1571,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;

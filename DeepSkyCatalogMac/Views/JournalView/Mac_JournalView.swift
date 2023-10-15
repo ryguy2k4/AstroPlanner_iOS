@@ -9,10 +9,33 @@ import SwiftUI
 
 struct Mac_JournalView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Journal View")
     }
 }
 
-#Preview {
-    Mac_JournalView()
-}
+/*
+ Houses a list of journal entries
+ Journal entries are file folders
+ Plus button in the toolbar
+ Each entry navigates to a JournalEntryView
+ */
+
+/*
+ JournalEntry Object
+ 
+ Group by date AND project
+ 
+ instance variables:
+ - date and times
+ - location
+ - target
+ - weather data
+    - sun
+    - moon
+    - temp
+    - dew
+    - wind
+ - notes
+ - gear used
+ - imaging plan
+ */

@@ -49,12 +49,10 @@ struct HomeView: View {
                             Label("Daily Report", systemImage: "doc.text")
                         }
                         .environmentObject(vm)
-                    // Append BasicCatalogView to the tab bar when sunData and viewingInterval are not populated
-                    BasicCatalogView()
+                    CatalogLoadingView()
                         .tabItem {
                             Label("Master Catalog", systemImage: "tray.full.fill")
                         }
-                        .environmentObject(vm)
                 }
             }
             // if no location available, prompt user for location
@@ -85,6 +83,10 @@ struct HomeView: View {
                     }
                     .environmentObject(locationManager)
                     .environmentObject(vm)
+                NoLocationsView()
+                    .tabItem {
+                        Label("Master Catalog", systemImage: "tray.full.fill")
+                    }
             }
             // Append SettingsView to the tab bar of every permutation
             SettingsView()

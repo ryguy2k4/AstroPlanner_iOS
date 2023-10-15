@@ -19,7 +19,7 @@ struct TopFiveView: View {
                 NavigationLink(value: target) {
                     VStack {
                         Text(target.name?[0] ?? target.defaultName)
-                            .fontWeight(.semibold)
+                            .fontWeight(.thin)
                             .foregroundColor(.primary)
                         Image(target.image?.source.fileName ?? "\(target.type)")
                             .resizable()

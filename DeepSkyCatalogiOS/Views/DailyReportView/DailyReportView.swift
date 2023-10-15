@@ -159,23 +159,16 @@ fileprivate struct ReportHeader: View {
     
     var body: some View {
         VStack {
-            Text("Daily Report")
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
             if store.viewingInterval == store.sunData.ATInterval || store.viewingInterval == store.sunData.NTInterval || store.viewingInterval == store.sunData.CTInterval {
-                Text("Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)")
+                Text(" ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) | Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)")
                     .font(.subheadline)
-                    .fontWeight(.thin)
+                    .lineLimit(1)
+                    .padding(5)
             } else {
-                Text("\(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(store.location.name)")
+                Text(" ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) | \(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) | \(store.location.name)")
                     .font(.subheadline)
-                    .fontWeight(.thin)
+                    .padding(5)
             }
-            let moonIllumination = Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone)
-            Text("Moon: \(moonIllumination.percent(sigFigs: 2)) illuminated")
-                .font(.subheadline)
-                .fontWeight(.thin)
-        }.padding(.bottom)
+        }
     }
 }
