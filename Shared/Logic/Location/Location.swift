@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-struct Location: Hashable, Equatable {
+struct Location: Hashable, Equatable, Codable {
     let latitude: Double
     let longitude: Double
     let timezone: TimeZone
@@ -28,7 +28,7 @@ struct Location: Hashable, Equatable {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    enum LocationSource: Hashable {
+    enum LocationSource: Hashable, Codable {
         case current
         case saved(String)
     }

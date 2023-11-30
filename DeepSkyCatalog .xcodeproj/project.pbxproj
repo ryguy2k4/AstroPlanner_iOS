@@ -20,6 +20,8 @@
 		711386FB29C3548C00081584 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386F629C3548C00081584 /* Filter.swift */; };
 		711386FD29C356CA00081584 /* TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386FC29C356CA00081584 /* TopFiveView.swift */; };
 		7113870329C3571400081584 /* FilterButtonMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113870229C3571400081584 /* FilterButtonMenuView.swift */; };
+		7129DEBB2B15A6660058B238 /* journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 7129DEBA2B15A6660058B238 /* journal.json */; };
+		7129DEBD2B15AC9F0058B238 /* EntryEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129DEBC2B15AC9F0058B238 /* EntryEditor.swift */; };
 		712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */; };
 		712E83662A60F41200CA42DD /* Mac_TopTenListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */; };
 		712E83682A60F44F00CA42DD /* ReportSettingsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */; };
@@ -30,6 +32,13 @@
 		713568EA2A60C661004196AE /* Mac_CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713568E92A60C661004196AE /* Mac_CatalogView.swift */; };
 		713568EC2A60C696004196AE /* Mac_DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713568EB2A60C696004196AE /* Mac_DetailView.swift */; };
 		71375E6B2980DB6F00B95F2E /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71375E6A2980DB6F00B95F2E /* AdvancedSettingsView.swift */; };
+		713919322B16C8C200A5BE11 /* ImagePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713919312B16C8C200A5BE11 /* ImagePlan.swift */; };
+		713919342B16CFBA00A5BE11 /* XMLParsing in Frameworks */ = {isa = PBXBuildFile; productRef = 713919332B16CFBA00A5BE11 /* XMLParsing */; };
+		713919362B16FF5800A5BE11 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713919352B16FF5800A5BE11 /* JournalEntry.swift */; };
+		713919372B16FF5800A5BE11 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713919352B16FF5800A5BE11 /* JournalEntry.swift */; };
+		713919382B16FF5800A5BE11 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713919352B16FF5800A5BE11 /* JournalEntry.swift */; };
+		713919392B16FF5800A5BE11 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713919352B16FF5800A5BE11 /* JournalEntry.swift */; };
+		7139193A2B16FF5800A5BE11 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713919352B16FF5800A5BE11 /* JournalEntry.swift */; };
 		713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49B72954122D008EFC81 /* LocationSettings.swift */; };
 		71462F3329A2E6A100F2914C /* ToolbarLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71462F3229A2E6A100F2914C /* ToolbarLogo.swift */; };
 		714BB85329A094810084D438 /* TopTenTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BB85229A094810084D438 /* TopTenTabView.swift */; };
@@ -116,6 +125,7 @@
 		71901C7729299D5C00D95AA5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
 		71950E8829D139900075081B /* NoLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71950E8729D139900075081B /* NoLocationsView.swift */; };
 		71950E8A29D139BE0075081B /* DataLoadingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71950E8929D139BE0075081B /* DataLoadingViews.swift */; };
+		719B24A82B1670F900C3951A /* TargetIDSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */; };
 		719B26D7295167A100E1165A /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B26D6295167A100E1165A /* NumberPicker.swift */; };
 		71A6C8FB2A5F4DE0009F1C30 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A6C8FA2A5F4DE0009F1C30 /* Sun.swift */; };
 		71A6C8FC2A5F4E0D009F1C30 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A6C8FA2A5F4DE0009F1C30 /* Sun.swift */; };
@@ -260,6 +270,8 @@
 		711386F629C3548C00081584 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		711386FC29C356CA00081584 /* TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFiveView.swift; sourceTree = "<group>"; };
 		7113870229C3571400081584 /* FilterButtonMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonMenuView.swift; sourceTree = "<group>"; };
+		7129DEBA2B15A6660058B238 /* journal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = journal.json; sourceTree = "<group>"; };
+		7129DEBC2B15AC9F0058B238 /* EntryEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEditor.swift; sourceTree = "<group>"; };
 		712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopFiveView.swift; sourceTree = "<group>"; };
 		712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopTenListView.swift; sourceTree = "<group>"; };
 		712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSettingsEditor.swift; sourceTree = "<group>"; };
@@ -267,6 +279,8 @@
 		713568E92A60C661004196AE /* Mac_CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_CatalogView.swift; sourceTree = "<group>"; };
 		713568EB2A60C696004196AE /* Mac_DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_DetailView.swift; sourceTree = "<group>"; };
 		71375E6A2980DB6F00B95F2E /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
+		713919312B16C8C200A5BE11 /* ImagePlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePlan.swift; sourceTree = "<group>"; };
+		713919352B16FF5800A5BE11 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		713B49B72954122D008EFC81 /* LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettings.swift; sourceTree = "<group>"; };
 		71462F3229A2E6A100F2914C /* ToolbarLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarLogo.swift; sourceTree = "<group>"; };
 		714BB85229A094810084D438 /* TopTenTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenTabView.swift; sourceTree = "<group>"; };
@@ -408,6 +422,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				713919342B16CFBA00A5BE11 /* XMLParsing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +473,9 @@
 			isa = PBXGroup;
 			children = (
 				7133FCA62ACCC26B00DB0B27 /* Mac_JournalView.swift */,
+				7129DEBC2B15AC9F0058B238 /* EntryEditor.swift */,
+				713919312B16C8C200A5BE11 /* ImagePlan.swift */,
+				7129DEBA2B15A6660058B238 /* journal.json */,
 			);
 			path = JournalView;
 			sourceTree = "<group>";
@@ -676,6 +694,7 @@
 			children = (
 				71E96D67292831AA00E019F9 /* CatalogManager.swift */,
 				716531E929340CFE00D05B79 /* DailyReport.swift */,
+				713919352B16FF5800A5BE11 /* JournalEntry.swift */,
 				71FE96842956C0E700F6A4F2 /* Location */,
 				71BCF98A2921F2AC008C7614 /* CoreData */,
 				719B26D8295173CD00E1165A /* Network */,
@@ -879,6 +898,9 @@
 			dependencies = (
 			);
 			name = DeepSkyCatalogMac;
+			packageProductDependencies = (
+				713919332B16CFBA00A5BE11 /* XMLParsing */,
+			);
 			productName = DeepSkyCatalogMac;
 			productReference = 71C26437298F1C630057EC04 /* DeepSkyCatalogMac.app */;
 			productType = "com.apple.product-type.application";
@@ -919,6 +941,9 @@
 				Base,
 			);
 			mainGroup = 71BCF9402921EE71008C7614;
+			packageReferences = (
+				71E1D6D12B158E3A0021DD5B /* XCRemoteSwiftPackageReference "XMLParsing" */,
+			);
 			productRefGroup = 71BCF94A2921EE71008C7614 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -972,6 +997,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7129DEBB2B15A6660058B238 /* journal.json in Resources */,
 				71BE6EDF2990380900686E95 /* Assets.xcassets in Resources */,
 				71C26450298F1CB20057EC04 /* Catalog.json in Resources */,
 				71C26441298F1C640057EC04 /* Preview Assets.xcassets in Resources */,
@@ -993,6 +1019,7 @@
 				7162D3452964DBF1007C8710 /* ReportListWidget.swift in Sources */,
 				718C11F929C919550069ECD5 /* Location.swift in Sources */,
 				71ACF33D2964F0B400CC83D5 /* Provider.swift in Sources */,
+				713919372B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
 				71BD7543297109AF00D7751F /* SortMethods.swift in Sources */,
 				71ACF32E2964EAA000CC83D5 /* TargetCatalog.swift in Sources */,
 				71ACF32F2964EAA200CC83D5 /* Constellation.swift in Sources */,
@@ -1038,6 +1065,7 @@
 				7164CEF029BE8FE6000A154A /* DailyReport.swift in Sources */,
 				7164CEDF29BE8F7C000A154A /* TargetType.swift in Sources */,
 				71E03E6529C0B5FF0034FE08 /* Intents.intentdefinition in Sources */,
+				7139193A2B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
 				71A6C9002A5F4EFC009F1C30 /* Sun.swift in Sources */,
 				7164CEE829BE8F9C000A154A /* NetworkManager.swift in Sources */,
 				7164CEE029BE8F7E000A154A /* Constellation.swift in Sources */,
@@ -1060,6 +1088,7 @@
 				7181F019299BCFFB002841A8 /* TargetType.swift in Sources */,
 				7181F02C299BD226002841A8 /* CaseNameCodable.swift in Sources */,
 				7181F018299BCFF9002841A8 /* TargetCatalog.swift in Sources */,
+				713919392B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
 				71D4ECD62A660F61009E7AFC /* DescriptionField.swift in Sources */,
 				7181F023299BD046002841A8 /* NetworkManager.swift in Sources */,
 				71CC6A0A2A64EC78003E29CB /* URLRequest+Ext.swift in Sources */,
@@ -1157,6 +1186,7 @@
 				71462F3329A2E6A100F2914C /* ToolbarLogo.swift in Sources */,
 				714BB85329A094810084D438 /* TopTenTabView.swift in Sources */,
 				71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */,
+				713919362B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
 				717051DB29CE7A6D00D4EE1A /* LocationPickerModal.swift in Sources */,
 				71B5AF96292C778D00323693 /* TargetCatalog.swift in Sources */,
 			);
@@ -1180,6 +1210,7 @@
 				712E83682A60F44F00CA42DD /* ReportSettingsEditor.swift in Sources */,
 				71C26455298F1CBD0057EC04 /* Constellation.swift in Sources */,
 				71C2644B298F1C9F0057EC04 /* Date+Ext.swift in Sources */,
+				719B24A82B1670F900C3951A /* TargetIDSearchField.swift in Sources */,
 				71C2644F298F1CAB0057EC04 /* Environment+Ext.swift in Sources */,
 				71C26457298F1CC10057EC04 /* FilterMethods.swift in Sources */,
 				71DF8A752A61FC3600923236 /* Mac_LocationSettings.swift in Sources */,
@@ -1193,6 +1224,9 @@
 				71C2646A298F1EF70057EC04 /* String+Ext.swift in Sources */,
 				71C26453298F1CB80057EC04 /* TargetCatalog.swift in Sources */,
 				71DF8A772A62175500923236 /* Mac_GearSettings.swift in Sources */,
+				7129DEBD2B15AC9F0058B238 /* EntryEditor.swift in Sources */,
+				713919382B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
+				713919322B16C8C200A5BE11 /* ImagePlan.swift in Sources */,
 				71C26452298F1CB60057EC04 /* DeepSkyTargetList.swift in Sources */,
 				71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */,
 				71C2644D298F1CA50057EC04 /* Double+Ext.swift in Sources */,
@@ -1727,6 +1761,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		71E1D6D12B158E3A0021DD5B /* XCRemoteSwiftPackageReference "XMLParsing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ShawnMoore/XMLParsing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		713919332B16CFBA00A5BE11 /* XMLParsing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 71E1D6D12B158E3A0021DD5B /* XCRemoteSwiftPackageReference "XMLParsing" */;
+			productName = XMLParsing;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */ = {

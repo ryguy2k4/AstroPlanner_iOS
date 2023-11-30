@@ -68,5 +68,197 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1E4FD663-ED2E-4B1B-83A1-CD174B60AFC6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TargetCurator/Views/TargetEditor/TargetIDSearchField.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "87BA8AF3-7600-409F-8204-3D50FB8E6C05"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeepSkyCatalogMac/Views/JournalView/Mac_JournalView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "87BA8AF3-7600-409F-8204-3D50FB8E6C05 - 28c90ef2fd28e8c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;Foundation.URL&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Array&lt;__C.NSItemProvider&gt;) -&gt; Swift.Bool in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.onDrop(of: Swift.Array&lt;UniformTypeIdentifiers.UTType&gt;, isTargeted: Swift.Optional&lt;SwiftUI.Binding&lt;Swift.Bool&gt;&gt;, perform: (Swift.Array&lt;__C.NSItemProvider&gt;) -&gt; Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.onDrop(of: Swift.Array&lt;UniformTypeIdentifiers.UTType&gt;, isTargeted: Swift.Optional&lt;SwiftUI.Binding&lt;Swift.Bool&gt;&gt;, perform: (Swift.Array&lt;__C.NSItemProvider&gt;) -&gt; Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.onDrop(of: Swift.Array&lt;UniformTypeIdentifiers.UTType&gt;, isTargeted: Swift.Optional&lt;SwiftUI.Binding&lt;Swift.Bool&gt;&gt;, perform: (Swift.Array&lt;__C.NSItemProvider&gt;) -&gt; Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in DeepSkyCatalogMac.Mac_JournalView.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/Mac_JournalView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "616">
+               </Location>
+               <Location
+                  uuid = "87BA8AF3-7600-409F-8204-3D50FB8E6C05 - 28c90ef2fd28ea76"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;Foundation.URL&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Array&lt;__C.NSItemProvider&gt;) -&gt; Swift.Bool in closure #7 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.onDrop(of: Swift.Array&lt;UniformTypeIdentifiers.UTType&gt;, isTargeted: Swift.Optional&lt;SwiftUI.Binding&lt;Swift.Bool&gt;&gt;, perform: (Swift.Array&lt;__C.NSItemProvider&gt;) -&gt; Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.onDrop(of: Swift.Array&lt;UniformTypeIdentifiers.UTType&gt;, isTargeted: Swift.Optional&lt;SwiftUI.Binding&lt;Swift.Bool&gt;&gt;, perform: (Swift.Array&lt;__C.NSItemProvider&gt;) -&gt; Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.onDrop(of: Swift.Array&lt;UniformTypeIdentifiers.UTType&gt;, isTargeted: Swift.Optional&lt;SwiftUI.Binding&lt;Swift.Bool&gt;&gt;, perform: (Swift.Array&lt;__C.NSItemProvider&gt;) -&gt; Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in DeepSkyCatalogMac.Mac_JournalView.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/Mac_JournalView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "616">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98FF8DEB-5514-411C-839B-3A213406A5C8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeepSkyCatalogMac/Views/JournalView/Mac_JournalView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EDB06F31-8B45-45A2-B510-B8B473180AA1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeepSkyCatalogMac/Views/JournalView/Mac_JournalView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82B134F8-D1C8-41AC-8A91-F83F9167A6BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Logic/JournalEntry.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "init(info:log:plan:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "82B134F8-D1C8-41AC-8A91-F83F9167A6BD - 20daac757966cec1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeepSkyCatalogMac.JournalEntry.init(info: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, log: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, plan: Swift.Optional&lt;DeepSkyCatalogMac.CaptureSequenceList&gt;) -&gt; DeepSkyCatalogMac.JournalEntry"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalEntry.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "5784">
+               </Location>
+               <Location
+                  uuid = "82B134F8-D1C8-41AC-8A91-F83F9167A6BD - 20daac757966cec1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeepSkyCatalogMac.JournalEntry.init(info: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, log: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, plan: Swift.Optional&lt;DeepSkyCatalogMac.CaptureSequenceList&gt;) -&gt; DeepSkyCatalogMac.JournalEntry"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalEntry.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "7156">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C469688-B4CC-477C-8B77-BF4BF4870A41"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Logic/JournalEntry.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "init(info:log:plan:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6C469688-B4CC-477C-8B77-BF4BF4870A41 - 20daac757966ce1f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeepSkyCatalogMac.JournalEntry.init(info: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, log: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, plan: Swift.Optional&lt;DeepSkyCatalogMac.CaptureSequenceList&gt;) -&gt; DeepSkyCatalogMac.JournalEntry"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalEntry.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "6860">
+               </Location>
+               <Location
+                  uuid = "6C469688-B4CC-477C-8B77-BF4BF4870A41 - 20daac757966ce1f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeepSkyCatalogMac.JournalEntry.init(info: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, log: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, plan: Swift.Optional&lt;DeepSkyCatalogMac.CaptureSequenceList&gt;) -&gt; DeepSkyCatalogMac.JournalEntry"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalEntry.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "7000">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

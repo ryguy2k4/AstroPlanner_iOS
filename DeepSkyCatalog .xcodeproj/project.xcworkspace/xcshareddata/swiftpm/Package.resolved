@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "xmlparsing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ShawnMoore/XMLParsing",
+      "state" : {
+        "revision" : "2b77a8078d9695aac1a0e5806768e819025174c3",
+        "version" : "0.0.3"
+      }
+    }
+  ],
+  "version" : 2
+}
