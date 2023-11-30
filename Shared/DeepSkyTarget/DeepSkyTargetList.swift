@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Swift
 import CoreData
 
 struct DeepSkyTargetList {

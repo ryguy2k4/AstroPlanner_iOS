@@ -10,7 +10,7 @@ import WeatherKit
 import XMLParsing
 
 struct Mac_JournalView: View {
-    @State var entries: [JournalEntry] = []
+    @State var entries: [JournalEntry] = JournalEntryList.allEntries
     @State var info: [String]?
     @State var log: [String]?
     @State var plan: CaptureSequenceList?
@@ -80,7 +80,7 @@ struct Mac_JournalView: View {
         
         NavigationSplitView {
             List {
-                ForEach(Array(entries.enumerated()), id: \.element) { index, object in
+                ForEach(Array(entries.enumerated()), id: \.offset) { index, object in
                     NavigationLink {
                         EntryEditor(entry: $entries[index])
                     } label: {
@@ -92,6 +92,9 @@ struct Mac_JournalView: View {
             .toolbar {
                 Button {
                     entries.append(JournalEntry(info: self.info, log: self.log, plan: self.plan))
+                    self.info = nil
+                    self.log = nil
+                    self.plan = nil
                 } label: {
                     Image(systemName: "plus.circle")
                 }
@@ -102,6 +105,12 @@ struct Mac_JournalView: View {
                 } label: {
                     Text("Clear Files")
                 }
+                Button {
+                    JournalEntryList.exportObjects(list: self.entries)
+                } label: {
+                    Text("Save Entries")
+                }
+
 
             }
         } detail: {

@@ -6,24 +6,26 @@
 //
 
 import Foundation
+import WeatherKit
 
-struct JournalEntry: Hashable, Identifiable {
+
+struct JournalEntry {
     // identifying information
-    var id: UUID
     var date: Date
     var targetID: UUID
     
     // from log file
     var setupInterval: DateInterval?
+    var imagingInterval: DateInterval?
     
     // from saved locations
     var location: Location?
     
     // from saved presets
-    var gear: ImagingPreset?
+//    var gear: ImagingPreset?
     
     // from weatherkit
-//    let weather: Forecast<HourWeather>?
+    var weather: Forecast<HourWeather>?
     
     //from info.txt
     var legacyWeather: LegacyWeather?
@@ -31,27 +33,26 @@ struct JournalEntry: Hashable, Identifiable {
     // from plan.xml
     var imagePlan: CaptureSequenceList?
     
-    struct LegacyWeather: Codable, Hashable {
+    struct LegacyWeather: Codable {
         var tempF: Int
         var tempC: Int
         var wind: Int
     }
     
     init() {
-        self.id = UUID()
         self.date = .now
         self.targetID = UUID()
         self.setupInterval = nil
+        self.imagingInterval = nil
         self.location = nil
-        self.gear = nil
+        self.weather = nil
         self.legacyWeather = nil
         self.imagePlan = nil
     }
     
     init(info: [String]?, log: [String]?, plan: CaptureSequenceList?) {
-        self.id = UUID()
         self.location = nil
-        self.gear = nil
+        self.weather = nil
         
         // Extract from info.txt
         if let unwrappedInfo = info {
@@ -89,12 +90,13 @@ struct JournalEntry: Hashable, Identifiable {
         // Extract from log file
         if let log = log {
             
-            // extract setup interval
-            let startString = String(log[3].trimmingCharacters(in: .punctuationCharacters).prefix(19))
-            let endString = String(log[log.endIndex - 2].prefix(19))
             let formatter = DateFormatter()
             formatter.timeZone = .current
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            // extract setup interval
+            let startString = String(log[3].trimmingCharacters(in: .punctuationCharacters).prefix(19))
+            let endString = String(log[log.endIndex - 2].prefix(19))
             let setupStart = formatter.date(from: startString)
             let setupEnd = formatter.date(from: endString)
             if let start = setupStart, let end = setupEnd {
@@ -102,8 +104,17 @@ struct JournalEntry: Hashable, Identifiable {
             } else {
                 self.setupInterval = nil
             }
+            
+            // extract imaging interval
+            let imageStart = log.first(where: {$0.contains("Starting Category: Camera, Item: TakeExposure")})?.prefix(19)
+            let imageEnd = log.last(where: {$0.contains("Finishing Category: Camera, Item: TakeExposure")})?.prefix(19)
+            if let imageStart = imageStart, let imageStart = formatter.date(from: String(imageStart)), let imageEnd = imageEnd, let imageEnd = formatter.date(from: String(imageEnd)) {
+                self.imagingInterval = DateInterval(start: imageStart, end: imageEnd)
+            }
+            
         } else {
             self.setupInterval = nil
+            self.imagingInterval = nil
         }
         
         // Extract from Image Plan
@@ -112,5 +123,11 @@ struct JournalEntry: Hashable, Identifiable {
         } else {
             self.imagePlan = nil
         }
+    }
+}
+
+extension JournalEntry: Codable {
+    enum CodingKeys: String, CodingKey {
+        case date, targetID, setupInterval, location, weather, legacyWeather, imagePlan
     }
 }
