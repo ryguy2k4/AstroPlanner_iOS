@@ -84,8 +84,8 @@ struct Mac_JournalView: View {
                     NavigationLink {
                         EntryEditor(entry: $entries[index])
                     } label: {
-                        let target = DeepSkyTargetList.allTargets.first(where: {$0.id == entries[index].targetID})
-                        Text("\(entries[index].date.formatted(date: .abbreviated, time: .omitted)): \(target?.name?.first ?? target?.defaultName ?? "???")")
+//                        Text("\(entries[index].setupInterval?.start.formatted(date: .abbreviated, time: .omitted)): \(target?.name?.first ?? target?.defaultName ?? "???")")
+                        Text(object.targetName)
                     }
                 }
             }

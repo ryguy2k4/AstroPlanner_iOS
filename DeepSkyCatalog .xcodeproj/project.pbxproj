@@ -20,7 +20,6 @@
 		711386FB29C3548C00081584 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386F629C3548C00081584 /* Filter.swift */; };
 		711386FD29C356CA00081584 /* TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386FC29C356CA00081584 /* TopFiveView.swift */; };
 		7113870329C3571400081584 /* FilterButtonMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113870229C3571400081584 /* FilterButtonMenuView.swift */; };
-		7129DEBB2B15A6660058B238 /* journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 7129DEBA2B15A6660058B238 /* journal.json */; };
 		7129DEBD2B15AC9F0058B238 /* EntryEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129DEBC2B15AC9F0058B238 /* EntryEditor.swift */; };
 		712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */; };
 		712E83662A60F41200CA42DD /* Mac_TopTenListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */; };
@@ -98,12 +97,12 @@
 		71701E782B182DCE007992B8 /* JournalEntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71701E752B182DCE007992B8 /* JournalEntryList.swift */; };
 		71701E792B182DCE007992B8 /* JournalEntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71701E752B182DCE007992B8 /* JournalEntryList.swift */; };
 		71701E7A2B182DCE007992B8 /* JournalEntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71701E752B182DCE007992B8 /* JournalEntryList.swift */; };
-		71701E822B1832F9007992B8 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 71701E812B1832F9007992B8 /* Journal.json */; };
-		71701E832B1832F9007992B8 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 71701E812B1832F9007992B8 /* Journal.json */; };
-		71701E842B1832F9007992B8 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 71701E812B1832F9007992B8 /* Journal.json */; };
-		71701E852B1832F9007992B8 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 71701E812B1832F9007992B8 /* Journal.json */; };
-		71701E862B1832F9007992B8 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 71701E812B1832F9007992B8 /* Journal.json */; };
 		717051DB29CE7A6D00D4EE1A /* LocationPickerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */; };
+		7170F3242B1977D9001F0CE6 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 7170F3232B1977D9001F0CE6 /* Journal.json */; };
+		7170F3252B1977D9001F0CE6 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 7170F3232B1977D9001F0CE6 /* Journal.json */; };
+		7170F3262B1977D9001F0CE6 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 7170F3232B1977D9001F0CE6 /* Journal.json */; };
+		7170F3272B1977D9001F0CE6 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 7170F3232B1977D9001F0CE6 /* Journal.json */; };
+		7170F3282B1977D9001F0CE6 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 7170F3232B1977D9001F0CE6 /* Journal.json */; };
 		717E9ACD2A7DBF81004E93FA /* ImagingPresetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */; };
 		7181F004299BCFD1002841A8 /* TargetCuratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7181F003299BCFD1002841A8 /* TargetCuratorApp.swift */; };
 		7181F006299BCFD1002841A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7181F005299BCFD1002841A8 /* ContentView.swift */; };
@@ -284,7 +283,6 @@
 		711386F629C3548C00081584 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		711386FC29C356CA00081584 /* TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFiveView.swift; sourceTree = "<group>"; };
 		7113870229C3571400081584 /* FilterButtonMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonMenuView.swift; sourceTree = "<group>"; };
-		7129DEBA2B15A6660058B238 /* journal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = journal.json; sourceTree = "<group>"; };
 		7129DEBC2B15AC9F0058B238 /* EntryEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEditor.swift; sourceTree = "<group>"; };
 		712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopFiveView.swift; sourceTree = "<group>"; };
 		712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopTenListView.swift; sourceTree = "<group>"; };
@@ -321,8 +319,8 @@
 		716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalog.entitlements; sourceTree = "<group>"; };
 		71701E6F2B182CF4007992B8 /* DeepSkyCatalog-4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DeepSkyCatalog-4.xcdatamodel"; sourceTree = "<group>"; };
 		71701E752B182DCE007992B8 /* JournalEntryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryList.swift; sourceTree = "<group>"; };
-		71701E812B1832F9007992B8 /* Journal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Journal.json; sourceTree = "<group>"; };
 		717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerModal.swift; sourceTree = "<group>"; };
+		7170F3232B1977D9001F0CE6 /* Journal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Journal.json; sourceTree = "<group>"; };
 		717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagingPresetModal.swift; sourceTree = "<group>"; };
 		717E9ACF2A7E00BF004E93FA /* DeepSkyCatalog-3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DeepSkyCatalog-3.xcdatamodel"; sourceTree = "<group>"; };
 		7181F001299BCFD1002841A8 /* TargetCurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TargetCurator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -491,7 +489,6 @@
 			children = (
 				7133FCA62ACCC26B00DB0B27 /* Mac_JournalView.swift */,
 				7129DEBC2B15AC9F0058B238 /* EntryEditor.swift */,
-				7129DEBA2B15A6660058B238 /* journal.json */,
 			);
 			path = JournalView;
 			sourceTree = "<group>";
@@ -610,10 +607,10 @@
 		71701E702B182DA9007992B8 /* JournalEntry */ = {
 			isa = PBXGroup;
 			children = (
+				7170F3232B1977D9001F0CE6 /* Journal.json */,
 				713919352B16FF5800A5BE11 /* JournalEntry.swift */,
 				71701E752B182DCE007992B8 /* JournalEntryList.swift */,
 				713919312B16C8C200A5BE11 /* ImagePlan.swift */,
-				71701E812B1832F9007992B8 /* Journal.json */,
 			);
 			path = JournalEntry;
 			sourceTree = "<group>";
@@ -990,7 +987,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				710ECDAE2965E68F00534D15 /* Catalog.json in Resources */,
-				71701E832B1832F9007992B8 /* Journal.json in Resources */,
+				7170F3252B1977D9001F0CE6 /* Journal.json in Resources */,
 				71ACF33A2964EED200CC83D5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1000,7 +997,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7164CEDD29BE8F77000A154A /* Catalog.json in Resources */,
-				71701E862B1832F9007992B8 /* Journal.json in Resources */,
+				7170F3282B1977D9001F0CE6 /* Journal.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,7 +1006,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7181F026299BD05D002841A8 /* Assets.xcassets in Resources */,
-				71701E852B1832F9007992B8 /* Journal.json in Resources */,
+				7170F3272B1977D9001F0CE6 /* Journal.json in Resources */,
 				7181F015299BCFF1002841A8 /* Catalog.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1019,7 +1016,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71BCF9512921EE72008C7614 /* Assets.xcassets in Resources */,
-				71701E822B1832F9007992B8 /* Journal.json in Resources */,
+				7170F3242B1977D9001F0CE6 /* Journal.json in Resources */,
 				710ECDAD2965E68F00534D15 /* Catalog.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1028,11 +1025,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7129DEBB2B15A6660058B238 /* journal.json in Resources */,
 				71BE6EDF2990380900686E95 /* Assets.xcassets in Resources */,
 				71C26450298F1CB20057EC04 /* Catalog.json in Resources */,
 				71C26441298F1C640057EC04 /* Preview Assets.xcassets in Resources */,
-				71701E842B1832F9007992B8 /* Journal.json in Resources */,
+				7170F3262B1977D9001F0CE6 /* Journal.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

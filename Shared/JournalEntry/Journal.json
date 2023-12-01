@@ -1,2 +1,54 @@
 [
+  {
+    "targetType" : "openStarCluster",
+    "imageStartString" : "2022-11-22T19:01:53",
+    "visibilityScore" : 0.9915966386554622,
+    "targetID" : "AD1F0CF9-8BD5-4A44-94C3-CD4D27729C11",
+    "setupInterval" : {
+      "start" : 690850799,
+      "duration" : 61687
+    },
+    "weather" : {
+      "tempC" : 31.343818181814186,
+      "dewPoint" : 24.731272727268784,
+      "cloudCover" : 0.012727272727272728,
+      "moonIllumination" : 0.010929119799272177,
+      "wind" : 1.1195988075095984
+    },
+    "seasonScore" : 0.9921875,
+    "setupStartString" : "2022-11-22T16:59:59",
+    "setupEndString" : "2022-11-23T10:08:06",
+    "imageEndString" : "2022-11-23T06:21:19",
+    "legacyWeather" : {
+      "tempC" : -1,
+      "tempF" : 31,
+      "wind" : 5
+    },
+    "targetName" : "Pleiades",
+    "imagingInterval" : {
+      "duration" : 40766,
+      "start" : 690858113
+    },
+    "dateString" : "2022-11-22",
+    "imagePlan" : [
+      {
+        "exposureTime" : 300,
+        "filterName" : "R",
+        "progressExposureCount" : 40,
+        "totalExposureCount" : 40
+      },
+      {
+        "exposureTime" : 300,
+        "totalExposureCount" : 40,
+        "progressExposureCount" : 40,
+        "filterName" : "G"
+      },
+      {
+        "exposureTime" : 300,
+        "filterName" : "B",
+        "progressExposureCount" : 40,
+        "totalExposureCount" : 40
+      }
+    ]
+  }
 ]

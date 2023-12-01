@@ -11,7 +11,7 @@ import CoreData
 struct JournalEntryList {
     static var allEntries: [JournalEntry] = {
         let decoder = JSONDecoder()
-        let json = try! Data(contentsOf: Bundle.main.url(forResource: "Journal", withExtension: "json")!)
+        let json = try! Data(contentsOf: URL(filePath: "/Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/JournalEntry/Journal.json"))
         return try! decoder.decode([JournalEntry].self, from: json)
     }()
     

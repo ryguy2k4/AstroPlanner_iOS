@@ -17,7 +17,7 @@
 		<key>DeepSkyCatalogMac.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>3</integer>
 		</dict>
 		<key>DeepSkyCatalogWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
@@ -32,7 +32,7 @@
 		<key>TargetCurator.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -42,7 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7181F000299BCFD1002841A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>71BCF9482921EE71008C7614</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>71C26436298F1C630057EC04</key>
 		<dict>
 			<key>primary</key>
 			<true/>

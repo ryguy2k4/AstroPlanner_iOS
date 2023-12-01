@@ -11,8 +11,15 @@ import WeatherKit
 
 struct JournalEntry {
     // identifying information
-    var date: Date
     var targetID: UUID
+    var targetName: String
+    
+    // string interpretations
+    var dateString: String
+    var setupStartString: String
+    var setupEndString: String
+    var imageStartString: String
+    var imageEndString: String
     
     // from log file
     var setupInterval: DateInterval?
@@ -23,15 +30,21 @@ struct JournalEntry {
     
     // from saved presets
 //    var gear: ImagingPreset?
+    var gear: ImagingGear?
     
     // from weatherkit
-    var weather: Forecast<HourWeather>?
+    var weather: JournalWeather?
+    
+    // calculables
+    var visibilityScore: Double?
+    var seasonScore: Double?
+    var targetType: TargetType?
     
     //from info.txt
     var legacyWeather: LegacyWeather?
     
     // from plan.xml
-    var imagePlan: CaptureSequenceList?
+    var imagePlan: [JournalImagePlan]?
     
     struct LegacyWeather: Codable {
         var tempF: Int
@@ -39,20 +52,47 @@ struct JournalEntry {
         var wind: Int
     }
     
-    init() {
-        self.date = .now
-        self.targetID = UUID()
-        self.setupInterval = nil
-        self.imagingInterval = nil
-        self.location = nil
-        self.weather = nil
-        self.legacyWeather = nil
-        self.imagePlan = nil
+    enum ImagingGear: String, CaseNameCodable, CaseIterable {
+        case zenithstar61 = "Z61"
+        case celestron6SE = "6SE"
+    }
+    
+    struct JournalWeather: Codable {
+        var wind: Double
+        var tempC: Double
+        var cloudCover: Double
+        var dewPoint: Double
+        var moonIllumination: Double
+    
+        init(forecast: Forecast<HourWeather>, moonIllumination: Double) {
+            self.wind = forecast.forecast.map({$0.wind.speed.converted(to: .milesPerHour).value}).mean()
+            self.tempC = forecast.forecast.map({$0.temperature.converted(to: .fahrenheit).value}).mean()
+            self.cloudCover = forecast.forecast.map({$0.cloudCover}).mean()
+            self.dewPoint = forecast.forecast.map({$0.dewPoint.converted(to: .fahrenheit).value}).mean()
+            self.moonIllumination = moonIllumination
+        }
+    }
+    
+    struct JournalImagePlan: Codable, Hashable {
+        var filterName: String
+        var exposureTime: Int
+        var totalExposureCount: Int
+        var progressExposureCount: Int
+        
+        init(sequence: CaptureSequenceList.CaptureSequence) {
+            self.filterName = sequence.filterType.name
+            self.exposureTime = sequence.exposureTime
+            self.progressExposureCount = sequence.progressExposureCount
+            self.totalExposureCount = sequence.totalExposureCount
+        }
     }
     
     init(info: [String]?, log: [String]?, plan: CaptureSequenceList?) {
         self.location = nil
         self.weather = nil
+        self.gear = nil
+        self.seasonScore = nil
+        self.visibilityScore = nil
         
         // Extract from info.txt
         if let unwrappedInfo = info {
@@ -68,23 +108,8 @@ struct JournalEntry {
                 self.legacyWeather = nil
             }
             
-            // extract date
-            let formatter = DateFormatter()
-            formatter.timeZone = .current
-            formatter.dateFormat = "yyyy-MM-dd"
-            self.date = formatter.date(from: info[1].replacingOccurrences(of: "# ", with: "")) ?? .distantPast
-            
-            // extract target
-            if let target = DeepSkyTargetList.allTargets.filteredBySearch(info[0].replacingOccurrences(of: "# ", with: "")).first {
-                self.targetID = target.id
-            } else {
-                self.targetID = UUID()
-            }
-            
         } else {
             self.legacyWeather = nil
-            self.date = .distantPast
-            self.targetID = UUID()
         }
         
         // Extract from log file
@@ -94,6 +119,10 @@ struct JournalEntry {
             formatter.timeZone = .current
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
+            let formatter2 = DateFormatter()
+            formatter2.timeZone = .current
+            formatter2.dateFormat = "yyyy-MM-dd"
+            
             // extract setup interval
             let startString = String(log[3].trimmingCharacters(in: .punctuationCharacters).prefix(19))
             let endString = String(log[log.endIndex - 2].prefix(19))
@@ -101,8 +130,16 @@ struct JournalEntry {
             let setupEnd = formatter.date(from: endString)
             if let start = setupStart, let end = setupEnd {
                 self.setupInterval = DateInterval(start: start, end: end)
+                self.setupStartString = formatter.string(from: start)
+                self.setupEndString = formatter.string(from: end)
+                self.dateString = formatter2.string(from: start)
+
             } else {
                 self.setupInterval = nil
+                self.setupStartString = "n/a"
+                self.setupEndString = "n/a"
+                self.dateString = "n/a"
+                print("FAILED")
             }
             
             // extract imaging interval
@@ -110,24 +147,44 @@ struct JournalEntry {
             let imageEnd = log.last(where: {$0.contains("Finishing Category: Camera, Item: TakeExposure")})?.prefix(19)
             if let imageStart = imageStart, let imageStart = formatter.date(from: String(imageStart)), let imageEnd = imageEnd, let imageEnd = formatter.date(from: String(imageEnd)) {
                 self.imagingInterval = DateInterval(start: imageStart, end: imageEnd)
+                self.imageStartString = formatter.string(from: imageStart)
+                self.imageEndString = formatter.string(from: imageEnd)
+            } else {
+                self.imagingInterval = nil
+                self.imageStartString = "n/a"
+                self.imageEndString = "n/a"
             }
             
         } else {
             self.setupInterval = nil
             self.imagingInterval = nil
+            self.setupStartString = "n/a"
+            self.setupEndString = "n/a"
+            self.imageStartString = "n/a"
+            self.imageEndString = "n/a"
+            self.dateString = "n/a"
         }
         
         // Extract from Image Plan
         if let plan = plan {
-            self.imagePlan = plan
+            self.imagePlan = plan.captureSequences.map({Self.JournalImagePlan(sequence: $0)})
+            
+            // extract target
+            if let target = DeepSkyTargetList.allTargets.filteredBySearch(plan.targetName).first {
+                self.targetID = target.id
+                let dso = DeepSkyTargetList.allTargets.first(where: {$0.id == target.id})
+                self.targetName = dso?.name?.first ?? dso?.defaultName ?? "n/a"
+                self.targetType = dso?.type ?? nil
+            } else {
+                self.targetID = UUID()
+                self.targetName = "n/a"
+            }
         } else {
             self.imagePlan = nil
+            self.targetID = UUID()
+            self.targetName = "n/a"
         }
     }
 }
 
-extension JournalEntry: Codable {
-    enum CodingKeys: String, CodingKey {
-        case date, targetID, setupInterval, location, weather, legacyWeather, imagePlan
-    }
-}
+extension JournalEntry: Codable {}
