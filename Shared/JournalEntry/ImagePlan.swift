@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum ImagePlan {
+    case nina(CaptureSequenceList)
+    case custom
+}
+
 struct CaptureSequenceList: Codable, Hashable {
     let targetName: String
     let coordinates: Coordinates
@@ -22,7 +27,7 @@ struct CaptureSequenceList: Codable, Hashable {
     struct CaptureSequence: Codable, Hashable {
         let exposureTime: Int
         let imageType: String
-        let filterType: FilterType
+        let filterName: String
         let binning: Binning
         let gain: Int
         let totalExposureCount: Int
@@ -32,7 +37,7 @@ struct CaptureSequenceList: Codable, Hashable {
         enum CodingKeys: String, CodingKey {
             case exposureTime = "ExposureTime"
             case imageType = "ImageType"
-            case filterType = "FilterType"
+            case filterName = "FilterType"
             case binning = "Binning"
             case gain = "Gain"
             case totalExposureCount = "TotalExposureCount"
@@ -57,7 +62,19 @@ struct CaptureSequenceList: Codable, Hashable {
                 case y = "Y"
             }
         }
-
+        
+        init(from decoder: Decoder) throws {
+            let container: KeyedDecodingContainer<CaptureSequenceList.CaptureSequence.CodingKeys> = try decoder.container(keyedBy: CaptureSequenceList.CaptureSequence.CodingKeys.self)
+            self.exposureTime = try container.decode(Int.self, forKey: CaptureSequenceList.CaptureSequence.CodingKeys.exposureTime)
+            self.imageType = try container.decode(String.self, forKey: CaptureSequenceList.CaptureSequence.CodingKeys.imageType)
+            let filterTypeContainer = try container.decode(CaptureSequenceList.CaptureSequence.FilterType.self, forKey: CaptureSequenceList.CaptureSequence.CodingKeys.filterName)
+            self.filterName = filterTypeContainer.name
+            self.binning = try container.decode(CaptureSequenceList.CaptureSequence.Binning.self, forKey: CaptureSequenceList.CaptureSequence.CodingKeys.binning)
+            self.gain = try container.decode(Int.self, forKey: CaptureSequenceList.CaptureSequence.CodingKeys.gain)
+            self.totalExposureCount = try container.decode(Int.self, forKey: CaptureSequenceList.CaptureSequence.CodingKeys.totalExposureCount)
+            self.progressExposureCount = try container.decode(Int.self, forKey: CaptureSequenceList.CaptureSequence.CodingKeys.progressExposureCount)
+            self.dither = try container.decode(Bool.self, forKey: CaptureSequenceList.CaptureSequence.CodingKeys.dither)
+        }
     }
 
     struct Coordinates: Codable, Hashable {

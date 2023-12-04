@@ -8,8 +8,9 @@
 import Foundation
 import WeatherKit
 
-
-struct JournalEntry {
+struct JournalEntry: Hashable, Identifiable {
+    let id = UUID()
+    
     // identifying information
     var targetID: UUID
     var targetName: String
@@ -46,18 +47,18 @@ struct JournalEntry {
     // from plan.xml
     var imagePlan: [JournalImagePlan]?
     
-    struct LegacyWeather: Codable {
+    struct LegacyWeather: Codable, Hashable {
         var tempF: Int
         var tempC: Int
         var wind: Int
     }
     
-    enum ImagingGear: String, CaseNameCodable, CaseIterable {
+    enum ImagingGear: String, CaseNameCodable, CaseIterable, Hashable {
         case zenithstar61 = "Z61"
         case celestron6SE = "6SE"
     }
     
-    struct JournalWeather: Codable {
+    struct JournalWeather: Codable, Hashable {
         var wind: Double
         var tempC: Double
         var cloudCover: Double
@@ -80,10 +81,17 @@ struct JournalEntry {
         var progressExposureCount: Int
         
         init(sequence: CaptureSequenceList.CaptureSequence) {
-            self.filterName = sequence.filterType.name
+            self.filterName = sequence.filterName
             self.exposureTime = sequence.exposureTime
             self.progressExposureCount = sequence.progressExposureCount
             self.totalExposureCount = sequence.totalExposureCount
+        }
+        
+        init(filterName: String, exposureTime: Int, totalExposureCount: Int, progressExposureCount: Int) {
+            self.filterName = filterName
+            self.exposureTime = exposureTime
+            self.totalExposureCount = totalExposureCount
+            self.progressExposureCount = progressExposureCount
         }
     }
     
@@ -125,7 +133,7 @@ struct JournalEntry {
             
             // extract setup interval
             let startString = String(log[3].trimmingCharacters(in: .punctuationCharacters).prefix(19))
-            let endString = String(log[log.endIndex - 2].prefix(19))
+            let endString = String(log.last(where: {$0.prefix(19).contains("T")})!.prefix(19))
             let setupStart = formatter.date(from: startString)
             let setupEnd = formatter.date(from: endString)
             if let start = setupStart, let end = setupEnd {

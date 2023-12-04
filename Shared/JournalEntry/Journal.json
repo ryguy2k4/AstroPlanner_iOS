@@ -1,54 +1,1045 @@
 [
   {
-    "targetType" : "openStarCluster",
-    "imageStartString" : "2022-11-22T19:01:53",
-    "visibilityScore" : 0.9915966386554622,
-    "targetID" : "AD1F0CF9-8BD5-4A44-94C3-CD4D27729C11",
+    "dateString" : "2022-06-03",
     "setupInterval" : {
-      "start" : 690850799,
-      "duration" : 61687
+      "start" : 676000959,
+      "duration" : 46292
     },
-    "weather" : {
-      "tempC" : 31.343818181814186,
-      "dewPoint" : 24.731272727268784,
-      "cloudCover" : 0.012727272727272728,
-      "moonIllumination" : 0.010929119799272177,
-      "wind" : 1.1195988075095984
-    },
-    "seasonScore" : 0.9921875,
-    "setupStartString" : "2022-11-22T16:59:59",
-    "setupEndString" : "2022-11-23T10:08:06",
-    "imageEndString" : "2022-11-23T06:21:19",
-    "legacyWeather" : {
-      "tempC" : -1,
-      "tempF" : 31,
-      "wind" : 5
-    },
-    "targetName" : "Pleiades",
+    "setupEndString" : "2022-06-04T09:54:11",
+    "setupStartString" : "2022-06-03T21:02:39",
+    "visibilityScore" : 1,
+    "targetID" : "605F59C3-D4EB-42DE-8F6F-5EF7B1EA0DD0",
+    "imageEndString" : "2022-06-04T04:04:57",
+    "targetType" : "barredSpiralGalaxy",
     "imagingInterval" : {
-      "duration" : 40766,
-      "start" : 690858113
+      "duration" : 21782,
+      "start" : 676004515
     },
-    "dateString" : "2022-11-22",
+    "seasonScore" : 0.771484375,
+    "targetName" : "Pinwheel Galaxy",
+    "id" : "5CEA7A02-D15A-4493-B089-AED62BD2AD50",
+    "gear" : "celestron6SE",
+    "weather" : {
+      "tempC" : 55.16599999999581,
+      "cloudCover" : 0.018333333333333333,
+      "wind" : 1.0832579784061085,
+      "dewPoint" : 42.13699999999592,
+      "moonIllumination" : 0.20583549412836963
+    },
+    "imageStartString" : "2022-06-03T22:01:55",
     "imagePlan" : [
       {
-        "exposureTime" : 300,
+        "totalExposureCount" : 16,
+        "filterName" : "B",
+        "progressExposureCount" : 16,
+        "exposureTime" : 420
+      },
+      {
+        "exposureTime" : 420,
+        "filterName" : "G",
+        "progressExposureCount" : 16,
+        "totalExposureCount" : 16
+      },
+      {
+        "totalExposureCount" : 16,
         "filterName" : "R",
-        "progressExposureCount" : 40,
-        "totalExposureCount" : 40
+        "exposureTime" : 420,
+        "progressExposureCount" : 16
+      }
+    ],
+    "legacyWeather" : {
+      "wind" : 4,
+      "tempF" : 57,
+      "tempC" : 14
+    }
+  },
+  {
+    "visibilityScore" : 1,
+    "imageEndString" : "2022-06-18T02:05:55",
+    "setupEndString" : "2022-06-18T09:40:21",
+    "imagingInterval" : {
+      "duration" : 14804,
+      "start" : 677213951
+    },
+    "dateString" : "2022-06-17",
+    "targetID" : "605F59C3-D4EB-42DE-8F6F-5EF7B1EA0DD0",
+    "setupStartString" : "2022-06-17T20:56:46",
+    "setupInterval" : {
+      "duration" : 45815,
+      "start" : 677210206
+    },
+    "targetName" : "Pinwheel Galaxy",
+    "id" : "A0421F33-C1C6-4C3F-A8EC-B31DB435A9F4",
+    "imagePlan" : [
+      {
+        "filterName" : "Ha",
+        "exposureTime" : 420,
+        "totalExposureCount" : 30,
+        "progressExposureCount" : 30
+      }
+    ],
+    "imageStartString" : "2022-06-17T21:59:11",
+    "seasonScore" : 0.69140625,
+    "weather" : {
+      "moonIllumination" : 0.8671662509119539,
+      "cloudCover" : 0.054000000000000006,
+      "tempC" : 67.57879999999571,
+      "wind" : 3.5815864173228347,
+      "dewPoint" : 52.22839999999585
+    },
+    "gear" : "celestron6SE"
+  },
+  {
+    "setupEndString" : "2022-08-02T07:00:46",
+    "imageEndString" : "2022-08-02T01:20:43",
+    "visibilityScore" : 1,
+    "imagePlan" : [
+      {
+        "totalExposureCount" : 8,
+        "progressExposureCount" : 8,
+        "exposureTime" : 300,
+        "filterName" : "R"
+      },
+      {
+        "progressExposureCount" : 8,
+        "filterName" : "G",
+        "totalExposureCount" : 8,
+        "exposureTime" : 300
       },
       {
         "exposureTime" : 300,
-        "totalExposureCount" : 40,
-        "progressExposureCount" : 40,
+        "progressExposureCount" : 7,
+        "filterName" : "B",
+        "totalExposureCount" : 7
+      }
+    ],
+    "imageStartString" : "2022-08-01T22:56:57",
+    "setupInterval" : {
+      "duration" : 37712,
+      "start" : 681096734
+    },
+    "dateString" : "2022-08-01",
+    "gear" : "celestron6SE",
+    "id" : "27072C04-22C0-4B63-87A3-45352C7E4D48",
+    "weather" : {
+      "wind" : 1.0356194822238132,
+      "cloudCover" : 0.01,
+      "moonIllumination" : 0.20065546989574318,
+      "tempC" : 70.17799999999569,
+      "dewPoint" : 64.23799999999574
+    },
+    "legacyWeather" : {
+      "wind" : 4,
+      "tempF" : 70,
+      "tempC" : 21
+    },
+    "seasonScore" : 0.982421875,
+    "setupStartString" : "2022-08-01T20:32:14",
+    "targetID" : "A432301E-4403-4D4C-BB55-7DF2CCC40CC2",
+    "targetName" : "Iris Nebula",
+    "imagingInterval" : {
+      "start" : 681105417,
+      "duration" : 8626
+    }
+  },
+  {
+    "visibilityScore" : 1,
+    "targetID" : "FCFAF73B-D7FC-4732-919D-920EEDA0E5E7",
+    "targetName" : "Andromeda Galaxy",
+    "seasonScore" : 0.826171875,
+    "imageStartString" : "2022-08-30T20:52:27",
+    "legacyWeather" : {
+      "tempC" : 17,
+      "wind" : 4,
+      "tempF" : 62
+    },
+    "dateString" : "2022-08-30",
+    "imagePlan" : [
+      {
+        "filterName" : "R",
+        "progressExposureCount" : 32,
+        "totalExposureCount" : 32,
+        "exposureTime" : 300
+      },
+      {
+        "exposureTime" : 300,
+        "totalExposureCount" : 32,
+        "filterName" : "G",
+        "progressExposureCount" : 32
+      },
+      {
+        "exposureTime" : 300,
+        "totalExposureCount" : 32,
+        "progressExposureCount" : 32,
+        "filterName" : "B"
+      }
+    ],
+    "setupEndString" : "2022-08-31T05:51:27",
+    "setupStartString" : "2022-08-30T20:20:19",
+    "setupInterval" : {
+      "duration" : 34268,
+      "start" : 683601619
+    },
+    "gear" : "zenithstar61",
+    "weather" : {
+      "wind" : 1.5534292233357199,
+      "cloudCover" : 0.003333333333333333,
+      "moonIllumination" : 0.15789843022930017,
+      "tempC" : 61.999999999995765,
+      "dewPoint" : 55.893999999995785
+    },
+    "id" : "FCE426A1-CFBD-40A0-95EB-789BDB6BCBA8",
+    "imageEndString" : "2022-08-31T05:47:28",
+    "imagingInterval" : {
+      "start" : 683603547,
+      "duration" : 32101
+    }
+  },
+  {
+    "seasonScore" : 0.830078125,
+    "gear" : "zenithstar61",
+    "weather" : {
+      "dewPoint" : 63.48999999999574,
+      "moonIllumination" : 0.24160849709361723,
+      "wind" : 1.4788646206156049,
+      "tempC" : 68.36399999999571,
+      "cloudCover" : 0.0044444444444444444
+    },
+    "visibilityScore" : 1,
+    "setupEndString" : "2022-09-01T06:41:25",
+    "imagingInterval" : {
+      "start" : 683689311,
+      "duration" : 33241
+    },
+    "setupInterval" : {
+      "start" : 683687534,
+      "duration" : 37751
+    },
+    "dateString" : "2022-08-31",
+    "imageEndString" : "2022-09-01T05:55:52",
+    "legacyWeather" : {
+      "tempF" : 67,
+      "tempC" : 19,
+      "wind" : 5
+    },
+    "targetName" : "Andromeda Galaxy",
+    "imageStartString" : "2022-08-31T20:41:51",
+    "imagePlan" : [
+      {
+        "progressExposureCount" : 32,
+        "totalExposureCount" : 32,
+        "exposureTime" : 300,
+        "filterName" : "R"
+      },
+      {
+        "totalExposureCount" : 32,
+        "filterName" : "G",
+        "progressExposureCount" : 32,
+        "exposureTime" : 300
+      },
+      {
+        "exposureTime" : 300,
+        "progressExposureCount" : 32,
+        "totalExposureCount" : 32,
+        "filterName" : "B"
+      }
+    ],
+    "setupStartString" : "2022-08-31T20:12:14",
+    "id" : "42CBA669-9050-42DE-8345-9B76B45810AA",
+    "targetID" : "FCFAF73B-D7FC-4732-919D-920EEDA0E5E7"
+  },
+  {
+    "imageStartString" : "2022-09-29T20:34:16",
+    "weather" : {
+      "tempC" : 46.79599999999586,
+      "wind" : 0.8661921349319972,
+      "moonIllumination" : 0.1955250476711772,
+      "dewPoint" : 43.4281999999959,
+      "cloudCover" : 0.23199999999999993
+    },
+    "id" : "827F6B79-B5DB-4609-BA82-9C9371DEE39C",
+    "targetName" : "Andromeda Galaxy",
+    "setupInterval" : {
+      "duration" : 38293,
+      "start" : 686193266
+    },
+    "visibilityScore" : 1,
+    "setupStartString" : "2022-09-29T20:14:26",
+    "seasonScore" : 0.974609375,
+    "legacyWeather" : {
+      "tempF" : 47,
+      "tempC" : 8,
+      "wind" : 3
+    },
+    "imagePlan" : [
+      {
+        "totalExposureCount" : 35,
+        "progressExposureCount" : 35,
+        "filterName" : "R",
+        "exposureTime" : 300
+      },
+      {
+        "filterName" : "G",
+        "totalExposureCount" : 35,
+        "exposureTime" : 300,
+        "progressExposureCount" : 35
+      },
+      {
+        "exposureTime" : 300,
+        "totalExposureCount" : 35,
+        "filterName" : "B",
+        "progressExposureCount" : 35
+      }
+    ],
+    "imagingInterval" : {
+      "duration" : 34987,
+      "start" : 686194456
+    },
+    "targetID" : "FCFAF73B-D7FC-4732-919D-920EEDA0E5E7",
+    "imageEndString" : "2022-09-30T06:17:23",
+    "setupEndString" : "2022-09-30T06:52:39",
+    "dateString" : "2022-09-29",
+    "gear" : "zenithstar61"
+  },
+  {
+    "imagingInterval" : {
+      "duration" : 37822,
+      "start" : 686278357
+    },
+    "legacyWeather" : {
+      "wind" : 4,
+      "tempC" : 9,
+      "tempF" : 49
+    },
+    "dateString" : "2022-09-30",
+    "imageStartString" : "2022-09-30T19:52:37",
+    "imageEndString" : "2022-10-01T06:22:59",
+    "setupStartString" : "2022-09-30T19:36:33",
+    "setupEndString" : "2022-10-01T07:14:17",
+    "targetName" : "Andromeda Galaxy",
+    "setupInterval" : {
+      "duration" : 41864,
+      "start" : 686277393
+    },
+    "imagePlan" : [
+      {
+        "totalExposureCount" : 38,
+        "exposureTime" : 300,
+        "progressExposureCount" : 38,
+        "filterName" : "R"
+      },
+      {
+        "progressExposureCount" : 38,
+        "totalExposureCount" : 38,
+        "filterName" : "G",
+        "exposureTime" : 300
+      },
+      {
+        "exposureTime" : 300,
+        "progressExposureCount" : 38,
+        "filterName" : "B",
+        "totalExposureCount" : 38
+      }
+    ],
+    "gear" : "zenithstar61",
+    "id" : "D4D3E779-93C1-4E4D-9973-79054B198594",
+    "weather" : {
+      "moonIllumination" : 0.2850804430088408,
+      "dewPoint" : 45.89109090908679,
+      "cloudCover" : 0.08363636363636363,
+      "wind" : 1.2201480445109651,
+      "tempC" : 49.577818181814024
+    },
+    "visibilityScore" : 1,
+    "seasonScore" : 0.98046875,
+    "targetID" : "FCFAF73B-D7FC-4732-919D-920EEDA0E5E7"
+  },
+  {
+    "dateString" : "2022-10-01",
+    "weather" : {
+      "moonIllumination" : 0.38411681396469854,
+      "tempC" : 51.920599999995844,
+      "wind" : 1.731141526485326,
+      "cloudCover" : 0.059,
+      "dewPoint" : 48.54379999999587
+    },
+    "legacyWeather" : {
+      "tempC" : 11,
+      "wind" : 6,
+      "tempF" : 51
+    },
+    "setupInterval" : {
+      "start" : 686367725,
+      "duration" : 48955
+    },
+    "imageEndString" : "2022-10-02T06:29:49",
+    "setupEndString" : "2022-10-02T10:18:00",
+    "visibilityScore" : 1,
+    "imageStartString" : "2022-10-01T20:47:52",
+    "seasonScore" : 0.986328125,
+    "id" : "4C6F710F-117E-49EE-9029-CCE0BD3FA411",
+    "targetName" : "Andromeda Galaxy",
+    "gear" : "zenithstar61",
+    "setupStartString" : "2022-10-01T20:42:05",
+    "imagePlan" : [
+      {
+        "totalExposureCount" : 36,
+        "progressExposureCount" : 36,
+        "exposureTime" : 300,
+        "filterName" : "R"
+      },
+      {
+        "totalExposureCount" : 36,
+        "exposureTime" : 300,
+        "filterName" : "G",
+        "progressExposureCount" : 36
+      },
+      {
+        "filterName" : "B",
+        "progressExposureCount" : 36,
+        "exposureTime" : 300,
+        "totalExposureCount" : 36
+      }
+    ],
+    "targetID" : "FCFAF73B-D7FC-4732-919D-920EEDA0E5E7",
+    "imagingInterval" : {
+      "start" : 686368072,
+      "duration" : 34917
+    }
+  },
+  {
+    "setupInterval" : {
+      "start" : 686448252,
+      "duration" : 41635
+    },
+    "targetName" : "Cygnus Loop",
+    "legacyWeather" : {
+      "tempC" : 11,
+      "wind" : 6,
+      "tempF" : 51
+    },
+    "imageStartString" : "2022-10-02T19:39:51",
+    "weather" : {
+      "dewPoint" : 46.605199999995875,
+      "cloudCover" : 0.004,
+      "tempC" : 52.75039999999583,
+      "moonIllumination" : 0.48826526348958366,
+      "wind" : 1.610595418754474
+    },
+    "imagingInterval" : {
+      "duration" : 16269,
+      "start" : 686450391
+    },
+    "gear" : "zenithstar61",
+    "seasonScore" : 0.6875,
+    "dateString" : "2022-10-02",
+    "id" : "710AB36D-83DA-4064-9337-A9215D8E1FF8",
+    "setupEndString" : "2022-10-03T06:38:07",
+    "visibilityScore" : 0.7411167512690355,
+    "setupStartString" : "2022-10-02T19:04:12",
+    "targetID" : "DF682DC4-5789-400F-B775-8B6167341F0A",
+    "imageEndString" : "2022-10-03T00:11:00",
+    "imagePlan" : [
+      {
+        "exposureTime" : 300,
+        "progressExposureCount" : 16,
+        "filterName" : "Ha",
+        "totalExposureCount" : 16
+      },
+      {
+        "totalExposureCount" : 16,
+        "progressExposureCount" : 16,
+        "exposureTime" : 300,
+        "filterName" : "OIII"
+      },
+      {
+        "filterName" : "SII",
+        "progressExposureCount" : 16,
+        "totalExposureCount" : 16,
+        "exposureTime" : 300
+      }
+    ]
+  },
+  {
+    "targetName" : "Cygnus Loop",
+    "setupStartString" : "2022-10-03T19:23:14",
+    "imagePlan" : [
+      {
+        "exposureTime" : 300,
+        "totalExposureCount" : 16,
+        "filterName" : "Ha",
+        "progressExposureCount" : 16
+      },
+      {
+        "totalExposureCount" : 16,
+        "filterName" : "OIII",
+        "progressExposureCount" : 16,
+        "exposureTime" : 300
+      },
+      {
+        "totalExposureCount" : 16,
+        "progressExposureCount" : 16,
+        "exposureTime" : 300,
+        "filterName" : "SII"
+      }
+    ],
+    "setupInterval" : {
+      "duration" : 82994,
+      "start" : 686535794
+    },
+    "weather" : {
+      "moonIllumination" : 0.5929313799606452,
+      "dewPoint" : 42.90799999999592,
+      "cloudCover" : 0.07375000000000001,
+      "wind" : 0.8411819244362921,
+      "tempC" : 48.89299999999587
+    },
+    "imageStartString" : "2022-10-03T19:40:37",
+    "gear" : "zenithstar61",
+    "imagingInterval" : {
+      "duration" : 26619,
+      "start" : 686536837
+    },
+    "setupEndString" : "2022-10-04T18:26:28",
+    "targetID" : "DF682DC4-5789-400F-B775-8B6167341F0A",
+    "visibilityScore" : 0.7341772151898734,
+    "seasonScore" : 0.685546875,
+    "legacyWeather" : {
+      "wind" : 6,
+      "tempC" : 10,
+      "tempF" : 50
+    },
+    "dateString" : "2022-10-03",
+    "id" : "9DF865A1-E878-41BB-9207-B1C7B8A9BA83",
+    "imageEndString" : "2022-10-04T03:04:16"
+  },
+  {
+    "targetType" : "HIIRegion",
+    "setupStartString" : "2022-10-10T19:02:15",
+    "id" : "7D9FD854-A188-416F-B0CA-93A1774E5825",
+    "dateString" : "2022-10-10",
+    "imagingInterval" : {
+      "duration" : 8256,
+      "start" : 687141423
+    },
+    "setupInterval" : {
+      "start" : 687139335,
+      "duration" : 42172
+    },
+    "imagePlan" : [
+      {
+        "progressExposureCount" : 8,
+        "totalExposureCount" : 8,
+        "filterName" : "R",
+        "exposureTime" : 300
+      },
+      {
+        "exposureTime" : 300,
+        "totalExposureCount" : 8,
+        "progressExposureCount" : 8,
         "filterName" : "G"
       },
       {
         "exposureTime" : 300,
+        "totalExposureCount" : 8,
         "filterName" : "B",
-        "progressExposureCount" : 40,
-        "totalExposureCount" : 40
+        "progressExposureCount" : 8
+      }
+    ],
+    "imageEndString" : "2022-10-10T21:54:39",
+    "seasonScore" : 0.431640625,
+    "gear" : "celestron6SE",
+    "targetID" : "A526906C-4FE8-4482-96BF-8AF4D6DC56A4",
+    "legacyWeather" : {
+      "wind" : 4,
+      "tempC" : 13,
+      "tempF" : 55
+    },
+    "imageStartString" : "2022-10-10T19:37:03",
+    "targetName" : "Eagle Nebula",
+    "setupEndString" : "2022-10-11T06:45:07",
+    "visibilityScore" : 0,
+    "weather" : {
+      "cloudCover" : 0.055,
+      "dewPoint" : 50.13499999999583,
+      "wind" : 1.5751772324624196,
+      "tempC" : 57.919999999995795,
+      "moonIllumination" : 0.9980164383323293
+    }
+  },
+  {
+    "gear" : "zenithstar61",
+    "targetID" : "EEE3D0A1-383E-4A4E-A648-F47B337ACCE6",
+    "targetName" : "Heart Nebula",
+    "setupEndString" : "2022-10-23T16:09:23",
+    "weather" : {
+      "cloudCover" : 0.060000000000000005,
+      "wind" : 5.4901013169454025,
+      "tempC" : 63.982727272723,
+      "dewPoint" : 53.8569090909049,
+      "moonIllumination" : 0.06794854803071175
+    },
+    "setupStartString" : "2022-10-22T18:58:52",
+    "dateString" : "2022-10-22",
+    "seasonScore" : 0.939453125,
+    "setupInterval" : {
+      "duration" : 76231,
+      "start" : 688175932
+    },
+    "imagingInterval" : {
+      "start" : 688177801,
+      "duration" : 37971
+    },
+    "legacyWeather" : {
+      "wind" : 8,
+      "tempC" : 6,
+      "tempF" : 43
+    },
+    "id" : "FFB37B39-7B51-4C81-ACA0-B439E70E5959",
+    "imageEndString" : "2022-10-23T06:02:52",
+    "imageStartString" : "2022-10-22T19:30:01",
+    "visibilityScore" : 1,
+    "targetType" : "HIIRegion",
+    "imagePlan" : [
+      {
+        "progressExposureCount" : 36,
+        "totalExposureCount" : 36,
+        "filterName" : "R",
+        "exposureTime" : 300
+      },
+      {
+        "progressExposureCount" : 36,
+        "exposureTime" : 300,
+        "totalExposureCount" : 36,
+        "filterName" : "G"
+      },
+      {
+        "filterName" : "B",
+        "exposureTime" : 300,
+        "totalExposureCount" : 36,
+        "progressExposureCount" : 36
       }
     ]
+  },
+  {
+    "id" : "29E82365-7B95-49C9-A5C5-A35F578AF5AD",
+    "imageStartString" : "2022-11-06T20:31:30",
+    "gear" : "zenithstar61",
+    "setupInterval" : {
+      "duration" : 56844,
+      "start" : 689473476
+    },
+    "setupEndString" : "2022-11-07T10:12:00",
+    "imageEndString" : "2022-11-07T05:40:10",
+    "targetID" : "1802ED5D-EB0B-4A8F-AC88-90862615B5F4",
+    "seasonScore" : 0.794921875,
+    "visibilityScore" : 0.8496214896214896,
+    "weather" : {
+      "wind" : 2.9031866151674226,
+      "moonIllumination" : 0.9535153554764616,
+      "dewPoint" : 32.30999999999597,
+      "cloudCover" : 0.03333333333333334,
+      "tempC" : 43.61999999999589
+    },
+    "targetType" : "mixedDiffuseNebulae",
+    "imagePlan" : [
+      {
+        "totalExposureCount" : 32,
+        "exposureTime" : 300,
+        "progressExposureCount" : 32,
+        "filterName" : "Ha"
+      },
+      {
+        "filterName" : "SII",
+        "totalExposureCount" : 32,
+        "exposureTime" : 300,
+        "progressExposureCount" : 32
+      },
+      {
+        "totalExposureCount" : 32,
+        "progressExposureCount" : 32,
+        "exposureTime" : 300,
+        "filterName" : "OIII"
+      }
+    ],
+    "targetName" : "Flaming Star Nebula",
+    "imagingInterval" : {
+      "start" : 689481090,
+      "duration" : 32920
+    },
+    "dateString" : "2022-11-06",
+    "legacyWeather" : {
+      "tempF" : 63,
+      "tempC" : 17,
+      "wind" : 14
+    },
+    "setupStartString" : "2022-11-06T18:24:36"
+  },
+  {
+    "imagingInterval" : {
+      "duration" : 40766,
+      "start" : 690858113
+    },
+    "weather" : {
+      "tempC" : 31.343818181814186,
+      "wind" : 1.1195988075095984,
+      "cloudCover" : 0.012727272727272728,
+      "dewPoint" : 24.731272727268784,
+      "moonIllumination" : 0.010929119799272177
+    },
+    "imageEndString" : "2022-11-23T06:21:19",
+    "visibilityScore" : 0.9915966386554622,
+    "seasonScore" : 0.9921875,
+    "imagePlan" : [
+      {
+        "progressExposureCount" : 40,
+        "exposureTime" : 300,
+        "totalExposureCount" : 40,
+        "filterName" : "R"
+      },
+      {
+        "filterName" : "G",
+        "progressExposureCount" : 40,
+        "totalExposureCount" : 40,
+        "exposureTime" : 300
+      },
+      {
+        "progressExposureCount" : 40,
+        "exposureTime" : 300,
+        "totalExposureCount" : 40,
+        "filterName" : "B"
+      }
+    ],
+    "legacyWeather" : {
+      "tempC" : -1,
+      "wind" : 5,
+      "tempF" : 31
+    },
+    "gear" : "zenithstar61",
+    "targetType" : "openStarCluster",
+    "setupStartString" : "2022-11-22T16:59:59",
+    "imageStartString" : "2022-11-22T19:01:53",
+    "setupEndString" : "2022-11-23T10:08:06",
+    "targetName" : "Pleiades",
+    "dateString" : "2022-11-22",
+    "setupInterval" : {
+      "duration" : 61687,
+      "start" : 690850799
+    },
+    "id" : "0FEE532C-BC0F-43BA-B3F9-60B0111442A3",
+    "targetID" : "AD1F0CF9-8BD5-4A44-94C3-CD4D27729C11"
+  },
+  {
+    "seasonScore" : 0.83203125,
+    "dateString" : "2023-03-19",
+    "visibilityScore" : 1,
+    "targetID" : "A1F10BEB-20D0-4347-A7E1-7512F60EC664",
+    "imagingInterval" : {
+      "duration" : 27188,
+      "start" : 700968494
+    },
+    "setupStartString" : "2023-03-19T19:42:52",
+    "gear" : "celestron6SE",
+    "imagePlan" : [
+      {
+        "filterName" : "R",
+        "progressExposureCount" : 20,
+        "totalExposureCount" : 20,
+        "exposureTime" : 300
+      },
+      {
+        "totalExposureCount" : 20,
+        "exposureTime" : 300,
+        "filterName" : "G",
+        "progressExposureCount" : 20
+      },
+      {
+        "progressExposureCount" : 20,
+        "totalExposureCount" : 20,
+        "exposureTime" : 300,
+        "filterName" : "B"
+      },
+      {
+        "totalExposureCount" : 20,
+        "filterName" : "Ha",
+        "progressExposureCount" : 20,
+        "exposureTime" : 300
+      }
+    ],
+    "id" : "C4D816AB-831B-4FF4-A6B3-A76C7B366674",
+    "weather" : {
+      "wind" : 5.478168156093414,
+      "tempC" : 29.324749999996005,
+      "moonIllumination" : 0.0507381403105109,
+      "cloudCover" : 0.21625,
+      "dewPoint" : 18.027499999996106
+    },
+    "imageEndString" : "2023-03-20T04:01:22",
+    "setupInterval" : {
+      "duration" : 36216,
+      "start" : 700965772
+    },
+    "setupEndString" : "2023-03-20T05:46:28",
+    "targetName" : "M81 Group",
+    "imageStartString" : "2023-03-19T20:28:14"
+  },
+  {
+    "imageStartString" : "2023-04-12T20:55:10",
+    "targetID" : "A1F10BEB-20D0-4347-A7E1-7512F60EC664",
+    "imageEndString" : "2023-04-13T04:30:35",
+    "setupInterval" : {
+      "start" : 703040659,
+      "duration" : 38628
+    },
+    "setupStartString" : "2023-04-12T20:04:19",
+    "targetName" : "M81 Group",
+    "imagingInterval" : {
+      "duration" : 27325,
+      "start" : 703043710
+    },
+    "id" : "00AC786A-6356-4B86-A417-F4200328C1C7",
+    "weather" : {
+      "cloudCover" : 0.0025,
+      "dewPoint" : 45.91174999999587,
+      "tempC" : 64.19749999999574,
+      "moonIllumination" : 0.52367114178982,
+      "wind" : 3.6070626565855406
+    },
+    "dateString" : "2023-04-12",
+    "visibilityScore" : 1,
+    "setupEndString" : "2023-04-13T06:48:07",
+    "seasonScore" : 0.7109375,
+    "gear" : "celestron6SE",
+    "imagePlan" : [
+      {
+        "progressExposureCount" : 27,
+        "filterName" : "R",
+        "exposureTime" : 300,
+        "totalExposureCount" : 27
+      },
+      {
+        "filterName" : "G",
+        "progressExposureCount" : 27,
+        "exposureTime" : 300,
+        "totalExposureCount" : 27
+      },
+      {
+        "totalExposureCount" : 27,
+        "exposureTime" : 300,
+        "filterName" : "B",
+        "progressExposureCount" : 27
+      }
+    ]
+  },
+  {
+    "setupInterval" : {
+      "start" : 715485292,
+      "duration" : 45298
+    },
+    "visibilityScore" : 1,
+    "setupEndString" : "2023-09-04T09:29:50",
+    "id" : "95D9DC8E-D658-47CE-9D0A-B89A40CA6230",
+    "imagingInterval" : {
+      "duration" : 30148,
+      "start" : 715487126
+    },
+    "targetID" : "EEE3D0A1-383E-4A4E-A648-F47B337ACCE6",
+    "gear" : "zenithstar61",
+    "seasonScore" : 0.693359375,
+    "imageEndString" : "2023-09-04T05:47:54",
+    "targetName" : "Heart Nebula",
+    "setupStartString" : "2023-09-03T20:54:52",
+    "imagePlan" : [
+      {
+        "exposureTime" : 300,
+        "totalExposureCount" : 30,
+        "progressExposureCount" : 30,
+        "filterName" : "Ha"
+      },
+      {
+        "progressExposureCount" : 30,
+        "exposureTime" : 300,
+        "filterName" : "SII",
+        "totalExposureCount" : 30
+      },
+      {
+        "exposureTime" : 300,
+        "filterName" : "OIII",
+        "totalExposureCount" : 30,
+        "progressExposureCount" : 30
+      }
+    ],
+    "dateString" : "2023-09-03",
+    "targetType" : "HIIRegion",
+    "weather" : {
+      "moonIllumination" : 0.8642112748419327,
+      "wind" : 3.123946168128132,
+      "cloudCover" : 0.026250000000000002,
+      "tempC" : 73.53949999999567,
+      "dewPoint" : 67.95949999999571
+    },
+    "imageStartString" : "2023-09-03T21:25:26"
+  },
+  {
+    "imageEndString" : "2023-09-09T23:34:12",
+    "weather" : {
+      "wind" : 0.5468070866141733,
+      "moonIllumination" : 0.28408886229371394,
+      "tempC" : 58.51399999999582,
+      "cloudCover" : 0.11,
+      "dewPoint" : 50.305999999995876
+    },
+    "gear" : "zenithstar61",
+    "targetName" : "The Lagoon and Trifid in Saggitarius",
+    "visibilityScore" : 0.07894736842105263,
+    "dateString" : "2023-09-09",
+    "imagingInterval" : {
+      "duration" : 5593,
+      "start" : 716007659
+    },
+    "setupInterval" : {
+      "start" : 716006284,
+      "duration" : 6993
+    },
+    "targetID" : "739E9A5A-4B5C-4F4D-9092-0ED72CC34365",
+    "seasonScore" : 0.576171875,
+    "imageStartString" : "2023-09-09T22:00:59",
+    "imagePlan" : [
+      {
+        "totalExposureCount" : 5,
+        "exposureTime" : 300,
+        "filterName" : "R",
+        "progressExposureCount" : 5
+      },
+      {
+        "exposureTime" : 300,
+        "totalExposureCount" : 6,
+        "filterName" : "G",
+        "progressExposureCount" : 6
+      },
+      {
+        "exposureTime" : 300,
+        "progressExposureCount" : 5,
+        "totalExposureCount" : 5,
+        "filterName" : "B"
+      },
+      {
+        "totalExposureCount" : 4,
+        "progressExposureCount" : 4,
+        "filterName" : "Ha",
+        "exposureTime" : 300
+      }
+    ],
+    "setupEndString" : "2023-09-09T23:34:37",
+    "setupStartString" : "2023-09-09T21:38:04",
+    "id" : "75723398-1C28-4F9F-8BEC-127E492BAABC"
+  },
+  {
+    "setupEndString" : "2023-11-12T20:33:06",
+    "imageEndString" : "2023-11-12T20:31:25",
+    "targetID" : "EEE3D0A1-383E-4A4E-A648-F47B337ACCE6",
+    "id" : "098FB84E-3467-4474-8D80-1AAABAA7156D",
+    "imagingInterval" : {
+      "start" : 721531253,
+      "duration" : 4232
+    },
+    "weather" : {
+      "dewPoint" : 33.13399999999598,
+      "moonIllumination" : 0.0014540246713498693,
+      "wind" : 3.9581376610594137,
+      "cloudCover" : 0.03,
+      "tempC" : 48.145999999995915
+    },
+    "setupInterval" : {
+      "start" : 721530407,
+      "duration" : 5179
+    },
+    "imagePlan" : [
+      {
+        "progressExposureCount" : 3,
+        "exposureTime" : 300,
+        "totalExposureCount" : 3,
+        "filterName" : "R"
+      },
+      {
+        "exposureTime" : 300,
+        "filterName" : "G",
+        "totalExposureCount" : 3,
+        "progressExposureCount" : 3
+      },
+      {
+        "totalExposureCount" : 3,
+        "filterName" : "B",
+        "exposureTime" : 300,
+        "progressExposureCount" : 3
+      },
+      {
+        "filterName" : "Ha",
+        "progressExposureCount" : 3,
+        "totalExposureCount" : 3,
+        "exposureTime" : 300
+      }
+    ],
+    "targetName" : "Heart Nebula",
+    "imageStartString" : "2023-11-12T19:20:53",
+    "setupStartString" : "2023-11-12T19:06:47",
+    "seasonScore" : 0.947265625,
+    "visibilityScore" : 1,
+    "gear" : "zenithstar61",
+    "dateString" : "2023-11-12"
+  },
+  {
+    "imageEndString" : "2023-11-13T23:40:29",
+    "id" : "961C5C68-458B-426A-860B-B2E1A25A689A",
+    "dateString" : "2023-11-13",
+    "targetName" : "Heart Nebula",
+    "imagePlan" : [
+      {
+        "progressExposureCount" : 7,
+        "totalExposureCount" : 7,
+        "exposureTime" : 300,
+        "filterName" : "R"
+      },
+      {
+        "totalExposureCount" : 7,
+        "filterName" : "G",
+        "exposureTime" : 300,
+        "progressExposureCount" : 7
+      },
+      {
+        "exposureTime" : 300,
+        "filterName" : "B",
+        "progressExposureCount" : 6,
+        "totalExposureCount" : 6
+      },
+      {
+        "totalExposureCount" : 4,
+        "filterName" : "Ha",
+        "progressExposureCount" : 4,
+        "exposureTime" : 300
+      }
+    ],
+    "gear" : "zenithstar61",
+    "visibilityScore" : 1,
+    "imagingInterval" : {
+      "start" : 721618390,
+      "duration" : 14839
+    },
+    "setupInterval" : {
+      "duration" : 17506,
+      "start" : 721617290
+    },
+    "weather" : {
+      "wind" : 1.5487689356657126,
+      "moonIllumination" : 0.01031284191183048,
+      "tempC" : 41.04049999999594,
+      "dewPoint" : 27.391999999996052,
+      "cloudCover" : 0
+    },
+    "setupStartString" : "2023-11-13T19:14:50",
+    "targetID" : "EEE3D0A1-383E-4A4E-A648-F47B337ACCE6",
+    "seasonScore" : 0.94140625,
+    "setupEndString" : "2023-11-14T00:06:36",
+    "imageStartString" : "2023-11-13T19:33:10"
   }
 ]

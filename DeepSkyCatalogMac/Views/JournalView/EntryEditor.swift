@@ -9,14 +9,19 @@ import SwiftUI
 import WeatherKit
 
 struct EntryEditor: View {
+    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse), SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: FetchedResults<SavedLocation>
     @Binding var entry: JournalEntry
     @State var targetID: String
+    @State var location: Location?
     @State var gear: JournalEntry.ImagingGear
+    @State var plan: [JournalEntry.JournalImagePlan]
     
     init(entry: Binding<JournalEntry>) {
         self._entry = entry
         self._targetID = State(initialValue: entry.wrappedValue.targetID.uuidString)
+        self._location = State(initialValue: entry.wrappedValue.location)
         self._gear = State(initialValue: entry.wrappedValue.gear ?? .zenithstar61)
+        self._plan = State(initialValue: entry.wrappedValue.imagePlan ?? [])
     }
     
     var body: some View {
@@ -72,6 +77,19 @@ struct EntryEditor: View {
                     }
                     
                     // Location Picker
+                    Section {
+                        Picker("", selection: $location) {
+                            ForEach(Array(locationList.enumerated()), id: \.element) { index, location in
+                                Text(location.name!).tag(location)
+                            }
+                        }
+                        .frame(width: 300)
+                    } header: {
+                        Text("Location")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(.top)
+                    }
                     
                     // Gear Picker
                     Section {
@@ -166,31 +184,53 @@ struct EntryEditor: View {
                     }
                     
                     // Image Plan Fields
-                    if let plan = entry.imagePlan {
-                        Section {
-                            HStack {
-                                ForEach(plan, id: \.self) { sequence in
+
+                    Section {
+                        HStack {
+                            if let imagePlan = entry.imagePlan {
+                                ForEach(imagePlan, id: \.self) { sequence in
                                     VStack {
                                         Text(sequence.filterName)
                                         Text("\(sequence.progressExposureCount)/\(sequence.totalExposureCount)")
                                         Text("\(sequence.exposureTime)")
-                                        
                                     }
                                 }
                             }
-                        } header: {
-                            Text("Image Plan")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .padding(.top)
+                            ForEach(0..<plan.count, id: \.self) { index in
+                                VStack {
+                                    TextField("Filter Name", text: $plan[index].filterName)
+                                        .frame(maxWidth: 105)
+                                    HStack {
+                                        TextField("Progress", value: $plan[index].progressExposureCount, format: .number)
+                                            .frame(maxWidth: 50)
+                                        Text("/")
+                                        TextField("Total", value: $plan[index].totalExposureCount, format: .number)
+                                            .frame(maxWidth: 50)
+                                    }
+                                    TextField("Exposure", value: $plan[index].exposureTime, format: .number)
+                                        .frame(maxWidth: 105)
+                                }
+                            }
+                            Button("Add Sequence") {
+                                plan.append(.init(filterName: "<filter>", exposureTime: 300, totalExposureCount: 20, progressExposureCount: 20))
+                            }
                         }
+                    } header: {
+                        Text("Image Plan")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(.top)
                     }
                     Spacer()
                 }
                 .padding()
                 .onDisappear() {
                     entry.targetID = UUID(uuidString: targetID)!
+                    let target = DeepSkyTargetList.allTargets.first(where: {$0.id.uuidString == targetID})
+                    entry.targetName = target?.name?.first ?? target!.defaultName
+                    entry.location = location
                     entry.gear = gear
+                    entry.imagePlan = plan
                 }
                 Spacer()
             }

@@ -73,19 +73,23 @@ struct Mac_JournalView: View {
                         return false
                     }
                 Spacer()
+                VStack {
+                    Text(info != nil ? "Info Loaded" : "No Info")
+                    Text(log != nil ? "Log Loaded" : "No Log")
+                    Text(plan != nil ? "Plan Loaded" : "No Plan")
+                }
             }
             .padding()
             .background(.tertiary)
             .border(.secondary)
         
-        NavigationSplitView {
+        NavigationView {
             List {
-                ForEach(Array(entries.enumerated()), id: \.offset) { index, object in
+                ForEach(entries) { entry in
                     NavigationLink {
-                        EntryEditor(entry: $entries[index])
+                        EntryEditor(entry: $entries[entries.firstIndex(where: {$0 == entry})!])
                     } label: {
-//                        Text("\(entries[index].setupInterval?.start.formatted(date: .abbreviated, time: .omitted)): \(target?.name?.first ?? target?.defaultName ?? "???")")
-                        Text(object.targetName)
+                        Text("\(entry.setupInterval?.start.formatted(date: .abbreviated, time: .omitted) ?? "n/a"): \(entry.targetName)")
                     }
                 }
             }
@@ -110,11 +114,7 @@ struct Mac_JournalView: View {
                 } label: {
                     Text("Save Entries")
                 }
-
-
             }
-        } detail: {
-            Text("Select an Entry")
         }
     }
 }
