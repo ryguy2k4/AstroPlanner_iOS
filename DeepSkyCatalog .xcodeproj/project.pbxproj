@@ -54,7 +54,6 @@
 		7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CECE29BE4E72000A154A /* IntentHandler.swift */; };
 		7164CED329BE4E72000A154A /* DeepSkyCatalogIntents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7164CECA29BE4E72000A154A /* DeepSkyCatalogIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7164CED929BE4FDA000A154A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
-		7164CEDA29BE4FDC000A154A /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
 		7164CEDB29BE8F6A000A154A /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
 		7164CEDC29BE8F6E000A154A /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
 		7164CEDD29BE8F77000A154A /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
@@ -117,7 +116,6 @@
 		7181F01E299BD019002841A8 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date+Ext.swift */; };
 		7181F01F299BD01B002841A8 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String+Ext.swift */; };
 		7181F020299BD01E002841A8 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double+Ext.swift */; };
-		7181F021299BD03F002841A8 /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
 		7181F022299BD041002841A8 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		7181F023299BD046002841A8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
 		7181F024299BD049002841A8 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
@@ -151,7 +149,6 @@
 		71ACF32F2964EAA200CC83D5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
 		71ACF3312964ED0F00CC83D5 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date+Ext.swift */; };
 		71ACF3332964ED1400CC83D5 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double+Ext.swift */; };
-		71ACF3352964ED2E00CC83D5 /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
 		71ACF33A2964EED200CC83D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
 		71ACF33D2964F0B400CC83D5 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF33B2964F04D00CC83D5 /* Provider.swift */; };
 		71ACF33F2964F0D800CC83D5 /* ReportListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACF33E2964F0D800CC83D5 /* ReportListEntry.swift */; };
@@ -163,7 +160,6 @@
 		71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */; };
 		71BCF9512921EE72008C7614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
 		71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
-		71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
 		71BCF96B2921EF20008C7614 /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9672921EF20008C7614 /* CatalogView.swift */; };
 		71BCF96C2921EF20008C7614 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9682921EF20008C7614 /* SettingsView.swift */; };
 		71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9692921EF20008C7614 /* DetailView.swift */; };
@@ -197,7 +193,6 @@
 		71C2645A298F1D260057EC04 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		71C2645C298F1D330057EC04 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71C2645D298F1D3F0057EC04 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E54CD293D52B00039ECE0 /* LocationManager.swift */; };
-		71C2645E298F1D430057EC04 /* DeepSkyCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */; };
 		71C2645F298F1D460057EC04 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
 		71C26461298F1D4D0057EC04 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
@@ -207,6 +202,31 @@
 		71CC6A032A64CE0B003E29CB /* ImageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC6A022A64CE0B003E29CB /* ImageField.swift */; };
 		71CC6A052A64D1DF003E29CB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC6A042A64D1DF003E29CB /* APIService.swift */; };
 		71CC6A0A2A64EC78003E29CB /* URLRequest+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC6A092A64EC78003E29CB /* URLRequest+Ext.swift */; };
+		71CEEE2A2B1ED79C0072AAAE /* ImagingPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */; };
+		71CEEE2B2B1ED79C0072AAAE /* TargetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */; };
+		71CEEE2C2B1ED79C0072AAAE /* HiddenTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */; };
+		71CEEE2D2B1ED79C0072AAAE /* ReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */; };
+		71CEEE2E2B1ED79C0072AAAE /* SavedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */; };
+		71CEEE2F2B1ED7A10072AAAE /* SavedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */; };
+		71CEEE302B1ED7A20072AAAE /* SavedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */; };
+		71CEEE312B1ED7A20072AAAE /* SavedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */; };
+		71CEEE322B1ED7A30072AAAE /* SavedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */; };
+		71CEEE332B1ED8430072AAAE /* ReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */; };
+		71CEEE342B1ED8430072AAAE /* ReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */; };
+		71CEEE352B1ED8430072AAAE /* ReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */; };
+		71CEEE362B1ED8440072AAAE /* ReportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */; };
+		71CEEE372B1ED8480072AAAE /* HiddenTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */; };
+		71CEEE382B1ED8480072AAAE /* HiddenTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */; };
+		71CEEE392B1ED8480072AAAE /* HiddenTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */; };
+		71CEEE3A2B1ED8490072AAAE /* HiddenTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */; };
+		71CEEE3B2B1ED84B0072AAAE /* TargetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */; };
+		71CEEE3C2B1ED84B0072AAAE /* TargetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */; };
+		71CEEE3D2B1ED84B0072AAAE /* TargetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */; };
+		71CEEE3E2B1ED84C0072AAAE /* TargetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */; };
+		71CEEE3F2B1ED84F0072AAAE /* ImagingPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */; };
+		71CEEE402B1ED8500072AAAE /* ImagingPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */; };
+		71CEEE412B1ED8500072AAAE /* ImagingPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */; };
+		71CEEE422B1ED8510072AAAE /* ImagingPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */; };
 		71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */; };
 		71D4ECD02A660F1E009E7AFC /* SubTargetsField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECCF2A660F1D009E7AFC /* SubTargetsField.swift */; };
 		71D4ECD22A660F39009E7AFC /* NamesField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4ECD12A660F39009E7AFC /* NamesField.swift */; };
@@ -317,12 +337,10 @@
 		71694BB429C00FD400EBB15F /* ImagingPreset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImagingPreset+Ext.swift"; sourceTree = "<group>"; };
 		716A19BA298F58A90025DB67 /* Mac_HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_HomeView.swift; sourceTree = "<group>"; };
 		716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalog.entitlements; sourceTree = "<group>"; };
-		71701E6F2B182CF4007992B8 /* DeepSkyCatalog-4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DeepSkyCatalog-4.xcdatamodel"; sourceTree = "<group>"; };
 		71701E752B182DCE007992B8 /* JournalEntryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryList.swift; sourceTree = "<group>"; };
 		717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerModal.swift; sourceTree = "<group>"; };
 		7170F3232B1977D9001F0CE6 /* Journal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Journal.json; sourceTree = "<group>"; };
 		717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagingPresetModal.swift; sourceTree = "<group>"; };
-		717E9ACF2A7E00BF004E93FA /* DeepSkyCatalog-3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DeepSkyCatalog-3.xcdatamodel"; sourceTree = "<group>"; };
 		7181F001299BCFD1002841A8 /* TargetCurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TargetCurator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7181F003299BCFD1002841A8 /* TargetCuratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCuratorApp.swift; sourceTree = "<group>"; };
 		7181F005299BCFD1002841A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -347,7 +365,6 @@
 		71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogApp.swift; sourceTree = "<group>"; };
 		71BCF9502921EE72008C7614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71BCF9552921EE72008C7614 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
-		71BCF9582921EE72008C7614 /* DeepSkyCatalog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeepSkyCatalog.xcdatamodel; sourceTree = "<group>"; };
 		71BCF9672921EF20008C7614 /* CatalogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		71BCF9682921EF20008C7614 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		71BCF9692921EF20008C7614 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -371,6 +388,11 @@
 		71CC6A042A64D1DF003E29CB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		71CC6A062A64DD7A003E29CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		71CC6A092A64EC78003E29CB /* URLRequest+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Ext.swift"; sourceTree = "<group>"; };
+		71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImagingPreset.swift; path = Shared/ImagingPreset.swift; sourceTree = "<group>"; };
+		71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TargetSettings.swift; path = Shared/TargetSettings.swift; sourceTree = "<group>"; };
+		71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HiddenTarget.swift; path = Shared/HiddenTarget.swift; sourceTree = "<group>"; };
+		71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReportSettings.swift; path = Shared/ReportSettings.swift; sourceTree = "<group>"; };
+		71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedLocation.swift; path = Shared/SavedLocation.swift; sourceTree = "<group>"; };
 		71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		71D4ECCF2A660F1D009E7AFC /* SubTargetsField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTargetsField.swift; sourceTree = "<group>"; };
 		71D4ECD12A660F39009E7AFC /* NamesField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesField.swift; sourceTree = "<group>"; };
@@ -393,7 +415,6 @@
 		71DF8A7C2A6230B000923236 /* DateFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Ext.swift"; sourceTree = "<group>"; };
 		71E03E6229C0B5FF0034FE08 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		71E03E6629C0B9210034FE08 /* DeepSkyCatalogWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogWidgetExtension.entitlements; sourceTree = "<group>"; };
-		71E03E6729C0B9FC0034FE08 /* DeepSkyCatalog-2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DeepSkyCatalog-2.xcdatamodel"; sourceTree = "<group>"; };
 		71E96D67292831AA00E019F9 /* CatalogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogManager.swift; sourceTree = "<group>"; };
 		71F510BB297605E9008F7629 /* CaseNameCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseNameCodable.swift; sourceTree = "<group>"; };
 		71F71572293FB4010011EF7F /* Environment+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Ext.swift"; sourceTree = "<group>"; };
@@ -663,6 +684,11 @@
 		71BCF9402921EE71008C7614 = {
 			isa = PBXGroup;
 			children = (
+				71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */,
+				71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */,
+				71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */,
+				71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */,
+				71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */,
 				7149D9932984C6F3004BFBE6 /* Shared */,
 				71BCF94B2921EE71008C7614 /* DeepSkyCatalogiOS */,
 				7162D3412964DBF1007C8710 /* DeepSkyCatalogWidget */,
@@ -739,7 +765,6 @@
 		71BCF98A2921F2AC008C7614 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */,
 				71BCF9552921EE72008C7614 /* PersistenceManager.swift */,
 				71694BB429C00FD400EBB15F /* ImagingPreset+Ext.swift */,
 			);
@@ -1039,9 +1064,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71CEEE2F2B1ED7A10072AAAE /* SavedLocation.swift in Sources */,
 				7135117C29B2820B00725B1D /* NetworkManager.swift in Sources */,
 				7162D3432964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift in Sources */,
-				71ACF3352964ED2E00CC83D5 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				71668AD0298F266300AB0D19 /* String+Ext.swift in Sources */,
 				71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */,
 				7162D3452964DBF1007C8710 /* ReportListWidget.swift in Sources */,
@@ -1058,16 +1083,20 @@
 				7135117D29B2829C00725B1D /* FetchError.swift in Sources */,
 				71ACF32D2964EA9A00CC83D5 /* TargetType.swift in Sources */,
 				71DF8A7F2A62323800923236 /* DateFormatter+Ext.swift in Sources */,
+				71CEEE3F2B1ED84F0072AAAE /* ImagingPreset.swift in Sources */,
 				716A19BC298F5B270025DB67 /* PlaceValue.swift in Sources */,
 				71ACF3312964ED0F00CC83D5 /* Date+Ext.swift in Sources */,
+				71CEEE372B1ED8480072AAAE /* HiddenTarget.swift in Sources */,
 				71A6C8FD2A5F4E0D009F1C30 /* Sun.swift in Sources */,
 				7164CEF329BE97C7000A154A /* UIImage+Ext.swift in Sources */,
 				7164CEED29BE8FB4000A154A /* Environment+Ext.swift in Sources */,
+				71CEEE332B1ED8430072AAAE /* ReportSettings.swift in Sources */,
 				71701E732B182DBC007992B8 /* ImagePlan.swift in Sources */,
 				711386F829C3548C00081584 /* Filter.swift in Sources */,
 				71701E772B182DCE007992B8 /* JournalEntryList.swift in Sources */,
 				71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */,
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
+				71CEEE3B2B1ED84B0072AAAE /* TargetSettings.swift in Sources */,
 				71ACF3332964ED1400CC83D5 /* Double+Ext.swift in Sources */,
 				71694BB629C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */,
@@ -1086,15 +1115,18 @@
 				7164CED929BE4FDA000A154A /* PersistenceManager.swift in Sources */,
 				7164CEE229BE8F83000A154A /* FilterMethods.swift in Sources */,
 				718C11F729C919530069ECD5 /* Location.swift in Sources */,
+				71CEEE3E2B1ED84C0072AAAE /* TargetSettings.swift in Sources */,
 				71A6C9012A5F4F09009F1C30 /* Moon.swift in Sources */,
 				7164CEDC29BE8F6E000A154A /* DeepSkyTarget.swift in Sources */,
 				7164CEDB29BE8F6A000A154A /* DeepSkyTargetList.swift in Sources */,
 				7164CEE929BE8FA6000A154A /* Date+Ext.swift in Sources */,
 				7164CEE329BE8F8B000A154A /* PlaceValue.swift in Sources */,
 				71DF8A812A62323900923236 /* DateFormatter+Ext.swift in Sources */,
+				71CEEE422B1ED8510072AAAE /* ImagingPreset.swift in Sources */,
 				7164CEEF29BE8FB5000A154A /* Environment+Ext.swift in Sources */,
 				7164CEF029BE8FE6000A154A /* DailyReport.swift in Sources */,
 				7164CEDF29BE8F7C000A154A /* TargetType.swift in Sources */,
+				71CEEE322B1ED7A30072AAAE /* SavedLocation.swift in Sources */,
 				71E03E6529C0B5FF0034FE08 /* Intents.intentdefinition in Sources */,
 				7139193A2B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
 				71A6C9002A5F4EFC009F1C30 /* Sun.swift in Sources */,
@@ -1102,10 +1134,11 @@
 				7164CEE029BE8F7E000A154A /* Constellation.swift in Sources */,
 				7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */,
 				71694BB929C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
-				7164CEDA29BE4FDC000A154A /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				71701E7A2B182DCE007992B8 /* JournalEntryList.swift in Sources */,
 				7164CEE129BE8F81000A154A /* SortMethods.swift in Sources */,
+				71CEEE362B1ED8440072AAAE /* ReportSettings.swift in Sources */,
 				7164CEDE29BE8F79000A154A /* TargetCatalog.swift in Sources */,
+				71CEEE3A2B1ED8490072AAAE /* HiddenTarget.swift in Sources */,
 				7164CEEB29BE8FAA000A154A /* Double+Ext.swift in Sources */,
 				7164CEE729BE8F9A000A154A /* FetchError.swift in Sources */,
 			);
@@ -1115,8 +1148,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71CEEE312B1ED7A20072AAAE /* SavedLocation.swift in Sources */,
+				71CEEE412B1ED8500072AAAE /* ImagingPreset.swift in Sources */,
 				7181F02A299BD1E4002841A8 /* Moon.swift in Sources */,
 				7181F01B299BCFFF002841A8 /* SortMethods.swift in Sources */,
+				71CEEE352B1ED8430072AAAE /* ReportSettings.swift in Sources */,
+				71CEEE3D2B1ED84B0072AAAE /* TargetSettings.swift in Sources */,
 				71701E792B182DCE007992B8 /* JournalEntryList.swift in Sources */,
 				7181F019299BCFFB002841A8 /* TargetType.swift in Sources */,
 				7181F02C299BD226002841A8 /* CaseNameCodable.swift in Sources */,
@@ -1137,6 +1174,7 @@
 				71D4ECD22A660F39009E7AFC /* NamesField.swift in Sources */,
 				7181F006299BCFD1002841A8 /* ContentView.swift in Sources */,
 				7181F022299BD041002841A8 /* PersistenceManager.swift in Sources */,
+				71CEEE392B1ED8480072AAAE /* HiddenTarget.swift in Sources */,
 				71D4ECDA2A660F8C009E7AFC /* ConstellationField.swift in Sources */,
 				7164CEEE29BE8FB5000A154A /* Environment+Ext.swift in Sources */,
 				7181F01C299BD001002841A8 /* FilterMethods.swift in Sources */,
@@ -1145,7 +1183,6 @@
 				7181F004299BCFD1002841A8 /* TargetCuratorApp.swift in Sources */,
 				7181F01E299BD019002841A8 /* Date+Ext.swift in Sources */,
 				71D4ECD42A660F4D009E7AFC /* DesignationsField.swift in Sources */,
-				7181F021299BD03F002841A8 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				71D4ECD02A660F1E009E7AFC /* SubTargetsField.swift in Sources */,
 				71CC6A052A64D1DF003E29CB /* APIService.swift in Sources */,
 				7181F017299BCFF6002841A8 /* DeepSkyTargetList.swift in Sources */,
@@ -1168,9 +1205,11 @@
 				71B6D2FD2954D983006ADC6F /* GearSettings.swift in Sources */,
 				71BCF9852921EF8B008C7614 /* TargetType.swift in Sources */,
 				716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */,
+				71CEEE2B2B1ED79C0072AAAE /* TargetSettings.swift in Sources */,
 				71E03E6329C0B5FF0034FE08 /* Intents.intentdefinition in Sources */,
 				71BCF96E2921EF20008C7614 /* HomeView.swift in Sources */,
 				7156743029273ECA00626B1B /* AboutView.swift in Sources */,
+				71CEEE2A2B1ED79C0072AAAE /* ImagingPreset.swift in Sources */,
 				71BCF96C2921EF20008C7614 /* SettingsView.swift in Sources */,
 				71375E6B2980DB6F00B95F2E /* AdvancedSettingsView.swift in Sources */,
 				714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */,
@@ -1184,16 +1223,19 @@
 				71BCF96B2921EF20008C7614 /* CatalogView.swift in Sources */,
 				711386F729C3548C00081584 /* Filter.swift in Sources */,
 				71BCF9762921EF6D008C7614 /* DeepSkyTarget.swift in Sources */,
+				71CEEE2E2B1ED79C0072AAAE /* SavedLocation.swift in Sources */,
 				710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */,
 				71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */,
 				71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */,
 				71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */,
+				71CEEE2D2B1ED79C0072AAAE /* ReportSettings.swift in Sources */,
 				71950E8A29D139BE0075081B /* DataLoadingViews.swift in Sources */,
 				71BCF9822921EF8B008C7614 /* Date+Ext.swift in Sources */,
 				71694BB529C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				7109A3F5292EBA7A00980527 /* Moon.swift in Sources */,
 				71D77FA82921F99200709252 /* Double+Ext.swift in Sources */,
 				71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */,
+				71CEEE2C2B1ED79C0072AAAE /* HiddenTarget.swift in Sources */,
 				7113870329C3571400081584 /* FilterButtonMenuView.swift in Sources */,
 				710BF588294BF18900A72073 /* ConfigSection.swift in Sources */,
 				71668AD5298F26AC00AB0D19 /* String+iOSExt.swift in Sources */,
@@ -1221,7 +1263,6 @@
 				71462F3329A2E6A100F2914C /* ToolbarLogo.swift in Sources */,
 				714BB85329A094810084D438 /* TopTenTabView.swift in Sources */,
 				71701E762B182DCE007992B8 /* JournalEntryList.swift in Sources */,
-				71BCF9592921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				713919362B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
 				717051DB29CE7A6D00D4EE1A /* LocationPickerModal.swift in Sources */,
 				71B5AF96292C778D00323693 /* TargetCatalog.swift in Sources */,
@@ -1242,16 +1283,17 @@
 				71DF8A732A61FB5F00923236 /* Mac_AboutView.swift in Sources */,
 				71701E782B182DCE007992B8 /* JournalEntryList.swift in Sources */,
 				716A19BB298F58A90025DB67 /* Mac_HomeView.swift in Sources */,
+				71CEEE302B1ED7A20072AAAE /* SavedLocation.swift in Sources */,
 				71C26456298F1CBF0057EC04 /* SortMethods.swift in Sources */,
 				713568EC2A60C696004196AE /* Mac_DetailView.swift in Sources */,
 				712E83682A60F44F00CA42DD /* ReportSettingsEditor.swift in Sources */,
+				71CEEE402B1ED8500072AAAE /* ImagingPreset.swift in Sources */,
 				71C26455298F1CBD0057EC04 /* Constellation.swift in Sources */,
 				71C2644B298F1C9F0057EC04 /* Date+Ext.swift in Sources */,
 				719B24A82B1670F900C3951A /* TargetIDSearchField.swift in Sources */,
 				71C2644F298F1CAB0057EC04 /* Environment+Ext.swift in Sources */,
 				71C26457298F1CC10057EC04 /* FilterMethods.swift in Sources */,
 				71DF8A752A61FC3600923236 /* Mac_LocationSettings.swift in Sources */,
-				71C2645E298F1D430057EC04 /* DeepSkyCatalog.xcdatamodeld in Sources */,
 				71DF8A792A622C8800923236 /* Mac_TargetSettings.swift in Sources */,
 				71DF8A6E2A61F59C00923236 /* Menus.swift in Sources */,
 				71BE6EDC299035A400686E95 /* Mac_DailyReportView.swift in Sources */,
@@ -1271,11 +1313,14 @@
 				71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */,
 				71DF8A7B2A622DF700923236 /* Mac_HiddenTargetsList.swift in Sources */,
 				716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */,
+				71CEEE3C2B1ED84B0072AAAE /* TargetSettings.swift in Sources */,
 				7133FCA72ACCC26B00DB0B27 /* Mac_JournalView.swift in Sources */,
 				712E83662A60F41200CA42DD /* Mac_TopTenListView.swift in Sources */,
 				71C26463298F1D510057EC04 /* Moon.swift in Sources */,
+				71CEEE382B1ED8480072AAAE /* HiddenTarget.swift in Sources */,
 				71C26459298F1D230057EC04 /* CatalogManager.swift in Sources */,
 				71DF8A7D2A6230B000923236 /* DateFormatter+Ext.swift in Sources */,
+				71CEEE342B1ED8430072AAAE /* ReportSettings.swift in Sources */,
 				718C11F629C89A880069ECD5 /* Location.swift in Sources */,
 				71694BB729C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				71C2645A298F1D260057EC04 /* DailyReport.swift in Sources */,
@@ -1817,22 +1862,6 @@
 			productName = XMLParsing;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		71BCF9572921EE72008C7614 /* DeepSkyCatalog.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				71701E6F2B182CF4007992B8 /* DeepSkyCatalog-4.xcdatamodel */,
-				717E9ACF2A7E00BF004E93FA /* DeepSkyCatalog-3.xcdatamodel */,
-				71E03E6729C0B9FC0034FE08 /* DeepSkyCatalog-2.xcdatamodel */,
-				71BCF9582921EE72008C7614 /* DeepSkyCatalog.xcdatamodel */,
-			);
-			currentVersion = 717E9ACF2A7E00BF004E93FA /* DeepSkyCatalog-3.xcdatamodel */;
-			path = DeepSkyCatalog.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 71BCF9412921EE71008C7614 /* Project object */;
 }
