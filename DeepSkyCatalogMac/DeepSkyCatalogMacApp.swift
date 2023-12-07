@@ -24,7 +24,6 @@ struct DeepSkyCatalogMacApp: App {
         
         WindowGroup(id: "settings") {
             Mac_SettingsView()
-                .environment(\.managedObjectContext, persistenceManager.container.viewContext)
                 .environmentObject(networkManager)
                 .environmentObject(locationManager)
         }

@@ -82,9 +82,9 @@ final class CatalogManager: ObservableObject {
     /**
      Re-filters and re-sorts the list
      */
-    func refreshList(date: Date, viewingInterval: DateInterval?, location: Location, targetSettings: TargetSettings, sunData: SunData?, context: ModelContext) {
+    func refreshList(date: Date, viewingInterval: DateInterval?, location: Location, targetSettings: TargetSettings, sunData: SunData?) {
         // reset list
-        targets = DeepSkyTargetList.whitelistedTargets(context: context).sorted(by: {$0.ra > $1.ra})
+        targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: targetSettings.hiddenTargets!).sorted(by: {$0.ra > $1.ra})
         if targetSettings.hideNeverRises {
             for target in targets {
                 if case .never = target.getNextInterval(location: location, date: date).interval {

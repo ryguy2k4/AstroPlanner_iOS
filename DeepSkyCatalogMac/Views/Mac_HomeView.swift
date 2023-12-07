@@ -132,9 +132,9 @@ struct DailyReportLoadingView: View {
             .task {
                 store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
                 // here insert check for requesting data between midnight and night end should get info for the previous day still
-                if reportSettings.first!.darknessThreshold == Int16(2) {
+                if reportSettings.first!.darknessThreshold == 2 {
                     store.viewingInterval = store.sunData.CTInterval
-                } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                } else if reportSettings.first!.darknessThreshold == 1 {
                     store.viewingInterval = store.sunData.NTInterval
                 } else {
                     store.viewingInterval = store.sunData.ATInterval

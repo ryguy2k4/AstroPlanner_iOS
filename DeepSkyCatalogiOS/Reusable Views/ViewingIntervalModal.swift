@@ -11,12 +11,8 @@ import SwiftData
 struct ViewingIntervalModal: View {
     @EnvironmentObject var store: HomeViewModel
     @Environment(\.modelContext) var context
-    @Query var reportSettings: [ReportSettings]
-//    @ObservedObject var reportSettingsBinding: ReportSettings
+    @Bindable var reportSettings: ReportSettings
     
-//    init() {
-//        self.reportSettingsBinding = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<ReportSettings>(entityName: "ReportSettings")).first!
-//    }
     var body: some View {
         VStack {
             DateSelector()
@@ -28,9 +24,9 @@ struct ViewingIntervalModal: View {
                 ConfigSection(header: "Viewing Interval") {
                     DateIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: {
                         let nightInterval: DateInterval = {
-                            if reportSettings.first!.darknessThreshold == Int16(2) {
+                            if reportSettings.darknessThreshold == 2 {
                                 return store.sunData.CTInterval
-                            } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                            } else if reportSettings.darknessThreshold == 1 {
                                 return store.sunData.NTInterval
                             } else {
                                 return store.sunData.ATInterval
@@ -42,14 +38,13 @@ struct ViewingIntervalModal: View {
                 
                 // Darkness Threshold
                 Section {
-                    Text("picker broken :/")
-//                    Picker("Darkness Threshold", selection: $reportSettingsBinding.darknessThreshold) {
-//                        Text("Civil Twilight").tag(Int16(2))
-//                        Text("Nautical Twilight").tag(Int16(1))
-//                        Text("Astronomical Twilight").tag(Int16(0))
-//                    }
-//                    .pickerStyle(.inline)
-//                    .labelsHidden()
+                    Picker("Darkness Threshold", selection: $reportSettings.darknessThreshold) {
+                        Text("Civil Twilight").tag(2)
+                        Text("Nautical Twilight").tag(1)
+                        Text("Astronomical Twilight").tag(0)
+                    }
+                    .pickerStyle(.inline)
+                    .labelsHidden()
                 } header: {
                     Text("Darkness Threshold")
                 } footer: {
@@ -75,9 +70,9 @@ struct DateIntervalSelector: View {
         .pickerStyle(.segmented)
         .onChange(of: customViewingInterval) { newValue in
             if !newValue {
-                if reportSettings.first!.darknessThreshold == Int16(2) {
+                if reportSettings.first!.darknessThreshold == 2 {
                     viewingInterval = store.sunData.CTInterval
-                } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                } else if reportSettings.first!.darknessThreshold == 1 {
                     viewingInterval = store.sunData.NTInterval
                 } else {
                     viewingInterval = store.sunData.ATInterval
@@ -86,9 +81,9 @@ struct DateIntervalSelector: View {
         }
         
         let nightInterval: DateInterval = {
-            if reportSettings.first!.darknessThreshold == Int16(2) {
+            if reportSettings.first!.darknessThreshold == 2 {
                 return store.sunData.CTInterval
-            } else if reportSettings.first!.darknessThreshold == Int16(1) {
+            } else if reportSettings.first!.darknessThreshold == 1 {
                 return store.sunData.NTInterval
             } else {
                 return store.sunData.ATInterval

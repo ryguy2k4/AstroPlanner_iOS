@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SettingsView: View {
     @EnvironmentObject var networkManager: NetworkManager
+    @Query var targetSettings: [TargetSettings]
+    @Query var reportSettings: [ReportSettings]
     @State var tabSelection = 0
 
     var body: some View {
@@ -20,7 +23,7 @@ struct SettingsView: View {
                 NavigationLink(destination: GearSettings()) {
                     Label("Imaging Presets", systemImage: "camera.aperture")
                 }
-                NavigationLink(destination: AdvancedSettingsView()) {
+                NavigationLink(destination: AdvancedSettingsView(targetSettings: targetSettings.first!, reportSettings: reportSettings.first!)) {
                     Label("Advanced Settings", systemImage: "star")
                 }
                 NavigationLink(destination:  HiddenTargetsList()) {

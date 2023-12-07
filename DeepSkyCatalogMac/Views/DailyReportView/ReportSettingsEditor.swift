@@ -12,7 +12,7 @@ struct ReportSettingsEditor: View {
     @Environment(\.modelContext) var context
     @Binding var date: Date
     @Query var presetList: [ImagingPreset]
-    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var LocationList: [SavedLocation]
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
     
     var body: some View {
         let presetBinding = Binding(
@@ -37,12 +37,12 @@ struct ReportSettingsEditor: View {
                 Picker("Imaging Preset", selection: presetBinding) {
                     Text("All").tag(-1)
                     ForEach(presetList.indices) { index in
-                        Text(presetList[index].name!).tag(index)
+                        Text(presetList[index].name).tag(index)
                     }
                 }
                 Picker("Location", selection: locationBinding) {
                     ForEach(locationList) { location in
-                        Text(location.name!).tag(location)
+                        Text(location.name).tag(location)
                     }
                 }
             }

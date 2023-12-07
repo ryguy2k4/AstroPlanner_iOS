@@ -530,7 +530,6 @@
 		7149D9932984C6F3004BFBE6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				71ABF9292B21575C00384909 /* SwiftData */,
 				71BCF9502921EE72008C7614 /* Assets.xcassets */,
 				71BCF9702921EF61008C7614 /* Logic */,
 				71BCF9792921EF76008C7614 /* Utils */,
@@ -754,6 +753,7 @@
 				71E96D67292831AA00E019F9 /* CatalogManager.swift */,
 				716531E929340CFE00D05B79 /* DailyReport.swift */,
 				71FE96842956C0E700F6A4F2 /* Location */,
+				71ABF9292B21575C00384909 /* SwiftData */,
 				71BCF98A2921F2AC008C7614 /* CoreData */,
 				719B26D8295173CD00E1165A /* Network */,
 			);

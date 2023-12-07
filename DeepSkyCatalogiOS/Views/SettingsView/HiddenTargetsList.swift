@@ -24,7 +24,7 @@ struct HiddenTargetsList: View {
                     Text(target.defaultName)
                         .swipeActions() {
                             Button() {
-//                                targetSettings.first!.removeFromHiddenTargets(hiddenTarget)
+                                context.delete(hiddenTarget)
                             } label: {
                                 Label("Unhide", systemImage: "eye.fill")
                             }

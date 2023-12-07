@@ -66,7 +66,7 @@ struct FilterButtonMenu: View {
         .sheet(isPresented: $isAllFilterModal) {
             EditAllFiltersView(viewModel: viewModel)
                 .onDisappear() {
-                    viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
+                    viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
                 }
                 .presentationDetents([.fraction(0.5), .fraction(0.8)])
         }
@@ -100,7 +100,7 @@ fileprivate struct FilterButton: View {
                         .foregroundColor(.primary)
                     Button {
                         viewModel.clearFilter(for: method)
-                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
+                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
                     } label: {
                         Image(systemName: active ? "x.circle" : "chevron.down")
                             .foregroundColor(.accentColor)
@@ -136,7 +136,7 @@ fileprivate struct FilterButton: View {
                 }
             }
             .onDisappear() {
-                viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
+                viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
             }
             .presentationDetents([.fraction(0.5), .fraction(0.8)])
         }

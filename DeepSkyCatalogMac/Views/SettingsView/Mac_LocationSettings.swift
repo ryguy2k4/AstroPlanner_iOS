@@ -11,7 +11,7 @@ import CoreLocation
 import Combine
 
 struct Mac_LocationSettings: View {
-    @Query(sort: [SortDescriptor(\SavedLocation.isSelectedInt, order: .reverse), SortDescriptor(\SavedLocation.name, order: .forward)]) var locations: [SavedLocation]
+    @Query(sort: [SortDescriptor(\SavedLocation.isSelectedInt, order: .reverse), SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
     @Environment(\.modelContext) var context
     @State var creatorModal: Bool = false
     @State var editorModal: SavedLocation? = nil
@@ -54,7 +54,7 @@ struct LocationEditor: View {
     @State var showConfirmationMessage = false
     @State var confirmationClosure: (() -> (save: () -> Void, lat: Double, long: Double, time: TimeZone))?
     @EnvironmentObject var locationManager: LocationManager
-    @Query var locations: [SavedLocation]
+    @Query var locationList: [SavedLocation]
     
     // Local state variables to hold information being entered
     @State private var name: String = "New Location"

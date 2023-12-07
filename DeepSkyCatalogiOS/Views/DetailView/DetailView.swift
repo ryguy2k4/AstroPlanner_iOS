@@ -136,9 +136,8 @@ struct DetailView: View {
                     }()
                     ShareLink("Share", item: "\(target.defaultName)\n\(target.type.rawValue) in \(target.constellation.rawValue) \n \(target.wikipediaURL?.absoluteString ?? "")\n\nNight of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)\nVisibility Score: \(visibilityScore.percent())\nSeason Score: \(seasonScore.percent())\n\(scheduleString)")
                     Button("Hide Target") {
-//                        let newHiddenTarget = HiddenTarget(context: context)
-//                        newHiddenTarget.id = target.id
-//                        targetSettings.first?.addToHiddenTargets(newHiddenTarget)
+                        let newHiddenTarget = HiddenTarget(id: target.id, origin: targetSettings.first!)
+                        context.insert(newHiddenTarget)
                     }
                 } label: {
                     Image(systemName: "ellipsis")

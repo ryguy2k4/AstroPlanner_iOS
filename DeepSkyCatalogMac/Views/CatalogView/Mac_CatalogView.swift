@@ -13,10 +13,10 @@ struct Mac_CatalogView: View {
     @Environment(\.isSearching) private var isSearching
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
-    @StateObject private var catalogManager: CatalogManager = CatalogManager()
+    @StateObject private var catalogManager: CatalogManager = CatalogManager(targets: DeepSkyTargetList.allTargets)
     @Environment(\.modelContext) var context
 
-    @Query var reportSettings: [ReportSettings]
+    @Query var targetSettings: [TargetSettings]
 
     @EnvironmentObject var store: HomeViewModel
     @State private var isLocationModal = false
@@ -56,11 +56,11 @@ struct Mac_CatalogView: View {
         // Modifiers to enable searching
         .searchable(text: $catalogManager.searchText)
         .onSubmit(of: .search) {
-            catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+            catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
         }
         .onChange(of: catalogManager.searchText) { newValue in
             if newValue.isEmpty {
-                catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
             }
         }
 //        .searchSuggestions {

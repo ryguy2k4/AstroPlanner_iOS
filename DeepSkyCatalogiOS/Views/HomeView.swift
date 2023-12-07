@@ -23,6 +23,7 @@ struct HomeView: View {
     @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
     @Query var reportSettings: [ReportSettings]
     @Query var targetSettings: [TargetSettings]
+    @Query var hiddenTargets: [HiddenTarget]
     
     @StateObject var vm: HomeViewModel = HomeViewModel()
     
@@ -130,14 +131,14 @@ struct HomeView: View {
         } else {
             // set default report settings
             if reportSettings.isEmpty {
-                ProgressView("")
+                ProgressView("Initializing")
                     .task {
                         let defaultSettings = ReportSettings()
                         context.insert(defaultSettings)
                     }
             }
             if targetSettings.isEmpty {
-                ProgressView("")
+                ProgressView("Initializing")
                     .task {
                         let defaultSettings = TargetSettings()
                         context.insert(defaultSettings)

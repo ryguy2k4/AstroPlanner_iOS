@@ -16,8 +16,7 @@ struct DeepSkyTargetList {
         return try! decoder.decode([DeepSkyTarget].self, from: json)
     }()
     
-    static func whitelistedTargets(context: ModelContext) -> [DeepSkyTarget] {
-        let hiddenTargets = try! context.fetch(FetchDescriptor<TargetSettings>(sortBy: [])).first!.hiddenTargets!
+    static func whitelistedTargets(hiddenTargets: [HiddenTarget]) -> [DeepSkyTarget] {
         var whitelist = allTargets
         for item in hiddenTargets {
             whitelist.removeAll(where: {$0.id == item.id})

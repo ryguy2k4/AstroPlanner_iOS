@@ -14,93 +14,100 @@ struct CatalogView: View {
     @Environment(\.modelContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
-    @StateObject private var catalogManager: CatalogManager = CatalogManager(targets: DeepSkyTargetList.allTargets)
-
+    @State var catalogManager: CatalogManager?
+    
     @Query var targetSettings: [TargetSettings]
-
+    @Query var reportSettings: [ReportSettings]
+    
     @EnvironmentObject var store: HomeViewModel
     @State private var isLocationModal = false
     @State private var isDateModal = false
-
+    
     var body: some View {
-        NavigationStack() {
-            FilterButtonMenu()
+        if let catalogManager = catalogManager, let catalogManagerBinding = Binding($catalogManager) {
+            NavigationStack() {
+                FilterButtonMenu()
+                
+                List(catalogManager.targets, id: \.id) { target in
+                    NavigationLink(destination: DetailView(target: target)) {
+                        VStack {
+                            TargetCell(target: target)
+                                .environmentObject(store)
+                        }
+                    }
+                }
+                .listStyle(.grouped)
+                .toolbar() {
+                    ToolbarLogo()
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isDateModal = true
+                        } label: {
+                            Image(systemName: "calendar")
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isLocationModal = true
+                        } label: {
+                            Image(systemName: "location")
+                        }
+                    }
+                }
+            }
+            // Modifiers to enable searching
+            .searchable(text: catalogManagerBinding.searchText)
+            .onSubmit(of: .search) {
+                catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+            }
+            .onChange(of: catalogManager.searchText) { newValue in
+                if newValue.isEmpty {
+                    catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                }
+            }
+            //        .searchSuggestions {
+            //            // grab top 15 search results
+            //            let suggestions = DeepSkyTargetList.whitelistedTargets.filteredBySearch(catalogManager.searchText)
+            //
+            //            // list the search results
+            //            ForEach(suggestions) { suggestion in
+            //                HStack {
+            //                    Image(suggestion.image?.source.fileName ?? "\(suggestion.type)")
+            //                        .resizable()
+            //                        .scaledToFit()
+            //                        .cornerRadius(8)
+            //                        .frame(width: 100, height: 70)
+            //                    Text(suggestion.name?.first ?? suggestion.defaultName)
+            //                        .foregroundColor(.primary)
+            //                }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
+            //            }
+            //        }
+            .onChange(of: isSearching) { newValue in
+                if !isSearching {
+                    dismissSearch()
+                }
+            }
+            .autocorrectionDisabled()
             
-            List(catalogManager.targets, id: \.id) { target in
-                NavigationLink(destination: DetailView(target: target)) {
-                    VStack {
-                        TargetCell(target: target)
-                            .environmentObject(store)
-                    }
+            // Modal for settings
+            .sheet(isPresented: $isDateModal){
+                ViewingIntervalModal(reportSettings: reportSettings.first!)
+                    .environmentObject(store)
+                    .environment(\.timeZone, store.location.timezone)
+                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+            }
+            .sheet(isPresented: $isLocationModal){
+                LocationPickerModal()
+                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+            }
+            // Passing the date and location to use into all child views
+            .environmentObject(catalogManager)
+        } else {
+            ProgressView("Initializing Catalog Manager")
+                .task {
+                    self.catalogManager = CatalogManager(targets: DeepSkyTargetList.whitelistedTargets(hiddenTargets: targetSettings.first!.hiddenTargets!).sorted(by: {$0.ra > $1.ra}))
                 }
-            }
-            .listStyle(.grouped)
-            .toolbar() {
-                ToolbarLogo()
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isDateModal = true
-                    } label: {
-                        Image(systemName: "calendar")
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isLocationModal = true
-                    } label: {
-                        Image(systemName: "location")
-                    }
-                }
-            }
         }
-        
-        // Modifiers to enable searching
-        .searchable(text: $catalogManager.searchText)
-        .onSubmit(of: .search) {
-            catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
-        }
-        .onChange(of: catalogManager.searchText) { newValue in
-            if newValue.isEmpty {
-                catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
-            }
-        }
-//        .searchSuggestions {
-//            // grab top 15 search results
-//            let suggestions = DeepSkyTargetList.whitelistedTargets.filteredBySearch(catalogManager.searchText)
-//            
-//            // list the search results
-//            ForEach(suggestions) { suggestion in
-//                HStack {
-//                    Image(suggestion.image?.source.fileName ?? "\(suggestion.type)")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .cornerRadius(8)
-//                        .frame(width: 100, height: 70)
-//                    Text(suggestion.name?.first ?? suggestion.defaultName)
-//                        .foregroundColor(.primary)
-//                }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
-//            }
-//        }
-        .onChange(of: isSearching) { newValue in
-            if !isSearching {
-                dismissSearch()
-            }
-        }
-        .autocorrectionDisabled()
-        
-        // Modal for settings
-        .sheet(isPresented: $isDateModal){
-            ViewingIntervalModal()
-                .environmentObject(store)
-                .environment(\.timeZone, store.location.timezone)
-                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-        }
-        .sheet(isPresented: $isLocationModal){
-            LocationPickerModal()
-                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-        }
-        // Passing the date and location to use into all child views
-        .environmentObject(catalogManager)
     }
 }
 
