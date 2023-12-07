@@ -120,21 +120,34 @@ struct ImagingPresetEditor: View {
             }
             .toolbar {
                 KeyboardDismissButton(isInputActive: _isInputActive)
-//                ToolbarItemGroup(placement: .confirmationAction) {
-//                    Button(preset != nil ? "Save \(name)" : "Add \(name)") {
-//                        if let preset = preset {
-////                            PersistenceManager.shared.editImagingPreset(preset: preset, name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
-//                            dismiss()
-//                        } else {
-//                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth, !presetList.contains(where: {$0.name! == name}) {
-////                                PersistenceManager.shared.addImagingPreset(name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
-//                                dismiss()
-//                            } else {
-//                                showErrorAlert = true
-//                            }
-//                        }
-//                    }
-//                }
+                ToolbarItemGroup(placement: .confirmationAction) {
+                    Button(preset != nil ? "Save \(name)" : "Add \(name)") {
+                        if let preset = preset {
+                            preset.name = name
+                            if let focalLength = focalLength {
+                                preset.focalLength = focalLength
+                            }
+                            if let pixelSize = pixelSize {
+                                preset.pixelSize = pixelSize
+                            }
+                            if let resolutionLength = resolutionLength {
+                                preset.resolutionLength = resolutionLength
+                            }
+                            if let resolutionWidth = resolutionWidth {
+                                preset.resolutionWidth = resolutionWidth
+                            }
+                            dismiss()
+                        } else {
+                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth, !presetList.contains(where: {$0.name == name}) {
+                                let newPreset = ImagingPreset(focalLength: focalLength, isSelected: false, name: name, pixelSize: pixelSize, resolutionLength: resolutionLength, resolutionWidth: resolutionWidth)
+                                context.insert(newPreset)
+                                dismiss()
+                            } else {
+                                showErrorAlert = true
+                            }
+                        }
+                    }
+                }
             }
             .padding(0)
             .alert("Invalid Preset", isPresented: $showErrorAlert) {

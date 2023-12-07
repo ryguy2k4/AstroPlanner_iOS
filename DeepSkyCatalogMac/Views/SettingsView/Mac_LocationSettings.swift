@@ -11,7 +11,7 @@ import CoreLocation
 import Combine
 
 struct Mac_LocationSettings: View {
-    @Query(sort: [SortDescriptor(\SavedLocation.isSelectedInt, order: .reverse), SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
     @Environment(\.modelContext) var context
     @State var creatorModal: Bool = false
     @State var editorModal: SavedLocation? = nil
@@ -23,7 +23,7 @@ struct Mac_LocationSettings: View {
                     .padding()
             }
             List(locationList) { location in
-                Button(location.name!) {
+                Button(location.name) {
                     editorModal = location
                 }
                 .buttonStyle(.plain)

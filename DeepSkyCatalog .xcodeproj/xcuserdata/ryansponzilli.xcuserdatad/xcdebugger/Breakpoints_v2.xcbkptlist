@@ -372,5 +372,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F25A4E8-F567-47C7-9637-B4AA6DDB52A2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Logic/CatalogManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "refreshList(date:viewingInterval:location:targetSettings:sunData:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8F25A4E8-F567-47C7-9637-B4AA6DDB52A2 - 4aa11d7365a3ab57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeepSkyCatalogiOS.CatalogManager.refreshList(date: Foundation.Date, viewingInterval: Swift.Optional&lt;Foundation.DateInterval&gt;, location: DeepSkyCatalogiOS.Location, targetSettings: DeepSkyCatalogiOS.TargetSettings, sunData: Swift.Optional&lt;DeepSkyCatalogiOS.SunData&gt;) -&gt; ()"
+                  moduleName = "DeepSkyCatalogiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/CatalogManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "840">
+               </Location>
+               <Location
+                  uuid = "8F25A4E8-F567-47C7-9637-B4AA6DDB52A2 - 662b8d6426063505"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (DeepSkyCatalogiOS.DeepSkyTarget, DeepSkyCatalogiOS.DeepSkyTarget) -&gt; Swift.Bool in DeepSkyCatalogiOS.CatalogManager.refreshList(date: Foundation.Date, viewingInterval: Swift.Optional&lt;Foundation.DateInterval&gt;, location: DeepSkyCatalogiOS.Location, targetSettings: DeepSkyCatalogiOS.TargetSettings, sunData: Swift.Optional&lt;DeepSkyCatalogiOS.SunData&gt;) -&gt; ()"
+                  moduleName = "DeepSkyCatalogiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/CatalogManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB6E4C7F-5262-4F03-BC59-91CE7EAB737B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Logic/CatalogManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "refreshList(date:viewingInterval:location:targetSettings:sunData:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

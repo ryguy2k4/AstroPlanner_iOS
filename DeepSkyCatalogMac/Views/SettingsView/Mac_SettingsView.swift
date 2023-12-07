@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct Mac_SettingsView: View {
+    @Query var targetSettings: [TargetSettings]
     var body: some View {
         TabView {
             Mac_LocationSettings()
@@ -18,7 +20,7 @@ struct Mac_SettingsView: View {
                 .tabItem {
                     Label("Imaging Presets", systemImage: "camera.aperture")
                 }
-            Mac_TargetSettingsView()
+            Mac_TargetSettingsView(targetSettings: targetSettings.first!)
                 .tabItem {
                     Label("Target Settings", systemImage: "star")
                 }

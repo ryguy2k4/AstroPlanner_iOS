@@ -13,7 +13,7 @@ struct Mac_CatalogView: View {
     @Environment(\.isSearching) private var isSearching
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
-    @StateObject private var catalogManager: CatalogManager = CatalogManager(targets: DeepSkyTargetList.allTargets)
+    @StateObject private var catalogManager: CatalogManager = CatalogManager(targets: [])
     @Environment(\.modelContext) var context
 
     @Query var targetSettings: [TargetSettings]
@@ -56,11 +56,11 @@ struct Mac_CatalogView: View {
         // Modifiers to enable searching
         .searchable(text: $catalogManager.searchText)
         .onSubmit(of: .search) {
-            catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
+            catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
         }
         .onChange(of: catalogManager.searchText) { newValue in
             if newValue.isEmpty {
-                catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
+                catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
             }
         }
 //        .searchSuggestions {
@@ -100,6 +100,9 @@ struct Mac_CatalogView: View {
         // Passing the date and location to use into all child views
         .environmentObject(catalogManager)
         .navigationTitle("Master Catalog | " + (store.viewingInterval == store.sunData.ATInterval ? "Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)" : "\(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(store.location.name)"))
+        .task {
+            catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+        }
     }
 }
 

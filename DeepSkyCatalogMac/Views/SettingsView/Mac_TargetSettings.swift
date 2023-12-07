@@ -10,17 +10,13 @@ import SwiftData
 
 struct Mac_TargetSettingsView: View {
     @Environment(\.modelContext) var context
-//    @ObservedObject var settings: TargetSettings
+    @Bindable var targetSettings: TargetSettings
     @State var isLimitingAltitudeModal: Bool = false
-    
-//    init() {
-//        self.settings = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<TargetSettings>(entityName: "TargetSettings")).first!
-//    }
     
     var body: some View {
         Form {
-//            Toggle("Hide Targets that Never Rise", isOn: $settings.hideNeverRises)
-//            TextField("Lowest acceptable altitude to image", value: $settings.limitingAltitude, format: .number)
+            Toggle("Hide Targets that Never Rise", isOn: $targetSettings.hideNeverRises)
+            TextField("Lowest acceptable altitude to image", value: $targetSettings.limitingAltitude, format: .number)
         }
         .formStyle(.grouped)
         .navigationTitle("Target Settings")

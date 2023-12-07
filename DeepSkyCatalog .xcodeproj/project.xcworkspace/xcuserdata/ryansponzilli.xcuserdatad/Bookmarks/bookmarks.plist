@@ -10,15 +10,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>0</string>
+					<string>32</string>
 					<key>EndingLineNumber</key>
-					<string>46</string>
+					<string>22</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>18</string>
 					<key>StartingLineNumber</key>
-					<string>45</string>
+					<string>22</string>
 					<key>Timestamp</key>
-					<string>723605452.37615</string>
+					<string>723608552.487265</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -27,27 +27,73 @@
 					<key>payload</key>
 					<dict>
 						<key>relative-path</key>
-						<string>Shared/Logic/DailyReport.swift</string>
+						<string>DeepSkyCatalogiOS/Views/HomeView.swift</string>
 					</dict>
 				</dict>
 			</dict>
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>            // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
-</string>
+				<string>SortDescriptor</string>
 				<key>leading</key>
-				<string>            
-            // Remove all targets with a meridian score less than 50%
-</string>
+				<string>    @EnvironmentObject var locationManager: LocationManager
+    
+    @Query(sort: [</string>
 				<key>trailing</key>
-				<string>            targets.filterBySeasonScore(0.5, location: location, date: date, sunData: sunData)
-            
-            // Remove all targets with a visibility score less than the user specified minimum
+				<string>(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
+    @Query var reportSettings: [ReportSettings]
+    @Query var targetSettings: [TargetSettings]
 </string>
 			</dict>
 			<key>title</key>
-			<string>Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations</string>
+			<string>had to remove sort by isSelected</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>14</string>
+					<key>StartingColumnNumber</key>
+					<string>106</string>
+					<key>StartingLineNumber</key>
+					<string>13</string>
+					<key>Timestamp</key>
+					<string>723675118.323959</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogMac/Views/SettingsView/Mac_LocationSettings.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>
+struct Mac_LocationSettings: View {
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]</string>
+				<key>trailing</key>
+				<string>    @Environment(\.modelContext) var context
+    @State var creatorModal: Bool = false
+    @State var editorModal: SavedLocation? = nil
+</string>
+			</dict>
+			<key>title</key>
+			<string>removed sort by isSelected</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
@@ -106,13 +152,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>16</string>
+					<string>46</string>
 					<key>StartingColumnNumber</key>
-					<string>14</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>15</string>
+					<string>45</string>
 					<key>Timestamp</key>
-					<string>723604663.359624</string>
+					<string>723605452.37615</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -121,341 +167,27 @@
 					<key>payload</key>
 					<dict>
 						<key>relative-path</key>
-						<string>DeepSkyCatalogMac/Views/SettingsView/Mac_TargetSettings.swift</string>
+						<string>Shared/Logic/DailyReport.swift</string>
 					</dict>
 				</dict>
 			</dict>
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>            // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
 </string>
 				<key>leading</key>
-				<string>    @State var isLimitingAltitudeModal: Bool = false
-    
-//    init() {</string>
-				<key>trailing</key>
-				<string>//        self.settings = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest&lt;TargetSettings&gt;(entityName: "TargetSettings")).first!
-//    }
-    
+				<string>            
+            // Remove all targets with a meridian score less than 50%
 </string>
-			</dict>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>20</string>
-					<key>EndingLineNumber</key>
-					<string>21</string>
-					<key>StartingColumnNumber</key>
-					<string>14</string>
-					<key>StartingLineNumber</key>
-					<string>21</string>
-					<key>Timestamp</key>
-					<string>723609900.126474</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>DeepSkyCatalogMac/Views/SettingsView/Mac_TargetSettings.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>Toggle</string>
-				<key>leading</key>
-				<string>    var body: some View {
-        Form {
-//            </string>
 				<key>trailing</key>
-				<string>("Hide Targets that Never Rise", isOn: $settings.hideNeverRises)
-//            TextField("Lowest acceptable altitude to image", value: $settings.limitingAltitude, format: .number)
-        }
-</string>
-			</dict>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>48</string>
-					<key>EndingLineNumber</key>
-					<string>125</string>
-					<key>StartingColumnNumber</key>
-					<string>30</string>
-					<key>StartingLineNumber</key>
-					<string>125</string>
-					<key>Timestamp</key>
-					<string>723605882.0540169</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>DeepSkyCatalogiOS/Views/SettingsView/GearSettings.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>PersistenceManager</string>
-				<key>leading</key>
-				<string>//                    Button(preset != nil ? "Save \(name)" : "Add \(name)") {
-//                        if let preset = preset {
-////                            </string>
-				<key>trailing</key>
-				<string>.shared.editImagingPreset(preset: preset, name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
-//                            dismiss()
-//                        } else {
-</string>
-			</dict>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>52</string>
-					<key>EndingLineNumber</key>
-					<string>129</string>
-					<key>StartingColumnNumber</key>
-					<string>34</string>
-					<key>StartingLineNumber</key>
-					<string>129</string>
-					<key>Timestamp</key>
-					<string>723605884.1500109</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>DeepSkyCatalogiOS/Views/SettingsView/GearSettings.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>PersistenceManager</string>
-				<key>leading</key>
-				<string>//                        } else {
-//                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth, !presetList.contains(where: {$0.name! == name}) {
-////                                </string>
-				<key>trailing</key>
-				<string>.shared.addImagingPreset(name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
-//                                dismiss()
-//                            } else {
-</string>
-			</dict>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>84</string>
-					<key>EndingLineNumber</key>
-					<string>16</string>
-					<key>StartingColumnNumber</key>
-					<string>77</string>
-					<key>StartingLineNumber</key>
-					<string>16</string>
-					<key>Timestamp</key>
-					<string>723606396.48922</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>DeepSkyCatalogiOS/Views/CatalogView/CatalogView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string></string>
-				<key>leading</key>
-				<string>    @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var locationManager: LocationManager
-    @State var catalogManager: CatalogManager?</string>
-				<key>trailing</key>
-				<string>
-    
-    @Query var targetSettings: [TargetSettings]
+				<string>            targets.filterBySeasonScore(0.5, location: location, date: date, sunData: sunData)
+            
+            // Remove all targets with a visibility score less than the user specified minimum
 </string>
 			</dict>
 			<key>title</key>
-			<string>should be whitelisted targets</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>32</string>
-					<key>EndingLineNumber</key>
-					<string>22</string>
-					<key>StartingColumnNumber</key>
-					<string>18</string>
-					<key>StartingLineNumber</key>
-					<string>22</string>
-					<key>Timestamp</key>
-					<string>723608552.487265</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>DeepSkyCatalogiOS/Views/HomeView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string></string>
-				<key>leading</key>
-				<string>    @EnvironmentObject var locationManager: LocationManager
-    
-    @Query(sort: [SortDescriptor</string>
-				<key>trailing</key>
-				<string>(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
-    @Query var reportSettings: [ReportSettings]
-    @Query var targetSettings: [TargetSettings]
-</string>
-			</dict>
-			<key>title</key>
-			<string>had to remove sort by isSelected</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>114</string>
-					<key>EndingLineNumber</key>
-					<string>15</string>
-					<key>StartingColumnNumber</key>
-					<string>104</string>
-					<key>StartingLineNumber</key>
-					<string>15</string>
-					<key>Timestamp</key>
-					<string>723610566.572745</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>DeepSkyCatalogMac/Views/CatalogView/Mac_CatalogView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string></string>
-				<key>leading</key>
-				<string>    @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var locationManager: LocationManager
-    @StateObject private var catalogManager: CatalogManager = CatalogManager(targets: DeepSkyTargetList.allTargets</string>
-				<key>trailing</key>
-				<string>)
-    @Environment(\.modelContext) var context
-
-</string>
-			</dict>
-			<key>title</key>
-			<string>should be whitelisted targets</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>62</string>
-					<key>EndingLineNumber</key>
-					<string>84</string>
-					<key>StartingColumnNumber</key>
-					<string>50</string>
-					<key>StartingLineNumber</key>
-					<string>84</string>
-					<key>Timestamp</key>
-					<string>723624968.801827</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>Shared/Logic/CatalogManager.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>DateInterval</string>
-				<key>leading</key>
-				<string>     Re-filters and re-sorts the list
-     */
-    func refreshList(date: Date, viewingInterval: </string>
-				<key>trailing</key>
-				<string>?, location: Location, targetSettings: TargetSettings, sunData: SunData?) {
-        // reset list
-        targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: targetSettings.hiddenTargets!).sorted(by: {$0.ra &gt; $1.ra})
-</string>
-			</dict>
-			<key>title</key>
-			<string>list not refreshing properly, filters dont work</string>
+			<string>Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

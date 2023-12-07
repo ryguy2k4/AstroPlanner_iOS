@@ -171,7 +171,7 @@ struct LocationEditor: View {
                             if let location = location {
                                 confirmationClosure = {
                                     let save = {
-//                                        PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
+                                        location.latitude = latitude; location.longitude = longitude; location.timezone = timezone.identifier
                                     }
                                     return (save: save, lat: latitude, long: longitude, time: timezone)
                                 }
@@ -179,7 +179,8 @@ struct LocationEditor: View {
                             } else if !locationList.contains(where: {$0.name == name}) {
                                 confirmationClosure = {
                                     let save = {
-//                                        PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
+                                        let newLocation = SavedLocation(isSelected: false, latitude: latitude, longitude: longitude, name: name, timezone: timezone.identifier)
+                                        context.insert(newLocation)
                                     }
                                     return (save: save, lat: latitude, long: longitude, time: timezone)
                                     

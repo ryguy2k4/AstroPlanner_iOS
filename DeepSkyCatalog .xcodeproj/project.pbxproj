@@ -53,7 +53,6 @@
 		7164CECC29BE4E72000A154A /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7164CECB29BE4E72000A154A /* Intents.framework */; };
 		7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CECE29BE4E72000A154A /* IntentHandler.swift */; };
 		7164CED329BE4E72000A154A /* DeepSkyCatalogIntents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7164CECA29BE4E72000A154A /* DeepSkyCatalogIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		7164CED929BE4FDA000A154A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		7164CEDB29BE8F6A000A154A /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
 		7164CEDC29BE8F6E000A154A /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
 		7164CEDD29BE8F77000A154A /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
@@ -79,11 +78,6 @@
 		71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71668AD0298F266300AB0D19 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String+Ext.swift */; };
 		71668AD5298F26AC00AB0D19 /* String+iOSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */; };
-		71694BB529C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Ext.swift */; };
-		71694BB629C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Ext.swift */; };
-		71694BB729C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Ext.swift */; };
-		71694BB829C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Ext.swift */; };
-		71694BB929C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71694BB429C00FD400EBB15F /* ImagingPreset+Ext.swift */; };
 		716A19BB298F58A90025DB67 /* Mac_HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A19BA298F58A90025DB67 /* Mac_HomeView.swift */; };
 		716A19BC298F5B270025DB67 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
 		716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
@@ -116,7 +110,6 @@
 		7181F01E299BD019002841A8 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date+Ext.swift */; };
 		7181F01F299BD01B002841A8 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String+Ext.swift */; };
 		7181F020299BD01E002841A8 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double+Ext.swift */; };
-		7181F022299BD041002841A8 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		7181F023299BD046002841A8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
 		7181F024299BD049002841A8 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		7181F026299BD05D002841A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
@@ -159,7 +152,6 @@
 		71B6D2FD2954D983006ADC6F /* GearSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D2FC2954D983006ADC6F /* GearSettings.swift */; };
 		71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */; };
 		71BCF9512921EE72008C7614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BCF9502921EE72008C7614 /* Assets.xcassets */; };
-		71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		71BCF96B2921EF20008C7614 /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9672921EF20008C7614 /* CatalogView.swift */; };
 		71BCF96C2921EF20008C7614 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9682921EF20008C7614 /* SettingsView.swift */; };
 		71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9692921EF20008C7614 /* DetailView.swift */; };
@@ -193,7 +185,6 @@
 		71C2645A298F1D260057EC04 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		71C2645C298F1D330057EC04 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71C2645D298F1D3F0057EC04 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E54CD293D52B00039ECE0 /* LocationManager.swift */; };
-		71C2645F298F1D460057EC04 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
 		71C26461298F1D4D0057EC04 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		71C26463298F1D510057EC04 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* Moon.swift */; };
@@ -258,7 +249,6 @@
 		71F510BC297605E9008F7629 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71F71573293FB4010011EF7F /* Environment+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment+Ext.swift */; };
 		71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
-		71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9552921EE72008C7614 /* PersistenceManager.swift */; };
 		71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */; };
 /* End PBXBuildFile section */
 
@@ -334,7 +324,6 @@
 		71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+iOSExt.swift"; sourceTree = "<group>"; };
 		71668AD6298F280A00AB0D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		71668AD7298F3C0400AB0D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		71694BB429C00FD400EBB15F /* ImagingPreset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImagingPreset+Ext.swift"; sourceTree = "<group>"; };
 		716A19BA298F58A90025DB67 /* Mac_HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_HomeView.swift; sourceTree = "<group>"; };
 		716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalog.entitlements; sourceTree = "<group>"; };
 		71701E752B182DCE007992B8 /* JournalEntryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryList.swift; sourceTree = "<group>"; };
@@ -364,7 +353,6 @@
 		71BCF9492921EE71008C7614 /* DeepSkyCatalogiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeepSkyCatalogiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BCF94C2921EE71008C7614 /* DeepSkyCatalogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogApp.swift; sourceTree = "<group>"; };
 		71BCF9502921EE72008C7614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		71BCF9552921EE72008C7614 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		71BCF9672921EF20008C7614 /* CatalogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		71BCF9682921EF20008C7614 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		71BCF9692921EF20008C7614 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -754,7 +742,6 @@
 				716531E929340CFE00D05B79 /* DailyReport.swift */,
 				71FE96842956C0E700F6A4F2 /* Location */,
 				71ABF9292B21575C00384909 /* SwiftData */,
-				71BCF98A2921F2AC008C7614 /* CoreData */,
 				719B26D8295173CD00E1165A /* Network */,
 			);
 			path = Logic;
@@ -768,15 +755,6 @@
 				711386F629C3548C00081584 /* Filter.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		71BCF98A2921F2AC008C7614 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				71BCF9552921EE72008C7614 /* PersistenceManager.swift */,
-				71694BB429C00FD400EBB15F /* ImagingPreset+Ext.swift */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		71BD75402971045100D7751F /* DeepSkyTarget */ = {
@@ -1102,11 +1080,9 @@
 				71701E732B182DBC007992B8 /* ImagePlan.swift in Sources */,
 				711386F829C3548C00081584 /* Filter.swift in Sources */,
 				71701E772B182DCE007992B8 /* JournalEntryList.swift in Sources */,
-				71F99FD22985E82800C06E9C /* PersistenceManager.swift in Sources */,
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
 				71CEEE3B2B1ED84B0072AAAE /* TargetSettings.swift in Sources */,
 				71ACF3332964ED1400CC83D5 /* Double+Ext.swift in Sources */,
-				71694BB629C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */,
 				71ACF33F2964F0D800CC83D5 /* ReportListEntry.swift in Sources */,
 			);
@@ -1120,7 +1096,6 @@
 				7164CEEA29BE8FA8000A154A /* String+Ext.swift in Sources */,
 				711386FB29C3548C00081584 /* Filter.swift in Sources */,
 				7164CEE429BE8F8D000A154A /* CaseNameCodable.swift in Sources */,
-				7164CED929BE4FDA000A154A /* PersistenceManager.swift in Sources */,
 				7164CEE229BE8F83000A154A /* FilterMethods.swift in Sources */,
 				718C11F729C919530069ECD5 /* Location.swift in Sources */,
 				71CEEE3E2B1ED84C0072AAAE /* TargetSettings.swift in Sources */,
@@ -1141,7 +1116,6 @@
 				7164CEE829BE8F9C000A154A /* NetworkManager.swift in Sources */,
 				7164CEE029BE8F7E000A154A /* Constellation.swift in Sources */,
 				7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */,
-				71694BB929C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				71701E7A2B182DCE007992B8 /* JournalEntryList.swift in Sources */,
 				7164CEE129BE8F81000A154A /* SortMethods.swift in Sources */,
 				71CEEE362B1ED8440072AAAE /* ReportSettings.swift in Sources */,
@@ -1177,11 +1151,9 @@
 				71D4ECDE2A660FB3009E7AFC /* SizeField.swift in Sources */,
 				7181F024299BD049002841A8 /* FetchError.swift in Sources */,
 				7181F028299BD0D0002841A8 /* TargetEditor.swift in Sources */,
-				71694BB829C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				718C11F829C919550069ECD5 /* Location.swift in Sources */,
 				71D4ECD22A660F39009E7AFC /* NamesField.swift in Sources */,
 				7181F006299BCFD1002841A8 /* ContentView.swift in Sources */,
-				7181F022299BD041002841A8 /* PersistenceManager.swift in Sources */,
 				71CEEE392B1ED8480072AAAE /* HiddenTarget.swift in Sources */,
 				71D4ECDA2A660F8C009E7AFC /* ConstellationField.swift in Sources */,
 				7164CEEE29BE8FB5000A154A /* Environment+Ext.swift in Sources */,
@@ -1235,11 +1207,9 @@
 				710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */,
 				71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */,
 				71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */,
-				71BCF9562921EE72008C7614 /* PersistenceManager.swift in Sources */,
 				71CEEE2D2B1ED79C0072AAAE /* ReportSettings.swift in Sources */,
 				71950E8A29D139BE0075081B /* DataLoadingViews.swift in Sources */,
 				71BCF9822921EF8B008C7614 /* Date+Ext.swift in Sources */,
-				71694BB529C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				7109A3F5292EBA7A00980527 /* Moon.swift in Sources */,
 				71D77FA82921F99200709252 /* Double+Ext.swift in Sources */,
 				71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */,
@@ -1281,7 +1251,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71C2645F298F1D460057EC04 /* PersistenceManager.swift in Sources */,
 				711386F929C3548C00081584 /* Filter.swift in Sources */,
 				71C2645C298F1D330057EC04 /* CaseNameCodable.swift in Sources */,
 				71A6C8FE2A5F4E0D009F1C30 /* Sun.swift in Sources */,
@@ -1330,7 +1299,6 @@
 				71DF8A7D2A6230B000923236 /* DateFormatter+Ext.swift in Sources */,
 				71CEEE342B1ED8430072AAAE /* ReportSettings.swift in Sources */,
 				718C11F629C89A880069ECD5 /* Location.swift in Sources */,
-				71694BB729C00FD400EBB15F /* ImagingPreset+Ext.swift in Sources */,
 				71C2645A298F1D260057EC04 /* DailyReport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
