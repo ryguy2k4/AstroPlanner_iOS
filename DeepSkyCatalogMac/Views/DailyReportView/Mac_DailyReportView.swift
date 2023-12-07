@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct Mac_DailyReportView: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
-    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
+    @Query var reportSettings: [ReportSettings]
+    @Query var targetSettings: [TargetSettings]
+    @Query var presetList: [ImagingPreset]
     @EnvironmentObject var store: HomeViewModel
     @State var report: DailyReport?
     @State var internet: Bool = true

@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct Mac_HiddenTargetsList: View {
-    @Environment(\.managedObjectContext) var context
-    @FetchRequest(sortDescriptors: []) var settings: FetchedResults<TargetSettings>
+    @Environment(\.modelContext) var context
+    @Query var targetSettings: [TargetSettings]
 
     var body: some View {
         VStack {

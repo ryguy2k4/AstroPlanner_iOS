@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
 class HomeViewModel: ObservableObject {
     @Published var location: Location = .default
@@ -16,13 +16,13 @@ class HomeViewModel: ObservableObject {
 }
 
 struct Mac_HomeView: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse), SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: FetchedResults<SavedLocation>
-    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
+    @Query var reportSettings: [ReportSettings]
+    @Query var targetSettings: [TargetSettings]
     
     @StateObject var vm: HomeViewModel = HomeViewModel()
     
@@ -121,7 +121,7 @@ struct Mac_HomeView: View {
 struct DailyReportLoadingView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var store: HomeViewModel
-    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
+    @Query var reportSettings: [ReportSettings]
     var body: some View {
         NavigationStack {
             VStack {
@@ -147,7 +147,7 @@ struct DailyReportLoadingView: View {
 //struct DailyReportLoadingFailedView: View {
 //    @EnvironmentObject var store: HomeViewModel
 //    @EnvironmentObject var networkManager: NetworkManager
-//    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
+//    @Query var reportSettings: [ReportSettings]
 //    @Binding var internet: Bool
 //    var body: some View {
 //        NavigationStack {

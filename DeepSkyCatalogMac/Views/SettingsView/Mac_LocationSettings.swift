@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 import CoreLocation
 import Combine
 
 struct Mac_LocationSettings: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: FetchedResults<SavedLocation>
-    @Environment(\.managedObjectContext) var context
+    @Query(sort: [SortDescriptor(\SavedLocation.isSelectedInt, order: .reverse), SortDescriptor(\SavedLocation.name, order: .forward)]) var locations: [SavedLocation]
+    @Environment(\.modelContext) var context
     @State var creatorModal: Bool = false
     @State var editorModal: SavedLocation? = nil
     
@@ -45,7 +46,7 @@ struct Mac_LocationSettings: View {
 }
 
 struct LocationEditor: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
     @State var showErrorAlert = false
     @State var showLocationPermissionError = false
@@ -53,7 +54,7 @@ struct LocationEditor: View {
     @State var showConfirmationMessage = false
     @State var confirmationClosure: (() -> (save: () -> Void, lat: Double, long: Double, time: TimeZone))?
     @EnvironmentObject var locationManager: LocationManager
-    @FetchRequest(sortDescriptors: []) var locationList: FetchedResults<SavedLocation>
+    @Query var locations: [SavedLocation]
     
     // Local state variables to hold information being entered
     @State private var name: String = "New Location"
@@ -147,7 +148,6 @@ struct LocationEditor: View {
                         // delete button
                         Button("Delete \(name)", role: .destructive) {
                             context.delete(location)
-                            PersistenceManager.shared.saveData(context: context)
                             dismiss()
                         }
                     } else {

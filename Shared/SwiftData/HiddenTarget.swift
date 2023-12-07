@@ -10,11 +10,11 @@ import Foundation
 import SwiftData
 
 @Model class HiddenTarget {
-    var id: UUID
-    var origin: TargetSettings
+    var id: UUID = UUID()
+    var origin: TargetSettings?
     
 
-    init(id: UUID, origin: TargetSettings) {
+    init(id: UUID, origin: TargetSettings?) {
         self.id = id
         self.origin = origin
     }

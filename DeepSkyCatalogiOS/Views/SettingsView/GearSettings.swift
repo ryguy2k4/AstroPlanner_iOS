@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct GearSettings: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.name, order: .forward)]) var presetList: FetchedResults<ImagingPreset>
-    @Environment(\.managedObjectContext) var context
+    @Query var presetList: [ImagingPreset]
+    @Environment(\.modelContext) var context
     
     var body: some View {
         NavigationStack {
@@ -19,7 +20,7 @@ struct GearSettings: View {
             }
             List(presetList) { preset in
                 NavigationLink(destination: ImagingPresetEditor(preset: preset)) {
-                    Text(preset.name!)
+                    Text(preset.name)
                         .foregroundColor(.primary)
                 }
             }
@@ -38,18 +39,18 @@ struct GearSettings: View {
 }
 
 struct ImagingPresetEditor: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
     @State var showErrorAlert = false
-    @FetchRequest(sortDescriptors: []) var presetList: FetchedResults<ImagingPreset>
+    @Query var presetList: [ImagingPreset]
     
     // Local state variables to hold information being entered
     @State private var name: String = ""
     @State private var focalLength: Double? = nil
     @State private var pixelSize: Double? = nil
-    @State private var resolutionLength: Int16? = nil
-    @State private var resolutionWidth: Int16? = nil
+    @State private var resolutionLength: Int? = nil
+    @State private var resolutionWidth: Int? = nil
     let preset: ImagingPreset?
     
     var body: some View {
@@ -98,7 +99,6 @@ struct ImagingPresetEditor: View {
                             // delete button
                             Button("Delete \(name)", role: .destructive) {
                                 context.delete(preset)
-                                PersistenceManager.shared.saveData(context: context)
                                 dismiss()
                             }
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
@@ -120,21 +120,21 @@ struct ImagingPresetEditor: View {
             }
             .toolbar {
                 KeyboardDismissButton(isInputActive: _isInputActive)
-                ToolbarItemGroup(placement: .confirmationAction) {
-                    Button(preset != nil ? "Save \(name)" : "Add \(name)") {
-                        if let preset = preset {
-                            PersistenceManager.shared.editImagingPreset(preset: preset, name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
-                            dismiss()
-                        } else {
-                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth, !presetList.contains(where: {$0.name! == name}) {
-                                PersistenceManager.shared.addImagingPreset(name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
-                                dismiss()
-                            } else {
-                                showErrorAlert = true
-                            }
-                        }
-                    }
-                }
+//                ToolbarItemGroup(placement: .confirmationAction) {
+//                    Button(preset != nil ? "Save \(name)" : "Add \(name)") {
+//                        if let preset = preset {
+////                            PersistenceManager.shared.editImagingPreset(preset: preset, name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
+//                            dismiss()
+//                        } else {
+//                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth, !presetList.contains(where: {$0.name! == name}) {
+////                                PersistenceManager.shared.addImagingPreset(name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
+//                                dismiss()
+//                            } else {
+//                                showErrorAlert = true
+//                            }
+//                        }
+//                    }
+//                }
             }
             .padding(0)
             .alert("Invalid Preset", isPresented: $showErrorAlert) {
@@ -145,7 +145,7 @@ struct ImagingPresetEditor: View {
             }
             .onAppear() {
                 if let preset = preset {
-                    self.name = preset.name!
+                    self.name = preset.name
                     self.focalLength = preset.focalLength
                     self.pixelSize = preset.pixelSize
                     self.resolutionLength = preset.resolutionLength

@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct Mac_GearSettings: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.name, order: .forward)]) var presetList: FetchedResults<ImagingPreset>
-    @Environment(\.managedObjectContext) var context
+    @Query var presetList: [ImagingPreset]
+    @Environment(\.modelContext) var context
     @State var creatorModal: Bool = false
     @State var editorModal: ImagingPreset? = nil
     
@@ -43,10 +44,10 @@ struct Mac_GearSettings: View {
 }
 
 struct ImagingPresetEditor: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
     @State var showErrorAlert = false
-    @FetchRequest(sortDescriptors: []) var presetList: FetchedResults<ImagingPreset>
+    @Query var presetList: [ImagingPreset]
     
     // Local state variables to hold information being entered
     @State private var name: String = ""
@@ -107,7 +108,6 @@ struct ImagingPresetEditor: View {
                         // delete button
                         Button("Delete \(name)", role: .destructive) {
                             context.delete(preset)
-                            PersistenceManager.shared.saveData(context: context)
                             dismiss()
                         }
                     }

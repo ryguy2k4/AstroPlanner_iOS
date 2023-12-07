@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreData
+import SwiftData
 
 struct JournalEntryList {
     static var allEntries: [JournalEntry] = {

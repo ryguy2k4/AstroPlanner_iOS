@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct EditAllFiltersView: View {
     @ObservedObject var viewModel: CatalogManager
-    @EnvironmentObject var reportSettings: ReportSettings
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-    @Environment(\.managedObjectContext) var context
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locations: [SavedLocation]
+    @Query var targetSettings: [TargetSettings]
+    @Environment(\.modelContext) var context
     @EnvironmentObject var store: HomeViewModel
     
     var body: some View {
@@ -25,7 +25,7 @@ struct EditAllFiltersView: View {
                         }
                     }
                     .onChange(of: viewModel.currentSort) { _ in
-                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
                     }
                     Picker("Order:", selection: $viewModel.sortDecending) {
                         Label("Ascending", systemImage: "chevron.up").tag(false)
@@ -33,7 +33,7 @@ struct EditAllFiltersView: View {
                         
                     }
                     .onChange(of: viewModel.sortDecending) { _ in
-                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
                     }
                 }
                 ConfigSection(header: "Filters") {

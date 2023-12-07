@@ -6,17 +6,17 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
 struct CatalogView: View {
     @Environment(\.dismissSearch) private var dismissSearch
     @Environment(\.isSearching) private var isSearching
+    @Environment(\.modelContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
-    @StateObject private var catalogManager: CatalogManager = CatalogManager()
-    @Environment(\.managedObjectContext) var context
+    @StateObject private var catalogManager: CatalogManager = CatalogManager(targets: DeepSkyTargetList.allTargets)
 
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var targetSettings: [TargetSettings]
 
     @EnvironmentObject var store: HomeViewModel
     @State private var isLocationModal = false
@@ -57,11 +57,11 @@ struct CatalogView: View {
         // Modifiers to enable searching
         .searchable(text: $catalogManager.searchText)
         .onSubmit(of: .search) {
-            catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+            catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
         }
         .onChange(of: catalogManager.searchText) { newValue in
             if newValue.isEmpty {
-                catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
             }
         }
 //        .searchSuggestions {
@@ -108,7 +108,7 @@ struct CatalogView: View {
  This View displays information about the target at a glance. It is used within the Master Catalog list.
  */
 fileprivate struct TargetCell: View {
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var targetSettings: [TargetSettings]
     var target: DeepSkyTarget
     @EnvironmentObject var store: HomeViewModel
 

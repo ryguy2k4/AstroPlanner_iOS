@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct Mac_CatalogView: View {
     @Environment(\.dismissSearch) private var dismissSearch
@@ -13,9 +14,9 @@ struct Mac_CatalogView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
     @StateObject private var catalogManager: CatalogManager = CatalogManager()
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
 
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var reportSettings: [ReportSettings]
 
     @EnvironmentObject var store: HomeViewModel
     @State private var isLocationModal = false
@@ -106,7 +107,7 @@ struct Mac_CatalogView: View {
  This View displays information about the target at a glance. It is used within the Master Catalog list.
  */
 fileprivate struct TargetCell: View {
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var targetSettings: [TargetSettings]
     var target: DeepSkyTarget
     @EnvironmentObject var store: HomeViewModel
 

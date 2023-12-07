@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ReportSettingsEditor: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @Binding var date: Date
-    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    @Query var presetList: [ImagingPreset]
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var LocationList: [SavedLocation]
     
     var body: some View {
         let presetBinding = Binding(
@@ -21,7 +22,6 @@ struct ReportSettingsEditor: View {
                 if $0 >= 0 {
                     presetList[$0].isSelected = true
                 }
-                PersistenceManager.shared.saveData(context: context)
             }
         )
         let locationBinding = Binding(
@@ -29,7 +29,6 @@ struct ReportSettingsEditor: View {
             set: {
                 for location in locationList { location.isSelected = false }
                 $0.isSelected = true
-                PersistenceManager.shared.saveData(context: context)
             }
         )
         VStack {

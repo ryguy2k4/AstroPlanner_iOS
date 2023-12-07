@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import SwiftData
 
 struct ReportListWidget: Widget {
     let kind: String = "ReportListWidget"
@@ -14,6 +15,7 @@ struct ReportListWidget: Widget {
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ReportListIntent.self, provider: Provider()) { entry in
             ReportListView(entry: entry)
+                .modelContainer(for: [ImagingPreset.self, TargetSettings.self, HiddenTarget.self, ReportSettings.self, SavedLocation.self])
         }
         .configurationDisplayName("Top Targets")
         .description("This widget displays the top targets for today")

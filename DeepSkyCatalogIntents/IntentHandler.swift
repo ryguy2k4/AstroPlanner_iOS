@@ -6,7 +6,7 @@
 //
 
 import Intents
-import CoreData
+import SwiftData
 
 class IntentHandler: INExtension {
     
@@ -21,26 +21,27 @@ class IntentHandler: INExtension {
 
 extension IntentHandler: ReportListIntentHandling {
     func provideLocationOptionsCollection(for intent: ReportListIntent) async throws -> INObjectCollection<NSString> {
-        var locationsFetchRequest: NSFetchRequest<SavedLocation> {
-            let request = SavedLocation.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(SortDescriptor(\SavedLocation.isSelected, order: .reverse)), NSSortDescriptor(SortDescriptor(\SavedLocation.name, order: .forward))]
-            return request
-        }
+//        var locationsFetchRequest: NSFetchRequest<SavedLocation> {
+//            let request = SavedLocation.fetchRequest()
+//            request.sortDescriptors = [NSSortDescriptor(SortDescriptor(\SavedLocation.isSelected, order: .reverse)), NSSortDescriptor(SortDescriptor(\SavedLocation.name, order: .forward))]
+//            return request
+//        }
         
-        let locations = try PersistenceManager.shared.container.viewContext.fetch(locationsFetchRequest).map({$0.name!})
+//        let locations = try PersistenceManager.shared.container.viewContext.fetch(locationsFetchRequest).map({$0.name!})
                 
-        return INObjectCollection(items: locations as [NSString])
+        return INObjectCollection(items: [] as [NSString])
     }
     
     func defaultLocation(for intent: ReportListIntent) -> String? {
-        var locationsFetchRequest: NSFetchRequest<SavedLocation> {
-            let request = SavedLocation.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(SortDescriptor(\SavedLocation.isSelected, order: .reverse)), NSSortDescriptor(SortDescriptor(\SavedLocation.name, order: .forward))]
-            return request
-        }
+//        var locationsFetchRequest: NSFetchRequest<SavedLocation> {
+//            let request = SavedLocation.fetchRequest()
+//            request.sortDescriptors = [NSSortDescriptor(SortDescriptor(\SavedLocation.isSelected, order: .reverse)), NSSortDescriptor(SortDescriptor(\SavedLocation.name, order: .forward))]
+//            return request
+//        }
+//        
+//        let locations = try? PersistenceManager.shared.container.viewContext.fetch(locationsFetchRequest)
         
-        let locations = try? PersistenceManager.shared.container.viewContext.fetch(locationsFetchRequest)
-        
-        return locations?.first?.name
+//        return locations?.first?.name
+        return nil
     }
 }

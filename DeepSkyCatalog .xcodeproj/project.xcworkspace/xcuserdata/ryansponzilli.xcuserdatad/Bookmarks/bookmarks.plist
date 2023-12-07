@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>45</string>
+					<string>46</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>44</string>
+					<string>45</string>
 					<key>Timestamp</key>
-					<string>717634937.824244</string>
+					<string>723605452.37615</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -59,13 +59,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>27</string>
+					<string>28</string>
 					<key>StartingColumnNumber</key>
-					<string>120</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>26</string>
+					<string>27</string>
 					<key>Timestamp</key>
-					<string>717709649.582776</string>
+					<string>723573042.905622</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -81,12 +81,12 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>                // If its in the morning hours of the next day, still show the info for the previous day (current night)
 </string>
 				<key>leading</key>
 				<string>            .task {
                 store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
-                // If its in the morning hours of the next day, still show the info for the previous day (current night)</string>
+</string>
 				<key>trailing</key>
 				<string>                if Sun.sol.getAltitude(location: store.location, time: .now) &lt; -18 &amp;&amp; .now &gt; store.sunData.solarMidnight {
                     store.date = store.date.yesterday()
@@ -95,6 +95,452 @@
 			</dict>
 			<key>title</key>
 			<string>Test this</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>16</string>
+					<key>StartingColumnNumber</key>
+					<string>14</string>
+					<key>StartingLineNumber</key>
+					<string>15</string>
+					<key>Timestamp</key>
+					<string>723604663.359624</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogMac/Views/SettingsView/Mac_TargetSettings.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>    @State var isLimitingAltitudeModal: Bool = false
+    
+//    init() {</string>
+				<key>trailing</key>
+				<string>//        self.settings = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest&lt;TargetSettings&gt;(entityName: "TargetSettings")).first!
+//    }
+    
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>48</string>
+					<key>EndingLineNumber</key>
+					<string>26</string>
+					<key>StartingColumnNumber</key>
+					<string>34</string>
+					<key>StartingLineNumber</key>
+					<string>26</string>
+					<key>Timestamp</key>
+					<string>723605637.635245</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogiOS/Views/SettingsView/HiddenTargetsList.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>targetSettings</string>
+				<key>leading</key>
+				<string>                        .swipeActions() {
+                            Button() {
+//                                </string>
+				<key>trailing</key>
+				<string>.first!.removeFromHiddenTargets(hiddenTarget)
+                            } label: {
+                                Label("Unhide", systemImage: "eye.fill")
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>45</string>
+					<key>EndingLineNumber</key>
+					<string>138</string>
+					<key>StartingColumnNumber</key>
+					<string>30</string>
+					<key>StartingLineNumber</key>
+					<string>138</string>
+					<key>Timestamp</key>
+					<string>723605664.002344</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogiOS/Views/DetailView/DetailView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>newHiddenTarget</string>
+				<key>leading</key>
+				<string>                    ShareLink("Share", item: "\(target.defaultName)\n\(target.type.rawValue) in \(target.constellation.rawValue) \n \(target.wikipediaURL?.absoluteString ?? "")\n\nNight of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)\nVisibility Score: \(visibilityScore.percent())\nSeason Score: \(seasonScore.percent())\n\(scheduleString)")
+                    Button("Hide Target") {
+//                        let </string>
+				<key>trailing</key>
+				<string> = HiddenTarget(context: context)
+//                        newHiddenTarget.id = target.id
+//                        targetSettings.first?.addToHiddenTargets(newHiddenTarget)
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>20</string>
+					<key>EndingLineNumber</key>
+					<string>21</string>
+					<key>StartingColumnNumber</key>
+					<string>14</string>
+					<key>StartingLineNumber</key>
+					<string>21</string>
+					<key>Timestamp</key>
+					<string>723609900.126474</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogMac/Views/SettingsView/Mac_TargetSettings.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>Toggle</string>
+				<key>leading</key>
+				<string>    var body: some View {
+        Form {
+//            </string>
+				<key>trailing</key>
+				<string>("Hide Targets that Never Rise", isOn: $settings.hideNeverRises)
+//            TextField("Lowest acceptable altitude to image", value: $settings.limitingAltitude, format: .number)
+        }
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>48</string>
+					<key>EndingLineNumber</key>
+					<string>125</string>
+					<key>StartingColumnNumber</key>
+					<string>30</string>
+					<key>StartingLineNumber</key>
+					<string>125</string>
+					<key>Timestamp</key>
+					<string>723605882.0540169</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogiOS/Views/SettingsView/GearSettings.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>PersistenceManager</string>
+				<key>leading</key>
+				<string>//                    Button(preset != nil ? "Save \(name)" : "Add \(name)") {
+//                        if let preset = preset {
+////                            </string>
+				<key>trailing</key>
+				<string>.shared.editImagingPreset(preset: preset, name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
+//                            dismiss()
+//                        } else {
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>52</string>
+					<key>EndingLineNumber</key>
+					<string>129</string>
+					<key>StartingColumnNumber</key>
+					<string>34</string>
+					<key>StartingLineNumber</key>
+					<string>129</string>
+					<key>Timestamp</key>
+					<string>723605884.1500109</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogiOS/Views/SettingsView/GearSettings.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>PersistenceManager</string>
+				<key>leading</key>
+				<string>//                        } else {
+//                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth, !presetList.contains(where: {$0.name! == name}) {
+////                                </string>
+				<key>trailing</key>
+				<string>.shared.addImagingPreset(name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
+//                                dismiss()
+//                            } else {
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>27</string>
+					<key>StartingColumnNumber</key>
+					<string>16</string>
+					<key>StartingLineNumber</key>
+					<string>26</string>
+					<key>Timestamp</key>
+					<string>723605966.892869</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogiOS/Views/SettingsView/AdvancedSettingsView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>    
+    var body: some View {
+//        Form {</string>
+				<key>trailing</key>
+				<string>//            
+//            // Hide Targets that Never Rise
+//            Section {
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>43</string>
+					<key>EndingLineNumber</key>
+					<string>44</string>
+					<key>StartingColumnNumber</key>
+					<string>42</string>
+					<key>StartingLineNumber</key>
+					<string>44</string>
+					<key>Timestamp</key>
+					<string>723606047.95002</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogiOS/Reusable Views/ViewingIntervalModal.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>"</string>
+				<key>leading</key>
+				<string>                // Darkness Threshold
+                Section {
+                    Text("picker broken :/</string>
+				<key>trailing</key>
+				<string>)
+//                    Picker("Darkness Threshold", selection: $reportSettingsBinding.darknessThreshold) {
+//                        Text("Civil Twilight").tag(Int16(2))
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>84</string>
+					<key>EndingLineNumber</key>
+					<string>16</string>
+					<key>StartingColumnNumber</key>
+					<string>77</string>
+					<key>StartingLineNumber</key>
+					<string>16</string>
+					<key>Timestamp</key>
+					<string>723606396.48922</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogiOS/Views/CatalogView/CatalogView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>targets</string>
+				<key>leading</key>
+				<string>    @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var locationManager: LocationManager
+    @StateObject private var catalogManager: CatalogManager = CatalogManager(</string>
+				<key>trailing</key>
+				<string>: DeepSkyTargetList.allTargets)
+
+    @Query var targetSettings: [TargetSettings]
+</string>
+			</dict>
+			<key>title</key>
+			<string>should be whitelisted targets</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>32</string>
+					<key>EndingLineNumber</key>
+					<string>22</string>
+					<key>StartingColumnNumber</key>
+					<string>18</string>
+					<key>StartingLineNumber</key>
+					<string>22</string>
+					<key>Timestamp</key>
+					<string>723608552.487265</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogiOS/Views/HomeView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string></string>
+				<key>leading</key>
+				<string>    @EnvironmentObject var locationManager: LocationManager
+    
+    @Query(sort: [SortDescriptor</string>
+				<key>trailing</key>
+				<string>(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
+    @Query var reportSettings: [ReportSettings]
+    @Query var targetSettings: [TargetSettings]
+</string>
+			</dict>
+			<key>title</key>
+			<string>had to remove sort by isSelected</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

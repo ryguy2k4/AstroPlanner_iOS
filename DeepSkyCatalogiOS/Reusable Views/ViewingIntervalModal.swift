@@ -6,17 +6,17 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
 struct ViewingIntervalModal: View {
     @EnvironmentObject var store: HomeViewModel
-    @Environment(\.managedObjectContext) var context
-    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
-    @ObservedObject var reportSettingsBinding: ReportSettings
+    @Environment(\.modelContext) var context
+    @Query var reportSettings: [ReportSettings]
+//    @ObservedObject var reportSettingsBinding: ReportSettings
     
-    init() {
-        self.reportSettingsBinding = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<ReportSettings>(entityName: "ReportSettings")).first!
-    }
+//    init() {
+//        self.reportSettingsBinding = try! PersistenceManager.shared.container.viewContext.fetch(NSFetchRequest<ReportSettings>(entityName: "ReportSettings")).first!
+//    }
     var body: some View {
         VStack {
             DateSelector()
@@ -42,22 +42,20 @@ struct ViewingIntervalModal: View {
                 
                 // Darkness Threshold
                 Section {
-                    Picker("Darkness Threshold", selection: $reportSettingsBinding.darknessThreshold) {
-                        Text("Civil Twilight").tag(Int16(2))
-                        Text("Nautical Twilight").tag(Int16(1))
-                        Text("Astronomical Twilight").tag(Int16(0))
-                    }
-                    .pickerStyle(.inline)
-                    .labelsHidden()
+                    Text("picker broken :/")
+//                    Picker("Darkness Threshold", selection: $reportSettingsBinding.darknessThreshold) {
+//                        Text("Civil Twilight").tag(Int16(2))
+//                        Text("Nautical Twilight").tag(Int16(1))
+//                        Text("Astronomical Twilight").tag(Int16(0))
+//                    }
+//                    .pickerStyle(.inline)
+//                    .labelsHidden()
                 } header: {
                     Text("Darkness Threshold")
                 } footer: {
                     Text("The darkness threshold specifies how dark it needs to be in order to start imaging. This is reflected above in the Dusk to Dawn Setting for the Viewing Interval. This setting impacts visibility score. The default value is Civil Twilight.")
                 }
             }
-        }
-        .onDisappear() {
-            PersistenceManager.shared.saveData(context: context)
         }
     }
 }
@@ -66,7 +64,7 @@ struct DateIntervalSelector: View {
     @Binding var viewingInterval: DateInterval
     @State var customViewingInterval: Bool
     @EnvironmentObject var store: HomeViewModel
-    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
+    @Query var reportSettings: [ReportSettings]
     
     var body: some View {
         // Choose Auto vs Custom Interval

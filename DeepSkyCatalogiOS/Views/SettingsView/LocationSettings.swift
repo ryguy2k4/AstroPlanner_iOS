@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 import CoreLocation
 import CoreLocationUI
 import Combine
 
 struct LocationSettings: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: FetchedResults<SavedLocation>
-    @Environment(\.managedObjectContext) var context
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
+    @Environment(\.modelContext) var context
     
     var body: some View {
         NavigationStack {
@@ -22,7 +23,7 @@ struct LocationSettings: View {
             }
             List(locationList) { location in
                 NavigationLink(destination: LocationEditor(location: location)) {
-                    Text(location.name!)
+                    Text(location.name)
                         .foregroundColor(.primary)
                 }
             }
@@ -42,7 +43,7 @@ struct LocationSettings: View {
 
 
 struct LocationEditor: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
     @State var showErrorAlert = false
@@ -51,7 +52,7 @@ struct LocationEditor: View {
     @State var showConfirmationMessage = false
     @State var confirmationClosure: (() -> (save: () -> Void, lat: Double, long: Double, time: TimeZone))?
     @EnvironmentObject var locationManager: LocationManager
-    @FetchRequest(sortDescriptors: []) var locationList: FetchedResults<SavedLocation>
+    @Query var locationList: [SavedLocation]
     
     // Local state variables to hold information being entered
     @State private var name: String = "New Location"
@@ -123,7 +124,6 @@ struct LocationEditor: View {
                             // delete button
                             Button("Delete \(name)", role: .destructive) {
                                 context.delete(location)
-                                PersistenceManager.shared.saveData(context: context)
                                 dismiss()
                             }
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
@@ -171,15 +171,15 @@ struct LocationEditor: View {
                             if let location = location {
                                 confirmationClosure = {
                                     let save = {
-                                        PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
+//                                        PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
                                     }
                                     return (save: save, lat: latitude, long: longitude, time: timezone)
                                 }
                                 showConfirmationMessage = true
-                            } else if !locationList.contains(where: {$0.name! == name}) {
+                            } else if !locationList.contains(where: {$0.name == name}) {
                                 confirmationClosure = {
                                     let save = {
-                                        PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
+//                                        PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
                                     }
                                     return (save: save, lat: latitude, long: longitude, time: timezone)
                                     
@@ -225,10 +225,10 @@ struct LocationEditor: View {
             }
             .onAppear() {
                 if let location = location {
-                    self.name = location.name!
+                    self.name = location.name
                     self.latitude = location.latitude
                     self.longitude = location.longitude
-                    self.timezone = TimeZone(identifier: location.timezone ?? "America/Chicago")
+                    self.timezone = TimeZone(identifier: location.timezone)
                 }
             }
         }

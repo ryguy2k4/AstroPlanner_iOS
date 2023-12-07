@@ -118,3 +118,13 @@ extension Optional where Wrapped == Double {
         return nil
     }
 }
+
+extension Array where Element == Double {
+    func mean() -> Double {
+        var sum = 0.0
+        for item in self {
+            sum += item
+        }
+        return sum / Double(self.count)
+    }
+}

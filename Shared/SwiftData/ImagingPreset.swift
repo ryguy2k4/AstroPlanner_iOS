@@ -11,7 +11,7 @@ import SwiftData
 
 @Model class ImagingPreset {
     var focalLength: Double = 0
-    var isSelected: Bool
+    var isSelected: Bool = false
     var name: String = "New Preset"
     var pixelSize: Double = 0
     var resolutionLength: Int = 0

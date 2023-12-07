@@ -5,7 +5,7 @@
 ////  Created by Ryan Sponzilli on 11/13/22.
 ////
 //
-//import CoreData
+//import SwiftData
 //
 //final class PersistenceManager: ObservableObject {
 //    

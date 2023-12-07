@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 import Charts
 
 struct DetailView: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @EnvironmentObject var networkManager: NetworkManager
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var targetSettings: [TargetSettings]
     @EnvironmentObject var store: HomeViewModel
     
     @State var showCoordinateDecimalFormat: Bool = false
@@ -135,10 +136,9 @@ struct DetailView: View {
                     }()
                     ShareLink("Share", item: "\(target.defaultName)\n\(target.type.rawValue) in \(target.constellation.rawValue) \n \(target.wikipediaURL?.absoluteString ?? "")\n\nNight of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)\nVisibility Score: \(visibilityScore.percent())\nSeason Score: \(seasonScore.percent())\n\(scheduleString)")
                     Button("Hide Target") {
-                        let newHiddenTarget = HiddenTarget(context: context)
-                        newHiddenTarget.id = target.id
-                        targetSettings.first?.addToHiddenTargets(newHiddenTarget)
-                        PersistenceManager.shared.saveData(context: context)
+//                        let newHiddenTarget = HiddenTarget(context: context)
+//                        newHiddenTarget.id = target.id
+//                        targetSettings.first?.addToHiddenTargets(newHiddenTarget)
                     }
                 } label: {
                     Image(systemName: "ellipsis")
@@ -157,7 +157,7 @@ struct DetailView: View {
  A chart that plots altitude vs time for a target
  */
 fileprivate struct TargetAltitudeChart: View {
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var targetSettings: [TargetSettings]
     @EnvironmentObject var store: HomeViewModel
     var target: DeepSkyTarget
     let showLimitingAlt: Bool
@@ -210,7 +210,7 @@ fileprivate struct TargetAltitudeChart: View {
 }
 
 fileprivate struct TargetSchedule : View {
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var targetSettings: [TargetSettings]
     @EnvironmentObject var store: HomeViewModel
     let target: DeepSkyTarget
     let showLimitingAlt: Bool

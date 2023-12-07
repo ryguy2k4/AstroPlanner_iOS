@@ -9,19 +9,18 @@ import SwiftUI
 
 @main
 struct DeepSkyCatalogMacApp: App {
-    @StateObject private var persistenceManager = PersistenceManager.shared
     @ObservedObject private var networkManager = NetworkManager.shared
     @ObservedObject private var locationManager = LocationManager()
     var body: some Scene {
         WindowGroup {
             Mac_HomeView()
-                .environment(\.managedObjectContext, persistenceManager.container.viewContext)
                 .environmentObject(networkManager)
                 .environmentObject(locationManager)
         }
         .commands {
             Menus()
         }
+        .modelContainer(for: [ImagingPreset.self, TargetSettings.self, HiddenTarget.self, ReportSettings.self, SavedLocation.self])
         
         WindowGroup(id: "settings") {
             Mac_SettingsView()
@@ -29,9 +28,11 @@ struct DeepSkyCatalogMacApp: App {
                 .environmentObject(networkManager)
                 .environmentObject(locationManager)
         }
+        .modelContainer(for: [ImagingPreset.self, TargetSettings.self, HiddenTarget.self, ReportSettings.self, SavedLocation.self])
         
         Window("About", id: "about") {
             Mac_AboutView()
         }
+        .modelContainer(for: [ImagingPreset.self, TargetSettings.self, HiddenTarget.self, ReportSettings.self, SavedLocation.self])
     }
 }

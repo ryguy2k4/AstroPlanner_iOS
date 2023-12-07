@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 import WeatherKit
 
 struct EntryEditor: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse), SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: FetchedResults<SavedLocation>
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
     @Binding var entry: JournalEntry
     @State var targetID: String
     @State var location: Location?
@@ -80,7 +81,7 @@ struct EntryEditor: View {
                     Section {
                         Picker("", selection: $location) {
                             ForEach(Array(locationList.enumerated()), id: \.element) { index, location in
-                                Text(location.name!).tag(location)
+                                Text(location.name).tag(location)
                             }
                         }
                         .frame(width: 300)
@@ -235,15 +236,5 @@ struct EntryEditor: View {
                 Spacer()
             }
         }
-    }
-}
-
-extension Array where Element == Double {
-    func mean() -> Double {
-        var sum = 0.0
-        for item in self {
-            sum += item
-        }
-        return sum / Double(self.count)
     }
 }

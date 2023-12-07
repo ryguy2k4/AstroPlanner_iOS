@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LocationPickerModal: View {
     @EnvironmentObject var locationManager: LocationManager
-    @Environment(\.managedObjectContext) var context
-    @FetchRequest(sortDescriptors: [SortDescriptor(\SavedLocation.isSelected, order: .reverse)]) var locationList: FetchedResults<SavedLocation>
+    @Environment(\.modelContext) var context
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
     var body: some View {
         let locationBinding = Binding(
             get: { return locationList.firstIndex(where: {$0.isSelected == true}) ?? -1 },
@@ -19,7 +20,6 @@ struct LocationPickerModal: View {
                 if $0 >= 0 {
                     locationList[$0].isSelected = true
                 }
-                PersistenceManager.shared.saveData(context: context)
             }
         )
         Form {
@@ -28,7 +28,7 @@ struct LocationPickerModal: View {
                     Text("Current Location").tag(-1)
                 }
                 ForEach(Array(locationList.enumerated()), id: \.element) { index, location in
-                    Text(locationList[index].name!).tag(index)
+                    Text(locationList[index].name).tag(index)
                 }
             }
             .pickerStyle(.inline)

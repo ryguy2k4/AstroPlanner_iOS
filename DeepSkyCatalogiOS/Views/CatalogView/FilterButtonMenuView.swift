@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 /**
  This View displays a horizontal scrolling section of different filter buttons.
@@ -15,7 +16,8 @@ import SwiftUI
 struct FilterButtonMenu: View {
     @EnvironmentObject var viewModel: CatalogManager
     @EnvironmentObject var store: HomeViewModel
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Environment(\.modelContext) var context
+    @Query var targetSettings: [TargetSettings]
     @State private var isAllFilterModal: Bool = false
     
     var body: some View {
@@ -64,7 +66,7 @@ struct FilterButtonMenu: View {
         .sheet(isPresented: $isAllFilterModal) {
             EditAllFiltersView(viewModel: viewModel)
                 .onDisappear() {
-                    viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                    viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
                 }
                 .presentationDetents([.fraction(0.5), .fraction(0.8)])
         }
@@ -78,7 +80,8 @@ struct FilterButtonMenu: View {
 fileprivate struct FilterButton: View {
     @EnvironmentObject var viewModel: CatalogManager
     @EnvironmentObject var store: HomeViewModel
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Environment(\.modelContext) var context
+    @Query var targetSettings: [TargetSettings]
     @State private var presentedFilterSheet: FilterMethod? = nil
     let method: FilterMethod
     let active: Bool
@@ -97,7 +100,7 @@ fileprivate struct FilterButton: View {
                         .foregroundColor(.primary)
                     Button {
                         viewModel.clearFilter(for: method)
-                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
                     } label: {
                         Image(systemName: active ? "x.circle" : "chevron.down")
                             .foregroundColor(.accentColor)
@@ -133,7 +136,7 @@ fileprivate struct FilterButton: View {
                 }
             }
             .onDisappear() {
-                viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData, context: context)
             }
             .presentationDetents([.fraction(0.5), .fraction(0.8)])
         }

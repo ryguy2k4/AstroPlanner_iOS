@@ -388,11 +388,11 @@
 		71CC6A042A64D1DF003E29CB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		71CC6A062A64DD7A003E29CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		71CC6A092A64EC78003E29CB /* URLRequest+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Ext.swift"; sourceTree = "<group>"; };
-		71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImagingPreset.swift; path = Shared/ImagingPreset.swift; sourceTree = "<group>"; };
-		71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TargetSettings.swift; path = Shared/TargetSettings.swift; sourceTree = "<group>"; };
-		71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HiddenTarget.swift; path = Shared/HiddenTarget.swift; sourceTree = "<group>"; };
-		71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReportSettings.swift; path = Shared/ReportSettings.swift; sourceTree = "<group>"; };
-		71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedLocation.swift; path = Shared/SavedLocation.swift; sourceTree = "<group>"; };
+		71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagingPreset.swift; sourceTree = "<group>"; };
+		71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSettings.swift; sourceTree = "<group>"; };
+		71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTarget.swift; sourceTree = "<group>"; };
+		71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSettings.swift; sourceTree = "<group>"; };
+		71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocation.swift; sourceTree = "<group>"; };
 		71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		71D4ECCF2A660F1D009E7AFC /* SubTargetsField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTargetsField.swift; sourceTree = "<group>"; };
 		71D4ECD12A660F39009E7AFC /* NamesField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesField.swift; sourceTree = "<group>"; };
@@ -530,6 +530,7 @@
 		7149D9932984C6F3004BFBE6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				71ABF9292B21575C00384909 /* SwiftData */,
 				71BCF9502921EE72008C7614 /* Assets.xcassets */,
 				71BCF9702921EF61008C7614 /* Logic */,
 				71BCF9792921EF76008C7614 /* Utils */,
@@ -681,7 +682,7 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		71BCF9402921EE71008C7614 = {
+		71ABF9292B21575C00384909 /* SwiftData */ = {
 			isa = PBXGroup;
 			children = (
 				71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */,
@@ -689,6 +690,13 @@
 				71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */,
 				71CEEE282B1ED79C0072AAAE /* ReportSettings.swift */,
 				71CEEE292B1ED79C0072AAAE /* SavedLocation.swift */,
+			);
+			path = SwiftData;
+			sourceTree = "<group>";
+		};
+		71BCF9402921EE71008C7614 = {
+			isa = PBXGroup;
+			children = (
 				7149D9932984C6F3004BFBE6 /* Shared */,
 				71BCF94B2921EE71008C7614 /* DeepSkyCatalogiOS */,
 				7162D3412964DBF1007C8710 /* DeepSkyCatalogWidget */,
@@ -1356,7 +1364,7 @@
 				INFOPLIST_FILE = DeepSkyCatalogWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DeepSkyCatalogWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1385,7 +1393,7 @@
 				INFOPLIST_FILE = DeepSkyCatalogWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DeepSkyCatalogWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1412,7 +1420,7 @@
 				INFOPLIST_FILE = DeepSkyCatalogIntents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DeepSkyCatalogIntents;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1439,7 +1447,7 @@
 				INFOPLIST_FILE = DeepSkyCatalogIntents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DeepSkyCatalogIntents;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1479,7 +1487,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.TargetCurator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1513,7 +1521,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.TargetCurator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1574,7 +1582,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1629,7 +1638,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1662,7 +1672,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1702,7 +1712,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1742,7 +1752,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalogMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1775,7 +1785,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryansponzilli.DeepSkyCatalogMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";

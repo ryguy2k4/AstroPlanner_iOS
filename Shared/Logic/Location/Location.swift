@@ -36,8 +36,8 @@ struct Location: Hashable, Equatable, Codable {
     init(saved: SavedLocation) {
         self.latitude = saved.latitude
         self.longitude = saved.longitude
-        self.timezone = TimeZone(identifier: saved.timezone ?? "") ?? .gmt
-        self.source = .saved(saved.name!)
+        self.timezone = TimeZone(identifier: saved.timezone) ?? .gmt
+        self.source = .saved(saved.name)
     }
     
     init(current: CLLocation) {

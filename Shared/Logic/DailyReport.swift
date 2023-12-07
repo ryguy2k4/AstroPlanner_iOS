@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 final class DailyReport: ObservableObject {
     let location: Location
@@ -22,7 +23,7 @@ final class DailyReport: ObservableObject {
     let topTenGalaxies: [DeepSkyTarget]
     let topTenStarClusters: [DeepSkyTarget]
     
-    init(location: Location, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, preset: ImagingPreset?, sunData: SunData) {
+    init(location: Location, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, preset: ImagingPreset?, sunData: SunData, context: ModelContext) {
         self.location = location
         self.date = date
         self.viewingInterval = viewingInterval
@@ -31,15 +32,15 @@ final class DailyReport: ObservableObject {
         self.sunData = sunData
         self.preset = preset
         
-        let targets = generateSuitableTargets()
+        let targets = generateSuitableTargets(context: context)
         self.topFive = createReportList(with: targets, top: 5)
         self.topTenNebulae = createReportList(with: targets, for: TargetType.nebulae, top: 10)
         self.topTenGalaxies = createReportList(with: targets, for: TargetType.galaxies, top: 10)
         self.topTenStarClusters = createReportList(with: targets, for: TargetType.starClusters, top: 10)
         
-        func generateSuitableTargets() -> [DeepSkyTarget] {
+        func generateSuitableTargets(context: ModelContext) -> [DeepSkyTarget] {
             // start with all whitelisted targets
-            var targets = Array(DeepSkyTargetList.whitelistedTargets)
+            var targets = DeepSkyTargetList.whitelistedTargets(context: context)
             
             // Remove all targets with a meridian score less than 50%
             // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations

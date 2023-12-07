@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 import Charts
 
 struct Mac_DetailView: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @EnvironmentObject var networkManager: NetworkManager
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var targetSettings: [TargetSettings]
     @EnvironmentObject var store: HomeViewModel
     
     @State var showCoordinateDecimalFormat: Bool = false
@@ -119,7 +120,7 @@ struct Mac_DetailView: View {
  A chart that plots altitude vs time for a target
  */
 fileprivate struct TargetAltitudeChart: View {
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var targetSettings: [TargetSettings]
     @EnvironmentObject var store: HomeViewModel
     var target: DeepSkyTarget
     let showLimitingAlt: Bool
@@ -171,7 +172,7 @@ fileprivate struct TargetAltitudeChart: View {
 }
 
 fileprivate struct TargetSchedule : View {
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
+    @Query var targetSettings: [TargetSettings]
     @EnvironmentObject var store: HomeViewModel
     let target: DeepSkyTarget
     let showLimitingAlt: Bool

@@ -6,16 +6,16 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 import CoreLocation
 
 struct DailyReportView: View {
-    @Environment(\.managedObjectContext) var context
+    @Environment(\.modelContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
-    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
-    @FetchRequest(sortDescriptors: []) var targetSettings: FetchedResults<TargetSettings>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\ImagingPreset.isSelected, order: .reverse)]) var presetList: FetchedResults<ImagingPreset>
+    @Query var reportSettings: [ReportSettings]
+    @Query var targetSettings: [TargetSettings]
+    @Query var presetList: [ImagingPreset]
     @EnvironmentObject var store: HomeViewModel
     @State var report: DailyReport?
     @State var internet: Bool = true
@@ -92,7 +92,7 @@ struct DailyReportView: View {
         }
         .environmentObject(store)
         .task {
-            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData, context: context)
         }
         
         // update report on preset change
@@ -101,7 +101,7 @@ struct DailyReportView: View {
             if newPreset != report?.preset {
                 self.report = nil
                 Task {
-                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData, context: context)
                 }
             }
         }
@@ -110,44 +110,44 @@ struct DailyReportView: View {
         .onChange(of: reportSettings.first?.minFOVCoverage) { _ in
             self.report = nil
             Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData, context: context)
             }
         }
         .onChange(of: reportSettings.first?.maxAllowedMoon) { _ in
             self.report = nil
             Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData, context: context)
             }
         }
         .onChange(of: reportSettings.first?.filterForMoonPhase) { _ in
             self.report = nil
             Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData, context: context)
             }
         }
         .onChange(of: reportSettings.first?.minVisibility) { _ in
             self.report = nil
             Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData, context: context)
             }
         }
         .onChange(of: reportSettings.first?.preferBroadband) { _ in
             self.report = nil
             Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData, context: context)
             }
         }
         .onChange(of: reportSettings.first?.darknessThreshold) { new in
             self.report = nil
-            if new == Int16(2) {
+            if new == 2 {
                 store.viewingInterval = store.sunData.CTInterval
-            } else if new == Int16(1) {
+            } else if new == 1 {
                 store.viewingInterval = store.sunData.NTInterval
             } else {
                 store.viewingInterval = store.sunData.ATInterval
             }
             Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData, context: context)
             }
         }
         

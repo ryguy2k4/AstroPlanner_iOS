@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DailyReportLoadingView: View {
     @EnvironmentObject var store: HomeViewModel
-    @FetchRequest(sortDescriptors: []) var reportSettings: FetchedResults<ReportSettings>
+    @Query var reportSettings: [ReportSettings]
     var body: some View {
         NavigationStack {
             VStack {
@@ -28,9 +29,9 @@ struct DailyReportLoadingView: View {
                 if Sun.sol.getAltitude(location: store.location, time: .now) < -18 && .now > store.sunData.solarMidnight {
                     store.date = store.date.yesterday()
                 }
-                if reportSettings.first!.darknessThreshold == Int16(2) {
+                if reportSettings.first!.darknessThreshold == 2 {
                     store.viewingInterval = store.sunData.CTInterval
-                } else if reportSettings.first!.darknessThreshold == Int16(1) {
+                } else if reportSettings.first!.darknessThreshold == 1 {
                     store.viewingInterval = store.sunData.NTInterval
                 } else {
                     store.viewingInterval = store.sunData.ATInterval

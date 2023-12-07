@@ -17,7 +17,7 @@ import SwiftData
     var minVisibility: Double = 0.6
     var preferBroadband: Bool = false
 
-    init(darknessThreshold: Int, filterForMoonPhase: Bool, maxAllowedMoon: Double, minFOVCoverage: Double, minVisibility: Double, preferBroadband: Bool) {
+    init(darknessThreshold: Int = 0, filterForMoonPhase: Bool = false, maxAllowedMoon: Double = 0.2, minFOVCoverage: Double = 0.1, minVisibility: Double = 0.6, preferBroadband: Bool = false) {
         self.darknessThreshold = darknessThreshold
         self.filterForMoonPhase = filterForMoonPhase
         self.maxAllowedMoon = maxAllowedMoon

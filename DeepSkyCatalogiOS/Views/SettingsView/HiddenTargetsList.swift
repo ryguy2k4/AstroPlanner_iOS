@@ -6,26 +6,25 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HiddenTargetsList: View {
-    @Environment(\.managedObjectContext) var context
-    @FetchRequest(sortDescriptors: []) var settings: FetchedResults<TargetSettings>
+    @Environment(\.modelContext) var context
+    @Query var targetSettings: [TargetSettings]
 
     var body: some View {
         VStack {
-            if settings.first!.hiddenTargets?.allObjects.isEmpty ?? true {
+            if targetSettings.first!.hiddenTargets!.isEmpty {
                 Text("No Hidden Targets")
                     .padding()
             }
             List {
-                ForEach(settings.first!.hiddenTargets!.allObjects as! [HiddenTarget]) { hiddenTarget in
+                ForEach(targetSettings.first!.hiddenTargets!) { hiddenTarget in
                     let target = DeepSkyTargetList.allTargets.first(where: {$0.id == hiddenTarget.id})!
                     Text(target.defaultName)
                         .swipeActions() {
                             Button() {
-                                settings.first!.removeFromHiddenTargets(hiddenTarget)
-                                PersistenceManager.shared.saveData(context: context)
-
+//                                targetSettings.first!.removeFromHiddenTargets(hiddenTarget)
                             } label: {
                                 Label("Unhide", systemImage: "eye.fill")
                             }
