@@ -13,7 +13,7 @@ struct Mac_CatalogView: View {
     @Environment(\.isSearching) private var isSearching
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
-    @StateObject private var catalogManager: CatalogManager = CatalogManager(targets: [])
+    @StateObject private var catalogManager: CatalogManager = CatalogManager()
     @Environment(\.modelContext) var context
 
     @Query var targetSettings: [TargetSettings]

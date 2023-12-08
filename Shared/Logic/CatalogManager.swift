@@ -13,7 +13,7 @@ final class CatalogManager: ObservableObject {
     // Sort Control Variables
     @Published var currentSort: SortMethod = .ra
     @Published var sortDecending: Bool = true
-    @Published var targets: [DeepSkyTarget]
+    @Published var targets: [DeepSkyTarget] = []
     
     // Filter Control Variables
     @Published var searchText = ""
@@ -26,10 +26,6 @@ final class CatalogManager: ObservableObject {
     @Published var maxSize: Double = .nan
     @Published var minVisScore: Double = 0
     @Published var minSeasonScore: Double = 0
-    
-    init(targets: [DeepSkyTarget]) {
-        self.targets = targets
-    }
     
     /**
      Sets the filter control variable associated with the specified filter to its default value(s)

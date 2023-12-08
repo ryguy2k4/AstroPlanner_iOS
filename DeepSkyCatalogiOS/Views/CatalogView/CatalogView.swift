@@ -14,7 +14,7 @@ struct CatalogView: View {
     @Environment(\.modelContext) var context
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var locationManager: LocationManager
-    @StateObject private var catalogManager: CatalogManager = CatalogManager(targets: [])
+    @StateObject private var catalogManager: CatalogManager = CatalogManager()
     
     @Query var targetSettings: [TargetSettings]
     @Query var reportSettings: [ReportSettings]

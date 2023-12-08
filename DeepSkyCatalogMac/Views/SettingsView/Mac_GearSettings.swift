@@ -21,7 +21,7 @@ struct Mac_GearSettings: View {
                     .padding()
             }
             List(presetList) { preset in
-                Button(preset.name!) {
+                Button(preset.name) {
                     editorModal = preset
                 }
                 .buttonStyle(.plain)
@@ -53,8 +53,8 @@ struct ImagingPresetEditor: View {
     @State private var name: String = ""
     @State private var focalLength: Double? = nil
     @State private var pixelSize: Double? = nil
-    @State private var resolutionLength: Int16? = nil
-    @State private var resolutionWidth: Int16? = nil
+    @State private var resolutionLength: Int? = nil
+    @State private var resolutionWidth: Int? = nil
     let preset: ImagingPreset?
     
     var body: some View {
@@ -93,11 +93,24 @@ struct ImagingPresetEditor: View {
                 ToolbarItemGroup(placement: .automatic) {
                     Button(preset != nil ? "Save \(name)" : "Add \(name)") {
                         if let preset = preset {
-                            PersistenceManager.shared.editImagingPreset(preset: preset, name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
+                            preset.name = name
+                            if let focalLength = focalLength {
+                                preset.focalLength = focalLength
+                            }
+                            if let pixelSize = pixelSize {
+                                preset.pixelSize = pixelSize
+                            }
+                            if let resolutionLength = resolutionLength {
+                                preset.resolutionLength = resolutionLength
+                            }
+                            if let resolutionWidth = resolutionWidth {
+                                preset.resolutionWidth = resolutionWidth
+                            }
                             dismiss()
                         } else {
-                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth, !presetList.contains(where: {$0.name! == name}) {
-                                PersistenceManager.shared.addImagingPreset(name: name, focalLength: focalLength, pixelSize: pixelSize, resLength: resolutionLength, resWidth: resolutionWidth, context: context)
+                            if let focalLength = focalLength, let pixelSize = pixelSize, let resolutionLength = resolutionLength, let resolutionWidth = resolutionWidth, !presetList.contains(where: {$0.name == name}) {
+                                let newPreset = ImagingPreset(focalLength: focalLength, isSelected: false, name: name, pixelSize: pixelSize, resolutionLength: resolutionLength, resolutionWidth: resolutionWidth)
+                                context.insert(newPreset)
                                 dismiss()
                             } else {
                                 showErrorAlert = true
@@ -121,7 +134,7 @@ struct ImagingPresetEditor: View {
             }
             .onAppear() {
                 if let preset = preset {
-                    self.name = preset.name!
+                    self.name = preset.name
                     self.focalLength = preset.focalLength
                     self.pixelSize = preset.pixelSize
                     self.resolutionLength = preset.resolutionLength

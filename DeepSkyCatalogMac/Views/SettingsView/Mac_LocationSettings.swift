@@ -123,15 +123,16 @@ struct LocationEditor: View {
                             if let location = location {
                                 confirmationClosure = {
                                     let save = {
-                                        PersistenceManager.shared.editLocation(location: location, name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
+                                        location.latitude = latitude; location.longitude = longitude; location.timezone = timezone.identifier
                                     }
                                     return (save: save, lat: latitude, long: longitude, time: timezone)
                                 }
                                 showConfirmationMessage = true
-                            } else if !locationList.contains(where: {$0.name! == name}) {
+                            } else if !locationList.contains(where: {$0.name == name}) {
                                 confirmationClosure = {
                                     let save = {
-                                        PersistenceManager.shared.addLocation(name: name, latitude: latitude, longitude: longitude, timezone: timezone.identifier, context: context)
+                                        let newLocation = SavedLocation(isSelected: false, latitude: latitude, longitude: longitude, name: name, timezone: timezone.identifier)
+                                        context.insert(newLocation)
                                     }
                                     return (save: save, lat: latitude, long: longitude, time: timezone)
 
@@ -206,10 +207,10 @@ struct LocationEditor: View {
             }
             .onAppear() {
                 if let location = location {
-                    self.name = location.name!
+                    self.name = location.name
                     self.latitude = location.latitude
                     self.longitude = location.longitude
-                    self.timezone = TimeZone(identifier: location.timezone ?? "America/Chicago")
+                    self.timezone = TimeZone(identifier: location.timezone)
                 }
             }
         }

@@ -24,7 +24,7 @@ struct DeepSkyTargetList {
         return whitelist
     }
     
-    func exportObjects(list: [DeepSkyTarget]) {
+    static func exportObjects(list: [DeepSkyTarget]) {
         do {
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted

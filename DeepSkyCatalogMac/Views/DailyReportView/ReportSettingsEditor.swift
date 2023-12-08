@@ -25,7 +25,7 @@ struct ReportSettingsEditor: View {
             }
         )
         let locationBinding = Binding(
-            get: { return locationList.first! },
+            get: { return locationList.first(where: {$0.isSelected == true}) ?? locationList.first! },
             set: {
                 for location in locationList { location.isSelected = false }
                 $0.isSelected = true

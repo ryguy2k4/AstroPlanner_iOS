@@ -11,10 +11,10 @@ import SwiftData
 
 @Model class SavedLocation {
     var isSelected: Bool = false
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
-    var name: String = "New Location"
-    var timezone: String = "GMT"
+    var latitude: Double = 41.8781
+    var longitude: Double = 87.6298
+    var name: String = "Chicago"
+    var timezone: String = "CST"
     
     init(isSelected: Bool, latitude: Double, longitude: Double, name: String, timezone: String) {
         self.isSelected = isSelected
@@ -22,9 +22,5 @@ import SwiftData
         self.longitude = longitude
         self.name = name
         self.timezone = timezone
-    }
-    
-    var isSelectedSort: UInt8 {
-        isSelected ? 1 : 0
     }
 }

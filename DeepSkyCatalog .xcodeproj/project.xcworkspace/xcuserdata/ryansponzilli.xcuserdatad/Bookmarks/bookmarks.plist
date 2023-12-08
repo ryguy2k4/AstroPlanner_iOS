@@ -10,155 +10,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>32</string>
-					<key>EndingLineNumber</key>
-					<string>22</string>
-					<key>StartingColumnNumber</key>
-					<string>18</string>
-					<key>StartingLineNumber</key>
-					<string>22</string>
-					<key>Timestamp</key>
-					<string>723608552.487265</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>DeepSkyCatalogiOS/Views/HomeView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>SortDescriptor</string>
-				<key>leading</key>
-				<string>    @EnvironmentObject var locationManager: LocationManager
-    
-    @Query(sort: [</string>
-				<key>trailing</key>
-				<string>(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
-    @Query var reportSettings: [ReportSettings]
-    @Query var targetSettings: [TargetSettings]
-</string>
-			</dict>
-			<key>title</key>
-			<string>had to remove sort by isSelected</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>14</string>
-					<key>StartingColumnNumber</key>
-					<string>106</string>
-					<key>StartingLineNumber</key>
-					<string>13</string>
-					<key>Timestamp</key>
-					<string>723675118.323959</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>DeepSkyCatalogMac/Views/SettingsView/Mac_LocationSettings.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>
-</string>
-				<key>leading</key>
-				<string>
-struct Mac_LocationSettings: View {
-    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]</string>
-				<key>trailing</key>
-				<string>    @Environment(\.modelContext) var context
-    @State var creatorModal: Bool = false
-    @State var editorModal: SavedLocation? = nil
-</string>
-			</dict>
-			<key>title</key>
-			<string>removed sort by isSelected</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>28</string>
-					<key>StartingColumnNumber</key>
-					<string>0</string>
-					<key>StartingLineNumber</key>
-					<string>27</string>
-					<key>Timestamp</key>
-					<string>723573042.905622</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>DeepSkyCatalogiOS/Views/DataLoadingViews.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>                // If its in the morning hours of the next day, still show the info for the previous day (current night)
-</string>
-				<key>leading</key>
-				<string>            .task {
-                store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
-</string>
-				<key>trailing</key>
-				<string>                if Sun.sol.getAltitude(location: store.location, time: .now) &lt; -18 &amp;&amp; .now &gt; store.sunData.solarMidnight {
-                    store.date = store.date.yesterday()
-                }
-</string>
-			</dict>
-			<key>title</key>
-			<string>Test this</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>46</string>
-					<key>StartingColumnNumber</key>
-					<string>0</string>
-					<key>StartingLineNumber</key>
 					<string>45</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>44</string>
 					<key>Timestamp</key>
-					<string>723605452.37615</string>
+					<string>717634937.824244</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -174,20 +34,67 @@ struct Mac_LocationSettings: View {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>            // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
+				<string>            // Remove all targets with a meridian score less than 50%
 </string>
 				<key>leading</key>
-				<string>            
-            // Remove all targets with a meridian score less than 50%
+				<string>            var targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: hiddenTargets)
+            
 </string>
 				<key>trailing</key>
-				<string>            targets.filterBySeasonScore(0.5, location: location, date: date, sunData: sunData)
+				<string>            // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
+            targets.filterBySeasonScore(0.5, location: location, date: date, sunData: sunData)
             
-            // Remove all targets with a visibility score less than the user specified minimum
 </string>
 			</dict>
 			<key>title</key>
 			<string>Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>27</string>
+					<key>StartingColumnNumber</key>
+					<string>120</string>
+					<key>StartingLineNumber</key>
+					<string>26</string>
+					<key>Timestamp</key>
+					<string>717709649.582776</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>DeepSkyCatalogiOS/Views/DataLoadingViews.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>            // in case it causes a hold up, and display a loading screen
+            .task {
+                store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)</string>
+				<key>trailing</key>
+				<string>                // If its in the morning hours of the next day, still show the info for the previous day (current night)
+                if Sun.sol.getAltitude(location: store.location, time: .now) &lt; -18 &amp;&amp; .now &gt; store.sunData.solarMidnight {
+                    store.date = store.date.yesterday()
+</string>
+			</dict>
+			<key>title</key>
+			<string>Test this</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

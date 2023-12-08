@@ -382,8 +382,8 @@
             filePath = "Shared/Logic/CatalogManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "refreshList(date:viewingInterval:location:targetSettings:sunData:)"
             landmarkType = "7">
             <Locations>
@@ -430,8 +430,8 @@
             filePath = "Shared/Logic/CatalogManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "refreshList(date:viewingInterval:location:targetSettings:sunData:)"
             landmarkType = "7">
          </BreakpointContent>
