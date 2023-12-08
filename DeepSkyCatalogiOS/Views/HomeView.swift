@@ -78,7 +78,7 @@ struct HomeView: View {
                                 }
                                 else {
                                     // no location found
-                                    return Location(current: CLLocation(latitude: 0, longitude: 0))
+                                    return Location.default
                                 }
                             }()
                             vm.date = .now.startOfLocalDay(timezone: vm.location.timezone)

@@ -23,4 +23,8 @@ import SwiftData
         self.name = name
         self.timezone = timezone
     }
+    
+    var isSelectedSort: UInt8 {
+        isSelected ? 1 : 0
+    }
 }
