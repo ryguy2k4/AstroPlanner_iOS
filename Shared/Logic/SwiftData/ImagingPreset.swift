@@ -17,6 +17,9 @@ import SwiftData
     var resolutionLength: Int = 0
     var resolutionWidth: Int = 0
     
+    @Relationship(.unique, deleteRule: .deny, inverse: \JournalEntry.gear)
+    var journalEntries: [JournalEntry] = []
+    
     init(focalLength: Double, isSelected: Bool, name: String, pixelSize: Double, resolutionLength: Int, resolutionWidth: Int) {
         self.focalLength = focalLength
         self.isSelected = isSelected
@@ -44,5 +47,20 @@ extension ImagingPreset {
         get {
            return pixelScale * Double(resolutionWidth) / 60
         }
+    }
+}
+
+extension ImagingPreset: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(focalLength, forKey: .focalLength)
+        try container.encode(name, forKey: .name)
+        try container.encode(pixelSize, forKey: .pixelSize)
+        try container.encode(resolutionWidth, forKey: .resolutionWidth)
+        try container.encode(resolutionLength, forKey: .resolutionLength)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case focalLength, name, pixelSize, resolutionWidth, resolutionLength
     }
 }

@@ -13,15 +13,13 @@ struct EntryEditor: View {
     @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
     @Binding var entry: JournalEntry
     @State var targetID: String
-    @State var location: Location?
-    @State var gear: JournalEntry.ImagingGear
+    @State var location: SavedLocation?
     @State var plan: [JournalEntry.JournalImagePlan]
     
     init(entry: Binding<JournalEntry>) {
         self._entry = entry
         self._targetID = State(initialValue: entry.wrappedValue.targetID.uuidString)
         self._location = State(initialValue: entry.wrappedValue.location)
-        self._gear = State(initialValue: entry.wrappedValue.gear ?? .zenithstar61)
         self._plan = State(initialValue: entry.wrappedValue.imagePlan ?? [])
     }
     
@@ -93,42 +91,15 @@ struct EntryEditor: View {
                     }
                     
                     // Gear Picker
-                    Section {
-                        Picker("", selection: $gear) {
-                            ForEach(JournalEntry.ImagingGear.allCases, id: \.hashValue) { type in
-                                Text(type.rawValue).tag(type)
-                            }
-                        }
-                        .frame(width: 300)
-                    } header: {
-                        Text("Gear")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .padding(.top)
-                    }
-                    
-                    // Legacy Weather Fields
-                    if let legacyWeather = entry.legacyWeather {
-                        Section {
-                            Text("TempC: \(legacyWeather.tempC)")
-                            Text("TempF: \(legacyWeather.tempF)")
-                            Text("Wind: \(legacyWeather.wind)")
-                        } header: {
-                            Text("Legacy Weather")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .padding(.top)
-                        }
-                    }
                     
                     // WeatherKit Data
                     if let weather = entry.weather {
                         Section {
-                            Text("Temp: \(weather.tempC)")
-                            Text("Wind: \(weather.wind)")
-                            Text("Dew Point: \(weather.dewPoint)")
-                            Text("Cloud Cover: \(weather.cloudCover)")
-                            Text("Moon Illumination: \(weather.moonIllumination)")
+                            Text("Temp: \(weather.map({$0.temperature.converted(to: .fahrenheit).value}).mean())")
+                            Text("Wind: \(weather.map({$0.wind.speed.converted(to: .milesPerHour).value}).mean())")
+                            Text("Dew Point: \(weather.map({$0.dewPoint.converted(to: .fahrenheit).value}).mean())")
+                            Text("Cloud Cover: \(weather.map({$0.cloudCover}).mean())")
+                            Text("Moon Illumination: :/")
                         } header: {
                             Label("Weather", systemImage: "checkmark.shield")
                                 .font(.title3)
@@ -140,8 +111,9 @@ struct EntryEditor: View {
                             Button("Fetch Weather") {
                                 Task {
                                     if let forecast = try? await WeatherService().weather(for: .init(latitude: 41.904, longitude: -88.286), including: .hourly(startDate: imagingInterval.start, endDate: imagingInterval.end)) {
-                                        entry.weather = JournalEntry.JournalWeather(forecast: forecast, moonIllumination: Moon.getMoonIllumination(date: entry.setupInterval!.start, timezone: .current))
+                                        entry.weather = forecast.forecast
                                     }
+                                    entry.moonIllumination = Moon.getMoonIllumination(date: imagingInterval.start, timezone: .current)
                                 }
                             }
                         } header: {
@@ -228,9 +200,7 @@ struct EntryEditor: View {
                 .onDisappear() {
                     entry.targetID = UUID(uuidString: targetID)!
                     let target = DeepSkyTargetList.allTargets.first(where: {$0.id.uuidString == targetID})
-                    entry.targetName = target?.name?.first ?? target!.defaultName
                     entry.location = location
-                    entry.gear = gear
                     entry.imagePlan = plan
                 }
                 Spacer()

@@ -6,72 +6,41 @@
 //
 
 import Foundation
+import SwiftData
 import WeatherKit
 
-struct JournalEntry: Hashable, Identifiable {
+@Model class JournalEntry: Hashable, Identifiable {
     let id = UUID()
     
     // identifying information
     var targetID: UUID
-    var targetName: String
-    
-    // string interpretations
-    var dateString: String
-    var setupStartString: String
-    var setupEndString: String
-    var imageStartString: String
-    var imageEndString: String
     
     // from log file
     var setupInterval: DateInterval?
     var imagingInterval: DateInterval?
     
-    // from saved locations
-    var location: Location?
-    
-    // from saved presets
-//    var gear: ImagingPreset?
-    var gear: ImagingGear?
-    
-    // from weatherkit
-    var weather: JournalWeather?
-    
-    // calculables
-    var visibilityScore: Double?
-    var seasonScore: Double?
-    var targetType: TargetType?
-    
-    //from info.txt
-    var legacyWeather: LegacyWeather?
-    
     // from plan.xml
     var imagePlan: [JournalImagePlan]?
+    var guided: Bool
     
-    struct LegacyWeather: Codable, Hashable {
-        var tempF: Int
-        var tempC: Int
-        var wind: Int
-    }
+    // weatherkit / calculables
+    var weather: [HourWeather]?
+    var visibilityScore: Double?
+    var seasonScore: Double?
+    var moonIllumination: Double?
     
-    enum ImagingGear: String, CaseNameCodable, CaseIterable, Hashable {
-        case zenithstar61 = "Z61"
-        case celestron6SE = "6SE"
-    }
+    // relationships
+    var location: SavedLocation?
+    var gear: ImagingPreset?
     
-    struct JournalWeather: Codable, Hashable {
-        var wind: Double
-        var tempC: Double
-        var cloudCover: Double
-        var dewPoint: Double
-        var moonIllumination: Double
+    // custom info
+    var tags: [JournalTags]
+    var projects: [ProjectEntry]
     
-        init(forecast: Forecast<HourWeather>, moonIllumination: Double) {
-            self.wind = forecast.forecast.map({$0.wind.speed.converted(to: .milesPerHour).value}).mean()
-            self.tempC = forecast.forecast.map({$0.temperature.converted(to: .fahrenheit).value}).mean()
-            self.cloudCover = forecast.forecast.map({$0.cloudCover}).mean()
-            self.dewPoint = forecast.forecast.map({$0.dewPoint.converted(to: .fahrenheit).value}).mean()
-            self.moonIllumination = moonIllumination
-        }
+    enum JournalTags: Codable {
+        case meridianFlipFailed
+        case guidingFailed
+        case dewRuinedImages
     }
     
     struct JournalImagePlan: Codable, Hashable {
@@ -101,24 +70,9 @@ struct JournalEntry: Hashable, Identifiable {
         self.gear = nil
         self.seasonScore = nil
         self.visibilityScore = nil
-        
-        // Extract from info.txt
-        if let unwrappedInfo = info {
-            let info = unwrappedInfo.map({$0.trimmingCharacters(in: .newlines)})
-            
-            // extract legacy weather
-            let tempF = info.first(where: {$0.starts(with: "Temperature(F)")})?.replacingOccurrences(of: "Temperature(F): ", with: "")
-            let tempC = info.first(where: {$0.starts(with: "Temperature(C)")})?.replacingOccurrences(of: "Temperature(C): ", with: "")
-            let wind = info.first(where: {$0.starts(with: "Wind")})?.replacingOccurrences(of: "Wind (mph): ", with: "")
-            if let tempF = tempF, let tf = Int(tempF), let tempC = tempC, let tc = Int(tempC), let wind = wind, let w = Int(wind) {
-                self.legacyWeather = LegacyWeather(tempF: tf, tempC: tc, wind: w)
-            } else {
-                self.legacyWeather = nil
-            }
-            
-        } else {
-            self.legacyWeather = nil
-        }
+        self.guided = false
+        self.tags = []
+        self.projects = []
         
         // Extract from log file
         if let log = log {
@@ -138,15 +92,9 @@ struct JournalEntry: Hashable, Identifiable {
             let setupEnd = formatter.date(from: endString)
             if let start = setupStart, let end = setupEnd {
                 self.setupInterval = DateInterval(start: start, end: end)
-                self.setupStartString = formatter.string(from: start)
-                self.setupEndString = formatter.string(from: end)
-                self.dateString = formatter2.string(from: start)
 
             } else {
                 self.setupInterval = nil
-                self.setupStartString = "n/a"
-                self.setupEndString = "n/a"
-                self.dateString = "n/a"
                 print("FAILED")
             }
             
@@ -155,22 +103,13 @@ struct JournalEntry: Hashable, Identifiable {
             let imageEnd = log.last(where: {$0.contains("Finishing Category: Camera, Item: TakeExposure")})?.prefix(19)
             if let imageStart = imageStart, let imageStart = formatter.date(from: String(imageStart)), let imageEnd = imageEnd, let imageEnd = formatter.date(from: String(imageEnd)) {
                 self.imagingInterval = DateInterval(start: imageStart, end: imageEnd)
-                self.imageStartString = formatter.string(from: imageStart)
-                self.imageEndString = formatter.string(from: imageEnd)
             } else {
                 self.imagingInterval = nil
-                self.imageStartString = "n/a"
-                self.imageEndString = "n/a"
             }
             
         } else {
             self.setupInterval = nil
             self.imagingInterval = nil
-            self.setupStartString = "n/a"
-            self.setupEndString = "n/a"
-            self.imageStartString = "n/a"
-            self.imageEndString = "n/a"
-            self.dateString = "n/a"
         }
         
         // Extract from Image Plan
@@ -180,19 +119,32 @@ struct JournalEntry: Hashable, Identifiable {
             // extract target
             if let target = DeepSkyTargetList.allTargets.filteredBySearch(plan.targetName).first {
                 self.targetID = target.id
-                let dso = DeepSkyTargetList.allTargets.first(where: {$0.id == target.id})
-                self.targetName = dso?.name?.first ?? dso?.defaultName ?? "n/a"
-                self.targetType = dso?.type ?? nil
             } else {
                 self.targetID = UUID()
-                self.targetName = "n/a"
             }
         } else {
             self.imagePlan = nil
             self.targetID = UUID()
-            self.targetName = "n/a"
         }
     }
 }
 
-extension JournalEntry: Codable {}
+//extension JournalEntry: Encodable {
+//    func encode(to encoder: Encoder) throws {
+//        var container = encoder.container(keyedBy: CodingKeys.self)
+//        try container.encode(targetID, forKey: .targetID)
+//        try container.encode(setupInterval, forKey: .setupInterval)
+//        try container.encode(imagingInterval, forKey: .imagingInterval)
+//        try container.encode(location, forKey: .location)
+//        try container.encode(gear, forKey: .gear)
+//        try container.encode(weather, forKey: .weather)
+//        try container.encode(visibilityScore, forKey: .visibilityScore)
+//        try container.encode(seasonScore, forKey: .seasonScore)
+//        try container.encode(moonIllumination, forKey: .moonIllumination)
+//        try container.encode(imagePlan, forKey: .imagePlan)
+//    }
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case targetID, setupInterval, imagingInterval, location, gear, weather, visibilityScore, seasonScore, moonIllumination, imagePlan
+//    }
+//}

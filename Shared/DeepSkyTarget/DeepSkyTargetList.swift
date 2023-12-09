@@ -24,6 +24,14 @@ struct DeepSkyTargetList {
         return whitelist
     }
     
+    static var targetNameDict: [UUID: String] = {
+        var dict: [UUID: String] = [:]
+        for target in allTargets {
+            dict[target.id] = target.name?.first ?? target.defaultName
+        }
+        return dict
+    }()
+    
     static func exportObjects(list: [DeepSkyTarget]) {
         do {
             let encoder = JSONEncoder()

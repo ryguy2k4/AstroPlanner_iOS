@@ -119,6 +119,11 @@
 		7181F02C299BD226002841A8 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		7181F02D299BD22C002841A8 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
 		7181F02F299BD32F002841A8 /* TargetIDSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */; };
+		718444652B23ED030017B02B /* ProjectEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718444642B23ED030017B02B /* ProjectEntry.swift */; };
+		718444662B23ED030017B02B /* ProjectEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718444642B23ED030017B02B /* ProjectEntry.swift */; };
+		718444672B23ED030017B02B /* ProjectEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718444642B23ED030017B02B /* ProjectEntry.swift */; };
+		718444682B23ED030017B02B /* ProjectEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718444642B23ED030017B02B /* ProjectEntry.swift */; };
+		718444692B23ED030017B02B /* ProjectEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718444642B23ED030017B02B /* ProjectEntry.swift */; };
 		7186D8F2295CEEC500601467 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7186D8F1295CEEC500601467 /* JournalView.swift */; };
 		718C11F529C89A880069ECD5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C11F429C89A880069ECD5 /* Location.swift */; };
 		718C11F629C89A880069ECD5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C11F429C89A880069ECD5 /* Location.swift */; };
@@ -335,6 +340,7 @@
 		7181F005299BCFD1002841A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7181F027299BD0D0002841A8 /* TargetEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetEditor.swift; sourceTree = "<group>"; };
 		7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetIDSearchField.swift; sourceTree = "<group>"; };
+		718444642B23ED030017B02B /* ProjectEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEntry.swift; sourceTree = "<group>"; };
 		7186D8F1295CEEC500601467 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		718C11F429C89A880069ECD5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		718CA9A729244FD600F3F5A7 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
@@ -618,6 +624,7 @@
 			children = (
 				7170F3232B1977D9001F0CE6 /* Journal.json */,
 				713919352B16FF5800A5BE11 /* JournalEntry.swift */,
+				718444642B23ED030017B02B /* ProjectEntry.swift */,
 				71701E752B182DCE007992B8 /* JournalEntryList.swift */,
 				713919312B16C8C200A5BE11 /* ImagePlan.swift */,
 			);
@@ -1056,6 +1063,7 @@
 				71668AD0298F266300AB0D19 /* String+Ext.swift in Sources */,
 				71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */,
 				7162D3452964DBF1007C8710 /* ReportListWidget.swift in Sources */,
+				718444662B23ED030017B02B /* ProjectEntry.swift in Sources */,
 				718C11F929C919550069ECD5 /* Location.swift in Sources */,
 				71ACF33D2964F0B400CC83D5 /* Provider.swift in Sources */,
 				713919372B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
@@ -1114,6 +1122,7 @@
 				7139193A2B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
 				71A6C9002A5F4EFC009F1C30 /* Sun.swift in Sources */,
 				7164CEE829BE8F9C000A154A /* NetworkManager.swift in Sources */,
+				718444692B23ED030017B02B /* ProjectEntry.swift in Sources */,
 				7164CEE029BE8F7E000A154A /* Constellation.swift in Sources */,
 				7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */,
 				71701E7A2B182DCE007992B8 /* JournalEntryList.swift in Sources */,
@@ -1145,6 +1154,7 @@
 				7181F023299BD046002841A8 /* NetworkManager.swift in Sources */,
 				71CC6A0A2A64EC78003E29CB /* URLRequest+Ext.swift in Sources */,
 				7181F020299BD01E002841A8 /* Double+Ext.swift in Sources */,
+				718444682B23ED030017B02B /* ProjectEntry.swift in Sources */,
 				71A6C8FC2A5F4E0D009F1C30 /* Sun.swift in Sources */,
 				7181F02D299BD22C002841A8 /* PlaceValue.swift in Sources */,
 				71D4ECDC2A660F9E009E7AFC /* CoordinatesField.swift in Sources */,
@@ -1203,6 +1213,7 @@
 				71BCF96B2921EF20008C7614 /* CatalogView.swift in Sources */,
 				711386F729C3548C00081584 /* Filter.swift in Sources */,
 				71BCF9762921EF6D008C7614 /* DeepSkyTarget.swift in Sources */,
+				718444652B23ED030017B02B /* ProjectEntry.swift in Sources */,
 				71CEEE2E2B1ED79C0072AAAE /* SavedLocation.swift in Sources */,
 				710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */,
 				71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */,
@@ -1271,6 +1282,7 @@
 				71C2644F298F1CAB0057EC04 /* Environment+Ext.swift in Sources */,
 				71C26457298F1CC10057EC04 /* FilterMethods.swift in Sources */,
 				71DF8A752A61FC3600923236 /* Mac_LocationSettings.swift in Sources */,
+				718444672B23ED030017B02B /* ProjectEntry.swift in Sources */,
 				71DF8A792A622C8800923236 /* Mac_TargetSettings.swift in Sources */,
 				71DF8A6E2A61F59C00923236 /* Menus.swift in Sources */,
 				71BE6EDC299035A400686E95 /* Mac_DailyReportView.swift in Sources */,

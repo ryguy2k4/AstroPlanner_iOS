@@ -10,7 +10,7 @@ import WeatherKit
 import XMLParsing
 
 struct Mac_JournalView: View {
-    @State var entries: [JournalEntry] = JournalEntryList.allEntries
+    @State var entries: [JournalEntry] = []
     @State var info: [String]?
     @State var log: [String]?
     @State var plan: CaptureSequenceList?
@@ -89,7 +89,7 @@ struct Mac_JournalView: View {
                     NavigationLink {
                         EntryEditor(entry: $entries[entries.firstIndex(where: {$0 == entry})!])
                     } label: {
-                        Text("\(entry.setupInterval?.start.formatted(date: .abbreviated, time: .omitted) ?? "n/a"): \(entry.targetName)")
+                        Text("\(entry.setupInterval?.start.formatted(date: .abbreviated, time: .omitted) ?? "n/a"): \(DeepSkyTargetList.targetNameDict[entry.targetID] ?? "n/a")")
                     }
                 }
             }
@@ -108,11 +108,6 @@ struct Mac_JournalView: View {
                     self.plan = nil
                 } label: {
                     Text("Clear Files")
-                }
-                Button {
-                    JournalEntryList.exportObjects(list: self.entries)
-                } label: {
-                    Text("Save Entries")
                 }
             }
         }
