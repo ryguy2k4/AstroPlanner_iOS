@@ -17,9 +17,6 @@ import SwiftData
     var resolutionLength: Int = 0
     var resolutionWidth: Int = 0
     
-    @Relationship(.unique, deleteRule: .deny, inverse: \JournalEntry.gear)
-    var journalEntries: [JournalEntry] = []
-    
     init(focalLength: Double, isSelected: Bool, name: String, pixelSize: Double, resolutionLength: Int, resolutionWidth: Int) {
         self.focalLength = focalLength
         self.isSelected = isSelected

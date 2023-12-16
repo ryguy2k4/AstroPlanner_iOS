@@ -51,35 +51,53 @@ struct Mac_HomeView: View {
                 Label(item.rawValue, systemImage: item.icon)
             }
         } detail: {
-            if vm.location != .default {
-                // if available location and sunData and viewingInterval populated then show DailyReportView, CatalogView
-                if vm.sunData != .default && vm.viewingInterval.duration != .pi {
-                    switch sidebarItem {
-                    case .report:
-                        Mac_DailyReportView()
-                            .environmentObject(vm)
-                    case .catalog:
-                        Mac_CatalogView()
-                            .environmentObject(vm)
-                    case .journal:
-                        Mac_JournalView()
+            if !reportSettings.isEmpty || !targetSettings.isEmpty {
+                if vm.location != .default {
+                    // if available location and sunData and viewingInterval populated then show DailyReportView, CatalogView
+                    if vm.sunData != .default && vm.viewingInterval.duration != .pi {
+                        switch sidebarItem {
+                        case .report:
+                            Mac_DailyReportView()
+                                .environmentObject(vm)
+                        case .catalog:
+                            Mac_CatalogView()
+                                .environmentObject(vm)
+                        case .journal:
+                            Mac_JournalView()
+                        }
                     }
-                }
-                // if available location but sunData and viewingInterval are being populated, then show a loading view
-                else {
-                    switch sidebarItem {
-                    case .report:
-                        DailyReportLoadingView()
-                            .environmentObject(vm)
-                    case .catalog:
-                        Text("Basic Catalog View")
-                    case .journal:
-                        Mac_JournalView()
+                    // if available location but sunData and viewingInterval are being populated, then show a loading view
+                    else {
+                        switch sidebarItem {
+                        case .report:
+                            DailyReportLoadingView()
+                                .environmentObject(vm)
+                        case .catalog:
+                            Text("Basic Catalog View")
+                        case .journal:
+                            Mac_JournalView()
+                        }
                     }
+                } else {
+                    // if no location available, prompt user for location
+                    Text("No Locations View: Prompt for Location")
                 }
             } else {
-                // if no location available, prompt user for location
-                Text("No Locations View: Prompt for Location")
+                // set default report settings
+                if reportSettings.isEmpty {
+                    ProgressView("Initializing")
+                        .task {
+                            let defaultSettings = ReportSettings()
+                            context.insert(defaultSettings)
+                        }
+                }
+                if targetSettings.isEmpty {
+                    ProgressView("Initializing")
+                        .task {
+                            let defaultSettings = TargetSettings()
+                            context.insert(defaultSettings)
+                        }
+                }
             }
         }
         .onReceive(locationList.publisher) { _ in

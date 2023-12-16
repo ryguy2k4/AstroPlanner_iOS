@@ -15,11 +15,6 @@ import SwiftData
     var longitude: Double = 87.6298
     var name: String = "Chicago"
     var timezone: String = "CST"
-//    var bortle: Int?
-//    var elevation: Double?
-    
-    @Relationship(.unique, deleteRule: .deny, inverse: \JournalEntry.location)
-    var journalEntries: [JournalEntry] = []
     
     init(isSelected: Bool, latitude: Double, longitude: Double, name: String, timezone: String) {
         self.isSelected = isSelected
@@ -37,8 +32,6 @@ extension SavedLocation: Encodable {
         try container.encode(longitude, forKey: .longitude)
         try container.encode(name, forKey: .name)
         try container.encode(timezone, forKey: .timezone)
-//        try container.encode(bortle, forKey: .bortle)
-//        try container.encode(elevation, forKey: .elevation)
     }
     
     enum CodingKeys: String, CodingKey {

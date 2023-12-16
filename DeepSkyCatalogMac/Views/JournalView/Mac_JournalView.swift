@@ -85,17 +85,17 @@ struct Mac_JournalView: View {
         
         NavigationView {
             List {
-                ForEach(entries) { entry in
+                ForEach($entries) { entry in
                     NavigationLink {
-                        EntryEditor(entry: $entries[entries.firstIndex(where: {$0 == entry})!])
+                        EntryEditor(entry: entry)
                     } label: {
-                        Text("\(entry.setupInterval?.start.formatted(date: .abbreviated, time: .omitted) ?? "n/a"): \(DeepSkyTargetList.targetNameDict[entry.targetID] ?? "n/a")")
+                        Text("Entry Title Placeholder")
                     }
                 }
             }
             .toolbar {
                 Button {
-                    entries.append(JournalEntry(info: self.info, log: self.log, plan: self.plan))
+//                    entries.append(JournalEntry(info: self.info, log: self.log, plan: self.plan))
                     self.info = nil
                     self.log = nil
                     self.plan = nil
