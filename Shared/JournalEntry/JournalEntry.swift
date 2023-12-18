@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 import WeatherKit
 
-class JournalEntry: Identifiable {
+class JournalEntry: Identifiable, Encodable {
     let id = UUID()
     var targetSet: [JournalTargetPlan]
     var setupInterval: DateInterval
@@ -113,18 +113,18 @@ class JournalEntry: Identifiable {
 //}
 
 struct JournalTargetPlan: Encodable {
-    var target: JournalTarget?
-    var imagingInterval: DateInterval?
-    var visibilityScore: Double?
-    var seasonScore: Double?
-    var imagePlan: JournalImagePlan?
+    var target: JournalTarget
+    var imagingInterval: DateInterval
+    var visibilityScore: Double
+    var seasonScore: Double
+    var imagePlan: JournalImagePlan
 }
 
-struct JournalImagePlan: Encodable, Hashable {
+struct JournalImagePlan: Encodable {
     var imageType: ImageType
     var filterName: String
     var exposureTime: Int
-//    var binning:
+    var binning: Binning
     var gain: Int
     var offset: Int
     var ccdTemp: Double
@@ -132,10 +132,15 @@ struct JournalImagePlan: Encodable, Hashable {
     var numUsable: Int
     
     enum ImageType: String, Encodable {
-        case light = "Light"
-        case flat = "Flat"
-        case dark = "Dark"
-        case offset = "Offset"
+        case light = "LIGHT"
+        case flat = "FLAT"
+        case dark = "DARK"
+        case offset = "OFFSET"
+    }
+    
+    struct Binning: Encodable {
+        var x: Int
+        var y: Int
     }
 }
 
@@ -166,10 +171,10 @@ struct JournalLocation: Encodable {
 }
 
 struct JournalImagingPreset: Encodable {
-    var focalLength: Double?
-    var pixelSize: Double?
-    var resolutionLength: Int?
-    var resolutionWidth: Int?
+    var focalLength: Double
+    var pixelSize: Double
+    var resolutionLength: Int
+    var resolutionWidth: Int
     
     init(focalLength: Double, pixelSize: Double, resolutionLength: Int, resolutionWidth: Int) {
         self.focalLength = focalLength
