@@ -36,7 +36,6 @@ struct CaptureSequenceList: Codable, Hashable {
     let negativeDec: Bool
     let captureSequences: [CaptureSequence]
 
-
     enum CodingKeys: String, CodingKey {
         case targetName = "TargetName"
         case mode = "Mode"
@@ -70,7 +69,7 @@ struct CaptureSequenceList: Codable, Hashable {
     
     struct CaptureSequence: Codable, Hashable {
         let enabled: Bool
-        let exposureTime: Int
+        let exposureTime: Double
         let imageType: String
         let filterType: FilterType
         let binning: Binning

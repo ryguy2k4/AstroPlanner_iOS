@@ -31,7 +31,7 @@ struct Mac_JournalView: View {
             }
         }
         .sheet(isPresented: $entryImportModal) {
-            EntryImportModal()
+            EntryImportModal(entries: $entries)
         }
     }
 }

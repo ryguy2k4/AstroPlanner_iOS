@@ -276,5 +276,98 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - db97e602803a151d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "10744">
+               </Location>
+               <Location
+                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - 34aea86983af9894"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "2456">
+               </Location>
+               <Location
+                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - ded2c9857d56da85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "2472">
+               </Location>
+               <Location
+                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - 34aea86983af9894"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "2440">
+               </Location>
+               <Location
+                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - ded2c9857d56da85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "2456">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
