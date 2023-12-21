@@ -20,10 +20,14 @@
 		711386FB29C3548C00081584 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386F629C3548C00081584 /* Filter.swift */; };
 		711386FD29C356CA00081584 /* TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386FC29C356CA00081584 /* TopFiveView.swift */; };
 		7113870329C3571400081584 /* FilterButtonMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113870229C3571400081584 /* FilterButtonMenuView.swift */; };
-		7129DEBD2B15AC9F0058B238 /* EntryEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129DEBC2B15AC9F0058B238 /* EntryEditor.swift */; };
+		7129DEBD2B15AC9F0058B238 /* EntryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129DEBC2B15AC9F0058B238 /* EntryDetailView.swift */; };
 		712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */; };
 		712E83662A60F41200CA42DD /* Mac_TopTenListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */; };
 		712E83682A60F44F00CA42DD /* ReportSettingsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */; };
+		7132A8682B339734000E2299 /* JournalImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132A8672B339734000E2299 /* JournalImportManager.swift */; };
+		7132A86A2B33A7C4000E2299 /* APTLogFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132A8692B33A7C4000E2299 /* APTLogFile.swift */; };
+		7132A86C2B33A7CF000E2299 /* EXIFMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132A86B2B33A7CF000E2299 /* EXIFMetadata.swift */; };
+		7132A86F2B34E2CA000E2299 /* EntryLocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132A86E2B34E2CA000E2299 /* EntryLocationEditor.swift */; };
 		7133FCA72ACCC26B00DB0B27 /* Mac_JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133FCA62ACCC26B00DB0B27 /* Mac_JournalView.swift */; };
 		7135117B29B2819300725B1D /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		7135117C29B2820B00725B1D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
@@ -281,10 +285,14 @@
 		711386F629C3548C00081584 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		711386FC29C356CA00081584 /* TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFiveView.swift; sourceTree = "<group>"; };
 		7113870229C3571400081584 /* FilterButtonMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonMenuView.swift; sourceTree = "<group>"; };
-		7129DEBC2B15AC9F0058B238 /* EntryEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEditor.swift; sourceTree = "<group>"; };
+		7129DEBC2B15AC9F0058B238 /* EntryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailView.swift; sourceTree = "<group>"; };
 		712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopFiveView.swift; sourceTree = "<group>"; };
 		712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopTenListView.swift; sourceTree = "<group>"; };
 		712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSettingsEditor.swift; sourceTree = "<group>"; };
+		7132A8672B339734000E2299 /* JournalImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalImportManager.swift; sourceTree = "<group>"; };
+		7132A8692B33A7C4000E2299 /* APTLogFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTLogFile.swift; sourceTree = "<group>"; };
+		7132A86B2B33A7CF000E2299 /* EXIFMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXIFMetadata.swift; sourceTree = "<group>"; };
+		7132A86E2B34E2CA000E2299 /* EntryLocationEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLocationEditor.swift; sourceTree = "<group>"; };
 		7133FCA62ACCC26B00DB0B27 /* Mac_JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_JournalView.swift; sourceTree = "<group>"; };
 		713568E92A60C661004196AE /* Mac_CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_CatalogView.swift; sourceTree = "<group>"; };
 		713568EB2A60C696004196AE /* Mac_DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_DetailView.swift; sourceTree = "<group>"; };
@@ -485,12 +493,21 @@
 			path = DetailView;
 			sourceTree = "<group>";
 		};
+		7132A8662B3396FD000E2299 /* EntryDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				7129DEBC2B15AC9F0058B238 /* EntryDetailView.swift */,
+				7132A86E2B34E2CA000E2299 /* EntryLocationEditor.swift */,
+			);
+			path = EntryDetailView;
+			sourceTree = "<group>";
+		};
 		7133FCA52ACCC24700DB0B27 /* JournalView */ = {
 			isa = PBXGroup;
 			children = (
 				7133FCA62ACCC26B00DB0B27 /* Mac_JournalView.swift */,
 				7143AF4B2B2FA61900F89484 /* EntryImportModal.swift */,
-				7129DEBC2B15AC9F0058B238 /* EntryEditor.swift */,
+				7132A8662B3396FD000E2299 /* EntryDetailView */,
 			);
 			path = JournalView;
 			sourceTree = "<group>";
@@ -529,6 +546,8 @@
 				713919312B16C8C200A5BE11 /* CaptureSequenceList.swift */,
 				714B8AC52B2D2B1A002308EC /* FITSKeywords.swift */,
 				714B8ACB2B2D38A4002308EC /* NINALogFile.swift */,
+				7132A8692B33A7C4000E2299 /* APTLogFile.swift */,
+				7132A86B2B33A7CF000E2299 /* EXIFMetadata.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -743,6 +762,7 @@
 			children = (
 				71E96D67292831AA00E019F9 /* CatalogManager.swift */,
 				716531E929340CFE00D05B79 /* DailyReport.swift */,
+				7132A8672B339734000E2299 /* JournalImportManager.swift */,
 				71FE96842956C0E700F6A4F2 /* Location */,
 				71ABF9292B21575C00384909 /* SwiftData */,
 				719B26D8295173CD00E1165A /* Network */,
@@ -1240,6 +1260,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				711386F929C3548C00081584 /* Filter.swift in Sources */,
+				7132A86A2B33A7C4000E2299 /* APTLogFile.swift in Sources */,
+				7132A86C2B33A7CF000E2299 /* EXIFMetadata.swift in Sources */,
 				71C2645C298F1D330057EC04 /* CaseNameCodable.swift in Sources */,
 				714B8AC82B2D2B1A002308EC /* FITSKeywords.swift in Sources */,
 				71A6C8FE2A5F4E0D009F1C30 /* Sun.swift in Sources */,
@@ -1271,7 +1293,7 @@
 				71C2646A298F1EF70057EC04 /* String+Ext.swift in Sources */,
 				71C26453298F1CB80057EC04 /* TargetCatalog.swift in Sources */,
 				71DF8A772A62175500923236 /* Mac_GearSettings.swift in Sources */,
-				7129DEBD2B15AC9F0058B238 /* EntryEditor.swift in Sources */,
+				7129DEBD2B15AC9F0058B238 /* EntryDetailView.swift in Sources */,
 				714B8ACE2B2D38A4002308EC /* NINALogFile.swift in Sources */,
 				713919382B16FF5800A5BE11 /* JournalEntry.swift in Sources */,
 				713919322B16C8C200A5BE11 /* CaptureSequenceList.swift in Sources */,
@@ -1281,6 +1303,7 @@
 				712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */,
 				71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */,
 				71DF8A7B2A622DF700923236 /* Mac_HiddenTargetsList.swift in Sources */,
+				7132A8682B339734000E2299 /* JournalImportManager.swift in Sources */,
 				716A19BD298F5B270025DB67 /* PlaceValue.swift in Sources */,
 				71CEEE3C2B1ED84B0072AAAE /* TargetSettings.swift in Sources */,
 				7133FCA72ACCC26B00DB0B27 /* Mac_JournalView.swift in Sources */,
@@ -1289,6 +1312,7 @@
 				71CEEE382B1ED8480072AAAE /* HiddenTarget.swift in Sources */,
 				71C26459298F1D230057EC04 /* CatalogManager.swift in Sources */,
 				71DF8A7D2A6230B000923236 /* DateFormatter+Ext.swift in Sources */,
+				7132A86F2B34E2CA000E2299 /* EntryLocationEditor.swift in Sources */,
 				71CEEE342B1ED8430072AAAE /* ReportSettings.swift in Sources */,
 				718C11F629C89A880069ECD5 /* Location.swift in Sources */,
 				71C2645A298F1D260057EC04 /* DailyReport.swift in Sources */,

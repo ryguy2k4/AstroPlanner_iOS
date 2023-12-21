@@ -101,6 +101,10 @@ extension Double {
         
         return string
     }
+    
+    func formatDecimal(sigFigs: Int = 5) -> String {
+        return self.formatted(.number.precision(.significantDigits(sigFigs)))
+    }
 }
 
 extension Optional where Wrapped == Double {

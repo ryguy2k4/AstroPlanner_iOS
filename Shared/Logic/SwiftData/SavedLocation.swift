@@ -11,17 +11,22 @@ import SwiftData
 
 @Model class SavedLocation {
     var isSelected: Bool = false
+    
+    var name: String = "Chicago"
     var latitude: Double = 41.8781
     var longitude: Double = 87.6298
-    var name: String = "Chicago"
     var timezone: String = "CST"
+    let elevation: Double? = nil
+    let bortle: Int? = nil
     
-    init(isSelected: Bool, latitude: Double, longitude: Double, name: String, timezone: String) {
+    init(isSelected: Bool, latitude: Double, longitude: Double, name: String, timezone: String, elevation: Double? = nil, bortle: Int? = nil) {
         self.isSelected = isSelected
         self.latitude = latitude
         self.longitude = longitude
         self.name = name
         self.timezone = timezone
+        self.elevation = elevation
+        self.bortle = bortle
     }
 }
 
@@ -32,6 +37,8 @@ extension SavedLocation: Encodable {
         try container.encode(longitude, forKey: .longitude)
         try container.encode(name, forKey: .name)
         try container.encode(timezone, forKey: .timezone)
+        try container.encode(elevation, forKey: .elevation)
+        try container.encode(bortle, forKey: .bortle)
     }
     
     enum CodingKeys: String, CodingKey {

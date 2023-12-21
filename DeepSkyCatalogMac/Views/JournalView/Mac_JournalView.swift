@@ -18,7 +18,7 @@ struct Mac_JournalView: View {
                     NavigationLink {
                         EntryEditor(entry: entry)
                     } label: {
-                        Text("Entry Title Placeholder")
+                        Text(entry.target.wrappedValue?.targetID.name ?? "placeholder")
                     }
                 }
             }

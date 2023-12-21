@@ -9,57 +9,49 @@ import Foundation
 import SwiftData
 import WeatherKit
 
-class JournalEntry: Identifiable, Codable {
+class JournalEntry: Identifiable, Encodable {
     let id = UUID()
-    var targetSet: [JournalTargetPlan]
+    // Session Specific
     var setupInterval: DateInterval?
     var weather: [HourWeather]?
     var moonIllumination: Double?
-    var location: JournalLocation?
+    var location: Location?
     var gear: JournalImagingPreset?
     var tags: [JournalTags]
+    // Target Specific
+    var target: JournalTarget?
+    var imagingInterval: DateInterval?
+    var visibilityScore: Double?
+    var seasonScore: Double?
+    var imagePlan: [JournalImageSequence]?
     
-    init(targetSet: [JournalTargetPlan] = [], setupInterval: DateInterval? = nil, weather: [HourWeather]? = nil, moonIllumination: Double? = nil, location: JournalLocation? = nil, gear: JournalImagingPreset? = nil, tags: [JournalTags] = []) {
-        self.targetSet = targetSet
+    init(setupInterval: DateInterval? = nil, weather: [HourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalImagingPreset? = nil, tags: [JournalTags] = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
         self.setupInterval = setupInterval
         self.weather = weather
         self.moonIllumination = moonIllumination
         self.location = location
         self.gear = gear
         self.tags = tags
+        self.target = target
+        self.imagingInterval = imagingInterval
+        self.visibilityScore = visibilityScore
+        self.seasonScore = seasonScore
+        self.imagePlan = imagePlan
     }
-}
-
-struct JournalTargetPlan: Codable {
-    var target: JournalTarget?
-    var imagingInterval: DateInterval?
-    var visibilityScore: Double?
-    var seasonScore: Double?
-    var imagePlan: [JournalImageSequence]?
 }
 
 struct JournalImageSequence: Codable, Hashable {
-    var imageType: ImageType?
+    var imageType: String?
     var filterName: String?
     var exposureTime: Double?
-    var binning: Binning?
+    var binX: Int?
+    var binY: Int?
     var gain: Int?
     var offset: Int?
-    var ccdTemp: Double?
     var numCaptured: Int?
     var numUsable: Int?
-    
-    enum ImageType: String, Codable, Hashable {
-        case light = "LIGHT"
-        case flat = "FLAT"
-        case dark = "DARK"
-        case offset = "OFFSET"
-    }
-    
-    struct Binning: Codable, Hashable {
-        var x: Int
-        var y: Int
-    }
+    var ccdTemp: [Double]?
+    var airmass: [Double]?
 }
 
 struct JournalTarget: Codable {
@@ -91,22 +83,6 @@ struct JournalTarget: Codable {
                 }
             }
         }
-    }
-}
-
-struct JournalLocation: Codable {
-    var latitude: Double
-    var longitude: Double
-    var timezone: String
-    var elevation: Double?
-    var bortle: Int?
-    
-    init(latitude: Double, longitude: Double, timezone: String, elevation: Double? = nil, bortle: Int? = nil) {
-        self.latitude = latitude
-        self.longitude = longitude
-        self.timezone = timezone
-        self.elevation = elevation
-        self.bortle = bortle
     }
 }
 

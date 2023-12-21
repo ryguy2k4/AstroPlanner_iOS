@@ -279,92 +279,127 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8"
+            uuid = "37BE163C-2B0D-476E-B65B-B7688857FC0C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+            filePath = "Shared/JournalEntry/Sources/APTLogFile.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init?(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF27B05D-A240-4A8A-893A-E9E928AB320D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/JournalEntry/Sources/APTLogFile.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "init?(from:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - db97e602803a151d"
+                  uuid = "DF27B05D-A240-4A8A-893A-E9E928AB320D - 1c7b764baa9f1e89"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
+                  symbolName = "DeepSkyCatalogMac.APTLogFile.init(from: Foundation.URL) -&gt; Swift.Optional&lt;DeepSkyCatalogMac.APTLogFile&gt;"
                   moduleName = "DeepSkyCatalogMac"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/JournalEntry/Sources/APTLogFile.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "10744">
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "1128">
                </Location>
                <Location
-                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - 34aea86983af9894"
+                  uuid = "DF27B05D-A240-4A8A-893A-E9E928AB320D - 6a9c838ec618f903"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
+                  symbolName = "closure #1 (Swift.String) -&gt; Swift.Bool in DeepSkyCatalogMac.APTLogFile.init(from: Foundation.URL) -&gt; Swift.Optional&lt;DeepSkyCatalogMac.APTLogFile&gt;"
                   moduleName = "DeepSkyCatalogMac"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/JournalEntry/Sources/APTLogFile.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "2456">
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37902632-E907-496D-A275-769771C793AF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/JournalEntry/Sources/APTLogFile.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "init?(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8C860A05-7144-48AA-925C-94B8F9156249"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/JournalEntry/Sources/APTLogFile.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "init?(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8C860A05-7144-48AA-925C-94B8F9156249 - 1c7b764baa9f1eea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DeepSkyCatalogMac.APTLogFile.init(from: Foundation.URL) -&gt; Swift.Optional&lt;DeepSkyCatalogMac.APTLogFile&gt;"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/JournalEntry/Sources/APTLogFile.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "1536">
                </Location>
                <Location
-                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - ded2c9857d56da85"
+                  uuid = "8C860A05-7144-48AA-925C-94B8F9156249 - 7fce784bb0c32361"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
+                  symbolName = "closure #2 (Swift.String) -&gt; Swift.Bool in DeepSkyCatalogMac.APTLogFile.init(from: Foundation.URL) -&gt; Swift.Optional&lt;DeepSkyCatalogMac.APTLogFile&gt;"
                   moduleName = "DeepSkyCatalogMac"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/JournalEntry/Sources/APTLogFile.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "2472">
-               </Location>
-               <Location
-                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - 34aea86983af9894"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "2440">
-               </Location>
-               <Location
-                  uuid = "1EE7D8E9-6D49-4F8E-A92C-255D13FAF7B8 - ded2c9857d56da85"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeepSkyCatalogMac.EntryImportModal.body.getter : some"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryImportModal.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "2456">
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "48">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -9,9 +9,11 @@ import Foundation
 import CoreLocation
 
 struct Location: Hashable, Equatable, Codable {
-    let latitude: Double
-    let longitude: Double
-    let timezone: TimeZone
+    var latitude: Double
+    var longitude: Double
+    var timezone: TimeZone
+    var elevation: Double?
+    var bortle: Int?
     
     let source: LocationSource
     
@@ -37,6 +39,8 @@ struct Location: Hashable, Equatable, Codable {
         self.latitude = saved.latitude
         self.longitude = saved.longitude
         self.timezone = TimeZone(identifier: saved.timezone) ?? .gmt
+        self.elevation = saved.elevation
+        self.bortle = saved.bortle
         self.source = .saved(saved.name)
     }
     
@@ -44,6 +48,8 @@ struct Location: Hashable, Equatable, Codable {
         self.latitude = current.coordinate.latitude
         self.longitude = current.coordinate.longitude
         self.timezone = Calendar.current.timeZone
+        self.elevation = current.altitude.magnitude
+        self.bortle = nil
         self.source = .current
     }
     
