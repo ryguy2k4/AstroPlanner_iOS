@@ -54,6 +54,7 @@
 		7162D34B2964DBF1007C8710 /* DeepSkyCatalogWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
 		7162D3512964E909007C8710 /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
+		7164C7A82B3672620002B492 /* EntryIntervalEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164C7A72B3672620002B492 /* EntryIntervalEditor.swift */; };
 		7164CECC29BE4E72000A154A /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7164CECB29BE4E72000A154A /* Intents.framework */; };
 		7164CECF29BE4E72000A154A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CECE29BE4E72000A154A /* IntentHandler.swift */; };
 		7164CED329BE4E72000A154A /* DeepSkyCatalogIntents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7164CECA29BE4E72000A154A /* DeepSkyCatalogIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -313,6 +314,7 @@
 		7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSkyCatalogWidgetBundle.swift; sourceTree = "<group>"; };
 		7162D3442964DBF1007C8710 /* ReportListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListWidget.swift; sourceTree = "<group>"; };
 		7162D3482964DBF1007C8710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7164C7A72B3672620002B492 /* EntryIntervalEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryIntervalEditor.swift; sourceTree = "<group>"; };
 		7164CECA29BE4E72000A154A /* DeepSkyCatalogIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeepSkyCatalogIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7164CECB29BE4E72000A154A /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		7164CECE29BE4E72000A154A /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 			children = (
 				7129DEBC2B15AC9F0058B238 /* EntryDetailView.swift */,
 				7132A86E2B34E2CA000E2299 /* EntryLocationEditor.swift */,
+				7164C7A72B3672620002B492 /* EntryIntervalEditor.swift */,
 			);
 			path = EntryDetailView;
 			sourceTree = "<group>";
@@ -1267,6 +1270,7 @@
 				71A6C8FE2A5F4E0D009F1C30 /* Sun.swift in Sources */,
 				71C26454298F1CBA0057EC04 /* TargetType.swift in Sources */,
 				713568EA2A60C661004196AE /* Mac_CatalogView.swift in Sources */,
+				7164C7A82B3672620002B492 /* EntryIntervalEditor.swift in Sources */,
 				71C26461298F1D4D0057EC04 /* FetchError.swift in Sources */,
 				71DF8A732A61FB5F00923236 /* Mac_AboutView.swift in Sources */,
 				71701E782B182DCE007992B8 /* JournalEntryList.swift in Sources */,

@@ -14,11 +14,11 @@ struct Mac_JournalView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach($entries) { entry in
+                ForEach(entries) { entry in
                     NavigationLink {
-                        EntryEditor(entry: entry)
+                        EntryDetailView(entry: entry)
                     } label: {
-                        Text(entry.target.wrappedValue?.targetID.name ?? "placeholder")
+                        Text(entry.target?.targetID.name ?? "placeholder")
                     }
                 }
             }

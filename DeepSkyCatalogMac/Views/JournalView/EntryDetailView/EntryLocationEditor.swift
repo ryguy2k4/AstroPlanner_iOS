@@ -6,26 +6,39 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct EntryLocationEditor: View {
     @Environment(\.dismiss) var dismiss
+    @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]
     @Binding var location: Location?
+    @State var locationProxy: Location
+    
+    init(location: Binding<Location?>) {
+        self._location = location
+        self._locationProxy = State(initialValue: location.wrappedValue ?? Location.default)
+    }
+    
     var body: some View {
         VStack {
-            if let location = Binding($location) {
-                TextField("Latitude", value: location.latitude, format: .number)
-                TextField("Longitude", value: location.longitude, format: .number)
-            } else {
-                ProgressView("Wait")
-                    .onAppear {
-                        self.location = Location.default
-                    }
+            TextField("Latitude", value: $locationProxy.latitude, format: .number)
+            TextField("Longitude", value: $locationProxy.longitude, format: .number)
+            Picker("Location", selection: $locationProxy) {
+                ForEach(locationList) { saved in
+                    Text(saved.name).tag(Location(saved: saved))
+                }
             }
         }
         .padding()
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
+                    self.location = self.locationProxy
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
                     dismiss()
                 }
             }

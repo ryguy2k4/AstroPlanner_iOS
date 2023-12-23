@@ -9,21 +9,21 @@ import Foundation
 import SwiftData
 import WeatherKit
 
-class JournalEntry: Identifiable, Encodable {
+class JournalEntry: Identifiable, ObservableObject {
     let id = UUID()
     // Session Specific
-    var setupInterval: DateInterval?
-    var weather: [HourWeather]?
-    var moonIllumination: Double?
-    var location: Location?
-    var gear: JournalImagingPreset?
-    var tags: [JournalTags]
+    @Published var setupInterval: DateInterval?
+    @Published var weather: [HourWeather]?
+    @Published var moonIllumination: Double?
+    @Published var location: Location?
+    @Published var gear: JournalImagingPreset?
+    @Published var tags: [JournalTags]
     // Target Specific
-    var target: JournalTarget?
-    var imagingInterval: DateInterval?
-    var visibilityScore: Double?
-    var seasonScore: Double?
-    var imagePlan: [JournalImageSequence]?
+    @Published var target: JournalTarget?
+    @Published var imagingInterval: DateInterval?
+    @Published var visibilityScore: Double?
+    @Published var seasonScore: Double?
+    @Published var imagePlan: [JournalImageSequence]?
     
     init(setupInterval: DateInterval? = nil, weather: [HourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalImagingPreset? = nil, tags: [JournalTags] = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
         self.setupInterval = setupInterval

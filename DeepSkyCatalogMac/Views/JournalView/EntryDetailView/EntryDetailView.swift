@@ -10,12 +10,9 @@ import SwiftData
 import WeatherKit
 
 struct EntryDetailView: View {
-    @Binding var entry: JournalEntry
+    @ObservedObject var entry: JournalEntry
     @State var locationEditor = false
-    
-    init(entry: Binding<JournalEntry>) {
-        self._entry = entry
-    }
+    @State var editing = true
     
     var body: some View {
         ScrollView {
@@ -30,8 +27,8 @@ struct EntryDetailView: View {
                             Text("nil setup interval")
                         }
                     } editor: {
-                        Text("Placeholder")
-                    }
+                        EntryIntervalEditor(interval: $entry.setupInterval)
+                    }.disabled(!editing)
                     
                     // Location Picker
                     EntrySection(title: "Location") {
@@ -43,7 +40,7 @@ struct EntryDetailView: View {
                         }
                     } editor: {
                         EntryLocationEditor(location: $entry.location)
-                    }
+                    }.disabled(!editing)
                     
                     // Gear Picker
                     EntrySection(title: "Gear") {
@@ -55,7 +52,7 @@ struct EntryDetailView: View {
                         }
                     } editor: {
                         Text("Placeholder")
-                    }
+                    }.disabled(!editing)
                     
                     // WeatherKit Data
                     EntrySection(title: "Weather") {
@@ -68,19 +65,21 @@ struct EntryDetailView: View {
                         } else {
                             Text("nil weather")
                         }
-                    } editor: {
-                        Text("Placeholder")
-                    }
+                    }.disabled(true)
                     
                     // Target
                     EntrySection(title: "Target") {
-                        HStack {
-                            Text(entry.target!.targetID.name)
-//                            TargetIDSearchField(searchText: $targetID)
+                        if let target = entry.target {
+                            HStack {
+                                Text(target.targetID.name )
+//                                TargetIDSearchField(searchText: $targetID)
+                            }
+                        } else {
+                            Text("nil target")
                         }
                     } editor: {
                         Text("Placeholder")
-                    }
+                    }.disabled(!editing)
                     
                     // Imaging Interval Pickers
                     EntrySection(title: "Imaging Interval") {
@@ -91,8 +90,8 @@ struct EntryDetailView: View {
                             Text("nil imaging interval")
                         }
                     } editor: {
-                        Text("Placeholder")
-                    }
+                        EntryIntervalEditor(interval: $entry.imagingInterval)
+                    }.disabled(!editing)
                     
                     // Scores
                     EntrySection(title: "Scores") {
@@ -102,9 +101,7 @@ struct EntryDetailView: View {
                         } else {
                             Text("nil scores")
                         }
-                    } editor: {
-                        Text("Placeholder")
-                    }
+                    }.disabled(true)
                     
                     // Image Plan Fields
                     EntrySection(title: "Image Plan") {
@@ -121,23 +118,31 @@ struct EntryDetailView: View {
                         }
                     } editor: {
                         Text("Placeholder")
-                    }
+                    }.disabled(!editing)
                     Spacer()
                 }
                 .padding(.leading)
                 Spacer()
+            }
+            .toolbar {
+                ToolbarItem {
+                    Button("Edit") {
+                        editing.toggle()
+                    }
+                }
             }
         }
     }
 }
 
 struct EntrySection<Modal: View, Content: View>: View {
+    @Environment(\.isEnabled) var isEnabled
     @State var editorPresented = false
     let title: String
     private var editor: Modal
     private var content: Content
 
-    init(title: String, @ViewBuilder content: () -> Content, @ViewBuilder editor: () -> Modal) {
+    init(title: String, @ViewBuilder content: () -> Content, @ViewBuilder editor: () -> Modal = { EmptyView() }) {
         self.title = title
         self.content = content()
         self.editor = editor()
@@ -147,10 +152,12 @@ struct EntrySection<Modal: View, Content: View>: View {
             content
         } header: {
             HStack {
-                Button {
-                    editorPresented = true
-                } label: {
-                    Image(systemName: "square.and.pencil")
+                if isEnabled {
+                    Button {
+                        editorPresented = true
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                    }
                 }
                 Text(title)
                     .font(.title3)
