@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct TargetCuratorView: View {
     @State var objects = DeepSkyTargetList.allTargets
     @State var objectIndex = 0
     var body: some View {
@@ -33,16 +33,11 @@ struct ContentView: View {
                         Text("Delete Object")
                     }
                 }
-                List {
-                    ForEach(Array(objects.enumerated()), id: \.element) { index, object in
-                        NavigationLink {
-                            TargetEditor(target: $objects[index])
-                                .onAppear() {
-                                    self.objectIndex = index
-                                }
-                        } label: {
-                            TargetCell(target: object)
-                        }
+                List(objects.indices, id: \.self, selection: $objectIndex) { index in
+                    NavigationLink {
+                        TargetEditor(target: $objects[index])
+                    } label: {
+                        TargetCell(target: objects[index])
                     }
                 }
             }
@@ -101,11 +96,5 @@ private struct SearchBar: View {
         .frame(height: 40)
         .cornerRadius(13)
         .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

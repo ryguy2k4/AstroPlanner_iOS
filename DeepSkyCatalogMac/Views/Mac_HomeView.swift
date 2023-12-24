@@ -31,13 +31,23 @@ struct Mac_HomeView: View {
         case report = "Daily Report"
         case catalog = "Master Catalog"
         case journal = "Journal"
+        case curator = "Curator"
         
         var icon: String {
             switch self {
             case .report: return "doc.text"
             case .catalog: return "tray.full.fill"
-            case .journal: return "doc.text"
+            case .journal: return "doc.richtext"
+            case .curator: return "sparkles"
             }
+        }
+        
+        static var enabledViews: [Self] {
+            #if DEBUG
+            return Self.allCases
+            #else
+            return [.report, .catalog, .journal]
+            #endif
         }
     }
     
@@ -47,7 +57,7 @@ struct Mac_HomeView: View {
     
     var body: some View {
         NavigationSplitView(columnVisibility: $sidebarVisibility) {
-            List(SidebarItem.allCases, selection: $sidebarItem) { item in
+            List(SidebarItem.enabledViews, selection: $sidebarItem) { item in
                 Label(item.rawValue, systemImage: item.icon)
             }
         } detail: {
@@ -64,6 +74,8 @@ struct Mac_HomeView: View {
                                 .environmentObject(vm)
                         case .journal:
                             Mac_JournalView()
+                        case .curator:
+                            TargetCuratorView()
                         }
                     }
                     // if available location but sunData and viewingInterval are being populated, then show a loading view
@@ -76,6 +88,8 @@ struct Mac_HomeView: View {
                             Text("Basic Catalog View")
                         case .journal:
                             Mac_JournalView()
+                        case .curator:
+                            EmptyView()
                         }
                     }
                 } else {
