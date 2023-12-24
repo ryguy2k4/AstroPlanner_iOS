@@ -13,7 +13,7 @@ struct TargetIDSearchField: View {
     var body: some View {
         TextField("", text: $searchText)
             .frame(width: 300)
-            .onChange(of: searchText) { newValue in
+            .onChange(of: searchText) {
                 isPopover = true
             }
             .popover(isPresented: $isPopover) {

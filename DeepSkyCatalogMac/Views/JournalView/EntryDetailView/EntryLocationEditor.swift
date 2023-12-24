@@ -23,7 +23,9 @@ struct EntryLocationEditor: View {
         VStack {
             TextField("Latitude", value: $locationProxy.latitude, format: .number)
             TextField("Longitude", value: $locationProxy.longitude, format: .number)
-            Picker("Location", selection: $locationProxy) {
+            TextField("Elevation", value: $locationProxy.elevation, format: .number)
+            TextField("Bortle", value: $locationProxy.bortle, format: .number)
+            Picker("Saved:", selection: $locationProxy) {
                 ForEach(locationList) { saved in
                     Text(saved.name).tag(Location(saved: saved))
                 }
@@ -33,8 +35,13 @@ struct EntryLocationEditor: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
-                    self.location = self.locationProxy
-                    dismiss()
+                    LocationManager.getTimeZone(location: locationProxy.clLocation) { timezone in
+                        if let timezone = timezone {
+                            locationProxy.timezone = timezone
+                        }
+                        self.location = self.locationProxy
+                        dismiss()
+                    }
                 }
             }
             ToolbarItem(placement: .cancellationAction) {

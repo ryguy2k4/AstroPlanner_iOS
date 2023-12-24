@@ -65,7 +65,12 @@ final class JournalImportManager {
         let imagePlan: [JournalImageSequence] = ninaImagePlan.captureSequences.map({JournalImageSequence(imageType: $0.imageType, filterName: $0.filterType.name, exposureTime: $0.exposureTime, binX: $0.binning.x, binY: $0.binning.y, gain: $0.gain, offset: $0.offset, numCaptured: $0.progressExposureCount, numUsable: fitsMetadata.count, ccdTemp: ccdTemp, airmass: airMass)})
         
         // Create Location
-        let location = Location(current: .init(latitude: fitsMetadata.first!.latitude, longitude: fitsMetadata.first!.longitude))
+        var location = Location(latitude: fitsMetadata.first!.latitude, longitude: fitsMetadata.first!.longitude, elevation: fitsMetadata.first!.elevation)
+        LocationManager.getTimeZone(location: location.clLocation) { zone in
+            if let zone {
+                location.timezone = zone
+            }
+        }
         
         // Create Date Intervals
         let setupInterval = DateInterval(start: ninaLog.startUpDate, end: ninaLog.lastLineDate)
@@ -77,7 +82,7 @@ final class JournalImportManager {
         let seasonScore = dso?.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
         
         // Create Imaging Preset
-        let journalGear = JournalImagingPreset(focalLength: fitsMetadata.first!.focalLength, pixelSize: fitsMetadata.first!.pixelSizeX, resolutionLength: fitsMetadata.first!.resolutionLength, resolutionWidth: fitsMetadata.first!.resolutionWidth)
+        let journalGear = JournalGear(focalLength: fitsMetadata.first!.focalLength, pixelSize: fitsMetadata.first!.pixelSizeX, resolutionLength: fitsMetadata.first!.resolutionLength, resolutionWidth: fitsMetadata.first!.resolutionWidth, telescopeName: fitsMetadata.first!.telescopeName, filterWheelName: fitsMetadata.first!.filterWheelName, mountName: nil, cameraName: fitsMetadata.first!.cameraName, captureSoftware: fitsMetadata.first!.creationSoftware)
         
         // Create Weather Data
         let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
@@ -104,7 +109,7 @@ final class JournalImportManager {
         let imagingInterval = DateInterval(start: fitsMetadata.first!.date, end: fitsMetadata.last!.date)
         
         // Create Imaging Preset
-        let journalGear = JournalImagingPreset(focalLength: fitsMetadata.first!.focalLength, pixelSize: fitsMetadata.first!.pixelSizeX, resolutionLength: fitsMetadata.first!.resolutionLength, resolutionWidth: fitsMetadata.first!.resolutionWidth)
+        let journalGear = JournalGear(focalLength: fitsMetadata.first!.focalLength, pixelSize: fitsMetadata.first!.pixelSizeX, resolutionLength: fitsMetadata.first!.resolutionLength, resolutionWidth: fitsMetadata.first!.resolutionWidth, telescopeName: fitsMetadata.first!.telescopeName, filterWheelName: fitsMetadata.first!.filterWheelName, mountName: nil, cameraName: fitsMetadata.first!.cameraName, captureSoftware: fitsMetadata.first!.creationSoftware)
         
         // Create Weather Data
         let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))

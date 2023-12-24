@@ -16,7 +16,7 @@ class JournalEntry: Identifiable, ObservableObject {
     @Published var weather: [HourWeather]?
     @Published var moonIllumination: Double?
     @Published var location: Location?
-    @Published var gear: JournalImagingPreset?
+    @Published var gear: JournalGear?
     @Published var tags: [JournalTags]
     // Target Specific
     @Published var target: JournalTarget?
@@ -25,7 +25,7 @@ class JournalEntry: Identifiable, ObservableObject {
     @Published var seasonScore: Double?
     @Published var imagePlan: [JournalImageSequence]?
     
-    init(setupInterval: DateInterval? = nil, weather: [HourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalImagingPreset? = nil, tags: [JournalTags] = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
+    init(setupInterval: DateInterval? = nil, weather: [HourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalGear? = nil, tags: [JournalTags] = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
         self.setupInterval = setupInterval
         self.weather = weather
         self.moonIllumination = moonIllumination
@@ -60,7 +60,7 @@ struct JournalTarget: Codable {
     var centerDEC: Double?
     var rotation: Double?
     
-    enum TargetID: Codable {
+    enum TargetID: Codable, Equatable {
         case catalog(id: UUID)
         case custom(name: String)
         
@@ -86,17 +86,31 @@ struct JournalTarget: Codable {
     }
 }
 
-struct JournalImagingPreset: Codable {
+struct JournalGear: Codable, Hashable {
+    // Quantitative
     var focalLength: Double
     var pixelSize: Double
     var resolutionLength: Int
     var resolutionWidth: Int
+    // Qualitative
+    var telescopeName: String?
+    var filterWheelName: String?
+    var mountName: String?
+    var cameraName: String?
+    var captureSoftware: String?
     
-    init(focalLength: Double, pixelSize: Double, resolutionLength: Int, resolutionWidth: Int) {
+    static let `default`: JournalGear = .init(focalLength: 0, pixelSize: 0, resolutionLength: 0, resolutionWidth: 0)
+    
+    init(focalLength: Double, pixelSize: Double, resolutionLength: Int, resolutionWidth: Int, telescopeName: String? = nil, filterWheelName: String? = nil, mountName: String? = nil, cameraName: String? = nil, captureSoftware: String? = nil) {
         self.focalLength = focalLength
         self.pixelSize = pixelSize
         self.resolutionLength = resolutionLength
         self.resolutionWidth = resolutionWidth
+        self.telescopeName = telescopeName
+        self.filterWheelName = filterWheelName
+        self.mountName = mountName
+        self.cameraName = cameraName
+        self.captureSoftware = captureSoftware
     }
     
     init(from saved: ImagingPreset) {

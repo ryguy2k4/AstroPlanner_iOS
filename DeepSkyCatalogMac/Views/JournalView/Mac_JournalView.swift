@@ -10,17 +10,12 @@ import SwiftUI
 struct Mac_JournalView: View {
     @State var entries: [JournalEntry] = []
     @State var entryImportModal: Bool = false
+    @State var entryIndex: Int = 0
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(entries) { entry in
-                    NavigationLink {
-                        EntryDetailView(entry: entry)
-                    } label: {
-                        Text(entry.target?.targetID.name ?? "placeholder")
-                    }
-                }
+        NavigationSplitView {
+            List(entries.indices, id: \.self, selection: $entryIndex) { index in
+                Text(entries[index].target?.targetID.name ?? "No Target")
             }
             .toolbar {
                 Button {
@@ -28,10 +23,21 @@ struct Mac_JournalView: View {
                 } label: {
                     Image(systemName: "plus.circle")
                 }
+                Button {
+                    entries.remove(at: entryIndex)
+                } label: {
+                    Image(systemName: "trash")
+                }
             }
-        }
-        .sheet(isPresented: $entryImportModal) {
-            EntryImportModal(entries: $entries)
+            .sheet(isPresented: $entryImportModal) {
+                EntryImportModal(entries: $entries)
+            }
+        } detail: {
+            if !entries.isEmpty {
+                EntryDetailView(entry: entries[entryIndex])
+            } else {
+                Text("Create an Entry")
+            }
         }
     }
 }

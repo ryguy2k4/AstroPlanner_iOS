@@ -86,7 +86,7 @@ struct LocationEditor: View {
                         }
                         
                         // automatically update timezone when latitude and longitude are entered
-                        .onChange(of: latitude) { newValue in
+                        .onChange(of: latitude) { _, newValue in
                             if let lat = newValue, let long = longitude {
                                 let location = CLLocation(latitude: lat, longitude: long)
                                 LocationManager.getTimeZone(location: location) { timezone in
@@ -96,7 +96,7 @@ struct LocationEditor: View {
                                 }
                             }
                         }
-                        .onChange(of: longitude) { newValue in
+                        .onChange(of: longitude) { _, newValue in
                             if let long = newValue, let lat = latitude {
                                 let location = CLLocation(latitude: lat, longitude: long)
                                 LocationManager.getTimeZone(location: location) { timezone in
@@ -166,7 +166,7 @@ struct LocationEditor: View {
                             }
                             timezone = Calendar.current.timeZone
                         }
-                        .onChange(of: locationManager.latestLocation) { latestLocation in
+                        .onChange(of: locationManager.latestLocation) { _, latestLocation in
                             if let latestLocation = latestLocation {
                                 latitude = latestLocation.coordinate.latitude
                                 longitude = latestLocation.coordinate.longitude

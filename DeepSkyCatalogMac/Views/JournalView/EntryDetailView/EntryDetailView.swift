@@ -21,8 +21,8 @@ struct EntryDetailView: View {
                     // Setup Interval Pickers
                     EntrySection(title: "Setup Interval") {
                         if let setupInterval = entry.setupInterval {
-                            Text("\(setupInterval.start.formatted(date: .numeric, time: .standard))")
-                            Text("\(setupInterval.end.formatted(date: .numeric, time: .standard))")
+                            LabeledText(label: "Start", value: "\(setupInterval.start.formatted(date: .numeric, time: .standard))")
+                            LabeledText(label: "End", value: "\(setupInterval.end.formatted(date: .numeric, time: .standard))")
                         } else {
                             Text("nil setup interval")
                         }
@@ -33,8 +33,12 @@ struct EntryDetailView: View {
                     // Location Picker
                     EntrySection(title: "Location") {
                         if let location = entry.location {
-                            Text("\(location.latitude.formatDecimal())")
-                            Text("\(location.longitude.formatDecimal())")
+                            LabeledText(label: "Name:", value: "\(location.name)")
+                            LabeledText(label: "Latitude:", value: "\(location.latitude.formatDecimal())")
+                            LabeledText(label: "Longitude:", value: "\(location.longitude.formatDecimal())")
+                            LabeledText(label: "Timezone:", value: "\(location.timezone.identifier)")
+                            LabeledText(label: "Elevation:", value: location.elevation?.description)
+                            LabeledText(label: "Bortle:", value: location.bortle?.description)
                         } else {
                             Text("nil location")
                         }
@@ -45,23 +49,29 @@ struct EntryDetailView: View {
                     // Gear Picker
                     EntrySection(title: "Gear") {
                         if let gear = entry.gear {
-                            Text("\(gear.focalLength.formatDecimal())")
-                            Text("\(gear.pixelSize.formatDecimal())")
+                            LabeledText(label: "Telescope:", value: gear.telescopeName)
+                            LabeledText(label: "Focal Length:", value: "\(gear.focalLength.formatDecimal())")
+                            LabeledText(label: "Camera:", value: gear.cameraName)
+                            LabeledText(label: "Pixel Size:", value: "\(gear.pixelSize.formatDecimal())")
+                            LabeledText(label: "Length:", value: "\(gear.resolutionLength)")
+                            LabeledText(label: "Width:", value: "\(gear.resolutionWidth)")
+                            LabeledText(label: "Filter Wheel:", value: gear.filterWheelName)
+                            LabeledText(label: "Mount:", value: gear.mountName)
                         } else {
                             Text("nil gear")
                         }
                     } editor: {
-                        Text("Placeholder")
+                        EntryGearEditor(gear: $entry.gear)
                     }.disabled(!editing)
                     
                     // WeatherKit Data
                     EntrySection(title: "Weather") {
                         if let weather = entry.weather, let moonIllumination = entry.moonIllumination {
-                            Text("Temp: \(weather.map({$0.temperature.converted(to: .fahrenheit).value}).mean().formatDecimal())")
-                            Text("Wind: \(weather.map({$0.wind.speed.converted(to: .milesPerHour).value}).mean().formatDecimal())")
-                            Text("Dew Point: \(weather.map({$0.dewPoint.converted(to: .fahrenheit).value}).mean().formatDecimal())")
-                            Text("Cloud Cover: \(weather.map({$0.cloudCover}).mean().percent())")
-                            Text("Moon Illumination: \(moonIllumination.percent())")
+                            LabeledText(label: "Temp:", value: "\(weather.map({$0.temperature.converted(to: .fahrenheit).value}).mean().formatDecimal())")
+                            LabeledText(label: "Wind:", value: "\(weather.map({$0.wind.speed.converted(to: .milesPerHour).value}).mean().formatDecimal())")
+                            LabeledText(label: "Dew Point:", value: "\(weather.map({$0.dewPoint.converted(to: .fahrenheit).value}).mean().formatDecimal())")
+                            LabeledText(label: "Cloud Cover:", value: "\(weather.map({$0.cloudCover}).mean().percent())")
+                            LabeledText(label: "Moon Illumination:", value: "\(moonIllumination.percent())")
                         } else {
                             Text("nil weather")
                         }
@@ -70,22 +80,22 @@ struct EntryDetailView: View {
                     // Target
                     EntrySection(title: "Target") {
                         if let target = entry.target {
-                            HStack {
-                                Text(target.targetID.name )
-//                                TargetIDSearchField(searchText: $targetID)
-                            }
+                            LabeledText(label: "Name:", value: target.targetID.name)
+                            LabeledText(label: "Center RA:", value: target.centerRA?.description)
+                            LabeledText(label: "Center DEC:", value: target.centerDEC?.description)
+                            LabeledText(label: "Rotation:", value: target.rotation?.description)
                         } else {
                             Text("nil target")
                         }
                     } editor: {
-                        Text("Placeholder")
+                        EntryTargetEditor(target: $entry.target)
                     }.disabled(!editing)
                     
                     // Imaging Interval Pickers
                     EntrySection(title: "Imaging Interval") {
                         if let imagingInterval = entry.imagingInterval {
-                            Text("\(imagingInterval.start.formatted(date: .numeric, time: .standard))")
-                            Text("\(imagingInterval.end.formatted(date: .numeric, time: .standard))")
+                            LabeledText(label: "Start", value: "\(imagingInterval.start.formatted(date: .numeric, time: .standard))")
+                            LabeledText(label: "End", value: "\(imagingInterval.end.formatted(date: .numeric, time: .standard))")
                         } else {
                             Text("nil imaging interval")
                         }
@@ -96,8 +106,8 @@ struct EntryDetailView: View {
                     // Scores
                     EntrySection(title: "Scores") {
                         if let seasonScore = entry.seasonScore, let visibilityScore = entry.visibilityScore {
-                            Text("Season Score: \(seasonScore.percent())")
-                            Text("Visibility Score: \(visibilityScore.percent())")
+                            LabeledText(label: "Season Score:", value: "\(seasonScore.percent())")
+                            LabeledText(label: "Visibility Score:", value: "\(visibilityScore.percent())")
                         } else {
                             Text("nil scores")
                         }
@@ -105,13 +115,18 @@ struct EntryDetailView: View {
                     
                     // Image Plan Fields
                     EntrySection(title: "Image Plan") {
-                        HStack {
+                        VStack {
                             if let imagePlan = entry.imagePlan {
                                 ForEach(imagePlan, id: \.filterName) { sequence in
-                                    VStack {
-                                        Text(sequence.filterName!)
+                                    HStack {
+                                        Text(sequence.imageType ?? "")
+                                        Text(sequence.filterName ?? "")
+                                        Text("\(sequence.exposureTime ?? .nan)")
+                                        Text("\(sequence.binX ?? 1)x\(sequence.binY ?? 1)")
+                                        Text(sequence.gain?.description ?? "")
+                                        Text(sequence.offset?.description ?? "")
+                                        Text("\(sequence.numUsable ?? 0)")
                                         Text("\(sequence.numCaptured ?? 0)")
-                                        Text("\(sequence.exposureTime ?? 0)")
                                     }
                                 }
                             }
@@ -131,6 +146,73 @@ struct EntryDetailView: View {
                     }
                 }
             }
+            .onChange(of: entry.location) { _, newLocation in
+                Task {
+                    if let newLocation = newLocation, let setupInterval = entry.setupInterval {
+                        let newWeather = try? await WeatherService().weather(for: newLocation.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
+                        entry.weather = newWeather?.forecast
+                        
+                        if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}) {
+                            let sunData = Sun.sol.getNextInterval(location: newLocation, date: setupInterval.start.startOfLocalDay(timezone: newLocation.timezone))
+                            entry.visibilityScore = target.getVisibilityScore(at: newLocation, viewingInterval: setupInterval, sunData: sunData, limitingAlt: 0)
+                            entry.seasonScore = target.getSeasonScore(at: newLocation, on: setupInterval.start.startOfLocalDay(timezone: newLocation.timezone), sunData: sunData)
+                        } else {
+                            entry.visibilityScore = nil
+                            entry.seasonScore = nil
+                        }
+                    } else {
+                        entry.weather = nil
+                        entry.visibilityScore = nil
+                        entry.seasonScore = nil
+                    }
+                }
+            }
+            .onChange(of: entry.setupInterval) { _, newSetupInterval in
+                Task {
+                    if let newSetupInterval = newSetupInterval, let location = entry.location {
+                        let newWeather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: newSetupInterval.start, endDate: newSetupInterval.end))
+                        entry.weather = newWeather?.forecast
+                        
+                        if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}) {
+                            let sunData = Sun.sol.getNextInterval(location: location, date: newSetupInterval.start.startOfLocalDay(timezone: location.timezone))
+                            entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: newSetupInterval, sunData: sunData, limitingAlt: 0)
+                            entry.seasonScore = target.getSeasonScore(at: location, on: newSetupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
+                        } else {
+                            entry.visibilityScore = nil
+                            entry.seasonScore = nil
+                        }
+                    } else {
+                        entry.weather = nil
+                        entry.visibilityScore = nil
+                        entry.seasonScore = nil
+                    }
+                }
+            }
+            .onChange(of: entry.target?.targetID) { _, newTarget in
+                Task {
+                    if case let .catalog(id) = newTarget, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}), let setupInterval = entry.setupInterval, let location = entry.location {
+                        let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
+                        entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: setupInterval, sunData: sunData, limitingAlt: 0)
+                        entry.seasonScore = target.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
+                    } else {
+                        entry.visibilityScore = nil
+                        entry.seasonScore = nil
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct LabeledText: View {
+    let label: String
+    let value: String?
+    var body: some View {
+        HStack {
+            Text(label)
+                .bold()
+            Text(value ?? "Unspecified")
+                .foregroundStyle(value == nil ? .red : .primary)
         }
     }
 }

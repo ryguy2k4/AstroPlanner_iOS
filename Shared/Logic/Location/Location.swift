@@ -23,6 +23,8 @@ struct Location: Hashable, Equatable, Codable {
             return "Current Location"
         case .saved(let name):
             return name
+        case .none:
+            return "Unspecified"
         }
     }
     
@@ -33,6 +35,7 @@ struct Location: Hashable, Equatable, Codable {
     enum LocationSource: Hashable, Codable {
         case current
         case saved(String)
+        case none
     }
     
     init(saved: SavedLocation) {
@@ -53,5 +56,23 @@ struct Location: Hashable, Equatable, Codable {
         self.source = .current
     }
     
-    static let `default`: Location = .init(current: CLLocation(latitude: 0, longitude: 0))
+    init(latitude: Double, longitude: Double, timezone: TimeZone? = nil, elevation: Double? = nil, bortle: Int? = nil) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.timezone = timezone ?? .gmt
+        self.elevation = elevation
+        self.bortle = bortle
+        self.source = .none
+    }
+    
+    init() {
+        self.latitude = 0
+        self.longitude = 0
+        self.timezone = .gmt
+        self.elevation = nil
+        self.bortle = nil
+        self.source = .none
+    }
+    
+    static let `default`: Location = .init()
 }

@@ -102,31 +102,31 @@ struct Mac_DailyReportView: View {
         }
         
         // update report on settings changes
-        .onChange(of: reportSettings.first?.minFOVCoverage) { _ in
+        .onChange(of: reportSettings.first?.minFOVCoverage) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.maxAllowedMoon) { _ in
+        .onChange(of: reportSettings.first?.maxAllowedMoon) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.filterForMoonPhase) { _ in
+        .onChange(of: reportSettings.first?.filterForMoonPhase) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.minVisibility) { _ in
+        .onChange(of: reportSettings.first?.minVisibility) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.preferBroadband) { _ in
+        .onChange(of: reportSettings.first?.preferBroadband) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)

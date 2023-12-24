@@ -58,7 +58,7 @@ struct Mac_CatalogView: View {
         .onSubmit(of: .search) {
             catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
         }
-        .onChange(of: catalogManager.searchText) { newValue in
+        .onChange(of: catalogManager.searchText) { _, newValue in
             if newValue.isEmpty {
                 catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
             }
@@ -80,7 +80,7 @@ struct Mac_CatalogView: View {
 //                }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
 //            }
 //        }
-        .onChange(of: isSearching) { newValue in
+        .onChange(of: isSearching) { _, newValue in
             if !isSearching {
                 dismissSearch()
             }
