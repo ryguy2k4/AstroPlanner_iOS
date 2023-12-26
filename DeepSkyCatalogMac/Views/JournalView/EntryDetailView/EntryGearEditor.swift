@@ -11,12 +11,12 @@ import SwiftData
 struct EntryGearEditor: View {
     @Environment(\.dismiss) var dismiss
     @Query(sort: [SortDescriptor(\ImagingPreset.name, order: .forward)]) var presetList: [ImagingPreset]
-    @Binding var gear: JournalGear?
-    @State var gearProxy: JournalGear
+    @Binding var gear: JournalEntry.JournalGear?
+    @State var gearProxy: JournalEntry.JournalGear
     
-    init(gear: Binding<JournalGear?>) {
+    init(gear: Binding<JournalEntry.JournalGear?>) {
         self._gear = gear
-        self._gearProxy = State(initialValue: gear.wrappedValue ?? JournalGear.default)
+        self._gearProxy = State(initialValue: gear.wrappedValue ?? JournalEntry.JournalGear.default)
     }
     
     var body: some View {
@@ -56,7 +56,7 @@ struct EntryGearEditor: View {
             TextField("Mount", text: mountBinding)
             Picker("Saved:", selection: savedPresetBinding) {
                 ForEach(presetList) { saved in
-                    Text(saved.name).tag(JournalGear(from: saved))
+                    Text(saved.name).tag(JournalEntry.JournalGear(from: saved))
                 }
             }
         }

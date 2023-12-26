@@ -9,13 +9,13 @@ import SwiftUI
 
 struct EntryTargetEditor: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var target: JournalTarget?
+    @Binding var target: JournalEntry.JournalTarget?
     @State var targetName: String
     @State var centerRA: Double?
     @State var centerDec: Double?
     @State var rotation: Double?
     
-    init(target: Binding<JournalTarget?>) {
+    init(target: Binding<JournalEntry.JournalTarget?>) {
         self._target = target
         self._centerRA = State(initialValue: target.wrappedValue?.centerRA)
         self._centerDec = State(initialValue: target.wrappedValue?.centerDEC)
