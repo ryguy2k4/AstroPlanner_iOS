@@ -24,7 +24,7 @@ struct EditAllFiltersView: View {
                             Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
                         }
                     }
-                    .onChange(of: viewModel.currentSort) { _ in
+                    .onChange(of: viewModel.currentSort) {
                         viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
                     }
                     Picker("Order:", selection: $viewModel.sortDecending) {
@@ -32,7 +32,7 @@ struct EditAllFiltersView: View {
                         Label("Descending", systemImage: "chevron.down").tag(true)
                         
                     }
-                    .onChange(of: viewModel.sortDecending) { _ in
+                    .onChange(of: viewModel.sortDecending) {
                         viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
                     }
                 }

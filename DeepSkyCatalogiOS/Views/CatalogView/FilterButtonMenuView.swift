@@ -41,7 +41,7 @@ struct FilterButtonMenu: View {
                 Rectangle()
                     .frame(width: 40, height: 30)
                     .cornerRadius(13)
-                    .foregroundColor(Color(!buttons.allSatisfy({$0.active == false}) ? "LightBlue" : "LightGray"))
+                    .foregroundColor(!buttons.allSatisfy({$0.active == false}) ? .accentColor.opacity(0.5) : .secondary.opacity(0.3))
                 Button {
                     isAllFilterModal = true
                 } label: {
@@ -91,7 +91,7 @@ fileprivate struct FilterButton: View {
             Rectangle()
                 .frame(width: method.info.name.widthOfString(usingFont: UIFont.systemFont(ofSize: 20)) + 70, height: 30)
                 .cornerRadius(13)
-                .foregroundColor(Color(active ? "LightBlue" : "LightGray"))
+                .foregroundColor(active ? .accentColor.opacity(0.5) : .secondary.opacity(0.3))
             Button {
                 presentedFilterSheet = method
             } label: {

@@ -36,15 +36,15 @@ struct MinMaxPicker: View {
                 .disabled(!maxEnabled)
             }
         }
-        .onChange(of: maxEnabled) { enabled in
-            max = enabled ? min : .nan
+        .onChange(of: maxEnabled) { _, newValue in
+            max = newValue ? min : .nan
         }
-        .onChange(of: min) { newValue in
+        .onChange(of: min) { _, newValue in
             if maxEnabled && max < newValue {
                 max = min
             }
         }
-        .onChange(of: max) { newValue in
+        .onChange(of: max) { _, newValue in
             if newValue < min {
                 max = min
             }

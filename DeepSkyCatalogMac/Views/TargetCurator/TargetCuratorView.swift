@@ -84,7 +84,7 @@ private struct SearchBar: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .foregroundColor(Color("LightGray"))
+                .foregroundColor(Color("lightGray"))
             HStack {
                 Image(systemName: "magnifyingglass")
                 TextField("Search", text: $searchText)

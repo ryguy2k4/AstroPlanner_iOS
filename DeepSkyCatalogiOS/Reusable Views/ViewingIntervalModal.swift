@@ -68,7 +68,7 @@ struct DateIntervalSelector: View {
             Text("Custom").tag(true)
         }
         .pickerStyle(.segmented)
-        .onChange(of: customViewingInterval) { newValue in
+        .onChange(of: customViewingInterval) { _, newValue in
             if !newValue {
                 if reportSettings.first!.darknessThreshold == 2 {
                     viewingInterval = store.sunData.CTInterval

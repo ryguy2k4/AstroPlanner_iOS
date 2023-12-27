@@ -24,6 +24,7 @@ struct AdvancedSettingsView: View {
             // Hide Targets that Never Rise
             Section {
                 Toggle("Hide Targets that Never Rise", isOn: $targetSettings.hideNeverRises)
+                    .tint(.accentColor)
             } footer: {
                 Text("By enabling this setting, targets that never rise at the selected location will not appear in the master catalog.")
             }
@@ -79,6 +80,7 @@ struct AdvancedSettingsView: View {
             // Filter for Moon Phase
             Section {
                 Toggle("Filter For Moon Phase", isOn: $reportSettings.filterForMoonPhase)
+                    .tint(.accentColor)
                     .foregroundColor(isEnabled ? .primary : .secondary)
             } footer: {
                 Text("When enabled, the daily report algorithm will take into consideration the moon's illumination. On an illuminated night, only narrowband targets will be presented. The next two settings further customize this functionality.")
@@ -106,6 +108,7 @@ struct AdvancedSettingsView: View {
             // Prefer Broadband Targets on Moonless Nights
             Section {
                 Toggle("Prefer Broadband on Moonless Nights", isOn: $reportSettings.preferBroadband)
+                    .tint(.accentColor)
                     .foregroundColor(reportSettings.filterForMoonPhase ? .primary : .secondary)
                     .foregroundColor(isEnabled ? .primary : .secondary)
                     .disabled(!reportSettings.filterForMoonPhase)

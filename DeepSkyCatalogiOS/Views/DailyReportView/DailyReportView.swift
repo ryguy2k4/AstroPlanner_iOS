@@ -28,15 +28,31 @@ struct DailyReportView: View {
         NavigationStack {
             VStack {
                 if let report = report {
-                    ReportHeader()
                     ScrollView {
-                        // Report Section
-                        TopFiveView(report: report)
-                        TopTenTabView(report: report, tabSelection: $topTenTab)
-                            .onAppear() {
-                                if report.topTenNebulae.isEmpty { topTenTab = .galaxies }
-                                else if report.topTenNebulae.isEmpty && report.topTenGalaxies.isEmpty { topTenTab = .starClusters }
+                        // iOS VIEW
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            Text(reportHeader())
+                                .font(.subheadline)
+                                .lineLimit(1)
+                                .padding(5)
+                            TopFiveView(report: report)
+                            TopTenTabView(report: report, tabSelection: $topTenTab)
+                                .onAppear() {
+                                    if report.topTenNebulae.isEmpty { topTenTab = .galaxies }
+                                    else if report.topTenNebulae.isEmpty && report.topTenGalaxies.isEmpty { topTenTab = .starClusters }
+                                }
+                        }
+                        // iPad VIEW
+                        else {
+                            iPad_TopFiveView(report: report)
+                            Divider()
+                            HStack {
+                                iPad_TopTenListView(reportList: report.topTenNebulae, targetTab: .nebulae)
+                                iPad_TopTenListView(reportList: report.topTenGalaxies, targetTab: .galaxies)
+                                iPad_TopTenListView(reportList: report.topTenStarClusters, targetTab: .starClusters)
                             }
+                        }
+
                     }
                 } else {
                     ProgressView("Generating Report")
@@ -71,6 +87,8 @@ struct DailyReportView: View {
             .navigationDestination(for: DeepSkyTarget.self) { target in
                 DetailView(target: target)
             }
+            .navigationTitle(UIDevice.current.userInterfaceIdiom == .pad ? reportHeader() : "")
+            .navigationBarTitleDisplayMode(.inline)
             
             // Modal for settings
             .sheet(isPresented: $isDateModal){
@@ -107,41 +125,41 @@ struct DailyReportView: View {
         }
         
         // update report on settings changes
-        .onChange(of: reportSettings.first?.minFOVCoverage) { _ in
+        .onChange(of: reportSettings.first?.minFOVCoverage) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.maxAllowedMoon) { _ in
+        .onChange(of: reportSettings.first?.maxAllowedMoon) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.filterForMoonPhase) { _ in
+        .onChange(of: reportSettings.first?.filterForMoonPhase) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.minVisibility) { _ in
+        .onChange(of: reportSettings.first?.minVisibility) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.preferBroadband) { _ in
+        .onChange(of: reportSettings.first?.preferBroadband) {
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.darknessThreshold) { new in
+        .onChange(of: reportSettings.first?.darknessThreshold) { _, newValue in
             self.report = nil
-            if new == 2 {
+            if newValue == 2 {
                 store.viewingInterval = store.sunData.CTInterval
-            } else if new == 1 {
+            } else if newValue == 1 {
                 store.viewingInterval = store.sunData.NTInterval
             } else {
                 store.viewingInterval = store.sunData.ATInterval
@@ -150,25 +168,14 @@ struct DailyReportView: View {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        
     }
-}
-
-fileprivate struct ReportHeader: View {
-    @EnvironmentObject var store: HomeViewModel
     
-    var body: some View {
-        VStack {
-            if store.viewingInterval == store.sunData.ATInterval || store.viewingInterval == store.sunData.NTInterval || store.viewingInterval == store.sunData.CTInterval {
-                Text(" ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) | Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)")
-                    .font(.subheadline)
-                    .lineLimit(1)
-                    .padding(5)
-            } else {
-                Text(" ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) | \(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) | \(store.location.name)")
-                    .font(.subheadline)
-                    .padding(5)
-            }
+    func reportHeader() -> String {
+        if store.viewingInterval == store.sunData.ATInterval || store.viewingInterval == store.sunData.NTInterval || store.viewingInterval == store.sunData.CTInterval {
+            return " ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) | Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)"
+        }
+        else {
+            return " ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) | \(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) | \(store.location.name)"
         }
     }
 }

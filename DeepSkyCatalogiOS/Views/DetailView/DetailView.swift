@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import Charts
 
 struct DetailView: View {
     @Environment(\.modelContext) var context
@@ -152,62 +151,6 @@ struct DetailView: View {
     }
 }
 
-/**
- A chart that plots altitude vs time for a target
- */
-fileprivate struct TargetAltitudeChart: View {
-    @Query var targetSettings: [TargetSettings]
-    @EnvironmentObject var store: HomeViewModel
-    var target: DeepSkyTarget
-    let showLimitingAlt: Bool
-    var body: some View {
-        // Graph
-        Chart {
-            ForEach(store.date.getEveryHour(), id: \.self) { hour in
-                LineMark(x: .value("Hour", hour, unit: .minute), y: .value("Altitude", target.getAltitude(location: store.location, time: hour)))
-                    .interpolationMethod(.catmullRom)
-            }
-            RuleMark(y: .value("Axis", showLimitingAlt ? (targetSettings.first?.limitingAltitude ?? 0) : 0))
-                .foregroundStyle(.gray)
-            if Date.now > store.date.localNoon(timezone: store.location.timezone) && Date.now < store.date.localNoon(timezone: store.location.timezone).tomorrow() {
-                RuleMark(x: .value("Now", Date.now))
-                    .lineStyle(.init(dash: [5]))
-                    .foregroundStyle(.red)
-            }
-            RectangleMark(xStart: .value("", store.date.startOfLocalDay(timezone: store.location.timezone).addingTimeInterval(43_200)), xEnd: .value("", store.viewingInterval.start))
-                .foregroundStyle(.tertiary.opacity(1))
-            RectangleMark(xStart: .value("", store.viewingInterval.end), xEnd: .value("", store.date.tomorrow().addingTimeInterval(43_200)))
-                .foregroundStyle(.tertiary.opacity(1))
-        }
-        .chartXAxis {
-            AxisMarks(position: .bottom, values: .stride(by: .hour, count: 6)) {
-                let format: Date.FormatStyle = {
-                    var format: Date.FormatStyle = .dateTime.hour(.defaultDigits(amPM: .abbreviated))
-                    format.timeZone = store.location.timezone
-                    return format
-                }()
-                AxisValueLabel(format: format)
-                AxisGridLine()
-            }
-        }
-        .chartYAxisLabel(position: .top, alignment: .topTrailing) {
-            Text("Altitude (°)")
-        }
-        .chartYAxisLabel(position: .top, alignment: .center) {
-            Text("Visibility Score: \((target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData, limitingAlt: showLimitingAlt ? (targetSettings.first?.limitingAltitude ?? 0) : 0)).percent())")
-                .foregroundColor(.secondary)
-                .font(.headline)
-        }
-        .chartYAxisLabel(position: .bottom, alignment: .bottomLeading) {
-            if (targetSettings.first?.limitingAltitude ?? 0) != 0 {
-                Text("Tap to toggle limiting altitude")
-            }
-        }
-        .padding(.horizontal)
-        .frame(minHeight: 150)
-    }
-}
-
 fileprivate struct TargetSchedule : View {
     @Query var targetSettings: [TargetSettings]
     @EnvironmentObject var store: HomeViewModel
@@ -227,44 +170,6 @@ fileprivate struct TargetSchedule : View {
                 EventLabel(date: interval.end, image: "sunset")
             }
         }
-    }
-}
-
-/**
- A chart that plots altitude vs time for a target
- */
-fileprivate struct TargetSeasonScoreChart: View {
-    @EnvironmentObject var store: HomeViewModel
-    var target: DeepSkyTarget
-    var body: some View {
-        // Graph
-        Chart {
-            ForEach(store.date.getEveryMonth(), id: \.self) { month in
-                LineMark(x: .value("Month", month, unit: .day), y: .value("Score", target.getApproxSeasonScore(at: store.location, on: month)*100))
-                    .interpolationMethod(.catmullRom)
-            }
-            RuleMark(y: .value("Axis", 0))
-                .foregroundStyle(.gray)
-            RuleMark(x: .value("Now", store.date))
-                .lineStyle(.init(dash: [5]))
-                .foregroundStyle(.red)
-        }
-        .chartXAxis {
-            AxisMarks(values: .stride(by: .month, count: 1)) {
-                AxisValueLabel(format: .dateTime.month(.narrow))
-                AxisGridLine()
-            }
-        }
-        .chartYAxisLabel(position: .top, alignment: .topTrailing) {
-            Text("Score")
-        }
-        .chartYAxisLabel(position: .top, alignment: .center) {
-            Text("Season Score: \((target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)).percent())")
-                .foregroundColor(.secondary)
-                .font(.headline)
-        }
-        .padding(.horizontal)
-        .frame(minHeight: 150)
     }
 }
 
