@@ -211,6 +211,7 @@
 		71E03E6329C0B5FF0034FE08 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 71E03E6229C0B5FF0034FE08 /* Intents.intentdefinition */; };
 		71E03E6429C0B5FF0034FE08 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 71E03E6229C0B5FF0034FE08 /* Intents.intentdefinition */; };
 		71E03E6529C0B5FF0034FE08 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 71E03E6229C0B5FF0034FE08 /* Intents.intentdefinition */; };
+		71E2BFFC2B3CB8C1004F9936 /* EntryPlanEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E2BFFB2B3CB8C1004F9936 /* EntryPlanEditor.swift */; };
 		71E96D68292831AA00E019F9 /* CatalogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E96D67292831AA00E019F9 /* CatalogManager.swift */; };
 		71F510BC297605E9008F7629 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71F71573293FB4010011EF7F /* Environment+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment+Ext.swift */; };
@@ -376,6 +377,7 @@
 		71DF8A7C2A6230B000923236 /* DateFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Ext.swift"; sourceTree = "<group>"; };
 		71E03E6229C0B5FF0034FE08 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		71E03E6629C0B9210034FE08 /* DeepSkyCatalogWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogWidgetExtension.entitlements; sourceTree = "<group>"; };
+		71E2BFFB2B3CB8C1004F9936 /* EntryPlanEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPlanEditor.swift; sourceTree = "<group>"; };
 		71E96D67292831AA00E019F9 /* CatalogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogManager.swift; sourceTree = "<group>"; };
 		71F510BB297605E9008F7629 /* CaseNameCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseNameCodable.swift; sourceTree = "<group>"; };
 		71F71572293FB4010011EF7F /* Environment+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Ext.swift"; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 				719AFB3B2B378DD700A3BA5C /* EntryGearEditor.swift */,
 				719AFB3D2B37A2B800A3BA5C /* EntryTargetEditor.swift */,
 				7164C7A72B3672620002B492 /* EntryIntervalEditor.swift */,
+				71E2BFFB2B3CB8C1004F9936 /* EntryPlanEditor.swift */,
 			);
 			path = EntryDetailView;
 			sourceTree = "<group>";
@@ -1175,6 +1178,7 @@
 				71DF8A752A61FC3600923236 /* Mac_LocationSettings.swift in Sources */,
 				718444672B23ED030017B02B /* ProjectEntry.swift in Sources */,
 				71DF8A792A622C8800923236 /* Mac_TargetSettings.swift in Sources */,
+				71E2BFFC2B3CB8C1004F9936 /* EntryPlanEditor.swift in Sources */,
 				719AFB452B37CCAB00A3BA5C /* TypeField.swift in Sources */,
 				71DF8A6E2A61F59C00923236 /* Menus.swift in Sources */,
 				71BE6EDC299035A400686E95 /* Mac_DailyReportView.swift in Sources */,

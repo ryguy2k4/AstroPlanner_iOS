@@ -19,45 +19,36 @@ struct Mac_AboutView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                     HStack {
-                        Button(action: {}) {
-                            Image(systemName: "play.circle.fill")
-                            Link("YouTube", destination: URL(string: "https://www.youtube.com/@ryansponzilli")!)
+                        Link(destination: URL(string: "https://www.youtube.com/@ryansponzilli")!) {
+                            Label("YouTube", systemImage: "play.circle.fill")
                         }
-                        .buttonStyle(.bordered)
-                        Button(action: {}) {
-                            Image(systemName: "camera.circle.fill")
-                            Link("Instagram", destination: URL(string: "https://www.instagram.com/ryansponzilli_astro/")!)
+                        Divider()
+                        Link(destination: URL(string: "https://www.instagram.com/ryansponzilli_astro/")!) {
+                            Label("Instagram", systemImage: "camera.circle.fill")
                         }
-                        .buttonStyle(.bordered)
                     }
                 }
                 Text("The core idea behind this app is to make it easy to filter through a catalog of targets or use an algorithm that chooses the best target for a given night")
                     .multilineTextAlignment(.center)
                     .fontWeight(.medium)
-                VStack(spacing: 10) {
-                    Text("Features Coming Soon:")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                    Text("Favorites, Custom Horizons, Target Framing Overlays, User-Submitted Photos, Journal of Previously Imaged Targets, More Targets, and Planetary Targets")
-                        .multilineTextAlignment(.center)
-                }
+//                VStack(spacing: 10) {
+//                    Text("Features Coming Soon:")
+//                        .font(.title3)
+//                        .fontWeight(.semibold)
+//                    Text("Favorites, Custom Horizons, Target Framing Overlays, User-Submitted Photos, Journal of Previously Imaged Targets, More Targets, and Planetary Targets")
+//                        .multilineTextAlignment(.center)
+//                }
                 Text("This app is fairly new, so bugs and issues are bound to be found. If you find any, feel free to contact me via instagram (@ryansponzilli_astro) It is my intention to ensure that this app is worth its price.")
                     .multilineTextAlignment(.center)
-                VStack(spacing: 10) {
-                    Text("Attributions:")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                    Link("sunrise-sunset.org", destination: URL(string: "https://sunrise-sunset.org/")!)
-                    if let attribution = attribution {
-                        Link(destination: attribution.legalPageURL) {
-                            AsyncImage(url: colorScheme != .dark ? attribution.combinedMarkLightURL : attribution.combinedMarkDarkURL) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 15)
-                            } placeholder: {
-                                ProgressView()
-                            }
+                if let attribution = attribution {
+                    Link(destination: attribution.legalPageURL) {
+                        AsyncImage(url: colorScheme != .dark ? attribution.combinedMarkLightURL : attribution.combinedMarkDarkURL) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 15)
+                        } placeholder: {
+                            ProgressView()
                         }
                     }
                 }

@@ -61,6 +61,8 @@ struct LocationEditor: View {
     @State private var longitude: Double? = nil
     @State private var latitude: Double? = nil
     @State private var timezone: TimeZone? = nil
+    @State private var elevation: Double? = nil
+    @State private var bortle: Int? = nil
     let location: SavedLocation?
     
     var body: some View {
@@ -84,6 +86,8 @@ struct LocationEditor: View {
                             Text("Choose").tag(empty)
                                 .font(.italic(.body)())
                         }
+                        TextField("Elevation: ", value: $elevation, format: .number)
+                        TextField("Bortle: ", value: $bortle, format: .number)
                         
                         // automatically update timezone when latitude and longitude are entered
                         .onChange(of: latitude) { _, newValue in
@@ -117,13 +121,13 @@ struct LocationEditor: View {
             }
             .padding(20)
             .toolbar {
-                ToolbarItemGroup(placement: .automatic) {
+                ToolbarItem(placement: .confirmationAction) {
                     Button(location != nil ? "Save \(name)" : "Add \(name)") {
                         if let latitude = latitude, let longitude = longitude, let timezone = timezone {
                             if let location = location {
                                 confirmationClosure = {
                                     let save = {
-                                        location.latitude = latitude; location.longitude = longitude; location.timezone = timezone.identifier
+                                        location.latitude = latitude; location.longitude = longitude; location.timezone = timezone.identifier; location.elevation = elevation; location.bortle = bortle
                                     }
                                     return (save: save, lat: latitude, long: longitude, time: timezone)
                                 }
@@ -131,11 +135,11 @@ struct LocationEditor: View {
                             } else if !locationList.contains(where: {$0.name == name}) {
                                 confirmationClosure = {
                                     let save = {
-                                        let newLocation = SavedLocation(isSelected: false, latitude: latitude, longitude: longitude, name: name, timezone: timezone.identifier)
+                                        let newLocation = SavedLocation(isSelected: false, latitude: latitude, longitude: longitude, name: name, timezone: timezone.identifier, elevation: elevation, bortle: bortle)
                                         context.insert(newLocation)
                                     }
                                     return (save: save, lat: latitude, long: longitude, time: timezone)
-
+                                    
                                 }
                                 showConfirmationMessage = true
                             } else {
@@ -145,6 +149,8 @@ struct LocationEditor: View {
                             showErrorAlert = true
                         }
                     }
+                }
+                ToolbarItem(placement: .destructiveAction) {
                     if let location = location {
                         // delete button
                         Button("Delete \(name)", role: .destructive) {
@@ -178,13 +184,13 @@ struct LocationEditor: View {
                 }
             }
             .alert("Confirm Location", isPresented: $showConfirmationMessage, presenting: confirmationClosure, actions: { location in
-                Button("Cancel") {}
                 Button {
                     location().save()
                     dismiss()
                 } label: {
                     Text("Confirm")
                 }
+                Button("Cancel") {}
             }, message: { location in
                 VStack {
                     Text("Latitude: \(location().lat)º / " + location().lat.formatDMS(directionArgs: [.minus : "S", .plus : "N"]) + "\nLongitude: \(location().long)º / " + location().long.formatDMS(directionArgs: [.minus : "W", .plus : "E"]) + "\nTimezone: \(String(describing: location().time))")
@@ -211,6 +217,8 @@ struct LocationEditor: View {
                     self.latitude = location.latitude
                     self.longitude = location.longitude
                     self.timezone = TimeZone(identifier: location.timezone)
+                    self.elevation = location.elevation
+                    self.bortle = location.bortle
                 }
             }
         }

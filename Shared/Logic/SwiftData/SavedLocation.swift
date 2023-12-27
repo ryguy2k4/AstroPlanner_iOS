@@ -16,8 +16,8 @@ import SwiftData
     var latitude: Double = 41.8781
     var longitude: Double = 87.6298
     var timezone: String = "CST"
-    let elevation: Double? = nil
-    let bortle: Int? = nil
+    var elevation: Double? = nil
+    var bortle: Int? = nil
     
     init(isSelected: Bool, latitude: Double, longitude: Double, name: String, timezone: String, elevation: Double? = nil, bortle: Int? = nil) {
         self.isSelected = isSelected

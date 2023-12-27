@@ -90,7 +90,7 @@ struct ImagingPresetEditor: View {
             .frame(minWidth: 300)
             .padding(20)
             .toolbar {
-                ToolbarItemGroup(placement: .automatic) {
+                ToolbarItem(placement: .confirmationAction) {
                     Button(preset != nil ? "Save \(name)" : "Add \(name)") {
                         if let preset = preset {
                             preset.name = name
@@ -117,6 +117,8 @@ struct ImagingPresetEditor: View {
                             }
                         }
                     }
+                }
+                ToolbarItem(placement: .destructiveAction) {
                     if let preset = preset {
                         // delete button
                         Button("Delete \(name)", role: .destructive) {
@@ -127,8 +129,7 @@ struct ImagingPresetEditor: View {
                 }
             }
             .alert("Invalid Preset", isPresented: $showErrorAlert) {
-                Button("OK") {
-                }
+                Button("OK") {}
             } message: {
                 Text("Every parameter must be filled in or there is already a preset with this name")
             }

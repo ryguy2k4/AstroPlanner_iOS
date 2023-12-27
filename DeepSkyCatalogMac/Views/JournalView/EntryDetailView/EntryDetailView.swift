@@ -132,7 +132,7 @@ struct EntryDetailView: View {
                             }
                         }
                     } editor: {
-                        Text("Placeholder")
+                        EntryPlanEditor(plan: $entry.imagePlan)
                     }.disabled(!editing)
                     Spacer()
                 }
