@@ -18,7 +18,7 @@
 					<key>StartingLineNumber</key>
 					<string>44</string>
 					<key>Timestamp</key>
-					<string>717634937.824244</string>
+					<string>725511650.4903491</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -37,7 +37,7 @@
 				<string>            // Remove all targets with a meridian score less than 50%
 </string>
 				<key>leading</key>
-				<string>            var targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: hiddenTargets)
+				<string>            var targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: targetSettings.hiddenTargets ?? [])
             
 </string>
 				<key>trailing</key>
@@ -59,13 +59,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>27</string>
+					<string>30</string>
 					<key>StartingColumnNumber</key>
-					<string>120</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>26</string>
+					<string>29</string>
 					<key>Timestamp</key>
-					<string>717709649.582776</string>
+					<string>725431517.360909</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -81,12 +81,12 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>                store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
 </string>
 				<key>leading</key>
-				<string>            // in case it causes a hold up, and display a loading screen
+				<string>            // Calculate sunData on a background thread
             .task {
-                store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)</string>
+</string>
 				<key>trailing</key>
 				<string>                // If its in the morning hours of the next day, still show the info for the previous day (current night)
                 if Sun.sol.getAltitude(location: store.location, time: .now) &lt; -18 &amp;&amp; .now &gt; store.sunData.solarMidnight {

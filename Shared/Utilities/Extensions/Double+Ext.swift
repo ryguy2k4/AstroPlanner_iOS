@@ -103,7 +103,7 @@ extension Double {
     }
     
     func formatDecimal(sigFigs: Int = 5) -> String {
-        return self.formatted(.number.precision(.significantDigits(sigFigs)))
+        return self.formatted(.number.precision(.significantDigits(0...sigFigs)))
     }
 }
 

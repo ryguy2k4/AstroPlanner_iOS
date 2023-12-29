@@ -8,9 +8,12 @@
 import Foundation
 
 enum TargetType: String, Filter, CaseNameCodable {
-    static let name = "Type"
     var id: Self { self }
+
+    /// The name for this Filter
+    static let name = "Type"
     
+    // Broader groups of types used by DailyReport
     static let nebulae: Set<TargetType> = [.planetaryNebula, .supernovaRemnant, .reflectionNebula, .darkNebula, .HIIRegion, .mixedDiffuseNebulae, .cloudComplex]
     static let starClusters: Set<TargetType> = [.openStarCluster, .globularStarCluster, .starCloud, .asterism]
     static let galaxies: Set<TargetType> = [.ellipticalGalaxy, .spiralGalaxy, .irregularGalaxy, .galaxyGroup, .dwarfSpiralGalaxy, .dwarfIrregularGalaxy, .dwarfSpheroidalGalaxy, .peculiarGalaxy, .lenticularGalaxy, .barredSpiralGalaxy]
@@ -47,35 +50,4 @@ enum TargetType: String, Filter, CaseNameCodable {
     case mixedDiffuseNebulae = "Mixed Diffuse Nebulae"
     case regionOfSky = "Region of Sky"
     case multiple = "Mixed Objects"
-    
-    /*
-     • Nebulous
-         ○ Emission Nebula
-             § H II Region
-             § Planetary Nebula
-             § Supernova Remnant
-         ○ Reflection Nebula
-         ○ Dark Nebula
-     • Stellar
-         ○ Open Star Cluster
-         ○ Globular Star Cluster
-         ○ Asterism
-         ○ Star Cloud
-     • Galactic
-         ○ Elliptical Galaxy
-         ○ Lenticular Galaxy
-         ○ Spiral Galaxy
-         ○ Barred Spiral Galaxy
-         ○ Irregular Galaxy
-         ○ Dwarf Galaxy
-             § Dwarf Spheroidal / Dwarf Elliptical
-             § Dwarf Spiral
-             § Dwarf Irregular
-         ○ Peculiar Galaxy / Interacting Galaxy
-         ○ Galaxy Group
-     • Other
-         ○ Cloud Complex
-         ○ Region of Sky
-         ○ Multiple
-     */
 }

@@ -8,6 +8,10 @@
 import SwiftUI
 import SwiftData
 
+/**
+ This view is displayed when sunData needs to be calculated
+ It will display a spinning progress icon and start calculating the sunData on a **background thread**
+ */
 struct DailyReportLoadingView: View {
     @EnvironmentObject var store: HomeViewModel
     @Query var reportSettings: [ReportSettings]
@@ -22,7 +26,6 @@ struct DailyReportLoadingView: View {
                 ToolbarLogo()
             }
             // Calculate sunData on a background thread
-            // in case it causes a hold up, and display a loading screen
             .task {
                 store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
                 // If its in the morning hours of the next day, still show the info for the previous day (current night)
@@ -41,6 +44,9 @@ struct DailyReportLoadingView: View {
     }
 }
 
+/**
+ This view is simply a complement ot DailyReportLoadingView
+ */
 struct CatalogLoadingView: View {
     var body: some View {
         VStack {
@@ -53,37 +59,3 @@ struct CatalogLoadingView: View {
         }
     }
 }
-
-//struct DailyReportLoadingFailedView: View {
-//    @EnvironmentObject var store: HomeViewModel
-//    @EnvironmentObject var networkManager: NetworkManager
-//    @Binding var internet: Bool
-//    var body: some View {
-//        NavigationStack {
-//            VStack {
-//                Text("Daily Report Unavailable Offline")
-//                    .fontWeight(.bold)
-//                    .padding(.vertical)
-//                Button("Retry") {
-//                    internet = true
-//                    Task {
-//                        do {
-//                            let data = try await networkManager.updateSunData(at: store.location, on: store.date)
-//                            // merge the new data, overwriting if necessary
-//                            networkManager.sun.merge(data) { _, new in new }
-//                        } catch {
-//                            internet = false
-//                        }
-//                    }
-//                }
-//                Spacer()
-//            }
-//        }
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Image(systemName: "wifi.exclamationmark")
-//                    .foregroundColor(.red)
-//            }
-//        }
-//    }
-//}

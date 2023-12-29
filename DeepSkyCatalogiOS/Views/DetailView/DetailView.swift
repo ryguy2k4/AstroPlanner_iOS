@@ -9,18 +9,21 @@ import SwiftUI
 import SwiftData
 
 struct DetailView: View {
-    @Environment(\.modelContext) var context
-    @EnvironmentObject var networkManager: NetworkManager
-    @Query var targetSettings: [TargetSettings]
     @EnvironmentObject var store: HomeViewModel
+    @Environment(\.modelContext) var context
+    
+    @Query var targetSettings: [TargetSettings]
     
     @State var showCoordinateDecimalFormat: Bool = false
     @State var showLimitingAlt: Bool = true
+    
     let target: DeepSkyTarget
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
                 // Target Image
+                // If the target has a local image, display it
                 if let image = target.image, let filename = image.source.fileName {
                     VStack {
                         NavigationLink {
@@ -39,7 +42,9 @@ struct DetailView: View {
                             .padding(.horizontal)
                             .multilineTextAlignment(.center)
                     }
-                } else if let image = target.image, let url = image.source.url {
+                }
+                // If the target has an APOD images associated with it, display a link to it
+                else if let image = target.image, let url = image.source.url {
                     Link("View Image on APOD", destination: url)
                         .padding(.bottom)
                 }
@@ -54,8 +59,8 @@ struct DetailView: View {
                     }
                     HStack {
                         VStack(alignment: .leading) {
-                            FactLabel(text: showCoordinateDecimalFormat ? (target.ra / 15).formatted(.number.precision(.significantDigits(0...5))) + "h" : target.ra.formatHMS(), image: "r.square.fill")
-                            FactLabel(text: showCoordinateDecimalFormat ? target.dec.formatted(.number.precision(.significantDigits(0...5))) + "°" : target.dec.formatDMS(), image: "d.square.fill")
+                            FactLabel(text: showCoordinateDecimalFormat ? (target.ra / 15).formatDecimal() + "h" : target.ra.formatHMS(), image: "r.square.fill")
+                            FactLabel(text: showCoordinateDecimalFormat ? target.dec.formatDecimal() + "°" : target.dec.formatDMS(), image: "d.square.fill")
                         }
                         .onTapGesture {
                             showCoordinateDecimalFormat.toggle()
@@ -114,26 +119,13 @@ struct DetailView: View {
                         .padding()
                     }
                 }
-            
-        }
+            }
         }
         .toolbar {
+            // Ellipsis menu in top right
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
-                    let visibilityScore = target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData, limitingAlt: targetSettings.first?.limitingAltitude ?? 0)
-                    let seasonScore = target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)
-                    let targetInterval = target.getNextInterval(location: store.location, date: store.date, limitingAlt: showLimitingAlt ? targetSettings.first?.limitingAltitude ?? 0 : 0)
-                    let scheduleString: String = {
-                        switch targetInterval.interval {
-                        case .always:
-                            return "Target is always in the sky; Meridian crossing at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: targetInterval.culmination))"
-                        case .never:
-                            return "Target is never in the sky; Meridian crossing at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: targetInterval.culmination))"
-                        case .sometimes(let interval):
-                            return "Target rises at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: interval.start)) and sets at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: interval.end)); Meridian crossing is at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: targetInterval.culmination))"
-                        }
-                    }()
-                    ShareLink("Share", item: "\(target.defaultName)\n\(target.type.rawValue) in \(target.constellation.rawValue) \n \(target.wikipediaURL?.absoluteString ?? "")\n\nNight of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)\nVisibility Score: \(visibilityScore.percent())\nSeason Score: \(seasonScore.percent())\n\(scheduleString)")
+                    ShareLink("Share", item: generateShareString())
                     Button("Hide Target") {
                         let newHiddenTarget = HiddenTarget(id: target.id, origin: targetSettings.first!)
                         context.insert(newHiddenTarget)
@@ -142,6 +134,7 @@ struct DetailView: View {
                     Image(systemName: "ellipsis")
                 }
             }
+            // Display Target Name in top middle of the screen
             ToolbarItem(placement: .principal) {
                 Label(target.defaultName, image: "gear")
                     .labelStyle(.titleOnly)
@@ -149,57 +142,39 @@ struct DetailView: View {
             }
         }
     }
-}
-
-fileprivate struct TargetSchedule : View {
-    @Query var targetSettings: [TargetSettings]
-    @EnvironmentObject var store: HomeViewModel
-    let target: DeepSkyTarget
-    let showLimitingAlt: Bool
-    var body: some View {
+    
+    /**
+     This returns a string that describes the target on the day and location selected that is meant to be exported from the app and sent elsewhere, i.e. by text message.
+     */
+    func generateShareString() -> String {
+        let visibilityScore = target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData, limitingAlt: targetSettings.first?.limitingAltitude ?? 0)
+        let seasonScore = target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)
         let targetInterval = target.getNextInterval(location: store.location, date: store.date, limitingAlt: showLimitingAlt ? targetSettings.first?.limitingAltitude ?? 0 : 0)
-        HStack {
+        let scheduleString: String = {
             switch targetInterval.interval {
-            case .never:
-                EventLabel(date: target.getNextInterval(location: store.location, date: store.date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
             case .always:
-                EventLabel(date: target.getNextInterval(location: store.location, date: store.date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
+                return "Target is always in the sky; Meridian crossing at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: targetInterval.culmination))"
+            case .never:
+                return "Target is never in the sky; Meridian crossing at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: targetInterval.culmination))"
             case .sometimes(let interval):
-                EventLabel(date: interval.start, image: "sunrise")
-                EventLabel(date: target.getNextInterval(location: store.location, date: store.date).culmination, image: "arrow.right.and.line.vertical.and.arrow.left")
-                EventLabel(date: interval.end, image: "sunset")
+                return "Target rises at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: interval.start)) and sets at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: interval.end)); Meridian crossing is at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: targetInterval.culmination))"
             }
+        }()
+        return "\(target.defaultName)\n\(target.type.rawValue) in \(target.constellation.rawValue) \n \(target.wikipediaURL?.absoluteString ?? "")\n\nNight of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)\nVisibility Score: \(visibilityScore.percent())\nSeason Score: \(seasonScore.percent())\n\(scheduleString)"
+    }
+    
+    /**
+     A label that displays a target fact
+     */
+    private struct FactLabel: View {
+        var text: String
+        var image: String
+        var body: some View {
+            Label(text, systemImage: image)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
         }
     }
 }
 
-/**
- A label that displays a target fact
- */
-private struct FactLabel: View {
-    var text: String
-    var image: String
-    var body: some View {
-        Label(text, systemImage: image)
-            .font(.subheadline)
-            .foregroundColor(.secondary)
-    }
-}
 
-/**
- A label that displays a target event
- */
-private struct EventLabel: View {
-    @EnvironmentObject var store: HomeViewModel
-    var date: Date
-    var image: String
-    var body: some View {
-        VStack(spacing: 3) {
-            Label(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: date) , systemImage: image)
-            Text(DateFormatter.shortDateOnly(timezone: store.location.timezone).string(from: date))
-                .minimumScaleFactor(0.8)
-        }
-        .frame(width: 110, height: 60)
-            
-    }
-}

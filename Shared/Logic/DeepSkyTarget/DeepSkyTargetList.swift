@@ -9,13 +9,18 @@ import Foundation
 import SwiftData
 
 struct DeepSkyTargetList {
-        
+    /**
+    - Returns: Every DeepSkyTarget stored in Catalog.json
+     */
     static var allTargets: [DeepSkyTarget] = {
         let decoder = JSONDecoder()
         let json = try! Data(contentsOf: Bundle.main.url(forResource: "Catalog", withExtension: "json")!)
         return try! decoder.decode([DeepSkyTarget].self, from: json)
     }()
     
+    /**
+     - Returns: Every DeepSkyTarget from allTargets except the ones saved as hiddenTargets in ReportSettings
+     */
     static func whitelistedTargets(hiddenTargets: [HiddenTarget]) -> [DeepSkyTarget] {
         var whitelist = allTargets
         for item in hiddenTargets {
@@ -32,6 +37,10 @@ struct DeepSkyTargetList {
         return dict
     }()
     
+    /**
+     - Parameter list: The list that should be exported to Catalog.json
+     Any existing data in Catalog.json will be overwritten, so list should always contain every target
+     */
     static func exportObjects(list: [DeepSkyTarget]) {
         do {
             let encoder = JSONEncoder()

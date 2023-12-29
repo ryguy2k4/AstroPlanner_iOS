@@ -32,15 +32,15 @@ final class DailyReport: ObservableObject {
         self.sunData = sunData
         self.preset = preset
         
-        let targets = generateSuitableTargets(hiddenTargets: targetSettings.hiddenTargets ?? [])
+        let targets = generateSuitableTargets()
         self.topFive = createReportList(with: targets, top: 5)
         self.topTenNebulae = createReportList(with: targets, for: TargetType.nebulae, top: 10)
         self.topTenGalaxies = createReportList(with: targets, for: TargetType.galaxies, top: 10)
         self.topTenStarClusters = createReportList(with: targets, for: TargetType.starClusters, top: 10)
         
-        func generateSuitableTargets(hiddenTargets: [HiddenTarget]) -> [DeepSkyTarget] {
+        func generateSuitableTargets() -> [DeepSkyTarget] {
             // start with all whitelisted targets
-            var targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: hiddenTargets)
+            var targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: targetSettings.hiddenTargets ?? [])
             
             // Remove all targets with a meridian score less than 50%
             // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations

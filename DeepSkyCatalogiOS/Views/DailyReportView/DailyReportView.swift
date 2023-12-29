@@ -10,13 +10,12 @@ import SwiftData
 import CoreLocation
 
 struct DailyReportView: View {
-    @Environment(\.modelContext) var context
-    @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var store: HomeViewModel
+
     @Query var reportSettings: [ReportSettings]
     @Query var targetSettings: [TargetSettings]
     @Query var presetList: [ImagingPreset]
-    @EnvironmentObject var store: HomeViewModel
+    
     @State var report: DailyReport?
     @State var internet: Bool = true
     @State var isDateModal = false
@@ -84,13 +83,14 @@ struct DailyReportView: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
+            .navigationTitle(UIDevice.current.userInterfaceIdiom == .pad ? reportHeader() : "")
+            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: DeepSkyTarget.self) { target in
                 DetailView(target: target)
             }
-            .navigationTitle(UIDevice.current.userInterfaceIdiom == .pad ? reportHeader() : "")
-            .navigationBarTitleDisplayMode(.inline)
             
-            // Modal for settings
+            // Modals for settings
             .sheet(isPresented: $isDateModal){
                 ViewingIntervalModal(reportSettings: reportSettings.first!)
                     .environmentObject(store)
@@ -105,71 +105,72 @@ struct DailyReportView: View {
                 ImagingPresetModal()
                     .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
             }
-            .scrollIndicators(.hidden)
-                
-        }
-        .environmentObject(store)
-        .task {
-            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
-        }
-        
-        // update report on preset change
-        .onReceive(presetList.publisher) { _ in
-            let newPreset = presetList.first(where: {$0.isSelected == true})
-            if newPreset != report?.preset {
+            
+            // Start generating a report on a background thread when this view appears
+            .task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            }
+            
+            // Update report on preset change
+            .onReceive(presetList.publisher) { _ in
+                let newPreset = presetList.first(where: {$0.isSelected == true})
+                if newPreset != report?.preset {
+                    self.report = nil
+                    Task {
+                        self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                    }
+                }
+            }
+            // Update report on settings changes
+            .onChange(of: reportSettings.first?.minFOVCoverage) {
                 self.report = nil
                 Task {
                     self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
                 }
             }
-        }
-        
-        // update report on settings changes
-        .onChange(of: reportSettings.first?.minFOVCoverage) {
-            self.report = nil
-            Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            .onChange(of: reportSettings.first?.maxAllowedMoon) {
+                self.report = nil
+                Task {
+                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                }
             }
-        }
-        .onChange(of: reportSettings.first?.maxAllowedMoon) {
-            self.report = nil
-            Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            .onChange(of: reportSettings.first?.filterForMoonPhase) {
+                self.report = nil
+                Task {
+                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                }
             }
-        }
-        .onChange(of: reportSettings.first?.filterForMoonPhase) {
-            self.report = nil
-            Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            .onChange(of: reportSettings.first?.minVisibility) {
+                self.report = nil
+                Task {
+                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                }
             }
-        }
-        .onChange(of: reportSettings.first?.minVisibility) {
-            self.report = nil
-            Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            .onChange(of: reportSettings.first?.preferBroadband) {
+                self.report = nil
+                Task {
+                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                }
             }
-        }
-        .onChange(of: reportSettings.first?.preferBroadband) {
-            self.report = nil
-            Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
-            }
-        }
-        .onChange(of: reportSettings.first?.darknessThreshold) { _, newValue in
-            self.report = nil
-            if newValue == 2 {
-                store.viewingInterval = store.sunData.CTInterval
-            } else if newValue == 1 {
-                store.viewingInterval = store.sunData.NTInterval
-            } else {
-                store.viewingInterval = store.sunData.ATInterval
-            }
-            Task {
-                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+            .onChange(of: reportSettings.first?.darknessThreshold) { _, newValue in
+                self.report = nil
+                if newValue == 2 {
+                    store.viewingInterval = store.sunData.CTInterval
+                } else if newValue == 1 {
+                    store.viewingInterval = store.sunData.NTInterval
+                } else {
+                    store.viewingInterval = store.sunData.ATInterval
+                }
+                Task {
+                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                }
             }
         }
     }
     
+    /**
+     This function returns a string to be used as a header or title for this view.
+     */
     func reportHeader() -> String {
         if store.viewingInterval == store.sunData.ATInterval || store.viewingInterval == store.sunData.NTInterval || store.viewingInterval == store.sunData.CTInterval {
             return " ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) | Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)"

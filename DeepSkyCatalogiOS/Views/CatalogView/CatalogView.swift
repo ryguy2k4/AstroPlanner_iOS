@@ -12,14 +12,12 @@ struct CatalogView: View {
     @Environment(\.dismissSearch) private var dismissSearch
     @Environment(\.isSearching) private var isSearching
     @Environment(\.modelContext) var context
-    @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var locationManager: LocationManager
-    @StateObject private var catalogManager: CatalogManager = CatalogManager()
-    
+    @EnvironmentObject var store: HomeViewModel
+
     @Query var targetSettings: [TargetSettings]
     @Query var reportSettings: [ReportSettings]
     
-    @EnvironmentObject var store: HomeViewModel
+    @StateObject private var catalogManager: CatalogManager = CatalogManager()
     @State private var isLocationModal = false
     @State private var isDateModal = false
     
@@ -64,23 +62,6 @@ struct CatalogView: View {
                 catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
             }
         }
-        //        .searchSuggestions {
-        //            // grab top 15 search results
-        //            let suggestions = DeepSkyTargetList.whitelistedTargets.filteredBySearch(catalogManager.searchText)
-        //
-        //            // list the search results
-        //            ForEach(suggestions) { suggestion in
-        //                HStack {
-        //                    Image(suggestion.image?.source.fileName ?? "\(suggestion.type)")
-        //                        .resizable()
-        //                        .scaledToFit()
-        //                        .cornerRadius(8)
-        //                        .frame(width: 100, height: 70)
-        //                    Text(suggestion.name?.first ?? suggestion.defaultName)
-        //                        .foregroundColor(.primary)
-        //                }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
-        //            }
-        //        }
         .onChange(of: isSearching) {
             if !isSearching {
                 dismissSearch()
@@ -88,7 +69,7 @@ struct CatalogView: View {
         }
         .autocorrectionDisabled()
         
-        // Modal for settings
+        // Modals for settings
         .sheet(isPresented: $isDateModal){
             ViewingIntervalModal(reportSettings: reportSettings.first!)
                 .environmentObject(store)
@@ -99,8 +80,11 @@ struct CatalogView: View {
             LocationPickerModal()
                 .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
         }
+        
         // Passing the date and location to use into all child views
         .environmentObject(catalogManager)
+        
+        // When this view loads, initialize the catalog manager from the store
         .task {
             catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
         }
@@ -111,9 +95,9 @@ struct CatalogView: View {
  This View displays information about the target at a glance. It is used within the Master Catalog list.
  */
 fileprivate struct TargetCell: View {
+    @EnvironmentObject var store: HomeViewModel
     @Query var targetSettings: [TargetSettings]
     var target: DeepSkyTarget
-    @EnvironmentObject var store: HomeViewModel
 
     var body: some View {
         HStack {                
@@ -134,10 +118,3 @@ fileprivate struct TargetCell: View {
         }
     }
 }
-
-//struct Catalog_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CatalogView()
-//            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
-//    }
-//}

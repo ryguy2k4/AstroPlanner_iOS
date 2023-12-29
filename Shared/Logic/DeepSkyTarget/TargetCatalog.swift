@@ -8,17 +8,21 @@
 import Foundation
  
 enum TargetCatalog: String, Filter, CaseNameCodable {
-    static let name = "Catalog"
     var id: Self { self }
+
+    /// The name for this Filter
+    static let name = "Catalog"
+    
+    /// Astronomical object catalogs
     case messier = "Messier"
     case caldwell = "Caldwell"
     case sh2 = "Sharpless 2"
     case barnard = "Barnard"
     case ngc = "NGC"
     case ic = "IC"
-    // Atlas of Peculiar Galaxies
     case arp = "Arp"
     
+    /// The abbreiviation that should precede the catalog number
     var abbr: String {
         switch self {
         case .messier:

@@ -9,8 +9,11 @@ import Foundation
 
 enum Constellation: String, Filter, CaseNameCodable {
     var id: Self { self }
+    
+    /// The name for this Filter
     static let name = "Constellation"
     
+    // Most major constellations
     case andromeda = "Andromeda"
     case cetus = "Cetus"
     case sculptor = "Sculptor"

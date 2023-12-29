@@ -40,6 +40,7 @@
 		713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49B72954122D008EFC81 /* LocationSettings.swift */; };
 		7143AF4C2B2FA61900F89484 /* EntryImportModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7143AF4B2B2FA61900F89484 /* EntryImportModal.swift */; };
 		71462F3329A2E6A100F2914C /* ToolbarLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71462F3229A2E6A100F2914C /* ToolbarLogo.swift */; };
+		714839CB2B3E138B0041A327 /* TargetSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714839CA2B3E138B0041A327 /* TargetSchedule.swift */; };
 		714B8AC32B2BA409002308EC /* FITSCore in Frameworks */ = {isa = PBXBuildFile; productRef = 714B8AC22B2BA409002308EC /* FITSCore */; };
 		714B8AC82B2D2B1A002308EC /* FITSKeywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B8AC52B2D2B1A002308EC /* FITSKeywords.swift */; };
 		714B8ACE2B2D38A4002308EC /* NINALogFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B8ACB2B2D38A4002308EC /* NINALogFile.swift */; };
@@ -281,6 +282,7 @@
 		713B49B72954122D008EFC81 /* LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettings.swift; sourceTree = "<group>"; };
 		7143AF4B2B2FA61900F89484 /* EntryImportModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryImportModal.swift; sourceTree = "<group>"; };
 		71462F3229A2E6A100F2914C /* ToolbarLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarLogo.swift; sourceTree = "<group>"; };
+		714839CA2B3E138B0041A327 /* TargetSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSchedule.swift; sourceTree = "<group>"; };
 		714B8AC52B2D2B1A002308EC /* FITSKeywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITSKeywords.swift; sourceTree = "<group>"; };
 		714B8ACB2B2D38A4002308EC /* NINALogFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NINALogFile.swift; sourceTree = "<group>"; };
 		714BB85229A094810084D438 /* TopTenTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenTabView.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				71BCF9692921EF20008C7614 /* DetailView.swift */,
+				714839CA2B3E138B0041A327 /* TargetSchedule.swift */,
 				71E2C0012B3CDB9F004F9936 /* TargetAltitudeChart.swift */,
 				71E2C0032B3CDBD3004F9936 /* TargetSeasonScoreChart.swift */,
 				71D1119D296FAB7B0034B8F0 /* ImageViewer.swift */,
@@ -508,17 +511,31 @@
 			path = SettingsView;
 			sourceTree = "<group>";
 		};
+		714839CC2B3E69AF0041A327 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				71F510BB297605E9008F7629 /* CaseNameCodable.swift */,
+				711386F629C3548C00081584 /* Filter.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		714839CD2B3E6E5C0041A327 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				71BCF96A2921EF20008C7614 /* HomeView.swift */,
+				71950E8729D139900075081B /* NoLocationsView.swift */,
+				71950E8929D139BE0075081B /* DataLoadingViews.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		7149D9932984C6F3004BFBE6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				71BCF9502921EE72008C7614 /* Assets.xcassets */,
 				71BCF9702921EF61008C7614 /* Logic */,
-				71BCF9792921EF76008C7614 /* Utils */,
-				71D77FA62921F97E00709252 /* Extensions */,
-				71701E702B182DA9007992B8 /* JournalEntry */,
-				71BD75402971045100D7751F /* DeepSkyTarget */,
-				71A6C8FA2A5F4DE0009F1C30 /* Sun.swift */,
-				7109A3F4292EBA7A00980527 /* Moon.swift */,
+				71BCF9792921EF76008C7614 /* Utilities */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -592,14 +609,6 @@
 			path = ReportListWidget;
 			sourceTree = "<group>";
 		};
-		716A19B9298F57DA0025DB67 /* Logic */ = {
-			isa = PBXGroup;
-			children = (
-				71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */,
-			);
-			path = Logic;
-			sourceTree = "<group>";
-		};
 		716A19BF298F5CD70025DB67 /* DailyReportView */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,11 +643,11 @@
 		718B56AF294C349900914BDB /* Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
-				710168842955621D00E0B028 /* MinMaxPicker.swift */,
 				717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */,
 				717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */,
 				71B14F682958D905003C11BD /* ViewingIntervalModal.swift */,
 				71F844C8294A95E700DD2742 /* SelectableList.swift */,
+				710168842955621D00E0B028 /* MinMaxPicker.swift */,
 				719B26D6295167A100E1165A /* NumberPicker.swift */,
 				710BF587294BF18900A72073 /* ConfigSection.swift */,
 				71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */,
@@ -710,8 +719,6 @@
 				716A90CF298DC7FB0035E18C /* DeepSkyCatalog.entitlements */,
 				71668AD7298F3C0400AB0D19 /* Info.plist */,
 				71BCF96F2921EF2E008C7614 /* Views */,
-				718B56AF294C349900914BDB /* Reusable Views */,
-				716A19B9298F57DA0025DB67 /* Logic */,
 			);
 			path = DeepSkyCatalogiOS;
 			sourceTree = "<group>";
@@ -719,14 +726,13 @@
 		71BCF96F2921EF2E008C7614 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				71BCF96A2921EF20008C7614 /* HomeView.swift */,
-				71950E8729D139900075081B /* NoLocationsView.swift */,
-				71950E8929D139BE0075081B /* DataLoadingViews.swift */,
+				714839CD2B3E6E5C0041A327 /* HomeView */,
 				716A19BF298F5CD70025DB67 /* DailyReportView */,
 				712E99942A675ACC00C354CA /* DetailView */,
 				71016881295561F600E0B028 /* CatalogView */,
 				716A19C0298F5D110025DB67 /* JournalView */,
 				713B49B629541216008EFC81 /* SettingsView */,
+				718B56AF294C349900914BDB /* Reusable Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -734,24 +740,29 @@
 		71BCF9702921EF61008C7614 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				71BD75402971045100D7751F /* DeepSkyTarget */,
+				71701E702B182DA9007992B8 /* JournalEntry */,
 				71E96D67292831AA00E019F9 /* CatalogManager.swift */,
 				716531E929340CFE00D05B79 /* DailyReport.swift */,
 				7132A8672B339734000E2299 /* JournalImportManager.swift */,
-				71FE96842956C0E700F6A4F2 /* Location */,
-				71ABF9292B21575C00384909 /* SwiftData */,
-				719B26D8295173CD00E1165A /* Network */,
+				714E54CD293D52B00039ECE0 /* LocationManager.swift */,
+				71A6C8FA2A5F4DE0009F1C30 /* Sun.swift */,
+				7109A3F4292EBA7A00980527 /* Moon.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
 		};
-		71BCF9792921EF76008C7614 /* Utils */ = {
+		71BCF9792921EF76008C7614 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				718C11F429C89A880069ECD5 /* Location.swift */,
 				71B5FD1B294EBECF00833379 /* PlaceValue.swift */,
-				71F510BB297605E9008F7629 /* CaseNameCodable.swift */,
-				711386F629C3548C00081584 /* Filter.swift */,
+				714839CC2B3E69AF0041A327 /* Protocols */,
+				71D77FA62921F97E00709252 /* Extensions */,
+				71ABF9292B21575C00384909 /* SwiftData */,
+				719B26D8295173CD00E1165A /* Network */,
 			);
-			path = Utils;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		71BD75402971045100D7751F /* DeepSkyTarget */ = {
@@ -815,6 +826,7 @@
 				71BCF97A2921EF8B008C7614 /* Date+Ext.swift */,
 				71DF8A7C2A6230B000923236 /* DateFormatter+Ext.swift */,
 				71BCF97B2921EF8B008C7614 /* String+Ext.swift */,
+				71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */,
 				71D77FA72921F99200709252 /* Double+Ext.swift */,
 				71F71572293FB4010011EF7F /* Environment+Ext.swift */,
 				7164CEF129BE97C7000A154A /* UIImage+Ext.swift */,
@@ -832,15 +844,6 @@
 				71DF8A7A2A622DF700923236 /* Mac_HiddenTargetsList.swift */,
 			);
 			path = SettingsView;
-			sourceTree = "<group>";
-		};
-		71FE96842956C0E700F6A4F2 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				714E54CD293D52B00039ECE0 /* LocationManager.swift */,
-				718C11F429C89A880069ECD5 /* Location.swift */,
-			);
-			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1151,6 +1154,7 @@
 				71462F3329A2E6A100F2914C /* ToolbarLogo.swift in Sources */,
 				714BB85329A094810084D438 /* TopTenTabView.swift in Sources */,
 				717051DB29CE7A6D00D4EE1A /* LocationPickerModal.swift in Sources */,
+				714839CB2B3E138B0041A327 /* TargetSchedule.swift in Sources */,
 				71B5AF96292C778D00323693 /* TargetCatalog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

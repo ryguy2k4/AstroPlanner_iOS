@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct SettingsView: View {
-    @EnvironmentObject var networkManager: NetworkManager
     @Query var targetSettings: [TargetSettings]
     @Query var reportSettings: [ReportSettings]
     @State var tabSelection = 0

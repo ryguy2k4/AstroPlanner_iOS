@@ -11,10 +11,7 @@ import Foundation
  The basic building block for this app. This struct defines a Deep Sky Target.
  */
 struct DeepSkyTarget: Identifiable, Hashable {
-    // DEBUG Variable
-    static var overrideCopyright = false
-    
-    // identifiers
+    /// Unique identifier
     var id: UUID
     
     /// Common names for the target
@@ -78,7 +75,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
             var fileName: String? {
                 switch self {
                 case .apod(id: let id, copyrighted: let copyrighted):
-                    return copyrighted && !DeepSkyTarget.overrideCopyright ? nil : "apod_" + id
+                    return nil
                 case .local(fileName: let filename):
                     return filename
                 }
@@ -390,6 +387,7 @@ struct AstrometryJobInfo: Codable, Hashable {
 
 /**
  A Static Implementation of all functions performed on DeepSkyTarget
+ These static functions are only used by the Journal
  */
 extension DeepSkyTarget {
     
