@@ -71,16 +71,12 @@
 		7164CEE729BE8F9A000A154A /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		7164CEE829BE8F9C000A154A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
 		7164CEE929BE8FA6000A154A /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date+Ext.swift */; };
-		7164CEEA29BE8FA8000A154A /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String+Ext.swift */; };
 		7164CEEB29BE8FAA000A154A /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double+Ext.swift */; };
-		7164CEED29BE8FB4000A154A /* Environment+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment+Ext.swift */; };
-		7164CEEF29BE8FB5000A154A /* Environment+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment+Ext.swift */; };
 		7164CEF029BE8FE6000A154A /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		7164CEF229BE97C7000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
 		7164CEF329BE97C7000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
 		716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
-		71668AD0298F266300AB0D19 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String+Ext.swift */; };
 		71668AD5298F26AC00AB0D19 /* String+iOSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */; };
 		716A19BB298F58A90025DB67 /* Mac_HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A19BA298F58A90025DB67 /* Mac_HomeView.swift */; };
 		716A19BC298F5B270025DB67 /* PlaceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5FD1B294EBECF00833379 /* PlaceValue.swift */; };
@@ -145,7 +141,6 @@
 		71BCF9762921EF6D008C7614 /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
 		71BCF9782921EF6D008C7614 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9742921EF6D008C7614 /* NetworkManager.swift */; };
 		71BCF9822921EF8B008C7614 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date+Ext.swift */; };
-		71BCF9832921EF8B008C7614 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String+Ext.swift */; };
 		71BCF9852921EF8B008C7614 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* TargetType.swift */; };
 		71BD753F2971044D00D7751F /* SortMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD753E2971044D00D7751F /* SortMethods.swift */; };
 		71BD7542297104AB00D7751F /* FilterMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD7541297104AB00D7751F /* FilterMethods.swift */; };
@@ -157,7 +152,6 @@
 		71C26441298F1C640057EC04 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C26440298F1C640057EC04 /* Preview Assets.xcassets */; };
 		71C2644B298F1C9F0057EC04 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date+Ext.swift */; };
 		71C2644D298F1CA50057EC04 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double+Ext.swift */; };
-		71C2644F298F1CAB0057EC04 /* Environment+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment+Ext.swift */; };
 		71C26450298F1CB20057EC04 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
 		71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */; };
 		71C26452298F1CB60057EC04 /* DeepSkyTargetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF9712921EF6D008C7614 /* DeepSkyTargetList.swift */; };
@@ -174,7 +168,6 @@
 		71C26461298F1D4D0057EC04 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		71C26463298F1D510057EC04 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* Moon.swift */; };
 		71C26465298F1D920057EC04 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C26464298F1D920057EC04 /* ZoomableScrollView.swift */; };
-		71C2646A298F1EF70057EC04 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97B2921EF8B008C7614 /* String+Ext.swift */; };
 		71CEEE2A2B1ED79C0072AAAE /* ImagingPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */; };
 		71CEEE2B2B1ED79C0072AAAE /* TargetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */; };
 		71CEEE2C2B1ED79C0072AAAE /* HiddenTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */; };
@@ -219,7 +212,6 @@
 		71E2C0042B3CDBD3004F9936 /* TargetSeasonScoreChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E2C0032B3CDBD3004F9936 /* TargetSeasonScoreChart.swift */; };
 		71E96D68292831AA00E019F9 /* CatalogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E96D67292831AA00E019F9 /* CatalogManager.swift */; };
 		71F510BC297605E9008F7629 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
-		71F71573293FB4010011EF7F /* Environment+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F71572293FB4010011EF7F /* Environment+Ext.swift */; };
 		71F844C9294A95E700DD2742 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
 		71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */; };
 /* End PBXBuildFile section */
@@ -342,7 +334,6 @@
 		71BCF9722921EF6D008C7614 /* DeepSkyTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepSkyTarget.swift; sourceTree = "<group>"; };
 		71BCF9742921EF6D008C7614 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		71BCF97A2921EF8B008C7614 /* Date+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		71BCF97B2921EF8B008C7614 /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		71BCF97D2921EF8B008C7614 /* TargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		71BD753E2971044D00D7751F /* SortMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMethods.swift; sourceTree = "<group>"; };
 		71BD7541297104AB00D7751F /* FilterMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMethods.swift; sourceTree = "<group>"; };
@@ -390,7 +381,6 @@
 		71E2C0032B3CDBD3004F9936 /* TargetSeasonScoreChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSeasonScoreChart.swift; sourceTree = "<group>"; };
 		71E96D67292831AA00E019F9 /* CatalogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogManager.swift; sourceTree = "<group>"; };
 		71F510BB297605E9008F7629 /* CaseNameCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseNameCodable.swift; sourceTree = "<group>"; };
-		71F71572293FB4010011EF7F /* Environment+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Ext.swift"; sourceTree = "<group>"; };
 		71F844C8294A95E700DD2742 /* SelectableList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableList.swift; sourceTree = "<group>"; };
 		71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTargetsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -825,10 +815,8 @@
 			children = (
 				71BCF97A2921EF8B008C7614 /* Date+Ext.swift */,
 				71DF8A7C2A6230B000923236 /* DateFormatter+Ext.swift */,
-				71BCF97B2921EF8B008C7614 /* String+Ext.swift */,
 				71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */,
 				71D77FA72921F99200709252 /* Double+Ext.swift */,
-				71F71572293FB4010011EF7F /* Environment+Ext.swift */,
 				7164CEF129BE97C7000A154A /* UIImage+Ext.swift */,
 			);
 			path = Extensions;
@@ -1020,7 +1008,6 @@
 				71CEEE2F2B1ED7A10072AAAE /* SavedLocation.swift in Sources */,
 				7135117C29B2820B00725B1D /* NetworkManager.swift in Sources */,
 				7162D3432964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift in Sources */,
-				71668AD0298F266300AB0D19 /* String+Ext.swift in Sources */,
 				71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */,
 				7162D3452964DBF1007C8710 /* ReportListWidget.swift in Sources */,
 				718C11F929C919550069ECD5 /* Location.swift in Sources */,
@@ -1041,7 +1028,6 @@
 				71CEEE372B1ED8480072AAAE /* HiddenTarget.swift in Sources */,
 				71A6C8FD2A5F4E0D009F1C30 /* Sun.swift in Sources */,
 				7164CEF329BE97C7000A154A /* UIImage+Ext.swift in Sources */,
-				7164CEED29BE8FB4000A154A /* Environment+Ext.swift in Sources */,
 				71CEEE332B1ED8430072AAAE /* ReportSettings.swift in Sources */,
 				711386F829C3548C00081584 /* Filter.swift in Sources */,
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
@@ -1056,7 +1042,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7164CEEA29BE8FA8000A154A /* String+Ext.swift in Sources */,
 				711386FB29C3548C00081584 /* Filter.swift in Sources */,
 				7164CEE429BE8F8D000A154A /* CaseNameCodable.swift in Sources */,
 				7164CEE229BE8F83000A154A /* FilterMethods.swift in Sources */,
@@ -1069,7 +1054,6 @@
 				7164CEE329BE8F8B000A154A /* PlaceValue.swift in Sources */,
 				71DF8A812A62323900923236 /* DateFormatter+Ext.swift in Sources */,
 				71CEEE422B1ED8510072AAAE /* ImagingPreset.swift in Sources */,
-				7164CEEF29BE8FB5000A154A /* Environment+Ext.swift in Sources */,
 				7164CEF029BE8FE6000A154A /* DailyReport.swift in Sources */,
 				7164CEDF29BE8F7C000A154A /* TargetType.swift in Sources */,
 				71CEEE322B1ED7A30072AAAE /* SavedLocation.swift in Sources */,
@@ -1129,9 +1113,7 @@
 				7113870329C3571400081584 /* FilterButtonMenuView.swift in Sources */,
 				710BF588294BF18900A72073 /* ConfigSection.swift in Sources */,
 				71668AD5298F26AC00AB0D19 /* String+iOSExt.swift in Sources */,
-				71F71573293FB4010011EF7F /* Environment+Ext.swift in Sources */,
 				718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */,
-				71BCF9832921EF8B008C7614 /* String+Ext.swift in Sources */,
 				71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */,
 				7186D8F2295CEEC500601467 /* JournalView.swift in Sources */,
 				71DF8A7E2A62323700923236 /* DateFormatter+Ext.swift in Sources */,
@@ -1193,7 +1175,6 @@
 				719AFB472B37CCAF00A3BA5C /* DescriptionField.swift in Sources */,
 				719AFB432B37CCA600A3BA5C /* SubTargetsField.swift in Sources */,
 				719B24A82B1670F900C3951A /* TargetIDSearchField.swift in Sources */,
-				71C2644F298F1CAB0057EC04 /* Environment+Ext.swift in Sources */,
 				71C26457298F1CC10057EC04 /* FilterMethods.swift in Sources */,
 				71DF8A752A61FC3600923236 /* Mac_LocationSettings.swift in Sources */,
 				718444672B23ED030017B02B /* ProjectEntry.swift in Sources */,
@@ -1206,7 +1187,6 @@
 				71C2643A298F1C630057EC04 /* DeepSkyCatalogMacApp.swift in Sources */,
 				71C2645D298F1D3F0057EC04 /* LocationManager.swift in Sources */,
 				71DF8A712A61F9F600923236 /* Mac_SettingsView.swift in Sources */,
-				71C2646A298F1EF70057EC04 /* String+Ext.swift in Sources */,
 				71C26453298F1CB80057EC04 /* TargetCatalog.swift in Sources */,
 				71DF8A772A62175500923236 /* Mac_GearSettings.swift in Sources */,
 				719AFB4A2B37CCB600A3BA5C /* MagnitudeField.swift in Sources */,
@@ -1497,7 +1477,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;
@@ -1537,7 +1517,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeepSkyCatalogiOS/DeepSkyCatalog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Y68DX6VH2U;
 				ENABLE_PREVIEWS = NO;

@@ -5,8 +5,8 @@
 //  Created by Ryan Sponzilli on 11/18/22.
 //
 
+import Foundation
 import SwiftUI
-import SwiftData
 
 final class CatalogManager: ObservableObject {
     

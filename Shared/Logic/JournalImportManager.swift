@@ -85,7 +85,7 @@ final class JournalImportManager {
         
         // Create Weather Data
         let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
-        let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start, timezone: .current)
+        let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start)
         
         
         // create entry
@@ -112,7 +112,7 @@ final class JournalImportManager {
         
         // Create Weather Data
         let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
-        let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start, timezone: .current)
+        let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start)
         
         
         // create entry

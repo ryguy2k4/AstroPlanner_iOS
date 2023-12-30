@@ -6,31 +6,14 @@
 //
 
 import Foundation
-import SwiftUI
-import SwiftData
 
-final class DailyReport: ObservableObject {
-    let location: Location
-    let date: Date
-    let viewingInterval: DateInterval
-    let reportSettings: ReportSettings
-    let targetSettings: TargetSettings
-    let sunData: SunData
-    let preset: ImagingPreset?
-    
+final class DailyReport {
     let topFive: [DeepSkyTarget]
     let topTenNebulae: [DeepSkyTarget]
     let topTenGalaxies: [DeepSkyTarget]
     let topTenStarClusters: [DeepSkyTarget]
     
     init(location: Location, date: Date, viewingInterval: DateInterval, reportSettings: ReportSettings, targetSettings: TargetSettings, preset: ImagingPreset?, sunData: SunData) {
-        self.location = location
-        self.date = date
-        self.viewingInterval = viewingInterval
-        self.reportSettings = reportSettings
-        self.targetSettings = targetSettings
-        self.sunData = sunData
-        self.preset = preset
         
         let targets = generateSuitableTargets()
         self.topFive = createReportList(with: targets, top: 5)
@@ -53,7 +36,7 @@ final class DailyReport: ObservableObject {
             if reportSettings.filterForMoonPhase {
                 
                 // if bright moon is visible filter for narrowband targets
-                let moonIllumination = Moon.getMoonIllumination(date: date, timezone: location.timezone)
+                let moonIllumination = Moon.getMoonIllumination(date: date)
                 if moonIllumination > reportSettings.maxAllowedMoon {
                     targets.filterByType(TargetType.narrowband)
                 }

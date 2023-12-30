@@ -40,48 +40,10 @@ struct Mac_DailyReportView: View {
                     Spacer()
                 }
             }
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button {
-//                        isDateModal = true
-//                    } label: {
-//                        Image(systemName: "calendar")
-//                    }
-//                }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button {
-//                        isLocationModal = true
-//                    } label: {
-//                        Image(systemName: "location")
-//                    }
-//                }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button {
-//                        isReportSettingsModal = true
-//                    } label: {
-//                        Image(systemName: "slider.horizontal.3")
-//                    }
-//                }
-//            }
             .navigationDestination(for: DeepSkyTarget.self) { target in
                 Mac_DetailView(target: target)
                     .environmentObject(store)
             }
-            
-            // Modal for settings
-//            .sheet(isPresented: $isDateModal){
-//                ViewingIntervalModal()
-//                    .environmentObject(store)
-//                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-//            }
-//            .sheet(isPresented: $isLocationModal){
-//                LocationPickerModal()
-//                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-//            }
-//            .sheet(isPresented: $isReportSettingsModal){
-//                DailyReportSettingsModal()
-//                    .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-//            }
             .scrollIndicators(.hidden)
                 
         }
@@ -91,16 +53,12 @@ struct Mac_DailyReportView: View {
         }
         
         // update report on preset change
-        .onReceive(presetList.publisher) { _ in
-            let newPreset = presetList.first(where: {$0.isSelected == true})
-            if newPreset != report?.preset {
-                self.report = nil
-                Task {
-                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
-                }
+        .onChange(of: presetList.first(where: {$0.isSelected == true})) {
+            self.report = nil
+            Task {
+                self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        
         // update report on settings changes
         .onChange(of: reportSettings.first?.minFOVCoverage) {
             self.report = nil

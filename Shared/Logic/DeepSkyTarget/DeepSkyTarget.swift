@@ -74,7 +74,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
             
             var fileName: String? {
                 switch self {
-                case .apod(id: let id, copyrighted: let copyrighted):
+                case .apod(id: _, copyrighted: _):
                     return nil
                 case .local(fileName: let filename):
                     return filename
@@ -224,7 +224,7 @@ extension DeepSkyTarget {
      Next is defined as the next time the target rises after astronomical twilight begins on the current day.
      - Parameter location: The location with which to calculate the rise and set times.
      - Parameter date: The date on which to calculate the rise and set times.
-     - Returns: A DateInterval object from the targets next rise to the targets next set.
+     - Returns: A TargetInterval object
      */
     func getNextInterval(location: Location, date: Date, limitingAlt: Double = 0) -> TargetInterval {
         

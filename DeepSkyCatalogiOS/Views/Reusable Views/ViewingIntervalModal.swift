@@ -188,9 +188,3 @@ struct DatePickerModal: View {
         }
     }
 }
-
-//struct DateSelector_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DateSelector()
-//    }
-//}

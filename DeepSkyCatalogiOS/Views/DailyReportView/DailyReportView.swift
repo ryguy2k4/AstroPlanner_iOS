@@ -110,15 +110,10 @@ struct DailyReportView: View {
             .task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
-            
-            // Update report on preset change
-            .onReceive(presetList.publisher) { _ in
-                let newPreset = presetList.first(where: {$0.isSelected == true})
-                if newPreset != report?.preset {
-                    self.report = nil
-                    Task {
-                        self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
-                    }
+            .onChange(of: presetList.first(where: {$0.isSelected == true})) {
+                self.report = nil
+                Task {
+                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
                 }
             }
             // Update report on settings changes
@@ -173,10 +168,10 @@ struct DailyReportView: View {
      */
     func reportHeader() -> String {
         if store.viewingInterval == store.sunData.ATInterval || store.viewingInterval == store.sunData.NTInterval || store.viewingInterval == store.sunData.CTInterval {
-            return " ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) | Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)"
+            return " ☾ \(Moon.getMoonIllumination(date: store.date).percent(sigFigs: 2)) | Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)"
         }
         else {
-            return " ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) | \(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) | \(store.location.name)"
+            return " ☾ \(Moon.getMoonIllumination(date: store.date).percent(sigFigs: 2)) | \(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) | \(store.location.name)"
         }
     }
 }

@@ -90,13 +90,6 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    func formatForDataKey() -> String {
-        let formatter = DateFormatter()
-        formatter.timeZone = .gmt
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: self)
-    }
-    
     /**
      Calculates the days between the Epoch J2000 and a given date.
      - Parameter until: The date to calculate the interval to.

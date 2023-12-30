@@ -9,11 +9,18 @@ import Foundation
 
 struct Sun {
     
+    // Singleton Instance
     static var sol = Sun()
     
     private init() {}
     
+    /**
+     - Parameter location: The location at which to calculate the altitude of the sun
+     - Parameter time: The time at which to calculate the altitude of the sun
+     - Returns: The altitude of the sun
+     */
     func getAltitude(location: Location, time: Date) -> Double {
+        // Days since J2000
         let d = Date.daysSinceJ2000(until: time)
         
         let meanLongitude = (280.461 + 0.985647 * d).mod(by: 360)
@@ -45,6 +52,13 @@ struct Sun {
         return asin(sinAlt).toDegree()
     }
     
+    /**
+     This function searches through the altitude function of this target looking for a certain condition to be satisfied
+     - Parameter startTime: The time to begin the altitude search at
+     - Parameter initialIncrement: The initial amount to increment altitude sampling times
+     - Parameter finalIncrement: The level of precision to hone in on the exact time
+     - Parameter condition: The condition that is satisfied when the time being searched for has not been found yet
+     */
     private func binaryAltitudeSearch(startTime: Date, initialIncrement: TimeInterval, finalIncrement: TimeInterval, condition: (Date, TimeInterval) -> Bool) -> Date {
         var start = startTime
         var increment = initialIncrement
@@ -60,8 +74,13 @@ struct Sun {
         return start
     }
     
+    /**
+     Calculates the time on the interval [start of day, end of day] that the target reaches its highest altitude
+     - Parameter location: The location on Earth to calculate from
+     - Parameter date: The date on which to calculate the culmination
+     - Returns: The time at which the target reaches its highest altitude
+     */
     func getCulmination(location: Location, date: Date) -> Date {
-        // modified start time to 12AM
         let time = binaryAltitudeSearch(startTime: date.startOfLocalDay(timezone: location.timezone), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
             slope(location: location, time: time) > 0 || slope(location: location, time: time.addingTimeInterval(increment)) < 0
         }
@@ -74,10 +93,16 @@ struct Sun {
         func slope(location: Location, time: Date) -> Double {
             let alt1 = getAltitude(location: location, time: time)
             let alt2 = getAltitude(location: location, time: time.addingTimeInterval(1))
-           return alt1 - alt2
+            return alt1 - alt2
         }
     }
     
+    /**
+     Gets the current set of SunData that describes the given time and location
+     - Parameter location: The location with which to calculate the rise and set times.
+     - Parameter date: The date on which to calculate the rise and set times.
+     - Returns: An instance of SunData containing rise and set intervals
+     */
     func getNextInterval(location: Location, date: Date) -> SunData {
         
         let culmination = getCulmination(location: location, date: date)

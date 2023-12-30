@@ -8,15 +8,24 @@
 import Foundation
 
 struct Moon {
-    static func getMoonIllumination(date: Date, timezone: TimeZone) -> Double {
-        let date = date.endOfLocalDay(timezone: timezone)
+    
+    /**
+     - Parameter date: The date at which to calculate the moon's illumination
+     - Returns: The percent illuminated of the moon
+     */
+    static func getMoonIllumination(date: Date) -> Double {
         func getMoonAge(date: Date) -> Double {
             // lunar cycle length in seconds
             let cycle = 29.53058770576 * 24 * 60 * 60
+            
             // new moon reference date
             let new2000 = 947182440.0
+            
+            // find the current age of the moon
             let totalSecs = date.timeIntervalSince1970 - new2000
             let age = totalSecs.mod(by: cycle)
+            
+            // convert to fractional days
             return age / 60 / 60 / 24
         }
         
