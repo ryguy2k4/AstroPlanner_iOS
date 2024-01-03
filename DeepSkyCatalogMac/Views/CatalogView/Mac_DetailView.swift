@@ -10,14 +10,16 @@ import SwiftData
 import Charts
 
 struct Mac_DetailView: View {
-    @Environment(\.modelContext) var context
-    @EnvironmentObject var networkManager: NetworkManager
-    @Query var targetSettings: [TargetSettings]
     @EnvironmentObject var store: HomeViewModel
+    @Environment(\.modelContext) var context
+    
+    @Query var targetSettings: [TargetSettings]
     
     @State var showCoordinateDecimalFormat: Bool = false
     @State var showLimitingAlt: Bool = true
+    
     let target: DeepSkyTarget
+
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {

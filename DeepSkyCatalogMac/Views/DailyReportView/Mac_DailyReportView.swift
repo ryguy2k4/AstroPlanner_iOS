@@ -9,18 +9,17 @@ import SwiftUI
 import SwiftData
 
 struct Mac_DailyReportView: View {
-    @Environment(\.modelContext) var context
-    @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var store: HomeViewModel
+
     @Query var reportSettings: [ReportSettings]
     @Query var targetSettings: [TargetSettings]
     @Query var presetList: [ImagingPreset]
-    @EnvironmentObject var store: HomeViewModel
+    
     @State var report: DailyReport?
-    @State var internet: Bool = true
     @State var isDateModal = false
     @State var isLocationModal = false
-    @State var isReportSettingsModal = false
+    @State var isImagingPresetModal = false
+    @State var topTenTab: TargetTab = .nebulae
 
     var body: some View {
         NavigationStack {
@@ -40,19 +39,18 @@ struct Mac_DailyReportView: View {
                     Spacer()
                 }
             }
-            .navigationDestination(for: DeepSkyTarget.self) { target in
-                Mac_DetailView(target: target)
-                    .environmentObject(store)
-            }
-            .scrollIndicators(.hidden)
-                
         }
+        .navigationDestination(for: DeepSkyTarget.self) { target in
+            Mac_DetailView(target: target)
+                .environmentObject(store)
+        }
+        .scrollIndicators(.hidden)
         .environmentObject(store)
         .task {
             self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
         }
         
-        // update report on preset change
+         // update report on preset change
         .onChange(of: presetList.first(where: {$0.isSelected == true})) {
             self.report = nil
             Task {
@@ -84,12 +82,12 @@ struct Mac_DailyReportView: View {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .onChange(of: reportSettings.first?.preferBroadband) {
+        .onChange(of: reportSettings.first?.preferBroadband) { _, _ in
             self.report = nil
             Task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
         }
-        .navigationTitle("Daily Report | " + (store.viewingInterval == store.sunData.ATInterval ? "Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)" : "\(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(store.location.name)") + " | ☾ \(Moon.getMoonIllumination(date: store.date, timezone: store.location.timezone).percent(sigFigs: 2)) illuminated")
+        .navigationTitle("Daily Report | " + (store.viewingInterval == store.sunData.ATInterval ? "Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)" : "\(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(store.location.name)") + " | ☾ \(Moon.getMoonIllumination(date: store.date).percent(sigFigs: 2)) illuminated")
     }
 }

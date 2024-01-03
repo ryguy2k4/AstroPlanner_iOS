@@ -8,6 +8,10 @@
 import SwiftUI
 import SwiftData
 
+/**
+ This struct contains the 4 variables that control the state of the app
+ The entire app refers back to a single instance of this struct as the source of these values
+ */
 class HomeViewModel: ObservableObject {
     @Published var location: Location = .default
     @Published var date: Date = .now
@@ -61,57 +65,40 @@ struct Mac_HomeView: View {
                 Label(item.rawValue, systemImage: item.icon)
             }
         } detail: {
-            if !reportSettings.isEmpty || !targetSettings.isEmpty {
-                if vm.location != .default {
-                    // if available location and sunData and viewingInterval populated then show DailyReportView, CatalogView
-                    if vm.sunData != .default && vm.viewingInterval.duration != .pi {
-                        switch sidebarItem {
-                        case .report:
-                            Mac_DailyReportView()
-                                .environmentObject(vm)
-                        case .catalog:
-                            Mac_CatalogView()
-                                .environmentObject(vm)
-                        case .journal:
-                            Mac_JournalView()
-                        case .curator:
-                            TargetCuratorView()
-                        }
+            // If a valid location is selected
+            if vm.location != .default {
+                // If sunData and viewingInterval are valid, append DailyReportView and CatalogView to the tab bar
+                if vm.sunData != .default && vm.viewingInterval.duration != .pi {
+                    switch sidebarItem {
+                    case .report:
+                        Mac_DailyReportView()
+                            .environmentObject(vm)
+                    case .catalog:
+                        Mac_CatalogView()
+                            .environmentObject(vm)
+                    case .journal:
+                        Mac_JournalView()
+                    case .curator:
+                        TargetCuratorView()
                     }
-                    // if available location but sunData and viewingInterval are being populated, then show a loading view
-                    else {
-                        switch sidebarItem {
-                        case .report:
-                            DailyReportLoadingView()
-                                .environmentObject(vm)
-                        case .catalog:
-                            Text("Basic Catalog View")
-                        case .journal:
-                            Mac_JournalView()
-                        case .curator:
-                            EmptyView()
-                        }
+                }
+                // If sunData and viewingInterval are not valid, show a loading view while sunData is being calculated
+                else {
+                    switch sidebarItem {
+                    case .report:
+                        DailyReportLoadingView()
+                            .environmentObject(vm)
+                    case .catalog:
+                        Text("Basic Catalog View")
+                    case .journal:
+                        Mac_JournalView()
+                    case .curator:
+                        EmptyView()
                     }
-                } else {
-                    // if no location available, prompt user for location
-                    Text("No Locations View: Prompt for Location")
                 }
             } else {
-                // set default report settings
-                if reportSettings.isEmpty {
-                    ProgressView("Initializing")
-                        .task {
-                            let defaultSettings = ReportSettings()
-                            context.insert(defaultSettings)
-                        }
-                }
-                if targetSettings.isEmpty {
-                    ProgressView("Initializing")
-                        .task {
-                            let defaultSettings = TargetSettings()
-                            context.insert(defaultSettings)
-                        }
-                }
+                // if no location available, prompt user for location
+                Text("No Locations View: Prompt for Location")
             }
         }
         .onReceive(locationList.publisher) { _ in
@@ -136,19 +123,24 @@ struct Mac_HomeView: View {
                 vm.date = .now.startOfLocalDay(timezone: newLocation.timezone)
             }
         }
-        .onReceive(vm.$date, perform: { newValue in
-            //print("Date Change -> ", newValue)
+        .onReceive(vm.$date) { _ in
             vm.sunData = .default
-        })
+        }
+        .onAppear {
+            // set default report settings for first time launch
+            if reportSettings.isEmpty {
+                let defaultSettings = ReportSettings()
+                context.insert(defaultSettings)
+            }
+            // set default report settings for first time launch
+            if targetSettings.isEmpty {
+                let defaultSettings = TargetSettings()
+                context.insert(defaultSettings)
+            }
+        }
         .frame(minWidth: 600, maxWidth: 2400, minHeight: 400,  maxHeight: 1600)
     }
 }
-
-//struct Mac_HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Mac_HomeView()
-//    }
-//}
 
 struct DailyReportLoadingView: View {
     @EnvironmentObject var networkManager: NetworkManager
@@ -175,37 +167,3 @@ struct DailyReportLoadingView: View {
         }
     }
 }
-
-//struct DailyReportLoadingFailedView: View {
-//    @EnvironmentObject var store: HomeViewModel
-//    @EnvironmentObject var networkManager: NetworkManager
-//    @Query var reportSettings: [ReportSettings]
-//    @Binding var internet: Bool
-//    var body: some View {
-//        NavigationStack {
-//            VStack {
-//                Text("Daily Report Unavailable Offline")
-//                    .fontWeight(.bold)
-//                    .padding(.vertical)
-//                Button("Retry") {
-//                    internet = true
-//                    Task {
-//                        do {
-//                            store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
-//                            if reportSettings.first!.darknessThreshold == Int16(2) {
-//                                store.viewingInterval = store.sunData.CTInterval
-//                            } else if reportSettings.first!.darknessThreshold == Int16(1) {
-//                                store.viewingInterval = store.sunData.NTInterval
-//                            } else {
-//                                store.viewingInterval = store.sunData.ATInterval
-//                            }
-//                        } catch {
-//                            internet = false
-//                        }
-//                    }
-//                }
-//                Spacer()
-//            }
-//        }
-//    }
-//}

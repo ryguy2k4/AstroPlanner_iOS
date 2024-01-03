@@ -22,7 +22,6 @@
 		7129DEBD2B15AC9F0058B238 /* EntryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129DEBC2B15AC9F0058B238 /* EntryDetailView.swift */; };
 		712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */; };
 		712E83662A60F41200CA42DD /* Mac_TopTenListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */; };
-		712E83682A60F44F00CA42DD /* ReportSettingsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */; };
 		7132A8682B339734000E2299 /* JournalImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132A8672B339734000E2299 /* JournalImportManager.swift */; };
 		7132A86A2B33A7C4000E2299 /* APTLogFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132A8692B33A7C4000E2299 /* APTLogFile.swift */; };
 		7132A86C2B33A7CF000E2299 /* EXIFMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132A86B2B33A7CF000E2299 /* EXIFMetadata.swift */; };
@@ -40,6 +39,7 @@
 		713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B49B72954122D008EFC81 /* LocationSettings.swift */; };
 		7143AF4C2B2FA61900F89484 /* EntryImportModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7143AF4B2B2FA61900F89484 /* EntryImportModal.swift */; };
 		71462F3329A2E6A100F2914C /* ToolbarLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71462F3229A2E6A100F2914C /* ToolbarLogo.swift */; };
+		71470EB22B450B8500E1BE20 /* Mac_FilterButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71470EB12B450B8500E1BE20 /* Mac_FilterButtonMenu.swift */; };
 		714839CB2B3E138B0041A327 /* TargetSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714839CA2B3E138B0041A327 /* TargetSchedule.swift */; };
 		714B8AC32B2BA409002308EC /* FITSCore in Frameworks */ = {isa = PBXBuildFile; productRef = 714B8AC22B2BA409002308EC /* FITSCore */; };
 		714B8AC82B2D2B1A002308EC /* FITSKeywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B8AC52B2D2B1A002308EC /* FITSKeywords.swift */; };
@@ -260,7 +260,6 @@
 		7129DEBC2B15AC9F0058B238 /* EntryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailView.swift; sourceTree = "<group>"; };
 		712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopFiveView.swift; sourceTree = "<group>"; };
 		712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TopTenListView.swift; sourceTree = "<group>"; };
-		712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSettingsEditor.swift; sourceTree = "<group>"; };
 		7132A8672B339734000E2299 /* JournalImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalImportManager.swift; sourceTree = "<group>"; };
 		7132A8692B33A7C4000E2299 /* APTLogFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTLogFile.swift; sourceTree = "<group>"; };
 		7132A86B2B33A7CF000E2299 /* EXIFMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXIFMetadata.swift; sourceTree = "<group>"; };
@@ -274,6 +273,7 @@
 		713B49B72954122D008EFC81 /* LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettings.swift; sourceTree = "<group>"; };
 		7143AF4B2B2FA61900F89484 /* EntryImportModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryImportModal.swift; sourceTree = "<group>"; };
 		71462F3229A2E6A100F2914C /* ToolbarLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarLogo.swift; sourceTree = "<group>"; };
+		71470EB12B450B8500E1BE20 /* Mac_FilterButtonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_FilterButtonMenu.swift; sourceTree = "<group>"; };
 		714839CA2B3E138B0041A327 /* TargetSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSchedule.swift; sourceTree = "<group>"; };
 		714B8AC52B2D2B1A002308EC /* FITSKeywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITSKeywords.swift; sourceTree = "<group>"; };
 		714B8ACB2B2D38A4002308EC /* NINALogFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NINALogFile.swift; sourceTree = "<group>"; };
@@ -436,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				71BE6EDB299035A400686E95 /* Mac_DailyReportView.swift */,
-				712E83672A60F44F00CA42DD /* ReportSettingsEditor.swift */,
 				712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */,
 				712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */,
 			);
@@ -447,6 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				713568E92A60C661004196AE /* Mac_CatalogView.swift */,
+				71470EB12B450B8500E1BE20 /* Mac_FilterButtonMenu.swift */,
 				713568EB2A60C696004196AE /* Mac_DetailView.swift */,
 			);
 			path = CatalogView;
@@ -1155,6 +1155,7 @@
 				719AFB492B37CCB300A3BA5C /* SizeField.swift in Sources */,
 				713568EA2A60C661004196AE /* Mac_CatalogView.swift in Sources */,
 				7164C7A82B3672620002B492 /* EntryIntervalEditor.swift in Sources */,
+				71470EB22B450B8500E1BE20 /* Mac_FilterButtonMenu.swift in Sources */,
 				71C26461298F1D4D0057EC04 /* FetchError.swift in Sources */,
 				71DF8A732A61FB5F00923236 /* Mac_AboutView.swift in Sources */,
 				71701E782B182DCE007992B8 /* JournalEntryList.swift in Sources */,
@@ -1164,7 +1165,6 @@
 				71C26456298F1CBF0057EC04 /* SortMethods.swift in Sources */,
 				719AFB4C2B37CCCF00A3BA5C /* APIService.swift in Sources */,
 				713568EC2A60C696004196AE /* Mac_DetailView.swift in Sources */,
-				712E83682A60F44F00CA42DD /* ReportSettingsEditor.swift in Sources */,
 				71CEEE402B1ED8500072AAAE /* ImagingPreset.swift in Sources */,
 				719AFB422B37CCA400A3BA5C /* DesignationsField.swift in Sources */,
 				71C26455298F1CBD0057EC04 /* Constellation.swift in Sources */,

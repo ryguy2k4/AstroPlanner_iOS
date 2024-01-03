@@ -17,7 +17,6 @@ struct DailyReportView: View {
     @Query var presetList: [ImagingPreset]
     
     @State var report: DailyReport?
-    @State var internet: Bool = true
     @State var isDateModal = false
     @State var isLocationModal = false
     @State var isImagingPresetModal = false
@@ -110,13 +109,14 @@ struct DailyReportView: View {
             .task {
                 self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
             }
+            
+            // Update report on settings changes
             .onChange(of: presetList.first(where: {$0.isSelected == true})) {
                 self.report = nil
                 Task {
                     self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
                 }
             }
-            // Update report on settings changes
             .onChange(of: reportSettings.first?.minFOVCoverage) {
                 self.report = nil
                 Task {

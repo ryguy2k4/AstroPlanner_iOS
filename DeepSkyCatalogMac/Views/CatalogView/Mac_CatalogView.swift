@@ -11,50 +11,32 @@ import SwiftData
 struct Mac_CatalogView: View {
     @Environment(\.dismissSearch) private var dismissSearch
     @Environment(\.isSearching) private var isSearching
-    @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var locationManager: LocationManager
-    @StateObject private var catalogManager: CatalogManager = CatalogManager()
     @Environment(\.modelContext) var context
+    @EnvironmentObject var store: HomeViewModel
 
     @Query var targetSettings: [TargetSettings]
-
-    @EnvironmentObject var store: HomeViewModel
-    @State private var isLocationModal = false
-    @State private var isDateModal = false
+    @Query var reportSettings: [ReportSettings]
+    
+    @StateObject private var catalogManager: CatalogManager = CatalogManager()
 
     var body: some View {
-        NavigationStack() {
-//            FilterButtonMenu()
-            
+        NavigationStack {            
             List(catalogManager.targets, id: \.id) { target in
-                NavigationLink(destination: Mac_DetailView(target: target)) {
+                NavigationLink(destination: Mac_DetailView(target: target).environmentObject(store)) {
                     VStack {
                         TargetCell(target: target)
                             .environmentObject(store)
                     }
                 }
             }
-//            .toolbar() {
-//                ToolbarLogo()
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button {
-//                        isDateModal = true
-//                    } label: {
-//                        Image(systemName: "calendar")
-//                    }
-//                }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button {
-//                        isLocationModal = true
-//                    } label: {
-//                        Image(systemName: "location")
-//                    }
-//                }
-//            }
+        }
+        
+        .toolbar {
+            Mac_FilterButtonMenu()
         }
         
         // Modifiers to enable searching
-        .searchable(text: $catalogManager.searchText)
+        .searchable(text: $catalogManager.searchText, placement: .toolbar)
         .onSubmit(of: .search) {
             catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
         }
@@ -63,42 +45,16 @@ struct Mac_CatalogView: View {
                 catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
             }
         }
-//        .searchSuggestions {
-//            // grab top 15 search results
-//            let suggestions = DeepSkyTargetList.whitelistedTargets.filteredBySearch(catalogManager.searchText)
-//            
-//            // list the search results
-//            ForEach(suggestions) { suggestion in
-//                HStack {
-//                    Image(suggestion.image?.source.fileName ?? "\(suggestion.type)")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .cornerRadius(8)
-//                        .frame(width: 100, height: 70)
-//                    Text(suggestion.name?.first ?? suggestion.defaultName)
-//                        .foregroundColor(.primary)
-//                }.searchCompletion(suggestion.name?.first ?? suggestion.defaultName)
-//            }
-//        }
         .onChange(of: isSearching) { _, newValue in
             if !isSearching {
                 dismissSearch()
             }
         }
         .autocorrectionDisabled()
-        
-        // Modal for settings
-//        .sheet(isPresented: $isDateModal){
-//            ViewingIntervalModal()
-//                .environmentObject(store)
-//                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-//        }
-//        .sheet(isPresented: $isLocationModal){
-//            LocationPickerModal()
-//                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
-//        }
+
         // Passing the date and location to use into all child views
         .environmentObject(catalogManager)
+        
         .navigationTitle("Master Catalog | " + (store.viewingInterval == store.sunData.ATInterval ? "Night of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)" : "\(store.viewingInterval.start.formatted(date: .abbreviated, time: .shortened)) to \(store.viewingInterval.end.formatted(date: .omitted, time: .shortened)) at \(store.location.name)"))
         .task {
             catalogManager.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
@@ -110,9 +66,9 @@ struct Mac_CatalogView: View {
  This View displays information about the target at a glance. It is used within the Master Catalog list.
  */
 fileprivate struct TargetCell: View {
+    @EnvironmentObject var store: HomeViewModel
     @Query var targetSettings: [TargetSettings]
     var target: DeepSkyTarget
-    @EnvironmentObject var store: HomeViewModel
 
     var body: some View {
         HStack {
@@ -133,9 +89,3 @@ fileprivate struct TargetCell: View {
         }
     }
 }
-
-//struct Mac_CatalogView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Mac_CatalogView()
-//    }
-//}
