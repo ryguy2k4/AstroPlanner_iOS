@@ -22,7 +22,6 @@ struct EntryPlanEditor: View {
             Grid {
                 // Header Row
                 GridRow {
-                    Text("Type")
                     Text("Filter")
                     Text("Exposure")
                     Text("Binning")
@@ -34,10 +33,9 @@ struct EntryPlanEditor: View {
                 // Sequence Rows
                 ForEach($planProxy, id: \.self) { plan in
                     GridRow {
-                        Text(plan.wrappedValue.imageType ?? "")
                         Text(plan.wrappedValue.filterName ?? "")
                         TextField("Exposure", value: plan.exposureTime, format: .number)
-                        Text("\(plan.wrappedValue.binX ?? 1)x\(plan.wrappedValue.binY ?? 1)")
+                        Text("\(plan.wrappedValue.binning ?? 1)x\(plan.wrappedValue.binning ?? 1)")
                         TextField("Gain", value: plan.gain, format: .number)
                         TextField("Offset", value: plan.offset, format: .number)
                         TextField("Usable", value: plan.numUsable, format: .number)

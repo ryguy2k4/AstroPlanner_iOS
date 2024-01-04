@@ -119,10 +119,9 @@ struct EntryDetailView: View {
                             if let imagePlan = entry.imagePlan {
                                 ForEach(imagePlan, id: \.filterName) { sequence in
                                     HStack {
-                                        Text(sequence.imageType ?? "")
                                         Text(sequence.filterName ?? "")
                                         Text("\(sequence.exposureTime ?? .nan)")
-                                        Text("\(sequence.binX ?? 1)x\(sequence.binY ?? 1)")
+                                        Text("\(sequence.binning ?? 1)x\(sequence.binning ?? 1)")
                                         Text(sequence.gain?.description ?? "")
                                         Text(sequence.offset?.description ?? "")
                                         Text("\(sequence.numUsable ?? 0)")

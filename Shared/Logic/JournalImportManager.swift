@@ -61,7 +61,7 @@ final class JournalImportManager {
         // Create Target Image Plans
         let ccdTemp = fitsMetadata.map({$0.ccdTemp})
         let airMass = fitsMetadata.map({$0.airMass})
-        let imagePlan: [JournalEntry.JournalImageSequence] = ninaImagePlan.captureSequences.map({JournalEntry.JournalImageSequence(imageType: $0.imageType, filterName: $0.filterType.name, exposureTime: $0.exposureTime, binX: $0.binning.x, binY: $0.binning.y, gain: $0.gain, offset: $0.offset, numCaptured: $0.progressExposureCount, numUsable: fitsMetadata.count, ccdTemp: ccdTemp, airmass: airMass)})
+        let imagePlan: [JournalEntry.JournalImageSequence] = ninaImagePlan.captureSequences.map({JournalEntry.JournalImageSequence(filterName: $0.filterType.name, exposureTime: $0.exposureTime, binning: $0.binning.x, gain: $0.gain, offset: $0.offset, ccdTemp: ccdTemp, airmass: airMass, numCaptured: $0.progressExposureCount, numUsable: fitsMetadata.count)})
         
         // Create Location
         var location = Location(latitude: fitsMetadata.first!.latitude, longitude: fitsMetadata.first!.longitude, elevation: fitsMetadata.first!.elevation)

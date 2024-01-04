@@ -47,6 +47,7 @@
 		714BB85329A094810084D438 /* TopTenTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714BB85229A094810084D438 /* TopTenTabView.swift */; };
 		714E54CE293D52B00039ECE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E54CD293D52B00039ECE0 /* LocationManager.swift */; };
 		7156743029273ECA00626B1B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7156742F29273ECA00626B1B /* AboutView.swift */; };
+		715F4D6C2B4668A700B48446 /* Journal.json in Resources */ = {isa = PBXBuildFile; fileRef = 715F4D6B2B4668A700B48446 /* Journal.json */; };
 		7162D33E2964DBF1007C8710 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162D33D2964DBF0007C8710 /* WidgetKit.framework */; };
 		7162D3402964DBF1007C8710 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162D33F2964DBF1007C8710 /* SwiftUI.framework */; };
 		7162D3432964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162D3422964DBF1007C8710 /* DeepSkyCatalogWidgetBundle.swift */; };
@@ -73,8 +74,8 @@
 		7164CEE929BE8FA6000A154A /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97A2921EF8B008C7614 /* Date+Ext.swift */; };
 		7164CEEB29BE8FAA000A154A /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D77FA72921F99200709252 /* Double+Ext.swift */; };
 		7164CEF029BE8FE6000A154A /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
-		7164CEF229BE97C7000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
-		7164CEF329BE97C7000A154A /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+Ext.swift */; };
+		7164CEF229BE97C7000A154A /* UIImage+iOSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+iOSExt.swift */; };
+		7164CEF329BE97C7000A154A /* UIImage+iOSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164CEF129BE97C7000A154A /* UIImage+iOSExt.swift */; };
 		716531EA29340CFE00D05B79 /* DailyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716531E929340CFE00D05B79 /* DailyReport.swift */; };
 		71668ACC298F25F000AB0D19 /* CaseNameCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F510BB297605E9008F7629 /* CaseNameCodable.swift */; };
 		71668AD5298F26AC00AB0D19 /* String+iOSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */; };
@@ -280,6 +281,7 @@
 		714BB85229A094810084D438 /* TopTenTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenTabView.swift; sourceTree = "<group>"; };
 		714E54CD293D52B00039ECE0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7156742F29273ECA00626B1B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		715F4D6B2B4668A700B48446 /* Journal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Journal.json; sourceTree = "<group>"; };
 		7162D33B2964DBF0007C8710 /* DeepSkyCatalogWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeepSkyCatalogWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7162D33D2964DBF0007C8710 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		7162D33F2964DBF1007C8710 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -292,7 +294,7 @@
 		7164CECE29BE4E72000A154A /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		7164CED029BE4E72000A154A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7164CED729BE4E7D000A154A /* DeepSkyCatalogIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogIntents.entitlements; sourceTree = "<group>"; };
-		7164CEF129BE97C7000A154A /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		7164CEF129BE97C7000A154A /* UIImage+iOSExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+iOSExt.swift"; sourceTree = "<group>"; };
 		716531E929340CFE00D05B79 /* DailyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReport.swift; sourceTree = "<group>"; };
 		71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+iOSExt.swift"; sourceTree = "<group>"; };
 		71668AD6298F280A00AB0D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -625,6 +627,7 @@
 				713919352B16FF5800A5BE11 /* JournalEntry.swift */,
 				718444642B23ED030017B02B /* ProjectEntry.swift */,
 				71701E752B182DCE007992B8 /* JournalEntryList.swift */,
+				715F4D6B2B4668A700B48446 /* Journal.json */,
 				714B8AC42B2D2A4F002308EC /* Sources */,
 			);
 			path = JournalEntry;
@@ -815,9 +818,9 @@
 			children = (
 				71BCF97A2921EF8B008C7614 /* Date+Ext.swift */,
 				71DF8A7C2A6230B000923236 /* DateFormatter+Ext.swift */,
-				71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */,
 				71D77FA72921F99200709252 /* Double+Ext.swift */,
-				7164CEF129BE97C7000A154A /* UIImage+Ext.swift */,
+				71668AD4298F26AC00AB0D19 /* String+iOSExt.swift */,
+				7164CEF129BE97C7000A154A /* UIImage+iOSExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -995,6 +998,7 @@
 				71BE6EDF2990380900686E95 /* Assets.xcassets in Resources */,
 				71C26450298F1CB20057EC04 /* Catalog.json in Resources */,
 				71C26441298F1C640057EC04 /* Preview Assets.xcassets in Resources */,
+				715F4D6C2B4668A700B48446 /* Journal.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,7 +1031,7 @@
 				71ACF3312964ED0F00CC83D5 /* Date+Ext.swift in Sources */,
 				71CEEE372B1ED8480072AAAE /* HiddenTarget.swift in Sources */,
 				71A6C8FD2A5F4E0D009F1C30 /* Sun.swift in Sources */,
-				7164CEF329BE97C7000A154A /* UIImage+Ext.swift in Sources */,
+				7164CEF329BE97C7000A154A /* UIImage+iOSExt.swift in Sources */,
 				71CEEE332B1ED8430072AAAE /* ReportSettings.swift in Sources */,
 				711386F829C3548C00081584 /* Filter.swift in Sources */,
 				71BD7544297109B100D7751F /* FilterMethods.swift in Sources */,
@@ -1122,7 +1126,7 @@
 				713B49B82954122D008EFC81 /* LocationSettings.swift in Sources */,
 				710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */,
 				71BD7542297104AB00D7751F /* FilterMethods.swift in Sources */,
-				7164CEF229BE97C7000A154A /* UIImage+Ext.swift in Sources */,
+				7164CEF229BE97C7000A154A /* UIImage+iOSExt.swift in Sources */,
 				71B14F6B295A77AE003C11BD /* KeyboardDismissButton.swift in Sources */,
 				71E96D68292831AA00E019F9 /* CatalogManager.swift in Sources */,
 				71B14F692958D905003C11BD /* ViewingIntervalModal.swift in Sources */,

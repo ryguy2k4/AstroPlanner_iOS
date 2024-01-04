@@ -39,19 +39,67 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         self.imagePlan = imagePlan
     }
     
+    /**
+     This struct defines a group of images taken by a certain filter
+     All the images that this set represents have the same filterName, exposureTime, binning, gain, and offset
+     The ccdTemp and airmass of each image will vary, so they are all contained in an array
+     */
     struct JournalImageSequence: Codable, Hashable {
-        var imageType: String?
+        // Group Image Specs
+        var filterName: String?
+        var exposureTime: Double?
+        var binning: Int?
+        var gain: Int?
+        var offset: Int?
+        
+        // Individual Image Specs
+        var ccdTemp: [Double]?
+        var airmass: [Double]?
+        
+        // Number from Image Plan File
+        var numCaptured: Int?
+        
+        // Number from Image Files imported
+        // **only usable images are imported**
+        var numUsable: Int?
+    }
+    
+    /* IDEA
+     Question: Log only usable images, or all images captured?
+    
+     Logging only usable images
+     - PRO: all historical data is still intact
+     - PRO: data structure is easier to implement
+     - CON: missing out on tracking some data
+     
+     
+     Logging all images captured
+     - PRO: allow analysis of factors that caused an image to be usable or unusable (temp, time, weather, airmass, etc)
+     - PRO: data structure would be more elegant
+     - CON: data structure would be larger and more complex
+     - CON: difficult to use with SwiftData
+     - CON: for all past sessions, I will be missing data
+     - CON: would have to indicate which images were used and which were not, probably manually (or pixinsight log maybe)
+     
+     
+    struct JournalImagePlan {
+        var images: [JournalImage]
+        var numCaptured: Int?
+        var numUsable: Int?
+    }
+    
+    struct JournalImage {
+        var dateTime: Date
         var filterName: String?
         var exposureTime: Double?
         var binX: Int?
         var binY: Int?
         var gain: Int?
         var offset: Int?
-        var numCaptured: Int?
-        var numUsable: Int?
-        var ccdTemp: [Double]?
-        var airmass: [Double]?
+        var ccdTemp: Double?
+        var airmass: Double?
     }
+    */
 
     struct JournalTarget: Codable {
         var targetID: TargetID
