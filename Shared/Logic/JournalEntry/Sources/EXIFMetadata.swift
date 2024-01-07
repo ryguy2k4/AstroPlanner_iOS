@@ -14,11 +14,12 @@ struct EXIFMetadata {
     var dateTimeOriginal: Date
     var iso: Int
     var resolutionWidth: Int
-    var resolutionHeight: Int
+    var resolutionLength: Int
         
     init(from path: URL) {
         let imageSource = CGImageSourceCreateWithURL(path as CFURL, nil)
         let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource!, 0, nil)
+        print(imageProperties.debugDescription)
         let imageDict = imageProperties! as NSDictionary
         let tiffModel = imageDict.value(forKey: "{TIFF}") as AnyObject
         let exifDict = imageDict.value(forKey: "{Exif}") as! NSDictionary
@@ -33,7 +34,7 @@ struct EXIFMetadata {
         self.dateTimeOriginal = formatter.date(from: dateTimeOriginal)!
         let iso = exifDict.value(forKey: kCGImagePropertyExifISOSpeedRatings as String) as! [Int]
         self.iso = iso.first!
-        self.resolutionWidth = exifDict.value(forKey: kCGImagePropertyExifPixelXDimension as String) as! Int
-        self.resolutionHeight = exifDict.value(forKey: kCGImagePropertyExifPixelYDimension as String) as! Int
+        self.resolutionWidth = exifDict.value(forKey: kCGImagePropertyExifPixelYDimension as String) as! Int
+        self.resolutionLength = exifDict.value(forKey: kCGImagePropertyExifPixelXDimension as String) as! Int
     }
 }

@@ -9,202 +9,126 @@ import Foundation
 import WeatherKit
 
 final class JournalImportManager {
-    let ninaImagePlan: CaptureSequenceList?
-    let ninaLog: NINALogFile?
-    let aptLog: APTLogFile?
-    let fitsMetadata: [FITSKeywords]?
-    let rawMetadata: [EXIFMetadata]?
     
-    init(ninaImagePlan: CaptureSequenceList?, ninaLog: NINALogFile?, aptLog: APTLogFile?, fitsMetadata: [FITSKeywords]?, rawMetadata: [EXIFMetadata]?) {
-        self.ninaImagePlan = ninaImagePlan
-        self.ninaLog = ninaLog
-        self.aptLog = aptLog
-        self.fitsMetadata = fitsMetadata?.sorted(by: { one, two in
-            one.date < two.date
-        })
-        self.rawMetadata = rawMetadata
-    }
-    
-    
-    
-    
-    func generate() async -> JournalEntry {
-        // Create entry from NINA Image Plan, NINA Log, and ALL FITS Metadata
-        if let ninaImagePlan, let ninaLog, let fitsMetadata {
-            return await generate(ninaImagePlan: ninaImagePlan, ninaLog: ninaLog, fitsMetadata: fitsMetadata)
-        }
-        // Create Entry from NINA Log and ALL FITS Metadata
-        else if let ninaLog, let fitsMetadata {
-            return await generate(ninaLog: ninaLog, fitsMetadata: fitsMetadata)
-        }
-        // Create Entry from APT Log and ALL FITS Metadata
-        else if let aptLog, let fitsMetadata {
-            return await generate(aptLog: aptLog, fitsMetadata: fitsMetadata)
-        }
-        // Create Entry from APT Log and ALL EXIF Metadata
-        else if let aptLog, let rawMetadata {
-            return await generate(aptLog: aptLog, rawMetadata: rawMetadata)
-        }
-        // Not enough data to auto generate an entry
-        else {
-            return JournalEntry()
-        }
-
-    }
-    
-    // Create entry from NINA Image Plan, NINA Log, and ALL FITS Metadata
-    func generate(ninaImagePlan: CaptureSequenceList, ninaLog: NINALogFile, fitsMetadata: [FITSKeywords]) async -> JournalEntry {
+    static func generate(ninaImagePlan: CaptureSequenceList?, ninaLog: NINALogFile?, fitsMetadata: [FITSKeywords]?, aptLog: APTLogFile?, rawMetadata: [EXIFMetadata]?) async -> JournalEntry {
+                
         // Create journal target
-        let centerRA = fitsMetadata.first?.ra ?? ninaImagePlan.coordinates.ra
-        let centerDec = fitsMetadata.first?.dec ?? ninaImagePlan.coordinates.dec
-        let rotation = fitsMetadata.first?.rotation ?? ninaImagePlan.rotation
-        let target: JournalEntry.JournalTarget = .init(targetID: .init(targetName: ninaImagePlan.targetName), centerRA: centerRA, centerDEC: centerDec, rotation: rotation)
+        let centerRA = fitsMetadata?.first?.ra ?? ninaImagePlan?.coordinates.ra
+        let centerDec = fitsMetadata?.first?.dec ?? ninaImagePlan?.coordinates.dec
+        let rotation = fitsMetadata?.first?.rotation ?? ninaImagePlan?.rotation
+        let target: JournalEntry.JournalTarget? = {
+            if ninaImagePlan?.targetName != nil || centerRA != nil || centerDec != nil || rotation != nil {
+                return .init(targetID: .init(targetName: ninaImagePlan?.targetName), centerRA: centerRA, centerDEC: centerDec, rotation: rotation)
+            } else {
+                return nil
+            }
+        }()
         
         // Create Target Image Plans
-        let ccdTemp = fitsMetadata.map({$0.ccdTemp})
-        let airMass = fitsMetadata.map({$0.airMass})
-        var imagePlan: [JournalEntry.JournalImageSequence] = ninaImagePlan.captureSequences.map({JournalEntry.JournalImageSequence(filterName: $0.filterType.name, exposureTime: $0.exposureTime, binning: $0.binning.x, gain: $0.gain, offset: $0.offset, ccdTemp: ccdTemp, airmass: airMass, numCaptured: $0.progressExposureCount, numUsable: fitsMetadata.count)})
-        
-        for index in imagePlan.indices {
-            let sameFilter = fitsMetadata.filter({$0.filterName == imagePlan[index].filterName})
-            if let gain = sameFilter.first?.gain {
-                imagePlan[index].gain = gain
-            }
-            if let offset = sameFilter.first?.offset {
-                imagePlan[index].offset = offset
-            }
-        }
-        
-        // Create Location
-        var location = Location(latitude: fitsMetadata.first!.latitude, longitude: fitsMetadata.first!.longitude, elevation: fitsMetadata.first!.elevation)
-        LocationManager.getTimeZone(location: location.clLocation) { zone in
-            if let zone {
-                location.timezone = zone
-            }
-        }
-        
-        // Create Date Intervals
-        let setupInterval = DateInterval(start: ninaLog.startUpDate, end: ninaLog.lastLineDate)
-        let imagingInterval = DateInterval(start: fitsMetadata.first!.date, end: fitsMetadata.last!.date)
-        
-        // Create Target Plan
-        let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
-        let visibilityScore = DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, sunData: sunData, limitingAlt: 0, ra: centerRA, dec: centerDec)
-        let seasonScore = DeepSkyTarget.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: centerRA, dec: centerDec)
-        
-        // Create Imaging Preset
-        let journalGear = JournalEntry.JournalGear(focalLength: fitsMetadata.first!.focalLength, pixelSize: fitsMetadata.first!.pixelSizeX, resolutionLength: fitsMetadata.first!.resolutionLength, resolutionWidth: fitsMetadata.first!.resolutionWidth, telescopeName: fitsMetadata.first!.telescopeName, filterWheelName: fitsMetadata.first!.filterWheelName, mountName: nil, cameraName: fitsMetadata.first!.cameraName, captureSoftware: fitsMetadata.first!.creationSoftware)
-        
-        // Create Weather Data
-        let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
-        let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start)
-        
-        
-        // create entry
-        let entry = JournalEntry(setupInterval: setupInterval, weather: weather?.forecast, moonIllumination: moonIllumination, location: location, gear: journalGear, tags: [], target: target, imagingInterval: imagingInterval, visibilityScore: visibilityScore, seasonScore: seasonScore, imagePlan: imagePlan)
-        return entry
-    }
-    
-    // Create Entry from NINA Log and ALL FITS Metadata
-    func generate(ninaLog: NINALogFile, fitsMetadata: [FITSKeywords]) async -> JournalEntry {
-        // Create journal target
-        let centerRA = fitsMetadata.first?.ra
-        let centerDec = fitsMetadata.first?.dec
-        let rotation = fitsMetadata.first?.rotation
-        let target: JournalEntry.JournalTarget = .init(targetID: nil, centerRA: centerRA, centerDEC: centerDec, rotation: rotation)
-        
-        // Create Target Image Plans
-        let ccdTemp = fitsMetadata.map({$0.ccdTemp})
-        let airMass = fitsMetadata.map({$0.airMass})
-        let imagePlan: [JournalEntry.JournalImageSequence] = {
-            var filters: [String: [FITSKeywords]] = [:]
-            for item in fitsMetadata {
-                if filters[item.filterName] == nil {
-                    filters[item.filterName] = [item]
-                } else {
-                    filters[item.filterName]?.append(item)
+        let imagePlan: [JournalEntry.JournalImageSequence]? = {
+            if let fitsMetadata = fitsMetadata {
+                let ccdTemp = fitsMetadata.map({$0.ccdTemp})
+                let airMass = fitsMetadata.map({$0.airMass})
+                var filters: [String: [FITSKeywords]] = [:]
+                for item in fitsMetadata {
+                    if filters[item.filterName] == nil {
+                        filters[item.filterName] = [item]
+                    } else {
+                        filters[item.filterName]?.append(item)
+                    }
                 }
-            }
-            let fitsFilters = Array(filters.values)
-            var imagePlan: [JournalEntry.JournalImageSequence] = []
-            for sequence in fitsFilters {
-                imagePlan.append(.init(filterName: sequence.first?.filterName, exposureTime: sequence.first?.exposureTime, binning: sequence.first?.binningX, gain: sequence.first?.gain, offset: sequence.first?.offset, ccdTemp: ccdTemp, airmass: airMass, numCaptured: nil, numUsable: sequence.count))
-            }
-            return imagePlan
-        }()
-        
-        // Create Location
-        var location = Location(latitude: fitsMetadata.first!.latitude, longitude: fitsMetadata.first!.longitude, elevation: fitsMetadata.first!.elevation)
-        LocationManager.getTimeZone(location: location.clLocation) { zone in
-            if let zone {
-                location.timezone = zone
-            }
-        }
-        
-        // Create Date Intervals
-        let setupInterval = DateInterval(start: ninaLog.startUpDate, end: ninaLog.lastLineDate)
-        let imagingInterval = DateInterval(start: fitsMetadata.first!.date, end: fitsMetadata.last!.date)
-        
-        // Create Target Plan
-        let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
-        let visibilityScore: Double? = {
-            if let centerRA = centerRA, let centerDec = centerDec {
-                return DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, sunData: sunData, limitingAlt: 0, ra: centerRA, dec: centerDec)
-            } else {
-                return nil
-            }
-        }()
-        let seasonScore: Double? = {
-            if let centerRA = centerRA, let centerDec = centerDec {
-                return DeepSkyTarget.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: centerRA, dec: centerDec)
+                let fitsFilters = Array(filters.values)
+                var imagePlan: [JournalEntry.JournalImageSequence] = []
+                for sequence in fitsFilters {
+                    let sameFilter = ninaImagePlan?.captureSequences.first(where: {$0.filterType.name == sequence.first?.filterName})
+                    imagePlan.append(.init(filterName: sequence.first?.filterName, exposureTime: sequence.first?.exposureTime, binning: sequence.first?.binningX, gain: sequence.first?.gain, offset: sequence.first?.offset, ccdTemp: ccdTemp, airmass: airMass, numCaptured: sameFilter?.progressExposureCount, numUsable: sequence.count))
+                }
+                return imagePlan
+            } else if let ninaImagePlan = ninaImagePlan {
+                return ninaImagePlan.captureSequences.map({JournalEntry.JournalImageSequence(filterName: $0.filterType.name, exposureTime: $0.exposureTime, binning: $0.binning.x, gain: $0.gain, offset: $0.offset, ccdTemp: nil, airmass: nil, numCaptured: $0.progressExposureCount, numUsable: nil)})
+            } else if let rawMetadata = rawMetadata {
+                return rawMetadata.map({JournalEntry.JournalImageSequence(filterName: nil, exposureTime: $0.exposureTime, binning: nil, gain: $0.iso, offset: nil, ccdTemp: nil, airmass: nil, numCaptured: nil, numUsable: 1)})
             } else {
                 return nil
             }
         }()
         
-        // Create Imaging Preset
-        let journalGear = JournalEntry.JournalGear(focalLength: fitsMetadata.first!.focalLength, pixelSize: fitsMetadata.first!.pixelSizeX, resolutionLength: fitsMetadata.first!.resolutionLength, resolutionWidth: fitsMetadata.first!.resolutionWidth, telescopeName: fitsMetadata.first!.telescopeName, filterWheelName: fitsMetadata.first!.filterWheelName, mountName: nil, cameraName: fitsMetadata.first!.cameraName, captureSoftware: fitsMetadata.first!.creationSoftware)
-        
-        // Create Weather Data
-        let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
-        let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start)
-        
-        
-        // create entry
-        let entry = JournalEntry(setupInterval: setupInterval, weather: weather?.forecast, moonIllumination: moonIllumination, location: location, gear: journalGear, tags: [], target: target, imagingInterval: imagingInterval, visibilityScore: visibilityScore, seasonScore: seasonScore, imagePlan: imagePlan)
-        return entry
-    }
-    
-    // Create Entry from APT Log and ALL FITS Metadata
-    func generate(aptLog: APTLogFile, fitsMetadata: [FITSKeywords]) async -> JournalEntry {
         // Create Location
-        let location = Location(current: .init(latitude: fitsMetadata.first!.latitude, longitude: fitsMetadata.first!.longitude))
+        let location: Location? = {
+            if let lat = fitsMetadata?.first?.latitude, let long = fitsMetadata?.first?.longitude, let elevation = fitsMetadata?.first?.elevation {
+                var location = Location(latitude: lat, longitude: long, elevation: elevation)
+                LocationManager.getTimeZone(location: location.clLocation) { zone in
+                    if let zone {
+                        location.timezone = zone
+                    }
+                }
+                return location
+            } else {
+                return nil
+            }
+        }()
         
         // Create Date Intervals
-        let setupInterval = DateInterval(start: aptLog.startUpDate, end: aptLog.lastLineDate)
-        let imagingInterval = DateInterval(start: fitsMetadata.first!.date, end: fitsMetadata.last!.date)
+        let setupInterval: DateInterval? = {
+            if let ninaLog = ninaLog {
+                return DateInterval(start: ninaLog.startUpDate, end: ninaLog.lastLineDate)
+            } else if let aptLog = aptLog {
+                return DateInterval(start: aptLog.startUpDate, end: aptLog.lastLineDate)
+            } else {
+                return nil
+            }
+        }()
+        let imagingInterval: DateInterval? = {
+            if let first = fitsMetadata?.first, let last = fitsMetadata?.last {
+                return DateInterval(start: first.date, end: last.date)
+            } else if let first = rawMetadata?.first, let last = rawMetadata?.first {
+                return DateInterval(start: first.dateTimeOriginal, end: last.dateTimeOriginal)
+            } else {
+                return nil
+            }
+        }()
+        
+        // Create Scores
+        let scores: (vis: Double?, season: Double?) = {
+            if let location = location, let setupInterval = setupInterval, let centerRA = centerRA, let centerDec = centerDec {
+                let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
+                let visibilityScore = DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, sunData: sunData, limitingAlt: 0, ra: centerRA, dec: centerDec)
+                let seasonScore = DeepSkyTarget.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: centerRA, dec: centerDec)
+                return (vis: visibilityScore, season: seasonScore)
+            }
+            return (vis: nil, season: nil)
+        }()
         
         // Create Imaging Preset
-        let journalGear = JournalEntry.JournalGear(focalLength: fitsMetadata.first!.focalLength, pixelSize: fitsMetadata.first!.pixelSizeX, resolutionLength: fitsMetadata.first!.resolutionLength, resolutionWidth: fitsMetadata.first!.resolutionWidth, telescopeName: fitsMetadata.first!.telescopeName, filterWheelName: fitsMetadata.first!.filterWheelName, mountName: nil, cameraName: fitsMetadata.first!.cameraName, captureSoftware: fitsMetadata.first!.creationSoftware)
+        let journalGear: JournalEntry.JournalGear? = {
+            if let fitsMetadata = fitsMetadata?.first {
+                return JournalEntry.JournalGear(focalLength: fitsMetadata.focalLength, pixelSize: fitsMetadata.pixelSizeX, resolutionLength: fitsMetadata.resolutionLength, resolutionWidth: fitsMetadata.resolutionWidth, telescopeName: fitsMetadata.telescopeName, filterWheelName: fitsMetadata.filterWheelName, mountName: nil, cameraName: fitsMetadata.cameraName, captureSoftware: fitsMetadata.creationSoftware)
+            } else if let rawMetadata = rawMetadata?.first {
+                return JournalEntry.JournalGear(focalLength: nil, pixelSize: nil, resolutionLength: rawMetadata.resolutionLength, resolutionWidth: rawMetadata.resolutionWidth, cameraName: rawMetadata.cameraModel)
+            } else {
+                return nil
+            }
+        }()
         
         // Create Weather Data
-        let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
-        let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start)
+        let weather: (forecast: [HourWeather]?, moon: Double?) = await {
+            if let setupInterval = setupInterval {
+                let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start)
+                
+                if let location = location {
+                    let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
+                    return (forecast: weather?.forecast, moon: moonIllumination)
+                } else {
+                    return (forecast: nil, moon: moonIllumination)
+                }
+            } else {
+                return (forecast: nil, moon: nil)
+            }
+        }()
         
         
-        // create entry
-        let entry = JournalEntry(setupInterval: setupInterval, weather: weather?.forecast, moonIllumination: moonIllumination, location: location, gear: journalGear, tags: [], target: nil, imagingInterval: imagingInterval, visibilityScore: nil, seasonScore: nil, imagePlan: nil)
-        return entry
-    }
-    
-    // Create Entry from APT Log and ALL EXIF Metadata
-    func generate(aptLog: APTLogFile, rawMetadata: [EXIFMetadata]) async -> JournalEntry {
-        
-        // Create Date Intervals
-        let setupInterval = DateInterval(start: aptLog.startUpDate, end: aptLog.lastLineDate)
-        
-        // create entry
-        let entry = JournalEntry(setupInterval: setupInterval, weather: nil, moonIllumination: nil, location: nil, gear: nil, tags: [], target: nil, imagingInterval: nil, visibilityScore: nil, seasonScore: nil, imagePlan: nil)
+        // Create Entry
+        let entry = JournalEntry(setupInterval: setupInterval, weather: weather.forecast, moonIllumination: weather.moon, location: location, gear: journalGear, tags: [], target: target, imagingInterval: imagingInterval, visibilityScore: scores.vis, seasonScore: scores.season, imagePlan: imagePlan)
         return entry
     }
 }

@@ -79,9 +79,7 @@ struct EntryImportModal: View {
                     
                     let exifMetadata: [EXIFMetadata]? = rawURLs?.map({EXIFMetadata(from: $0)})
                     
-                    let importManager = JournalImportManager(ninaImagePlan: ninaImagePlan(), ninaLog: ninaLog(), aptLog: aptLog(), fitsMetadata: fitsMetadata(), rawMetadata: exifMetadata)
-                    
-                    let newEntry = await importManager.generate()
+                    let newEntry = await JournalImportManager.generate(ninaImagePlan: ninaImagePlan(), ninaLog: ninaLog(), fitsMetadata: fitsMetadata()?.sorted(by: {$0.date < $1.date}), aptLog: aptLog(), rawMetadata: exifMetadata?.sorted(by: {$0.dateTimeOriginal < $1.dateTimeOriginal}))
                     entries.append(newEntry)
                     dismiss()
                 }

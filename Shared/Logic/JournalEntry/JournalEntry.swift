@@ -44,7 +44,8 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
      All the images that this set represents have the same filterName, exposureTime, binning, gain, and offset
      The ccdTemp and airmass of each image will vary, so they are all contained in an array
      */
-    struct JournalImageSequence: Codable, Hashable {
+    struct JournalImageSequence: Codable, Hashable, Identifiable {
+        let id = UUID()
         // Group Image Specs
         var filterName: String?
         var exposureTime: Double?
@@ -111,12 +112,15 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
             case catalog(id: UUID)
             case custom(name: String)
             
-            init(targetName: String) {
-                let id = DeepSkyTargetList.allTargets.first(where: {$0.name?.first == targetName})?.id
-                if let id = id {
-                    self = .catalog(id: id)
+            init?(targetName: String?) {
+                if let targetName = targetName {
+                    if let id = DeepSkyTargetList.allTargets.first(where: {$0.name?.first == targetName})?.id {
+                        self = .catalog(id: id)
+                    } else {
+                        self = .custom(name: targetName)
+                    }
                 } else {
-                    self = .custom(name: targetName)
+                    return nil
                 }
             }
             
@@ -135,10 +139,10 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
 
     struct JournalGear: Codable, Hashable {
         // Quantitative
-        var focalLength: Double
-        var pixelSize: Double
-        var resolutionLength: Int
-        var resolutionWidth: Int
+        var focalLength: Double?
+        var pixelSize: Double?
+        var resolutionLength: Int?
+        var resolutionWidth: Int?
         // Qualitative
         var telescopeName: String?
         var filterWheelName: String?
@@ -146,9 +150,9 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         var cameraName: String?
         var captureSoftware: String?
         
-        static let `default`: JournalGear = .init(focalLength: 0, pixelSize: 0, resolutionLength: 0, resolutionWidth: 0)
+        static let `default`: JournalGear = JournalGear()
         
-        init(focalLength: Double, pixelSize: Double, resolutionLength: Int, resolutionWidth: Int, telescopeName: String? = nil, filterWheelName: String? = nil, mountName: String? = nil, cameraName: String? = nil, captureSoftware: String? = nil) {
+        init(focalLength: Double? = nil, pixelSize: Double? = nil, resolutionLength: Int? = nil, resolutionWidth: Int? = nil, telescopeName: String? = nil, filterWheelName: String? = nil, mountName: String? = nil, cameraName: String? = nil, captureSoftware: String? = nil) {
             self.focalLength = focalLength
             self.pixelSize = pixelSize
             self.resolutionLength = resolutionLength

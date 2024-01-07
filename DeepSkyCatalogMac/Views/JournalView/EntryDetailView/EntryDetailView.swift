@@ -50,11 +50,11 @@ struct EntryDetailView: View {
                     EntrySection(title: "Gear") {
                         if let gear = entry.gear {
                             LabeledText(label: "Telescope:", value: gear.telescopeName)
-                            LabeledText(label: "Focal Length:", value: "\(gear.focalLength.formatDecimal())")
+                            LabeledText(label: "Focal Length:", value: gear.focalLength?.formatDecimal())
                             LabeledText(label: "Camera:", value: gear.cameraName)
-                            LabeledText(label: "Pixel Size:", value: "\(gear.pixelSize.formatDecimal())")
-                            LabeledText(label: "Length:", value: "\(gear.resolutionLength)")
-                            LabeledText(label: "Width:", value: "\(gear.resolutionWidth)")
+                            LabeledText(label: "Pixel Size:", value: gear.pixelSize?.formatDecimal())
+                            LabeledText(label: "Length:", value: gear.resolutionLength?.description)
+                            LabeledText(label: "Width:", value: gear.resolutionWidth?.description)
                             LabeledText(label: "Filter Wheel:", value: gear.filterWheelName)
                             LabeledText(label: "Mount:", value: gear.mountName)
                         } else {
@@ -130,7 +130,7 @@ struct EntryDetailView: View {
                                     }
                                     .fontWeight(.semibold)
                                     // Sequence Rows
-                                    ForEach(imagePlan, id: \.self) { sequence in
+                                    ForEach(imagePlan) { sequence in
                                         GridRow {
                                             JournalDetailOptionalValueText(value: sequence.filterName)
                                             JournalDetailOptionalValueText(value: sequence.exposureTime?.description)

@@ -22,6 +22,7 @@ struct EntryPlanEditor: View {
             Grid {
                 // Header Row
                 GridRow {
+                    Text("")
                     Text("Filter")
                     Text("Exposure")
                     Text("Binning")
@@ -32,9 +33,22 @@ struct EntryPlanEditor: View {
                 }
                 .fontWeight(.semibold)
                 // Sequence Rows
-                ForEach($planProxy, id: \.self) { plan in
+                ForEach($planProxy) { plan in
+                    let filterNameBinding = Binding(
+                        get: { return plan.wrappedValue.filterName ?? ""},
+                        set: { newValue in
+                            if let index = self.planProxy.firstIndex(where: {$0 == plan.wrappedValue}) {
+                                self.planProxy[index].filterName = newValue
+                            }
+                        }
+                    )
                     GridRow {
-                        Text(plan.wrappedValue.filterName ?? "")
+                        Button {
+                            planProxy.remove(at: self.planProxy.firstIndex(where: {$0 == plan.wrappedValue})!)
+                        } label: {
+                            Image(systemName: "minus.circle")
+                        }
+                        TextField("Filter", text: filterNameBinding)
                         TextField("Exposure", value: plan.exposureTime, format: .number)
                         Text("\(plan.wrappedValue.binning ?? 1)x\(plan.wrappedValue.binning ?? 1)")
                         TextField("Gain", value: plan.gain, format: .number)
