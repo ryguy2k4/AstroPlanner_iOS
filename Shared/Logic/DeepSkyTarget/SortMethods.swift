@@ -50,7 +50,7 @@ extension Array where Element == DeepSkyTarget {
     }
         
     func sortedByVisibility(location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Self {
-        return self.sorted(by: {$0.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt) > $1.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt)})
+        return self.sorted(by: {$0.getVisibilityScore(at: location, viewingInterval: viewingInterval, limitingAlt: limitingAlt) > $1.getVisibilityScore(at: location, viewingInterval: viewingInterval, limitingAlt: limitingAlt)})
     }
     
     mutating func sortByVisibility(location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) {

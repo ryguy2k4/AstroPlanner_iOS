@@ -133,7 +133,7 @@ extension Array where Element == DeepSkyTarget {
     /// FILTER BY VISIBILITY SCORE
     func filteredByVisibility(min: Double, location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Self {
         return self.filter() {
-            return $0.getVisibilityScore(at: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt) >= min
+            return $0.getVisibilityScore(at: location, viewingInterval: viewingInterval, limitingAlt: limitingAlt) >= min
         }
     }
     

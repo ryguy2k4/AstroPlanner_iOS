@@ -260,9 +260,9 @@ extension DeepSkyTarget {
      - Returns: A decimal representing the percentage of the night that the target is visible.
      
      */
-    func getVisibilityScore(at location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Double {
+    func getVisibilityScore(at location: Location, viewingInterval: DateInterval, limitingAlt: Double) -> Double {
         // attempt to get target interval
-        let targetInterval = getNextInterval(location: location, date: viewingInterval.start.addingTimeInterval(-43_200), limitingAlt: limitingAlt).interval
+        let targetInterval = getNextInterval(location: location, date: viewingInterval.start, limitingAlt: limitingAlt).interval
                     
         // calculate time that the target is in the sky during the night
         
@@ -474,7 +474,7 @@ extension DeepSkyTarget {
      - Returns: A decimal representing the percentage of the night that the target is visible.
      
      */
-    static func getVisibilityScore(at location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double, ra: Double, dec: Double) -> Double {
+    static func getVisibilityScore(at location: Location, viewingInterval: DateInterval, limitingAlt: Double, ra: Double, dec: Double) -> Double {
         // attempt to get target interval
         let targetInterval = getNextInterval(location: location, date: viewingInterval.start.addingTimeInterval(-43_200), limitingAlt: limitingAlt, ra: ra, dec: dec).interval
                     

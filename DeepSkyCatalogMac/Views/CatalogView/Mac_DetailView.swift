@@ -160,7 +160,7 @@ fileprivate struct TargetAltitudeChart: View {
             Text("Altitude (°)")
         }
         .chartYAxisLabel(position: .top, alignment: .center) {
-            Text("Visibility Score: \((target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData, limitingAlt: showLimitingAlt ? (targetSettings.first?.limitingAltitude ?? 0) : 0)).percent())")
+            Text("Visibility Score: \((target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, limitingAlt: showLimitingAlt ? (targetSettings.first?.limitingAltitude ?? 0) : 0)).percent())")
                 .foregroundColor(.secondary)
                 .font(.headline)
         }

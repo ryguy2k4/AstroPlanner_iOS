@@ -92,7 +92,7 @@ final class JournalImportManager {
         let scores: (vis: Double?, season: Double?) = {
             if let location = location, let setupInterval = setupInterval, let centerRA = centerRA, let centerDec = centerDec {
                 let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
-                let visibilityScore = DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, sunData: sunData, limitingAlt: 0, ra: centerRA, dec: centerDec)
+                let visibilityScore = DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, limitingAlt: 0, ra: centerRA, dec: centerDec)
                 let seasonScore = DeepSkyTarget.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: centerRA, dec: centerDec)
                 return (vis: visibilityScore, season: seasonScore)
             }

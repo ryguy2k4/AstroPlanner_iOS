@@ -41,7 +41,7 @@ struct FITSKeywords {
         let fits = try! FitsFile.read(contentsOf: path)!.prime.headerUnit
         var metadata: [String: String] = [:]
         for element in fits {
-            metadata[element.keyword.rawValue] = element.value?.toString.trimmingCharacters(in: .punctuationCharacters)
+            metadata[element.keyword.rawValue] = element.value?.toString.trimmingCharacters(in: .punctuationCharacters.subtracting(["-", ")", "("]))
         }
         let formatter = DateFormatter()
         formatter.timeZone = .gmt

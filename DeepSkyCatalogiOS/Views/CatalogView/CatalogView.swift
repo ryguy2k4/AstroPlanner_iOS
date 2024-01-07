@@ -110,7 +110,7 @@ fileprivate struct TargetCell: View {
                 Text(target.name?[0] ?? target.defaultName)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Label(target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData, limitingAlt: targetSettings.first?.limitingAltitude ?? 0).percent(), systemImage: "eye")
+                Label(target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, limitingAlt: targetSettings.first?.limitingAltitude ?? 0).percent(), systemImage: "eye")
                     .foregroundColor(.secondary)
                 Label(target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData).percent(), systemImage: "calendar.circle")
                     .foregroundColor(.secondary)

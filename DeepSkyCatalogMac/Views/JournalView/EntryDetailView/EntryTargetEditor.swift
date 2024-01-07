@@ -53,6 +53,9 @@ struct EntryTargetEditor: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
+                    if self.target == nil {
+                        self.target = .init(targetID: .init(targetName: "Unknown Target"), centerRA: 0, centerDEC: 0, rotation: 0)
+                    }
                     if let id = UUID(uuidString: targetName) {
                         self.target?.targetID = .catalog(id: id)
                     } else if !targetName.isEmpty {

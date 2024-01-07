@@ -121,7 +121,7 @@ struct EntryDetailView: View {
                     } refreshAction: {
                         if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}), let location = entry.location, let setupInterval = entry.setupInterval {
                             let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
-                            entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: setupInterval, sunData: sunData, limitingAlt: 0)
+                            entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: sunData.CTInterval, limitingAlt: 0)
                             entry.seasonScore = target.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
                         } else {
                             entry.visibilityScore = nil
@@ -183,7 +183,7 @@ struct EntryDetailView: View {
                         
                         if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}) {
                             let sunData = Sun.sol.getNextInterval(location: newLocation, date: setupInterval.start.startOfLocalDay(timezone: newLocation.timezone))
-                            entry.visibilityScore = target.getVisibilityScore(at: newLocation, viewingInterval: setupInterval, sunData: sunData, limitingAlt: 0)
+                            entry.visibilityScore = target.getVisibilityScore(at: newLocation, viewingInterval: sunData.CTInterval, limitingAlt: 0)
                             entry.seasonScore = target.getSeasonScore(at: newLocation, on: setupInterval.start.startOfLocalDay(timezone: newLocation.timezone), sunData: sunData)
                         } else {
                             entry.visibilityScore = nil
@@ -204,7 +204,7 @@ struct EntryDetailView: View {
                         
                         if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}) {
                             let sunData = Sun.sol.getNextInterval(location: location, date: newSetupInterval.start.startOfLocalDay(timezone: location.timezone))
-                            entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: newSetupInterval, sunData: sunData, limitingAlt: 0)
+                            entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: sunData.CTInterval, limitingAlt: 0)
                             entry.seasonScore = target.getSeasonScore(at: location, on: newSetupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
                         } else {
                             entry.visibilityScore = nil
@@ -221,7 +221,7 @@ struct EntryDetailView: View {
                 Task {
                     if case let .catalog(id) = newTarget, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}), let setupInterval = entry.setupInterval, let location = entry.location {
                         let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
-                        entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: setupInterval, sunData: sunData, limitingAlt: 0)
+                        entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: sunData.CTInterval, limitingAlt: 0)
                         entry.seasonScore = target.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
                     } else {
                         entry.visibilityScore = nil
