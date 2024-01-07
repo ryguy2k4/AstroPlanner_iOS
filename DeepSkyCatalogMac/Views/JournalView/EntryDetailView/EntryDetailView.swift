@@ -65,7 +65,7 @@ struct EntryDetailView: View {
                     }.disabled(!editing)
                     
                     // WeatherKit Data
-                    EntrySection(title: "Weather") {
+                    EntryRefreshSection(title: "Weather") {
                         if let weather = entry.weather, let moonIllumination = entry.moonIllumination {
                             LabeledText(label: "Temp:", value: "\(weather.map({$0.temperature.converted(to: .fahrenheit).value}).mean().formatDecimal())")
                             LabeledText(label: "Wind:", value: "\(weather.map({$0.wind.speed.converted(to: .milesPerHour).value}).mean().formatDecimal())")
@@ -75,7 +75,14 @@ struct EntryDetailView: View {
                         } else {
                             Text("nil weather")
                         }
-                    }.disabled(true)
+                    } refreshAction: {
+                        Task {
+                            if let location = entry.location, let setupInterval = entry.setupInterval {
+                                let newWeather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
+                                entry.weather = newWeather?.forecast
+                            }
+                        }
+                    }.disabled(!editing)
                     
                     // Target
                     EntrySection(title: "Target") {
@@ -104,14 +111,23 @@ struct EntryDetailView: View {
                     }.disabled(!editing)
                     
                     // Scores
-                    EntrySection(title: "Scores") {
+                    EntryRefreshSection(title: "Scores") {
                         if let seasonScore = entry.seasonScore, let visibilityScore = entry.visibilityScore {
                             LabeledText(label: "Season Score:", value: "\(seasonScore.percent())")
                             LabeledText(label: "Visibility Score:", value: "\(visibilityScore.percent())")
                         } else {
                             Text("nil scores")
                         }
-                    }.disabled(true)
+                    } refreshAction: {
+                        if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}), let location = entry.location, let setupInterval = entry.setupInterval {
+                            let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
+                            entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: setupInterval, sunData: sunData, limitingAlt: 0)
+                            entry.seasonScore = target.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
+                        } else {
+                            entry.visibilityScore = nil
+                            entry.seasonScore = nil
+                        }
+                    }.disabled(!editing)
                     
                     // Image Plan Fields
                     EntrySection(title: "Image Plan") {
@@ -244,7 +260,7 @@ struct EntrySection<Modal: View, Content: View>: View {
     private var editor: Modal
     private var content: Content
 
-    init(title: String, @ViewBuilder content: () -> Content, @ViewBuilder editor: () -> Modal = { EmptyView() }) {
+    init(title: String, @ViewBuilder content: () -> Content, @ViewBuilder editor: () -> Modal) {
         self.title = title
         self.content = content()
         self.editor = editor()
@@ -269,6 +285,38 @@ struct EntrySection<Modal: View, Content: View>: View {
         }
         .sheet(isPresented: $editorPresented) {
             editor
+        }
+    }
+}
+
+struct EntryRefreshSection<Content: View>: View {
+    @Environment(\.isEnabled) var isEnabled
+    let title: String
+    let refreshAction: () -> Void
+    private var content: Content
+
+    init(title: String, @ViewBuilder content: () -> Content, refreshAction: @escaping () -> Void) {
+        self.title = title
+        self.refreshAction = refreshAction
+        self.content = content()
+    }
+    var body: some View {
+        Section {
+            content
+        } header: {
+            HStack {
+                if isEnabled {
+                    Button {
+                        refreshAction()
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
+                Text(title)
+                    .font(.title3)
+                    .fontWeight(.bold)
+            }
+            .padding(.top)
         }
     }
 }

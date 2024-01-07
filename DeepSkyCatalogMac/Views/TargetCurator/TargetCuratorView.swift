@@ -44,9 +44,11 @@ struct TargetCuratorView: View {
         }
         .frame(minWidth: 600, maxWidth: 2400, minHeight: 400,  maxHeight: 1600)
         .toolbar {
-            Button("Save Lists") {
+            Button {
                 DeepSkyTargetList.exportObjects(list: objects)
-            }
+            } label: {
+                Image(systemName: "square.and.arrow.down")
+            }.help("Save Target List")
         }
     }
 }
