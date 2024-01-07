@@ -343,47 +343,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "76610071-25E9-4167-9BA7-25BBB1AAFBD2"
+            uuid = "0AC313A8-9BD3-42C2-A4E4-3E8DC9E98F73"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
+            filePath = "Shared/Logic/JournalImportManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "generate(ninaLog:fitsMetadata:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "76610071-25E9-4167-9BA7-25BBB1AAFBD2 - 2f7a35993912eba5"
+                  uuid = "0AC313A8-9BD3-42C2-A4E4-3E8DC9E98F73 - efd51e2b38c6e323"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #3 (Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;, Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in DeepSkyCatalogMac.EntryDetailView.body.getter : some"
+                  symbolName = "(3) suspend resume partial function for DeepSkyCatalogMac.JournalImportManager.generate(ninaLog: DeepSkyCatalogMac.NINALogFile, fitsMetadata: Swift.Array&lt;DeepSkyCatalogMac.FITSKeywords&gt;) async -&gt; DeepSkyCatalogMac.JournalEntry"
                   moduleName = "DeepSkyCatalogMac"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalImportManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "146"
-                  endingLineNumber = "146"
-                  offsetFromSymbolStart = "112">
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "576">
                </Location>
                <Location
-                  uuid = "76610071-25E9-4167-9BA7-25BBB1AAFBD2 - 2f7a35993912eba5"
+                  uuid = "0AC313A8-9BD3-42C2-A4E4-3E8DC9E98F73 - 936364928661993c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #3 (Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;, Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in DeepSkyCatalogMac.EntryDetailView.body.getter : some"
+                  symbolName = "(4) suspend resume partial function for DeepSkyCatalogMac.JournalImportManager.generate(ninaLog: DeepSkyCatalogMac.NINALogFile, fitsMetadata: Swift.Array&lt;DeepSkyCatalogMac.FITSKeywords&gt;) async -&gt; DeepSkyCatalogMac.JournalEntry"
                   moduleName = "DeepSkyCatalogMac"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalImportManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "146"
-                  endingLineNumber = "146"
-                  offsetFromSymbolStart = "232">
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "588">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -391,17 +391,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AD65E419-AC0D-42B8-88E9-D997249F88DC"
+            uuid = "5CFD678D-5099-4E3C-8830-48F58E2A22DF"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
+            filePath = "Shared/Logic/JournalImportManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "generate(ninaLog:fitsMetadata:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

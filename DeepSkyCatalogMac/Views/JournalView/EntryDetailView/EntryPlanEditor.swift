@@ -30,6 +30,7 @@ struct EntryPlanEditor: View {
                     Text("Usable")
                     Text("Captured")
                 }
+                .fontWeight(.semibold)
                 // Sequence Rows
                 ForEach($planProxy, id: \.self) { plan in
                     GridRow {

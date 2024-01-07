@@ -26,6 +26,8 @@ final class JournalImportManager {
     }
     
     
+    
+    
     func generate() async -> JournalEntry {
         // Create entry from NINA Image Plan, NINA Log, and ALL FITS Metadata
         if let ninaImagePlan, let ninaLog, let fitsMetadata {
@@ -61,7 +63,17 @@ final class JournalImportManager {
         // Create Target Image Plans
         let ccdTemp = fitsMetadata.map({$0.ccdTemp})
         let airMass = fitsMetadata.map({$0.airMass})
-        let imagePlan: [JournalEntry.JournalImageSequence] = ninaImagePlan.captureSequences.map({JournalEntry.JournalImageSequence(filterName: $0.filterType.name, exposureTime: $0.exposureTime, binning: $0.binning.x, gain: $0.gain, offset: $0.offset, ccdTemp: ccdTemp, airmass: airMass, numCaptured: $0.progressExposureCount, numUsable: fitsMetadata.count)})
+        var imagePlan: [JournalEntry.JournalImageSequence] = ninaImagePlan.captureSequences.map({JournalEntry.JournalImageSequence(filterName: $0.filterType.name, exposureTime: $0.exposureTime, binning: $0.binning.x, gain: $0.gain, offset: $0.offset, ccdTemp: ccdTemp, airmass: airMass, numCaptured: $0.progressExposureCount, numUsable: fitsMetadata.count)})
+        
+        for index in imagePlan.indices {
+            let sameFilter = fitsMetadata.filter({$0.filterName == imagePlan[index].filterName})
+            if let gain = sameFilter.first?.gain {
+                imagePlan[index].gain = gain
+            }
+            if let offset = sameFilter.first?.offset {
+                imagePlan[index].offset = offset
+            }
+        }
         
         // Create Location
         var location = Location(latitude: fitsMetadata.first!.latitude, longitude: fitsMetadata.first!.longitude, elevation: fitsMetadata.first!.elevation)
@@ -95,7 +107,72 @@ final class JournalImportManager {
     
     // Create Entry from NINA Log and ALL FITS Metadata
     func generate(ninaLog: NINALogFile, fitsMetadata: [FITSKeywords]) async -> JournalEntry {
-        return JournalEntry()
+        // Create journal target
+        let centerRA = fitsMetadata.first?.ra
+        let centerDec = fitsMetadata.first?.dec
+        let rotation = fitsMetadata.first?.rotation
+        let target: JournalEntry.JournalTarget = .init(targetID: nil, centerRA: centerRA, centerDEC: centerDec, rotation: rotation)
+        
+        // Create Target Image Plans
+        let ccdTemp = fitsMetadata.map({$0.ccdTemp})
+        let airMass = fitsMetadata.map({$0.airMass})
+        let imagePlan: [JournalEntry.JournalImageSequence] = {
+            var filters: [String: [FITSKeywords]] = [:]
+            for item in fitsMetadata {
+                if filters[item.filterName] == nil {
+                    filters[item.filterName] = [item]
+                } else {
+                    filters[item.filterName]?.append(item)
+                }
+            }
+            let fitsFilters = Array(filters.values)
+            var imagePlan: [JournalEntry.JournalImageSequence] = []
+            for sequence in fitsFilters {
+                imagePlan.append(.init(filterName: sequence.first?.filterName, exposureTime: sequence.first?.exposureTime, binning: sequence.first?.binningX, gain: sequence.first?.gain, offset: sequence.first?.offset, ccdTemp: ccdTemp, airmass: airMass, numCaptured: nil, numUsable: sequence.count))
+            }
+            return imagePlan
+        }()
+        
+        // Create Location
+        var location = Location(latitude: fitsMetadata.first!.latitude, longitude: fitsMetadata.first!.longitude, elevation: fitsMetadata.first!.elevation)
+        LocationManager.getTimeZone(location: location.clLocation) { zone in
+            if let zone {
+                location.timezone = zone
+            }
+        }
+        
+        // Create Date Intervals
+        let setupInterval = DateInterval(start: ninaLog.startUpDate, end: ninaLog.lastLineDate)
+        let imagingInterval = DateInterval(start: fitsMetadata.first!.date, end: fitsMetadata.last!.date)
+        
+        // Create Target Plan
+        let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
+        let visibilityScore: Double? = {
+            if let centerRA = centerRA, let centerDec = centerDec {
+                return DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, sunData: sunData, limitingAlt: 0, ra: centerRA, dec: centerDec)
+            } else {
+                return nil
+            }
+        }()
+        let seasonScore: Double? = {
+            if let centerRA = centerRA, let centerDec = centerDec {
+                return DeepSkyTarget.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: centerRA, dec: centerDec)
+            } else {
+                return nil
+            }
+        }()
+        
+        // Create Imaging Preset
+        let journalGear = JournalEntry.JournalGear(focalLength: fitsMetadata.first!.focalLength, pixelSize: fitsMetadata.first!.pixelSizeX, resolutionLength: fitsMetadata.first!.resolutionLength, resolutionWidth: fitsMetadata.first!.resolutionWidth, telescopeName: fitsMetadata.first!.telescopeName, filterWheelName: fitsMetadata.first!.filterWheelName, mountName: nil, cameraName: fitsMetadata.first!.cameraName, captureSoftware: fitsMetadata.first!.creationSoftware)
+        
+        // Create Weather Data
+        let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
+        let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start)
+        
+        
+        // create entry
+        let entry = JournalEntry(setupInterval: setupInterval, weather: weather?.forecast, moonIllumination: moonIllumination, location: location, gear: journalGear, tags: [], target: target, imagingInterval: imagingInterval, visibilityScore: visibilityScore, seasonScore: seasonScore, imagePlan: imagePlan)
+        return entry
     }
     
     // Create Entry from APT Log and ALL FITS Metadata

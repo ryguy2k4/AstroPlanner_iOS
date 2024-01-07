@@ -102,7 +102,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
     */
 
     struct JournalTarget: Codable {
-        var targetID: TargetID
+        var targetID: TargetID?
         var centerRA: Double?
         var centerDEC: Double?
         var rotation: Double?

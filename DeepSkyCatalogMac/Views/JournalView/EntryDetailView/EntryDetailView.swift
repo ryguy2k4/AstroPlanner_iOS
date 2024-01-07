@@ -80,7 +80,7 @@ struct EntryDetailView: View {
                     // Target
                     EntrySection(title: "Target") {
                         if let target = entry.target {
-                            LabeledText(label: "Name:", value: target.targetID.name)
+                            LabeledText(label: "Name:", value: target.targetID?.name)
                             LabeledText(label: "Center RA:", value: target.centerRA?.description)
                             LabeledText(label: "Center DEC:", value: target.centerDEC?.description)
                             LabeledText(label: "Rotation:", value: target.rotation?.description)
@@ -117,15 +117,29 @@ struct EntryDetailView: View {
                     EntrySection(title: "Image Plan") {
                         VStack {
                             if let imagePlan = entry.imagePlan {
-                                ForEach(imagePlan, id: \.filterName) { sequence in
-                                    HStack {
-                                        Text(sequence.filterName ?? "")
-                                        Text("\(sequence.exposureTime ?? .nan)")
-                                        Text("\(sequence.binning ?? 1)x\(sequence.binning ?? 1)")
-                                        Text(sequence.gain?.description ?? "")
-                                        Text(sequence.offset?.description ?? "")
-                                        Text("\(sequence.numUsable ?? 0)")
-                                        Text("\(sequence.numCaptured ?? 0)")
+                                Grid {
+                                    // Header Row
+                                    GridRow {
+                                        Text("Filter")
+                                        Text("Exposure")
+                                        Text("Binning")
+                                        Text("Gain")
+                                        Text("Offset")
+                                        Text("Usable")
+                                        Text("Captured")
+                                    }
+                                    .fontWeight(.semibold)
+                                    // Sequence Rows
+                                    ForEach(imagePlan, id: \.self) { sequence in
+                                        GridRow {
+                                            JournalDetailOptionalValueText(value: sequence.filterName)
+                                            JournalDetailOptionalValueText(value: sequence.exposureTime?.description)
+                                            Text("\(sequence.binning ?? 1)x\(sequence.binning ?? 1)")
+                                            JournalDetailOptionalValueText(value: sequence.gain?.description)
+                                            JournalDetailOptionalValueText(value: sequence.offset?.description)
+                                            JournalDetailOptionalValueText(value: sequence.numUsable?.description)
+                                            JournalDetailOptionalValueText(value: sequence.numCaptured?.description)
+                                        }
                                     }
                                 }
                             }
@@ -210,9 +224,16 @@ struct LabeledText: View {
         HStack {
             Text(label)
                 .bold()
-            Text(value ?? "Unspecified")
-                .foregroundStyle(value == nil ? .red : .primary)
+            JournalDetailOptionalValueText(value: value)
         }
+    }
+}
+
+struct JournalDetailOptionalValueText: View {
+    let value: String?
+    var body: some View {
+        Text(value ?? "Unspecified")
+            .foregroundStyle(value == nil ? .red : .primary)
     }
 }
 

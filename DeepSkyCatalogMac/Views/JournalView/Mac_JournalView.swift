@@ -15,7 +15,7 @@ struct Mac_JournalView: View {
     var body: some View {
         NavigationSplitView {
             List(entries.indices, id: \.self, selection: $entryIndex) { index in
-                Text(entries[index].target?.targetID.name ?? "No Target")
+                Text(entries[index].target?.targetID?.name ?? "Unknown Target")
             }
             .toolbar {
                 Button {
