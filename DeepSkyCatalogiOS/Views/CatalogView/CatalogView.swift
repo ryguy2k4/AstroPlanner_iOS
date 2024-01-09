@@ -25,6 +25,10 @@ struct CatalogView: View {
         NavigationStack() {
             FilterButtonMenu()
             
+            if catalogManager.targets.isEmpty {
+                ContentUnavailableView.search(text: catalogManager.searchText)
+            }
+            
             List(catalogManager.targets, id: \.id) { target in
                 NavigationLink(destination: DetailView(target: target)) {
                     VStack {
