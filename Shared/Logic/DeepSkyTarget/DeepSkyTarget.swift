@@ -74,8 +74,8 @@ struct DeepSkyTarget: Identifiable, Hashable {
             
             var fileName: String? {
                 switch self {
-                case .apod(id: _, copyrighted: _):
-                    return nil
+                case .apod(id: let id, copyrighted: let copyrighted):
+                    return copyrighted ? nil : "apod_" + id
                 case .local(fileName: let filename):
                     return filename
                 }

@@ -24,7 +24,8 @@ struct EntryDetailView: View {
                             LabeledText(label: "Start", value: "\(setupInterval.start.formatted(date: .numeric, time: .standard))")
                             LabeledText(label: "End", value: "\(setupInterval.end.formatted(date: .numeric, time: .standard))")
                         } else {
-                            Text("nil setup interval")
+                            Label("No Associated Setup Interval", systemImage: "slash.circle")
+                                .foregroundStyle(Color.red)
                         }
                     } editor: {
                         EntryIntervalEditor(interval: $entry.setupInterval)
@@ -40,7 +41,8 @@ struct EntryDetailView: View {
                             LabeledText(label: "Elevation:", value: location.elevation?.description)
                             LabeledText(label: "Bortle:", value: location.bortle?.description)
                         } else {
-                            Text("nil location")
+                            Label("No Associated Location", systemImage: "slash.circle")
+                                .foregroundStyle(Color.red)
                         }
                     } editor: {
                         EntryLocationEditor(location: $entry.location)
@@ -58,7 +60,8 @@ struct EntryDetailView: View {
                             LabeledText(label: "Filter Wheel:", value: gear.filterWheelName)
                             LabeledText(label: "Mount:", value: gear.mountName)
                         } else {
-                            Text("nil gear")
+                            Label("No Associated Gear", systemImage: "slash.circle")
+                                .foregroundStyle(Color.red)
                         }
                     } editor: {
                         EntryGearEditor(gear: $entry.gear)
@@ -73,7 +76,8 @@ struct EntryDetailView: View {
                             LabeledText(label: "Cloud Cover:", value: "\(weather.map({$0.cloudCover}).mean().percent())")
                             LabeledText(label: "Moon Illumination:", value: "\(moonIllumination.percent())")
                         } else {
-                            Text("nil weather")
+                            Label("No Associated Weather Data", systemImage: "slash.circle")
+                                .foregroundStyle(Color.red)
                         }
                     } refreshAction: {
                         Task {
@@ -87,12 +91,21 @@ struct EntryDetailView: View {
                     // Target
                     EntrySection(title: "Target") {
                         if let target = entry.target {
+                            if case .catalog(_) = entry.target?.targetID {
+                                Text("Catalog Match")
+                                    .foregroundStyle(Color.accentColor)
+                            } else {
+                                Text("No Catalog Match")
+                                    .foregroundStyle(Color.primary)
+                                    .font(.body.italic())
+                            }
                             LabeledText(label: "Name:", value: target.targetID?.name)
                             LabeledText(label: "Center RA:", value: target.centerRA?.description)
                             LabeledText(label: "Center DEC:", value: target.centerDEC?.description)
                             LabeledText(label: "Rotation:", value: target.rotation?.description)
                         } else {
-                            Text("nil target")
+                            Label("No Associated Target", systemImage: "slash.circle")
+                                .foregroundStyle(Color.red)
                         }
                     } editor: {
                         EntryTargetEditor(target: $entry.target)
@@ -104,7 +117,8 @@ struct EntryDetailView: View {
                             LabeledText(label: "Start", value: "\(imagingInterval.start.formatted(date: .numeric, time: .standard))")
                             LabeledText(label: "End", value: "\(imagingInterval.end.formatted(date: .numeric, time: .standard))")
                         } else {
-                            Text("nil imaging interval")
+                            Label("No Associated Imaging Interval", systemImage: "slash.circle")
+                                .foregroundStyle(Color.red)
                         }
                     } editor: {
                         EntryIntervalEditor(interval: $entry.imagingInterval)
@@ -116,7 +130,8 @@ struct EntryDetailView: View {
                             LabeledText(label: "Season Score:", value: "\(seasonScore.percent())")
                             LabeledText(label: "Visibility Score:", value: "\(visibilityScore.percent())")
                         } else {
-                            Text("nil scores")
+                            Label("No Associated Scores", systemImage: "slash.circle")
+                                .foregroundStyle(Color.red)
                         }
                     } refreshAction: {
                         if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}), let location = entry.location, let setupInterval = entry.setupInterval {
@@ -158,6 +173,9 @@ struct EntryDetailView: View {
                                         }
                                     }
                                 }
+                            } else {
+                                Label("No Associated Image Plan", systemImage: "slash.circle")
+                                    .foregroundStyle(Color.red)
                             }
                         }
                     } editor: {
