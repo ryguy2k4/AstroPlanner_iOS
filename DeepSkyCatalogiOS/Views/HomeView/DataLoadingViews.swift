@@ -28,10 +28,13 @@ struct DailyReportLoadingView: View {
             // Calculate sunData on a background thread
             .task {
                 store.sunData = Sun.sol.getNextInterval(location: store.location, date: store.date)
-                // If its in the morning hours of the next day, still show the info for the previous day (current night)
-                if Sun.sol.getAltitude(location: store.location, time: .now) < -18 && .now > store.sunData.solarMidnight {
+                // Ignore this part below; it does not work properly so I am removing it for now
+                /* If the date is set to the current date, and its in the morning hours of the next day, still show the info for the previous day (current night)
+                if store.date.startOfLocalDay(timezone: store.location.timezone) == .now.startOfLocalDay(timezone: store.location.timezone), Sun.sol.getAltitude(location: store.location, time: .now) < -18 && .now > store.sunData.solarMidnight {
+                    print("HERE!")
                     store.date = store.date.yesterday()
                 }
+                 */
                 if reportSettings.first!.darknessThreshold == 2 {
                     store.viewingInterval = store.sunData.CTInterval
                 } else if reportSettings.first!.darknessThreshold == 1 {
