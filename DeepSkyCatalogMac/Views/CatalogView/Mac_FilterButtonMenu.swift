@@ -13,7 +13,7 @@ struct Mac_FilterButtonMenu: View {
     @EnvironmentObject var store: HomeViewModel
     @Environment(\.modelContext) var context
     @Query var targetSettings: [TargetSettings]
-    @State private var isAllFilterModal: Bool = false
+    @State private var sortModal: Bool = false
     
     var body: some View {
         let buttons: [FilterButton] = {
@@ -31,16 +31,16 @@ struct Mac_FilterButtonMenu: View {
         }()
         
         HStack {
-            // All filters button
+            // Sort button
             ZStack {
                 Rectangle()
                     .frame(width: 40, height: 30)
                     .cornerRadius(13)
-                    .foregroundColor(!buttons.allSatisfy({$0.active == false}) ? .accentColor.opacity(0.5) : .secondary.opacity(0.3))
+                    .foregroundColor(.secondary.opacity(0.4))
                 Button {
-                    isAllFilterModal = true
+                    sortModal = true
                 } label: {
-                    Image(systemName: "camera.filters")
+                    Image(systemName: "arrow.up.arrow.down")
                         .foregroundColor(.primary)
                 }
             }
@@ -57,14 +57,14 @@ struct Mac_FilterButtonMenu: View {
         .padding(.horizontal)
         .scrollIndicators(.hidden)
         
-        // Modal for editing all filters
-//        .sheet(isPresented: $isAllFilterModal) {
-//            EditAllFiltersView(viewModel: viewModel)
-//                .onDisappear() {
-//                    viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
-//                }
-//                .presentationDetents([.fraction(0.5), .fraction(0.8)])
-//        }
+        // Modal for sorting
+        .sheet(isPresented: $sortModal) {
+            Mac_SortButtonMenu(viewModel: viewModel)
+                .onDisappear() {
+                    viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                }
+                .presentationDetents([.fraction(0.5), .fraction(0.8)])
+        }
         
     }
 }
@@ -96,30 +96,28 @@ fileprivate struct FilterButton: View {
                         .foregroundColor(.accentColor)
                 }
                 .disabled(!active)
+                .buttonStyle(.borderless)
             }
         }
+        .background(active ? Color.accentColor.opacity(0.3) : Color.secondary.opacity(0.3))
         // Modals for editing each filter
         .sheet(item: $presentedFilterSheet) { method in
             VStack {
                 switch method {
-//                case .catalog:
-//                    SelectableList(selection: $viewModel.catalogSelection)
-//                case .constellation:
-//                    SelectableList(selection: $viewModel.constellationSelection)
-//                case .type:
-//                    SelectableList(selection: $viewModel.typeSelection)
-//                case .magnitude:
-//                    MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
-//                case .size:
-//                    MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
-//                case .visibility:
-//                    Form {
-//                        NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
-//                    }
-//                case .seasonScore:
-//                    Form {
-//                        NumberPicker(num: $viewModel.minSeasonScore, placeValues: [.tenths, .hundredths])
-//                    }
+                case .catalog:
+                    SelectableList(selection: $viewModel.catalogSelection)
+                case .constellation:
+                    SelectableList(selection: $viewModel.constellationSelection)
+                case .type:
+                    SelectableList(selection: $viewModel.typeSelection)
+                case .magnitude:
+                    Mac_MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, minTitle: "Brighter than", maxTitle: "Dimmer than")
+                case .size:
+                    Mac_MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, minTitle: "Larger than", maxTitle: "Smaller than")
+                case .visibility:
+                    Mac_MinMaxPicker(min: $viewModel.minVisScore, percent: true)
+                case .seasonScore:
+                    Mac_MinMaxPicker(min: $viewModel.minSeasonScore, percent: true)
                 default:
                     EmptyView()
                 }

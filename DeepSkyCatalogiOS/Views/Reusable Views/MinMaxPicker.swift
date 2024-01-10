@@ -15,7 +15,7 @@ struct MinMaxPicker: View {
     let minTitle: String
     let placeValues: [PlaceValue]
     
-    init(min: Binding<Double>, max: Binding<Double>, maxTitle: String, minTitle: String, placeValues: [PlaceValue]) {
+    init(min: Binding<Double>, max: Binding<Double>, minTitle: String, maxTitle: String, placeValues: [PlaceValue]) {
         self._min = min
         self._max = max
         self.maxEnabled = !max.wrappedValue.isNaN

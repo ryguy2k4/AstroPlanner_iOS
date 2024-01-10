@@ -15,7 +15,7 @@ struct SelectableList<T: Filter>: View {
     @Binding var selection: Set<T>
     var body: some View {
         List {
-            ConfigSection(header: T.name) {
+            Section {
                 ForEach(T.allCases, id: \.self) { item in
                     Button() {
                         // toggle item selection
@@ -36,6 +36,8 @@ struct SelectableList<T: Filter>: View {
                         }
                     }
                 }
+            } header: {
+                Text(T.name)
             }
         }
     }

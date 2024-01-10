@@ -120,9 +120,9 @@ fileprivate struct FilterButton: View {
                 case .type:
                     SelectableList(selection: $viewModel.typeSelection)
                 case .magnitude:
-                    MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
+                    MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, minTitle: "Dimmer than", maxTitle: "Brighter than", placeValues: [.ones, .tenths])
                 case .size:
-                    MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
+                    MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, minTitle: "Smallest Size", maxTitle: "Largest Size", placeValues: [.hundreds, .tens, .ones])
                 case .visibility:
                     Form {
                         NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])

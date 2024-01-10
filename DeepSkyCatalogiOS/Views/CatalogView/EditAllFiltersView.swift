@@ -18,7 +18,7 @@ struct EditAllFiltersView: View {
     var body: some View {
         NavigationStack {
             Form {
-                ConfigSection(header: "Sort") {
+                Section {
                     Picker("Method:", selection: $viewModel.currentSort) {
                         ForEach(store.sunData != .default ? SortMethod.allCases : SortMethod.offlineCases) { method in
                             Label("Sort by \(method.info.name)", systemImage: method.info.icon).tag(method)
@@ -35,8 +35,10 @@ struct EditAllFiltersView: View {
                     .onChange(of: viewModel.sortDecending) {
                         viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
                     }
+                } header: {
+                    Text("Sort")
                 }
-                ConfigSection(header: "Filters") {
+                Section {
                     NavigationLink("Catalog Filter") {
                         SelectableList(selection: $viewModel.catalogSelection)
                     }
@@ -47,10 +49,10 @@ struct EditAllFiltersView: View {
                         SelectableList(selection: $viewModel.constellationSelection)
                     }
                     NavigationLink("Magnitude Filter") {
-                        MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, maxTitle: "Brighter than", minTitle: "Dimmer than", placeValues: [.ones, .tenths])
+                        MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, minTitle: "Dimmer than", maxTitle: "Brighter than", placeValues: [.ones, .tenths])
                     }
                     NavigationLink("Size Filter") {
-                        MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, maxTitle: "Largest Size", minTitle: "Smallest Size", placeValues: [.hundreds, .tens, .ones])
+                        MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, minTitle: "Smallest Size", maxTitle: "Largest Size", placeValues: [.hundreds, .tens, .ones])
                     }
                     if store.sunData != .default {
                         NavigationLink("Visibility Score Filter") {
@@ -58,12 +60,14 @@ struct EditAllFiltersView: View {
                                 NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
                             }
                         }
-                        NavigationLink("Meridian Score Filter") {
+                        NavigationLink("Season Score Filter") {
                             Form {
                                 NumberPicker(num: $viewModel.minSeasonScore, placeValues: [.tenths, .hundredths])
                             }
                         }
                     }
+                } header: {
+                    Text("Filters")
                 }
             }
             .scrollDisabled(true)
