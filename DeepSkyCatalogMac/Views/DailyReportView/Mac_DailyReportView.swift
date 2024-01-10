@@ -20,18 +20,21 @@ struct Mac_DailyReportView: View {
     @State var isLocationModal = false
     @State var isImagingPresetModal = false
     @State var topTenTab: TargetTab = .nebulae
+    
+    @State var selection: DeepSkyTarget?
+    
 
     var body: some View {
-        NavigationStack {
+        NavigationSplitView {
             ScrollView {
                 if let report = report {
                     // Report Section
-                    Mac_TopFiveView(report: report)
+                    Mac_TopFiveView(report: report, selection: $selection)
                         .padding()
                     HStack {
-                        Mac_TopTenListView(reportList: report.topTenNebulae, targetTab: .nebulae)
-                        Mac_TopTenListView(reportList: report.topTenGalaxies, targetTab: .galaxies)
-                        Mac_TopTenListView(reportList: report.topTenStarClusters, targetTab: .starClusters)
+                        Mac_TopTenListView(reportList: report.topTenNebulae, targetTab: .nebulae, selection: $selection)
+                        Mac_TopTenListView(reportList: report.topTenGalaxies, targetTab: .galaxies, selection: $selection)
+                        Mac_TopTenListView(reportList: report.topTenStarClusters, targetTab: .starClusters, selection: $selection)
                     }
                 } else {
                     ProgressView("Generating Report")
@@ -39,10 +42,16 @@ struct Mac_DailyReportView: View {
                     Spacer()
                 }
             }
-        }
-        .navigationDestination(for: DeepSkyTarget.self) { target in
-            Mac_DetailView(target: target)
-                .environmentObject(store)
+        } detail: {
+            if let selection = selection {
+                Mac_DetailView(target: selection)
+                    .environmentObject(store)
+                    .navigationSplitViewColumnWidth(min: 400, ideal: 400)
+            } else {
+                ContentUnavailableView("Nil", image: "camera")
+                    .navigationSplitViewColumnWidth(min: 0, ideal: 0, max: 0)
+            }
+            
         }
         .scrollIndicators(.hidden)
         .environmentObject(store)

@@ -29,12 +29,10 @@ struct CatalogView: View {
                 ContentUnavailableView.search(text: catalogManager.searchText)
             }
             
-            List(catalogManager.targets, id: \.id) { target in
+            List(catalogManager.targets) { target in
                 NavigationLink(destination: DetailView(target: target)) {
-                    VStack {
-                        TargetCell(target: target)
-                            .environmentObject(store)
-                    }
+                    TargetCell(target: target)
+                        .environmentObject(store)
                 }
             }
             .listStyle(.grouped)

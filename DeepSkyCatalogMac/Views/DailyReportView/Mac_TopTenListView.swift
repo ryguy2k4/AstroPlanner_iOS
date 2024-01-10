@@ -18,15 +18,23 @@ struct Mac_TopTenListView: View {
     let reportList: [DeepSkyTarget]
     let targetTab: TargetTab
     
+    @Binding var selection: DeepSkyTarget?
+    
     var body: some View {
         VStack {
             Text(targetTab.rawValue)
                 .fontWeight(.bold)
             if !reportList.isEmpty {
                 List(reportList) { target in
-                    NavigationLink(value: target) {
-                        Text(target.name?[0] ?? target.defaultName)
-                    }
+                    Text(target.name?[0] ?? target.defaultName)
+                        .onTapGesture {
+                            if selection == target {
+                                selection = nil
+                            } else {
+                                selection = target
+                            }
+                        }
+                        .listRowBackground(target == selection ? Color.accentColor.opacity(0.5) : Color.clear)
                 }
                 .tag(targetTab)
                 .listStyle(.inset)

@@ -31,6 +31,7 @@ struct Mac_DetailView: View {
                             .scaledToFit()
                             .frame(height: 200)
                             .cornerRadius(12)
+                            .padding(.top)
                         Text(image.credit)
                             .fontWeight(.light)
                             .lineLimit(2)

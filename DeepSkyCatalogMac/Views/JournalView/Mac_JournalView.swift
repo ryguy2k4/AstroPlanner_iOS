@@ -10,12 +10,13 @@ import SwiftUI
 struct Mac_JournalView: View {
     @State var entries: [JournalEntry] = JournalEntryList.allEntries
     @State var entryImportModal: Bool = false
-    @State var entryIndex: Int = 0
+    @State var entryIndex: Int?
 
     var body: some View {
         NavigationSplitView {
             List(entries.indices, id: \.self, selection: $entryIndex) { index in
                 Text(entries[index].target?.targetID?.name ?? "Unknown Target")
+                    .tag(index)
             }
             .toolbar {
                 Button {
@@ -23,11 +24,13 @@ struct Mac_JournalView: View {
                 } label: {
                     Image(systemName: "plus.circle")
                 }.help("New Entry")
-                Button {
-                    entries.remove(at: entryIndex)
-                } label: {
-                    Image(systemName: "trash")
-                }.help("Delete Entry")
+                if let entryIndex = entryIndex {
+                    Button {
+                        entries.remove(at: entryIndex)
+                    } label: {
+                        Image(systemName: "trash")
+                    }.help("Delete Entry")
+                }
                 Button {
                     JournalEntryList.exportObjects(list: entries)
                 } label: {
@@ -39,10 +42,12 @@ struct Mac_JournalView: View {
                 EntryImportModal(entries: $entries)
             }
         } detail: {
-            if !entries.isEmpty {
+            if !entries.isEmpty, let entryIndex = entryIndex {
                 EntryDetailView(entry: entries[entryIndex])
+            } else if entries.isEmpty {
+                ContentUnavailableView("Create an Entry", systemImage: "plus.circle")
             } else {
-                Text("Create an Entry")
+                ContentUnavailableView("Select an Entry", systemImage: "doc.richtext")
             }
         }
     }

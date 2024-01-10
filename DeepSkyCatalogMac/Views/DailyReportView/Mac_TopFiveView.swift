@@ -12,6 +12,7 @@ import SwiftUI
  */
 struct Mac_TopFiveView: View {
     let report: DailyReport
+    @Binding var selection: DeepSkyTarget?
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -23,12 +24,13 @@ struct Mac_TopFiveView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(maxHeight: 400)
                             .cornerRadius(12)
-                        NavigationLink(value: target) {
-                            VStack {
-                                Text(target.name?[0] ?? target.defaultName)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.primary)
-                            }
+                            .border(target == selection ? Color.accentColor.opacity(0.5) : Color.clear, width: 10)
+                    }
+                    .onTapGesture {
+                        if selection == target {
+                            selection = nil
+                        } else {
+                            selection = target
                         }
                     }
                 }

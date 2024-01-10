@@ -18,16 +18,23 @@ struct Mac_CatalogView: View {
     @Query var reportSettings: [ReportSettings]
     
     @StateObject private var catalogManager: CatalogManager = CatalogManager()
+    
+    @State var target: DeepSkyTarget? = nil
 
     var body: some View {
-        NavigationStack {            
-            List(catalogManager.targets, id: \.id) { target in
-                NavigationLink(destination: Mac_DetailView(target: target).environmentObject(store)) {
-                    VStack {
-                        TargetCell(target: target)
-                            .environmentObject(store)
-                    }
-                }
+        NavigationSplitView {
+            List(catalogManager.targets, selection: $target) { target in
+                TargetCell(target: target)
+                    .environmentObject(store)
+                    .tag(target)
+            }
+        } detail: {
+            if let target = target {
+                Mac_DetailView(target: target)
+                    .environmentObject(store)
+                    .navigationSplitViewColumnWidth(min: 400, ideal: 400)
+            } else {
+                ContentUnavailableView("Select a Target", systemImage: "hurricane")
             }
         }
         
