@@ -48,7 +48,7 @@ struct Mac_DailyReportView: View {
                     .environmentObject(store)
                     .navigationSplitViewColumnWidth(min: 400, ideal: 400)
             } else {
-                ContentUnavailableView("Nil", image: "camera")
+                ContentUnavailableView("Nil", systemImage: "camera")
                     .navigationSplitViewColumnWidth(min: 0, ideal: 0, max: 0)
             }
             

@@ -20,7 +20,6 @@ struct DailyReportView: View {
     @State var isDateModal = false
     @State var isLocationModal = false
     @State var isImagingPresetModal = false
-    @State var topTenTab: TargetTab = .nebulae
 
     var body: some View {
         NavigationStack {
@@ -29,28 +28,12 @@ struct DailyReportView: View {
                     ScrollView {
                         // iOS VIEW
                         if UIDevice.current.userInterfaceIdiom == .phone {
-                            Text(reportHeader())
-                                .font(.subheadline)
-                                .lineLimit(1)
-                                .padding(5)
-                            TopFiveView(report: report)
-                            TopTenTabView(report: report, tabSelection: $topTenTab)
-                                .onAppear() {
-                                    if report.topTenNebulae.isEmpty { topTenTab = .galaxies }
-                                    else if report.topTenNebulae.isEmpty && report.topTenGalaxies.isEmpty { topTenTab = .starClusters }
-                                }
+                            iOS_DailyReportView( report: report, reportHeader: reportHeader())
                         }
                         // iPad VIEW
                         else {
-                            iPad_TopFiveView(report: report)
-                            Divider()
-                            HStack {
-                                iPad_TopTenListView(reportList: report.topTenNebulae, targetTab: .nebulae)
-                                iPad_TopTenListView(reportList: report.topTenGalaxies, targetTab: .galaxies)
-                                iPad_TopTenListView(reportList: report.topTenStarClusters, targetTab: .starClusters)
-                            }
+                            iPad_DailyReportView(report: report, reportHeader: reportHeader())
                         }
-
                     }
                 } else {
                     ProgressView("Generating Report")
@@ -83,8 +66,6 @@ struct DailyReportView: View {
                 }
             }
             .scrollIndicators(.hidden)
-            .navigationTitle(UIDevice.current.userInterfaceIdiom == .pad ? reportHeader() : "")
-            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: DeepSkyTarget.self) { target in
                 DetailView(target: target)
             }

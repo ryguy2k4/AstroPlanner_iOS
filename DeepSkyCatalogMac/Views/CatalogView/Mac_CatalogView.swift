@@ -32,9 +32,10 @@ struct Mac_CatalogView: View {
             if let target = target {
                 Mac_DetailView(target: target)
                     .environmentObject(store)
-                    .navigationSplitViewColumnWidth(min: 400, ideal: 400)
+                    .navigationSplitViewColumnWidth(400)
             } else {
                 ContentUnavailableView("Select a Target", systemImage: "hurricane")
+                    .navigationSplitViewColumnWidth(min: 400, ideal: 400)
             }
         }
         

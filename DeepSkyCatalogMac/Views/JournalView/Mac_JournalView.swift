@@ -44,10 +44,13 @@ struct Mac_JournalView: View {
         } detail: {
             if !entries.isEmpty, let entryIndex = entryIndex {
                 EntryDetailView(entry: entries[entryIndex])
+                    .navigationSplitViewColumnWidth(min: 400, ideal: 400)
             } else if entries.isEmpty {
                 ContentUnavailableView("Create an Entry", systemImage: "plus.circle")
+                    .navigationSplitViewColumnWidth(min: 400, ideal: 400)
             } else {
                 ContentUnavailableView("Select an Entry", systemImage: "doc.richtext")
+                    .navigationSplitViewColumnWidth(min: 400, ideal: 400)
             }
         }
     }

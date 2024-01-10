@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710168842955621D00E0B028 /* MinMaxPicker.swift */; };
+		7103EB552B4F081000E291CF /* iPad_DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7103EB542B4F081000E291CF /* iPad_DailyReportView.swift */; };
+		7103EB572B4F081B00E291CF /* iOS_DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7103EB562B4F081B00E291CF /* iOS_DailyReportView.swift */; };
 		7109A3F5292EBA7A00980527 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* Moon.swift */; };
 		710BF588294BF18900A72073 /* ConfigSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710BF587294BF18900A72073 /* ConfigSection.swift */; };
 		710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D497629316B4F003F41F1 /* DailyReportView.swift */; };
@@ -254,6 +256,8 @@
 
 /* Begin PBXFileReference section */
 		710168842955621D00E0B028 /* MinMaxPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxPicker.swift; sourceTree = "<group>"; };
+		7103EB542B4F081000E291CF /* iPad_DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPad_DailyReportView.swift; sourceTree = "<group>"; };
+		7103EB562B4F081B00E291CF /* iOS_DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_DailyReportView.swift; sourceTree = "<group>"; };
 		7109A3F4292EBA7A00980527 /* Moon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moon.swift; sourceTree = "<group>"; };
 		710BF587294BF18900A72073 /* ConfigSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSection.swift; sourceTree = "<group>"; };
 		710D497629316B4F003F41F1 /* DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportView.swift; sourceTree = "<group>"; };
@@ -439,6 +443,26 @@
 			path = CatalogView;
 			sourceTree = "<group>";
 		};
+		7103EB522B4F07CD00E291CF /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7103EB562B4F081B00E291CF /* iOS_DailyReportView.swift */,
+				711386FC29C356CA00081584 /* TopFiveView.swift */,
+				714BB85229A094810084D438 /* TopTenTabView.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		7103EB532B4F07D700E291CF /* iPadOS */ = {
+			isa = PBXGroup;
+			children = (
+				7103EB542B4F081000E291CF /* iPad_DailyReportView.swift */,
+				71E2BFFD2B3CD6F2004F9936 /* iPad_TopFiveView.swift */,
+				71E2BFFF2B3CD7A2004F9936 /* iPad_TopTenListView.swift */,
+			);
+			path = iPadOS;
+			sourceTree = "<group>";
+		};
 		712E83612A60F3B900CA42DD /* DailyReportView */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,10 +636,8 @@
 			isa = PBXGroup;
 			children = (
 				710D497629316B4F003F41F1 /* DailyReportView.swift */,
-				711386FC29C356CA00081584 /* TopFiveView.swift */,
-				71E2BFFD2B3CD6F2004F9936 /* iPad_TopFiveView.swift */,
-				714BB85229A094810084D438 /* TopTenTabView.swift */,
-				71E2BFFF2B3CD7A2004F9936 /* iPad_TopTenListView.swift */,
+				7103EB532B4F07D700E291CF /* iPadOS */,
+				7103EB522B4F07CD00E291CF /* iOS */,
 			);
 			path = DailyReportView;
 			sourceTree = "<group>";
@@ -1114,7 +1136,9 @@
 				71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */,
 				71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */,
 				71CEEE2D2B1ED79C0072AAAE /* ReportSettings.swift in Sources */,
+				7103EB552B4F081000E291CF /* iPad_DailyReportView.swift in Sources */,
 				71950E8A29D139BE0075081B /* DataLoadingViews.swift in Sources */,
+				7103EB572B4F081B00E291CF /* iOS_DailyReportView.swift in Sources */,
 				71E2BFFE2B3CD6F2004F9936 /* iPad_TopFiveView.swift in Sources */,
 				71BCF9822921EF8B008C7614 /* Date+Ext.swift in Sources */,
 				7109A3F5292EBA7A00980527 /* Moon.swift in Sources */,
