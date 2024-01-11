@@ -13,7 +13,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
     let id = UUID()
     // Session Specific
     @Published var setupInterval: DateInterval?
-    @Published var weather: [HourWeather]?
+    @Published var weather: [JournalHourWeather]?
     @Published var moonIllumination: Double?
     @Published var location: Location?
     @Published var gear: JournalGear?
@@ -25,7 +25,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
     @Published var seasonScore: Double?
     @Published var imagePlan: [JournalImageSequence]?
     
-    init(setupInterval: DateInterval? = nil, weather: [HourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalGear? = nil, tags: [JournalTags] = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
+    init(setupInterval: DateInterval? = nil, weather: [JournalHourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalGear? = nil, tags: [JournalTags] = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
         self.setupInterval = setupInterval
         self.weather = weather
         self.moonIllumination = moonIllumination
@@ -37,6 +37,25 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         self.visibilityScore = visibilityScore
         self.seasonScore = seasonScore
         self.imagePlan = imagePlan
+    }
+    
+    struct JournalHourWeather: Codable, Hashable {
+        let date: Date
+        let temperatureF: Double
+        let apparentTemperatureF: Double
+        let dewPointF: Double
+        let cloudCover: Double
+        let windMPH: Double
+        
+        init(weather: HourWeather) {
+            self.date = weather.date
+            self.temperatureF = weather.temperature.converted(to: .fahrenheit).value
+            self.dewPointF = weather.dewPoint.converted(to: .fahrenheit).value
+            self.cloudCover = weather.cloudCover
+            self.windMPH = weather.wind.speed.converted(to: .milesPerHour).value
+            self.apparentTemperatureF = weather.apparentTemperature.converted(to: .fahrenheit).value
+            
+        }
     }
     
     /**
@@ -178,13 +197,17 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         case dewRuinedImages
     }
     
+    
+    
+    // Codable Implementation
     enum CodingKeys: String, CodingKey {
         case setupInterval, weather, moonIllumination, location, gear, tags, target, imagingInterval, visibilityScore, seasonScore, imagePlan
     }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.setupInterval = try container.decode(DateInterval?.self, forKey: .setupInterval)
-        self.weather = try container.decode([HourWeather]?.self, forKey: .weather)
+        self.weather = try container.decode([JournalHourWeather]?.self, forKey: .weather)
         self.moonIllumination = try container.decode(Double?.self, forKey: .moonIllumination)
         self.location = try container.decode(Location?.self, forKey: .location)
         self.gear = try container.decode(JournalGear?.self, forKey: .gear)

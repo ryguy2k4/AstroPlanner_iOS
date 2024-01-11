@@ -70,9 +70,9 @@ struct EntryDetailView: View {
                     // WeatherKit Data
                     EntryRefreshSection(title: "Weather") {
                         if let weather = entry.weather, let moonIllumination = entry.moonIllumination {
-                            LabeledText(label: "Temp:", value: "\(weather.map({$0.temperature.converted(to: .fahrenheit).value}).mean().formatDecimal())")
-                            LabeledText(label: "Wind:", value: "\(weather.map({$0.wind.speed.converted(to: .milesPerHour).value}).mean().formatDecimal())")
-                            LabeledText(label: "Dew Point:", value: "\(weather.map({$0.dewPoint.converted(to: .fahrenheit).value}).mean().formatDecimal())")
+                            LabeledText(label: "Temp:", value: "\(weather.map({$0.temperatureF}).mean().formatDecimal())")
+                            LabeledText(label: "Wind:", value: "\(weather.map({$0.windMPH}).mean().formatDecimal())")
+                            LabeledText(label: "Dew Point:", value: "\(weather.map({$0.dewPointF}).mean().formatDecimal())")
                             LabeledText(label: "Cloud Cover:", value: "\(weather.map({$0.cloudCover}).mean().percent())")
                             LabeledText(label: "Moon Illumination:", value: "\(moonIllumination.percent())")
                         } else {
@@ -83,7 +83,7 @@ struct EntryDetailView: View {
                         Task {
                             if let location = entry.location, let setupInterval = entry.setupInterval {
                                 let newWeather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
-                                entry.weather = newWeather?.forecast
+                                entry.weather = newWeather?.forecast.map({JournalEntry.JournalHourWeather(weather: $0)})
                             }
                         }
                     }.disabled(!editing)
@@ -197,7 +197,7 @@ struct EntryDetailView: View {
                 Task {
                     if let newLocation = newLocation, let setupInterval = entry.setupInterval {
                         let newWeather = try? await WeatherService().weather(for: newLocation.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
-                        entry.weather = newWeather?.forecast
+                        entry.weather = newWeather?.forecast.map({JournalEntry.JournalHourWeather(weather: $0)})
                         
                         if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}) {
                             let sunData = Sun.sol.getNextInterval(location: newLocation, date: setupInterval.start.startOfLocalDay(timezone: newLocation.timezone))
@@ -218,7 +218,7 @@ struct EntryDetailView: View {
                 Task {
                     if let newSetupInterval = newSetupInterval, let location = entry.location {
                         let newWeather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: newSetupInterval.start, endDate: newSetupInterval.end))
-                        entry.weather = newWeather?.forecast
+                        entry.weather = newWeather?.forecast.map({JournalEntry.JournalHourWeather(weather: $0)})
                         
                         if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}) {
                             let sunData = Sun.sol.getNextInterval(location: location, date: newSetupInterval.start.startOfLocalDay(timezone: location.timezone))

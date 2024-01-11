@@ -111,13 +111,13 @@ final class JournalImportManager {
         }()
         
         // Create Weather Data
-        let weather: (forecast: [HourWeather]?, moon: Double?) = await {
+        let weather: (forecast: [JournalEntry.JournalHourWeather]?, moon: Double?) = await {
             if let setupInterval = setupInterval {
                 let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start)
                 
                 if let location = location {
                     let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
-                    return (forecast: weather?.forecast, moon: moonIllumination)
+                    return (forecast: weather?.forecast.map({JournalEntry.JournalHourWeather(weather: $0)}), moon: moonIllumination)
                 } else {
                     return (forecast: nil, moon: moonIllumination)
                 }
