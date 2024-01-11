@@ -116,6 +116,37 @@ struct Mac_DetailView: View {
                 }
             }
         }
+        .toolbar {
+            // Ellipsis menu in top right
+            Menu {
+                ShareLink("Share", item: generateShareString())
+                Button("Hide Target") {
+                    let newHiddenTarget = HiddenTarget(id: target.id, origin: targetSettings.first!)
+                    context.insert(newHiddenTarget)
+                }
+            } label: {
+                Image(systemName: "ellipsis")
+            }
+        }
+    }
+    /**
+     This returns a string that describes the target on the day and location selected that is meant to be exported from the app and sent elsewhere, i.e. by text message.
+     */
+    func generateShareString() -> String {
+        let visibilityScore = target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, limitingAlt: targetSettings.first?.limitingAltitude ?? 0)
+        let seasonScore = target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)
+        let targetInterval = target.getNextInterval(location: store.location, date: store.date, limitingAlt: showLimitingAlt ? targetSettings.first?.limitingAltitude ?? 0 : 0)
+        let scheduleString: String = {
+            switch targetInterval.interval {
+            case .always:
+                return "Target is always in the sky; Meridian crossing at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: targetInterval.culmination))"
+            case .never:
+                return "Target is never in the sky; Meridian crossing at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: targetInterval.culmination))"
+            case .sometimes(let interval):
+                return "Target rises at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: interval.start)) and sets at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: interval.end)); Meridian crossing is at \(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: targetInterval.culmination))"
+            }
+        }()
+        return "\(target.defaultName)\n\(target.type.rawValue) in \(target.constellation.rawValue) \n \(target.wikipediaURL?.absoluteString ?? "")\n\nNight of \(DateFormatter.longDateOnly(timezone: store.location.timezone).string(from: store.date)) | \(store.location.name)\nVisibility Score: \(visibilityScore.percent())\nSeason Score: \(seasonScore.percent())\n\(scheduleString)"
     }
 }
 

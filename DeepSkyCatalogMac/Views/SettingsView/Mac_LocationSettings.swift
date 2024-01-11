@@ -17,30 +17,33 @@ struct Mac_LocationSettings: View {
     @State var editorModal: SavedLocation? = nil
     
     var body: some View {
-        NavigationStack {
+        VStack {
             if locationList.isEmpty {
-                Text("Add a location with the plus button")
-                    .padding()
+                ContentUnavailableView("No Saved Locations", systemImage: "location")
             }
-            List(locationList) { location in
-                Button(location.name) {
-                    editorModal = location
+            List {
+                ForEach(locationList) { location in
+                    Button(location.name) {
+                        editorModal = location
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
+                // Button for adding a new location
+                Section {
+                    Button {
+                        creatorModal = true
+                    } label: {
+                        Label("New Location", systemImage: "plus.circle")
+                    }
+                }
             }
-            // Button for adding a new location
-            Button {
-                creatorModal = true
-            } label: {
-                Image(systemName: "plus.circle")
+
+            .sheet(isPresented: $creatorModal) {
+                LocationEditor(location: nil)
             }
-        }
-        .navigationTitle("Saved Locations")
-        .sheet(isPresented: $creatorModal) {
-            LocationEditor(location: nil)
-        }
-        .sheet(item: $editorModal) { location in
-            LocationEditor(location: location)
+            .sheet(item: $editorModal) { location in
+                LocationEditor(location: location)
+            }
         }
     }
 }

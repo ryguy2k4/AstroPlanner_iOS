@@ -10,6 +10,10 @@
 		710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710168842955621D00E0B028 /* MinMaxPicker.swift */; };
 		7103EB552B4F081000E291CF /* iPad_DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7103EB542B4F081000E291CF /* iPad_DailyReportView.swift */; };
 		7103EB572B4F081B00E291CF /* iOS_DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7103EB562B4F081B00E291CF /* iOS_DailyReportView.swift */; };
+		7103EB5C2B4F70EF00E291CF /* Mac_ImagingPresetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7103EB5B2B4F70EF00E291CF /* Mac_ImagingPresetModal.swift */; };
+		7103EB5E2B4F70FB00E291CF /* Mac_LocationPickerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7103EB5D2B4F70FB00E291CF /* Mac_LocationPickerModal.swift */; };
+		7103EB602B4F710400E291CF /* Mac_ViewingIntervalModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7103EB5F2B4F710400E291CF /* Mac_ViewingIntervalModal.swift */; };
+		7103EB612B4F715100E291CF /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
 		7109A3F5292EBA7A00980527 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* Moon.swift */; };
 		710BF588294BF18900A72073 /* ConfigSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710BF587294BF18900A72073 /* ConfigSection.swift */; };
 		710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D497629316B4F003F41F1 /* DailyReportView.swift */; };
@@ -22,7 +26,6 @@
 		711386FD29C356CA00081584 /* TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386FC29C356CA00081584 /* TopFiveView.swift */; };
 		7113870329C3571400081584 /* FilterButtonMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113870229C3571400081584 /* FilterButtonMenuView.swift */; };
 		7129DEBD2B15AC9F0058B238 /* EntryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129DEBC2B15AC9F0058B238 /* EntryDetailView.swift */; };
-		712C4F2D2B4E28A900F7FEF3 /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
 		712C4F2F2B4E2E5100F7FEF3 /* Mac_MinMaxPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712C4F2E2B4E2E5100F7FEF3 /* Mac_MinMaxPicker.swift */; };
 		712C4F312B4E464100F7FEF3 /* Mac_SortButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712C4F302B4E464100F7FEF3 /* Mac_SortButtonMenu.swift */; };
 		712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */; };
@@ -202,7 +205,7 @@
 		71DF8A732A61FB5F00923236 /* Mac_AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF8A722A61FB5F00923236 /* Mac_AboutView.swift */; };
 		71DF8A752A61FC3600923236 /* Mac_LocationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF8A742A61FC3600923236 /* Mac_LocationSettings.swift */; };
 		71DF8A772A62175500923236 /* Mac_GearSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF8A762A62175500923236 /* Mac_GearSettings.swift */; };
-		71DF8A792A622C8800923236 /* Mac_TargetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF8A782A622C8800923236 /* Mac_TargetSettings.swift */; };
+		71DF8A792A622C8800923236 /* Mac_AdvancedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF8A782A622C8800923236 /* Mac_AdvancedSettings.swift */; };
 		71DF8A7B2A622DF700923236 /* Mac_HiddenTargetsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF8A7A2A622DF700923236 /* Mac_HiddenTargetsList.swift */; };
 		71DF8A7D2A6230B000923236 /* DateFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF8A7C2A6230B000923236 /* DateFormatter+Ext.swift */; };
 		71DF8A7E2A62323700923236 /* DateFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF8A7C2A6230B000923236 /* DateFormatter+Ext.swift */; };
@@ -258,6 +261,9 @@
 		710168842955621D00E0B028 /* MinMaxPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxPicker.swift; sourceTree = "<group>"; };
 		7103EB542B4F081000E291CF /* iPad_DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPad_DailyReportView.swift; sourceTree = "<group>"; };
 		7103EB562B4F081B00E291CF /* iOS_DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_DailyReportView.swift; sourceTree = "<group>"; };
+		7103EB5B2B4F70EF00E291CF /* Mac_ImagingPresetModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_ImagingPresetModal.swift; sourceTree = "<group>"; };
+		7103EB5D2B4F70FB00E291CF /* Mac_LocationPickerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_LocationPickerModal.swift; sourceTree = "<group>"; };
+		7103EB5F2B4F710400E291CF /* Mac_ViewingIntervalModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_ViewingIntervalModal.swift; sourceTree = "<group>"; };
 		7109A3F4292EBA7A00980527 /* Moon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moon.swift; sourceTree = "<group>"; };
 		710BF587294BF18900A72073 /* ConfigSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSection.swift; sourceTree = "<group>"; };
 		710D497629316B4F003F41F1 /* DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportView.swift; sourceTree = "<group>"; };
@@ -380,7 +386,7 @@
 		71DF8A722A61FB5F00923236 /* Mac_AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_AboutView.swift; sourceTree = "<group>"; };
 		71DF8A742A61FC3600923236 /* Mac_LocationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_LocationSettings.swift; sourceTree = "<group>"; };
 		71DF8A762A62175500923236 /* Mac_GearSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_GearSettings.swift; sourceTree = "<group>"; };
-		71DF8A782A622C8800923236 /* Mac_TargetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_TargetSettings.swift; sourceTree = "<group>"; };
+		71DF8A782A622C8800923236 /* Mac_AdvancedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_AdvancedSettings.swift; sourceTree = "<group>"; };
 		71DF8A7A2A622DF700923236 /* Mac_HiddenTargetsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_HiddenTargetsList.swift; sourceTree = "<group>"; };
 		71DF8A7C2A6230B000923236 /* DateFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Ext.swift"; sourceTree = "<group>"; };
 		71E03E6229C0B5FF0034FE08 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
@@ -439,6 +445,8 @@
 				71BCF9672921EF20008C7614 /* CatalogView.swift */,
 				7113870229C3571400081584 /* FilterButtonMenuView.swift */,
 				71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */,
+				71F844C8294A95E700DD2742 /* SelectableList.swift */,
+				710168842955621D00E0B028 /* MinMaxPicker.swift */,
 			);
 			path = CatalogView;
 			sourceTree = "<group>";
@@ -463,12 +471,23 @@
 			path = iPadOS;
 			sourceTree = "<group>";
 		};
+		7103EB622B4F775B00E291CF /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				713568EB2A60C696004196AE /* Mac_DetailView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		712E83612A60F3B900CA42DD /* DailyReportView */ = {
 			isa = PBXGroup;
 			children = (
 				71BE6EDB299035A400686E95 /* Mac_DailyReportView.swift */,
 				712E83632A60F40600CA42DD /* Mac_TopFiveView.swift */,
 				712E83652A60F41200CA42DD /* Mac_TopTenListView.swift */,
+				7103EB5B2B4F70EF00E291CF /* Mac_ImagingPresetModal.swift */,
+				7103EB5D2B4F70FB00E291CF /* Mac_LocationPickerModal.swift */,
+				7103EB5F2B4F710400E291CF /* Mac_ViewingIntervalModal.swift */,
 			);
 			path = DailyReportView;
 			sourceTree = "<group>";
@@ -478,7 +497,6 @@
 			children = (
 				713568E92A60C661004196AE /* Mac_CatalogView.swift */,
 				71470EB12B450B8500E1BE20 /* Mac_FilterButtonMenu.swift */,
-				713568EB2A60C696004196AE /* Mac_DetailView.swift */,
 				712C4F2E2B4E2E5100F7FEF3 /* Mac_MinMaxPicker.swift */,
 				712C4F302B4E464100F7FEF3 /* Mac_SortButtonMenu.swift */,
 			);
@@ -613,6 +631,7 @@
 				716A19BA298F58A90025DB67 /* Mac_HomeView.swift */,
 				71DF8A722A61FB5F00923236 /* Mac_AboutView.swift */,
 				712E83622A60F3D600CA42DD /* CatalogView */,
+				7103EB622B4F775B00E291CF /* DetailView */,
 				712E83612A60F3B900CA42DD /* DailyReportView */,
 				7133FCA52ACCC24700DB0B27 /* JournalView */,
 				71DF8A6F2A61F9D500923236 /* SettingsView */,
@@ -636,6 +655,9 @@
 			isa = PBXGroup;
 			children = (
 				710D497629316B4F003F41F1 /* DailyReportView.swift */,
+				717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */,
+				717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */,
+				71B14F682958D905003C11BD /* ViewingIntervalModal.swift */,
 				7103EB532B4F07D700E291CF /* iPadOS */,
 				7103EB522B4F07CD00E291CF /* iOS */,
 			);
@@ -665,11 +687,6 @@
 		718B56AF294C349900914BDB /* Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
-				717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */,
-				717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */,
-				71B14F682958D905003C11BD /* ViewingIntervalModal.swift */,
-				71F844C8294A95E700DD2742 /* SelectableList.swift */,
-				710168842955621D00E0B028 /* MinMaxPicker.swift */,
 				719B26D6295167A100E1165A /* NumberPicker.swift */,
 				710BF587294BF18900A72073 /* ConfigSection.swift */,
 				71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */,
@@ -860,7 +877,7 @@
 				71DF8A702A61F9F600923236 /* Mac_SettingsView.swift */,
 				71DF8A742A61FC3600923236 /* Mac_LocationSettings.swift */,
 				71DF8A762A62175500923236 /* Mac_GearSettings.swift */,
-				71DF8A782A622C8800923236 /* Mac_TargetSettings.swift */,
+				71DF8A782A622C8800923236 /* Mac_AdvancedSettings.swift */,
 				71DF8A7A2A622DF700923236 /* Mac_HiddenTargetsList.swift */,
 			);
 			path = SettingsView;
@@ -1201,6 +1218,7 @@
 				719AFB4C2B37CCCF00A3BA5C /* APIService.swift in Sources */,
 				713568EC2A60C696004196AE /* Mac_DetailView.swift in Sources */,
 				71CEEE402B1ED8500072AAAE /* ImagingPreset.swift in Sources */,
+				7103EB612B4F715100E291CF /* SelectableList.swift in Sources */,
 				719AFB422B37CCA400A3BA5C /* DesignationsField.swift in Sources */,
 				71C26455298F1CBD0057EC04 /* Constellation.swift in Sources */,
 				719AFB402B37CC9F00A3BA5C /* TargetEditor.swift in Sources */,
@@ -1210,18 +1228,19 @@
 				719AFB472B37CCAF00A3BA5C /* DescriptionField.swift in Sources */,
 				719AFB432B37CCA600A3BA5C /* SubTargetsField.swift in Sources */,
 				719B24A82B1670F900C3951A /* TargetIDSearchField.swift in Sources */,
+				7103EB602B4F710400E291CF /* Mac_ViewingIntervalModal.swift in Sources */,
 				71C26457298F1CC10057EC04 /* FilterMethods.swift in Sources */,
 				71DF8A752A61FC3600923236 /* Mac_LocationSettings.swift in Sources */,
 				718444672B23ED030017B02B /* ProjectEntry.swift in Sources */,
-				71DF8A792A622C8800923236 /* Mac_TargetSettings.swift in Sources */,
+				71DF8A792A622C8800923236 /* Mac_AdvancedSettings.swift in Sources */,
 				71E2BFFC2B3CB8C1004F9936 /* EntryPlanEditor.swift in Sources */,
-				712C4F2D2B4E28A900F7FEF3 /* SelectableList.swift in Sources */,
 				719AFB452B37CCAB00A3BA5C /* TypeField.swift in Sources */,
 				71DF8A6E2A61F59C00923236 /* Menus.swift in Sources */,
 				71BE6EDC299035A400686E95 /* Mac_DailyReportView.swift in Sources */,
 				719AFB3E2B37A2B800A3BA5C /* EntryTargetEditor.swift in Sources */,
 				71C2643A298F1C630057EC04 /* DeepSkyCatalogMacApp.swift in Sources */,
 				71C2645D298F1D3F0057EC04 /* LocationManager.swift in Sources */,
+				7103EB5E2B4F70FB00E291CF /* Mac_LocationPickerModal.swift in Sources */,
 				71DF8A712A61F9F600923236 /* Mac_SettingsView.swift in Sources */,
 				71C26453298F1CB80057EC04 /* TargetCatalog.swift in Sources */,
 				71DF8A772A62175500923236 /* Mac_GearSettings.swift in Sources */,
@@ -1236,6 +1255,7 @@
 				71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */,
 				71C2644D298F1CA50057EC04 /* Double+Ext.swift in Sources */,
 				712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */,
+				7103EB5C2B4F70EF00E291CF /* Mac_ImagingPresetModal.swift in Sources */,
 				71C26460298F1D4A0057EC04 /* NetworkManager.swift in Sources */,
 				71DF8A7B2A622DF700923236 /* Mac_HiddenTargetsList.swift in Sources */,
 				712C4F312B4E464100F7FEF3 /* Mac_SortButtonMenu.swift in Sources */,

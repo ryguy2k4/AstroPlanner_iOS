@@ -10,6 +10,7 @@ import SwiftData
 
 struct Mac_SettingsView: View {
     @Query var targetSettings: [TargetSettings]
+    @Query var reportSettings: [ReportSettings]
     var body: some View {
         TabView {
             Mac_LocationSettings()
@@ -20,15 +21,14 @@ struct Mac_SettingsView: View {
                 .tabItem {
                     Label("Imaging Presets", systemImage: "camera.aperture")
                 }
-            Mac_TargetSettingsView(targetSettings: targetSettings.first!)
+            Mac_AdvancedSettingsView(targetSettings: targetSettings.first!, reportSettings: reportSettings.first!)
                 .tabItem {
-                    Label("Target Settings", systemImage: "star")
+                    Label("Advanced Settings", systemImage: "star")
                 }
             Mac_HiddenTargetsList()
                 .tabItem {
                     Label("Hidden Targets", systemImage: "eye.slash")
                 }
-                .navigationTitle("Saved Locations")
         }
     }
 }

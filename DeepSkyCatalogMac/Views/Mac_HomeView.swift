@@ -138,7 +138,6 @@ struct Mac_HomeView: View {
                 context.insert(defaultSettings)
             }
         }
-        .frame(minWidth: 600, maxWidth: 2400, minHeight: 400,  maxHeight: 1600)
     }
 }
 

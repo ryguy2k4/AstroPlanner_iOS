@@ -1,14 +1,14 @@
 //
-//  SwiftUIView.swift
-//  DeepSkyCatalog
+//  Mac_ViewingIntervalModal.swift
+//  DeepSkyCatalogMac
 //
-//  Created by Ryan Sponzilli on 12/25/22.
+//  Created by Ryan Sponzilli on 1/10/24.
 //
 
 import SwiftUI
 import SwiftData
 
-struct ViewingIntervalModal: View {
+struct Mac_ViewingIntervalModal: View {
     @EnvironmentObject var store: HomeViewModel
     @Environment(\.modelContext) var context
     @Bindable var reportSettings: ReportSettings
@@ -16,41 +16,45 @@ struct ViewingIntervalModal: View {
     var body: some View {
         VStack {
             DateSelector()
-                .environmentObject(store)
-                .padding()
-                .font(.title2)
-                .fontWeight(.semibold)
-            Form {
-                ConfigSection(header: "Viewing Interval") {
-                    DateIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: {
-                        let nightInterval: DateInterval = {
-                            if reportSettings.darknessThreshold == 2 {
-                                return store.sunData.CTInterval
-                            } else if reportSettings.darknessThreshold == 1 {
-                                return store.sunData.NTInterval
-                            } else {
-                                return store.sunData.ATInterval
-                            }
-                        }()
-                        return store.viewingInterval != nightInterval
-                    }())
-                }
-                
-                // Darkness Threshold
-                Section {
-                    Picker("Darkness Threshold", selection: $reportSettings.darknessThreshold) {
-                        Text("Civil Twilight").tag(2)
-                        Text("Nautical Twilight").tag(1)
-                        Text("Astronomical Twilight").tag(0)
-                    }
-                    .pickerStyle(.inline)
-                    .labelsHidden()
-                } header: {
-                    Text("Darkness Threshold")
-                } footer: {
-                    Text("The darkness threshold specifies how dark it needs to be in order to start imaging. This is reflected above in the Dusk to Dawn Setting for the Viewing Interval. This setting impacts visibility score. The default value is Civil Twilight.")
-                }
+            Section {
+                DateIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: {
+                    let nightInterval: DateInterval = {
+                        if reportSettings.darknessThreshold == 2 {
+                            return store.sunData.CTInterval
+                        } else if reportSettings.darknessThreshold == 1 {
+                            return store.sunData.NTInterval
+                        } else {
+                            return store.sunData.ATInterval
+                        }
+                    }()
+                    return store.viewingInterval != nightInterval
+                }())
+            } header: {
+                Text("Viewing Interval")
             }
+                            
+            // Darkness Threshold
+            Section {
+                Picker("Darkness Threshold", selection: $reportSettings.darknessThreshold) {
+                    Text("Civil Twilight").tag(2)
+                    Text("Nautical Twilight").tag(1)
+                    Text("Astronomical Twilight").tag(0)
+                }
+                .pickerStyle(.menu)
+                .labelsHidden()
+                .padding(.horizontal)
+            } header: {
+                Text("Darkness Threshold")
+                    .padding(.top)
+            } footer: {
+                VStack {
+                    Text("The darkness threshold specifies how dark it needs to be in order to start imaging. This is reflected above in the Dusk to Dawn Setting for the Viewing Interval. This setting impacts visibility score. The default value is Civil Twilight.")
+                        .frame(maxWidth: 250, minHeight: 150)
+                        .multilineTextAlignment(.leading)
+                }
+
+            }
+            .headerProminence(.increased)
         }
     }
 }
@@ -144,6 +148,7 @@ struct DateSelector: View {
                 Image(systemName: "chevron.right")
             }
         }
+        .padding()
         .sheet(isPresented: $isDatePickerModal) {
             DatePickerModal()
                 .environmentObject(store)
@@ -162,17 +167,18 @@ struct DatePickerModal: View {
             if let date = Binding($date) {
                 Button("Tonight") {
                     // If its in the morning hours of the next day, still show the info for the previous day (current night)
-                    if Sun.sol.getAltitude(location: store.location, time: .now) < -18 && .now > store.sunData.solarMidnight {
-                        store.date = .now.startOfLocalDay(timezone: store.location.timezone).yesterday()
-                    } else {
-                        store.date = .now.startOfLocalDay(timezone: store.location.timezone)
-                    }
+//                    if Sun.sol.getAltitude(location: store.location, time: .now) < -18 && .now > store.sunData.solarMidnight {
+//                        store.date = .now.startOfLocalDay(timezone: store.location.timezone).yesterday()
+//                    } else {
+//                        store.date = .now.startOfLocalDay(timezone: store.location.timezone)
+//                    }
+                    store.date = .now.startOfLocalDay(timezone: store.location.timezone)
                     didHitTonight = true
                 }
                 .buttonStyle(.borderedProminent)
                 
                 DatePicker("Date", selection: date, displayedComponents: .date)
-                    .datePickerStyle(.wheel)
+                    .datePickerStyle(.graphical)
                     .labelsHidden()
                     .onDisappear() {
                         if !didHitTonight {
@@ -186,5 +192,6 @@ struct DatePickerModal: View {
                     }
             }
         }
+        .padding()
     }
 }

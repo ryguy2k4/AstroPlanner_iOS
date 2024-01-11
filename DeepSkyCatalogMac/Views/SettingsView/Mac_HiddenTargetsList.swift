@@ -15,25 +15,28 @@ struct Mac_HiddenTargetsList: View {
     var body: some View {
         VStack {
             if targetSettings.first!.hiddenTargets!.isEmpty {
-                Text("No Hidden Targets")
-                    .padding()
-            }
-            List {
-                ForEach(targetSettings.first!.hiddenTargets!) { hiddenTarget in
-                    let target = DeepSkyTargetList.allTargets.first(where: {$0.id == hiddenTarget.id})!
-                    Text(target.defaultName)
-                        .swipeActions() {
-                            Button() {
-                                context.delete(hiddenTarget)
+                ContentUnavailableView("No Hidden Targets", systemImage: "slash.circle")
+            } else {
+                List {
+                    ForEach(targetSettings.first!.hiddenTargets!) { hiddenTarget in
+                        let target = DeepSkyTargetList.allTargets.first(where: {$0.id == hiddenTarget.id})!
+                        Text(target.defaultName)
+                            .swipeActions() {
+                                Button() {
+                                    context.delete(hiddenTarget)
 
-                            } label: {
-                                Label("Unhide", systemImage: "eye.fill")
+                                } label: {
+                                    Label("Unhide", systemImage: "eye.fill")
+                                }
+                                .tint(.green)
                             }
-                            .tint(.green)
-                        }
+                    }
+                    Section {
+                        Text("Swipe for Actions")
+                            .font(.body.italic())
+                    }
                 }
             }
         }
-        .navigationTitle("Hidden Targets")
     }
 }

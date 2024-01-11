@@ -19,7 +19,6 @@ struct Mac_DailyReportView: View {
     @State var isDateModal = false
     @State var isLocationModal = false
     @State var isImagingPresetModal = false
-    @State var topTenTab: TargetTab = .nebulae
     
     @State var selection: DeepSkyTarget?
     
@@ -31,6 +30,7 @@ struct Mac_DailyReportView: View {
                     // Report Section
                     Mac_TopFiveView(report: report, selection: $selection)
                         .padding()
+                    Text(reportSettings.first!.minVisibility.description)
                     HStack {
                         Mac_TopTenListView(reportList: report.topTenNebulae, targetTab: .nebulae, selection: $selection)
                         Mac_TopTenListView(reportList: report.topTenGalaxies, targetTab: .galaxies, selection: $selection)
@@ -40,6 +40,25 @@ struct Mac_DailyReportView: View {
                     ProgressView("Generating Report")
                         .padding(.top, 50)
                     Spacer()
+                }
+            }
+            .toolbar {
+                HStack {
+                    Button {
+                        isImagingPresetModal = true
+                    } label: {
+                        Image(systemName: "camera.aperture")
+                    }
+                    Button {
+                        isDateModal = true
+                    } label: {
+                        Image(systemName: "calendar")
+                    }
+                    Button {
+                        isLocationModal = true
+                    } label: {
+                        Image(systemName: "location")
+                    }
                 }
             }
         } detail: {
@@ -55,6 +74,23 @@ struct Mac_DailyReportView: View {
         }
         .scrollIndicators(.hidden)
         .environmentObject(store)
+        
+        // Modals for settings
+        .sheet(isPresented: $isDateModal){
+            Mac_ViewingIntervalModal(reportSettings: reportSettings.first!)
+                .environmentObject(store)
+                .environment(\.timeZone, store.location.timezone)
+                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+        }
+        .sheet(isPresented: $isLocationModal){
+            Mac_LocationPickerModal()
+                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+        }
+        .sheet(isPresented: $isImagingPresetModal){
+            Mac_ImagingPresetModal()
+                .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+        }
+        
         .task {
             self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
         }

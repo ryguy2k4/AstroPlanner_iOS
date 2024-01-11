@@ -15,30 +15,31 @@ struct Mac_GearSettings: View {
     @State var editorModal: ImagingPreset? = nil
     
     var body: some View {
-        NavigationStack {
+        VStack {
             if presetList.isEmpty {
-                Text("Add a preset with the plus button")
-                    .padding()
+                ContentUnavailableView("No Saved Presets", systemImage: "camera.aperture")
             }
-            List(presetList) { preset in
-                Button(preset.name) {
-                    editorModal = preset
+            List {
+                ForEach(presetList) { preset in
+                    Button(preset.name) {
+                        editorModal = preset
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
+                Section {
+                    Button {
+                        creatorModal = true
+                    } label: {
+                        Label("New Preset", systemImage: "plus.circle")
+                    }
+                }
             }
-            // Button for adding a new preset
-            Button {
-                creatorModal = true
-            } label: {
-                Image(systemName: "plus.circle")
+            .sheet(isPresented: $creatorModal) {
+                ImagingPresetEditor(preset: nil)
             }
-        }
-        .navigationTitle("Imaging Presets")
-        .sheet(isPresented: $creatorModal) {
-            ImagingPresetEditor(preset: nil)
-        }
-        .sheet(item: $editorModal) { preset in
-            ImagingPresetEditor(preset: preset)
+            .sheet(item: $editorModal) { preset in
+                ImagingPresetEditor(preset: preset)
+            }
         }
     }
 }
