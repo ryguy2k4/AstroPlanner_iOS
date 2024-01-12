@@ -127,6 +127,7 @@
 		71A6C8FE2A5F4E0D009F1C30 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A6C8FA2A5F4DE0009F1C30 /* Sun.swift */; };
 		71A6C9002A5F4EFC009F1C30 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A6C8FA2A5F4DE0009F1C30 /* Sun.swift */; };
 		71A6C9012A5F4F09009F1C30 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* Moon.swift */; };
+		71AC1A7D2B50B52D000D55C8 /* EntryTagsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC1A7C2B50B52D000D55C8 /* EntryTagsEditor.swift */; };
 		71ACF32D2964EA9A00CC83D5 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BCF97D2921EF8B008C7614 /* TargetType.swift */; };
 		71ACF32E2964EAA000CC83D5 /* TargetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5AF95292C778D00323693 /* TargetCatalog.swift */; };
 		71ACF32F2964EAA200CC83D5 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71901C7629299D5C00D95AA5 /* Constellation.swift */; };
@@ -333,6 +334,7 @@
 		719AFB3D2B37A2B800A3BA5C /* EntryTargetEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTargetEditor.swift; sourceTree = "<group>"; };
 		719B26D6295167A100E1165A /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		71A6C8FA2A5F4DE0009F1C30 /* Sun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
+		71AC1A7C2B50B52D000D55C8 /* EntryTagsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTagsEditor.swift; sourceTree = "<group>"; };
 		71ACF33B2964F04D00CC83D5 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		71ACF33E2964F0D800CC83D5 /* ReportListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListEntry.swift; sourceTree = "<group>"; };
 		71B14F682958D905003C11BD /* ViewingIntervalModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewingIntervalModal.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				719AFB3D2B37A2B800A3BA5C /* EntryTargetEditor.swift */,
 				7164C7A72B3672620002B492 /* EntryIntervalEditor.swift */,
 				71E2BFFB2B3CB8C1004F9936 /* EntryPlanEditor.swift */,
+				71AC1A7C2B50B52D000D55C8 /* EntryTagsEditor.swift */,
 			);
 			path = EntryDetailView;
 			sourceTree = "<group>";
@@ -1253,6 +1256,7 @@
 				719AFB4B2B37CCBB00A3BA5C /* TargetCuratorView.swift in Sources */,
 				719AFB482B37CCB100A3BA5C /* ImageField.swift in Sources */,
 				71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */,
+				71AC1A7D2B50B52D000D55C8 /* EntryTagsEditor.swift in Sources */,
 				71C2644D298F1CA50057EC04 /* Double+Ext.swift in Sources */,
 				712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */,
 				7103EB5C2B4F70EF00E291CF /* Mac_ImagingPresetModal.swift in Sources */,

@@ -43,15 +43,19 @@ struct FITSKeywords {
         for element in fits {
             metadata[element.keyword.rawValue] = element.value?.toString.trimmingCharacters(in: .punctuationCharacters.subtracting(["-", ")", "("]))
         }
-        let formatter = DateFormatter()
-        formatter.timeZone = .gmt
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        let formatter1 = DateFormatter()
+        formatter1.timeZone = .gmt
+        formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        let formatter2 = DateFormatter()
+        formatter2.timeZone = .gmt
+        formatter2.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
         self.resolutionLength = Int(metadata["NAXIS1"]!)!
         self.resolutionWidth = Int(metadata["NAXIS2"]!)!
         self.imageType = metadata["IMAGETYP"]!
         self.exposureTime = Double(metadata["EXPTIME"]!)!
         let date = metadata["DATE-OBS"]!
-        self.date = formatter.date(from: date)!
+        self.date = formatter1.date(from: date) ?? formatter2.date(from: date)!
         self.binningX = Int(metadata["XBINNING"]!)!
         self.binningY = Int(metadata["YBINNING"]!)!
         self.gain = Int(metadata["GAIN"]!)!

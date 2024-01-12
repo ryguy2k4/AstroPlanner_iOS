@@ -81,6 +81,7 @@ struct EntryImportModal: View {
                     
                     let newEntry = await JournalImportManager.generate(ninaImagePlan: ninaImagePlan(), ninaLog: ninaLog(), fitsMetadata: fitsMetadata()?.sorted(by: {$0.date < $1.date}), aptLog: aptLog(), rawMetadata: exifMetadata?.sorted(by: {$0.dateTimeOriginal < $1.dateTimeOriginal}))
                     entries.append(newEntry)
+                    entries.sort(by: {$0.imagingInterval?.start ?? .distantPast > $1.imagingInterval?.start ?? .distantPast})
                     dismiss()
                 }
         }

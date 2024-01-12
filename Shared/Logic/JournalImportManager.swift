@@ -47,7 +47,23 @@ final class JournalImportManager {
             } else if let ninaImagePlan = ninaImagePlan {
                 return ninaImagePlan.captureSequences.map({JournalEntry.JournalImageSequence(filterName: $0.filterType.name, exposureTime: $0.exposureTime, binning: $0.binning.x, gain: $0.gain, offset: $0.offset, ccdTemp: nil, airmass: nil, numCaptured: $0.progressExposureCount, numUsable: nil)})
             } else if let rawMetadata = rawMetadata {
-                return rawMetadata.map({JournalEntry.JournalImageSequence(filterName: nil, exposureTime: $0.exposureTime, binning: nil, gain: $0.iso, offset: nil, ccdTemp: nil, airmass: nil, numCaptured: nil, numUsable: 1)})
+                // Consolidate same filter/iso/exposure into groups
+                var groups: [[EXIFMetadata]] = []
+                var groupCount = 0
+                var remainingImages = rawMetadata
+                while !remainingImages.isEmpty {
+                    groups.append([remainingImages.remove(at: 0)])
+                    var offset = 0
+                    for i in remainingImages.indices {
+                        if remainingImages[i-offset].exposureTime == groups[groupCount].first!.exposureTime && remainingImages[i-offset].iso == groups[groupCount].first!.iso {
+                            groups[groupCount].append(remainingImages.remove(at: i-offset))
+                            offset += 1
+                        }
+                    }
+                    groupCount += 1
+                }
+                
+                return groups.map({JournalEntry.JournalImageSequence(filterName: nil, exposureTime: $0.first!.exposureTime, binning: nil, gain: $0.first!.iso, offset: nil, ccdTemp: nil, airmass: nil, numCaptured: nil, numUsable: $0.count)})
             } else {
                 return nil
             }
@@ -81,7 +97,7 @@ final class JournalImportManager {
         let imagingInterval: DateInterval? = {
             if let first = fitsMetadata?.first, let last = fitsMetadata?.last {
                 return DateInterval(start: first.date, end: last.date)
-            } else if let first = rawMetadata?.first, let last = rawMetadata?.first {
+            } else if let first = rawMetadata?.first, let last = rawMetadata?.last {
                 return DateInterval(start: first.dateTimeOriginal, end: last.dateTimeOriginal)
             } else {
                 return nil
@@ -90,10 +106,10 @@ final class JournalImportManager {
         
         // Create Scores
         let scores: (vis: Double?, season: Double?) = {
-            if let location = location, let setupInterval = setupInterval, let centerRA = centerRA, let centerDec = centerDec {
-                let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
+            if let location = location, let interval = setupInterval ?? imagingInterval, let centerRA = centerRA, let centerDec = centerDec {
+                let sunData = Sun.sol.getNextInterval(location: location, date: interval.start.startOfLocalDay(timezone: location.timezone))
                 let visibilityScore = DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, limitingAlt: 0, ra: centerRA, dec: centerDec)
-                let seasonScore = DeepSkyTarget.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: centerRA, dec: centerDec)
+                let seasonScore = DeepSkyTarget.getSeasonScore(at: location, on: interval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: centerRA, dec: centerDec)
                 return (vis: visibilityScore, season: seasonScore)
             }
             return (vis: nil, season: nil)
@@ -112,11 +128,11 @@ final class JournalImportManager {
         
         // Create Weather Data
         let weather: (forecast: [JournalEntry.JournalHourWeather]?, moon: Double?) = await {
-            if let setupInterval = setupInterval {
-                let moonIllumination = Moon.getMoonIllumination(date: setupInterval.start)
+            if let interval = setupInterval ?? imagingInterval {
+                let moonIllumination = Moon.getMoonIllumination(date: interval.start)
                 
                 if let location = location {
-                    let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
+                    let weather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: interval.start, endDate: interval.end))
                     return (forecast: weather?.forecast.map({JournalEntry.JournalHourWeather(weather: $0)}), moon: moonIllumination)
                 } else {
                     return (forecast: nil, moon: moonIllumination)
@@ -126,9 +142,18 @@ final class JournalImportManager {
             }
         }()
         
+        // Create Tags
+        let tags: Set<JournalEntry.JournalTag> = {
+            var tags: Set<JournalEntry.JournalTag> = []
+            if ninaLog == nil && aptLog == nil {
+                tags.insert(.noLogFile)
+            }
+            return tags
+        }()
+        
         
         // Create Entry
-        let entry = JournalEntry(setupInterval: setupInterval, weather: weather.forecast, moonIllumination: weather.moon, location: location, gear: journalGear, tags: [], target: target, imagingInterval: imagingInterval, visibilityScore: scores.vis, seasonScore: scores.season, imagePlan: imagePlan)
+        let entry = JournalEntry(setupInterval: setupInterval, weather: weather.forecast, moonIllumination: weather.moon, location: location, gear: journalGear, tags: tags, target: target, imagingInterval: imagingInterval, visibilityScore: scores.vis, seasonScore: scores.season, imagePlan: imagePlan)
         return entry
     }
 }

@@ -19,7 +19,6 @@ struct EXIFMetadata {
     init(from path: URL) {
         let imageSource = CGImageSourceCreateWithURL(path as CFURL, nil)
         let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource!, 0, nil)
-        print(imageProperties.debugDescription)
         let imageDict = imageProperties! as NSDictionary
         let tiffModel = imageDict.value(forKey: "{TIFF}") as AnyObject
         let exifDict = imageDict.value(forKey: "{Exif}") as! NSDictionary

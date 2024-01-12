@@ -18,6 +18,44 @@ struct EntryDetailView: View {
         ScrollView {
             HStack {
                 VStack(alignment: .leading) {
+                    // Image Plan Fields
+                    EntrySection(title: "Image Plan") {
+                        VStack {
+                            if let imagePlan = entry.imagePlan {
+                                Grid {
+                                    // Header Row
+                                    GridRow {
+                                        Text("Filter")
+                                        Text("Exposure")
+                                        Text("Binning")
+                                        Text("Gain")
+                                        Text("Offset")
+                                        Text("Usable")
+                                        Text("Captured")
+                                    }
+                                    .fontWeight(.semibold)
+                                    // Sequence Rows
+                                    ForEach(imagePlan) { sequence in
+                                        GridRow {
+                                            JournalDetailOptionalValueText(value: sequence.filterName)
+                                            JournalDetailOptionalValueText(value: sequence.exposureTime?.description)
+                                            Text("\(sequence.binning ?? 1)x\(sequence.binning ?? 1)")
+                                            JournalDetailOptionalValueText(value: sequence.gain?.description)
+                                            JournalDetailOptionalValueText(value: sequence.offset?.description)
+                                            JournalDetailOptionalValueText(value: sequence.numUsable?.description)
+                                            JournalDetailOptionalValueText(value: sequence.numCaptured?.description)
+                                        }
+                                    }
+                                }
+                            } else {
+                                Label("No Associated Image Plan", systemImage: "slash.circle")
+                                    .foregroundStyle(Color.red)
+                            }
+                        }
+                    } editor: {
+                        EntryPlanEditor(plan: $entry.imagePlan)
+                    }.disabled(!editing)
+                    
                     // Setup Interval Pickers
                     EntrySection(title: "Setup Interval") {
                         if let setupInterval = entry.setupInterval {
@@ -81,8 +119,8 @@ struct EntryDetailView: View {
                         }
                     } refreshAction: {
                         Task {
-                            if let location = entry.location, let setupInterval = entry.setupInterval {
-                                let newWeather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
+                            if let location = entry.location, let interval = entry.setupInterval ?? entry.imagingInterval {
+                                let newWeather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: interval.start, endDate: interval.end))
                                 entry.weather = newWeather?.forecast.map({JournalEntry.JournalHourWeather(weather: $0)})
                             }
                         }
@@ -134,53 +172,29 @@ struct EntryDetailView: View {
                                 .foregroundStyle(Color.red)
                         }
                     } refreshAction: {
-                        if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}), let location = entry.location, let setupInterval = entry.setupInterval {
-                            let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
-                            entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: sunData.CTInterval, limitingAlt: 0)
-                            entry.seasonScore = target.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
+                        if let ra = entry.target?.centerRA, let dec = entry.target?.centerDEC, let interval = entry.setupInterval ?? entry.imagingInterval, let location = entry.location {
+                            let sunData = Sun.sol.getNextInterval(location: location, date: interval.start.startOfLocalDay(timezone: location.timezone))
+                            entry.visibilityScore = DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, limitingAlt: 0, ra: ra, dec: dec)
+                            entry.seasonScore = DeepSkyTarget.getSeasonScore(at: location, on: interval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: ra, dec: dec)
                         } else {
                             entry.visibilityScore = nil
                             entry.seasonScore = nil
                         }
                     }.disabled(!editing)
                     
-                    // Image Plan Fields
-                    EntrySection(title: "Image Plan") {
-                        VStack {
-                            if let imagePlan = entry.imagePlan {
-                                Grid {
-                                    // Header Row
-                                    GridRow {
-                                        Text("Filter")
-                                        Text("Exposure")
-                                        Text("Binning")
-                                        Text("Gain")
-                                        Text("Offset")
-                                        Text("Usable")
-                                        Text("Captured")
-                                    }
-                                    .fontWeight(.semibold)
-                                    // Sequence Rows
-                                    ForEach(imagePlan) { sequence in
-                                        GridRow {
-                                            JournalDetailOptionalValueText(value: sequence.filterName)
-                                            JournalDetailOptionalValueText(value: sequence.exposureTime?.description)
-                                            Text("\(sequence.binning ?? 1)x\(sequence.binning ?? 1)")
-                                            JournalDetailOptionalValueText(value: sequence.gain?.description)
-                                            JournalDetailOptionalValueText(value: sequence.offset?.description)
-                                            JournalDetailOptionalValueText(value: sequence.numUsable?.description)
-                                            JournalDetailOptionalValueText(value: sequence.numCaptured?.description)
-                                        }
-                                    }
-                                }
-                            } else {
-                                Label("No Associated Image Plan", systemImage: "slash.circle")
-                                    .foregroundStyle(Color.red)
+                    // Tags
+                    EntrySection(title: "Tags") {
+                        if entry.tags.isEmpty {
+                            Label("No Tags", systemImage: "slash.circle")
+                        } else {
+                            ForEach(Array(entry.tags), id: \.rawValue) { tag in
+                                Label(tag.rawValue, systemImage: "tag")
                             }
                         }
                     } editor: {
-                        EntryPlanEditor(plan: $entry.imagePlan)
+                        EntryTagsEditor(tags: $entry.tags)
                     }.disabled(!editing)
+                    
                     Spacer()
                 }
                 .padding(.leading)
@@ -195,14 +209,14 @@ struct EntryDetailView: View {
             }
             .onChange(of: entry.location) { _, newLocation in
                 Task {
-                    if let newLocation = newLocation, let setupInterval = entry.setupInterval {
-                        let newWeather = try? await WeatherService().weather(for: newLocation.clLocation, including: .hourly(startDate: setupInterval.start, endDate: setupInterval.end))
+                    if let newLocation = newLocation, let interval = entry.setupInterval ?? entry.imagingInterval {
+                        let newWeather = try? await WeatherService().weather(for: newLocation.clLocation, including: .hourly(startDate: interval.start, endDate: interval.end))
                         entry.weather = newWeather?.forecast.map({JournalEntry.JournalHourWeather(weather: $0)})
                         
-                        if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}) {
-                            let sunData = Sun.sol.getNextInterval(location: newLocation, date: setupInterval.start.startOfLocalDay(timezone: newLocation.timezone))
-                            entry.visibilityScore = target.getVisibilityScore(at: newLocation, viewingInterval: sunData.CTInterval, limitingAlt: 0)
-                            entry.seasonScore = target.getSeasonScore(at: newLocation, on: setupInterval.start.startOfLocalDay(timezone: newLocation.timezone), sunData: sunData)
+                        if let ra = entry.target?.centerRA, let dec = entry.target?.centerDEC {
+                            let sunData = Sun.sol.getNextInterval(location: newLocation, date: interval.start.startOfLocalDay(timezone: newLocation.timezone))
+                            entry.visibilityScore = DeepSkyTarget.getVisibilityScore(at: newLocation, viewingInterval: sunData.ATInterval, limitingAlt: 0, ra: ra, dec: dec)
+                            entry.seasonScore = DeepSkyTarget.getSeasonScore(at: newLocation, on: interval.start.startOfLocalDay(timezone: newLocation.timezone), sunData: sunData, ra: ra, dec: dec)
                         } else {
                             entry.visibilityScore = nil
                             entry.seasonScore = nil
@@ -220,10 +234,10 @@ struct EntryDetailView: View {
                         let newWeather = try? await WeatherService().weather(for: location.clLocation, including: .hourly(startDate: newSetupInterval.start, endDate: newSetupInterval.end))
                         entry.weather = newWeather?.forecast.map({JournalEntry.JournalHourWeather(weather: $0)})
                         
-                        if case let .catalog(id) = entry.target?.targetID, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}) {
+                        if let ra = entry.target?.centerRA, let dec = entry.target?.centerDEC, let location = entry.location {
                             let sunData = Sun.sol.getNextInterval(location: location, date: newSetupInterval.start.startOfLocalDay(timezone: location.timezone))
-                            entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: sunData.CTInterval, limitingAlt: 0)
-                            entry.seasonScore = target.getSeasonScore(at: location, on: newSetupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
+                            entry.visibilityScore = DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, limitingAlt: 0, ra: ra, dec: dec)
+                            entry.seasonScore = DeepSkyTarget.getSeasonScore(at: location, on: newSetupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: ra, dec: dec)
                         } else {
                             entry.visibilityScore = nil
                             entry.seasonScore = nil
@@ -237,16 +251,62 @@ struct EntryDetailView: View {
             }
             .onChange(of: entry.target?.targetID) { _, newTarget in
                 Task {
-                    if case let .catalog(id) = newTarget, let target = DeepSkyTargetList.allTargets.first(where: {$0.id == id}), let setupInterval = entry.setupInterval, let location = entry.location {
-                        let sunData = Sun.sol.getNextInterval(location: location, date: setupInterval.start.startOfLocalDay(timezone: location.timezone))
-                        entry.visibilityScore = target.getVisibilityScore(at: location, viewingInterval: sunData.CTInterval, limitingAlt: 0)
-                        entry.seasonScore = target.getSeasonScore(at: location, on: setupInterval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData)
+                    if let ra = entry.target?.centerRA, let dec = entry.target?.centerDEC, let interval = entry.setupInterval ?? entry.imagingInterval, let location = entry.location {
+                        let sunData = Sun.sol.getNextInterval(location: location, date: interval.start.startOfLocalDay(timezone: location.timezone))
+                        entry.visibilityScore = DeepSkyTarget.getVisibilityScore(at: location, viewingInterval: sunData.ATInterval, limitingAlt: 0, ra: ra, dec: dec)
+                        entry.seasonScore = DeepSkyTarget.getSeasonScore(at: location, on: interval.start.startOfLocalDay(timezone: location.timezone), sunData: sunData, ra: ra, dec: dec)
                     } else {
                         entry.visibilityScore = nil
                         entry.seasonScore = nil
                     }
                 }
             }
+            .onChange(of: entry.imagePlan) { _, newPlan in
+                // Consolidate same filter/gain/exposure
+                if let newPlan = newPlan {
+                    var consolidatedPlans: [JournalEntry.JournalImageSequence] = []
+                    var consolidatedPlansCount = 0
+                    var remainingPlans: [JournalEntry.JournalImageSequence] = newPlan
+                    while !remainingPlans.isEmpty {
+                        consolidatedPlans.append(remainingPlans.remove(at: 0))
+                        var offset = 0
+                        for i in remainingPlans.indices {
+                            if remainingPlans[i-offset].filterName == consolidatedPlans[consolidatedPlansCount].filterName &&
+                                remainingPlans[i-offset].exposureTime == consolidatedPlans[consolidatedPlansCount].exposureTime &&
+                                remainingPlans[i-offset].gain == consolidatedPlans[consolidatedPlansCount].gain {
+                                if let _ = consolidatedPlans[consolidatedPlansCount].numUsable {
+                                    consolidatedPlans[consolidatedPlansCount].numUsable! += (remainingPlans[i-offset].numUsable ?? 0)
+                                    remainingPlans.remove(at: i-offset)
+                                } else {
+                                    consolidatedPlans[consolidatedPlansCount].numUsable = remainingPlans[i-offset].numUsable
+                                    remainingPlans.remove(at: i-offset)
+                                }
+                                offset += 1
+                            }
+                        }
+                        consolidatedPlansCount += 1
+                    }
+                    entry.imagePlan = consolidatedPlans
+                }
+                
+                /*
+                 var groups: [[EXIFMetadata]] = []
+                 var groupCount = 0
+                 var remainingImages = rawMetadata
+                 while !remainingImages.isEmpty {
+                     groups.append([remainingImages.remove(at: 0)])
+                     var offset = 0
+                     for i in remainingImages.indices {
+                         if remainingImages[i-offset].exposureTime == groups[groupCount].first!.exposureTime && remainingImages[i-offset].iso == groups[groupCount].first!.iso {
+                             groups[groupCount].append(remainingImages.remove(at: i-offset))
+                             offset += 1
+                         }
+                     }
+                     groupCount += 1
+                 }
+                 */
+            }
+            .id(entry.id)
         }
     }
 }

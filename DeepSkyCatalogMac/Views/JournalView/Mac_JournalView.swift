@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct Mac_JournalView: View {
-    @State var entries: [JournalEntry] = JournalEntryList.allEntries
+    @State var entries: [JournalEntry] = JournalEntryList.allEntries.sorted(by: {$0.imagingInterval?.start ?? .distantPast > $1.imagingInterval?.start ?? .distantPast})
     @State var entryImportModal: Bool = false
     @State var entryIndex: Int?
 
     var body: some View {
         NavigationSplitView {
             List(entries.indices, id: \.self, selection: $entryIndex) { index in
-                Text(entries[index].target?.targetID?.name ?? "Unknown Target")
+                Text((entries[index].imagingInterval?.start ?? .distantPast).formatted(date: .numeric, time: .omitted) + " - " + (entries[index].target?.targetID?.name ?? "Unknown Target"))
                     .tag(index)
+                    .padding()
             }
+            .listStyle(.bordered)
             .toolbar {
                 Button {
                     self.entryImportModal = true

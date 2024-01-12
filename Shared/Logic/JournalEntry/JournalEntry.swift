@@ -17,7 +17,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
     @Published var moonIllumination: Double?
     @Published var location: Location?
     @Published var gear: JournalGear?
-    @Published var tags: [JournalTags]
+    @Published var tags: Set<JournalTag>
     // Target Specific
     @Published var target: JournalTarget?
     @Published var imagingInterval: DateInterval?
@@ -25,7 +25,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
     @Published var seasonScore: Double?
     @Published var imagePlan: [JournalImageSequence]?
     
-    init(setupInterval: DateInterval? = nil, weather: [JournalHourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalGear? = nil, tags: [JournalTags] = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
+    init(setupInterval: DateInterval? = nil, weather: [JournalHourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalGear? = nil, tags: Set<JournalTag> = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
         self.setupInterval = setupInterval
         self.weather = weather
         self.moonIllumination = moonIllumination
@@ -191,10 +191,14 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         }
     }
 
-    enum JournalTags: Codable {
+    enum JournalTag: String, Codable, CaseIterable {
         case meridianFlipFailed
         case guidingFailed
         case dewRuinedImages
+        case incorrectUsableCaptured
+        case noLogFile
+        case targetMosaic
+        case unusedData
     }
     
     
@@ -211,7 +215,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         self.moonIllumination = try container.decode(Double?.self, forKey: .moonIllumination)
         self.location = try container.decode(Location?.self, forKey: .location)
         self.gear = try container.decode(JournalGear?.self, forKey: .gear)
-        self.tags = try container.decode([JournalTags].self, forKey: .tags)
+        self.tags = try container.decode(Set<JournalTag>.self, forKey: .tags)
         self.target = try container.decode(JournalTarget?.self, forKey: .target)
         self.imagingInterval = try? container.decode(DateInterval?.self, forKey: .imagingInterval)
         self.visibilityScore = try container.decode(Double?.self, forKey: .visibilityScore)
