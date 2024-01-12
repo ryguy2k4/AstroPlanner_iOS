@@ -9,52 +9,17 @@ import SwiftUI
 
 struct TargetCuratorView: View {
     @State var objects = DeepSkyTargetList.allTargets
-    @State var objectIndex = 0
+    @State var objectIndex: Int?
     var body: some View {
-//        NavigationSplitView {
-//            VStack {
-//                Text("\(objectIndex)")
-//                Text("Objects")
-//                    .font(.title)
-//                HStack {
-//                    NavigationLink {
-//                        Button("Insert New Object") {
-//                            objects.insert(DeepSkyTarget(id: UUID(), name: nil, designation: [], subDesignations: [], subTargets: [], image: nil, description: "", wikipediaURL: URL(string: "https://wikipedia.org")!, type: .HIIRegion, constellation: .andromeda, ra: 0, dec: 0, arcLength: 0, arcWidth: 0, apparentMag: nil), at: objectIndex + 1)
-//                        }
-//                    } label: {
-//                        Text("Insert Object")
-//                    }
-//                    NavigationLink {
-//                        Button("Delete Selected Object") {
-//                            objects.append(DeepSkyTarget(id: UUID(), name: nil, designation: [], subDesignations: [], subTargets: [], image: nil, description: "", wikipediaURL: URL(string: "https://wikipedia.org")!, type: .HIIRegion, constellation: .andromeda, ra: 0, dec: 0, arcLength: 0, arcWidth: 0, apparentMag: nil))
-//                            objects.remove(at: objectIndex)
-//                        }
-//                    } label: {
-//                        Text("Delete Object")
-//                    }
-//                }
-//                List(objects, selection: $target) { target in
-//                    TargetCell(target: target)
-//                        .tag(target)
-//                }
-//            }
-//        } detail: {
-//            if let target = Binding($target) {
-//                TargetEditor(target: target)
-//            } else {
-//                ContentUnavailableView("Select a Target", systemImage: "hurricane")
-//            }
-//            
-//        }
-        NavigationView {
+        NavigationSplitView {
             VStack {
-                Text("\(objectIndex)")
+                Text("\(objectIndex ?? .zero)")
                 Text("Objects")
                     .font(.title)
                 HStack {
                     NavigationLink {
                         Button("Insert New Object") {
-                            objects.insert(DeepSkyTarget(id: UUID(), name: nil, designation: [], subDesignations: [], subTargets: [], image: nil, description: "", wikipediaURL: URL(string: "https://wikipedia.org")!, type: .HIIRegion, constellation: .andromeda, ra: 0, dec: 0, arcLength: 0, arcWidth: 0, apparentMag: nil), at: objectIndex + 1)
+                            objects.insert(DeepSkyTarget(id: UUID(), name: nil, designation: [], subDesignations: [], subTargets: [], image: nil, description: "", wikipediaURL: URL(string: "https://wikipedia.org")!, type: .HIIRegion, constellation: .andromeda, ra: 0, dec: 0, arcLength: 0, arcWidth: 0, apparentMag: nil), at: objectIndex! + 1)
                         }
                     } label: {
                         Text("Insert Object")
@@ -62,20 +27,26 @@ struct TargetCuratorView: View {
                     NavigationLink {
                         Button("Delete Selected Object") {
                             objects.append(DeepSkyTarget(id: UUID(), name: nil, designation: [], subDesignations: [], subTargets: [], image: nil, description: "", wikipediaURL: URL(string: "https://wikipedia.org")!, type: .HIIRegion, constellation: .andromeda, ra: 0, dec: 0, arcLength: 0, arcWidth: 0, apparentMag: nil))
-                            objects.remove(at: objectIndex)
+                            objects.remove(at: objectIndex!)
                         }
                     } label: {
                         Text("Delete Object")
                     }
                 }
                 List(objects.indices, id: \.self, selection: $objectIndex) { index in
-                    NavigationLink {
-                        TargetEditor(target: $objects[index])
-                    } label: {
-                        TargetCell(target: objects[index])
-                    }
+                    TargetCell(target: objects[index])
+                        .tag(index)
                 }
             }
+        } detail: {
+            if let objectIndex = objectIndex {
+                TargetEditor(target: $objects[objectIndex])
+                    .navigationSplitViewColumnWidth(min: 800, ideal: 800)
+                    .id(objects[objectIndex].id)
+            } else {
+                ContentUnavailableView("Select a Target", systemImage: "hurricane")
+            }
+            
         }
         .frame(minWidth: 600, maxWidth: 2400, minHeight: 400,  maxHeight: 1600)
         .toolbar {

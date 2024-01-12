@@ -47,6 +47,7 @@ struct Mac_JournalView: View {
             if !entries.isEmpty, let entryIndex = entryIndex {
                 EntryDetailView(entry: entries[entryIndex])
                     .navigationSplitViewColumnWidth(min: 400, ideal: 400)
+                    .id(entries[entryIndex].id)
             } else if entries.isEmpty {
                 ContentUnavailableView("Create an Entry", systemImage: "plus.circle")
                     .navigationSplitViewColumnWidth(min: 400, ideal: 400)
