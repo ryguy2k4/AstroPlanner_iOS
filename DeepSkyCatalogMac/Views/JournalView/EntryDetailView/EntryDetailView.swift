@@ -21,15 +21,14 @@ struct EntryDetailView: View {
                     // Image Plan Fields
                     EntrySection(title: "Image Plan") {
                         VStack {
-                            if let imagePlan = entry.imagePlan {
+                            if let imagePlan = entry.images {
                                 Grid {
                                     // Header Row
                                     GridRow {
                                         Text("Filter")
                                         Text("Exposure")
                                         Text("Binning")
-                                        Text("Gain")
-                                        Text("Offset")
+                                        Text("Gain/ISO")
                                         Text("Usable")
                                         Text("Captured")
                                     }
@@ -41,7 +40,6 @@ struct EntryDetailView: View {
                                             JournalDetailOptionalValueText(value: sequence.exposureTime?.description)
                                             Text("\(sequence.binning ?? 1)x\(sequence.binning ?? 1)")
                                             JournalDetailOptionalValueText(value: sequence.gain?.description)
-                                            JournalDetailOptionalValueText(value: sequence.offset?.description)
                                             JournalDetailOptionalValueText(value: sequence.numUsable?.description)
                                             JournalDetailOptionalValueText(value: sequence.numCaptured?.description)
                                         }
@@ -53,7 +51,7 @@ struct EntryDetailView: View {
                             }
                         }
                     } editor: {
-                        EntryPlanEditor(plan: $entry.imagePlan)
+                        EntryPlanEditor(plan: $entry.images)
                     }.disabled(!editing)
                     
                     // Setup Interval Pickers
@@ -268,7 +266,7 @@ struct EntryDetailView: View {
                     }
                 }
             }
-            .onChange(of: entry.imagePlan) { _, newPlan in
+            .onChange(of: entry.images) { _, newPlan in
                 // Consolidate same filter/gain/exposure
                 if let newPlan = newPlan {
                     var consolidatedPlans: [JournalEntry.JournalImageSequence] = []
@@ -293,7 +291,7 @@ struct EntryDetailView: View {
                         }
                         consolidatedPlansCount += 1
                     }
-                    entry.imagePlan = consolidatedPlans
+                    entry.images = consolidatedPlans
                 }
             }
         }

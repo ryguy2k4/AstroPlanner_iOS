@@ -23,7 +23,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
     @Published var imagingInterval: DateInterval?
     @Published var visibilityScore: Double?
     @Published var seasonScore: Double?
-    @Published var imagePlan: [JournalImageSequence]?
+    @Published var images: [JournalImageSequence]?
     
     init(setupInterval: DateInterval? = nil, weather: [JournalHourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalGear? = nil, tags: Set<JournalTag> = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
         self.setupInterval = setupInterval
@@ -36,7 +36,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         self.imagingInterval = imagingInterval
         self.visibilityScore = visibilityScore
         self.seasonScore = seasonScore
-        self.imagePlan = imagePlan
+        self.images = imagePlan
     }
     
     struct JournalHourWeather: Codable, Hashable {
@@ -222,7 +222,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         self.imagingInterval = try? container.decode(DateInterval?.self, forKey: .imagingInterval)
         self.visibilityScore = try container.decode(Double?.self, forKey: .visibilityScore)
         self.seasonScore = try container.decode(Double?.self, forKey: .seasonScore)
-        self.imagePlan = try container.decode([JournalImageSequence]?.self, forKey: .imagePlan)
+        self.images = try container.decode([JournalImageSequence]?.self, forKey: .imagePlan)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -237,7 +237,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         try container.encode(imagingInterval, forKey: .imagingInterval)
         try container.encode(visibilityScore, forKey: .visibilityScore)
         try container.encode(seasonScore, forKey: .seasonScore)
-        try container.encode(imagePlan, forKey: .imagePlan)
+        try container.encode(images, forKey: .imagePlan)
     }
 }
 

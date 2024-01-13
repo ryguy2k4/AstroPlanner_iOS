@@ -366,8 +366,8 @@
             filePath = "DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -382,8 +382,8 @@
             filePath = "DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -417,6 +417,21 @@
                   endingLineNumber = "232"
                   offsetFromSymbolStart = "1100">
                </Location>
+               <Location
+                  uuid = "A4622DE8-BF1D-44FF-9268-CBCD3C138EB1 - 2f7a35993912de89"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #3 (Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;, Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in DeepSkyCatalogMac.EntryDetailView.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "230"
+                  endingLineNumber = "230"
+                  offsetFromSymbolStart = "1100">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -446,8 +461,8 @@
             filePath = "DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
