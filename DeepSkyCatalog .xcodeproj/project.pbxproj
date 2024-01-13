@@ -25,6 +25,7 @@
 		711386FB29C3548C00081584 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386F629C3548C00081584 /* Filter.swift */; };
 		711386FD29C356CA00081584 /* TopFiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711386FC29C356CA00081584 /* TopFiveView.swift */; };
 		7113870329C3571400081584 /* FilterButtonMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113870229C3571400081584 /* FilterButtonMenuView.swift */; };
+		711D6CC32B52ED2C00390A49 /* EntryNotesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711D6CC22B52ED2C00390A49 /* EntryNotesEditor.swift */; };
 		7129DEBD2B15AC9F0058B238 /* EntryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129DEBC2B15AC9F0058B238 /* EntryDetailView.swift */; };
 		712C4F2F2B4E2E5100F7FEF3 /* Mac_MinMaxPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712C4F2E2B4E2E5100F7FEF3 /* Mac_MinMaxPicker.swift */; };
 		712C4F312B4E464100F7FEF3 /* Mac_SortButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712C4F302B4E464100F7FEF3 /* Mac_SortButtonMenu.swift */; };
@@ -272,6 +273,7 @@
 		711386F629C3548C00081584 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		711386FC29C356CA00081584 /* TopFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFiveView.swift; sourceTree = "<group>"; };
 		7113870229C3571400081584 /* FilterButtonMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonMenuView.swift; sourceTree = "<group>"; };
+		711D6CC22B52ED2C00390A49 /* EntryNotesEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNotesEditor.swift; sourceTree = "<group>"; };
 		7129DEBC2B15AC9F0058B238 /* EntryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailView.swift; sourceTree = "<group>"; };
 		712C4F2E2B4E2E5100F7FEF3 /* Mac_MinMaxPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_MinMaxPicker.swift; sourceTree = "<group>"; };
 		712C4F302B4E464100F7FEF3 /* Mac_SortButtonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_SortButtonMenu.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 				7164C7A72B3672620002B492 /* EntryIntervalEditor.swift */,
 				71E2BFFB2B3CB8C1004F9936 /* EntryPlanEditor.swift */,
 				71AC1A7C2B50B52D000D55C8 /* EntryTagsEditor.swift */,
+				711D6CC22B52ED2C00390A49 /* EntryNotesEditor.swift */,
 			);
 			path = EntryDetailView;
 			sourceTree = "<group>";
@@ -1280,6 +1283,7 @@
 				719AFB412B37CCA100A3BA5C /* NamesField.swift in Sources */,
 				718C11F629C89A880069ECD5 /* Location.swift in Sources */,
 				71C2645A298F1D260057EC04 /* DailyReport.swift in Sources */,
+				711D6CC32B52ED2C00390A49 /* EntryNotesEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

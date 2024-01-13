@@ -200,7 +200,20 @@ struct EntryDetailView: View {
                         EntryTagsEditor(tags: $entry.tags)
                     }.disabled(!editing)
                     
+                    EntrySection(title: "Notes") {
+                        if entry.notes.isEmpty {
+                            Label("No Notes", systemImage: "slash.circle")
+                        } else {
+                            ForEach(Array(entry.notes), id: \.self) { note in
+                                Text(note)
+                            }
+                        }
+                    } editor: {
+                        EntryNotesEditor(notes: $entry.notes)
+                    }.disabled(!editing)
+                    
                     Spacer()
+                    
                 }
                 .padding(.leading)
                 Spacer()

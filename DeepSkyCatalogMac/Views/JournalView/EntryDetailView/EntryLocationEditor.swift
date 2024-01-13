@@ -35,8 +35,8 @@ struct EntryLocationEditor: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
-                    LocationManager.getTimeZone(location: locationProxy.clLocation) { timezone in
-                        if let timezone = timezone {
+                    Task {
+                        if let timezone = await LocationManager.getTimeZone(location: locationProxy.clLocation) {
                             locationProxy.timezone = timezone
                         }
                         self.location = self.locationProxy

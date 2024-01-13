@@ -70,14 +70,10 @@ final class JournalImportManager {
         }()
         
         // Create Location
-        let location: Location? = {
+        let location: Location? = await {
             if let lat = fitsMetadata?.first?.latitude, let long = fitsMetadata?.first?.longitude {
                 var location = Location(latitude: lat, longitude: long, elevation: fitsMetadata?.first?.elevation)
-                LocationManager.getTimeZone(location: location.clLocation) { zone in
-                    if let zone {
-                        location.timezone = zone
-                    }
-                }
+                location.timezone = await LocationManager.getTimeZone(location: location.clLocation) ?? .gmt
                 return location
             } else {
                 return nil

@@ -18,6 +18,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
     @Published var location: Location?
     @Published var gear: JournalGear?
     @Published var tags: Set<JournalTag>
+    @Published var notes: [String]
     // Target Specific
     @Published var target: JournalTarget?
     @Published var imagingInterval: DateInterval?
@@ -25,13 +26,14 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
     @Published var seasonScore: Double?
     @Published var images: [JournalImageSequence]?
     
-    init(setupInterval: DateInterval? = nil, weather: [JournalHourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalGear? = nil, tags: Set<JournalTag> = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
+    init(setupInterval: DateInterval? = nil, weather: [JournalHourWeather]? = nil, moonIllumination: Double? = nil, location: Location? = nil, gear: JournalGear? = nil, tags: Set<JournalTag> = [], notes: [String] = [], target: JournalTarget? = nil, imagingInterval: DateInterval? = nil, visibilityScore: Double? = nil, seasonScore: Double? = nil, imagePlan: [JournalImageSequence]? = nil) {
         self.setupInterval = setupInterval
         self.weather = weather
         self.moonIllumination = moonIllumination
         self.location = location
         self.gear = gear
         self.tags = tags
+        self.notes = notes
         self.target = target
         self.imagingInterval = imagingInterval
         self.visibilityScore = visibilityScore
@@ -64,7 +66,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
      The ccdTemp and airmass of each image will vary, so they are all contained in an array
      */
     struct JournalImageSequence: Codable, Hashable, Identifiable {
-        let id = UUID()
+        var id = UUID()
         // Group Image Specs
         var filterName: String?
         var exposureTime: Double?
@@ -207,7 +209,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
     
     // Codable Implementation
     enum CodingKeys: String, CodingKey {
-        case setupInterval, weather, moonIllumination, location, gear, tags, target, imagingInterval, visibilityScore, seasonScore, imagePlan
+        case setupInterval, weather, moonIllumination, location, gear, tags, notes, target, imagingInterval, visibilityScore, seasonScore, imagePlan
     }
     
     init(from decoder: Decoder) throws {
@@ -218,6 +220,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         self.location = try container.decode(Location?.self, forKey: .location)
         self.gear = try container.decode(JournalGear?.self, forKey: .gear)
         self.tags = try container.decode(Set<JournalTag>.self, forKey: .tags)
+        self.notes = try container.decode([String].self, forKey: .notes)
         self.target = try container.decode(JournalTarget?.self, forKey: .target)
         self.imagingInterval = try? container.decode(DateInterval?.self, forKey: .imagingInterval)
         self.visibilityScore = try container.decode(Double?.self, forKey: .visibilityScore)
@@ -233,6 +236,7 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         try container.encode(location, forKey: .location)
         try container.encode(gear, forKey: .gear)
         try container.encode(tags, forKey: .tags)
+        try container.encode(notes, forKey: .notes)
         try container.encode(target, forKey: .target)
         try container.encode(imagingInterval, forKey: .imagingInterval)
         try container.encode(visibilityScore, forKey: .visibilityScore)

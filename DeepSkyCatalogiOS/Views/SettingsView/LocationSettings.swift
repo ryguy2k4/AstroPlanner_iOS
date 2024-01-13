@@ -101,8 +101,8 @@ struct LocationEditor: View {
                         .onChange(of: latitude) { _, newValue in
                             if let lat = newValue, let long = longitude {
                                 let location = CLLocation(latitude: lat, longitude: long)
-                                LocationManager.getTimeZone(location: location) { timezone in
-                                    if let timezone = timezone {
+                                Task {
+                                    if let timezone = await LocationManager.getTimeZone(location: location) {
                                         self.timezone = timezone
                                     }
                                 }
@@ -111,8 +111,8 @@ struct LocationEditor: View {
                         .onChange(of: longitude) { _, newValue in
                             if let long = newValue, let lat = latitude {
                                 let location = CLLocation(latitude: lat, longitude: long)
-                                LocationManager.getTimeZone(location: location) { timezone in
-                                    if let timezone = timezone {
+                                Task {
+                                    if let timezone = await LocationManager.getTimeZone(location: location) {
                                         self.timezone = timezone
                                     }
                                 }

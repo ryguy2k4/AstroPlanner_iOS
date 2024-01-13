@@ -54,14 +54,11 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     }
     
     // Function that gets a timezone from a location
-    static func getTimeZone(location: CLLocation, completion: @escaping ((TimeZone?) -> Void)) {
+    static func getTimeZone(location: CLLocation) async -> TimeZone? {
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { placemarks, error in
-            if let placemarks = placemarks, let tz = placemarks.first?.timeZone {
-                completion(tz)
-            } else {
-                completion(nil)
-            }
+        if let placemarks = try? await geocoder.reverseGeocodeLocation(location), let tz = placemarks.first?.timeZone {
+            return tz
         }
+        return nil
     }
 }
