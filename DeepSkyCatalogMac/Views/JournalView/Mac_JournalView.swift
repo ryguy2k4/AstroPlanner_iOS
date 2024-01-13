@@ -15,7 +15,14 @@ struct Mac_JournalView: View {
     var body: some View {
         NavigationSplitView {
             List(entries.indices, id: \.self, selection: $entryIndex) { index in
-                Text((entries[index].imagingInterval?.start ?? .distantPast).formatted(date: .numeric, time: .omitted) + " - " + (entries[index].target?.targetID?.name ?? "Unknown Target"))
+                let title: String = {
+                    var text: String = (entries[index].setupInterval?.start ?? entries[index].imagingInterval?.start ?? .distantPast).formatted(date: .numeric, time: .omitted) + " - " + (entries[index].target?.targetID?.name ?? "Unknown Target")
+                    if entries[index].tags.contains(.unusedData) {
+                        text.append("*")
+                    }
+                    return text
+                }()
+                Text(title)
                     .tag(index)
                     .padding()
             }

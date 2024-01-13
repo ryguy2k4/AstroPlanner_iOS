@@ -198,7 +198,9 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         case incorrectUsableCaptured
         case noLogFile
         case targetMosaic
+        case multiTargetNight
         case unusedData
+        case noFlats
     }
     
     

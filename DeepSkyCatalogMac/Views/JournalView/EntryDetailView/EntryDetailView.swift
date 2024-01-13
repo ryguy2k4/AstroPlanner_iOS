@@ -97,6 +97,7 @@ struct EntryDetailView: View {
                             LabeledText(label: "Width:", value: gear.resolutionWidth?.description)
                             LabeledText(label: "Filter Wheel:", value: gear.filterWheelName)
                             LabeledText(label: "Mount:", value: gear.mountName)
+                            LabeledText(label: "Software:", value: gear.captureSoftware)
                         } else {
                             Label("No Associated Gear", systemImage: "slash.circle")
                                 .foregroundStyle(Color.red)
@@ -114,8 +115,14 @@ struct EntryDetailView: View {
                             LabeledText(label: "Cloud Cover:", value: "\(weather.map({$0.cloudCover}).mean().percent())")
                             LabeledText(label: "Moon Illumination:", value: "\(moonIllumination.percent())")
                         } else {
-                            Label("No Associated Weather Data", systemImage: "slash.circle")
-                                .foregroundStyle(Color.red)
+                            if entry.imagingInterval?.start ?? Date.distantFuture > Date.weatherKitHistoricalLimit {
+                                Label("No Associated Weather Data", systemImage: "slash.circle")
+                                    .foregroundStyle(Color.red)
+                            } else {
+                                Label("WeatherKit does not have data for this date", systemImage: "slash.circle")
+                                    .foregroundStyle(Color.red)
+                            }
+                            
                         }
                     } refreshAction: {
                         Task {
@@ -288,25 +295,7 @@ struct EntryDetailView: View {
                     }
                     entry.imagePlan = consolidatedPlans
                 }
-                
-                /*
-                 var groups: [[EXIFMetadata]] = []
-                 var groupCount = 0
-                 var remainingImages = rawMetadata
-                 while !remainingImages.isEmpty {
-                     groups.append([remainingImages.remove(at: 0)])
-                     var offset = 0
-                     for i in remainingImages.indices {
-                         if remainingImages[i-offset].exposureTime == groups[groupCount].first!.exposureTime && remainingImages[i-offset].iso == groups[groupCount].first!.iso {
-                             groups[groupCount].append(remainingImages.remove(at: i-offset))
-                             offset += 1
-                         }
-                     }
-                     groupCount += 1
-                 }
-                 */
             }
-            .id(entry.id)
         }
     }
 }
