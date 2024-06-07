@@ -47,8 +47,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
-                  endingLineNumber = "104"
-                  offsetFromSymbolStart = "5784">
+                  endingLineNumber = "104">
                </Location>
                <Location
                   uuid = "82B134F8-D1C8-41AC-8A91-F83F9167A6BD - 20daac757966cec1"
@@ -62,8 +61,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
-                  endingLineNumber = "104"
-                  offsetFromSymbolStart = "7156">
+                  endingLineNumber = "104">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -95,8 +93,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "6860">
+                  endingLineNumber = "102">
                </Location>
                <Location
                   uuid = "6C469688-B4CC-477C-8B77-BF4BF4870A41 - 20daac757966ce1f"
@@ -110,8 +107,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "7000">
+                  endingLineNumber = "102">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -175,8 +171,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
-                  endingLineNumber = "87"
-                  offsetFromSymbolStart = "840">
+                  endingLineNumber = "87">
                </Location>
                <Location
                   uuid = "8F25A4E8-F567-47C7-9637-B4AA6DDB52A2 - 662b8d6426063505"
@@ -190,8 +185,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
-                  endingLineNumber = "87"
-                  offsetFromSymbolStart = "44">
+                  endingLineNumber = "87">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -255,8 +249,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "1128">
+                  endingLineNumber = "20">
                </Location>
                <Location
                   uuid = "DF27B05D-A240-4A8A-893A-E9E928AB320D - 6a9c838ec618f903"
@@ -270,8 +263,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "48">
+                  endingLineNumber = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -319,8 +311,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "1536">
+                  endingLineNumber = "21">
                </Location>
                <Location
                   uuid = "8C860A05-7144-48AA-925C-94B8F9156249 - 7fce784bb0c32361"
@@ -334,8 +325,7 @@
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "48">
+                  endingLineNumber = "21">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -366,8 +356,8 @@
             filePath = "DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -382,10 +372,40 @@
             filePath = "DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "A4622DE8-BF1D-44FF-9268-CBCD3C138EB1 - 2f7a35993912dcc7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #3 (Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;, Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in DeepSkyCatalogMac.EntryDetailView.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "244"
+                  endingLineNumber = "244">
+               </Location>
+               <Location
+                  uuid = "A4622DE8-BF1D-44FF-9268-CBCD3C138EB1 - 2f7a35993912dcc7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #3 (Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;, Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in DeepSkyCatalogMac.EntryDetailView.body.getter : some"
+                  moduleName = "DeepSkyCatalogMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "244"
+                  endingLineNumber = "244">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -398,8 +418,8 @@
             filePath = "Shared/Logic/JournalImportManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "generate(ninaImagePlan:ninaLog:fitsMetadata:aptLog:rawMetadata:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,10 +434,26 @@
             filePath = "DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2F562011-E900-49BD-BBF3-DEBA92710EF0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Logic/JournalImportManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "generate(ninaImagePlan:ninaLog:fitsMetadata:aptLog:rawMetadata:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

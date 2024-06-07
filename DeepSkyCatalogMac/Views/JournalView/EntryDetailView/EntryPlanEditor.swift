@@ -53,7 +53,7 @@ struct EntryPlanEditor: View {
                         Text("\(plan.wrappedValue.binning ?? 1)x\(plan.wrappedValue.binning ?? 1)")
                         TextField("Gain/ISO", value: plan.gain, format: .number)
                         TextField("Offset", value: plan.offset, format: .number)
-                        TextField("Usable", value: plan.numUsable, format: .number)
+                        TextField("Usable", value: plan.numSaved, format: .number)
                         TextField("Captured", value: plan.numCaptured, format: .number)
                     }
                 }

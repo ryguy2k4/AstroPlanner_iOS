@@ -6,18 +6,17 @@
 //
 
 import Foundation
-import SwiftData
 
-//@Model class ProjectEntry {
-//    var target: UUID?
-//    var totalIntegration: Double?
+//final class ProjectEntry: Identifiable, ObservableObject {
+//    @Published var target: JournalEntry.JournalTarget?
+//    @Published var totalIntegration: Double?
+//    @Published var fileList: [String]
+//    @Published var imagingSessions: [JournalEntry]
 //    
-//    @Relationship(.unique, deleteRule: .nullify, inverse: \JournalEntry.projects)
-//    var imagingSessions: [JournalEntry]?
-//    
-//    init(target: UUID, totalIntegration: Double, imagingSessions: [JournalEntry]) {
+//    init(target: JournalEntry.JournalTarget? = nil, totalIntegration: Double? = nil, fileList: [String], imagingSessions: [JournalEntry]) {
 //        self.target = target
 //        self.totalIntegration = totalIntegration
+//        self.fileList = fileList
 //        self.imagingSessions = imagingSessions
 //    }
 //}

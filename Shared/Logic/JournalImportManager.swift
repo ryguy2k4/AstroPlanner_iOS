@@ -26,27 +26,49 @@ final class JournalImportManager {
         
         // Create Target Image Plans
         let imagePlan: [JournalEntry.JournalImageSequence]? = {
+            // Attempt to use FITS metadata
             if let fitsMetadata = fitsMetadata {
                 let ccdTemp = fitsMetadata.map({$0.ccdTemp})
                 let airMass = fitsMetadata.map({$0.airMass})
-                var filters: [String: [FITSKeywords]] = [:]
-                for item in fitsMetadata {
-                    if filters[item.filterName] == nil {
-                        filters[item.filterName] = [item]
-                    } else {
-                        filters[item.filterName]?.append(item)
+                
+                let fitsFilters = {
+                    var filters: [String: [FITSKeywords]] = [:]
+                    for item in fitsMetadata {
+                        if filters[item.filterName] == nil {
+                            filters[item.filterName] = [item]
+                        } else {
+                            filters[item.filterName]?.append(item)
+                        }
                     }
-                }
-                let fitsFilters = Array(filters.values)
+                    return Array(filters.values)
+                }()
+                
                 var imagePlan: [JournalEntry.JournalImageSequence] = []
                 for sequence in fitsFilters {
-                    let sameFilter = ninaImagePlan?.captureSequences.first(where: {$0.filterType.name == sequence.first?.filterName})
-                    imagePlan.append(.init(filterName: sequence.first?.filterName, exposureTime: sequence.first?.exposureTime, binning: sequence.first?.binningX, gain: sequence.first?.gain, offset: sequence.first?.offset, ccdTemp: ccdTemp, airmass: airMass, numCaptured: sameFilter?.progressExposureCount, numUsable: sequence.count))
+                    
+                    // The number captured on this filter according to the NINA Image Plan
+                    let ninaImagePlanCaptured = ninaImagePlan?.captureSequences.first(where: {$0.filterType.name == sequence.first?.filterName})?.progressExposureCount
+                    // The number captured on this filter according to the NINA Log
+                    let ninaLogCaptured = ninaLog?.images.filter({$0.contains("_\(sequence.first!.filterName)_")}).count
+                    
+                    imagePlan.append(.init(filterName: sequence.first?.filterName,
+                                           exposureTime: sequence.first?.exposureTime,
+                                           binning: sequence.first?.binningX,
+                                           gain: sequence.first?.gain,
+                                           offset: sequence.first?.offset,
+                                           ccdTemp: ccdTemp,
+                                           airmass: airMass,
+                                           numCaptured: ninaLogCaptured ?? ninaImagePlanCaptured,
+                                           numSaved: sequence.count))
                 }
                 return imagePlan
-            } else if let ninaImagePlan = ninaImagePlan {
-                return ninaImagePlan.captureSequences.map({JournalEntry.JournalImageSequence(filterName: $0.filterType.name, exposureTime: $0.exposureTime, binning: $0.binning.x, gain: $0.gain, offset: $0.offset, ccdTemp: nil, airmass: nil, numCaptured: $0.progressExposureCount, numUsable: nil)})
-            } else if let rawMetadata = rawMetadata {
+            }
+            // Attempt to use NINA Image Plan
+            else if let ninaImagePlan = ninaImagePlan {
+                return ninaImagePlan.captureSequences.map({JournalEntry.JournalImageSequence(filterName: $0.filterType.name, exposureTime: $0.exposureTime, binning: $0.binning.x, gain: $0.gain, offset: $0.offset, ccdTemp: nil, airmass: nil, numCaptured: $0.progressExposureCount, numSaved: nil)})
+            }
+            // Attempt to use RAW Metadata
+            else if let rawMetadata = rawMetadata {
                 // Consolidate same filter/iso/exposure into groups
                 var groups: [[EXIFMetadata]] = []
                 var groupCount = 0
@@ -63,8 +85,10 @@ final class JournalImportManager {
                     groupCount += 1
                 }
                 
-                return groups.map({JournalEntry.JournalImageSequence(filterName: nil, exposureTime: $0.first!.exposureTime, binning: nil, gain: $0.first!.iso, offset: nil, ccdTemp: nil, airmass: nil, numCaptured: nil, numUsable: $0.count)})
-            } else {
+                return groups.map({JournalEntry.JournalImageSequence(filterName: nil, exposureTime: $0.first!.exposureTime, binning: nil, gain: $0.first!.iso, offset: nil, ccdTemp: nil, airmass: nil, numCaptured: nil, numSaved: $0.count)})
+            } 
+            // No Sources Available
+            else {
                 return nil
             }
         }()
@@ -140,7 +164,7 @@ final class JournalImportManager {
         
         // Create Tags
         let tags: Set<JournalEntry.JournalTag> = {
-            var tags: Set<JournalEntry.JournalTag> = []
+            var tags: Set<JournalEntry.JournalTag> = [.unverified]
             if ninaLog == nil && aptLog == nil {
                 tags.insert(.noLogFile)
             }

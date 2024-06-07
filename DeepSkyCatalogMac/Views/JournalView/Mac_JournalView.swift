@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct Mac_JournalView: View {
     @State var entries: [JournalEntry] = JournalEntryList.allEntries.sorted(by: {$0.imagingInterval?.start ?? .distantPast > $1.imagingInterval?.start ?? .distantPast})
     @State var entryImportModal: Bool = false
+    @State var WBPPModal: Bool = false
     @State var entryIndex: Int?
 
     var body: some View {
@@ -17,14 +19,19 @@ struct Mac_JournalView: View {
             List(entries.indices, id: \.self, selection: $entryIndex) { index in
                 let title: String = {
                     var text: String = (entries[index].setupInterval?.start ?? entries[index].imagingInterval?.start ?? .distantPast).formatted(date: .numeric, time: .omitted) + " - " + (entries[index].target?.targetID?.name ?? "Unknown Target")
-                    if entries[index].tags.contains(.unusedData) {
-                        text.append("*")
+                    if entries[index].tags.contains(.unverified) {
+                        text.append(" ??")
                     }
                     return text
                 }()
                 Text(title)
                     .tag(index)
                     .padding()
+                    .onTapGesture(count: 2) {
+                        let pasteboard = NSPasteboard.general
+                        pasteboard.clearContents()
+                        pasteboard.setString(title, forType: .string)
+                    }
             }
             .listStyle(.bordered)
             .toolbar {
@@ -45,10 +52,16 @@ struct Mac_JournalView: View {
                 } label: {
                     Image(systemName: "square.and.arrow.down")
                 }.help("Save Journal")
+                Button("Project Logs Tool") {
+                    WBPPModal = true
+                }
                 
             }
             .sheet(isPresented: $entryImportModal) {
                 EntryImportModal(entries: $entries)
+            }
+            .sheet(isPresented: $WBPPModal) {
+                ProjectLogModal()
             }
         } detail: {
             if !entries.isEmpty, let entryIndex = entryIndex {

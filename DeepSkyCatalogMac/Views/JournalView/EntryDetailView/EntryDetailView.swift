@@ -40,7 +40,7 @@ struct EntryDetailView: View {
                                             JournalDetailOptionalValueText(value: sequence.exposureTime?.description)
                                             Text("\(sequence.binning ?? 1)x\(sequence.binning ?? 1)")
                                             JournalDetailOptionalValueText(value: sequence.gain?.description)
-                                            JournalDetailOptionalValueText(value: sequence.numUsable?.description)
+                                            JournalDetailOptionalValueText(value: sequence.numSaved?.description)
                                             JournalDetailOptionalValueText(value: sequence.numCaptured?.description)
                                         }
                                     }
@@ -206,6 +206,7 @@ struct EntryDetailView: View {
                         } else {
                             ForEach(Array(entry.notes), id: \.self) { note in
                                 Text(note)
+                                    .textSelection(.enabled)
                             }
                         }
                     } editor: {
@@ -292,11 +293,11 @@ struct EntryDetailView: View {
                             if remainingPlans[i-offset].filterName == consolidatedPlans[consolidatedPlansCount].filterName &&
                                 remainingPlans[i-offset].exposureTime == consolidatedPlans[consolidatedPlansCount].exposureTime &&
                                 remainingPlans[i-offset].gain == consolidatedPlans[consolidatedPlansCount].gain {
-                                if let _ = consolidatedPlans[consolidatedPlansCount].numUsable {
-                                    consolidatedPlans[consolidatedPlansCount].numUsable! += (remainingPlans[i-offset].numUsable ?? 0)
+                                if let _ = consolidatedPlans[consolidatedPlansCount].numSaved {
+                                    consolidatedPlans[consolidatedPlansCount].numSaved! += (remainingPlans[i-offset].numSaved ?? 0)
                                     remainingPlans.remove(at: i-offset)
                                 } else {
-                                    consolidatedPlans[consolidatedPlansCount].numUsable = remainingPlans[i-offset].numUsable
+                                    consolidatedPlans[consolidatedPlansCount].numSaved = remainingPlans[i-offset].numSaved
                                     remainingPlans.remove(at: i-offset)
                                 }
                                 offset += 1

@@ -78,12 +78,11 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         var ccdTemp: [Double]?
         var airmass: [Double]?
         
-        // Number from Image Plan File
+        // Number from NINA/APT Log
         var numCaptured: Int?
         
         // Number from Image Files imported
-        // **only usable images are imported**
-        var numUsable: Int?
+        var numSaved: Int?
     }
     
     /* IDEA
@@ -203,6 +202,8 @@ final class JournalEntry: Identifiable, ObservableObject, Codable {
         case multiTargetNight
         case unusedData
         case noFlats
+        case unverified
+        case verified1
     }
     
     
