@@ -34,36 +34,6 @@
             endingLineNumber = "103"
             landmarkName = "init(info:log:plan:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "82B134F8-D1C8-41AC-8A91-F83F9167A6BD - 20daac757966cec1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DeepSkyCatalogMac.JournalEntry.init(info: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, log: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, plan: Swift.Optional&lt;DeepSkyCatalogMac.CaptureSequenceList&gt;) -&gt; DeepSkyCatalogMac.JournalEntry"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalEntry.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104">
-               </Location>
-               <Location
-                  uuid = "82B134F8-D1C8-41AC-8A91-F83F9167A6BD - 20daac757966cec1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DeepSkyCatalogMac.JournalEntry.init(info: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, log: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, plan: Swift.Optional&lt;DeepSkyCatalogMac.CaptureSequenceList&gt;) -&gt; DeepSkyCatalogMac.JournalEntry"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalEntry.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -80,36 +50,6 @@
             endingLineNumber = "101"
             landmarkName = "init(info:log:plan:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6C469688-B4CC-477C-8B77-BF4BF4870A41 - 20daac757966ce1f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DeepSkyCatalogMac.JournalEntry.init(info: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, log: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, plan: Swift.Optional&lt;DeepSkyCatalogMac.CaptureSequenceList&gt;) -&gt; DeepSkyCatalogMac.JournalEntry"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalEntry.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102">
-               </Location>
-               <Location
-                  uuid = "6C469688-B4CC-477C-8B77-BF4BF4870A41 - 20daac757966ce1f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DeepSkyCatalogMac.JournalEntry.init(info: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, log: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, plan: Swift.Optional&lt;DeepSkyCatalogMac.CaptureSequenceList&gt;) -&gt; DeepSkyCatalogMac.JournalEntry"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/JournalEntry.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -158,36 +98,6 @@
             endingLineNumber = "82"
             landmarkName = "refreshList(date:viewingInterval:location:targetSettings:sunData:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8F25A4E8-F567-47C7-9637-B4AA6DDB52A2 - 4aa11d7365a3ab57"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DeepSkyCatalogiOS.CatalogManager.refreshList(date: Foundation.Date, viewingInterval: Swift.Optional&lt;Foundation.DateInterval&gt;, location: DeepSkyCatalogiOS.Location, targetSettings: DeepSkyCatalogiOS.TargetSettings, sunData: Swift.Optional&lt;DeepSkyCatalogiOS.SunData&gt;) -&gt; ()"
-                  moduleName = "DeepSkyCatalogiOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/CatalogManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87">
-               </Location>
-               <Location
-                  uuid = "8F25A4E8-F567-47C7-9637-B4AA6DDB52A2 - 662b8d6426063505"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (DeepSkyCatalogiOS.DeepSkyTarget, DeepSkyCatalogiOS.DeepSkyTarget) -&gt; Swift.Bool in DeepSkyCatalogiOS.CatalogManager.refreshList(date: Foundation.Date, viewingInterval: Swift.Optional&lt;Foundation.DateInterval&gt;, location: DeepSkyCatalogiOS.Location, targetSettings: DeepSkyCatalogiOS.TargetSettings, sunData: Swift.Optional&lt;DeepSkyCatalogiOS.SunData&gt;) -&gt; ()"
-                  moduleName = "DeepSkyCatalogiOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/Logic/CatalogManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -236,36 +146,6 @@
             endingLineNumber = "20"
             landmarkName = "init?(from:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DF27B05D-A240-4A8A-893A-E9E928AB320D - 1c7b764baa9f1e89"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DeepSkyCatalogMac.APTLogFile.init(from: Foundation.URL) -&gt; Swift.Optional&lt;DeepSkyCatalogMac.APTLogFile&gt;"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/JournalEntry/Sources/APTLogFile.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20">
-               </Location>
-               <Location
-                  uuid = "DF27B05D-A240-4A8A-893A-E9E928AB320D - 6a9c838ec618f903"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; Swift.Bool in DeepSkyCatalogMac.APTLogFile.init(from: Foundation.URL) -&gt; Swift.Optional&lt;DeepSkyCatalogMac.APTLogFile&gt;"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/JournalEntry/Sources/APTLogFile.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -298,36 +178,6 @@
             endingLineNumber = "21"
             landmarkName = "init?(from:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8C860A05-7144-48AA-925C-94B8F9156249 - 1c7b764baa9f1eea"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DeepSkyCatalogMac.APTLogFile.init(from: Foundation.URL) -&gt; Swift.Optional&lt;DeepSkyCatalogMac.APTLogFile&gt;"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/JournalEntry/Sources/APTLogFile.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21">
-               </Location>
-               <Location
-                  uuid = "8C860A05-7144-48AA-925C-94B8F9156249 - 7fce784bb0c32361"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.String) -&gt; Swift.Bool in DeepSkyCatalogMac.APTLogFile.init(from: Foundation.URL) -&gt; Swift.Optional&lt;DeepSkyCatalogMac.APTLogFile&gt;"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/Shared/JournalEntry/Sources/APTLogFile.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -376,36 +226,6 @@
             endingLineNumber = "244"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "A4622DE8-BF1D-44FF-9268-CBCD3C138EB1 - 2f7a35993912dcc7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #3 (Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;, Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in DeepSkyCatalogMac.EntryDetailView.body.getter : some"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "244"
-                  endingLineNumber = "244">
-               </Location>
-               <Location
-                  uuid = "A4622DE8-BF1D-44FF-9268-CBCD3C138EB1 - 2f7a35993912dcc7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #3 (Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;, Swift.Optional&lt;DeepSkyCatalogMac.Location&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in DeepSkyCatalogMac.EntryDetailView.body.getter : some"
-                  moduleName = "DeepSkyCatalogMac"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ryansponzilli/Developer/DeepSkyCatalog/DeepSkyCatalogMac/Views/JournalView/EntryDetailView/EntryDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "244"
-                  endingLineNumber = "244">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
