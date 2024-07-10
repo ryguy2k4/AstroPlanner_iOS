@@ -11,6 +11,9 @@ import Foundation
  The basic building block for this app. This struct defines a Deep Sky Target.
  */
 struct DeepSkyTarget: Identifiable, Hashable {
+    
+    static let andromeda = DeepSkyTargetList.allTargets.first(where: {$0.id.uuidString == "FCFAF73B-D7FC-4732-919D-920EEDA0E5E7"})
+    
     /// Unique identifier
     var id: UUID
     

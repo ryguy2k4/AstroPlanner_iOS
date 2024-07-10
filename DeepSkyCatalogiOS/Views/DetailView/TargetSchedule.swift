@@ -38,10 +38,14 @@ struct TargetSchedule : View {
         var date: Date
         var image: String
         var body: some View {
-            VStack(spacing: 3) {
-                Label(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: date) , systemImage: image)
-                Text(DateFormatter.shortDateOnly(timezone: store.location.timezone).string(from: date))
-                    .minimumScaleFactor(0.8)
+            HStack {
+                Image(systemName: image)
+                VStack(spacing: 3) {
+                    Text(DateFormatter.shortTimeOnly(timezone: store.location.timezone).string(from: date))
+                        .minimumScaleFactor(0.8)
+                    Text(DateFormatter.shortDateOnly(timezone: store.location.timezone).string(from: date))
+                        .minimumScaleFactor(0.8)
+                }
             }
             .frame(width: 110, height: 60)
                 
