@@ -54,7 +54,7 @@ fileprivate struct TopTenListView: View {
         if !reportList.isEmpty {
             List(reportList) { target in
                 NavigationLink(value: target) {
-                    Text(target.name?[0] ?? target.defaultName)
+                    Text(target.defaultName)
                 }
             }.tag(targetTab).listStyle(.inset)
         } else {

@@ -109,7 +109,7 @@ fileprivate struct TargetCell: View {
                 .cornerRadius(8)
                 .frame(width: 100, height: 70)
             VStack(alignment: .leading) {
-                Text(target.name?[0] ?? target.defaultName)
+                Text(target.defaultName)
                     .fontWeight(.semibold)
                     .lineLimit(1)
                 Label(target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, limitingAlt: targetSettings.first?.limitingAltitude ?? 0).percent(), systemImage: "eye")

@@ -32,7 +32,7 @@ struct DeepSkyTargetList {
     static var targetNameDict: [UUID: String] = {
         var dict: [UUID: String] = [:]
         for target in allTargets {
-            dict[target.id] = target.name?.first ?? target.defaultName
+            dict[target.id] = target.defaultName
         }
         return dict
     }()

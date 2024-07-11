@@ -32,7 +32,7 @@ struct TargetIDSearchField: View {
                         Button {
                             searchText = suggestion.id.uuidString
                         } label: {
-                            Text("\(suggestion.name?.first ?? suggestion.defaultName): \(suggestion.id)")
+                            Text("\(suggestion.defaultName): \(suggestion.id)")
                         }
 
                     }

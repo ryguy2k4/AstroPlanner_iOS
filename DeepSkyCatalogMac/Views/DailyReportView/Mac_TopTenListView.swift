@@ -26,7 +26,7 @@ struct Mac_TopTenListView: View {
                 .fontWeight(.bold)
             if !reportList.isEmpty {
                 List(reportList) { target in
-                    Text(target.name?[0] ?? target.defaultName)
+                    Text(target.defaultName)
                         .onTapGesture {
                             if selection == target {
                                 selection = nil

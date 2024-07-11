@@ -18,7 +18,7 @@ struct TopFiveView: View {
             ForEach(report.topFive, id: \.id) { target in
                 NavigationLink(value: target) {
                     VStack {
-                        Text(target.name?[0] ?? target.defaultName)
+                        Text(target.defaultName)
                             .fontWeight(.thin)
                             .foregroundColor(.primary)
                         Image(target.image?.source.fileName ?? "\(target.type)")
