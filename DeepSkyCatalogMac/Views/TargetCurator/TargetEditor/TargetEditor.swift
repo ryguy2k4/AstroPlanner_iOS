@@ -13,7 +13,7 @@ struct TargetEditor: View {
     @State var designation: [DeepSkyTarget.Designation]
     @State var subDesignations: [DeepSkyTarget.Designation]
     @State var subTargets: [String]
-    @State var image: DeepSkyTarget.TargetImage?
+    @State var image: DeepSkyTarget.TargetImageNew?
     @State var description: String
     @State var wikipediaURL: String?
     @State var type: TargetType
@@ -59,7 +59,7 @@ struct TargetEditor: View {
                 VStack(alignment: .leading) {
                     ConstellationField(constellation: $constellation)
                     DescriptionField(description: $description, wikipediaURL: $wikipediaURL)
-                    ImageField(image: $image, target: target)
+//                    ImageField(image: $image, target: target)
                     SizeField(arcLength: $arcLength, arcWidth: $arcWidth)
                     MagnitudeField(magnitude: $apparentMag)
                 }

@@ -21,7 +21,7 @@ struct TopFiveView: View {
                         Text(target.defaultName)
                             .fontWeight(.thin)
                             .foregroundColor(.primary)
-                        Image(target.image?.source.fileName ?? "\(target.type)")
+                        Image(target.image?.filename ?? "\(target.type)")
                             .resizable()
                             .cornerRadius(12)
                             .scaledToFit()

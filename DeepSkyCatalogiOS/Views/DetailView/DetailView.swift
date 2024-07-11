@@ -24,7 +24,7 @@ struct DetailView: View {
             VStack(spacing: 10) {
                 // Target Image
                 // If the target has a local image, display it
-                if let image = target.image, let filename = image.source.fileName {
+                if let image = target.image, let filename = image.filename {
                     VStack {
                         NavigationLink {
                             ImageViewer(image: image, filename: filename)
@@ -44,7 +44,7 @@ struct DetailView: View {
                     }
                 }
                 // If the target has an APOD images associated with it, display a link to it
-                else if let image = target.image, let url = image.source.url {
+                else if let image = target.image, let url = image.url {
                     Link("View Image on APOD", destination: url)
                         .padding(.bottom)
                 }
@@ -107,7 +107,7 @@ struct DetailView: View {
                                     DetailView(target: target)
                                 } label: {
                                     VStack(alignment: .center) {
-                                        Image(target.image?.source.fileName ?? "\(target.type)")
+                                        Image(target.image?.filename ?? "\(target.type)")
                                             .resizable()
                                             .scaledToFit()
                                         Text(target.defaultName)

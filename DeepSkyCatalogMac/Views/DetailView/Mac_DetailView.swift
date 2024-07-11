@@ -24,7 +24,7 @@ struct Mac_DetailView: View {
         ScrollView {
             VStack(spacing: 10) {
                 // Target Image
-                if let image = target.image, let filename = image.source.fileName {
+                if let image = target.image, let filename = image.filename {
                     VStack {
                         Image(filename)
                             .resizable()
@@ -39,7 +39,8 @@ struct Mac_DetailView: View {
                             .padding(.horizontal)
                             .multilineTextAlignment(.center)
                     }
-                } else if let image = target.image, let url = image.source.url {
+                } 
+                else if let image = target.image, let url = image.url {
                     Link("View Image on APOD", destination: url)
                         .padding(.bottom)
                 }
@@ -102,7 +103,7 @@ struct Mac_DetailView: View {
                                     Mac_DetailView(target: target)
                                 } label: {
                                     VStack(alignment: .center) {
-                                        Image(target.image?.source.fileName ?? "\(target.type)")
+                                        Image(target.image?.filename ?? "\(target.type)")
                                             .resizable()
                                             .scaledToFit()
                                         Text(target.defaultName)

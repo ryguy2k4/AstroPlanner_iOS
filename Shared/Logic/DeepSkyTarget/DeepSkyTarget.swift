@@ -67,30 +67,15 @@ struct DeepSkyTarget: Identifiable, Hashable {
     var apparentMag: Double?
     
     struct TargetImage: Hashable, Codable {
-        var source: ImageSource
+        var filename: String?
         var credit: String
-        var astrometry: AstrometryJobInfo.AstrometryCalibration?
+        var apodID: String?
         
-        enum ImageSource: Hashable, Codable {
-            case apod(id: String, copyrighted: Bool)
-            case local(fileName: String)
-            
-            var fileName: String? {
-                switch self {
-                case .apod(id: let id, copyrighted: let copyrighted):
-                    return copyrighted ? nil : "apod_" + id
-                case .local(fileName: let filename):
-                    return filename
-                }
-            }
-            
-            var url: URL? {
-                switch self {
-                case .apod(id: let id, copyrighted: _):
-                    return URL(string: "https://apod.nasa.gov/apod/ap\(id).html")
-                case .local(fileName: _):
-                    return nil
-                }
+        var url: URL? {
+            if let id = apodID {
+                return URL(string: "https://apod.nasa.gov/apod/ap\(id).html")
+            } else {
+                return nil
             }
         }
     }

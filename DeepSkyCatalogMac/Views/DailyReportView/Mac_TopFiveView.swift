@@ -19,7 +19,7 @@ struct Mac_TopFiveView: View {
             HStack {
                 ForEach(report.topFive, id: \.id) { target in
                     VStack {
-                        Image(target.image?.source.fileName ?? "\(target.type)")
+                        Image(target.image?.filename ?? "\(target.type)")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(maxHeight: 400)

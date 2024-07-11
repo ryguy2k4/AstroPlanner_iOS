@@ -47,7 +47,7 @@ struct ReportListView : View {
             VStack(alignment: .listRowSeparatorLeading, spacing: 5) {
                 ForEach(targets) { target in
                     HStack {
-                        let image = UIImage(named: target.image?.source.fileName ?? "\(target.type)")!.scalePreservingAspectRatio(targetSize: .init(width: 300, height: 300))
+                        let image = UIImage(named: target.image?.filename ?? "\(target.type)")!.scalePreservingAspectRatio(targetSize: .init(width: 300, height: 300))
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFit()

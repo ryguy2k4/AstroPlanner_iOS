@@ -64,7 +64,7 @@ private struct TargetCell: View {
     
     var body: some View {
         HStack {
-            Image(target.image?.source.fileName ?? "\(target.type)")
+            Image(target.image?.filename ?? "\(target.type)")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100, height: 70)
