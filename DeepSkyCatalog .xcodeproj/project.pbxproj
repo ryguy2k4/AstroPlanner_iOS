@@ -98,6 +98,10 @@
 		71701E782B182DCE007992B8 /* JournalEntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71701E752B182DCE007992B8 /* JournalEntryList.swift */; };
 		717051DB29CE7A6D00D4EE1A /* LocationPickerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */; };
 		717E9ACD2A7DBF81004E93FA /* ImagingPresetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */; };
+		717E9BC32C4430AC00237B39 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717E9BC22C4430AC00237B39 /* Planet.swift */; };
+		717E9BC42C4430AC00237B39 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717E9BC22C4430AC00237B39 /* Planet.swift */; };
+		717E9BC52C4430AC00237B39 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717E9BC22C4430AC00237B39 /* Planet.swift */; };
+		717E9BC62C4430AC00237B39 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717E9BC22C4430AC00237B39 /* Planet.swift */; };
 		7181F02B299BD1F2002841A8 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* Moon.swift */; };
 		718444672B23ED030017B02B /* ProjectEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718444642B23ED030017B02B /* ProjectEntry.swift */; };
 		7186D8F2295CEEC500601467 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7186D8F1295CEEC500601467 /* JournalView.swift */; };
@@ -330,6 +334,7 @@
 		71701E752B182DCE007992B8 /* JournalEntryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryList.swift; sourceTree = "<group>"; };
 		717051DA29CE7A6D00D4EE1A /* LocationPickerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerModal.swift; sourceTree = "<group>"; };
 		717E9ACC2A7DBF81004E93FA /* ImagingPresetModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagingPresetModal.swift; sourceTree = "<group>"; };
+		717E9BC22C4430AC00237B39 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		7181F005299BCFD1002841A8 /* TargetCuratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCuratorView.swift; sourceTree = "<group>"; };
 		7181F027299BD0D0002841A8 /* TargetEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetEditor.swift; sourceTree = "<group>"; };
 		7181F02E299BD32F002841A8 /* TargetIDSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetIDSearchField.swift; sourceTree = "<group>"; };
@@ -804,6 +809,7 @@
 				7132A8672B339734000E2299 /* JournalImportManager.swift */,
 				714E54CD293D52B00039ECE0 /* LocationManager.swift */,
 				71A6C8FA2A5F4DE0009F1C30 /* Sun.swift */,
+				717E9BC22C4430AC00237B39 /* Planet.swift */,
 				7109A3F4292EBA7A00980527 /* Moon.swift */,
 			);
 			path = Logic;
@@ -1103,6 +1109,7 @@
 				71ACF3332964ED1400CC83D5 /* Double+Ext.swift in Sources */,
 				7162D3502964E906007C8710 /* DeepSkyTarget.swift in Sources */,
 				71ACF33F2964F0D800CC83D5 /* ReportListEntry.swift in Sources */,
+				717E9BC42C4430AC00237B39 /* Planet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,6 +1120,7 @@
 				711386FB29C3548C00081584 /* Filter.swift in Sources */,
 				7164CEE429BE8F8D000A154A /* CaseNameCodable.swift in Sources */,
 				7164CEE229BE8F83000A154A /* FilterMethods.swift in Sources */,
+				717E9BC62C4430AC00237B39 /* Planet.swift in Sources */,
 				718C11F729C919530069ECD5 /* Location.swift in Sources */,
 				71CEEE3E2B1ED84C0072AAAE /* TargetSettings.swift in Sources */,
 				71A6C9012A5F4F09009F1C30 /* Moon.swift in Sources */,
@@ -1170,6 +1178,7 @@
 				710168852955621D00E0B028 /* MinMaxPicker.swift in Sources */,
 				71D1119E296FAB7B0034B8F0 /* ImageViewer.swift in Sources */,
 				71F99FD42985ED8700C06E9C /* HiddenTargetsList.swift in Sources */,
+				717E9BC32C4430AC00237B39 /* Planet.swift in Sources */,
 				71CEEE2D2B1ED79C0072AAAE /* ReportSettings.swift in Sources */,
 				7103EB552B4F081000E291CF /* iPad_DailyReportView.swift in Sources */,
 				71950E8A29D139BE0075081B /* DataLoadingViews.swift in Sources */,
@@ -1274,6 +1283,7 @@
 				719AFB4B2B37CCBB00A3BA5C /* TargetCuratorView.swift in Sources */,
 				719AFB482B37CCB100A3BA5C /* ImageField.swift in Sources */,
 				71C26451298F1CB40057EC04 /* DeepSkyTarget.swift in Sources */,
+				717E9BC52C4430AC00237B39 /* Planet.swift in Sources */,
 				71AC1A7D2B50B52D000D55C8 /* EntryTagsEditor.swift in Sources */,
 				71C2644D298F1CA50057EC04 /* Double+Ext.swift in Sources */,
 				712E83642A60F40600CA42DD /* Mac_TopFiveView.swift in Sources */,

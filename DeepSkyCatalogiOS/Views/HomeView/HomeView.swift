@@ -43,6 +43,9 @@ struct HomeView: View {
                         .tabItem {
                             Label("Daily Report", systemImage: "doc.text")
                         }
+                        .onAppear() {
+                            print(Planet.mars.getAltitude(location: store.location, time: Date.now))
+                        }
                     CatalogView()
                         .environmentObject(store)
                         .tabItem {
