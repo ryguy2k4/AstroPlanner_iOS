@@ -84,6 +84,7 @@ final class DailyReport {
             // Sort the list by visibility
             // TIME HOG ALERT
             targets.sortByVisibility(location: location,viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+            targets.sortByMeridian(location: location, date: date, sunData: sunData)
             
             // Shorten the list to desired number passed to function
             targets.removeLast(targets.count > num ? targets.count-num : 0)
