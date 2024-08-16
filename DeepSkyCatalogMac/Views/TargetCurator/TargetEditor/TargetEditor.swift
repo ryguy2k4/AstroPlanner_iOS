@@ -13,7 +13,7 @@ struct TargetEditor: View {
     @State var designation: [DeepSkyTarget.Designation]
     @State var subDesignations: [DeepSkyTarget.Designation]
     @State var subTargets: [String]
-    @State var image: DeepSkyTarget.TargetImageNew?
+    @State var image: DeepSkyTarget.TargetImage?
     @State var description: String
     @State var wikipediaURL: String?
     @State var type: TargetType

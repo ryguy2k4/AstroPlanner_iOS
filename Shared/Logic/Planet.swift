@@ -12,7 +12,6 @@ struct Planet {
     static let mercury = Planet(i: 7.00487, o: 48.33167, p: 77.45645, a: 0.38709893, n: 4.1520186907, e: 0.20564, l: 252.25084)
     static let venus = Planet(i: 3.39471, o: 76.68069, p: 131.53298, a: 0.72333199, n: 1.625494886, e: 0.00678, l: 181.97973)
     static let mars = Planet(i: 1.85061, o: 49.57854, p: 336.04084, a: 1.52366231, n: 0.5316751873, e: 0.09341233, l: 355.45332)
-    static let mars2 = Planet(i: 1.85061 + 8963 * -1.93703E-07, o: 49.57854 + 8963 * -7.7587E-06, p: 336.04084 + 8963 * 1.187E-05, a: 1.52366231 + 8963 * -1.977E-09, n: 0.5316751873, e: 0.09341233 + 8963 * 3.25859E-09, l: 355.45332 + 8963 * 0.524033035)
     static let jupiter = Planet(i: 1.3053, o: 100.55615, p: 14.75385, a: 5.20336301, n: 0.08429844516, e: 0.0484, l: 4.40438)
     static let saturn = Planet(i: 2.48446, o: 113.71504, p: 92.43194, a: 9.53707032, n: 0.03395874244, e: 0.0539, l: 49.94432)
     static let neptune = Planet(i: 1.76917, o: 131.72169, p: 44.97135, a: 30.06896348, n: 0.006068280781, e: 0.00859, l: 304.88003)
@@ -40,7 +39,7 @@ struct Planet {
     func getAltitude(location: Location, time: Date) -> Double {
         // Step 1: Days Since J2000
         let d = Date.daysSinceJ2000(until: time)
-        
+
         // Step 2: Mean Anomoly
         let M = (n * d + l - p).mod(by: 360)
         
