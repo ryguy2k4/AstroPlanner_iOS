@@ -100,6 +100,8 @@ fileprivate struct TargetCell: View {
     @EnvironmentObject var store: HomeViewModel
     @Query var targetSettings: [TargetSettings]
     var target: DeepSkyTarget
+    @State var visibilityScore: Double? = nil
+    @State var seasonScore: Double? = nil
 
     var body: some View {
         HStack {                
@@ -112,11 +114,15 @@ fileprivate struct TargetCell: View {
                 Text(target.defaultName)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Label(target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, limitingAlt: targetSettings.first?.limitingAltitude ?? 0).percent(), systemImage: "eye")
+                Label(visibilityScore?.percent() ?? "...", systemImage: "eye")
                     .foregroundColor(.secondary)
-                Label(target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData).percent(), systemImage: "calendar.circle")
+                Label(seasonScore?.percent() ?? "...", systemImage: "calendar.circle")
                     .foregroundColor(.secondary)
             }
+        }
+        .task {
+            visibilityScore = target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, limitingAlt: targetSettings.first?.limitingAltitude ?? 0)
+            seasonScore = target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)
         }
     }
 }
