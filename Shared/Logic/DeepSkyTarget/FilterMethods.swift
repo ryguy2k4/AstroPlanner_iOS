@@ -45,17 +45,13 @@ extension Array where Element == DeepSkyTarget {
     /// FILTER BY SEARCH
     func filteredBySearch(_ searchText: String) -> Self {
         return self.filter { target in
-            target.designation.contains(where: {$0.longDescription.localizedStandardContains(searchText)}) ||
-            target.subDesignations.contains(where: {$0.longDescription.localizedStandardContains(searchText)}) ||
-            target.designation.contains(where: {$0.shortDescription.localizedStandardContains(searchText)}) ||
-            target.subDesignations.contains(where: {$0.shortDescription.localizedStandardContains(searchText)}) ||
+            target.designation.contains(where: {$0.longDescription.localizedCaseInsensitiveContains(searchText)}) ||
+            target.subDesignations.contains(where: {$0.longDescription.localizedCaseInsensitiveContains(searchText)}) ||
+            target.designation.contains(where: {$0.shortDescription.localizedCaseInsensitiveContains(searchText)}) ||
+            target.subDesignations.contains(where: {$0.shortDescription.localizedCaseInsensitiveContains(searchText)}) ||
             target.name?.contains(where: {$0.localizedCaseInsensitiveContains(searchText)}) ?? false ||
             target.defaultName.localizedCaseInsensitiveContains(searchText)
         }
-    }
-        
-    mutating func filterBySearch(_ searchText: String) {
-        self = self.filteredBySearch(searchText)
     }
     
     /// FILTER BY CATALOG
@@ -70,10 +66,6 @@ extension Array where Element == DeepSkyTarget {
         }
     }
     
-    mutating func filterByCatalog(_ catalogSelection: Set<TargetCatalog>) {
-        self = self.filteredByCatalog(catalogSelection)
-    }
-    
     /// FILTER BY CONSTELLATION
     func filteredByConstellation(_ constellationSelection: Set<Constellation>) -> Self {
         return self.filter() {
@@ -82,10 +74,6 @@ extension Array where Element == DeepSkyTarget {
             }
             return false
         }
-    }
-    
-    mutating func filterByConstellation(_ constellationSelection: Set<Constellation>) {
-        self = self.filteredByConstellation(constellationSelection)
     }
     
     /// FILTER BY TYPE
@@ -98,10 +86,6 @@ extension Array where Element == DeepSkyTarget {
         }
     }
     
-    mutating func filterByType(_ typeSelection: Set<TargetType>) {
-        self = self.filteredByType(typeSelection)
-    }
-    
     /// FILTER BY MAGNITUDE
     func filteredByMagnitude(brightest: Double, dimmest: Double) -> Self {
         return self.filter() {
@@ -110,10 +94,6 @@ extension Array where Element == DeepSkyTarget {
             }
             return $0.apparentMag ?? .greatestFiniteMagnitude >= brightest && $0.apparentMag ?? .greatestFiniteMagnitude <= dimmest
         }
-    }
-    
-    mutating func filterByMag(brightest min: Double, dimmest max: Double) {
-        self = self.filteredByMagnitude(brightest: min, dimmest: max)
     }
     
     /// FILTER BY SIZE
@@ -126,19 +106,11 @@ extension Array where Element == DeepSkyTarget {
         }
     }
     
-    mutating func filterBySize(min: Double, max: Double) {
-        self = self.filteredBySize(min: min, max: max)
-    }
-    
     /// FILTER BY VISIBILITY SCORE
-    func filteredByVisibility(min: Double, location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) -> Self {
+    func filteredByVisibility(min: Double, location: Location, viewingInterval: DateInterval, limitingAlt: Double) -> Self {
         return self.filter() {
             return $0.getVisibilityScore(at: location, viewingInterval: viewingInterval, limitingAlt: limitingAlt) >= min
         }
-    }
-    
-    mutating func filterByVisibility(_ min: Double, location: Location, viewingInterval: DateInterval, sunData: SunData, limitingAlt: Double) {
-        self = self.filteredByVisibility(min: min, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: limitingAlt)
     }
     
     /// FILTER BY MERIDIAN SCORE
@@ -146,9 +118,5 @@ extension Array where Element == DeepSkyTarget {
         return self.filter() {
             return $0.getSeasonScore(at: location, on: date, sunData: sunData) >= min
         }
-    }
-    
-    mutating func filterBySeasonScore(_ min: Double, location: Location, date: Date, sunData: SunData) {
-        self = self.filteredBySeasonScore(min: min, location: location, date: date, sunData: sunData)
     }
 }

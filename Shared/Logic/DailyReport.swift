@@ -27,10 +27,10 @@ final class DailyReport {
             
             // Remove all targets with a meridian score less than 50%
             // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
-            targets.filterBySeasonScore(0.5, location: location, date: date, sunData: sunData)
+            targets = targets.filteredBySeasonScore(min: 0.5, location: location, date: date, sunData: sunData)
             
             // Remove all targets with a visibility score less than the user specified minimum
-            targets.filterByVisibility(reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+            targets = targets.filteredByVisibility(min: reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             
             // Moon Phase Based Filtering
             if reportSettings.filterForMoonPhase {
@@ -38,7 +38,7 @@ final class DailyReport {
                 // if bright moon is visible filter for narrowband targets
                 let moonIllumination = Moon.getMoonIllumination(date: date)
                 if moonIllumination > reportSettings.maxAllowedMoon {
-                    targets.filterByType(TargetType.narrowband)
+                    targets = targets.filteredByType(TargetType.narrowband)
                 }
                 // if moon is not a problem, but broadband preferred --> move broadband targets to the top of the list
                 else if reportSettings.preferBroadband {
@@ -48,7 +48,7 @@ final class DailyReport {
                         targets.removeAll(where: {$0 == target})
                     }
                     targets.append(contentsOf: narrowband)
-                    targets.filterByType(TargetType.broadband)
+                    targets = targets.filteredByType(TargetType.broadband)
                 }
                 
                 // else (new moon) --> do not filter anything, all is fine
@@ -71,20 +71,20 @@ final class DailyReport {
             
             // filter for desired types passed to function
             if !type.isEmpty {
-                targets.filterByType(type)
+                targets = targets.filteredByType(type)
             }
             
             // Time Save Optimization
             // if the list can be filtered down, this avoids needlessly sorting a few lines down at the time hog
-            let smallTargetsArray = targets.filteredByVisibility(min: 0.95, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+            let smallTargetsArray = targets.filteredByVisibility(min: 0.95, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             if smallTargetsArray.count >= 10 {
                 targets = smallTargetsArray
             }
             
             // Sort the list by visibility
             // TIME HOG ALERT
-            targets.sortByVisibility(location: location,viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
-            targets.sortByMeridian(location: location, date: date, sunData: sunData)
+            targets = targets.sortedByVisibility(location: location,viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
+            targets = targets.sortedByMeridian(location: location, date: date, sunData: sunData)
             
             // Shorten the list to desired number passed to function
             targets.removeLast(targets.count > num ? targets.count-num : 0)

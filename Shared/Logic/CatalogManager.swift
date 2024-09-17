@@ -91,50 +91,50 @@ final class CatalogManager: ObservableObject {
         
         // filter by current active filters
         if isActive(criteria: searchText) {
-            targets.filterBySearch(searchText)
+            targets = targets.filteredBySearch(searchText)
         }
         if isActive(criteria: catalogSelection) {
-            targets.filterByCatalog(catalogSelection)
+            targets = targets.filteredByCatalog(catalogSelection)
         }
         if isActive(criteria: constellationSelection) {
-            targets.filterByConstellation(constellationSelection)
+            targets = targets.filteredByConstellation(constellationSelection)
         }
         if isActive(criteria: typeSelection) {
-            targets.filterByType(typeSelection)
+            targets = targets.filteredByType(typeSelection)
         }
         if isActive(criteria: (min: brightestMag, max: dimmestMag)) {
-            targets.filterByMag(brightest: brightestMag, dimmest: dimmestMag)
+            targets = targets.filteredByMagnitude(brightest: brightestMag, dimmest: dimmestMag)
         }
         if isActive(criteria: (min: minSize, max: maxSize)) {
-            targets.filterBySize(min: minSize, max: maxSize)
+            targets = targets.filteredBySize(min: minSize, max: maxSize)
         }
         if let sunData = sunData, let viewingInterval = viewingInterval {
             if isActive(criteria: minVisScore) {
-                targets.filterByVisibility(minVisScore, location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+                targets = targets.filteredByVisibility(min: minVisScore, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             }
             if isActive(criteria: minSeasonScore) {
-                targets.filterBySeasonScore(minSeasonScore, location: location, date: date, sunData: sunData)
+                targets = targets.filteredBySeasonScore(min: minSeasonScore, location: location, date: date, sunData: sunData)
             }
         }
         
         // sort the list
         switch currentSort {
         case .visibility:
-            if let sunData = sunData, let viewingInterval = viewingInterval {
-                targets.sortByVisibility(location: location, viewingInterval: viewingInterval, sunData: sunData, limitingAlt: targetSettings.limitingAltitude)
+            if let viewingInterval = viewingInterval {
+                targets = targets.sortedByVisibility(location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             }
         case .seasonScore:
             if let sunData = sunData {
-                targets.sortByMeridian(location: location, date: date, sunData: sunData)
+                targets = targets.sortedByMeridian(location: location, date: date, sunData: sunData)
             }
         case .dec:
-            targets.sortByDec()
+            targets = targets.sortedByDec()
         case .ra:
-            targets.sortByRA()
+            targets = targets.sortedByRA()
         case .magnitude:
-            targets.sortByMagnitude()
+            targets = targets.sortedByMagnitude()
         case .size:
-            targets.sortBySize()
+            targets = targets.sortedBySize()
         }
         
         if !sortDecending {
