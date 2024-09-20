@@ -16,7 +16,6 @@
 		7103EB602B4F710400E291CF /* Mac_ViewingIntervalModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7103EB5F2B4F710400E291CF /* Mac_ViewingIntervalModal.swift */; };
 		7103EB612B4F715100E291CF /* SelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F844C8294A95E700DD2742 /* SelectableList.swift */; };
 		7109A3F5292EBA7A00980527 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* Moon.swift */; };
-		710BF588294BF18900A72073 /* ConfigSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710BF587294BF18900A72073 /* ConfigSection.swift */; };
 		710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D497629316B4F003F41F1 /* DailyReportView.swift */; };
 		710ECDAD2965E68F00534D15 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
 		710ECDAE2965E68F00534D15 /* Catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 710ECDAC2965E68F00534D15 /* Catalog.json */; };
@@ -187,6 +186,7 @@
 		71C26461298F1D4D0057EC04 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CA9A729244FD600F3F5A7 /* FetchError.swift */; };
 		71C26463298F1D510057EC04 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7109A3F4292EBA7A00980527 /* Moon.swift */; };
 		71C26465298F1D920057EC04 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C26464298F1D920057EC04 /* ZoomableScrollView.swift */; };
+		71C89B912C9D2DD900E75613 /* OptionalNumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C89B902C9D2DD900E75613 /* OptionalNumberPicker.swift */; };
 		71CEEE2A2B1ED79C0072AAAE /* ImagingPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE252B1ED79C0072AAAE /* ImagingPreset.swift */; };
 		71CEEE2B2B1ED79C0072AAAE /* TargetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE262B1ED79C0072AAAE /* TargetSettings.swift */; };
 		71CEEE2C2B1ED79C0072AAAE /* HiddenTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEEE272B1ED79C0072AAAE /* HiddenTarget.swift */; };
@@ -276,7 +276,6 @@
 		7103EB5D2B4F70FB00E291CF /* Mac_LocationPickerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_LocationPickerModal.swift; sourceTree = "<group>"; };
 		7103EB5F2B4F710400E291CF /* Mac_ViewingIntervalModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_ViewingIntervalModal.swift; sourceTree = "<group>"; };
 		7109A3F4292EBA7A00980527 /* Moon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moon.swift; sourceTree = "<group>"; };
-		710BF587294BF18900A72073 /* ConfigSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSection.swift; sourceTree = "<group>"; };
 		710D497629316B4F003F41F1 /* DailyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportView.swift; sourceTree = "<group>"; };
 		710ECDAC2965E68F00534D15 /* Catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Catalog.json; sourceTree = "<group>"; };
 		711386F629C3548C00081584 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
@@ -378,6 +377,7 @@
 		71C26447298F1C640057EC04 /* DeepSkyCatalogMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepSkyCatalogMac.entitlements; sourceTree = "<group>"; };
 		71C26464298F1D920057EC04 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
 		71C26466298F1E2D0057EC04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		71C89B902C9D2DD900E75613 /* OptionalNumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalNumberPicker.swift; sourceTree = "<group>"; };
 		71CC6A022A64CE0B003E29CB /* ImageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageField.swift; sourceTree = "<group>"; };
 		71CC6A042A64D1DF003E29CB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		71CC6A092A64EC78003E29CB /* URLRequest+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Ext.swift"; sourceTree = "<group>"; };
@@ -464,6 +464,7 @@
 				71D5FD27295FA1D10028FF8C /* EditAllFiltersView.swift */,
 				71F844C8294A95E700DD2742 /* SelectableList.swift */,
 				710168842955621D00E0B028 /* MinMaxPicker.swift */,
+				71C89B902C9D2DD900E75613 /* OptionalNumberPicker.swift */,
 			);
 			path = CatalogView;
 			sourceTree = "<group>";
@@ -711,7 +712,6 @@
 			isa = PBXGroup;
 			children = (
 				719B26D6295167A100E1165A /* NumberPicker.swift */,
-				710BF587294BF18900A72073 /* ConfigSection.swift */,
 				71B14F6A295A77AD003C11BD /* KeyboardDismissButton.swift */,
 				71462F3229A2E6A100F2914C /* ToolbarLogo.swift */,
 			);
@@ -1190,7 +1190,6 @@
 				71BCF94D2921EE71008C7614 /* DeepSkyCatalogApp.swift in Sources */,
 				71CEEE2C2B1ED79C0072AAAE /* HiddenTarget.swift in Sources */,
 				7113870329C3571400081584 /* FilterButtonMenuView.swift in Sources */,
-				710BF588294BF18900A72073 /* ConfigSection.swift in Sources */,
 				71668AD5298F26AC00AB0D19 /* String+iOSExt.swift in Sources */,
 				718CA9A829244FD600F3F5A7 /* FetchError.swift in Sources */,
 				71BCF96D2921EF20008C7614 /* DetailView.swift in Sources */,
@@ -1202,6 +1201,7 @@
 				710D497729316B4F003F41F1 /* DailyReportView.swift in Sources */,
 				71BD7542297104AB00D7751F /* FilterMethods.swift in Sources */,
 				7164CEF229BE97C7000A154A /* UIImage+iOSExt.swift in Sources */,
+				71C89B912C9D2DD900E75613 /* OptionalNumberPicker.swift in Sources */,
 				71B14F6B295A77AE003C11BD /* KeyboardDismissButton.swift in Sources */,
 				71E96D68292831AA00E019F9 /* CatalogManager.swift in Sources */,
 				71B14F692958D905003C11BD /* ViewingIntervalModal.swift in Sources */,

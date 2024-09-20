@@ -94,8 +94,8 @@
             filePath = "Shared/Logic/CatalogManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "refreshList(date:viewingInterval:location:targetSettings:sunData:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "Shared/Logic/CatalogManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "refreshList(date:viewingInterval:location:targetSettings:sunData:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -258,6 +258,22 @@
             endingLineNumber = "14"
             landmarkName = "generate(ninaImagePlan:ninaLog:fitsMetadata:aptLog:rawMetadata:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "456B80E3-F780-4CFC-B64B-2041C88A538A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeepSkyCatalogiOS/Views/HomeView/NoLocationsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

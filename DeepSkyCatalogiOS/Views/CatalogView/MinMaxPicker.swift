@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct MinMaxPicker: View {
-    @Binding var min: Double
-    @Binding var max: Double
-    @State var maxEnabled: Bool
+    @Binding var min: Double?
+    @Binding var max: Double?
     let maxTitle: String
     let minTitle: String
     let placeValues: [PlaceValue]
     
-    init(min: Binding<Double>, max: Binding<Double>, minTitle: String, maxTitle: String, placeValues: [PlaceValue]) {
+    init(min: Binding<Double?>, max: Binding<Double?>, minTitle: String, maxTitle: String, placeValues: [PlaceValue]) {
         self._min = min
         self._max = max
-        self.maxEnabled = !max.wrappedValue.isNaN
         self.maxTitle = maxTitle
         self.minTitle = minTitle
         self.placeValues = placeValues
@@ -26,27 +24,29 @@ struct MinMaxPicker: View {
     
     var body: some View {
         Form {
-            ConfigSection(header: minTitle) {
-                NumberPicker(num: $min, placeValues: placeValues)
+            Section {
+                OptionalNumberPicker(num: $min, placeValues: placeValues)
                 .frame(height: 150)
+            } header: {
+                Text(minTitle)
             }
-            ConfigSection(header: maxTitle, headerToggle: $maxEnabled) {
-                NumberPicker(num: $max, placeValues: placeValues)
-                .frame(height: maxEnabled ? 150 : 70)
-                .disabled(!maxEnabled)
-            }
-        }
-        .onChange(of: maxEnabled) { _, newValue in
-            max = newValue ? min : .nan
-        }
-        .onChange(of: min) { _, newValue in
-            if maxEnabled && max < newValue {
-                max = min
+            Section {
+                OptionalNumberPicker(num: $max, placeValues: placeValues)
+                .frame(height: 150)
+            } header: {
+                Text(maxTitle)
             }
         }
-        .onChange(of: max) { _, newValue in
-            if newValue < min {
-                max = min
+        // if the new min is greater than the maximum, raise the max to the min
+        .onChange(of: min ?? 0) { _, newMin in
+            if let max = max, max < newMin {
+                self.max = min
+            }
+        }
+        // if the new max is smaller than the minimum, revert the max to the min
+        .onChange(of: max ?? 0) { _, newMax in
+            if let min = min, newMax < min {
+                self.max = min
             }
         }
     }

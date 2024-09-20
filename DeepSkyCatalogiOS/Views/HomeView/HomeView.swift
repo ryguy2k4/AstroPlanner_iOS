@@ -34,55 +34,60 @@ struct HomeView: View {
     
     var body: some View {
         TabView {
-            // If a valid location is selected
-            if store.location != .default {
-                // If sunData and viewingInterval are valid, append DailyReportView and CatalogView to the tab bar
-                if store.sunData != .default && store.viewingInterval.duration != .pi {
-                    DailyReportView()
-                        .environmentObject(store)
-                        .tabItem {
-                            Label("Daily Report", systemImage: "doc.text")
-                        }
-                        .onAppear() {
-                            print(Planet.mars.getAltitude(location: store.location, time: Date.now))
-                        }
-                    CatalogView()
-                        .environmentObject(store)
-                        .tabItem {
-                            Label("Master Catalog", systemImage: "tray.full.fill")
-                        }
+            // if settings are initialized
+            if !reportSettings.isEmpty && !targetSettings.isEmpty {
+                // If a valid location is selected
+                if store.location != .default {
+                    // If sunData and viewingInterval are valid, append DailyReportView and CatalogView to the tab bar
+                    if store.sunData != .default && store.viewingInterval.duration != .pi {
+                        DailyReportView()
+                            .environmentObject(store)
+                            .tabItem {
+                                Label("Daily Report", systemImage: "doc.text")
+                            }
+                            .onAppear() {
+                                print(Planet.mars.getAltitude(location: store.location, time: Date.now))
+                            }
+                        CatalogView()
+                            .environmentObject(store)
+                            .tabItem {
+                                Label("Master Catalog", systemImage: "tray.full.fill")
+                            }
+                    }
+                    // If sunData and viewingInterval are not valid, show a loading view while sunData is being calculated
+                    else {
+                        DailyReportLoadingView()
+                            .environmentObject(store)
+                            .tabItem {
+                                Label("Daily Report", systemImage: "doc.text")
+                            }
+                        CatalogLoadingView()
+                            .tabItem {
+                                Label("Master Catalog", systemImage: "tray.full.fill")
+                            }
+                    }
                 }
-                // If sunData and viewingInterval are not valid, show a loading view while sunData is being calculated
+                // If no location is available, prompt the user for a location
                 else {
-                    DailyReportLoadingView()
+                    // Append NoLocationsView to the tab bar in place of both Daily Report and Master Catalog
+                    NoLocationsView()
                         .environmentObject(store)
                         .tabItem {
                             Label("Daily Report", systemImage: "doc.text")
                         }
-                    CatalogLoadingView()
+                    NoLocationsView()
+                        .environmentObject(store)
                         .tabItem {
                             Label("Master Catalog", systemImage: "tray.full.fill")
                         }
                 }
-            }
-            // If no location is available, prompt the user for a location
-            else {
-                // Append NoLocationsView to the tab bar in place of both Daily Report and Master Catalog
-                NoLocationsView()
+                // Append SettingsView to the tab bar of every permutation
+                SettingsView()
                     .environmentObject(store)
                     .tabItem {
-                        Label("Daily Report", systemImage: "doc.text")
-                    }
-                NoLocationsView()
-                    .tabItem {
-                        Label("Master Catalog", systemImage: "tray.full.fill")
+                        Label("Settings", systemImage: "gearshape")
                     }
             }
-            // Append SettingsView to the tab bar of every permutation
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape")
-                }
         }
         // If the saved location list changes, reselect the active location
         .onReceive(locationList.publisher) { _ in
@@ -116,7 +121,6 @@ struct HomeView: View {
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithOpaqueBackground()
             UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-            
             // set default report settings for first time launch
             if reportSettings.isEmpty {
                 let defaultSettings = ReportSettings()

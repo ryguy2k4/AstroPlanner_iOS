@@ -87,23 +87,15 @@ extension Array where Element == DeepSkyTarget {
     }
     
     /// FILTER BY MAGNITUDE
-    func filteredByMagnitude(brightest: Double, dimmest: Double) -> Self {
-        return self.filter() {
-            if dimmest.isNaN {
-                return $0.apparentMag ?? .greatestFiniteMagnitude >= brightest
-            }
-            return $0.apparentMag ?? .greatestFiniteMagnitude >= brightest && $0.apparentMag ?? .greatestFiniteMagnitude <= dimmest
-        }
+    func filteredByMagnitude(brightest: Double?, dimmest: Double?) -> Self {
+        if brightest == nil && dimmest == nil { return self }
+        return self.filter { ($0.apparentMag ?? .greatestFiniteMagnitude) >= (brightest ?? 0) && ($0.apparentMag) ?? .greatestFiniteMagnitude <= (dimmest ?? .greatestFiniteMagnitude) }
     }
     
     /// FILTER BY SIZE
-    func filteredBySize(min: Double, max: Double) -> Self {
-        return self.filter() {
-            if max.isNaN {
-                return $0.arcLength >= min
-            }
-            return $0.arcLength >= min && $0.arcLength <= max
-        }
+    func filteredBySize(min: Double?, max: Double?) -> Self {
+        if min == nil && max == nil { return self }
+        return self.filter { $0.arcLength >= (min ?? 0) && $0.arcLength <= (max ?? .greatestFiniteMagnitude) }
     }
     
     /// FILTER BY VISIBILITY SCORE

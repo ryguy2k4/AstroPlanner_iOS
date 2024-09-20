@@ -57,7 +57,7 @@ struct ImagingPresetEditor: View {
         NavigationStack {
             VStack {
                 Form {
-                    ConfigSection {
+                    Section {
                         // Fields to manually enter gear info
                         LabeledTextField(text: $name, label: "Name: ", keyboardType: .default)
                             .focused($isInputActive)

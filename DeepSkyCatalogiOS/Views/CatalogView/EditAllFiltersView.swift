@@ -57,12 +57,12 @@ struct EditAllFiltersView: View {
                     if store.sunData != .default {
                         NavigationLink("Visibility Score Filter") {
                             Form {
-                                NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+                                OptionalNumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
                             }
                         }
                         NavigationLink("Season Score Filter") {
                             Form {
-                                NumberPicker(num: $viewModel.minSeasonScore, placeValues: [.tenths, .hundredths])
+                                OptionalNumberPicker(num: $viewModel.minSeasonScore, placeValues: [.tenths, .hundredths])
                             }
                         }
                     }

@@ -16,16 +16,17 @@ final class CatalogManager: ObservableObject {
     @Published var targets: [DeepSkyTarget] = []
     
     // Filter Control Variables
+    // filters are enabled if they are not nil
     @Published var searchText = ""
     @Published var catalogSelection: Set<TargetCatalog> = []
     @Published var constellationSelection: Set<Constellation> = []
     @Published var typeSelection: Set<TargetType> = []
-    @Published var brightestMag: Double = 0
-    @Published var dimmestMag: Double = .nan
-    @Published var minSize: Double = 0
-    @Published var maxSize: Double = .nan
-    @Published var minVisScore: Double = 0
-    @Published var minSeasonScore: Double = 0
+    @Published var brightestMag: Double? = nil
+    @Published var dimmestMag: Double? = nil
+    @Published var minSize: Double? = nil
+    @Published var maxSize: Double? = nil
+    @Published var minVisScore: Double? = nil
+    @Published var minSeasonScore: Double? = nil
     
     /**
      Sets the filter control variable associated with the specified filter to its default value(s)
@@ -41,37 +42,15 @@ final class CatalogManager: ObservableObject {
         case .type:
             typeSelection = []
         case .magnitude:
-            brightestMag = 0
-            dimmestMag = .nan
+            brightestMag = nil
+            dimmestMag = nil
         case .size:
-            minSize = 0
-            maxSize = .nan
+            minSize = nil
+            maxSize = nil
         case .seasonScore:
-            minSeasonScore = 0
+            minSeasonScore = nil
         case .visibility:
-            minVisScore = 0
-        }
-    }
-    
-    /**
-     Determines if a filter control variable contains does not contain its default value
-     */
-    func isActive<T>(criteria: T) -> Bool {
-        switch criteria {
-        case let catalogSet as Set<TargetCatalog>:
-            return !catalogSet.isEmpty
-        case let constellationSet as Set<Constellation>:
-            return !constellationSet.isEmpty
-        case let typeSet as Set<TargetType>:
-            return !typeSet.isEmpty
-        case let string as String:
-            return !string.isEmpty
-        case let double as Double:
-            return !double.isZero
-        case let range as (min: Double, max: Double):
-            return !range.min.isZero || !range.max.isNaN
-        default:
-            return false
+            minVisScore = nil
         }
     }
     
@@ -90,29 +69,32 @@ final class CatalogManager: ObservableObject {
         }
         
         // filter by current active filters
-        if isActive(criteria: searchText) {
+        if !searchText.isEmpty {
             targets = targets.filteredBySearch(searchText)
         }
-        if isActive(criteria: catalogSelection) {
+        if !catalogSelection.isEmpty {
             targets = targets.filteredByCatalog(catalogSelection)
         }
-        if isActive(criteria: constellationSelection) {
+        if !constellationSelection.isEmpty {
             targets = targets.filteredByConstellation(constellationSelection)
         }
-        if isActive(criteria: typeSelection) {
+        if !typeSelection.isEmpty {
             targets = targets.filteredByType(typeSelection)
         }
-        if isActive(criteria: (min: brightestMag, max: dimmestMag)) {
+        
+        if brightestMag != nil || dimmestMag != nil {
             targets = targets.filteredByMagnitude(brightest: brightestMag, dimmest: dimmestMag)
         }
-        if isActive(criteria: (min: minSize, max: maxSize)) {
+        
+        if minSize != nil || maxSize != nil {
             targets = targets.filteredBySize(min: minSize, max: maxSize)
         }
+        
         if let sunData = sunData, let viewingInterval = viewingInterval {
-            if isActive(criteria: minVisScore) {
+            if let minVisScore = minVisScore {
                 targets = targets.filteredByVisibility(min: minVisScore, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             }
-            if isActive(criteria: minSeasonScore) {
+            if let minSeasonScore = minSeasonScore {
                 targets = targets.filteredBySeasonScore(min: minSeasonScore, location: location, date: date, sunData: sunData)
             }
         }

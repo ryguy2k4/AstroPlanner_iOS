@@ -65,7 +65,7 @@ struct LocationEditor: View {
         NavigationStack {
             VStack {
                 Form {
-                    ConfigSection(footer: "Enter the numbers in decimal form, not degrees, minutes, and seconds. Don't forget negative signs for western longitudes. Timezone must match coordinates.") {
+                    Section {
                         // Name
                         LabeledTextField(text: $name, label: "Name: ", keyboardType: .default)
                             .focused($isInputActive)
@@ -118,6 +118,8 @@ struct LocationEditor: View {
                                 }
                             }
                         }
+                    } footer: {
+                        Text("Enter the numbers in decimal form, not degrees, minutes, and seconds. Don't forget negative signs for western longitudes. Timezone must match coordinates.")
                     }
                     if let location = location {
                         Section {

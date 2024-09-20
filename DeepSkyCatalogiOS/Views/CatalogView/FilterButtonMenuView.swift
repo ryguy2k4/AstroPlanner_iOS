@@ -23,14 +23,14 @@ struct FilterButtonMenu: View {
     var body: some View {
         let buttons: [FilterButton] = {
             var buttons: [FilterButton] = []
-            buttons.append(FilterButton(method: .type, active: viewModel.isActive(criteria: viewModel.typeSelection)))
-            buttons.append(FilterButton(method: .size, active: viewModel.isActive(criteria: (min: viewModel.minSize, max: viewModel.maxSize))))
-            buttons.append(FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection)))
-            buttons.append(FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection)))
-            buttons.append(FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag))))
+            buttons.append(FilterButton(method: .type, active: !viewModel.typeSelection.isEmpty))
+            buttons.append(FilterButton(method: .size, active: viewModel.minSize != nil || viewModel.maxSize != nil))
+            buttons.append(FilterButton(method: .catalog, active: !viewModel.catalogSelection.isEmpty))
+            buttons.append(FilterButton(method: .constellation, active: !viewModel.constellationSelection.isEmpty))
+            buttons.append(FilterButton(method: .magnitude, active: viewModel.brightestMag != nil || viewModel.dimmestMag != nil))
             if store.sunData != .default {
-                buttons.append(FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore)))
-                buttons.append(FilterButton(method: .seasonScore, active: viewModel.isActive(criteria: viewModel.minSeasonScore)))
+                buttons.append(FilterButton(method: .visibility, active: viewModel.minVisScore != nil))
+                buttons.append(FilterButton(method: .seasonScore, active: viewModel.minSeasonScore != nil))
             }
             return buttons.sorted(by: {$0.active && !$1.active})
         }()
@@ -125,11 +125,11 @@ fileprivate struct FilterButton: View {
                     MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, minTitle: "Smallest Size", maxTitle: "Largest Size", placeValues: [.hundreds, .tens, .ones])
                 case .visibility:
                     Form {
-                        NumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
+                        OptionalNumberPicker(num: $viewModel.minVisScore, placeValues: [.tenths, .hundredths])
                     }
                 case .seasonScore:
                     Form {
-                        NumberPicker(num: $viewModel.minSeasonScore, placeValues: [.tenths, .hundredths])
+                        OptionalNumberPicker(num: $viewModel.minSeasonScore, placeValues: [.tenths, .hundredths])
                     }
                 default:
                     EmptyView()
