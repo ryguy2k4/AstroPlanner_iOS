@@ -4790,7 +4790,7 @@
         "number" : 41
       }
     ],
-    "ra" : 4.45,
+    "ra" : 66.75,
     "type" : "openStarCluster",
     "arcLength" : 330,
     "arcWidth" : 330,
@@ -7760,7 +7760,7 @@
     "type" : "galaxyGroup",
     "dec" : 13.166667,
     "description" : "Markarian's Chain is a stretch of galaxies that forms part of the Virgo Cluster. When viewed from Earth, the galaxies lie along a smoothly curved line. Charles Messier first discovered two of the galaxies, M84 and M86, in 1781. The other galaxies seen in the chain were discovered by William Herschel and are now known primarily by NGC numbers. It was ultimately named after the Soviet astrophysicist, Benjamin Markarian, who discovered their common motion in the early 1960s. Member galaxies include M84 (NGC 4374), M86 (NGC 4406), NGC 4477, NGC 4473, NGC 4461, NGC 4458, NGC 4438 and NGC 4435. The bright members of the chain are visible through small telescopes. Larger telescopes can be used to view the fainter galaxies. Near the center there appear the pair of interacting galaxies NGC 4438 and NGC 4435, about 50 million light-years away, known to some as Markarian's Eyes. At least seven galaxies in the chain appear to move coherently, although others appear to be superposed by chance. Six of the points on the chain can be marked by galaxies. The other two points are pairs of galaxies.",
-    "ra" : 12.45,
+    "ra" : 186.251,
     "subDesignations" : [
       {
         "number" : 84,
@@ -8285,7 +8285,7 @@
     ],
     "arcLength" : 30,
     "description" : "A small portion in the bottom half of the Eastern Veil Nebula in the Cygnus Loop that resembles a bat.",
-    "ra" : 0,
+    "ra" : 115.5,
     "designation" : [
       {
         "catalog" : "ngc",
@@ -8302,7 +8302,7 @@
     "name" : [
       "Bat Nebula"
     ],
-    "dec" : 0,
+    "dec" : -18.2,
     "id" : "9AD4A23E-A030-45E4-84E9-F191CFBBA357",
     "subDesignations" : [
 
@@ -8791,11 +8791,11 @@
     "name" : [
       "Fossil Footprint Nebula"
     ],
-    "ra" : 0,
+    "ra" : 60.75,
     "subTargets" : [
 
     ],
-    "dec" : 0,
+    "dec" : 51.315,
     "description" : "NGC 1491 is a bright nebula in the constellation of Perseus.",
     "arcLength" : 40,
     "type" : "HIIRegion",
