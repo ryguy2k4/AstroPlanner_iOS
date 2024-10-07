@@ -98,6 +98,7 @@ fileprivate struct FilterButton: View {
                 HStack {
                     Label(method.info.name, systemImage: method.info.icon)
                         .foregroundColor(.primary)
+                    // only enabled when filter is applied
                     Button {
                         viewModel.clearFilter(for: method)
                         viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)

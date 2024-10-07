@@ -10,10 +10,11 @@ import SwiftUI
 
 final class CatalogManager: ObservableObject {
     
+    @Published var targets: [DeepSkyTarget] = []
+    
     // Sort Control Variables
     @Published var currentSort: SortMethod = .ra
     @Published var sortDecending: Bool = true
-    @Published var targets: [DeepSkyTarget] = []
     
     // Filter Control Variables
     // filters are enabled if they are not nil
@@ -29,7 +30,7 @@ final class CatalogManager: ObservableObject {
     @Published var minSeasonScore: Double? = nil
     
     /**
-     Sets the filter control variable associated with the specified filter to its default value(s)
+     Reset the associated filter control variable
      */
     func clearFilter(for method: FilterMethod) {
         switch method {
@@ -55,11 +56,13 @@ final class CatalogManager: ObservableObject {
     }
     
     /**
-     Re-filters and re-sorts the list
+     Re-filter and re-sort the list
      */
     func refreshList(date: Date, viewingInterval: DateInterval?, location: Location, targetSettings: TargetSettings, sunData: SunData?) {
-        // reset list
+        // get a fresh list
         targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: targetSettings.hiddenTargets!).sorted(by: {$0.ra > $1.ra})
+        
+        // check for hide never rises
         if targetSettings.hideNeverRises {
             for target in targets {
                 if case .never = target.getNextInterval(location: location, date: date).interval {
@@ -68,7 +71,7 @@ final class CatalogManager: ObservableObject {
             }
         }
         
-        // filter by current active filters
+        // apply active filters
         if !searchText.isEmpty {
             targets = targets.filteredBySearch(searchText)
         }

@@ -89,7 +89,7 @@ extension Array where Element == DeepSkyTarget {
     /// FILTER BY MAGNITUDE
     func filteredByMagnitude(brightest: Double?, dimmest: Double?) -> Self {
         if brightest == nil && dimmest == nil { return self }
-        return self.filter { ($0.apparentMag ?? .greatestFiniteMagnitude) >= (brightest ?? 0) && ($0.apparentMag) ?? .greatestFiniteMagnitude <= (dimmest ?? .greatestFiniteMagnitude) }
+        return self.filter { ($0.apparentMag ?? .greatestFiniteMagnitude) >= (brightest ?? 0) && ($0.apparentMag ?? .greatestFiniteMagnitude) <= (dimmest ?? .greatestFiniteMagnitude) }
     }
     
     /// FILTER BY SIZE
