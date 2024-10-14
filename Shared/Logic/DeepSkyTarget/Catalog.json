@@ -826,8 +826,8 @@
     "description" : "The Small Sagittarius Star Cloud is a star cloud in the constellation of Sagittarius approximately 600 light years wide, which was catalogued by Charles Messier in 1764. It should not be confused with the nearby Large Sagittarius Star Cloud which lies about 10° to the south. The stars, clusters and other objects comprising M24 are part of the Sagittarius or Sagittarius-Carina arms of the Milky Way galaxy. Messier described M24 as a \"large nebulosity containing many stars\" and gave its dimensions as being some 1.5° across. M24 fills a space of significant volume to a depth of 10,000 to 16,000 light-years. The star cloud is the most dense concentration of individual stars visible using binoculars, with around 1,000 stars visible within a single field of view. In telescopes it is best seen at low magnification, with a field of view of at least 2 degrees. Described as \"a virtual carpet of stellar jewels\", M24 is visible to the naked eye whenever the Milky Way itself is visible as well. It holds a collection of numerous types of stars that are visible through the galaxy's obscuring band of interstellar dust. The star cloud incorporates two prominent dark nebulae which are vast clouds of dense, obscuring interstellar dust. This dust blocks light from the more distant stars, which keeps them from being seen from Earth.",
     "arcLength" : 120,
     "image" : {
-      "credit" : "Gabriel Rodrigues Santos",
-      "apodID" : "220407"
+      "credit" : "Ryan Sponzilli",
+      "filename" : "saggitariusstarcloud"
     },
     "name" : [
       "Small Sagittarius Star Cloud"
@@ -1086,9 +1086,8 @@
     "arcLength" : 63,
     "dec" : 30.660222,
     "image" : {
-      "credit" : "NASA, ESA, M. Durbin, J. Dalcanton, and B. F. Williams",
-      "filename" : "apod_190223",
-      "apodID" : "190223"
+      "credit" : "Ryan Sponzilli",
+      "filename" : "triangulumgalaxy"
     },
     "arcWidth" : 39,
     "id" : "8D6FAFB0-A53E-4E1D-A378-787404CC793D",
