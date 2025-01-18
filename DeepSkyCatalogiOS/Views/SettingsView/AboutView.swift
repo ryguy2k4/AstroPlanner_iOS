@@ -31,7 +31,7 @@ struct AboutView: View {
                         .buttonStyle(.bordered)
                     }
                 }
-                Text("The core idea behind this app is to make it easy to filter through a catalog of targets or use an algorithm that chooses the best target for a given night")
+                Text("The core idea behind this app is to make it easy to filter through a catalog of targets or use an algorithm that chooses the best target for a given night.")
                     .multilineTextAlignment(.center)
                     .fontWeight(.medium)
 //                VStack(spacing: 10) {

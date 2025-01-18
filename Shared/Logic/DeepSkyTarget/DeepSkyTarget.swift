@@ -42,7 +42,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
     /// A brief description of the target
     var description: String
     
-    /// The target's wikipedia page
+    /// The target's wikipedia page, if it has one
     var wikipediaURL: URL?
     
     /// The type of target
@@ -51,10 +51,10 @@ struct DeepSkyTarget: Identifiable, Hashable {
     /// The constellation the target resides in
     var constellation: Constellation
     
-    /// The target's right ascension
+    /// The target's right ascension (J2000)
     var ra: Double
     
-    /// The target's declination
+    /// The target's declination (J2000)
     var dec: Double
     
     /// The target's apparent angular length in the sky
@@ -106,7 +106,7 @@ struct DeepSkyTarget: Identifiable, Hashable {
     }
     
     var designationDescription: String {
-        var string = "\(name?.first ?? defaultName) is designated as "
+        var string = "\(defaultName) is designated as "
         if designation.count == 1 {
             string.append("\(designation[0].longDescription).")
         } else if designation.count == 2 {

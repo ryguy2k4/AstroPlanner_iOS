@@ -78,6 +78,9 @@ extension Double {
         var string = ""
         let negative = self < 0
         var num = self.magnitude
+        if directionArgs == nil && negative {
+            string.append("-")
+        }
         string.append("\(Int(num))° ")
         num = num.mod(by: 1) * 60
         string.append("\(Int(num))' ")

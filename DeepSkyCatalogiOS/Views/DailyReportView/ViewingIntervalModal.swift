@@ -22,7 +22,7 @@ struct ViewingIntervalModal: View {
                 .fontWeight(.semibold)
             Form {
                 Section {
-                    DateIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: {
+                    ViewingIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: {
                         let nightInterval: DateInterval = {
                             if reportSettings.darknessThreshold == 2 {
                                 return store.sunData.CTInterval
@@ -57,7 +57,7 @@ struct ViewingIntervalModal: View {
     }
 }
 
-struct DateIntervalSelector: View {
+struct ViewingIntervalSelector: View {
     @Binding var viewingInterval: DateInterval
     @State var customViewingInterval: Bool
     @EnvironmentObject var store: HomeViewModel

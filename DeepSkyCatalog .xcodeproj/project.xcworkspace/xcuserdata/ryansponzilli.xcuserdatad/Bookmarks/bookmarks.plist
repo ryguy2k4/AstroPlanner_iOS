@@ -276,6 +276,99 @@
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>108</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>107</string>
+					<key>Timestamp</key>
+					<string>757634793.099058</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Shared/Logic/DeepSkyTarget/DeepSkyTarget.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    var designationDescription: String {
+</string>
+				<key>leading</key>
+				<string>    }
+    
+</string>
+				<key>trailing</key>
+				<string>        var string = "\(defaultName) is designated as "
+        if designation.count == 1 {
+            string.append("\(designation[0].longDescription).")
+</string>
+			</dict>
+			<key>title</key>
+			<string>Not used</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>26</string>
+					<key>EndingLineNumber</key>
+					<string>77</string>
+					<key>StartingColumnNumber</key>
+					<string>22</string>
+					<key>StartingLineNumber</key>
+					<string>77</string>
+					<key>Timestamp</key>
+					<string>758825837.453178</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Shared/Logic/DailyReport.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>list</string>
+				<key>leading</key>
+				<string>            
+            // Time Save Optimization
+            // if the </string>
+				<key>trailing</key>
+				<string> can be filtered down, this avoids needlessly sorting a few lines down at the time hog
+            let smallTargetsArray = targets.filteredByVisibility(min: 0.95, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
+            if smallTargetsArray.count &gt;= 10 {
+</string>
+			</dict>
+			<key>title</key>
+			<string>something is fishy here</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
 	</array>
 </dict>
 </plist>

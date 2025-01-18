@@ -43,6 +43,7 @@ struct ImagingPresetEditor: View {
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
     @State var showErrorAlert = false
+    @State var showDeleteConfirmationMessage = false
     @Query var presetList: [ImagingPreset]
     
     // Local state variables to hold information being entered
@@ -94,12 +95,11 @@ struct ImagingPresetEditor: View {
                                 .focused($isInputActive)
                         }
                     }
-                    if let preset = preset {
+                    if preset != nil {
                         Section {
                             // delete button
                             Button("Delete \(name)", role: .destructive) {
-                                context.delete(preset)
-                                dismiss()
+                                showDeleteConfirmationMessage = true
                             }
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                         }
@@ -155,6 +155,15 @@ struct ImagingPresetEditor: View {
                 }
             } message: {
                 Text("Every parameter must be filled in or there is already a preset with this name")
+            }
+            .alert("Confirm Deletion", isPresented: $showDeleteConfirmationMessage) {
+                Button("Cancel") {}
+                Button("Delete") {
+                    context.delete(preset!)
+                    dismiss()
+                }
+            } message: {
+                Text("Are you sure you want to delete this preset? This cannot be undone.")
             }
             .onAppear() {
                 if let preset = preset {

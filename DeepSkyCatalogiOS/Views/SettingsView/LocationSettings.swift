@@ -46,18 +46,21 @@ struct LocationEditor: View {
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
+    @EnvironmentObject var locationManager: LocationManager
+    @Query var locationList: [SavedLocation]
+    
+    // confirmation and error messages
     @State var showErrorAlert = false
     @State var showLocationPermissionError = false
     @State var showLocationError = false
     @State var showConfirmationMessage = false
-    @State var confirmationClosure: (() -> (save: () -> Void, lat: Double, long: Double, time: TimeZone))?
-    @EnvironmentObject var locationManager: LocationManager
-    @Query var locationList: [SavedLocation]
+    @State var showDeleteConfirmationMessage = false
+    @State var confirmationClosure: (() -> ())?
     
     // Local state variables to hold information being entered
     @State private var name: String = "New Location"
-    @State private var longitude: Double? = nil
     @State private var latitude: Double? = nil
+    @State private var longitude: Double? = nil
     @State private var timezone: TimeZone? = nil
     let location: SavedLocation?
     
@@ -65,11 +68,10 @@ struct LocationEditor: View {
         NavigationStack {
             VStack {
                 Form {
+                    // INPUT FIELDS
                     Section {
-                        // Name
                         LabeledTextField(text: $name, label: "Name: ", keyboardType: .default)
                             .focused($isInputActive)
-                        // Latitude
                         HStack {
                             Text("Latitude: ")
                                 .font(.callout)
@@ -77,7 +79,6 @@ struct LocationEditor: View {
                                 .keyboardType(.numbersAndPunctuation)
                                 .focused($isInputActive)
                         }
-                        // Longitude
                         HStack {
                             Text("Longitude: ")
                                 .font(.callout)
@@ -86,7 +87,6 @@ struct LocationEditor: View {
                                 .focused($isInputActive)
                         }
                         
-                        // Timezone
                         Picker("Timezone: ", selection: $timezone) {
                             let empty: TimeZone? = nil
                             ForEach(TimeZone.knownTimeZoneIdentifiers, id: \.self) { zone in
@@ -121,12 +121,11 @@ struct LocationEditor: View {
                     } footer: {
                         Text("Enter the numbers in decimal form, not degrees, minutes, and seconds. Don't forget negative signs for western longitudes. Timezone must match coordinates.")
                     }
-                    if let location = location {
+                    if location != nil {
                         Section {
                             // delete button
                             Button("Delete \(name)", role: .destructive) {
-                                context.delete(location)
-                                dismiss()
+                                showDeleteConfirmationMessage = true
                             }
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                         }
@@ -158,6 +157,8 @@ struct LocationEditor: View {
                         }
                     }
                 }
+                
+                // Display latitude and longitude
                 if let latitude = latitude {
                     Text(latitude.formatDMS(directionArgs: [.minus : "S", .plus : "N"]))
                 }
@@ -169,23 +170,19 @@ struct LocationEditor: View {
                 KeyboardDismissButton(isInputActive: _isInputActive)
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(location != nil ? "Save \(name)" : "Add \(name)") {
+                        // if fields are not empty
                         if let latitude = latitude, let longitude = longitude, let timezone = timezone {
+                            // if we are in edit mode
                             if let location = location {
                                 confirmationClosure = {
-                                    let save = {
-                                        location.latitude = latitude; location.longitude = longitude; location.timezone = timezone.identifier
-                                    }
-                                    return (save: save, lat: latitude, long: longitude, time: timezone)
+                                    location.latitude = latitude; location.longitude = longitude; location.timezone = timezone.identifier
                                 }
                                 showConfirmationMessage = true
+                            // if we are in add mode, and the name is not a duplicate
                             } else if !locationList.contains(where: {$0.name == name}) {
                                 confirmationClosure = {
-                                    let save = {
-                                        let newLocation = SavedLocation(isSelected: false, latitude: latitude, longitude: longitude, name: name, timezone: timezone.identifier)
-                                        context.insert(newLocation)
-                                    }
-                                    return (save: save, lat: latitude, long: longitude, time: timezone)
-                                    
+                                    let newLocation = SavedLocation(isSelected: false, latitude: latitude, longitude: longitude, name: name, timezone: timezone.identifier)
+                                    context.insert(newLocation)
                                 }
                                 showConfirmationMessage = true
                             } else {
@@ -198,23 +195,23 @@ struct LocationEditor: View {
                 }
             }
             .padding(0)
-            .alert("Confirm Location", isPresented: $showConfirmationMessage, presenting: confirmationClosure, actions: { location in
+            .alert("Confirm Location", isPresented: $showConfirmationMessage, presenting: confirmationClosure, actions: { confirmationClosure in
                 Button("Cancel") {}
                 Button {
-                    location().save()
+                    confirmationClosure()
                     dismiss()
                 } label: {
                     Text("Confirm")
                 }
             }, message: { location in
                 VStack {
-                    Text("Latitude: \(location().lat)º / " + location().lat.formatDMS(directionArgs: [.minus : "S", .plus : "N"]) + "\nLongitude: \(location().long)º / " + location().long.formatDMS(directionArgs: [.minus : "W", .plus : "E"]) + "\nTimezone: \(String(describing: location().time))")
+                    Text("Latitude\n\(latitude!)º\n" + (latitude!.formatDMS(directionArgs: [.minus : "S", .plus : "N"])) + "\n\nLongitude\n\(longitude!)º\n" + longitude!.formatDMS(directionArgs: [.minus : "W", .plus : "E"]) + "\n\nTimezone\n\(String(describing: timezone!))")
                 }
             })
             .alert("Invalid Location", isPresented: $showErrorAlert) {
                 Text("OK")
             } message: {
-                Text("Every parameter must be filled, there is already a location with this name, or the latitude is too extreme")
+                Text("Every parameter must be filled or there is already a location with this name.")
             }
             .alert("Location Error", isPresented: $showLocationError) {
                 Text("OK")
@@ -225,6 +222,15 @@ struct LocationEditor: View {
                 Text("OK")
             } message: {
                 Text("Astro Planner does not have location permissions enabled")
+            }
+            .alert("Confirm Deletion", isPresented: $showDeleteConfirmationMessage) {
+                Button("Cancel") {}
+                Button("Delete") {
+                    context.delete(location!)
+                    dismiss()
+                }
+            } message: {
+                Text("Are you sure you want to delete this location? This cannot be undone.")
             }
             .onAppear() {
                 if let location = location {
