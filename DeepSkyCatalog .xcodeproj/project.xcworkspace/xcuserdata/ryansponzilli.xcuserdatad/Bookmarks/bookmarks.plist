@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>28</string>
+					<string>33</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>27</string>
+					<string>32</string>
 					<key>Timestamp</key>
-					<string>725581697.591971</string>
+					<string>759007533.518115</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -37,7 +37,7 @@
 				<string>            // Remove all targets with a meridian score less than 50%
 </string>
 				<key>leading</key>
-				<string>            var targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: targetSettings.hiddenTargets ?? [])
+				<string>            }
             
 </string>
 				<key>trailing</key>
@@ -148,15 +148,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>23</string>
+					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>165</string>
+					<string>149</string>
 					<key>StartingColumnNumber</key>
-					<string>22</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>165</string>
+					<string>148</string>
 					<key>Timestamp</key>
-					<string>726628078.194506</string>
+					<string>759085252.15634</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -172,15 +172,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string> </string>
+				<string>                    // If its in the morning hours of the next day, still show the info for the previous day (current night)
+</string>
 				<key>leading</key>
 				<string>            if let date = Binding($date) {
                 Button("Tonight") {
-                    //</string>
+</string>
 				<key>trailing</key>
-				<string>If its in the morning hours of the next day, still show the info for the previous day (current night)
-//                    if Sun.sol.getAltitude(location: store.location, time: .now) &lt; -18 &amp;&amp; .now &gt; store.sunData.solarMidnight {
+				<string>//                    if Sun.sol.getAltitude(location: store.location, time: .now) &lt; -18 &amp;&amp; .now &gt; store.sunData.solarMidnight {
 //                        store.date = .now.startOfLocalDay(timezone: store.location.timezone).yesterday()
+//                    } else {
 </string>
 			</dict>
 			<key>type</key>
@@ -329,15 +330,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>26</string>
+					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>77</string>
+					<string>83</string>
 					<key>StartingColumnNumber</key>
-					<string>22</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>77</string>
+					<string>82</string>
 					<key>Timestamp</key>
-					<string>758825837.453178</string>
+					<string>759007533.518104</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -353,15 +354,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>list</string>
+				<string>            // if the list can be filtered down, this avoids needlessly sorting a few lines down at the time hog
+</string>
 				<key>leading</key>
 				<string>            
             // Time Save Optimization
-            // if the </string>
+</string>
 				<key>trailing</key>
-				<string> can be filtered down, this avoids needlessly sorting a few lines down at the time hog
-            let smallTargetsArray = targets.filteredByVisibility(min: 0.95, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
+				<string>            let smallTargetsArray = targets.filteredByVisibility(min: 0.95, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             if smallTargetsArray.count &gt;= 10 {
+                targets = smallTargetsArray
 </string>
 			</dict>
 			<key>title</key>

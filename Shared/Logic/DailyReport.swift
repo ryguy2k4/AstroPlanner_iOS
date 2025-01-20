@@ -25,6 +25,11 @@ final class DailyReport {
             // start with all whitelisted targets
             var targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: targetSettings.hiddenTargets ?? [])
             
+            // Never Visible Filter
+            targets = targets.filter {
+                $0.dec  > (location.latitude - 90.0)
+            }
+            
             // Remove all targets with a meridian score less than 50%
             // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
             targets = targets.filteredBySeasonScore(min: 0.5, location: location, date: date, sunData: sunData)

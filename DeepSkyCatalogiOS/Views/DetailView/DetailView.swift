@@ -139,6 +139,7 @@ struct DetailView: View {
                 Label(target.defaultName, image: "gear")
                     .labelStyle(.titleOnly)
                     .font(.headline)
+                    .multilineTextAlignment(.center)
             }
         }
     }

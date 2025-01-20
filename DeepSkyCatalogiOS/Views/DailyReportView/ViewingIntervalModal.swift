@@ -22,18 +22,7 @@ struct ViewingIntervalModal: View {
                 .fontWeight(.semibold)
             Form {
                 Section {
-                    ViewingIntervalSelector(viewingInterval: $store.viewingInterval, customViewingInterval: {
-                        let nightInterval: DateInterval = {
-                            if reportSettings.darknessThreshold == 2 {
-                                return store.sunData.CTInterval
-                            } else if reportSettings.darknessThreshold == 1 {
-                                return store.sunData.NTInterval
-                            } else {
-                                return store.sunData.ATInterval
-                            }
-                        }()
-                        return store.viewingInterval != nightInterval
-                    }())
+                    ViewingIntervalSelector(viewingInterval: $store.viewingInterval)
                 } header: {
                     Text("Viewing Interval")
                 }
@@ -59,11 +48,22 @@ struct ViewingIntervalModal: View {
 
 struct ViewingIntervalSelector: View {
     @Binding var viewingInterval: DateInterval
-    @State var customViewingInterval: Bool
+    @State var customViewingInterval: Bool = false
     @EnvironmentObject var store: HomeViewModel
     @Query var reportSettings: [ReportSettings]
     
     var body: some View {
+        
+        var nightInterval: DateInterval = {
+            if reportSettings.first!.darknessThreshold == 2 {
+                return store.sunData.CTInterval
+            } else if reportSettings.first!.darknessThreshold == 1 {
+                return store.sunData.NTInterval
+            } else {
+                return store.sunData.ATInterval
+            }
+        }()
+        
         // Choose Auto vs Custom Interval
         Picker("", selection: $customViewingInterval) {
             Text("Dusk to Dawn").tag(false)
@@ -79,48 +79,31 @@ struct ViewingIntervalSelector: View {
                 } else {
                     viewingInterval = store.sunData.ATInterval
                 }
-            }
-        }
-        
-        let nightInterval: DateInterval = {
-            if reportSettings.first!.darknessThreshold == 2 {
-                return store.sunData.CTInterval
-            } else if reportSettings.first!.darknessThreshold == 1 {
-                return store.sunData.NTInterval
             } else {
-                return store.sunData.ATInterval
+                nightInterval = store.sunData.CTInterval
             }
-        }()
-        
-        // Custom Interval Selector
-        if nightInterval.start <= viewingInterval.end && viewingInterval.start <= nightInterval.end {
-            let endBinding = Binding(
-                get: {
-                    return viewingInterval.end
-                },
-                set: {
-                    let newDuration = DateInterval(start: viewingInterval.start, end: $0).duration
-                    viewingInterval.duration = newDuration
-                }
-            )
-            let startBinding = Binding(
-                get: {
-                    return viewingInterval.start
-                },
-                set: {
-                    let newDuration = DateInterval(start: $0, end: viewingInterval.end).duration
-                    viewingInterval.start = $0
-                    viewingInterval.duration = newDuration
-                }
-            )
-            let startRange: ClosedRange<Date> = nightInterval.start...viewingInterval.end
-            let endRange: ClosedRange<Date> = viewingInterval.start...nightInterval.end
-            VStack {
-                DatePicker("Start", selection: startBinding, in: startRange)
-                DatePicker("End", selection: endBinding, in: endRange)
-            }
-            .disabled(!customViewingInterval)
         }
+        .onChange(of: reportSettings.first!.darknessThreshold) { _, newValue in
+            nightInterval = {
+                if reportSettings.first!.darknessThreshold == 2 {
+                    return store.sunData.CTInterval
+                } else if reportSettings.first!.darknessThreshold == 1 {
+                    return store.sunData.NTInterval
+                } else {
+                    return store.sunData.ATInterval
+                }
+            }()
+            if (!customViewingInterval) {
+                viewingInterval = nightInterval
+            }
+        }
+        .onAppear() {
+            customViewingInterval = viewingInterval != nightInterval
+        }
+    
+        
+        RangeSliderView(viewingInterval: $viewingInterval, range: store.sunData.CTInterval.start.timeIntervalSince1970...store.sunData.CTInterval.end.timeIntervalSince1970)
+            .disabled(!customViewingInterval)
     }
 }
 

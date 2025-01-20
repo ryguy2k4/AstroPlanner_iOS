@@ -76,6 +76,11 @@ struct DailyReportView: View {
                     .environmentObject(store)
                     .environment(\.timeZone, store.location.timezone)
                     .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+                    .onDisappear() {
+                        Task {
+                            self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
+                        }
+                    }
             }
             .sheet(isPresented: $isLocationModal){
                 LocationPickerModal()
@@ -124,19 +129,6 @@ struct DailyReportView: View {
             }
             .onChange(of: reportSettings.first?.preferBroadband) {
                 self.report = nil
-                Task {
-                    self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
-                }
-            }
-            .onChange(of: reportSettings.first?.darknessThreshold) { _, newValue in
-                self.report = nil
-                if newValue == 2 {
-                    store.viewingInterval = store.sunData.CTInterval
-                } else if newValue == 1 {
-                    store.viewingInterval = store.sunData.NTInterval
-                } else {
-                    store.viewingInterval = store.sunData.ATInterval
-                }
                 Task {
                     self.report = DailyReport(location: store.location, date: store.date, viewingInterval: store.viewingInterval, reportSettings: reportSettings.first!, targetSettings: targetSettings.first!, preset: presetList.first(where: {$0.isSelected == true}), sunData: store.sunData)
                 }

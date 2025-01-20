@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -419,6 +419,10 @@
 		71F99FD32985ED8700C06E9C /* HiddenTargetsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTargetsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		71206F5C2D3D8B16003010B9 /* Elements */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Elements; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		7162D3382964DBF0007C8710 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -788,6 +792,7 @@
 		71BCF96F2921EF2E008C7614 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				71206F5C2D3D8B16003010B9 /* Elements */,
 				714839CD2B3E6E5C0041A327 /* HomeView */,
 				716A19BF298F5CD70025DB67 /* DailyReportView */,
 				712E99942A675ACC00C354CA /* DetailView */,
@@ -958,6 +963,9 @@
 			dependencies = (
 				7162D34A2964DBF1007C8710 /* PBXTargetDependency */,
 				7164CED229BE4E72000A154A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				71206F5C2D3D8B16003010B9 /* Elements */,
 			);
 			name = DeepSkyCatalogiOS;
 			productName = DeepSkyCatalog;

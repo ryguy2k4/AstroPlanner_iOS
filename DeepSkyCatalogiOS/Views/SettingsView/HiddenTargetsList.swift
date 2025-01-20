@@ -15,8 +15,7 @@ struct HiddenTargetsList: View {
     var body: some View {
         VStack {
             if targetSettings.first!.hiddenTargets!.isEmpty {
-                Text("No Hidden Targets")
-                    .padding()
+                ContentUnavailableView("Hidden Targets is Empty", systemImage: "eye.slash")
             }
             List {
                 ForEach(targetSettings.first!.hiddenTargets!) { hiddenTarget in
