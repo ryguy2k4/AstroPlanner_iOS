@@ -86,13 +86,14 @@ final class DailyReport {
                 targets = smallTargetsArray
             }
             
-            // Sort the list by visibility
-            // TIME HOG ALERT
-            targets = targets.sortedByVisibility(location: location,viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
+            // Sort the list by season score
             targets = targets.sortedByMeridian(location: location, date: date, sunData: sunData)
             
             // Shorten the list to desired number passed to function
             targets.removeLast(targets.count > num ? targets.count-num : 0)
+            
+            // Sort the list by visibility
+            targets = targets.sortedByVisibility(location: location,viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             
             return targets
         }
