@@ -58,3 +58,7 @@ information about individual imaging sessions and projects. It would be fed log 
 spent a little time developing this idea as a desktop app on Mac. I determined that it should be independent to Astrophotography Planner,
 but they would interface with each other a little. I have not yet had time to put enough thought and effort into developing this app, but it
 is something I would like to see happen eventually.
+
+<a href="https://trackgit.com">
+<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/m7pctpt9zr2bgfgbh5sm" alt="trackgit-views" />
+</a>
