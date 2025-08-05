@@ -21,6 +21,8 @@ video announcing the release of the app, called ["My Astrophotography Planning A
 
 Since then, I've periodically released additional updates. It is currently on version 1.6 (as of 2/20/25).
 
+As a separate project, I took sales analytics data from my app's performance on the app store and created a Power BI Report in [this repository](https://github.com/ryguy2k4/astro_planner_bi).
+
 ## Features
 
 ### Catalog
