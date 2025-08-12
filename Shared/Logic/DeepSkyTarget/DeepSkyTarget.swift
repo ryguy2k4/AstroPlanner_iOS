@@ -191,12 +191,6 @@ extension DeepSkyTarget {
      - Returns: The time at which the target reaches its highest altitude
      */
     private func getCulmination(location: Location, date: Date) -> Date {
-        let time = DeepSkyTarget.binaryAltitudeSearch(startTime: date.localNoon(timezone: location.timezone), initialIncrement: 21_600, finalIncrement: 60) { time, increment in
-            slope(location: location, time: time) > 0 || slope(location: location, time: time.addingTimeInterval(increment)) < 0
-        }
-        
-        return time
-        
         /**
          - Returns: An approximate IROC for altitude vs time at the given time in degrees per second
          */
@@ -205,6 +199,14 @@ extension DeepSkyTarget {
            let alt2 = getAltitude(location: location, time: time.addingTimeInterval(1))
            return alt1 - alt2
         }
+        
+        let noonToday = date.localNoon(timezone: location.timezone)
+        let time = DeepSkyTarget.binaryAltitudeSearch(startTime: noonToday, initialIncrement: 21_600, finalIncrement: 60) { time, increment in
+            slope(location: location, time: time) > 0 || slope(location: location, time: time.addingTimeInterval(increment)) < 0
+        }
+        
+        return time
+        
     }
     
     /**

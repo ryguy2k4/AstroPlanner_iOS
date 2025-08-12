@@ -18,14 +18,14 @@ struct Mac_FilterButtonMenu: View {
     var body: some View {
         let buttons: [FilterButton] = {
             var buttons: [FilterButton] = []
-            buttons.append(FilterButton(method: .type, active: viewModel.isActive(criteria: viewModel.typeSelection)))
-            buttons.append(FilterButton(method: .size, active: viewModel.isActive(criteria: (min: viewModel.minSize, max: viewModel.maxSize))))
-            buttons.append(FilterButton(method: .catalog, active: viewModel.isActive(criteria: viewModel.catalogSelection)))
-            buttons.append(FilterButton(method: .constellation, active: viewModel.isActive(criteria: viewModel.constellationSelection)))
-            buttons.append(FilterButton(method: .magnitude, active: viewModel.isActive(criteria: (min: viewModel.brightestMag, max: viewModel.dimmestMag))))
+            buttons.append(FilterButton(method: .type, active: !viewModel.typeSelection.isEmpty))
+            buttons.append(FilterButton(method: .size, active: viewModel.minSize != nil || viewModel.maxSize != nil))
+            buttons.append(FilterButton(method: .catalog, active: !viewModel.catalogSelection.isEmpty))
+            buttons.append(FilterButton(method: .constellation, active: !viewModel.constellationSelection.isEmpty))
+            buttons.append(FilterButton(method: .magnitude, active: viewModel.brightestMag != nil || viewModel.dimmestMag != nil))
             if store.sunData != .default {
-                buttons.append(FilterButton(method: .visibility, active: viewModel.isActive(criteria: viewModel.minVisScore)))
-                buttons.append(FilterButton(method: .seasonScore, active: viewModel.isActive(criteria: viewModel.minSeasonScore)))
+                buttons.append(FilterButton(method: .visibility, active: viewModel.minVisScore != nil))
+                buttons.append(FilterButton(method: .seasonScore, active: viewModel.minSeasonScore != nil))
             }
             return buttons.sorted(by: {$0.active && !$1.active})
         }()
@@ -103,24 +103,25 @@ fileprivate struct FilterButton: View {
         // Modals for editing each filter
         .sheet(item: $presentedFilterSheet) { method in
             VStack {
-                switch method {
-                case .catalog:
-                    SelectableList(selection: $viewModel.catalogSelection)
-                case .constellation:
-                    SelectableList(selection: $viewModel.constellationSelection)
-                case .type:
-                    SelectableList(selection: $viewModel.typeSelection)
-                case .magnitude:
-                    Mac_MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, minTitle: "Brighter than", maxTitle: "Dimmer than")
-                case .size:
-                    Mac_MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, minTitle: "Larger than", maxTitle: "Smaller than")
-                case .visibility:
-                    Mac_MinMaxPicker(min: $viewModel.minVisScore, percent: true)
-                case .seasonScore:
-                    Mac_MinMaxPicker(min: $viewModel.minSeasonScore, percent: true)
-                default:
-                    EmptyView()
-                }
+//                switch method {
+//                case .catalog:
+//                    SelectableList(selection: $viewModel.catalogSelection)
+//                case .constellation:
+//                    SelectableList(selection: $viewModel.constellationSelection)
+//                case .type:
+//                    SelectableList(selection: $viewModel.typeSelection)
+//                case .magnitude:
+//                    Mac_MinMaxPicker(min: $viewModel.brightestMag, max: $viewModel.dimmestMag, minTitle: "Brighter than", maxTitle: "Dimmer than")
+//                case .size:
+//                    Mac_MinMaxPicker(min: $viewModel.minSize, max: $viewModel.maxSize, minTitle: "Larger than", maxTitle: "Smaller than")
+//                case .visibility:
+//                    Mac_MinMaxPicker(min: $viewModel.minVisScore, percent: true)
+//                case .seasonScore:
+//                    Mac_MinMaxPicker(min: $viewModel.minSeasonScore, percent: true)
+//                default:
+//                    EmptyView()
+//                }
+                Text("Not Working")
             }
             .onDisappear() {
                 viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
