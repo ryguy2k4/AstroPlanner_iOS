@@ -19,8 +19,9 @@ struct TargetAltitudeChart: View {
     let showLimitingAlt: Bool
     var body: some View {
         // Graph
+        let hours = store.date.getEveryHour()
         Chart {
-            ForEach(store.date.getEveryHour(), id: \.self) { hour in
+            ForEach(hours, id: \.self) { hour in
                 LineMark(x: .value("Hour", hour, unit: .minute), y: .value("Altitude", target.getAltitude(location: store.location, time: hour)))
                     .interpolationMethod(.catmullRom)
             }
@@ -37,7 +38,11 @@ struct TargetAltitudeChart: View {
                 .foregroundStyle(.tertiary.opacity(1))
         }
         .chartXAxis {
-            AxisMarks(position: .bottom, values: .stride(by: .hour, count: 6)) {
+            AxisMarks(position: .bottom, values: [Calendar.current.date(byAdding: .hour, value: 3, to: hours[0])!,
+                                                  Calendar.current.date(byAdding: .hour, value: 9, to: hours[0])!,
+                                                  Calendar.current.date(byAdding: .hour, value: 15, to: hours[0])!,
+                                                  Calendar.current.date(byAdding: .hour, value: 21, to: hours[0])!]
+            ) {
                 let format: Date.FormatStyle = {
                     var format: Date.FormatStyle = .dateTime.hour(.defaultDigits(amPM: .abbreviated))
                     format.timeZone = store.location.timezone
