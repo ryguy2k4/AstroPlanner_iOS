@@ -18,9 +18,9 @@ enum TargetType: String, Filter, CaseNameCodable {
     static let starClusters: Set<TargetType> = [.openStarCluster, .globularStarCluster, .starCloud, .asterism]
     static let galaxies: Set<TargetType> = [.ellipticalGalaxy, .spiralGalaxy, .irregularGalaxy, .galaxyGroup, .dwarfSpiralGalaxy, .dwarfIrregularGalaxy, .dwarfSpheroidalGalaxy, .peculiarGalaxy, .lenticularGalaxy, .barredSpiralGalaxy]
     // target imageable on moonless nights
-    static let broadband: Set<TargetType> = galaxies.union([.planetaryNebula, .reflectionNebula, .darkNebula, .mixedDiffuseNebulae, .cloudComplex])
+    static let broadband: Set<TargetType> = galaxies.union([.reflectionNebula, .darkNebula, .mixedDiffuseNebulae, .cloudComplex])
     // targets imageable on moon nights
-    static let narrowband: Set<TargetType> = starClusters.union([.HIIRegion, .supernovaRemnant])
+    static let narrowband: Set<TargetType> = starClusters.union([.HIIRegion, .supernovaRemnant, .planetaryNebula])
 
     // Nebulous
     case HIIRegion = "H II Region"

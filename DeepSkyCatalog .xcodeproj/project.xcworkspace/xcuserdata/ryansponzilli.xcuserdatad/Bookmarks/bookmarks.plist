@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>33</string>
+					<string>50</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>32</string>
+					<string>49</string>
 					<key>Timestamp</key>
-					<string>759007533.518115</string>
+					<string>776906075.723042</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -332,13 +332,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>83</string>
+					<string>70</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>82</string>
+					<string>69</string>
 					<key>Timestamp</key>
-					<string>759007533.518104</string>
+					<string>776906133.380092</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -377,15 +377,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>0</string>
+					<string>185</string>
 					<key>EndingLineNumber</key>
-					<string>56</string>
+					<string>54</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>185</string>
 					<key>StartingLineNumber</key>
-					<string>55</string>
+					<string>54</string>
 					<key>Timestamp</key>
-					<string>774400451.947553</string>
+					<string>776906133.363452</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -401,16 +401,15 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>                    targets = targets.filteredByType(TargetType.broadband)
-</string>
+				<string></string>
 				<key>leading</key>
-				<string>                    }
-                    targets.append(contentsOf: narrowband)
-</string>
+				<string>            
+            // Remove all targets with a visibility score less than the user specified minimum
+            targets = targets.filteredByVisibility(min: reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)</string>
 				<key>trailing</key>
-				<string>                }
-                
-                // else (new moon) --&gt; do not filter anything, all is fine
+				<string>
+            
+            return targets
 </string>
 			</dict>
 			<key>title</key>

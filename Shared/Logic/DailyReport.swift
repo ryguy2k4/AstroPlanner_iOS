@@ -22,41 +22,21 @@ final class DailyReport {
         self.topTenStarClusters = createReportList(with: targets, for: TargetType.starClusters, top: 10)
         
         func generateSuitableTargets() -> [DeepSkyTarget] {
+            let moonIllumination = Moon.getMoonIllumination(date: date)
+            let latThreshold = location.latitude - 90.0
+            
             // start with all whitelisted targets
             var targets = DeepSkyTargetList.whitelistedTargets(hiddenTargets: targetSettings.hiddenTargets ?? [])
             
-            // Never Visible Filter
-            targets = targets.filter {
-                $0.dec  > (location.latitude - 90.0)
+            // Moon phase narrowband filter
+            if reportSettings.filterForMoonPhase && moonIllumination > reportSettings.maxAllowedMoon {
+                // keep only narrowband targets
+                targets = targets.filteredByType(TargetType.narrowband)
             }
             
-            // Remove all targets with a meridian score less than 50%
-            // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
-            targets = targets.filteredBySeasonScore(min: 0.5, location: location, date: date, sunData: sunData)
-            
-            // Remove all targets with a visibility score less than the user specified minimum
-            targets = targets.filteredByVisibility(min: reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
-            
-            // Moon Phase Based Filtering
-            if reportSettings.filterForMoonPhase {
-                
-                // if bright moon is visible filter for narrowband targets
-                let moonIllumination = Moon.getMoonIllumination(date: date)
-                if moonIllumination > reportSettings.maxAllowedMoon {
-                    targets = targets.filteredByType(TargetType.narrowband)
-                }
-                // if moon is not a problem, but broadband preferred --> move broadband targets to the top of the list
-                else if reportSettings.preferBroadband {
-                    var narrowband: [DeepSkyTarget] = []
-                    for target in targets where TargetType.narrowband.contains(target.type) {
-                        narrowband.append(target)
-                        targets.removeAll(where: {$0 == target})
-                    }
-                    targets.append(contentsOf: narrowband)
-                    targets = targets.filteredByType(TargetType.broadband)
-                }
-                
-                // else (new moon) --> do not filter anything, all is fine
+            // Never Visible Filter
+            targets = targets.filter {
+                $0.dec  > latThreshold
             }
             
             // filter for selected imaging preset, if one is selected
@@ -67,11 +47,18 @@ final class DailyReport {
                 }
             }
             
+            // Remove all targets with a meridian score less than 50%
+            // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
+            targets = targets.filteredBySeasonScore(min: 0.5, location: location, date: date, sunData: sunData)
+            
+            // Remove all targets with a visibility score less than the user specified minimum
+            targets = targets.filteredByVisibility(min: reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
+            
             return targets
         }
         
         func createReportList(with targets: [DeepSkyTarget], for type: Set<TargetType> = [], top num: Int) -> [DeepSkyTarget] {
-            
+            let moonIllumination = Moon.getMoonIllumination(date: date)
             var targets = targets
             
             // filter for desired types passed to function
@@ -89,10 +76,20 @@ final class DailyReport {
             // Sort the list by season score
             targets = targets.sortedByMeridian(location: location, date: date, sunData: sunData)
             
+            // move narrowband targets to the end of the list for prefer broadband
+            if reportSettings.filterForMoonPhase && moonIllumination < reportSettings.maxAllowedMoon && reportSettings.preferBroadband {
+                var narrowband: [DeepSkyTarget] = []
+                for target in targets where TargetType.narrowband.contains(target.type) {
+                    narrowband.append(target)
+                    targets.removeAll(where: {$0 == target})
+                }
+                targets.append(contentsOf: narrowband)
+            }
+            
             // Shorten the list to desired number passed to function
             targets.removeLast(targets.count > num ? targets.count-num : 0)
             
-            // Sort the list by visibility
+            // Final visibility sort
             targets = targets.sortedByVisibility(location: location,viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             
             return targets
