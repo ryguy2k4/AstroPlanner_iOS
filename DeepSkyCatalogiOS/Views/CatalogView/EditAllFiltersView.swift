@@ -32,8 +32,9 @@ struct EditAllFiltersView: View {
                         Label("Descending", systemImage: "chevron.down").tag(true)
                         
                     }
+                    .pickerStyle(.segmented)
                     .onChange(of: viewModel.sortDecending) {
-                        viewModel.refreshList(date: store.date, viewingInterval: store.viewingInterval, location: store.location, targetSettings: targetSettings.first!, sunData: store.sunData)
+                        viewModel.refreshSortOrder()
                     }
                 } header: {
                     Text("Sort")

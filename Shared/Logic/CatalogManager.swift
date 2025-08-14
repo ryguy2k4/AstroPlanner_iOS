@@ -126,4 +126,8 @@ final class CatalogManager: ObservableObject {
             targets.reverse()
         }
     }
+    
+    func refreshSortOrder() {
+        targets.reverse()
+    }
 }
