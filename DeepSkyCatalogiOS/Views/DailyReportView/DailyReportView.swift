@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import CoreLocation
+import DeepSkyCore
 
 struct DailyReportView: View {
     @EnvironmentObject var store: HomeViewModel

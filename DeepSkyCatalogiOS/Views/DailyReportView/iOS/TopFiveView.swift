@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DeepSkyCore
 
 /**
  This View is a subview of DailyReportView that displays the topThree as defined within the report.

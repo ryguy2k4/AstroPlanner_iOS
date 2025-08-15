@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DeepSkyCore
 
 struct MinMaxPicker: View {
     @Binding var min: Double?

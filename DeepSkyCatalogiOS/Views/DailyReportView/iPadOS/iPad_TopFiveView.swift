@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DeepSkyCore
 
 struct iPad_TopFiveView: View {
     let report: DailyReport

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DeepSkyCore
 
 final class DailyReport {
     let topFive: [DeepSkyTarget]

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import DeepSkyCore
 
 struct EditAllFiltersView: View {
     @ObservedObject var viewModel: CatalogManager

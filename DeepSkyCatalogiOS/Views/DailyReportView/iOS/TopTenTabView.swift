@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DeepSkyCore
 
 enum TargetTab: String, Identifiable, CaseIterable {
     var id: Self { self }

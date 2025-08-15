@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DeepSkyCore
 
 /**
  Creates a list from all the cases of an enum, and allows selection of each case to be saved in a binding

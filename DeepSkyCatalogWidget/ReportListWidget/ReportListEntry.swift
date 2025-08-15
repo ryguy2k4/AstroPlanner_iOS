@@ -7,6 +7,7 @@
 
 import Foundation
 import WidgetKit
+import DeepSkyCore
 
 struct ReportListEntry: TimelineEntry {
     let date: Date

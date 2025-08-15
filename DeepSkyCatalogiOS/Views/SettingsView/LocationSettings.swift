@@ -10,6 +10,7 @@ import SwiftData
 import CoreLocation
 import CoreLocationUI
 import Combine
+import DeepSkyCore
 
 struct LocationSettings: View {
     @Query(sort: [SortDescriptor(\SavedLocation.name, order: .forward)]) var locationList: [SavedLocation]

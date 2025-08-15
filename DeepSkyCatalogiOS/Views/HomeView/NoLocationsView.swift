@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import DeepSkyCore
 
 /**
  This view is displayed when there is no valid location

@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import Charts
+import DeepSkyCore
 
 /**
  A chart that plots altitude vs time for a target

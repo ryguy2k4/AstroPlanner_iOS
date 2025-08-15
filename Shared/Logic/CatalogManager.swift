@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import DeepSkyCore
 
 final class CatalogManager: ObservableObject {
     

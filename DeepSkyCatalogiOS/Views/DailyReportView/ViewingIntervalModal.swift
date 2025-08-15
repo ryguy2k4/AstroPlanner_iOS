@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import DeepSkyCore
 
 struct ViewingIntervalModal: View {
     @EnvironmentObject var store: HomeViewModel

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import DeepSkyCore
 
 struct TargetSchedule : View {
     @Query var targetSettings: [TargetSettings]

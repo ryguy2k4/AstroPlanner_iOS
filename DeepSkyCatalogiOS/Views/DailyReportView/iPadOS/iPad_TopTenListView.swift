@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DeepSkyCore
 
 struct iPad_TopTenListView: View {
     let reportList: [DeepSkyTarget]

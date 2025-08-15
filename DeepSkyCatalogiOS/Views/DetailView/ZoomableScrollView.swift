@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import DeepSkyCore
 
 struct ZoomableScrollView<Content: View>: UIViewRepresentable {
   private var content: Content

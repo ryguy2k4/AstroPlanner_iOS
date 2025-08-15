@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import DeepSkyCore
 
 struct CatalogView: View {
     @Environment(\.dismissSearch) private var dismissSearch

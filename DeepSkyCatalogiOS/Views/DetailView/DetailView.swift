@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import DeepSkyCore
 
 struct DetailView: View {
     @EnvironmentObject var store: HomeViewModel

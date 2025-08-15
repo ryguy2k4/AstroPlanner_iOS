@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DeepSkyCore
 
 /**
  This is a custom Picker that allows a number with to be picked with the specified number of digits. When this view is disabled, each number slot displays a dash.

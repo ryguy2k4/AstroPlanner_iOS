@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftData
+import DeepSkyCore
 
 @Model class SavedLocation {
     var isSelected: Bool = false
@@ -43,5 +44,11 @@ extension SavedLocation: Encodable {
     
     enum CodingKeys: String, CodingKey {
         case latitude, longitude, name, timezone, bortle, elevation
+    }
+}
+
+extension Location {
+    init(saved: SavedLocation) {
+        self.init(latitude: saved.latitude, longitude: saved.longitude, timezone: TimeZone(identifier: saved.timezone) ?? .gmt, elevation: saved.elevation, bortle: saved.bortle)
     }
 }

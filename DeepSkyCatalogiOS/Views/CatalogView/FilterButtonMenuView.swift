@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import DeepSkyCore
 
 /**
  This View displays a horizontal scrolling section of different filter buttons.

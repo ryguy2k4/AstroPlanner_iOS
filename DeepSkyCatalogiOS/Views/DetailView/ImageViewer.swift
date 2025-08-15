@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DeepSkyCore
 
 struct ImageViewer: View {
     let image: DeepSkyTarget.TargetImage

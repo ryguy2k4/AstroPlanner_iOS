@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import DeepSkyCore
 
 struct HiddenTargetsList: View {
     @Environment(\.modelContext) var context

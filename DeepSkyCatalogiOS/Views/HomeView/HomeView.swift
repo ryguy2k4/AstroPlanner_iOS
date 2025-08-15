@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import DeepSkyCore
 
 /**
  This struct contains the 4 variables that control the state of the app
@@ -44,9 +45,6 @@ struct HomeView: View {
                             .environmentObject(store)
                             .tabItem {
                                 Label("Daily Report", systemImage: "doc.text")
-                            }
-                            .onAppear() {
-                                print(Planet.mars.getAltitude(location: store.location, time: Date.now))
                             }
                         CatalogView()
                             .environmentObject(store)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DeepSkyCore
 
 struct iOS_DailyReportView: View {
     @State var topTenTab: TargetTab = .nebulae
