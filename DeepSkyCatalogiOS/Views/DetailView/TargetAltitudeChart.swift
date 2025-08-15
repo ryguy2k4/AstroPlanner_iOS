@@ -32,7 +32,7 @@ struct TargetAltitudeChart: View {
                     .lineStyle(.init(dash: [5]))
                     .foregroundStyle(.red)
             }
-            RectangleMark(xStart: .value("", store.date.startOfLocalDay(timezone: store.location.timezone).addingTimeInterval(43_200)), xEnd: .value("", store.viewingInterval.start))
+            RectangleMark(xStart: .value("", store.date.addingTimeInterval(43_200)), xEnd: .value("", store.viewingInterval.start))
                 .foregroundStyle(.tertiary.opacity(1))
             RectangleMark(xStart: .value("", store.viewingInterval.end), xEnd: .value("", store.date.tomorrow().addingTimeInterval(43_200)))
                 .foregroundStyle(.tertiary.opacity(1))

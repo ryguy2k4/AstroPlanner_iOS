@@ -7,26 +7,21 @@
 
 import Foundation
 
+// DeepSkyCore Functions
 extension Date {
-    
     /// The J2000 Epoch on January 1, 2000 at 12:00 UTC
     static let J2000: Date = Date(timeIntervalSince1970: 946_728_000)
     
-    /// The farthest back that WeatherKit can provide data for - August 1, 2021
-    static let weatherKitHistoricalLimit: Date = Date(timeIntervalSince1970: 1_627_776_000)
-        
     /**
-     - Returns: self + 1 day
+     Calculates the days between the Epoch J2000 and a given date.
+     - Parameter until: The date to calculate the interval to.
      */
-    func tomorrow() -> Date {
-        return self.addingTimeInterval(86400)
-    }
-    
-    /**
-     - Returns: self - 1 day
-     */
-    func yesterday() -> Date {
-        return self.addingTimeInterval(-86400)
+    static func daysSinceJ2000(until date: Date = Date.now) -> Double {
+        if date > Date.J2000 {
+            return DateInterval(start: Date.J2000, end: date).duration/60/60/24
+        } else {
+            return (DateInterval(start: date, end: Date.J2000).duration/60/60/24) * -1
+        }
     }
     
     /**
@@ -45,6 +40,49 @@ extension Date {
             tz = -tz
         }
         return (hours + tz).mod(by: 24)
+    }
+    
+    /**
+     - Returns: self at 12:00 AM
+     */
+    public func startOfLocalDay(timezone: TimeZone) -> Date {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timezone
+        return calendar.startOfDay(for: self)
+    }
+    
+    /**
+     - Returns: self at 11:59 PM
+     */
+    public func endOfLocalDay(timezone: TimeZone) -> Date {
+        return self.addingTimeInterval(86400).startOfLocalDay(timezone: timezone).addingTimeInterval(-1)
+    }
+    
+    /**
+     - Returns: self at 12:00 PM
+     */
+    public func localNoon(timezone: TimeZone) -> Date {
+        return self.startOfLocalDay(timezone: timezone).addingTimeInterval(43_200)
+    }
+}
+
+// Functions only required by UI
+extension Date {
+    /// The farthest back that WeatherKit can provide data for - August 1, 2021
+    static let weatherKitHistoricalLimit: Date = Date(timeIntervalSince1970: 1_627_776_000)
+        
+    /**
+     - Returns: self + 1 day
+     */
+    func tomorrow() -> Date {
+        return self.addingTimeInterval(86400)
+    }
+    
+    /**
+     - Returns: self - 1 day
+     */
+    func yesterday() -> Date {
+        return self.addingTimeInterval(-86400)
     }
     
     /**
@@ -88,38 +126,6 @@ extension Date {
         formatter.locale = .current
         formatter.dateFormat = format
         return formatter.string(from: self)
-    }
-    
-    /**
-     Calculates the days between the Epoch J2000 and a given date.
-     - Parameter until: The date to calculate the interval to.
-     */
-    static func daysSinceJ2000(until date: Date = Date.now) -> Double {
-        if date > Date.J2000 {
-            return DateInterval(start: Date.J2000, end: date).duration/60/60/24
-        } else {
-            return (DateInterval(start: date, end: Date.J2000).duration/60/60/24) * -1
-        }
-    }
-    
-    /**
-     - Returns: self at 12:00 AM
-     */
-    public func startOfLocalDay(timezone: TimeZone) -> Date {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = timezone
-        return calendar.startOfDay(for: self)
-    }
-    
-    /**
-     - Returns: self at 11:59 PM
-     */
-    public func endOfLocalDay(timezone: TimeZone) -> Date {
-        return self.tomorrow().startOfLocalDay(timezone: timezone).addingTimeInterval(-1)
-    }
-    
-    public func localNoon(timezone: TimeZone) -> Date {
-        return self.startOfLocalDay(timezone: timezone).addingTimeInterval(43_200)
     }
 }
 

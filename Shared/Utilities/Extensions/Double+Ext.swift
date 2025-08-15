@@ -7,8 +7,8 @@
 
 import Foundation
 
+// DeepSkyCore Functions
 extension Double {
-    
     /**
      Converts degrees to radians.
      - Returns: The given degree in radians.
@@ -36,7 +36,10 @@ extension Double {
         let remainder = self.truncatingRemainder(dividingBy: divisor)
         return (remainder >= 0) ? remainder : (remainder + divisor)
     }
-    
+}
+
+// Functions only required by UI
+extension Double {
     /**
      Formats the Double as a percent value.
      - Parameter sigFigs: The number of significant figures to display the decinal with. Defaults to 2.
@@ -97,9 +100,11 @@ extension Double {
         var string = ""
         var num = self.magnitude / 15
         string.append("\(Int(num))h ")
-        num = num.mod(by: 1) * 60
+//        num = num.mod(by: 1) * 60
+        num = num.remainder(dividingBy: 1) * 60
         string.append("\(Int(num))' ")
-        num = num.mod(by: 1) * 60
+//        num = num.mod(by: 1) * 60
+        num = num.remainder(dividingBy: 1) * 60
         string.append("\(Int(num))\" ")
         
         return string

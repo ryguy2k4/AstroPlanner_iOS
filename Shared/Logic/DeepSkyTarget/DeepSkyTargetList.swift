@@ -29,33 +29,25 @@ struct DeepSkyTargetList {
         return whitelist
     }
     
-    static var targetNameDict: [UUID: String] = {
-        var dict: [UUID: String] = [:]
-        for target in allTargets {
-            dict[target.id] = target.defaultName
-        }
-        return dict
-    }()
-    
     /**
      - Parameter list: The list that should be exported to Catalog.json
      Any existing data in Catalog.json will be overwritten, so list should always contain every target
      */
-    static func exportObjects(list: [DeepSkyTarget]) {
-        do {
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-            let data = try encoder.encode(list)
-            if #available(macOS 13.0, *) {
-                let path = URL(filePath: "/Users/ryansponzilli/Developer/XCode/DeepSkyCatalog/Shared/Logic/DeepSkyTarget/Catalog.json")
-                try data.write(to: path)
-               print("data exported")
-            } else {
-                // Fallback on earlier versions
-            }
-
-        } catch {
-           print("error exporting: \(error)")
-        }
-    }
+//    static func exportObjects(list: [DeepSkyTarget]) {
+//        do {
+//            let encoder = JSONEncoder()
+//            encoder.outputFormatting = .prettyPrinted
+//            let data = try encoder.encode(list)
+//            if #available(macOS 13.0, *) {
+//                let path = URL(filePath: "/Users/ryansponzilli/Developer/XCode/DeepSkyCatalog/Shared/Logic/DeepSkyTarget/Catalog.json")
+//                try data.write(to: path)
+//               print("data exported")
+//            } else {
+//                // Fallback on earlier versions
+//            }
+//
+//        } catch {
+//           print("error exporting: \(error)")
+//        }
+//    }
 }
