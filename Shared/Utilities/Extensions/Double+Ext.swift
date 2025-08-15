@@ -7,36 +7,36 @@
 
 import Foundation
 
-// DeepSkyCore Functions
-extension Double {
-    /**
-     Converts degrees to radians.
-     - Returns: The given degree in radians.
-     - Precondition: self is a degree value.
-     */
-    public func toRadian() -> Double {
-        return self * Double.pi / 180
-    }
-
-    /**
-     Converts radians to degrees.
-     - Returns: The given radian in degrees.
-     - Precondition: self is a radian value.
-     */
-    public func toDegree() -> Double {
-        return self / Double.pi * 180
-    }
-    
-    /**
-     A custom modulo function for Doubles. The default truncatingRemainder function can result in negative values, this function cannot.
-     - Parameter divisor: The number to mod by.
-     - Returns: The double after it is brought within range.
-     */
-    public func mod(by divisor: Double) -> Double {
-        let remainder = self.truncatingRemainder(dividingBy: divisor)
-        return (remainder >= 0) ? remainder : (remainder + divisor)
-    }
-}
+//// DeepSkyCore Functions
+//extension Double {
+//    /**
+//     Converts degrees to radians.
+//     - Returns: The given degree in radians.
+//     - Precondition: self is a degree value.
+//     */
+//    public func toRadian() -> Double {
+//        return self * Double.pi / 180
+//    }
+//
+//    /**
+//     Converts radians to degrees.
+//     - Returns: The given radian in degrees.
+//     - Precondition: self is a radian value.
+//     */
+//    public func toDegree() -> Double {
+//        return self / Double.pi * 180
+//    }
+//    
+//    /**
+//     A custom modulo function for Doubles. The default truncatingRemainder function can result in negative values, this function cannot.
+//     - Parameter divisor: The number to mod by.
+//     - Returns: The double after it is brought within range.
+//     */
+//    public func mod(by divisor: Double) -> Double {
+//        let remainder = self.truncatingRemainder(dividingBy: divisor)
+//        return (remainder >= 0) ? remainder : (remainder + divisor)
+//    }
+//}
 
 // Functions only required by UI
 extension Double {
