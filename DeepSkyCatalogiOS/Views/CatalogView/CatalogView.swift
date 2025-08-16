@@ -123,7 +123,7 @@ fileprivate struct TargetCell: View {
         }
         .task {
             visibilityScore = target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, limitingAlt: targetSettings.first?.limitingAltitude ?? 0)
-            seasonScore = target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)
+            seasonScore = target.getSeasonScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData)
         }
     }
 }

@@ -42,7 +42,7 @@
 </string>
 				<key>trailing</key>
 				<string>            // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
-            targets = targets.filteredBySeasonScore(min: 0.5, location: location, date: date, sunData: sunData)
+            targets = targets.filteredBySeasonScore(min: 0.5, location: location, viewingInterval: viewingInterval, sunData: sunData)
             
 </string>
 			</dict>

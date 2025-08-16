@@ -150,7 +150,7 @@ struct DetailView: View {
      */
     func generateShareString() -> String {
         let visibilityScore = target.getVisibilityScore(at: store.location, viewingInterval: store.viewingInterval, limitingAlt: targetSettings.first?.limitingAltitude ?? 0)
-        let seasonScore = target.getSeasonScore(at: store.location, on: store.date, sunData: store.sunData)
+        let seasonScore = target.getSeasonScore(at: store.location, viewingInterval: store.viewingInterval, sunData: store.sunData)
         let targetInterval = target.getNextInterval(location: store.location, date: store.date, limitingAlt: showLimitingAlt ? targetSettings.first?.limitingAltitude ?? 0 : 0)
         let scheduleString: String = {
             switch targetInterval.interval {

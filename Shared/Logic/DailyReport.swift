@@ -50,7 +50,7 @@ final class DailyReport {
             
             // Remove all targets with a meridian score less than 50%
             // ** Need to account for edge cases where meridian score doesn't effect visibility at extreme declinations
-            targets = targets.filteredBySeasonScore(min: 0.5, location: location, date: date, sunData: sunData)
+            targets = targets.filteredBySeasonScore(min: 0.5, location: location, viewingInterval: viewingInterval, sunData: sunData)
             
             // Remove all targets with a visibility score less than the user specified minimum
             targets = targets.filteredByVisibility(min: reportSettings.minVisibility, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
@@ -75,7 +75,7 @@ final class DailyReport {
             }
             
             // Sort the list by season score
-            targets = targets.sortedByMeridian(location: location, date: date, sunData: sunData)
+            targets = targets.sortedByMeridian(location: location, viewingInterval: viewingInterval, sunData: sunData)
             
             // move narrowband targets to the end of the list for prefer broadband
             if reportSettings.filterForMoonPhase && moonIllumination < reportSettings.maxAllowedMoon && reportSettings.preferBroadband {

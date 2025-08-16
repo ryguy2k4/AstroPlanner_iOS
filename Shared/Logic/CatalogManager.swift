@@ -99,7 +99,7 @@ final class CatalogManager: ObservableObject {
                 targets = targets.filteredByVisibility(min: minVisScore, location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             }
             if let minSeasonScore = minSeasonScore {
-                targets = targets.filteredBySeasonScore(min: minSeasonScore, location: location, date: date, sunData: sunData)
+                targets = targets.filteredBySeasonScore(min: minSeasonScore, location: location, viewingInterval: viewingInterval, sunData: sunData)
             }
         }
         
@@ -110,8 +110,8 @@ final class CatalogManager: ObservableObject {
                 targets = targets.sortedByVisibility(location: location, viewingInterval: viewingInterval, limitingAlt: targetSettings.limitingAltitude)
             }
         case .seasonScore:
-            if let sunData = sunData {
-                targets = targets.sortedByMeridian(location: location, date: date, sunData: sunData)
+            if let sunData = sunData, let viewingInterval = viewingInterval {
+                targets = targets.sortedByMeridian(location: location, viewingInterval: viewingInterval, sunData: sunData)
             }
         case .dec:
             targets = targets.sortedByDec()
