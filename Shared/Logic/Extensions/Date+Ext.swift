@@ -7,11 +7,7 @@
 
 import Foundation
 
-// Functions only required by UI
 extension Date {
-    /// The farthest back that WeatherKit can provide data for - August 1, 2021
-    static let weatherKitHistoricalLimit: Date = Date(timeIntervalSince1970: 1_627_776_000)
-        
     /**
      - Returns: self + 1 day
      */

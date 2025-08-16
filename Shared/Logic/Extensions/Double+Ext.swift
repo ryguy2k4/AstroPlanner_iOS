@@ -8,16 +8,15 @@
 import Foundation
 import DeepSkyCore
 
-// Functions only required by UI
 extension Double {
-    /**
-     Formats the Double as a percent value.
-     - Parameter sigFigs: The number of significant figures to display the decinal with. Defaults to 2.
-     - Returns: A String containing the formatted percent.
-     */
-    public func percent(sigFigs: Int = 2) -> String {
-        return self.formatted(.percent.precision(.significantDigits(0...sigFigs)))
-    }
+        /**
+         Formats the Double as a percent value.
+         - Parameter sigFigs: The number of significant figures to display the decinal with. Defaults to 2.
+         - Returns: A String containing the formatted percent.
+         */
+        public func percent(sigFigs: Int = 2) -> String {
+            return self.formatted(.percent.precision(.significantDigits(0...sigFigs)))
+        }
     
     /**
      This function gets a certain digit within a number.
@@ -70,11 +69,9 @@ extension Double {
         var string = ""
         var num = self.magnitude / 15
         string.append("\(Int(num))h ")
-//        num = num.mod(by: 1) * 60
-        num = num.remainder(dividingBy: 1) * 60
+        num = num.mod(by: 1) * 60
         string.append("\(Int(num))' ")
-//        num = num.mod(by: 1) * 60
-        num = num.remainder(dividingBy: 1) * 60
+        num = num.mod(by: 1) * 60
         string.append("\(Int(num))\" ")
         
         return string
@@ -98,15 +95,5 @@ extension Optional where Wrapped == Double {
             return num.setDigit(place, to: newDigit)
         }
         return nil
-    }
-}
-
-extension Array where Element == Double {
-    func mean() -> Double {
-        var sum = 0.0
-        for item in self {
-            sum += item
-        }
-        return sum / Double(self.count)
     }
 }

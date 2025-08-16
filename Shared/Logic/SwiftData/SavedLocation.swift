@@ -49,6 +49,6 @@ extension SavedLocation: Encodable {
 
 extension Location {
     init(saved: SavedLocation) {
-        self.init(latitude: saved.latitude, longitude: saved.longitude, timezone: TimeZone(identifier: saved.timezone) ?? .gmt, elevation: saved.elevation, bortle: saved.bortle)
+        self.init(name: saved.name, latitude: saved.latitude, longitude: saved.longitude, timezone: TimeZone(identifier: saved.timezone) ?? .gmt, elevation: saved.elevation, bortle: saved.bortle)
     }
 }
